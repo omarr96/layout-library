@@ -64,7 +64,8 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
 .start .sub { color: var(--mut); font-size: 16px; margin: 0 0 30px; }
 .pbox { text-align: left; background: #fff; border: 1px solid var(--line2); border-radius: 18px; box-shadow: 0 20px 50px -30px rgba(17,17,19,.35); transition: border-color .15s, box-shadow .15s; }
 .pbox:focus-within { border-color: var(--ink); box-shadow: 0 0 0 4px rgba(17,17,19,.05), 0 20px 50px -30px rgba(17,17,19,.35); }
-.pbox textarea { display: block; width: 100%; min-height: 110px; border: 0; outline: none; resize: none; padding: 18px 20px 6px; font-size: 16px; line-height: 1.5; background: none; }
+.pbox textarea { display: block; width: 100%; min-height: 170px; border: 0; outline: none; resize: none; padding: 18px 20px 6px; font-size: 16px; line-height: 1.5; background: none; }
+.pbox textarea::placeholder { font-size: 14px; color: var(--faint); }
 .pbox .bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px 12px; flex-wrap: wrap; }
 .pbox .bar .btn.ghost { height: 32px; padding: 0 10px; font-size: 13px; }
 .pbox .bar .go { margin-left: auto; }
@@ -189,16 +190,44 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
 .skel { height: 120px; margin: 14px 24px; border-radius: 12px; background: linear-gradient(90deg, #f0f0f2 0%, #f8f8f9 50%, #f0f0f2 100%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
-/* ---------- 5 editor ---------- */
-.ed { display: grid; grid-template-rows: 52px 1fr; height: calc(100vh - 93px); min-height: 620px; }
-.etb { display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line); }
-.etb .nm { font-weight: 600; color: var(--ink); }
-.etb .seg { display: flex; padding: 3px; border-radius: 9px; background: var(--soft); margin-left: 12px; }
-.etb .seg button { height: 26px; padding: 0 10px; border-radius: 7px; font-size: 12.5px; color: var(--mut); }
-.etb .seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-.etb .r { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-.ebody { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: 0; }
-.eside { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+/* ---------- 5 editor (matches the real builder) ---------- */
+.ed { --pu: #7c4dff; --pubg: #f1ebff; display: grid; grid-template-rows: 62px 1fr; height: calc(100vh - 93px); min-height: 640px; background: #f4f4f6; }
+.etb { display: flex; align-items: center; gap: 12px; padding: 0 14px; background: #fff; border-bottom: 1px solid var(--line); min-width: 0; }
+.etb .app { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #a78bfa, #ec4899); color: #fff; display: grid; place-items: center; flex: none; }
+.etb .app svg.i { width: 18px; height: 18px; }
+.etb .nm { display: flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink); white-space: nowrap; min-width: 0; padding: 6px 8px; border-radius: 8px; }
+.etb .nm:hover { background: var(--hover); }
+.etb .nm span { overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.etb .nm small { font-weight: 400; color: var(--faint); }
+.mode { display: flex; padding: 3px; border-radius: 11px; border: 1px solid var(--line); background: #fff; flex: none; }
+.mode button { height: 32px; padding: 0 12px; border-radius: 8px; display: flex; gap: 7px; align-items: center; font-weight: 500; color: var(--tx); }
+.mode button.on { background: var(--pu); color: #fff; }
+.urlb { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 11px; margin: 0 auto; min-width: 0; color: var(--ink); background: #fff; }
+.urlb .u { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.urlb select { border: 0; background: none; font-weight: 600; outline: none; cursor: pointer; padding-right: 2px; }
+.urlb svg.i { color: var(--mut); }
+.dev { display: flex; padding: 3px; border-radius: 11px; border: 1px solid var(--line); flex: none; }
+.dev button { width: 36px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--mut); }
+.dev button.on { background: var(--pubg); color: var(--pu); }
+.ib { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--mut); flex: none; }
+.ib:hover { background: var(--hover); color: var(--ink); }
+.ib.saved { color: var(--ok); }
+.pubb { height: 40px; padding: 0 18px; border-radius: 11px; background: var(--pu); color: #fff; font-weight: 600; flex: none; }
+.pubb:hover { background: #6a3cf0; }
+.ebody { position: relative; display: grid; grid-template-columns: 64px auto minmax(0, 1fr); min-height: 0; }
+.rail { background: #fff; border-right: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 0; }
+.rail button { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; color: var(--tx); }
+.rail button:hover { background: var(--hover); }
+.rail button.on { background: var(--pu); color: #fff; box-shadow: 0 6px 14px -6px rgba(124,77,255,.8); }
+.rail svg.i { width: 19px; height: 19px; }
+.rail .sp { flex: 1; }
+.rail .av { width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 600; font-size: 16px; }
+.rail .av:hover { background: #2a2a2e; }
+.eside { width: 320px; background: #fff; border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+.eside.off { display: none; }
+.eside .ph { display: flex; align-items: center; gap: 8px; height: 50px; padding: 0 10px 0 16px; border-bottom: 1px solid var(--line); font-weight: 600; color: var(--ink); flex: none; }
+.eside .ph svg.i { color: var(--pu); }
+.eside .ph .ib { margin-left: auto; }
 .eside .sc { flex: 1; overflow: auto; padding: 16px; }
 .chk h4 { margin: 0 0 4px; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
 .chk > p { margin: 0 0 12px; color: var(--mut); font-size: 13px; }
@@ -206,6 +235,7 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
 .ci .bx { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--line2); display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 700; }
 .ci b { display: block; color: var(--ink); font-weight: 500; font-size: 13.5px; }
 .ci small { color: var(--mut); display: block; margin: 2px 0 8px; }
+.ci .lnk { color: var(--pu); font-size: 12.5px; font-weight: 500; }
 .ci.done { background: var(--soft); border-color: transparent; }
 .ci.done .bx { background: var(--ok); border-color: var(--ok); }
 .ci.done b { text-decoration: line-through; color: var(--mut); }
@@ -213,12 +243,56 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
 .ci .acts { display: flex; gap: 6px; flex-wrap: wrap; }
 .chat { border-top: 1px solid var(--line); padding: 12px; }
 .chat .cb { display: flex; gap: 6px; align-items: center; border: 1px solid var(--line2); border-radius: 12px; padding: 6px 6px 6px 12px; }
+.chat .cb:focus-within { border-color: var(--pu); }
 .chat input { flex: 1; min-width: 0; border: 0; outline: none; height: 30px; background: none; }
+.chat .send { height: 30px; padding: 0 12px; border-radius: 8px; background: var(--pu); color: #fff; font-weight: 500; font-size: 13px; }
 .chat .sugg { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .chat .sugg button { font-size: 12px; padding: 4px 9px; border-radius: 99px; background: var(--soft); color: var(--tx); }
-.chat .sugg button:hover { background: var(--hover); color: var(--ink); }
-.ecanvas { background: var(--soft); overflow: auto; padding: 22px; }
-.ecanvas .browser { margin: 0 auto; }
+.chat .sugg button:hover { background: var(--pubg); color: var(--pu); }
+.ecanvas { grid-column: 3; overflow: auto; padding: 16px 16px 0; }
+.frame { margin: 0 auto; max-width: 100%; background: #fff; border-radius: 14px 14px 0 0; overflow: hidden; box-shadow: 0 0 0 1px var(--line); container-type: inline-size; transition: max-width .3s ease; }
+.frame.tab { max-width: 768px; } .frame.mob { max-width: 390px; }
+/* the site at real size inside the builder */
+.frame .site { font-size: 15px; }
+.frame .site .sn { padding: 18px 40px; }
+.frame .site .sn b { font-size: 22px; }
+.frame .site .sn nav { font-size: 15px; gap: 28px; }
+.frame .site .sn .cta { height: 42px; padding: 0 20px; font-size: 14px; }
+.frame .site .sh { padding: 64px 40px; gap: 44px; }
+.frame .site .sh h2 { font-size: clamp(34px, 5cqi, 64px); }
+.frame .site .sh p { font-size: 17px; margin-bottom: 22px; }
+.frame .site .sh .b1, .frame .site .sh .b2 { height: 46px; padding: 0 20px; font-size: 14px; }
+.frame .site .sh .im { height: 380px; border-radius: 22px; }
+.frame .site .ss { padding: 48px 40px; }
+.frame .site .ss h3 { font-size: 30px; margin-bottom: 20px; }
+.frame .site .grid3 { gap: 18px; }
+.frame .site .mc div { height: 170px; }
+.frame .site .mc p { padding: 12px 14px; font-size: 14px; }
+.frame .site .ct div { padding: 20px; }
+@container (max-width: 700px) {
+  .frame .site .sn { padding: 14px 20px; } .frame .site .sn nav { display: none; }
+  .frame .site .sh { grid-template-columns: 1fr; padding: 72px 20px 36px; gap: 24px; } .frame .site .sh .im { height: 230px; }
+  .frame .site .ss { padding: 32px 20px; } .frame .site .grid3 { grid-template-columns: 1fr 1fr; } .frame .site .grid3 .mc:nth-child(3) { display: none; }
+  .frame .site .ct { grid-template-columns: 1fr; }
+}
+/* selection, section toolbar, add section */
+.frame .blk { position: relative; cursor: pointer; }
+.frame .blk:hover { outline: 1.5px dashed rgba(124,77,255,.55); outline-offset: -2px; }
+.frame .blk.sel { outline: 2px solid var(--pu); outline-offset: -2px; }
+.stb { position: absolute; top: 14px; right: 14px; z-index: 5; display: flex; align-items: center; gap: 2px; padding: 4px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 24px -12px rgba(0,0,0,.3); font: 13px/1 Inter, sans-serif; color: var(--tx); cursor: default; }
+.stb .nmx { padding: 0 6px 0 8px; color: var(--mut); }
+.stb button { height: 32px; min-width: 32px; padding: 0 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--tx); }
+.stb button:hover { background: var(--hover); }
+.stb .askb { background: var(--pubg); color: var(--pu); font-weight: 500; padding: 0 10px; }
+.stb .askb:hover { background: #e6dcff; }
+.stb i.sep { width: 1px; height: 20px; background: var(--line); margin: 0 3px; }
+.stb button:disabled { opacity: .35; cursor: default; }
+.addsec { position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%); z-index: 6; height: 30px; padding: 0 14px; border-radius: 99px; background: #3b82f6; color: #fff; font: 600 13px/1 Inter, sans-serif; display: flex; align-items: center; gap: 6px; box-shadow: 0 6px 16px -6px rgba(59,130,246,.8); white-space: nowrap; }
+.addsec:hover { background: #2f6fe0; }
+.frame.preview .blk:hover, .frame.preview .blk.sel { outline: 0; }
+.frame.preview .stb, .frame.preview .addsec, .frame.preview .mark { outline: 0; }
+.frame.preview .stb, .frame.preview .addsec { display: none; }
+.frame.preview .ph-tag { display: none; }
 
 /* ---------- modal (6) ---------- */
 .scrim { position: fixed; inset: 0; z-index: 60; background: rgba(17,17,19,.4); display: none; place-items: center; padding: 20px; }
@@ -311,43 +385,74 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
 .ts small { color: var(--mut); }
 .ts:not(.done):not(.now) b { color: var(--faint); }
 
-/* ---------- 9 home ---------- */
-.home { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: calc(100vh - 93px); }
-.hside { background: #fafafa; border-right: 1px solid var(--line); padding: 16px 12px; }
+/* ---------- 9 home base (simple) ---------- */
+.home { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: calc(100vh - 93px); background: #fafafa; }
+.hside { background: #fff; border-right: 1px solid var(--line); padding: 16px 12px; display: flex; flex-direction: column; gap: 2px; }
 .hside a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; color: var(--tx); }
 .hside a:hover { background: var(--hover); }
 .hside a.on { background: #efeff1; font-weight: 500; color: var(--ink); }
-.hmain { padding: 30px 34px 60px; max-width: 1100px; }
-.hhead { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-.hhead h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; color: var(--ink); }
-.hhead .r { margin-left: auto; display: flex; gap: 8px; }
-.hgrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; margin-top: 22px; }
-.thumb { height: 230px; overflow: hidden; border-bottom: 1px solid var(--line); position: relative; border-radius: 14px 14px 0 0; }
-.thumb .site { transform: scale(.55); transform-origin: 0 0; width: 182%; pointer-events: none; }
-.kv { display: grid; grid-template-columns: 110px 1fr; gap: 10px 14px; font-size: 13.5px; }
-.kv dt { color: var(--mut); } .kv dd { margin: 0; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.todo { display: grid; gap: 4px; }
-.todo label { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); cursor: pointer; }
-.todo label:first-child { border-top: 0; }
-.todo input { width: 16px; height: 16px; accent-color: var(--ink); }
-.todo input:checked + span { color: var(--faint); text-decoration: line-through; }
-.todo small { margin-left: auto; color: var(--mut); }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.stats div { padding: 12px; border-radius: 12px; background: var(--soft); }
-.stats b { display: block; font-size: 22px; color: var(--ink); letter-spacing: -.02em; }
-.stats small { color: var(--mut); }
-.act { list-style: none; margin: 0; padding: 0; }
-.act li { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
-.act li:first-child { border-top: 0; }
-.act time { margin-left: auto; color: var(--faint); white-space: nowrap; }
+.hside a .n { margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; display: grid; place-items: center; }
+.hmain { padding: 22px 32px 60px; max-width: 1080px; width: 100%; }
+.hdemo { display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: center; padding: 8px 10px; border: 1px dashed var(--line2); border-radius: 12px; margin-bottom: 18px; font-size: 12.5px; color: var(--mut); background: #fff; }
+.hdemo .g { display: flex; gap: 4px; flex-wrap: wrap; }
+.hdemo button { height: 28px; padding: 0 10px; border-radius: 7px; color: var(--tx); font-size: 12.5px; }
+.hdemo button:hover { background: var(--hover); }
+.hdemo button.on { background: var(--ink); color: #fff; }
+.pill.err { background: #fef2f2; color: #b91c1c; } .pill.blue { background: #eff6ff; color: #1d4ed8; }
+/* main overview card */
+.ov { display: grid; grid-template-columns: 340px minmax(0, 1fr); background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.ov .thumb { position: relative; height: 100%; min-height: 250px; overflow: hidden; background: var(--soft); border-right: 1px solid var(--line); }
+.ov .thumb .site { position: absolute; top: 0; left: 0; transform: scale(.36); transform-origin: 0 0; width: 278%; pointer-events: none; }
+.ov .thumb .mask { position: absolute; inset: 0; background: rgba(255,255,255,.5); display: grid; place-items: center; }
+.ov .thumb .open { position: absolute; right: 12px; bottom: 12px; }
+.ov .info { padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ov h1 { margin: 0; font-size: 24px; letter-spacing: -.02em; color: var(--ink); }
+.ov .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.ov .kv { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px 12px; font-size: 13.5px; margin: 0; }
+.ov .kv dt { color: var(--mut); } .ov .kv dd { margin: 0; color: var(--ink); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; }
+.ov .kv .mono { font-size: 13px; overflow-wrap: anywhere; }
+.ov .note { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; font-size: 13.5px; }
+.ov .note b { color: var(--ink); font-weight: 600; }
+.ov .note.draft { background: var(--soft); } .ov .note.free { background: var(--aibg); } .ov .note.pend { background: #eff6ff; } .ov .note.issue { background: #fef2f2; } .ov .note.chg { background: var(--warnbg); }
+.ov .acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+/* three small cards */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.mini { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mini h4 { margin: 0; font-size: 13.5px; font-weight: 500; color: var(--mut); display: flex; align-items: center; gap: 8px; }
+.mini h4 a { margin-left: auto; font-size: 12.5px; color: var(--ink); }
+.mini .big { font-size: 30px; font-weight: 600; letter-spacing: -.03em; color: var(--ink); line-height: 1.1; }
+.mini .big small { font-size: 13px; font-weight: 500; color: #15803d; letter-spacing: 0; margin-left: 6px; }
+.mini .hint { color: var(--mut); font-size: 13px; }
+.mini svg.spark { width: 100%; height: 44px; margin-top: auto; }
+.mini .last { padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 13px; margin-top: auto; }
+.mini .last b { display: block; color: var(--ink); font-weight: 500; }
+.mini .last span { display: block; color: var(--mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.steps3 { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
+.steps3 li { display: grid; grid-template-columns: 20px 1fr auto; gap: 10px; align-items: center; padding: 7px 0; font-size: 13.5px; color: var(--ink); }
+.steps3 .bx { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line2); display: grid; place-items: center; font-size: 10px; color: #fff; font-weight: 700; }
+.steps3 li.done .bx { background: var(--ok); border-color: var(--ok); }
+.steps3 li.done span { color: var(--faint); text-decoration: line-through; }
+.steps3 button { font-size: 12.5px; color: var(--ai); font-weight: 500; }
+.steps3 li.done button { display: none; }
+.sw { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink); cursor: pointer; }
+.sw input { display: none; }
+.sw span { width: 34px; height: 20px; border-radius: 99px; background: var(--line2); position: relative; transition: background .2s; flex: none; }
+.sw span::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.sw input:checked + span { background: var(--ok); }
+.sw input:checked + span::after { transform: translateX(14px); }
+@media (max-width: 1000px) { .ov { grid-template-columns: 1fr; } .ov .thumb { height: 200px; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); } .ov .thumb .site { transform: scale(.5); width: 200%; } }
+@media (max-width: 860px) { .trio { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .hmain { padding: 16px 14px 40px; } .ov .info { padding: 18px; } .ov .kv { grid-template-columns: 96px minmax(0, 1fr); } .ov .acts .btn { flex: 1; } }
 
 .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; z-index: 90; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13.5px; transition: .25s; pointer-events: none; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 
 @media (max-width: 1000px) {
   .build { grid-template-columns: 1fr; } .log { border-right: 0; border-bottom: 1px solid var(--line); }
-  .ebody { grid-template-columns: 1fr; } .eside { border-right: 0; border-bottom: 1px solid var(--line); max-height: none; } .ed { height: auto; }
-  .home { grid-template-columns: 1fr; } .hside { display: none; } .hgrid { grid-template-columns: 1fr; }
+  .ebody { grid-template-columns: 56px minmax(0, 1fr); } .rail { gap: 4px; } .rail button { width: 40px; height: 40px; }
+  .eside { position: absolute; left: 56px; top: 0; bottom: 0; z-index: 10; width: min(320px, calc(100% - 56px)); box-shadow: 12px 0 30px -18px rgba(0,0,0,.35); }
+  .urlb, .etb .hist { display: none; } .dev { margin-left: auto; } .ecanvas { grid-column: 2; }
+  .home { grid-template-columns: 1fr; } .hside { display: none; } .hgrid { grid-template-columns: 1fr; } .qa { grid-template-columns: repeat(3, 1fr); }
   .proto .ttl { display: none; }
 }
 @media (max-width: 700px) {
@@ -360,11 +465,14 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
   .live { grid-template-columns: minmax(0, 1fr); padding: 40px 16px; }
   .res div { flex-wrap: wrap; gap: 6px 10px; } .res .d { flex: 1 1 100%; } .res .p { margin-left: 0; margin-right: auto; }
   .qr { grid-template-columns: 80px 1fr; } .qr svg { width: 80px; height: 80px; }
-  .hmain { padding: 22px 16px 50px; } .hhead .r { margin-left: 0; }
-  .stats { grid-template-columns: 1fr 1fr 1fr; } .stats b { font-size: 18px; }
+  .hmain { padding: 18px 14px 50px; } .hhead .r { margin-left: 0; width: 100%; } .hhead .r .btn { flex: 1; }
+  .qa { grid-template-columns: repeat(2, 1fr); } .kpis { grid-template-columns: 1fr 1fr; } .kpi:nth-child(2) { border-right: 0; } .kpi:nth-child(-n+2) { border-bottom: 1px solid var(--line); } .kpi b { font-size: 20px; }
+  .split2 { grid-template-columns: 1fr; } .split2 > div + div { border-left: 0; border-top: 1px solid var(--line); }
+  .msgs .full { padding-left: 16px; } .hban .acts { width: 100%; }
   .dns th:nth-child(1), .dns td:nth-child(1) { display: none; }
   .prov { flex-wrap: wrap; } .prov .btn { margin-left: 0; width: 100%; }
-  .etb .seg, .etb .hide-sm { display: none; }
+  .etb .hide-sm, .dev { display: none; } .etb { gap: 8px; padding: 0 10px; } .etb .nm span { max-width: 110px; } .mode button { padding: 0 9px; } .mode button .t { display: none; } .pubb { margin-left: auto; padding: 0 14px; }
+  .ecanvas { padding: 10px 10px 0; } .stb .nmx, .stb .mv { display: none; }
 }
 </style>
 </head>
@@ -470,29 +578,47 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
   </div>
 </section>
 
-<!-- 5 REVIEW / EDITOR -->
+<!-- 5 REVIEW / EDITOR (same layout as the real builder) -->
 <section class="scr" data-step="5">
   <div class="ed">
     <div class="etb">
-      <span class="nm" id="eName">Mitali's Kitchen</span><span class="pill gray">Draft</span>
-      <div class="seg"><button class="on">Home</button><button>Menu</button><button>About</button><button>Contact</button></div>
-      <div class="r"><span class="pill ok hide-sm"><span class="dot"></span>Saved</span><button class="btn sec sm hide-sm">Preview</button><button class="btn pri sm" id="openPub">Publish</button></div>
+      <span class="app"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>
+      <button class="nm" id="eNameBtn"><span id="eName">Mitali's Kitchen</span><small>· Draft</small><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="mode" id="eMode"><button class="on" data-m="edit"><svg class="i" viewBox="0 0 24 24"><path d="M4 4l7 16 2-7 7-2z"/></svg><span class="t">Edit</span></button><button data-m="preview"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span class="t">Preview</span></button></div>
+      <div class="urlb"><svg class="i" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg><span class="u" id="eUrlT">mitalis-kitchen.zejify.app/</span><select id="ePage" aria-label="Page"><option>Home</option><option>Menu</option><option>About</option><option>Contact</option></select><a href="#" aria-label="Open in a new tab" title="Open draft in a new tab"><svg class="i" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
+      <div class="dev" id="eDev"><button class="on" data-d="" aria-label="Desktop"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button><button data-d="tab" aria-label="Tablet"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M11 18h2"/></svg></button><button data-d="mob" aria-label="Phone"><svg class="i" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></button></div>
+      <button class="ib hist" aria-label="Undo" data-t="Undone"><svg class="i" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+      <button class="ib hist" aria-label="Redo" data-t="Redone"><svg class="i" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
+      <button class="ib saved hide-sm" aria-label="All changes saved" data-t="All changes saved"><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="m5 12 4.5 4.5L19 7"/></svg></button>
+      <button class="pubb" id="openPub">Publish</button>
     </div>
     <div class="ebody">
-      <aside class="eside">
+      <nav class="rail" aria-label="Builder tools">
+        <button class="on" id="rAi" aria-label="AI assistant" title="AI assistant"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></button>
+        <button data-t="Layers" aria-label="Layers" title="Layers"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></button>
+        <button data-t="Pages" aria-label="Pages" title="Pages"><svg class="i" viewBox="0 0 24 24"><rect x="8" y="3" width="12" height="15" rx="2"/><path d="M16 21H6a2 2 0 0 1-2-2V7"/></svg></button>
+        <button data-t="Design" aria-label="Design" title="Design: colours and fonts"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.5-.8 1.5-1.5 0-1.3-1-1.5-1-2.5S13 15 14 15h2a5 5 0 0 0 5-5c0-3.9-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg></button>
+        <button data-t="SEO" aria-label="SEO" title="SEO"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 11h6M11 8v6"/></svg></button>
+        <button data-t="History" aria-label="History" title="History"><svg class="i" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></button>
+        <span class="sp"></span>
+        <button data-t="Dark mode" aria-label="Dark mode" title="Dark mode"><svg class="i" viewBox="0 0 24 24"><path d="M20 15A8 8 0 1 1 9 4a7 7 0 0 0 11 11z"/></svg></button>
+        <button class="av" aria-label="Account">N</button>
+      </nav>
+      <aside class="eside" id="eSide">
+        <div class="ph"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>AI assistant<button class="ib" id="eSideX" aria-label="Close panel"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
         <div class="sc chk">
           <h4>3 things to check <span class="pill gray" id="chkN">0 / 3</span></h4>
           <p>Quick fixes before you go live. None of them stop you from publishing.</p>
-          <div class="ci" data-k="photos"><span class="bx"></span><div><b>Swap 2 sample photos</b><small>The hero and one dish use sample photos. Yours will sell better.</small><div class="acts"><button class="btn sec sm" data-fix="photos">Upload mine</button><button class="btn ghost sm" data-fix="photos">Keep for now</button></div></div></div>
-          <div class="ci" data-k="phone"><span class="bx"></span><div><b>Check your phone number</b><small id="ciPhone">+880 1712 345678 is on the WhatsApp button and footer.</small><div class="acts"><button class="btn sec sm" data-fix="phone">Looks right</button></div></div></div>
-          <div class="ci" data-k="logo"><span class="bx"></span><div><b>Add your logo</b><small>Right now your name is shown as text.</small><div class="acts"><button class="btn sec sm" data-fix="logo">Upload logo</button><button class="btn ghost sm" data-fix="logo">Text is fine</button></div></div></div>
+          <div class="ci" data-k="photos"><span class="bx"></span><div><b>Swap 2 sample photos</b><small>The hero and one dish use sample photos. Yours will sell better.</small><div class="acts"><button class="btn sec sm" data-fix="photos">Upload mine</button><button class="btn ghost sm" data-fix="photos">Keep for now</button><button class="lnk" data-show="1">Show me</button></div></div></div>
+          <div class="ci" data-k="phone"><span class="bx"></span><div><b>Check your phone number</b><small id="ciPhone">+880 1712 345678 is on the WhatsApp button and footer.</small><div class="acts"><button class="btn sec sm" data-fix="phone">Looks right</button><button class="lnk" data-show="4">Show me</button></div></div></div>
+          <div class="ci" data-k="logo"><span class="bx"></span><div><b>Add your logo</b><small>Right now your name is shown as text.</small><div class="acts"><button class="btn sec sm" data-fix="logo">Upload logo</button><button class="btn ghost sm" data-fix="logo">Text is fine</button><button class="lnk" data-show="0">Show me</button></div></div></div>
         </div>
         <div class="chat">
-          <div class="cb"><svg class="i" viewBox="0 0 24 24" style="color:var(--ai)"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg><input id="ask" placeholder="Ask AI to change anything…" aria-label="Ask AI"><button class="btn pri sm" id="askGo">Send</button></div>
+          <div class="cb"><input id="ask" placeholder="Ask AI to change anything…" aria-label="Ask AI"><button class="send" id="askGo">Send</button></div>
           <div class="sugg"><button>Make the menu prices bigger</button><button>Add a Friday special</button><button>Translate to Bangla</button></div>
         </div>
       </aside>
-      <div class="ecanvas"><div class="browser"><div class="tb"><i></i><i></i><i></i><span class="u mono" id="eUrl">Draft · not published</span></div><div id="eSite"></div></div></div>
+      <div class="ecanvas"><div class="frame" id="eFrame"><div id="eSite"></div></div></div>
     </div>
   </div>
 </section>
@@ -565,35 +691,20 @@ svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-widt
   <div class="home">
     <aside class="hside">
       <a href="#" class="on"><svg class="i" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z"/></svg>Overview</a>
-      <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Edit site</a>
-      <a href="#"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 8 9 6 9-6"/></svg>Form messages</a>
-      <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Visitors</a>
-      <a href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Domain</a>
-      <a href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2Z"/></svg>Settings</a>
+      <a href="#" data-go="5"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Edit site</a>
+      <a href="#" data-h="msgs"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 8 9 6 9-6"/></svg>Messages<span class="n" id="hSideN" style="display:none">2</span></a>
+      <a href="#" data-h="stats"><svg class="i" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Analytics</a>
+      <a href="#" data-go="8"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Domain</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.5-.8 1.5-1.5 0-1.3-1-1.5-1-2.5S13 15 14 15h2a5 5 0 0 0 5-5c0-3.9-4-7-9-7z"/></svg>Design</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Settings</a>
     </aside>
     <main class="hmain">
-      <div class="hhead"><div><h1 id="hName">Mitali's Kitchen</h1><div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap"><span class="pill ok"><span class="dot"></span>Live</span><span class="pill gray mono" id="hDom">mitaliskitchen.com</span></div></div>
-        <div class="r"><a href="#" class="btn sec">View site</a><button class="btn pri" data-go="5">Edit site</button></div></div>
-      <div class="hgrid">
-        <div class="card" style="overflow:hidden"><div class="thumb" id="hThumb"></div><div class="bd"><dl class="kv">
-          <dt>Address</dt><dd><span class="mono" id="hDom2">mitaliskitchen.com</span><span class="pill ok">🔒 Secure</span></dd>
-          <dt>Free address</dt><dd class="mono" style="color:var(--mut)" id="hFree">mitalis-kitchen.zejify.app</dd>
-          <dt>Last published</dt><dd>Today, a few minutes ago</dd></dl></div></div>
-        <div style="display:grid;gap:14px;align-content:start">
-          <div class="card"><div class="hd"><h4>This week</h4></div><div class="bd stats"><div><b>0</b><small>Visitors</small></div><div><b>0</b><small>Messages</small></div><div><b>0</b><small>WhatsApp taps</small></div></div></div>
-          <div class="card"><div class="hd"><h4>Get more customers</h4><span class="r pill gray" id="todoN">0 / 4</span></div><div class="bd todo" id="todo">
-            <label><input type="checkbox"><span>Add your site to Google</span><small>2 min</small></label>
-            <label><input type="checkbox"><span>Put the link on your Facebook page</span><small>1 min</small></label>
-            <label><input type="checkbox"><span>Get form messages on WhatsApp</span><small>1 min</small></label>
-            <label><input type="checkbox"><span>Ask 3 customers for a review</span><small>5 min</small></label>
-          </div></div>
-        </div>
-        <div class="card" style="grid-column:1 / -1"><div class="hd"><h4>Activity</h4></div><div class="bd"><ul class="act">
-          <li>🌐 <span><b style="color:var(--ink);font-weight:500">mitaliskitchen.com</b> is connected and secure</span><time>just now</time></li>
-          <li>🚀 Site published to mitalis-kitchen.zejify.app</li>
-          <li>✨ Site built by AI: 4 pages, 14 sections</li>
-        </ul></div></div>
+      <div class="hdemo" role="group" aria-label="Demo state">
+        <span>Demo:</span><div class="g" id="hState"><button data-v="draft">Draft</button><button data-v="free">Live, no domain</button><button data-v="pend">Domain connecting</button><button data-v="issue">Domain problem</button><button data-v="set">All set</button></div>
+        <div class="g" id="hData"><button data-v="new">New site</button><button data-v="busy">After a few weeks</button></div>
       </div>
+      <div class="ov" id="hOv"></div>
+      <div class="trio" id="hTrio"></div>
     </main>
   </div>
 </section>
@@ -612,7 +723,7 @@ const STEPS = [
   ['Publish', 'One click to a free address, with a quick check that warns but never blocks.', '5:40'],
   ['Live', 'Celebrate, share and print the QR code. The domain is the next obvious step.', '6:00'],
   ['Domain', 'Buy here (auto), or connect with one click. DNS by hand is only a fallback. Email is kept safe.', '8:30'],
-  ['Home base', 'The overview page for every visit after this: status, domain and what to do next.', '9:00'],
+  ['Home base', 'Every visit after launch: the site, its status and address first, then visitors, messages and the next steps.', '9:00'],
 ];
 const S = { step: 1, prompt: '', style: 'warm', name: "Mitali's Kitchen", slug: 'mitalis-kitchen', phone: '+880 1712 345678', fixed: new Set(), domain: 'mitaliskitchen.com', domDone: false, timers: [] };
 const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); };
@@ -705,14 +816,49 @@ function enter4() {
 }
 
 /* ---------- 5 editor ---------- */
-function enter5() { $('#eName').textContent = S.name; $('#ciPhone').textContent = (S.phone || 'No number') + ' is on the WhatsApp button and footer.'; paintEditor(); }
-function paintEditor() { $('#eSite').innerHTML = site(S.style, { marks: true }); $$('#eSite .blk').forEach(b => b.classList.add('show'));
+const BLK = ['Header', 'Hero', 'Menu', 'How to order', 'Contact'];
+let selB = 1;
+function enter5() { $('#eName').textContent = S.name; $('#eUrlT').textContent = S.slug + '.zejify.app/'; $('#ciPhone').textContent = (S.phone || 'No number') + ' is on the WhatsApp button and footer.'; paintEditor(); }
+function paintEditor() { $('#eSite').innerHTML = site(S.style, { marks: true }); $$('#eSite .blk').forEach(b => b.classList.add('show')); select(selB, false);
   $$('.ci').forEach(c => c.classList.toggle('done', S.fixed.has(c.dataset.k))); $$('.ci .bx').forEach((b, i) => b.textContent = S.fixed.has($$('.ci')[i].dataset.k) ? '✓' : '');
   $('#chkN').textContent = S.fixed.size + ' / 3'; $('#chkN').className = 'pill ' + (S.fixed.size === 3 ? 'ok' : 'gray'); }
-$('.chk').addEventListener('click', e => { const b = e.target.closest('[data-fix]'); if (!b) return; S.fixed.add(b.dataset.fix); paintEditor();
+function select(i, scroll = true) {
+  const bs = $$('#eSite .blk'); selB = Math.max(0, Math.min(bs.length - 1, i));
+  $$('#eSite .stb, #eSite .addsec').forEach(x => x.remove()); bs.forEach(b => b.classList.remove('sel'));
+  const b = bs[selB]; b.classList.add('sel');
+  b.insertAdjacentHTML('beforeend', `<div class="stb" role="toolbar" aria-label="${BLK[selB]} section"><span class="nmx">${BLK[selB]}</span><button data-a="drag" aria-label="Drag to move" title="Drag to move"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg></button><button class="askb" data-a="ask"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Ask AI</button><i class="sep"></i><button class="mv" data-a="up" aria-label="Move up" ${selB === 0 ? 'disabled' : ''}><svg class="i" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button class="mv" data-a="down" aria-label="Move down" ${selB === bs.length - 1 ? 'disabled' : ''}><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button><i class="sep"></i><button data-a="more" aria-label="More"><svg class="i" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></div>`);
+  if (selB > 0) b.insertAdjacentHTML('beforeend', '<button class="addsec" data-a="add"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M12 5v14M5 12h14"/></svg>Add section</button>');
+  if (scroll) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+$('#eSite').addEventListener('click', e => {
+  if ($('#eFrame').classList.contains('preview')) return;
+  const a = e.target.closest('[data-a]');
+  if (a) { e.stopPropagation(); const k = a.dataset.a, n = BLK[selB];
+    if (k === 'ask') { $('#eSide').classList.remove('off'); $('#rAi').classList.add('on'); $('#ask').value = `${n}: `; $('#ask').focus(); }
+    else if (k === 'up' || k === 'down') toast(`${n} moved ${k} (demo)`);
+    else if (k === 'add') toast('Add a section: ideas based on this page (demo)');
+    else if (k === 'more') toast('Duplicate, hide on phone, save as block, delete (demo)');
+    else toast('Drag to reorder (demo)');
+    return; }
+  const b = e.target.closest('.blk'); if (b) select($$('#eSite .blk').indexOf(b), false);
+});
+$('.chk').addEventListener('click', e => {
+  const sh = e.target.closest('[data-show]'); if (sh) return select(+sh.dataset.show);
+  const b = e.target.closest('[data-fix]'); if (!b) return; S.fixed.add(b.dataset.fix); paintEditor();
   toast({ photos: b.textContent === 'Upload mine' ? 'Photos replaced' : 'Kept the sample photos for now', phone: 'Phone number confirmed', logo: b.textContent === 'Upload logo' ? 'Logo added' : 'Using your name as the logo' }[b.dataset.fix]); });
 $('.sugg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { $('#ask').value = b.textContent; $('#ask').focus(); } });
 $('#askGo').addEventListener('click', () => { if (!$('#ask').value.trim()) return; toast('AI is making the change…'); $('#ask').value = ''; });
+$('#ask').addEventListener('keydown', e => { if (e.key === 'Enter') $('#askGo').click(); });
+const togglePanel = open => { $('#eSide').classList.toggle('off', !open); $('#rAi').classList.toggle('on', open); };
+$('#rAi').addEventListener('click', () => togglePanel($('#eSide').classList.contains('off')));
+$('#eSideX').addEventListener('click', () => togglePanel(false));
+$('.rail').addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (b) toast(`${b.dataset.t} panel (demo)`); });
+$$('.etb [data-t]').forEach(b => b.addEventListener('click', () => toast(b.dataset.t)));
+$('#eNameBtn').addEventListener('click', () => toast('Site menu: rename, settings, all sites (demo)'));
+$('#ePage').addEventListener('change', e => toast(`${e.target.value} page (demo: same canvas)`));
+$('#eMode').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (!b) return; $$('#eMode button').forEach(x => x.classList.toggle('on', x === b));
+  const pv = b.dataset.m === 'preview'; $('#eFrame').classList.toggle('preview', pv); if (pv) togglePanel(false); });
+$('#eDev').addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (!b) return; $$('#eDev button').forEach(x => x.classList.toggle('on', x === b)); $('#eFrame').className = 'frame ' + b.dataset.d + ($('#eFrame').classList.contains('preview') ? ' preview' : ''); });
 $('#openPub').addEventListener('click', openPublish);
 
 /* ---------- 6 publish ---------- */
@@ -765,11 +911,67 @@ function track(bought) { tsAt = 1; S.domDone = false; $('#track').classList.add(
   later(() => { tsAt = 2; paintTrack(); }, bought ? 2200 : 3500); later(() => { tsAt = 3; S.domDone = true; paintTrack(); }, bought ? 4200 : 6500); }
 $('#skipWait').addEventListener('click', () => { S.timers.forEach(clearTimeout); tsAt = 3; S.domDone = true; paintTrack(); });
 
-/* ---------- 9 home ---------- */
-function enter9() { $('#hName').textContent = S.name; const d = S.domDone ? S.domain : S.slug + '.zejify.app';
-  $('#hDom').textContent = d; $('#hDom2').textContent = d; $('#hFree').textContent = S.slug + '.zejify.app';
-  $('#hThumb').innerHTML = site(S.style); $$('#hThumb .blk').forEach(b => b.classList.add('show')); }
-$('#todo').addEventListener('change', () => $('#todoN').textContent = $$('#todo input:checked').length + ' / 4');
+/* ---------- 9 home base (simple) ---------- */
+const H = { st: 'free', data: 'new', waOn: false, done: new Set() };
+const SPARK7 = [62, 71, 77, 85, 92, 76, 104];
+function enter9() { H.st = S.domDone ? 'set' : 'free'; renderHome(); }
+const dom = () => S.domain || 'mitaliskitchen.com', free = () => S.slug + '.zejify.app';
+function renderHome() {
+  const st = H.st, live = st !== 'draft', busy = live && H.data === 'busy';
+  $$('#hState button').forEach(b => b.classList.toggle('on', b.dataset.v === st));
+  $$('#hData button').forEach(b => b.classList.toggle('on', b.dataset.v === H.data));
+  const pills = { draft: '<span class="pill gray"><span class="dot"></span>Draft · not live</span>', free: '<span class="pill ok"><span class="dot"></span>Live</span>',
+    pend: '<span class="pill ok"><span class="dot"></span>Live</span><span class="pill blue">Domain connecting</span>', issue: '<span class="pill ok"><span class="dot"></span>Live</span><span class="pill err">Domain problem</span>', set: '<span class="pill ok"><span class="dot"></span>Live</span>' }[st];
+  const domRow = { draft: '<span style="color:var(--faint)">None yet</span>', free: '<span style="color:var(--faint)">None yet</span>', pend: `<span class="mono">${dom()}</span><span class="pill blue">Connecting</span>`, issue: `<span class="mono">${dom()}</span><span class="pill err">Not working</span>`, set: `<span class="mono">${dom()}</span><span class="pill ok">🔒 Connected</span>` }[st];
+  const note = {
+    draft: ['draft', '📝', 'Not live yet.', 'Only you can see it. Publish when you\'re ready, you can keep editing after.'],
+    free: ['free', '🌐', 'Want your own domain?', `Like ${dom()}. Easier to remember than the free address.`],
+    pend: ['pend', '⏳', 'Connecting your domain.', 'Usually 5 to 30 minutes. The free address works meanwhile.'],
+    issue: ['issue', '⚠️', 'Your domain isn\'t reaching this site.', 'It still points to your old host. We can fix it with one click.'],
+    set: busy ? ['chg', '✏️', '2 changes aren\'t live yet.', 'Publish to show them to visitors.'] : null }[st];
+  const acts = { draft: '<button class="btn pri" data-go="6">Publish</button><button class="btn sec" data-go="5">Edit site</button>',
+    free: '<button class="btn pri" data-go="5">Edit site</button><button class="btn sec" data-h="view">View site</button><button class="btn sec" data-go="8">Get a domain</button>',
+    pend: '<button class="btn pri" data-go="5">Edit site</button><button class="btn sec" data-h="view">View site</button><button class="btn sec" data-go="8">See progress</button>',
+    issue: '<button class="btn pri" data-h="fix">Fix domain</button><button class="btn sec" data-go="5">Edit site</button><button class="btn sec" data-h="view">View site</button>',
+    set: busy ? '<button class="btn pri" data-go="6">Publish changes</button><button class="btn sec" data-go="5">Edit site</button><button class="btn sec" data-h="view">View site</button>' : '<button class="btn pri" data-go="5">Edit site</button><button class="btn sec" data-h="view">View site</button>' }[st];
+  $('#hOv').innerHTML = `<div class="thumb">${site(S.style)}${live ? '' : '<div class="mask"><span class="pill gray">Draft</span></div>'}</div>
+    <div class="info">
+      <div><h1>${S.name}</h1><div class="pills">${pills}</div></div>
+      <dl class="kv"><dt>Domain</dt><dd>${domRow}</dd><dt>Free address</dt><dd>${live ? `<span class="mono">${free()}</span>` : '<span style="color:var(--faint)">After publishing</span>'}</dd><dt>Last published</dt><dd>${live ? (busy ? '3 days ago' : 'A few minutes ago') : 'Never'}</dd></dl>
+      ${note ? `<div class="note ${note[0]}"><span>${note[1]}</span><span><b>${note[2]}</b> ${note[3]}</span></div>` : ''}
+      <div class="acts">${acts}</div>
+    </div>`;
+  $$('#hOv .thumb .blk').forEach(b => b.classList.add('show'));
+  // visitors
+  const vis = busy ? SPARK7.reduce((a, b) => a + b, 0) : 0, mx = Math.max(...SPARK7);
+  const spark = busy ? `<svg class="spark" viewBox="0 0 120 44" preserveAspectRatio="none" role="img" aria-label="Visitors per day this week, from ${SPARK7[0]} to ${SPARK7[6]}"><polyline points="${SPARK7.map((v, i) => `${i * 20},${42 - v / mx * 38}`).join(' ')}" fill="none" stroke="#6d5dfc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>` : '';
+  const visitors = `<div class="mini"><h4>Visitors · last 7 days${busy ? '<a href="#" data-h="stats">Details</a>' : ''}</h4><div class="big">${vis.toLocaleString()}${busy ? '<small>↑ 24%</small>' : ''}</div>
+    <div class="hint">${busy ? '84 tapped your WhatsApp button' : live ? 'Share your site to get your first visitors.' : 'Starts counting after you publish.'}</div>${spark}${!busy && live ? '<button class="btn sec sm" data-h="share" style="margin-top:auto;align-self:flex-start">Share your site</button>' : ''}</div>`;
+  // messages
+  const msgs = `<div class="mini"><h4>Messages${busy ? '<a href="#" data-h="msgs">Open</a>' : ''}</h4><div class="big">${busy ? '2 <span style="font-size:15px;font-weight:500;color:var(--mut)">new</span>' : '0'}</div>
+    ${busy ? '<div class="last"><b>Nusrat Jahan · 12 min ago</b><span>Can you do 25 lunch boxes for our office on Thursday?</span></div>' : `<div class="hint">Contact form messages show here and in your email.</div><label class="sw" style="margin-top:auto"><input type="checkbox" id="hWa" ${H.waOn ? 'checked' : ''}><span></span>Also send to my WhatsApp</label>`}</div>`;
+  // next steps: max 3, only what matters now
+  const all = [
+    ['pub', 'Publish your site', 'Publish', 'data-go="6"', !live],
+    ['dom', st === 'issue' ? 'Fix your domain' : st === 'pend' ? 'Domain is connecting' : 'Connect your own domain', st === 'issue' ? 'Fix' : st === 'pend' ? 'View' : 'Start', st === 'issue' ? 'data-h="fix"' : 'data-go="8"', st !== 'set'],
+    ['google', 'Get found on Google', 'Start', 'data-step3="google"', !busy],
+    ['wa', 'Get messages on WhatsApp', 'Turn on', 'data-step3="wa"', !H.waOn],
+    ['rev', 'Ask 3 customers for a review', 'Start', 'data-step3="rev"', true]];
+  const todo = all.filter(x => x[4] && !H.done.has(x[0])).slice(0, 3);
+  const next = `<div class="mini"><h4>Next steps</h4>${todo.length ? `<ul class="steps3">${todo.map(([k, t, b, a]) => `<li><span class="bx"></span><span>${t}</span><button ${a}>${b} →</button></li>`).join('')}</ul>` : '<div class="hint">🎉 All done for now.</div>'}</div>`;
+  $('#hTrio').innerHTML = visitors + msgs + next;
+  const sn = $('.hside .n'); if (sn) { sn.textContent = 2; sn.style.display = busy ? '' : 'none'; }
+}
+$('[data-step="9"]').addEventListener('click', e => {
+  const sv = e.target.closest('#hState [data-v]'); if (sv) { H.st = sv.dataset.v; return renderHome(); }
+  const dv = e.target.closest('#hData [data-v]'); if (dv) { H.data = dv.dataset.v; return renderHome(); }
+  const st3 = e.target.closest('[data-step3]'); if (st3) { const k = st3.dataset.step3; H.done.add(k); if (k === 'wa') H.waOn = true; renderHome();
+    return toast({ google: 'Sent your site to Google (demo)', wa: 'New messages will also come to your WhatsApp', rev: 'Review request copied. Send it on WhatsApp' }[k]); }
+  const h = e.target.closest('[data-h]'); if (!h) return; e.preventDefault();
+  if (h.dataset.h === 'fix') { H.st = 'pend'; renderHome(); return toast('Fixed with Cloudflare (demo). Connecting now…'); }
+  toast({ view: 'Opens the site in a new tab (demo)', share: 'Share: link, WhatsApp and QR code (demo)', stats: 'Opens Analytics (demo)', msgs: 'Opens Messages (demo)' }[h.dataset.h] || 'Demo');
+});
+$('[data-step="9"]').addEventListener('change', e => { if (e.target.id === 'hWa') { H.waOn = e.target.checked; renderHome(); toast(H.waOn ? 'New messages will also come to your WhatsApp' : 'WhatsApp copies turned off'); } });
 
 go(1);
 </script>
