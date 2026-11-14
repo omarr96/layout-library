@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog · omarify-sandbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111113; --tx: #3f3f46; --mut: #71717a; --faint: #a1a1aa;
+  --line: #ececef; --line2: #e2e2e6; --soft: #f7f7f8; --hover: #f4f4f5;
+  --ok: #16a34a; --okbg: #effaf2; --amber: #b45309; --amberbg: #fffbeb; --amberln: #fde68a;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .84em; background: var(--soft); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; color: var(--ink); white-space: nowrap; }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 10; height: 60px; display: flex; align-items: center; gap: 12px; padding: 0 28px; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .lg { width: 30px; height: 30px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.top b { color: var(--ink); font-weight: 600; }
+.top .repo { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--mut); background: var(--soft); border: 1px solid var(--line); border-radius: 7px; padding: 3px 8px; }
+.top .ml { margin-left: auto; }
+.search { position: relative; width: 260px; }
+.search svg { position: absolute; left: 11px; top: 10px; color: var(--faint); width: 15px; height: 15px; }
+.search input { width: 100%; height: 36px; border: 1px solid var(--line2); border-radius: 9px; padding: 0 12px 0 34px; outline: none; font-size: 14px; background: #fff; }
+.search input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
+
+/* layout */
+.page { max-width: 1120px; margin: 0 auto; padding: 48px 28px 120px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 56px; }
+.toc { position: sticky; top: 92px; align-self: start; font-size: 13.5px; }
+.toc h6 { margin: 0 0 8px; font-size: 12px; font-weight: 500; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; }
+.toc a { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin: 0 -10px; border-radius: 8px; color: var(--mut); }
+.toc a:hover { background: var(--hover); color: var(--ink); }
+.toc a.on { color: var(--ink); font-weight: 500; background: var(--hover); }
+.toc a .n { margin-left: auto; color: var(--faint); font-size: 12px; font-weight: 400; }
+.toc a i { width: 7px; height: 7px; border-radius: 50%; background: var(--line2); flex: none; }
+.toc a.wait i { background: #f59e0b; }
+.toc .tags { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* header */
+.hd h1 { margin: 6px 0 10px; font-size: 38px; line-height: 1.1; font-weight: 600; color: var(--ink); letter-spacing: -.025em; }
+.hd .eb { font-size: 13px; color: var(--mut); display: flex; align-items: center; gap: 8px; }
+.hd p { margin: 0; max-width: 640px; color: var(--mut); font-size: 15.5px; }
+.stats { display: flex; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
+.stats div { font-size: 13px; color: var(--mut); }
+.stats b { display: block; font-size: 22px; color: var(--ink); font-weight: 600; letter-spacing: -.02em; }
+
+/* filter chips */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 30px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border: 1px solid var(--line2); border-radius: 99px; font-size: 13px; color: var(--tx); transition: background .15s, border-color .15s, color .15s; }
+.chip:hover { border-color: #cfcfd6; }
+.chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; }
+.chip.on i { box-shadow: 0 0 0 1.5px #fff; }
+
+/* waiting card */
+.wait { margin-top: 32px; border: 1px solid var(--amberln); background: linear-gradient(180deg, var(--amberbg), #fff 70%); border-radius: 16px; padding: 22px 24px; }
+.wait .wh { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.wait h2 { margin: 0; font-size: 18px; color: var(--ink); font-weight: 600; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 99px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.badge.amber { background: #fef3c7; color: var(--amber); }
+.badge.ok { background: var(--okbg); color: #166534; }
+.badge svg { width: 12px; height: 12px; stroke-width: 2.4; }
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: #f59e0b; animation: pu 1.6s infinite; }
+@keyframes pu { 50% { opacity: .35; } }
+.wait > p { margin: 6px 0 16px; color: var(--mut); font-size: 14px; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.items li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid rgba(180,83,9,.1); }
+.items li:first-child { border-top: 0; }
+.items .ix { width: 24px; height: 24px; border-radius: 7px; background: #fff; border: 1px solid var(--amberln); color: var(--amber); display: grid; place-items: center; }
+.items .ix svg { width: 13px; height: 13px; }
+.items b { color: var(--ink); font-weight: 600; }
+.items .tg { margin-top: 6px; display: flex; gap: 6px; }
+
+/* day groups + timeline */
+.day { margin-top: 52px; }
+.day > h2 { margin: 0 0 18px; font-size: 13px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 12px; }
+.day > h2 span { color: var(--faint); font-weight: 500; }
+.day > h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.tl { position: relative; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 1px; background: var(--line2); }
+.entry { position: relative; padding-left: 36px; }
+.entry + .entry { margin-top: 30px; }
+.entry::before { content: ""; position: absolute; left: 2px; top: 7px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); }
+.entry .meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--mut); }
+.entry time { font-variant-numeric: tabular-nums; }
+.hash { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink); background: var(--soft); border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; transition: background .15s; }
+.hash:hover { background: var(--hover); }
+.hash svg { width: 12px; height: 12px; color: var(--faint); }
+.tag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--mut); }
+.tag i { width: 7px; height: 7px; border-radius: 50%; }
+.entry .tg { margin-left: auto; display: flex; gap: 12px; }
+.entry h3 { margin: 6px 0 8px; font-size: 19px; line-height: 1.35; color: var(--ink); font-weight: 600; letter-spacing: -.01em; }
+.entry ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 6px; }
+.entry ul li::marker { color: var(--faint); }
+.entry.small h3 { font-size: 16px; }
+.first { margin-top: 52px; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px dashed var(--line2); border-radius: 12px; color: var(--mut); font-size: 14px; flex-wrap: wrap; }
+.first b { color: var(--ink); font-weight: 600; }
+.none { margin-top: 40px; padding: 40px; text-align: center; color: var(--mut); border: 1px dashed var(--line2); border-radius: 12px; }
+mark { background: #fef08a; color: inherit; border-radius: 3px; padding: 0 1px; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; background: var(--ink); color: #fff; padding: 9px 14px; border-radius: 9px; font-size: 13px; transition: .2s; z-index: 90; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 900px) {
+  .page { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 32px 16px 80px; }
+  .toc { display: none; }
+  .top { padding: 0 16px; }
+  .search { width: auto; flex: 1; max-width: 240px; }
+  .top .repo { display: none; }
+  .hd h1 { font-size: 30px; }
+  .entry .tg { margin-left: 0; width: 100%; }
+  code { white-space: normal; overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="lg"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span>
+  <b>Changelog</b><span class="repo">omarify-sandbox</span>
+  <label class="search ml"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search changes" aria-label="Search changes"></label>
+</header>
+
+<div class="page">
+  <nav class="toc" aria-label="Jump to"><h6>Jump to</h6><div id="toc"></div></nav>
+  <main>
+    <div class="hd">
+      <div class="eb"><span class="repo" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink)">omarify-sandbox</span></div>
+      <h1>Changelog</h1>
+      <p>Every push to <code>omarify-sandbox</code> after the first one (<code>115ba28</code>, 2026-11-10, the agent builder as the only editor). Newest first. Times are when the push reached GitHub.</p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by area"></div>
+    <div id="out"></div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- content (from the changelog, word for word) ---------- */
+const TAGS = { Editor: '#6d5dfc', AI: '#db2777', Publishing: '#0e7490', Design: '#ca8a04', Forms: '#16a34a', Tests: '#475569', Fixes: '#dc2626', Maintenance: '#a1a1aa' };
+const WAITING = {
+  note: 'Done and tested locally (828 web tests pass), waiting for the next push:',
+  tests: 828,
+  items: [
+    { tags: ['Design', 'Publishing'], icon: 'ruler', html: '<b>Sizes become design tokens by themselves.</b> When a site is published or changed, a raw size that is exactly a design size (`padding: 16px` when the medium gap is 16px) is written as that design size, so a later design change reaches it. Anything else stays as written; the page looks the same.' },
+    { tags: ['Editor'], icon: 'image', html: '<b>Image Size in the toolbar.</b> Width: Small, Medium, Large, Full or a number of pixels. Height: Auto (the picture\'s own shape) or Fixed (cropped to fit, never squashed). Reset goes back to the page\'s size.' },
+    { tags: ['Editor', 'Design'], icon: 'shape', html: '<b>SVG icons in the toolbar.</b> Replace opens the Media picker and puts the new image in the icon\'s place, at the size the icon showed at. One-colour icons get a colour swatch: one click recolours them from the site\'s colours. Logos with several colours can only be replaced.' },
+    { tags: ['Editor', 'Fixes'], icon: 'plus', html: '<b>The Add a section card stays inside the page</b> (it used to grow past the bottom when its ideas loaded) and can be dragged by its title.' },
+    { tags: ['AI', 'Editor'], icon: 'spark', html: '<b>New pages are made with AI only.</b> The Add page dialog asks what the page should be, its name and whether it goes in the navigation. The blank and legal-page options are gone.' },
+  ],
+};
+const PUSHES = [
+  { date: '2026-11-14', time: '12:34', hash: '94f961e', title: 'Pin library versions automatically', tags: ['Publishing'], items: [
+    'Links to code libraries on a CDN without an exact version (`gsap@3`, `swiper`) are pinned to the exact version the CDN serves today (`gsap@3.15.1`), so a live site never changes or breaks when a library releases a new version.',
+    'Happens on publish and on every AI change. Never blocks: if the CDN does not answer, the link stays.',
+    'Tests never reach the internet.'] },
+  { date: '2026-11-14', time: '12:28', hash: 'f01fa9b', title: 'The server fills in the basics itself', tags: ['Publishing'], items: [
+    'A missing `charset` is added.',
+    'A missing page language is read from the page\'s own writing (Bangla → `bn`, Arabic → `ar`, and so on; English letters → `en`).',
+    'Images get their width and height from the real image (so the page does not jump while loading), only where the site\'s CSS keeps images in shape.',
+    'The "image has no width and height" warning is gone: nobody has to fix it by hand.'] },
+  { date: '2026-11-14', time: '12:13', hash: '896c571', title: 'Phone numbers and emails are checked', tags: ['AI', 'Publishing'], items: [
+    'A phone number or email on a page must be the customer\'s own, or a clearly fake placeholder (`017 00000000`, `example@gmail.com`) that is kept so they see where theirs goes. Publishing warns about placeholders and never blocks.',
+    'A real-looking phone or email that nobody gave is refused, so the AI can never invent contact details.',
+    'The AI tools have a new `facts` input for the customer\'s own details.',
+    'The project rule (CLAUDE.md rule 4) now allows clearly fake placeholders.'] },
+  { date: '2026-11-14', time: '11:55', hash: '17118c9', title: 'Gradients stay as the page had them', tags: ['Design'], items: [
+    'Saving a gradient again in the Design popup keeps see-through colours, `transparent`, corner directions and round shapes. Before, some colours were dropped and directions changed.',
+    'A colour that is not a design colour takes the closest one, marked "(closest)".',
+    'Layered, conic and repeating gradients are shown and never rewritten, with a "Replace with a simple gradient" button.'] },
+  { date: '2026-11-14', time: '11:46', hash: '2820a60', title: 'Editing text keeps everything around it', tags: ['Editor'], items: [
+    'Text next to an icon, or with small tags inside (`small`, `sup`, `mark`, `code`, `abbr`, `time`…), can now be edited. Before, such text could not be edited at all.',
+    'When only words change, only those words are saved: links keep "open in new tab", sample marks stay, and rotating-word markers are no longer lost.',
+    'New engine command `setTexts` does this.'] },
+  { date: '2026-11-14', time: '11:35', hash: 'fea4268', title: 'Staging merged in', tags: ['Maintenance'], items: [
+    'Brought in the latest `staging` (a docs update on which staging settings are secrets).'] },
+  { date: '2026-11-14', time: '11:31', hash: '80af727', title: 'A test bench for "the site you send is the site you get"', tags: ['Tests'], items: [
+    'New fidelity suite: test sites with one hard case each go through publish, live, open in the editor, reach every text, and one edit. It runs with the normal tests and needs no AI. It found 33 problems, all fixed in the pushes above.',
+    'New rules audit (`docs/harness_rules_audit.md`): every rule the AI is told, whether code enforces it, and whether it is tested.',
+    'The Publish button\'s text is white.'] },
+  { date: '2026-11-12', time: '23:20', hash: '440eb8f', title: 'Editor: hidden content, forms, markers and a Save button', tags: ['Editor', 'Forms'], items: [
+    'Content shown one at a time can be edited: rotating words, hover and flip cards, toggles, typewriter words, price variants and the page\'s own switch buttons.',
+    'Forms: one Field panel for every kind of field (choices, limits, form name); pill words edit in place; no browser autofill while editing.',
+    'AI-written pages mark what is shown one at a time (edit markers); publishing checks them.',
+    'A coverage check lists text the editor cannot reach, with an Ask AI button.',
+    'A Save button replaces autosave (with a green tick when saved, and ⌘S); leaving asks Save / Don\'t save / Cancel; Preview shows unsaved changes.',
+    'The light/dark switch moved to the bottom of the left rail; the toolbar stays inside the canvas.'] },
+  { date: '2026-11-11', time: '18:33', hash: '69478fd', title: 'Phone menu fix', tags: ['Fixes'], items: [
+    'The header\'s menu button opens the menu itself ("Show menu"), and only in phone or tablet view where the menu is hidden.'] },
+  { date: '2026-11-11', time: '16:07', hash: '68d7836', title: 'Agent builder: page scripts, forms, copy and paste', tags: ['Editor', 'AI', 'Forms'], items: [
+    'Preview runs the page\'s own scripts and opens fast; Edit keeps what Preview showed (a slide, an open answer).',
+    'Tabs, sliders, accordions, pop-ups and tooltips can be switched on the canvas.',
+    'Switching pages no longer reloads the builder; only the canvas shows a loader.',
+    'First Field panel for form fields; Custom CSS shows the rules that style an element.',
+    'Add section ideas come from reading the page and never repeat a section it already has.',
+    'The chat carries out clear requests; a missing colour is added to the design system.',
+    'Copy, Paste and Duplicate (⌘C, ⌘V, ⌘D) keep an element\'s design, across pages.'] },
+];
+const FIRST = { hash: '115ba28', date: '2026-11-10', title: 'The agent builder as the only editor' };
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const ic = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
+const ICON = {
+  ruler: ic('<path d="M3 17 17 3l4 4L7 21z"/><path d="m7 13 2 2M10 10l2 2M13 7l2 2"/>'), image: ic('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>'),
+  shape: ic('<circle cx="8" cy="8" r="4"/><path d="M14 13h7v7h-7z"/>'), plus: ic('<path d="M12 5v14M5 12h14"/>'), spark: ic('<path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>'),
+  copy: ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>'), check: ic('<path d="m5 12 4.5 4.5L19 7"/>'),
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const state = { tag: 'All', q: '' };
+// turn `code` into <code>, keep our own <b>, and highlight the search
+function fmt(text, rich) {
+  let s = rich ? text : esc(text);
+  s = s.replace(/`([^`]+)`/g, (_, c) => `<code>${rich ? esc(c) : c}</code>`);
+  if (state.q) { const re = new RegExp('(' + state.q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![^<]*>)', 'gi'); s = s.replace(re, '<mark>$1</mark>'); }
+  return s;
+}
+const plain = s => s.replace(/<[^>]+>/g, '').replace(/`/g, '').toLowerCase();
+const tagsHTML = t => t.map(x => `<span class="tag"><i style="background:${TAGS[x]}"></i>${x}</span>`).join('');
+const dayName = d => new Date(d + 'T12:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 1800); }
+
+/* ---------- render ---------- */
+function render() {
+  const q = state.q.toLowerCase();
+  const okTag = t => state.tag === 'All' || t.includes(state.tag);
+  const wItems = WAITING.items.filter(i => okTag(i.tags) && (!q || plain(i.html).includes(q)));
+  const pushes = PUSHES.filter(p => okTag(p.tags) && (!q || plain(p.title + ' ' + p.items.join(' ')).includes(q)));
+  const days = [...new Set(pushes.map(p => p.date))];
+
+  let html = '';
+  if (wItems.length) html += `<section class="wait" id="waiting"><div class="wh"><h2>Not pushed yet</h2><span class="badge amber"><span class="pulse"></span>Waiting for the next push</span><span class="badge ok">${ICON.check}${WAITING.tests} web tests pass</span></div>
+    <p>${WAITING.note}</p><ul class="items">${wItems.map(i => `<li><span class="ix">${ICON[i.icon]}</span><div>${fmt(i.html, true)}<div class="tg">${tagsHTML(i.tags)}</div></div></li>`).join('')}</ul></section>`;
+  html += days.map(d => { const list = pushes.filter(p => p.date === d);
+    return `<section class="day" id="d-${d}"><h2>${dayName(d)} <span>${list.length} push${list.length > 1 ? 'es' : ''}</span></h2><div class="tl">${list.map(p => `
+      <article class="entry ${p.items.length === 1 ? 'small' : ''}" id="c-${p.hash}">
+        <div class="meta"><time datetime="${p.date}T${p.time}">${p.time}</time><button class="hash" data-hash="${p.hash}" title="Copy commit hash">${p.hash}${ICON.copy}</button><span class="tg">${tagsHTML(p.tags)}</span></div>
+        <h3>${fmt(p.title)}</h3><ul>${p.items.map(i => `<li>${fmt(i)}</li>`).join('')}</ul></article>`).join('')}</div></section>`; }).join('');
+  if (!wItems.length && !pushes.length) html += `<div class="none">No changes match${state.q ? ` “${esc(state.q)}”` : ''}${state.tag !== 'All' ? ` in ${state.tag}` : ''}.</div>`;
+  if (state.tag === 'All' && !q) html += `<div class="first"><span class="hash">${FIRST.hash}</span><span><b>First push</b> · ${dayName(FIRST.date)} · ${FIRST.title}. Everything above came after it.</span></div>`;
+  $('#out').innerHTML = html;
+
+  // jump-to menu
+  $('#toc').innerHTML = (wItems.length ? `<a href="#waiting" class="wait"><i></i>Not pushed yet<span class="n">${wItems.length}</span></a>` : '')
+    + days.map(d => `<a href="#d-${d}"><i></i>${new Date(d + 'T12:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}<span class="n">${pushes.filter(p => p.date === d).length}</span></a>`).join('');
+  spy();
+}
+function chips() {
+  const count = t => PUSHES.filter(p => p.tags.includes(t)).length + WAITING.items.filter(i => i.tags.includes(t)).length;
+  $('#chips').innerHTML = ['All', ...Object.keys(TAGS)].map(t => `<button class="chip ${state.tag === t ? 'on' : ''}" data-tag="${t}">${t === 'All' ? '' : `<i style="background:${TAGS[t]}"></i>`}${t}${t === 'All' ? '' : ` <span style="opacity:.6">${count(t)}</span>`}</button>`).join('');
+}
+$('#stats').innerHTML = `<div><b>${PUSHES.length}</b>Pushes</div><div><b>${WAITING.items.length}</b>Waiting to push</div><div><b>${PUSHES.reduce((a, p) => a + p.items.length, 0)}</b>Changes</div><div><b>${new Set(PUSHES.map(p => p.date)).size} days</b>Nov 11 to Nov 14</div>`;
+
+/* highlight the current day in the jump-to menu */
+let io;
+function spy() {
+  io && io.disconnect();
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll('#toc a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-90px 0px -65% 0px' });
+  document.querySelectorAll('#out > section').forEach(s => io.observe(s));
+}
+
+document.addEventListener('click', e => {
+  const c = e.target.closest('[data-tag]'); if (c) { state.tag = c.dataset.tag; chips(); return render(); }
+  const h = e.target.closest('[data-hash]'); if (h) { navigator.clipboard?.writeText(h.dataset.hash); return toast(`Copied ${h.dataset.hash}`); }
+});
+$('#q').addEventListener('input', e => { state.q = e.target.value.trim(); render(); });
+addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== $('#q')) { e.preventDefault(); $('#q').focus(); } });
+chips(); render();
+</script>
+</body>
+</html>

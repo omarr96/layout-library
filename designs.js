@@ -35,6 +35,11 @@ window.DESIGNS = {
       "id": "mobile",
       "name": "Mobile & themes",
       "desc": "Android themes and app mockups"
+    },
+    {
+      "id": "docs",
+      "name": "Docs & changelogs",
+      "desc": "Changelogs and documentation pages"
     }
   ],
   "items": [
@@ -808,6 +813,22 @@ window.DESIGNS = {
         {
           "label": "Covers",
           "href": "mobile/phone-covers/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "docs",
+      "slug": "changelog",
+      "title": "Changelog · omarify-sandbox",
+      "desc": "Pushes grouped by day on a timeline, a \"Not pushed yet\" box, area filters, search and copyable commit hashes.",
+      "tags": [
+        "Changelog"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Changelog",
+          "href": "docs/changelog/index.html"
         }
       ]
     }

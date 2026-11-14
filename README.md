@@ -13,6 +13,7 @@ HTML design mockups, one folder per design. Open `index.html` to browse them all
 | `admin-support/` | Dashboards, tickets and admin UI |
 | `landing-pages/` | Single page sites |
 | `mobile/` | Android themes and app mockups |
+| `docs/` | Changelogs and documentation pages |
 
 Each design lives at `<category>/<design>/index.html`. Extra versions of the same design sit next to it (for example `connect-model/minimal.html`).
 
