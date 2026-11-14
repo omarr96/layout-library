@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Builder · Build to publish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111113; --tx: #2b2b30; --mut: #6b6b73; --faint: #a1a1aa;
+  --line: #ececef; --line2: #dedee3; --soft: #f6f6f7; --hover: #f1f1f3;
+  --ok: #16a34a; --okbg: #effaf2; --warn: #b45309; --warnbg: #fff8eb; --err: #dc2626; --ai: #6d5dfc; --aibg: #f3f1ff;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font: 14px/1.5 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 10px; font-weight: 500; white-space: nowrap; transition: background .15s, box-shadow .15s, opacity .15s; }
+.btn.pri { background: var(--ink); color: #fff; } .btn.pri:hover { background: #2a2a2e; }
+.btn.pri:disabled { opacity: .35; cursor: not-allowed; }
+.btn.sec { background: #fff; box-shadow: inset 0 0 0 1px var(--line2); color: var(--ink); } .btn.sec:hover { background: var(--soft); }
+.btn.ghost { color: var(--mut); } .btn.ghost:hover { color: var(--ink); background: var(--hover); }
+.btn.lg { height: 46px; padding: 0 22px; font-size: 15px; border-radius: 12px; }
+.btn.sm { height: 30px; padding: 0 10px; font-size: 13px; border-radius: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 99px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.pill.ok { background: var(--okbg); color: #166534; } .pill.warn { background: var(--warnbg); color: var(--warn); } .pill.ai { background: var(--aibg); color: var(--ai); } .pill.gray { background: var(--soft); color: var(--mut); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line2); border-top-color: var(--ink); animation: rot .7s linear infinite; flex: none; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- prototype frame ---------- */
+.proto { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--line); }
+.proto .in { display: flex; align-items: center; gap: 14px; padding: 0 20px; height: 56px; }
+.proto .lg { width: 30px; height: 30px; border-radius: 8px; background: var(--ink); color: #fff; display: grid; place-items: center; flex: none; }
+.proto .ttl { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.steps { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin: 0 auto; }
+.steps::-webkit-scrollbar { display: none; }
+.steps button { display: flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border-radius: 9px; color: var(--mut); white-space: nowrap; font-size: 13px; }
+.steps button b { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; background: var(--soft); color: var(--mut); font-weight: 600; }
+.steps button:hover { background: var(--hover); color: var(--ink); }
+.steps button.done b { background: var(--ink); color: #fff; }
+.steps button.on { background: var(--soft); color: var(--ink); font-weight: 500; }
+.steps button.on b { background: var(--ai); color: #fff; }
+.clock { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--mut); white-space: nowrap; }
+.clock b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.why { background: var(--soft); border-bottom: 1px solid var(--line); padding: 8px 20px; font-size: 13px; color: var(--mut); display: flex; gap: 8px; align-items: center; }
+.why b { color: var(--ink); font-weight: 500; }
+
+.scr { display: none; min-height: calc(100vh - 93px); animation: fade .3s ease; }
+.scr.on { display: block; }
+
+/* ---------- 1 start ---------- */
+.start { display: grid; place-items: center; padding: 70px 20px 60px; background: radial-gradient(ellipse 60% 50% at 50% 0%, #f3f1ff, transparent 70%); }
+.start .w { width: min(720px, 100%); text-align: center; }
+.start h1 { font-size: clamp(30px, 4.6vw, 46px); line-height: 1.1; letter-spacing: -.03em; color: var(--ink); margin: 14px 0 10px; font-weight: 600; }
+.start .sub { color: var(--mut); font-size: 16px; margin: 0 0 30px; }
+.pbox { text-align: left; background: #fff; border: 1px solid var(--line2); border-radius: 18px; box-shadow: 0 20px 50px -30px rgba(17,17,19,.35); transition: border-color .15s, box-shadow .15s; }
+.pbox:focus-within { border-color: var(--ink); box-shadow: 0 0 0 4px rgba(17,17,19,.05), 0 20px 50px -30px rgba(17,17,19,.35); }
+.pbox textarea { display: block; width: 100%; min-height: 110px; border: 0; outline: none; resize: none; padding: 18px 20px 6px; font-size: 16px; line-height: 1.5; background: none; }
+.pbox .bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px 12px; flex-wrap: wrap; }
+.pbox .bar .btn.ghost { height: 32px; padding: 0 10px; font-size: 13px; }
+.pbox .bar .go { margin-left: auto; }
+.att { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px; }
+.att span { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 6px 0 10px; border-radius: 8px; background: var(--soft); font-size: 12.5px; color: var(--ink); }
+.att span button { width: 20px; height: 20px; border-radius: 5px; color: var(--mut); } .att span button:hover { background: var(--line); }
+.ex { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+.ex button { height: 32px; padding: 0 13px; border-radius: 99px; border: 1px solid var(--line2); background: #fff; font-size: 13px; color: var(--tx); }
+.ex button:hover { border-color: var(--ink); color: var(--ink); }
+.alt { margin-top: 34px; font-size: 13.5px; color: var(--mut); }
+.alt a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--line2); }
+
+/* ---------- shared chat layout (2, 3) ---------- */
+.convo { max-width: 860px; margin: 0 auto; padding: 40px 20px 120px; }
+.msg { display: flex; gap: 12px; margin-bottom: 22px; animation: fade .35s ease both; }
+.msg .av { width: 30px; height: 30px; border-radius: 9px; flex: none; display: grid; place-items: center; font-size: 13px; font-weight: 600; }
+.msg.me { justify-content: flex-end; }
+.msg.me .bub { background: var(--ink); color: #fff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; max-width: 560px; font-size: 15px; }
+.msg.ai .av { background: var(--aibg); color: var(--ai); }
+.msg.ai .bd { flex: 1; min-width: 0; }
+.msg.ai .bd > p { margin: 4px 0 12px; font-size: 15px; color: var(--ink); }
+.q { border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 12px; background: #fff; }
+.q h4 { margin: 0 0 10px; font-size: 14px; color: var(--ink); font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.q h4 small { font-weight: 400; color: var(--mut); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips button { height: 34px; padding: 0 13px; border-radius: 10px; border: 1px solid var(--line2); background: #fff; font-size: 13.5px; color: var(--tx); transition: .12s; }
+.chips button:hover { border-color: #c4c4cc; }
+.chips button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fld label { display: block; font-size: 12.5px; color: var(--mut); margin-bottom: 5px; }
+.fld input { width: 100%; height: 40px; border: 1px solid var(--line2); border-radius: 10px; padding: 0 12px; outline: none; background: #fff; }
+.fld input:focus { border-color: var(--ink); }
+.fld.full { grid-column: 1 / -1; }
+.note { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 13px; color: var(--mut); }
+.note b { color: var(--ink); font-weight: 500; }
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: linear-gradient(transparent, #fff 30%); padding: 26px 20px 20px; }
+.dock .in { max-width: 860px; margin: 0 auto; display: flex; align-items: center; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.dock .hint { margin-right: auto; font-size: 13px; color: var(--mut); }
+
+/* ---------- 3 plan ---------- */
+.plan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.card .hd { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.card .hd h4 { margin: 0; font-size: 14px; color: var(--ink); font-weight: 600; }
+.card .hd .r { margin-left: auto; }
+.card .bd { padding: 14px 16px; }
+.namef { display: flex; align-items: center; gap: 8px; }
+.namef input { flex: 1; min-width: 0; height: 40px; border: 1px solid var(--line2); border-radius: 10px; padding: 0 12px; font-weight: 600; color: var(--ink); outline: none; }
+.namef input:focus { border-color: var(--ink); }
+.addr { margin-top: 8px; font-size: 12.5px; color: var(--mut); }
+.addr .mono { color: var(--ink); }
+.pg { border-top: 1px solid var(--line); padding: 10px 0; }
+.pg:first-child { border-top: 0; padding-top: 0; }
+.pg > label { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); cursor: pointer; }
+.pg input { width: 16px; height: 16px; accent-color: var(--ink); }
+.pg .secs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0 26px; }
+.pg .secs span { font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--soft); color: var(--mut); }
+.pg.off .secs { opacity: .4; }
+.addpg { display: flex; gap: 8px; margin-top: 10px; }
+.addpg input { flex: 1; min-width: 0; height: 34px; border: 1px dashed var(--line2); border-radius: 9px; padding: 0 10px; outline: none; font-size: 13px; }
+.styles { display: grid; gap: 10px; }
+.sty { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; padding: 10px; border-radius: 12px; border: 1.5px solid var(--line); text-align: left; transition: .15s; }
+.sty:hover { border-color: #c4c4cc; }
+.sty.on { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
+.sty .th { height: 78px; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid var(--line); }
+.sty b { display: block; color: var(--ink); }
+.sty small { color: var(--mut); }
+.sty .sw { display: flex; gap: 4px; margin-top: 6px; }
+.sty .sw i { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1); }
+
+/* ---------- mini site (used in 3, 4, 5) ---------- */
+.site { --s-bg: #fbf3e8; --s-ink: #2d1a10; --s-tx: #6b4f3f; --s-ac: #b4532a; --s-card: #fff; --s-hf: Fraunces, serif; background: var(--s-bg); color: var(--s-tx); font-size: 13px; line-height: 1.5; }
+.site.fresh { --s-bg: #ffffff; --s-ink: #10241b; --s-tx: #55655c; --s-ac: #2f7d5b; --s-card: #f3f7f4; --s-hf: Inter, sans-serif; }
+.site.bold { --s-bg: #17140f; --s-ink: #fff6e6; --s-tx: #c9bba3; --s-ac: #f5a524; --s-card: #241f17; --s-hf: Inter, sans-serif; }
+.site .sn { display: flex; align-items: center; gap: 16px; padding: 14px 24px; }
+.site .sn b { font-family: var(--s-hf); font-size: 17px; color: var(--s-ink); font-weight: 700; }
+.site .sn nav { margin-left: auto; display: flex; gap: 16px; font-size: 12px; }
+.site .sn .cta { height: 28px; padding: 0 12px; border-radius: 99px; background: var(--s-ac); color: #fff; font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+.site .sh { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; padding: 30px 24px; align-items: center; }
+.site .sh h2 { font-family: var(--s-hf); font-size: 34px; line-height: 1.05; color: var(--s-ink); margin: 0 0 10px; font-weight: 700; letter-spacing: -.02em; }
+.site .sh p { margin: 0 0 14px; }
+.site .sh .row { display: flex; gap: 8px; }
+.site .sh .b1 { height: 32px; padding: 0 14px; border-radius: 99px; background: var(--s-ac); color: #fff; font-weight: 600; display: grid; place-items: center; font-size: 12px; }
+.site .sh .b2 { height: 32px; padding: 0 14px; border-radius: 99px; border: 1px solid currentColor; display: grid; place-items: center; font-size: 12px; color: var(--s-ink); }
+.site .sh .im { height: 200px; border-radius: 16px; background-size: cover; background-position: center; position: relative; }
+.site .ss { padding: 26px 24px; }
+.site .ss h3 { font-family: var(--s-hf); font-size: 22px; color: var(--s-ink); margin: 0 0 14px; }
+.site .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.site .mc { background: var(--s-card); border-radius: 12px; overflow: hidden; }
+.site .mc div { height: 90px; background-size: cover; background-position: center; position: relative; }
+.site .mc p { margin: 0; padding: 8px 10px; display: flex; justify-content: space-between; color: var(--s-ink); font-weight: 600; font-size: 12px; }
+.site .mc p span { color: var(--s-ac); }
+.site .ct { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.site .ct div { background: var(--s-card); border-radius: 12px; padding: 14px; }
+.site .ct b { display: block; color: var(--s-ink); }
+.ph-tag { position: absolute; left: 8px; top: 8px; font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 6px; background: rgba(255,255,255,.9); color: var(--warn); }
+.mark { position: relative; outline: 2px dashed var(--warn); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- 4 build ---------- */
+.build { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: calc(100vh - 93px); }
+.log { border-right: 1px solid var(--line); padding: 26px 22px; background: #fcfcfd; }
+.log h3 { margin: 0 0 4px; font-size: 18px; color: var(--ink); }
+.log > p { margin: 0 0 18px; color: var(--mut); }
+.prog { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; margin-bottom: 20px; }
+.prog i { display: block; height: 100%; width: 0; background: var(--ai); border-radius: 99px; transition: width .5s ease; }
+.lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.lines li { display: flex; align-items: center; gap: 10px; padding: 7px 0; color: var(--faint); font-size: 13.5px; }
+.lines li .ck { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--line2); flex: none; display: grid; place-items: center; }
+.lines li.now { color: var(--ink); font-weight: 500; }
+.lines li.now .ck { border: 0; }
+.lines li.done { color: var(--tx); }
+.lines li.done .ck { background: var(--ok); border-color: var(--ok); color: #fff; }
+.lines li.done .ck::after { content: "✓"; font-size: 10px; font-weight: 700; }
+.tip { margin-top: 22px; padding: 12px 14px; border-radius: 12px; background: var(--aibg); color: #4c3fc4; font-size: 13px; }
+.stage { background: var(--soft); padding: 26px; display: grid; place-items: start center; overflow: hidden; }
+.browser { width: min(900px, 100%); background: #fff; border-radius: 14px; box-shadow: 0 30px 60px -30px rgba(17,17,19,.35), 0 0 0 1px var(--line); overflow: hidden; }
+.browser .tb { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #fafafa; }
+.browser .tb i { width: 10px; height: 10px; border-radius: 50%; background: var(--line2); }
+.browser .tb .u { margin-left: 10px; flex: 1; max-width: 360px; height: 24px; border-radius: 7px; background: #fff; border: 1px solid var(--line); font-size: 12px; display: flex; align-items: center; padding: 0 10px; color: var(--mut); }
+.building .blk:not(.show) { display: none; }
+.building .blk.show { animation: fade .5s ease; }
+.skel { height: 120px; margin: 14px 24px; border-radius: 12px; background: linear-gradient(90deg, #f0f0f2 0%, #f8f8f9 50%, #f0f0f2 100%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ---------- 5 editor ---------- */
+.ed { display: grid; grid-template-rows: 52px 1fr; height: calc(100vh - 93px); min-height: 620px; }
+.etb { display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--line); }
+.etb .nm { font-weight: 600; color: var(--ink); }
+.etb .seg { display: flex; padding: 3px; border-radius: 9px; background: var(--soft); margin-left: 12px; }
+.etb .seg button { height: 26px; padding: 0 10px; border-radius: 7px; font-size: 12.5px; color: var(--mut); }
+.etb .seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.etb .r { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.ebody { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: 0; }
+.eside { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+.eside .sc { flex: 1; overflow: auto; padding: 16px; }
+.chk h4 { margin: 0 0 4px; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.chk > p { margin: 0 0 12px; color: var(--mut); font-size: 13px; }
+.ci { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 12px; border-radius: 12px; border: 1px solid var(--line); margin-bottom: 8px; transition: .2s; }
+.ci .bx { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--line2); display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 700; }
+.ci b { display: block; color: var(--ink); font-weight: 500; font-size: 13.5px; }
+.ci small { color: var(--mut); display: block; margin: 2px 0 8px; }
+.ci.done { background: var(--soft); border-color: transparent; }
+.ci.done .bx { background: var(--ok); border-color: var(--ok); }
+.ci.done b { text-decoration: line-through; color: var(--mut); }
+.ci.done .acts { display: none; }
+.ci .acts { display: flex; gap: 6px; flex-wrap: wrap; }
+.chat { border-top: 1px solid var(--line); padding: 12px; }
+.chat .cb { display: flex; gap: 6px; align-items: center; border: 1px solid var(--line2); border-radius: 12px; padding: 6px 6px 6px 12px; }
+.chat input { flex: 1; min-width: 0; border: 0; outline: none; height: 30px; background: none; }
+.chat .sugg { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.chat .sugg button { font-size: 12px; padding: 4px 9px; border-radius: 99px; background: var(--soft); color: var(--tx); }
+.chat .sugg button:hover { background: var(--hover); color: var(--ink); }
+.ecanvas { background: var(--soft); overflow: auto; padding: 22px; }
+.ecanvas .browser { margin: 0 auto; }
+
+/* ---------- modal (6) ---------- */
+.scrim { position: fixed; inset: 0; z-index: 60; background: rgba(17,17,19,.4); display: none; place-items: center; padding: 20px; }
+.scrim.on { display: grid; animation: fade .2s; }
+.modal { width: min(500px, 100%); background: #fff; border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,.25); overflow: hidden; }
+.modal .mh { padding: 20px 22px 0; }
+.modal h3 { margin: 0 0 4px; font-size: 18px; color: var(--ink); }
+.modal .mh p { margin: 0; color: var(--mut); }
+.modal .mb { padding: 18px 22px; }
+.modal .mf { display: flex; gap: 8px; justify-content: flex-end; padding: 0 22px 20px; }
+.slug { display: flex; align-items: center; height: 42px; border: 1px solid var(--line2); border-radius: 10px; overflow: hidden; }
+.slug span { padding: 0 4px 0 12px; color: var(--mut); }
+.slug input { flex: 1; min-width: 0; border: 0; outline: none; height: 100%; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--ink); padding: 0; text-align: right; }
+.slug em { font-style: normal; padding: 0 12px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--mut); }
+.pre { margin-top: 16px; display: grid; gap: 2px; }
+.pre div { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.pre div:first-child { border-top: 0; }
+.pre .s { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-weight: 700; color: #fff; flex: none; }
+.pre .s.ok { background: var(--ok); } .pre .s.w { background: #f59e0b; }
+.pre small { margin-left: auto; color: var(--mut); text-align: right; }
+
+/* ---------- 7 live ---------- */
+.live { display: grid; place-items: center; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+.live .w { width: min(620px, 100%); position: relative; z-index: 1; }
+.live .big { width: 64px; height: 64px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; margin: 0 auto 18px; font-size: 30px; animation: pop .5s cubic-bezier(.2,1.6,.4,1); }
+@keyframes pop { from { transform: scale(.4); opacity: 0; } }
+.live h1 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.03em; color: var(--ink); }
+.live > .w > p { margin: 0 0 24px; color: var(--mut); font-size: 15.5px; }
+.url { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 14px; border: 1px solid var(--line2); border-radius: 12px; max-width: 460px; margin: 0 auto; background: #fff; }
+.url .mono { flex: 1; min-width: 0; text-align: left; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; }
+.share { display: flex; gap: 8px; justify-content: center; margin: 16px 0 30px; flex-wrap: wrap; }
+.qr { display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: center; text-align: left; padding: 14px; border: 1px solid var(--line); border-radius: 14px; max-width: 460px; margin: 0 auto 26px; }
+.qr svg { width: 110px; height: 110px; }
+.qr b { color: var(--ink); display: block; }
+.next { text-align: left; border: 1.5px solid var(--ink); border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
+.next b { display: block; color: var(--ink); font-size: 16px; }
+.next small { color: var(--mut); font-size: 13.5px; }
+.conf { position: absolute; inset: 0; pointer-events: none; }
+.conf i { position: absolute; top: -12px; width: 8px; height: 12px; border-radius: 2px; animation: fall 2.6s ease-in forwards; }
+@keyframes fall { to { transform: translateY(105vh) rotate(540deg); opacity: .2; } }
+
+/* ---------- 8 domain ---------- */
+.dom { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+.dom h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -.02em; color: var(--ink); }
+.dom > p { margin: 0 0 22px; color: var(--mut); font-size: 15px; }
+.tabs { display: inline-flex; padding: 4px; border-radius: 12px; background: var(--soft); margin-bottom: 18px; }
+.tabs button { height: 34px; padding: 0 14px; border-radius: 9px; color: var(--mut); font-weight: 500; }
+.tabs button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.pane { display: none; } .pane.on { display: block; animation: fade .25s; }
+.srch { display: flex; gap: 8px; }
+.srch input { flex: 1; min-width: 0; height: 44px; border: 1px solid var(--line2); border-radius: 12px; padding: 0 14px; outline: none; font-size: 15px; }
+.srch input:focus { border-color: var(--ink); }
+.res { margin-top: 14px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.res div { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.res div:first-child { border-top: 0; }
+.res .d { font-weight: 600; color: var(--ink); }
+.res .p { margin-left: auto; color: var(--ink); font-weight: 500; }
+.res .p s { color: var(--faint); font-weight: 400; margin-right: 6px; }
+.res .taken { color: var(--faint); }
+.prov { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); margin-top: 14px; }
+.prov .pl { width: 40px; height: 40px; border-radius: 10px; background: #f6821f; color: #fff; display: grid; place-items: center; font-weight: 700; flex: none; }
+.prov b { color: var(--ink); display: block; }
+.prov small { color: var(--mut); }
+.prov .btn { margin-left: auto; }
+.mailw { display: flex; gap: 10px; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--okbg); color: #166534; font-size: 13.5px; }
+.manual { margin-top: 12px; border: 1px solid var(--line); border-radius: 14px; }
+.manual summary { padding: 12px 16px; cursor: pointer; font-weight: 500; color: var(--ink); list-style: none; display: flex; align-items: center; gap: 8px; }
+.manual summary::-webkit-details-marker { display: none; }
+.manual summary::after { content: "+"; margin-left: auto; color: var(--mut); }
+.manual[open] summary::after { content: "–"; }
+.dns { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dns th { text-align: left; font-weight: 500; color: var(--mut); padding: 8px 16px; border-top: 1px solid var(--line); }
+.dns td { padding: 10px 16px; border-top: 1px solid var(--line); }
+.dns .mono { color: var(--ink); }
+.dns button { font-size: 12px; color: var(--mut); padding: 2px 6px; border-radius: 6px; } .dns button:hover { background: var(--hover); color: var(--ink); }
+.track { margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: none; }
+.track.on { display: block; animation: fade .3s; }
+.track h4 { margin: 0 0 14px; color: var(--ink); font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.tsteps { display: grid; gap: 0; }
+.ts { display: grid; grid-template-columns: 24px 1fr; gap: 12px; padding-bottom: 16px; position: relative; }
+.ts:not(:last-child)::before { content: ""; position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--line); }
+.ts.done:not(:last-child)::before { background: var(--ok); }
+.ts .c { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line2); display: grid; place-items: center; background: #fff; font-size: 11px; font-weight: 700; color: #fff; position: relative; }
+.ts.now .c { border-color: var(--ink); }
+.ts.now .c::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); animation: pu 1.2s infinite; }
+@keyframes pu { 50% { opacity: .3; } }
+.ts.done .c { background: var(--ok); border-color: var(--ok); }
+.ts.done .c::after { content: "✓"; }
+.ts b { display: block; color: var(--ink); font-weight: 500; }
+.ts small { color: var(--mut); }
+.ts:not(.done):not(.now) b { color: var(--faint); }
+
+/* ---------- 9 home ---------- */
+.home { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: calc(100vh - 93px); }
+.hside { background: #fafafa; border-right: 1px solid var(--line); padding: 16px 12px; }
+.hside a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; color: var(--tx); }
+.hside a:hover { background: var(--hover); }
+.hside a.on { background: #efeff1; font-weight: 500; color: var(--ink); }
+.hmain { padding: 30px 34px 60px; max-width: 1100px; }
+.hhead { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.hhead h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; color: var(--ink); }
+.hhead .r { margin-left: auto; display: flex; gap: 8px; }
+.hgrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; margin-top: 22px; }
+.thumb { height: 230px; overflow: hidden; border-bottom: 1px solid var(--line); position: relative; border-radius: 14px 14px 0 0; }
+.thumb .site { transform: scale(.55); transform-origin: 0 0; width: 182%; pointer-events: none; }
+.kv { display: grid; grid-template-columns: 110px 1fr; gap: 10px 14px; font-size: 13.5px; }
+.kv dt { color: var(--mut); } .kv dd { margin: 0; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.todo { display: grid; gap: 4px; }
+.todo label { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); cursor: pointer; }
+.todo label:first-child { border-top: 0; }
+.todo input { width: 16px; height: 16px; accent-color: var(--ink); }
+.todo input:checked + span { color: var(--faint); text-decoration: line-through; }
+.todo small { margin-left: auto; color: var(--mut); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stats div { padding: 12px; border-radius: 12px; background: var(--soft); }
+.stats b { display: block; font-size: 22px; color: var(--ink); letter-spacing: -.02em; }
+.stats small { color: var(--mut); }
+.act { list-style: none; margin: 0; padding: 0; }
+.act li { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.act li:first-child { border-top: 0; }
+.act time { margin-left: auto; color: var(--faint); white-space: nowrap; }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; z-index: 90; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13.5px; transition: .25s; pointer-events: none; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 1000px) {
+  .build { grid-template-columns: 1fr; } .log { border-right: 0; border-bottom: 1px solid var(--line); }
+  .ebody { grid-template-columns: 1fr; } .eside { border-right: 0; border-bottom: 1px solid var(--line); max-height: none; } .ed { height: auto; }
+  .home { grid-template-columns: 1fr; } .hside { display: none; } .hgrid { grid-template-columns: 1fr; }
+  .proto .ttl { display: none; }
+}
+@media (max-width: 700px) {
+  .clock { display: none; }
+  .plan, .facts { grid-template-columns: 1fr; }
+  .site .sh { grid-template-columns: 1fr; } .site .sh .im { height: 150px; } .site .grid3 { grid-template-columns: 1fr 1fr; } .site .grid3 .mc:nth-child(3) { display: none; } .site .sn nav { display: none; }
+  .stage, .ecanvas { padding: 12px; }
+  .sty { grid-template-columns: 90px 1fr; }
+  .next { grid-template-columns: 1fr; }
+  .live { grid-template-columns: minmax(0, 1fr); padding: 40px 16px; }
+  .res div { flex-wrap: wrap; gap: 6px 10px; } .res .d { flex: 1 1 100%; } .res .p { margin-left: 0; margin-right: auto; }
+  .qr { grid-template-columns: 80px 1fr; } .qr svg { width: 80px; height: 80px; }
+  .hmain { padding: 22px 16px 50px; } .hhead .r { margin-left: 0; }
+  .stats { grid-template-columns: 1fr 1fr 1fr; } .stats b { font-size: 18px; }
+  .dns th:nth-child(1), .dns td:nth-child(1) { display: none; }
+  .prov { flex-wrap: wrap; } .prov .btn { margin-left: 0; width: 100%; }
+  .etb .seg, .etb .hide-sm { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- prototype step bar (not part of the product) -->
+<header class="proto">
+  <div class="in">
+    <span class="lg"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>
+    <span class="ttl">Build → Publish</span>
+    <nav class="steps" id="steps"></nav>
+    <span class="clock">⏱ Time so far <b id="clock">0:00</b></span>
+  </div>
+</header>
+<div class="why" id="why"></div>
+
+<!-- 1 START -->
+<section class="scr" data-step="1">
+  <div class="start">
+    <div class="w">
+      <span class="pill ai"><svg class="i" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>New site</span>
+      <h1>What do you want to build?</h1>
+      <p class="sub">Describe your business in your own words. We'll ask a couple of questions, then build it.</p>
+      <div class="pbox">
+        <textarea id="prompt" placeholder="e.g. A website for my home kitchen in Dhaka. We cook Bangladeshi meals for offices and families and take orders on WhatsApp."></textarea>
+        <div class="att" id="att"></div>
+        <div class="bar">
+          <button class="btn ghost" id="addLogo"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Logo or photos</button>
+          <button class="btn ghost" id="addLink"><svg class="i" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1"/></svg>My old site or Facebook page</button>
+          <button class="btn pri go" id="go1" disabled>Continue <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="ex" id="ex"><button>🍛 Home kitchen in Dhaka</button><button>💇 Hair salon</button><button>🏠 Real estate agent</button><button>📸 Wedding photographer</button><button>🎓 Coaching centre</button></div>
+      <p class="alt">Already use Claude, ChatGPT or Cursor? <a href="#">Build with your own AI over MCP</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 QUESTIONS -->
+<section class="scr" data-step="2">
+  <div class="convo">
+    <div class="msg me"><div class="bub" id="myPrompt"></div></div>
+    <div class="msg ai"><span class="av">AI</span><div class="bd">
+      <p>Sounds delicious. Three quick questions so the site is about <b>you</b>, not a template:</p>
+      <div class="q"><h4>1. What should people order from you? <small>pick any</small></h4><div class="chips multi" id="q1"><button class="on">Lunch boxes</button><button class="on">Family meals</button><button>Catering for events</button><button>Frozen food</button><button>Cakes &amp; sweets</button><button>+ Something else</button></div></div>
+      <div class="q"><h4>2. How should customers reach you?</h4>
+        <div class="facts">
+          <div class="fld"><label for="fPhone">Phone / WhatsApp</label><input id="fPhone" value="+880 1712 345678"></div>
+          <div class="fld"><label for="fMail">Email (optional)</label><input id="fMail" placeholder="you@example.com"></div>
+          <div class="fld full"><label for="fArea">Where do you deliver?</label><input id="fArea" value="Dhanmondi, Mohammadpur, Lalmatia"></div>
+        </div>
+        <div class="note"><svg class="i" viewBox="0 0 24 24" style="margin-top:2px"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span><b>Only these details go on your site.</b> The AI never makes up phone numbers, emails or addresses. Leave a field empty and you'll see a clear placeholder instead.</span></div>
+      </div>
+      <div class="q"><h4>3. Do you take orders online? </h4><div class="chips" id="q3"><button class="on">Yes, on WhatsApp</button><button>With an order form</button><button>Phone calls only</button></div></div>
+    </div></div>
+  </div>
+  <div class="dock"><div class="in"><span class="hint">You can change all of this later.</span><button class="btn ghost" data-go="3">Skip, use placeholders</button><button class="btn pri" data-go="3">See the plan <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+</section>
+
+<!-- 3 PLAN -->
+<section class="scr" data-step="3">
+  <div class="convo">
+    <div class="msg ai"><span class="av">AI</span><div class="bd">
+      <p>Here's my plan. Untick anything you don't need, pick a look, and I'll build it.</p>
+      <div class="plan">
+        <div style="display:grid;gap:14px;align-content:start">
+          <div class="card"><div class="hd"><h4>Site name</h4><span class="r pill ai">Suggested</span></div><div class="bd">
+            <div class="namef"><input id="siteName" value="Mitali's Kitchen" aria-label="Site name"></div>
+            <div class="addr">Free address: <span class="mono" id="slugPrev">mitalis-kitchen.zejify.app</span></div>
+          </div></div>
+          <div class="card"><div class="hd"><h4>Pages</h4><span class="r pill gray" id="pgCount">4 pages</span></div><div class="bd" id="pages">
+            <div class="pg"><label><input type="checkbox" checked disabled>Home</label><div class="secs"><span>Hero</span><span>Today's menu</span><span>How to order</span><span>Reviews</span><span>Delivery areas</span></div></div>
+            <div class="pg"><label><input type="checkbox" checked>Menu</label><div class="secs"><span>Lunch boxes</span><span>Family meals</span><span>Prices</span></div></div>
+            <div class="pg"><label><input type="checkbox" checked>About</label><div class="secs"><span>Mitali's story</span><span>Kitchen photos</span></div></div>
+            <div class="pg"><label><input type="checkbox" checked>Contact</label><div class="secs"><span>WhatsApp button</span><span>Phone</span><span>Map</span></div></div>
+            <div class="pg off"><label><input type="checkbox">Catering</label><div class="secs"><span>Event packages</span><span>Enquiry form</span></div></div>
+            <div class="addpg"><input id="newPg" placeholder="Add a page, e.g. FAQ" aria-label="Add a page"><button class="btn sec sm" id="addPg">Add</button></div>
+          </div></div>
+        </div>
+        <div class="card"><div class="hd"><h4>Pick a look</h4><span class="r" style="font-size:12.5px;color:var(--mut)">Colours, fonts, feel</span></div><div class="bd styles" id="styles">
+          <button class="sty on" data-s="warm"><div class="th" data-th="warm"></div><div><b>Warm &amp; homely</b><small>Cream, terracotta, a friendly serif. Feels like home cooking.</small><div class="sw"><i style="background:#fbf3e8"></i><i style="background:#b4532a"></i><i style="background:#2d1a10"></i></div></div></button>
+          <button class="sty" data-s="fresh"><div class="th" data-th="fresh"></div><div><b>Fresh &amp; clean</b><small>White, leafy green, simple type. Light and healthy.</small><div class="sw"><i style="background:#fff"></i><i style="background:#2f7d5b"></i><i style="background:#10241b"></i></div></div></button>
+          <button class="sty" data-s="bold"><div class="th" data-th="bold"></div><div><b>Bold &amp; bright</b><small>Dark background, golden accents. Stands out.</small><div class="sw"><i style="background:#17140f"></i><i style="background:#f5a524"></i><i style="background:#fff6e6"></i></div></div></button>
+        </div></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="dock"><div class="in"><span class="hint">Takes about a minute. You can keep working while it builds.</span><button class="btn ghost" data-go="2">Back</button><button class="btn pri lg" data-go="4">Build my site <svg class="i" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></button></div></div>
+</section>
+
+<!-- 4 BUILD -->
+<section class="scr" data-step="4">
+  <div class="build">
+    <aside class="log">
+      <h3 id="bTitle">Building your site…</h3>
+      <p id="bSub">Watch it come together. Nothing is published yet.</p>
+      <div class="prog"><i id="bProg"></i></div>
+      <ul class="lines" id="bLines"></ul>
+      <div class="tip" id="bTip">💡 Tip: after it's built, click any text or photo on the page to change it, or just ask the AI.</div>
+      <button class="btn pri" id="bOpen" style="margin-top:18px;display:none;width:100%" data-go="5">Open my site in the editor</button>
+    </aside>
+    <div class="stage"><div class="browser"><div class="tb"><i></i><i></i><i></i><span class="u mono" id="bUrl">mitalis-kitchen.zejify.app</span></div><div id="bSite"></div></div></div>
+  </div>
+</section>
+
+<!-- 5 REVIEW / EDITOR -->
+<section class="scr" data-step="5">
+  <div class="ed">
+    <div class="etb">
+      <span class="nm" id="eName">Mitali's Kitchen</span><span class="pill gray">Draft</span>
+      <div class="seg"><button class="on">Home</button><button>Menu</button><button>About</button><button>Contact</button></div>
+      <div class="r"><span class="pill ok hide-sm"><span class="dot"></span>Saved</span><button class="btn sec sm hide-sm">Preview</button><button class="btn pri sm" id="openPub">Publish</button></div>
+    </div>
+    <div class="ebody">
+      <aside class="eside">
+        <div class="sc chk">
+          <h4>3 things to check <span class="pill gray" id="chkN">0 / 3</span></h4>
+          <p>Quick fixes before you go live. None of them stop you from publishing.</p>
+          <div class="ci" data-k="photos"><span class="bx"></span><div><b>Swap 2 sample photos</b><small>The hero and one dish use sample photos. Yours will sell better.</small><div class="acts"><button class="btn sec sm" data-fix="photos">Upload mine</button><button class="btn ghost sm" data-fix="photos">Keep for now</button></div></div></div>
+          <div class="ci" data-k="phone"><span class="bx"></span><div><b>Check your phone number</b><small id="ciPhone">+880 1712 345678 is on the WhatsApp button and footer.</small><div class="acts"><button class="btn sec sm" data-fix="phone">Looks right</button></div></div></div>
+          <div class="ci" data-k="logo"><span class="bx"></span><div><b>Add your logo</b><small>Right now your name is shown as text.</small><div class="acts"><button class="btn sec sm" data-fix="logo">Upload logo</button><button class="btn ghost sm" data-fix="logo">Text is fine</button></div></div></div>
+        </div>
+        <div class="chat">
+          <div class="cb"><svg class="i" viewBox="0 0 24 24" style="color:var(--ai)"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg><input id="ask" placeholder="Ask AI to change anything…" aria-label="Ask AI"><button class="btn pri sm" id="askGo">Send</button></div>
+          <div class="sugg"><button>Make the menu prices bigger</button><button>Add a Friday special</button><button>Translate to Bangla</button></div>
+        </div>
+      </aside>
+      <div class="ecanvas"><div class="browser"><div class="tb"><i></i><i></i><i></i><span class="u mono" id="eUrl">Draft · not published</span></div><div id="eSite"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PUBLISH (modal over the editor) -->
+<div class="scrim" id="pubM"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="pubT">
+  <div class="mh"><h3 id="pubT">Publish your site</h3><p>It goes live on a free address now. You can add your own domain right after.</p></div>
+  <div class="mb">
+    <div class="slug"><span>https://</span><input id="slug" value="mitalis-kitchen" aria-label="Site address"><em>.zejify.app</em></div>
+    <div class="pre" id="pre"></div>
+  </div>
+  <div class="mf"><button class="btn sec" id="pubX">Cancel</button><button class="btn pri" id="pubGo">Publish</button></div>
+</div></div>
+
+<!-- 7 LIVE -->
+<section class="scr" data-step="7">
+  <div class="live">
+    <div class="conf" id="conf"></div>
+    <div class="w">
+      <div class="big">✓</div>
+      <h1>Your site is live!</h1>
+      <p>Anyone can visit it now. Share it with your customers.</p>
+      <div class="url"><span class="mono" id="liveUrl">https://mitalis-kitchen.zejify.app</span><button class="btn sec sm" id="copyUrl">Copy</button><a class="btn pri sm" href="#">Visit</a></div>
+      <div class="share"><button class="btn sec sm">💬 WhatsApp</button><button class="btn sec sm">📘 Facebook</button><button class="btn sec sm">✉️ Email</button></div>
+      <div class="qr"><svg viewBox="0 0 29 29" id="qr" shape-rendering="crispEdges"></svg><div><b>Print this on your menu card</b><small style="color:var(--mut)">Customers scan it to open your site.</small><br><button class="btn ghost sm" style="margin-top:6px;margin-left:-10px">Download QR code</button></div></div>
+      <div class="next"><div><b>Next: use your own domain</b><small>Like <span class="mono">mitaliskitchen.com</span>. Looks more professional and is easier to remember.</small></div><button class="btn pri" data-go="8">Get a domain</button></div>
+      <p style="margin-top:16px"><button class="btn ghost sm" data-go="5">Back to editing</button> <button class="btn ghost sm" data-go="9">Skip for now</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 DOMAIN -->
+<section class="scr" data-step="8">
+  <div class="dom">
+    <h1>Add your own domain</h1>
+    <p>Your site stays live on <span class="mono" style="color:var(--ink)" id="dFree">mitalis-kitchen.zejify.app</span> the whole time.</p>
+    <div class="tabs" role="tablist"><button class="on" data-pane="buy">Buy a new domain</button><button data-pane="own">I already have one</button></div>
+
+    <div class="pane on" id="p-buy">
+      <div class="srch"><input id="dq" value="mitaliskitchen" aria-label="Search domains"><button class="btn pri" id="dSearch">Search</button></div>
+      <div class="res" id="dRes"></div>
+      <p style="font-size:13px;color:var(--mut);margin-top:10px">Bought here = connected for you automatically, with the SSL padlock. Nothing to set up.</p>
+    </div>
+
+    <div class="pane" id="p-own">
+      <div class="srch"><input id="own" value="mitaliskitchen.com" aria-label="Your domain"><button class="btn pri" id="ownGo">Continue</button></div>
+      <div id="ownRes" style="display:none">
+        <div class="prov"><span class="pl">CF</span><div><b>Your domain is with Cloudflare</b><small>We can connect it for you. You'll sign in to Cloudflare and approve once.</small></div><button class="btn pri" id="autoGo">Connect with Cloudflare</button></div>
+        <div class="mailw">✉️ <span>We found email on this domain (Google Workspace). <b>We won't touch your email records</b>, so your inbox keeps working.</span></div>
+        <details class="manual"><summary>Rather do it yourself? Add these 2 records</summary>
+          <table class="dns"><tr><th>Type</th><th>Name</th><th>Value</th><th></th></tr>
+            <tr><td>A</td><td class="mono">@</td><td class="mono">76.76.21.21</td><td><button data-copy="76.76.21.21">Copy</button></td></tr>
+            <tr><td>CNAME</td><td class="mono">www</td><td class="mono">sites.zejify.app</td><td><button data-copy="sites.zejify.app">Copy</button></td></tr></table>
+          <p style="padding:0 16px 12px;margin:8px 0 0;font-size:13px;color:var(--mut)">Then come back here. We'll check automatically every minute.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="track" id="track">
+      <h4 id="trT"><span class="spin"></span>Connecting <span class="mono" id="trD">mitaliskitchen.com</span></h4>
+      <div class="tsteps" id="ts"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sec sm" id="skipWait">Demo: skip the wait</button><button class="btn pri sm" id="trDone" style="display:none" data-go="9">Go to my site's dashboard</button></div>
+      <p style="font-size:13px;color:var(--mut);margin:12px 0 0" id="trNote">You can close this page. We'll email you when it's done.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 HOME BASE -->
+<section class="scr" data-step="9">
+  <div class="home">
+    <aside class="hside">
+      <a href="#" class="on"><svg class="i" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z"/></svg>Overview</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Edit site</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 8 9 6 9-6"/></svg>Form messages</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Visitors</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Domain</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2Z"/></svg>Settings</a>
+    </aside>
+    <main class="hmain">
+      <div class="hhead"><div><h1 id="hName">Mitali's Kitchen</h1><div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap"><span class="pill ok"><span class="dot"></span>Live</span><span class="pill gray mono" id="hDom">mitaliskitchen.com</span></div></div>
+        <div class="r"><a href="#" class="btn sec">View site</a><button class="btn pri" data-go="5">Edit site</button></div></div>
+      <div class="hgrid">
+        <div class="card" style="overflow:hidden"><div class="thumb" id="hThumb"></div><div class="bd"><dl class="kv">
+          <dt>Address</dt><dd><span class="mono" id="hDom2">mitaliskitchen.com</span><span class="pill ok">🔒 Secure</span></dd>
+          <dt>Free address</dt><dd class="mono" style="color:var(--mut)" id="hFree">mitalis-kitchen.zejify.app</dd>
+          <dt>Last published</dt><dd>Today, a few minutes ago</dd></dl></div></div>
+        <div style="display:grid;gap:14px;align-content:start">
+          <div class="card"><div class="hd"><h4>This week</h4></div><div class="bd stats"><div><b>0</b><small>Visitors</small></div><div><b>0</b><small>Messages</small></div><div><b>0</b><small>WhatsApp taps</small></div></div></div>
+          <div class="card"><div class="hd"><h4>Get more customers</h4><span class="r pill gray" id="todoN">0 / 4</span></div><div class="bd todo" id="todo">
+            <label><input type="checkbox"><span>Add your site to Google</span><small>2 min</small></label>
+            <label><input type="checkbox"><span>Put the link on your Facebook page</span><small>1 min</small></label>
+            <label><input type="checkbox"><span>Get form messages on WhatsApp</span><small>1 min</small></label>
+            <label><input type="checkbox"><span>Ask 3 customers for a review</span><small>5 min</small></label>
+          </div></div>
+        </div>
+        <div class="card" style="grid-column:1 / -1"><div class="hd"><h4>Activity</h4></div><div class="bd"><ul class="act">
+          <li>🌐 <span><b style="color:var(--ink);font-weight:500">mitaliskitchen.com</b> is connected and secure</span><time>just now</time></li>
+          <li>🚀 Site published to mitalis-kitchen.zejify.app</li>
+          <li>✨ Site built by AI: 4 pages, 14 sections</li>
+        </ul></div></div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const IMG = id => `https://images.unsplash.com/photo-${id}?w=800&q=70&auto=format&fit=crop`;
+const STEPS = [
+  ['Start', 'One prompt box. No name, no template picker. The AI suggests the name later.', '0:20'],
+  ['Questions', 'Max 3 questions, mostly tap-to-answer. Real contact details only: the AI never invents them.', '1:10'],
+  ['Plan', 'Fix the plan, not the site: pages, sections and a look, in one screen.', '1:50'],
+  ['Build', 'The site appears section by section while it is made. No spinner screen.', '3:00'],
+  ['Review', 'Land in the editor with a short checklist. Nothing here blocks publishing.', '5:00'],
+  ['Publish', 'One click to a free address, with a quick check that warns but never blocks.', '5:40'],
+  ['Live', 'Celebrate, share and print the QR code. The domain is the next obvious step.', '6:00'],
+  ['Domain', 'Buy here (auto), or connect with one click. DNS by hand is only a fallback. Email is kept safe.', '8:30'],
+  ['Home base', 'The overview page for every visit after this: status, domain and what to do next.', '9:00'],
+];
+const S = { step: 1, prompt: '', style: 'warm', name: "Mitali's Kitchen", slug: 'mitalis-kitchen', phone: '+880 1712 345678', fixed: new Set(), domain: 'mitaliskitchen.com', domDone: false, timers: [] };
+const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); };
+const later = (fn, ms) => S.timers.push(setTimeout(fn, ms));
+
+/* ---------- mini site ---------- */
+function site(style, opts = {}) {
+  const ph = !S.fixed.has('photos'), mark = opts.marks;
+  const phone = S.phone || 'Your phone number';
+  const tag = t => ph ? `<span class="ph-tag">${t}</span>` : '';
+  return `<div class="site ${style === 'warm' ? '' : style}">
+    <div class="sn blk" data-b="0"><b class="${mark && !S.fixed.has('logo') ? 'mark' : ''}">${S.name}</b><nav><span>Menu</span><span>About</span><span>Contact</span></nav><span class="cta">Order on WhatsApp</span></div>
+    <div class="sh blk" data-b="1"><div><h2>Home-cooked meals, delivered warm.</h2><p>Lunch boxes and family meals cooked fresh every morning in Dhanmondi. Order by 10 am for lunch.</p><div class="row"><span class="b1">See today's menu</span><span class="b2">How to order</span></div></div>
+      <div class="im ${mark && ph ? 'mark' : ''}" style="background-image:url(${IMG('1546069901-ba9599a7e63c')})">${tag('Sample photo')}</div></div>
+    <div class="ss blk" data-b="2"><h3>Today's menu</h3><div class="grid3">
+      <div class="mc"><div style="background-image:url(${IMG('1565958011703-44f9829ba187')})"></div><p>Chicken bhuna box <span>৳220</span></p></div>
+      <div class="mc"><div class="${mark && ph ? 'mark' : ''}" style="background-image:url(${IMG('1540189549336-e6e99c3679fe')})">${tag('Sample')}</div><p>Shorshe ilish <span>৳350</span></p></div>
+      <div class="mc"><div style="background-image:url(${IMG('1512621776951-a57141f2eefd')})"></div><p>Veg khichuri <span>৳160</span></p></div></div></div>
+    <div class="ss blk" data-b="3"><h3>Order in 2 steps</h3><div class="ct"><div><b>1. Message us on WhatsApp</b>Tell us what and how many.</div><div><b>2. We deliver by 1 pm</b>To Dhanmondi, Mohammadpur and Lalmatia.</div></div></div>
+    <div class="ss blk" data-b="4" style="padding-bottom:30px"><div class="ct"><div><b>WhatsApp</b><span class="${mark && !S.fixed.has('phone') ? 'mark' : ''}">${phone}</span></div><div><b>Kitchen hours</b>Sat–Thu · 8 am – 3 pm</div></div></div>
+  </div>`;
+}
+function paintThumbs() { $$('[data-th]').forEach(t => { t.innerHTML = `<div style="transform:scale(.2);transform-origin:0 0;width:500%">${site(t.dataset.th)}</div>`; t.querySelectorAll('.blk').forEach(b => b.classList.add('show')); }); }
+
+/* ---------- navigation ---------- */
+function go(n) {
+  S.timers.forEach(clearTimeout); S.timers = [];
+  if (n === 6) { go(5); return openPublish(); }
+  S.step = n; $('#pubM').classList.remove('on');
+  $$('.scr').forEach(s => s.classList.toggle('on', +s.dataset.step === n));
+  renderSteps(); scrollTo(0, 0);
+  ({ 2: enter2, 3: enter3, 4: enter4, 5: enter5, 7: enter7, 8: enter8, 9: enter9 })[n]?.();
+}
+function renderSteps(active = S.step) {
+  $('#steps').innerHTML = STEPS.map(([t], i) => `<button class="${i + 1 === active ? 'on' : i + 1 < active ? 'done' : ''}" data-step="${i + 1}"><b>${i + 1 < active ? '✓' : i + 1}</b>${t}</button>`).join('');
+  $('#why').innerHTML = `<b>Step ${active} · ${STEPS[active - 1][0]}:</b> ${STEPS[active - 1][1]}`;
+  $('#clock').textContent = STEPS[active - 1][2];
+  $('#steps .on')?.scrollIntoView({ block: 'nearest', inline: 'center' });
+}
+document.addEventListener('click', e => {
+  const st = e.target.closest('#steps [data-step]'); if (st) return go(+st.dataset.step);
+  const g = e.target.closest('[data-go]'); if (g) { e.preventDefault(); return go(+g.dataset.go); }
+});
+
+/* ---------- 1 start ---------- */
+const pr = $('#prompt'), go1 = $('#go1');
+pr.addEventListener('input', () => go1.disabled = pr.value.trim().length < 8);
+$('#ex').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+  pr.value = b.textContent.includes('kitchen') ? 'A website for my home kitchen in Dhaka. We cook Bangladeshi lunch boxes and family meals and take orders on WhatsApp.' : `A website for my ${b.textContent.replace(/^\S+\s/, '').toLowerCase()}.`;
+  pr.dispatchEvent(new Event('input')); pr.focus(); });
+const att = [];
+const paintAtt = () => $('#att').innerHTML = att.map((a, i) => `<span>${a}<button data-rm="${i}" aria-label="Remove">✕</button></span>`).join('');
+$('#addLogo').addEventListener('click', () => { att.push('🖼 logo.png'); paintAtt(); });
+$('#addLink').addEventListener('click', () => { att.push('🔗 facebook.com/mitaliskitchen'); paintAtt(); });
+$('#att').addEventListener('click', e => { const r = e.target.closest('[data-rm]'); if (r) { att.splice(+r.dataset.rm, 1); paintAtt(); } });
+go1.addEventListener('click', () => go(2));
+pr.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && !go1.disabled) go(2); });
+
+/* ---------- 2 questions ---------- */
+function enter2() { $('#myPrompt').textContent = pr.value.trim() || 'A website for my home kitchen in Dhaka. We cook Bangladeshi lunch boxes and family meals and take orders on WhatsApp.'; }
+$$('.chips').forEach(c => c.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+  if (c.classList.contains('multi')) b.classList.toggle('on'); else c.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); }));
+$('#fPhone').addEventListener('input', e => S.phone = e.target.value.trim());
+
+/* ---------- 3 plan ---------- */
+const slugify = s => s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'my-site';
+function enter3() { paintThumbs(); }
+$('#siteName').addEventListener('input', e => { S.name = e.target.value || 'My site'; S.slug = slugify(S.name); $('#slugPrev').textContent = S.slug + '.zejify.app'; });
+$('#styles').addEventListener('click', e => { const b = e.target.closest('.sty'); if (!b) return; $$('.sty').forEach(x => x.classList.toggle('on', x === b)); S.style = b.dataset.s; });
+const pgCount = () => $('#pgCount').textContent = $$('#pages .pg input:checked').length + ' pages';
+$('#pages').addEventListener('change', e => { const p = e.target.closest('.pg'); p.classList.toggle('off', !e.target.checked); pgCount(); });
+$('#addPg').addEventListener('click', () => { const v = $('#newPg').value.trim(); if (!v) return; const d = document.createElement('div'); d.className = 'pg'; d.innerHTML = `<label><input type="checkbox" checked>${v.replace(/</g, '&lt;')}</label><div class="secs"><span>AI will plan this page</span></div>`; $('#newPg').parentElement.before(d); $('#newPg').value = ''; pgCount(); });
+
+/* ---------- 4 build ---------- */
+const BUILD = ['Reading your answers', 'Writing your headline and menu', 'Choosing colours and fonts', 'Building the Home page', 'Building Menu, About and Contact', 'Adding your WhatsApp button', 'Checking phone view and speed'];
+function enter4() {
+  $('#bSite').innerHTML = site(S.style); $('#bUrl').textContent = S.slug + '.zejify.app · draft';
+  const siteEl = $('#bSite .site'); siteEl.classList.add('building');
+  const blks = $$('#bSite .blk'); const sk = document.createElement('div'); sk.className = 'skel'; siteEl.append(sk);
+  $('#bTitle').textContent = 'Building your site…'; $('#bSub').textContent = 'Watch it come together. Nothing is published yet.'; $('#bOpen').style.display = 'none'; $('#bTip').style.display = '';
+  $('#bLines').innerHTML = BUILD.map(t => `<li><span class="ck"></span>${t}</li>`).join(''); $('#bProg').style.width = '0';
+  const lis = $$('#bLines li');
+  BUILD.forEach((_, i) => later(() => {
+    lis.forEach((l, k) => { l.className = k < i ? 'done' : k === i ? 'now' : ''; l.querySelector('.ck').innerHTML = k === i ? '<span class="spin"></span>' : ''; });
+    $('#bProg').style.width = (i / BUILD.length * 100) + '%';
+    if (i >= 2) blks.slice(0, i - 1).forEach(x => x.classList.add('show'));
+  }, 300 + i * 850));
+  later(() => { lis.forEach(l => { l.className = 'done'; l.querySelector('.ck').innerHTML = ''; }); blks.forEach(b => b.classList.add('show')); sk.remove(); $('#bProg').style.width = '100%';
+    $('#bTitle').textContent = 'Your site is ready ✨'; $('#bSub').textContent = '4 pages and 14 sections, built from your answers.'; $('#bTip').style.display = 'none'; $('#bOpen').style.display = ''; }, 300 + BUILD.length * 850);
+}
+
+/* ---------- 5 editor ---------- */
+function enter5() { $('#eName').textContent = S.name; $('#ciPhone').textContent = (S.phone || 'No number') + ' is on the WhatsApp button and footer.'; paintEditor(); }
+function paintEditor() { $('#eSite').innerHTML = site(S.style, { marks: true }); $$('#eSite .blk').forEach(b => b.classList.add('show'));
+  $$('.ci').forEach(c => c.classList.toggle('done', S.fixed.has(c.dataset.k))); $$('.ci .bx').forEach((b, i) => b.textContent = S.fixed.has($$('.ci')[i].dataset.k) ? '✓' : '');
+  $('#chkN').textContent = S.fixed.size + ' / 3'; $('#chkN').className = 'pill ' + (S.fixed.size === 3 ? 'ok' : 'gray'); }
+$('.chk').addEventListener('click', e => { const b = e.target.closest('[data-fix]'); if (!b) return; S.fixed.add(b.dataset.fix); paintEditor();
+  toast({ photos: b.textContent === 'Upload mine' ? 'Photos replaced' : 'Kept the sample photos for now', phone: 'Phone number confirmed', logo: b.textContent === 'Upload logo' ? 'Logo added' : 'Using your name as the logo' }[b.dataset.fix]); });
+$('.sugg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { $('#ask').value = b.textContent; $('#ask').focus(); } });
+$('#askGo').addEventListener('click', () => { if (!$('#ask').value.trim()) return; toast('AI is making the change…'); $('#ask').value = ''; });
+$('#openPub').addEventListener('click', openPublish);
+
+/* ---------- 6 publish ---------- */
+function openPublish() {
+  renderSteps(6); $('#slug').value = S.slug;
+  const rows = [['ok', 'Page titles and Google description', 'Written by AI'], ['ok', 'Looks good on phones', 'Checked'], ['ok', 'All links and buttons work', '23 checked'],
+    [S.fixed.has('photos') ? 'ok' : 'w', S.fixed.has('photos') ? 'Your own photos' : '2 sample photos', S.fixed.has('photos') ? 'Done' : 'Fine to publish, swap later'], [S.fixed.has('phone') ? 'ok' : 'w', 'Phone number', S.fixed.has('phone') ? 'Confirmed' : 'Not confirmed yet']];
+  $('#pre').innerHTML = rows.map(([s, t, n]) => `<div><span class="s ${s}">${s === 'ok' ? '✓' : '!'}</span>${t}<small>${n}</small></div>`).join('');
+  $('#pubGo').disabled = false; $('#pubGo').innerHTML = 'Publish'; $('#pubM').classList.add('on'); setTimeout(() => $('#pubGo').focus(), 30);
+}
+$('#slug').addEventListener('input', e => { e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''); S.slug = e.target.value || 'my-site'; });
+const closePub = () => { $('#pubM').classList.remove('on'); renderSteps(5); };
+$('#pubX').addEventListener('click', closePub);
+$('#pubM').addEventListener('click', e => { if (e.target.id === 'pubM') closePub(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && $('#pubM').classList.contains('on')) closePub(); });
+$('#pubGo').addEventListener('click', () => { const b = $('#pubGo'); b.disabled = true; b.innerHTML = '<span class="spin" style="border-color:rgba(255,255,255,.3);border-top-color:#fff"></span>Publishing…'; later(() => go(7), 1300); });
+
+/* ---------- 7 live ---------- */
+function enter7() {
+  $('#liveUrl').textContent = `https://${S.slug}.zejify.app`;
+  const c = $('#conf'); c.innerHTML = Array.from({ length: 60 }, () => `<i style="left:${Math.random() * 100}%;background:${['#6d5dfc', '#16a34a', '#f59e0b', '#ec4899', '#0ea5e9'][Math.floor(Math.random() * 5)]};animation-delay:${Math.random() * .8}s;animation-duration:${2 + Math.random() * 1.5}s"></i>`).join('');
+  // simple deterministic QR-like pattern
+  let q = ''; const f = (x, y) => (x < 7 && y < 7) || (x > 21 && y < 7) || (x < 7 && y > 21);
+  for (let y = 0; y < 29; y++) for (let x = 0; x < 29; x++) { let on;
+    if (f(x, y)) { const lx = x > 21 ? x - 22 : x, ly = y > 21 ? y - 22 : y; on = lx === 0 || lx === 6 || ly === 0 || ly === 6 || (lx > 1 && lx < 5 && ly > 1 && ly < 5); }
+    else on = ((x * 7 + y * 13 + x * y + S.slug.length) % 5) < 2;
+    if (on) q += `<rect x="${x}" y="${y}" width="1" height="1"/>`; }
+  $('#qr').innerHTML = `<rect width="29" height="29" fill="#fff"/><g fill="#111113">${q}</g>`;
+}
+$('#copyUrl').addEventListener('click', () => { navigator.clipboard?.writeText($('#liveUrl').textContent); toast('Link copied'); });
+
+/* ---------- 8 domain ---------- */
+function enter8() { $('#dFree').textContent = S.slug + '.zejify.app'; $('#dq').value = slugify(S.name).replace(/-/g, ''); search(); if (!S.domDone) $('#track').classList.remove('on'); }
+$$('.tabs button').forEach(b => b.addEventListener('click', () => { $$('.tabs button').forEach(x => x.classList.toggle('on', x === b)); $$('.pane').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.pane)); }));
+function search() { const n = ($('#dq').value.trim().toLowerCase().replace(/\.[a-z.]+$/, '').replace(/[^a-z0-9-]/g, '')) || 'mysite';
+  const R = [[n + '.com', 1450, 0, 'Best match'], [n + '.com.bd', 1800, 0, 'Bangladesh'], [n + '.shop', 290, 1290, 'First year'], [n + 'bd.com', 1450, 0, ''], ['the' + n + '.com', 0, 0, 'taken']];
+  $('#dRes').innerHTML = R.map(([d, p, was, t]) => t === 'taken' ? `<div><span class="d taken">${d}</span><span class="p taken">Taken</span></div>` : `<div><span class="d">${d}</span>${t ? `<span class="pill ${t === 'Best match' ? 'ok' : 'gray'}">${t}</span>` : ''}<span class="p">${was ? `<s>৳${was.toLocaleString()}</s>` : ''}৳${p.toLocaleString()}/yr</span><button class="btn ${t === 'Best match' ? 'pri' : 'sec'} sm" data-buy="${d}">Buy</button></div>`).join(''); }
+$('#dSearch').addEventListener('click', search);
+$('#dq').addEventListener('keydown', e => e.key === 'Enter' && search());
+$('#dRes').addEventListener('click', e => { const b = e.target.closest('[data-buy]'); if (!b) return; S.domain = b.dataset.buy; toast(`${S.domain} bought (demo). Connecting it for you…`); track(true); });
+$('#ownGo').addEventListener('click', () => { S.domain = $('#own').value.trim().toLowerCase() || 'mitaliskitchen.com'; $('#ownRes').style.display = ''; });
+$('#autoGo').addEventListener('click', () => { toast('Cloudflare approved (demo)'); track(false); });
+$('#p-own').addEventListener('click', e => { const c = e.target.closest('[data-copy]'); if (c) { navigator.clipboard?.writeText(c.dataset.copy); toast('Copied ' + c.dataset.copy); } });
+const TS = [['Domain added', 'We know about it'], ['Pointing to your site', 'Usually 5–30 minutes, sometimes a few hours'], ['Securing with SSL', 'The padlock 🔒 that keeps visitors safe'], ['Live on your domain', '']];
+let tsAt = 0;
+function paintTrack() { $('#ts').innerHTML = TS.map(([b, s], i) => `<div class="ts ${i < tsAt ? 'done' : i === tsAt ? 'now' : ''}"><span class="c"></span><div><b>${i === 3 ? `Live on ${S.domain}` : b}</b><small>${i === 3 && tsAt >= 3 ? 'www and non-www both work. Your free address now forwards here.' : s}</small></div></div>`).join('');
+  const done = tsAt >= 3; $('#trT').innerHTML = done ? `✅ <span class="mono">${S.domain}</span> is live` : `<span class="spin"></span>Connecting <span class="mono">${S.domain}</span>`;
+  $('#skipWait').style.display = done ? 'none' : ''; $('#trDone').style.display = done ? '' : 'none'; $('#trNote').style.display = done ? 'none' : ''; }
+function track(bought) { tsAt = 1; S.domDone = false; $('#track').classList.add('on'); paintTrack(); $('#track').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  later(() => { tsAt = 2; paintTrack(); }, bought ? 2200 : 3500); later(() => { tsAt = 3; S.domDone = true; paintTrack(); }, bought ? 4200 : 6500); }
+$('#skipWait').addEventListener('click', () => { S.timers.forEach(clearTimeout); tsAt = 3; S.domDone = true; paintTrack(); });
+
+/* ---------- 9 home ---------- */
+function enter9() { $('#hName').textContent = S.name; const d = S.domDone ? S.domain : S.slug + '.zejify.app';
+  $('#hDom').textContent = d; $('#hDom2').textContent = d; $('#hFree').textContent = S.slug + '.zejify.app';
+  $('#hThumb').innerHTML = site(S.style); $$('#hThumb .blk').forEach(b => b.classList.add('show')); }
+$('#todo').addEventListener('change', () => $('#todoN').textContent = $$('#todo input:checked').length + ' / 4');
+
+go(1);
+</script>
+</body>
+</html>

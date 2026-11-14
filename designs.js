@@ -180,6 +180,24 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "site-builder",
+      "slug": "ai-journey",
+      "title": "Build to publish · AI journey (WIP)",
+      "desc": "Clickable 9-step first run: prompt, 3 questions, plan, live build, review checklist, publish, live + QR, domain (buy or one-click connect), home base. Work in progress.",
+      "tags": [
+        "AI builder",
+        "Flow",
+        "WIP"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Prototype",
+          "href": "site-builder/ai-journey/index.html"
+        }
+      ]
+    },
+    {
       "cat": "site-dashboard",
       "slug": "sites-list",
       "title": "Sites List · Agency",
