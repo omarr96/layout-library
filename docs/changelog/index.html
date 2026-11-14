@@ -102,6 +102,11 @@ code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .84em;
 .entry ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 6px; }
 .entry ul li::marker { color: var(--faint); }
 .entry.small h3 { font-size: 16px; }
+.wait.done { border-color: #bbf7d0; background: linear-gradient(180deg, var(--okbg), #fff 70%); }
+.wait.done > p { margin: 6px 0 0; }
+.toc a.clear i { background: var(--ok); }
+.entry .intro { margin: 0 0 8px; color: var(--mut); }
+.entry ul li b { color: var(--ink); font-weight: 600; }
 .first { margin-top: 52px; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px dashed var(--line2); border-radius: 12px; color: var(--mut); font-size: 14px; flex-wrap: wrap; }
 .first b { color: var(--ink); font-weight: 600; }
 .none { margin-top: 40px; padding: 40px; text-align: center; color: var(--mut); border: 1px dashed var(--line2); border-radius: 12px; }
@@ -145,19 +150,36 @@ mark { background: #fef08a; color: inherit; border-radius: 3px; padding: 0 1px; 
 
 <script>
 /* ---------- content (from the changelog, word for word) ---------- */
-const TAGS = { Editor: '#6d5dfc', AI: '#db2777', Publishing: '#0e7490', Design: '#ca8a04', Forms: '#16a34a', Tests: '#475569', Fixes: '#dc2626', Maintenance: '#a1a1aa' };
-const WAITING = {
-  note: 'Done and tested locally (828 web tests pass), waiting for the next push:',
-  tests: 828,
-  items: [
-    { tags: ['Design', 'Publishing'], icon: 'ruler', html: '<b>Sizes become design tokens by themselves.</b> When a site is published or changed, a raw size that is exactly a design size (`padding: 16px` when the medium gap is 16px) is written as that design size, so a later design change reaches it. Anything else stays as written; the page looks the same.' },
-    { tags: ['Editor'], icon: 'image', html: '<b>Image Size in the toolbar.</b> Width: Small, Medium, Large, Full or a number of pixels. Height: Auto (the picture\'s own shape) or Fixed (cropped to fit, never squashed). Reset goes back to the page\'s size.' },
-    { tags: ['Editor', 'Design'], icon: 'shape', html: '<b>SVG icons in the toolbar.</b> Replace opens the Media picker and puts the new image in the icon\'s place, at the size the icon showed at. One-colour icons get a colour swatch: one click recolours them from the site\'s colours. Logos with several colours can only be replaced.' },
-    { tags: ['Editor', 'Fixes'], icon: 'plus', html: '<b>The Add a section card stays inside the page</b> (it used to grow past the bottom when its ideas loaded) and can be dragged by its title.' },
-    { tags: ['AI', 'Editor'], icon: 'spark', html: '<b>New pages are made with AI only.</b> The Add page dialog asks what the page should be, its name and whether it goes in the navigation. The blank and legal-page options are gone.' },
-  ],
-};
+const TAGS = { Editor: '#6d5dfc', AI: '#db2777', Publishing: '#0e7490', Media: '#7c3aed', Design: '#ca8a04', Forms: '#16a34a', Tests: '#475569', Fixes: '#dc2626', Maintenance: '#a1a1aa' };
+const WAITING = { note: 'Nothing yet.', items: [] };
 const PUSHES = [
+  { date: '2026-11-14', time: '17:40', hash: 'a388bcd', title: 'More icons, Create icon with AI, new save popup', tags: ['Editor', 'AI'], items: [
+    '**About 2,100 more icons in Change icon.** You can search by name or meaning ("phone", "tooth", "delivery"); 60 common business icons show before you type.',
+    '**Create icon with AI.** Describe the icon and the AI draws three versions to choose from. Only safe drawing shapes are kept.',
+    '**Change icon works on any small icon now**, not only icons from the site\'s own icon set. A new icon takes the colour of the text around it, and one undo puts the old one back.',
+    '**New "Save your changes?" popup.** A cleaner card: "Don\'t save" on the left, Cancel and Save on the right. Esc or a click outside closes it.'] },
+  { date: '2026-11-14', time: '17:12', hash: '7d01a0c', title: 'Video, audio and files into Media; change them in the editor', tags: ['Media', 'Editor', 'Publishing'], items: [
+    '**Videos are no longer removed.** When a customer\'s AI sends a site, its videos and audio are saved in the site\'s Media, the same way images are.',
+    '**Files to download are saved too.** Links to PDF, ZIP, Word, Excel and PowerPoint files go into Media. If one can\'t be downloaded, the link stays as it was and the AI gets a warning, not a refusal.',
+    '**Media takes the new file types.** You can upload ZIP, Word, Excel and PowerPoint files, and they have a "Files" tab in the picker. OGG and WAV audio uploads work now too.',
+    '**Videos play everywhere.** They play in the preview link and on live sites, Safari included.',
+    '**Audio and video can be changed in the editor.** A click on a player now selects it instead of playing it. A video has Replace video, Poster and Size; audio has Replace audio.',
+    '**A link can point to a file from Media.** The Link box has "A file from Media (PDF, ZIP, Word, Excel…)".'] },
+  { date: '2026-11-14', time: '15:09', hash: '86bcb43', title: 'Fixes from a customer-style test site, gradient caret, Change icon', tags: ['Fixes', 'AI', 'Editor', 'Publishing'], intro: 'Found by building a test site (Mitali\'s Kitchen) the way a customer\'s AI would, and fixed:', items: [
+    '**No more wrong contrast refusals for buttons over photos.** Text on a solid button laid over a photo is measured against the button, not the photo\'s corners.',
+    '**The customer\'s own phone or email can be confirmed mid-change.** `zejify_submit_task` takes `facts`, a repeated `zejify_start_change` keeps them, and the refusal says how.',
+    '**"Plan full" comes first, and never suggests deleting a site.** The guide warns before the AI writes anything; a new site is refused before the checks.',
+    '**Headings split one letter per span are caught** even when their spaces are written `&nbsp;`.',
+    '**Library versions match.** A plugin is pinned to the version of its core already on the page (GSAP ScrollTrigger next to GSAP 3.12.5), not the newest.',
+    '**Content that fades in on load can be clicked in the editor**, and the coverage check no longer calls it hidden. A photo laid under content is no longer treated as a click-through overlay.',
+    '**Change icon.** An icon from the site\'s own icon set (an SVG sprite, `<use href="#…">`) gets a "Change icon" button showing the site\'s icons; a pick swaps only that icon, keeping its colour and size.',
+    '**Gradient text shows a cursor while editing.** Text painted with a gradient (`background-clip: text`) is transparent, so the typing cursor was invisible; the editor now gives it the colour of the text around it.'] },
+  { date: '2026-11-14', time: '13:50', hash: '43ea30f', title: 'Size tokens, image Size, icon controls, AI-only Add page', tags: ['Design', 'Editor', 'AI'], items: [
+    '**Sizes become design tokens by themselves.** When a site is published or changed, a raw size that is exactly a design size (`padding: 16px` when the medium gap is 16px) is written as that design size, so a later design change reaches it. Anything else stays as written; the page looks the same.',
+    '**Image Size in the toolbar.** Width: Small, Medium, Large, Full or a number of pixels. Height: Auto (the picture\'s own shape) or Fixed (cropped to fit, never squashed). Reset goes back to the page\'s size.',
+    '**SVG icons in the toolbar.** Replace opens the Media picker and puts the new image in the icon\'s place, at the size the icon showed at. One-colour icons get a colour swatch: one click recolours them from the site\'s colours. Logos with several colours can only be replaced.',
+    '**The Add a section card stays inside the page** (it used to grow past the bottom when its ideas loaded) and can be dragged by its title.',
+    '**New pages are made with AI only.** The Add page dialog asks what the page should be, its name and whether it goes in the navigation. The blank and legal-page options are gone.'] },
   { date: '2026-11-14', time: '12:34', hash: '94f961e', title: 'Pin library versions automatically', tags: ['Publishing'], items: [
     'Links to code libraries on a CDN without an exact version (`gsap@3`, `swiper`) are pinned to the exact version the CDN serves today (`gsap@3.15.1`), so a live site never changes or breaks when a library releases a new version.',
     'Happens on publish and on every AI change. Never blocks: if the CDN does not answer, the link stays.',
@@ -220,10 +242,11 @@ const state = { tag: 'All', q: '' };
 function fmt(text, rich) {
   let s = rich ? text : esc(text);
   s = s.replace(/`([^`]+)`/g, (_, c) => `<code>${rich ? esc(c) : c}</code>`);
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
   if (state.q) { const re = new RegExp('(' + state.q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![^<]*>)', 'gi'); s = s.replace(re, '<mark>$1</mark>'); }
   return s;
 }
-const plain = s => s.replace(/<[^>]+>/g, '').replace(/`/g, '').toLowerCase();
+const plain = s => s.replace(/<[^>]+>/g, '').replace(/`|\*\*/g, '').toLowerCase();
 const tagsHTML = t => t.map(x => `<span class="tag"><i style="background:${TAGS[x]}"></i>${x}</span>`).join('');
 const dayName = d => new Date(d + 'T12:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 1800); }
@@ -233,23 +256,25 @@ function render() {
   const q = state.q.toLowerCase();
   const okTag = t => state.tag === 'All' || t.includes(state.tag);
   const wItems = WAITING.items.filter(i => okTag(i.tags) && (!q || plain(i.html).includes(q)));
-  const pushes = PUSHES.filter(p => okTag(p.tags) && (!q || plain(p.title + ' ' + p.items.join(' ')).includes(q)));
+  const pushes = PUSHES.filter(p => okTag(p.tags) && (!q || plain(p.title + ' ' + (p.intro || '') + ' ' + p.items.join(' ')).includes(q)));
   const days = [...new Set(pushes.map(p => p.date))];
 
   let html = '';
-  if (wItems.length) html += `<section class="wait" id="waiting"><div class="wh"><h2>Not pushed yet</h2><span class="badge amber"><span class="pulse"></span>Waiting for the next push</span><span class="badge ok">${ICON.check}${WAITING.tests} web tests pass</span></div>
+  const noneWaiting = !WAITING.items.length;
+  if (noneWaiting && state.tag === 'All' && !q) html += `<section class="wait done" id="waiting"><div class="wh"><h2>Not pushed yet</h2><span class="badge ok">${ICON.check}Everything is pushed</span></div><p>${WAITING.note}</p></section>`;
+  else if (wItems.length) html += `<section class="wait" id="waiting"><div class="wh"><h2>Not pushed yet</h2><span class="badge amber"><span class="pulse"></span>Waiting for the next push</span></div>
     <p>${WAITING.note}</p><ul class="items">${wItems.map(i => `<li><span class="ix">${ICON[i.icon]}</span><div>${fmt(i.html, true)}<div class="tg">${tagsHTML(i.tags)}</div></div></li>`).join('')}</ul></section>`;
   html += days.map(d => { const list = pushes.filter(p => p.date === d);
     return `<section class="day" id="d-${d}"><h2>${dayName(d)} <span>${list.length} push${list.length > 1 ? 'es' : ''}</span></h2><div class="tl">${list.map(p => `
       <article class="entry ${p.items.length === 1 ? 'small' : ''}" id="c-${p.hash}">
         <div class="meta"><time datetime="${p.date}T${p.time}">${p.time}</time><button class="hash" data-hash="${p.hash}" title="Copy commit hash">${p.hash}${ICON.copy}</button><span class="tg">${tagsHTML(p.tags)}</span></div>
-        <h3>${fmt(p.title)}</h3><ul>${p.items.map(i => `<li>${fmt(i)}</li>`).join('')}</ul></article>`).join('')}</div></section>`; }).join('');
+        <h3>${fmt(p.title)}</h3>${p.intro ? `<p class="intro">${fmt(p.intro)}</p>` : ''}<ul>${p.items.map(i => `<li>${fmt(i)}</li>`).join('')}</ul></article>`).join('')}</div></section>`; }).join('');
   if (!wItems.length && !pushes.length) html += `<div class="none">No changes match${state.q ? ` “${esc(state.q)}”` : ''}${state.tag !== 'All' ? ` in ${state.tag}` : ''}.</div>`;
   if (state.tag === 'All' && !q) html += `<div class="first"><span class="hash">${FIRST.hash}</span><span><b>First push</b> · ${dayName(FIRST.date)} · ${FIRST.title}. Everything above came after it.</span></div>`;
   $('#out').innerHTML = html;
 
   // jump-to menu
-  $('#toc').innerHTML = (wItems.length ? `<a href="#waiting" class="wait"><i></i>Not pushed yet<span class="n">${wItems.length}</span></a>` : '')
+  $('#toc').innerHTML = (wItems.length ? `<a href="#waiting" class="wait"><i></i>Not pushed yet<span class="n">${wItems.length}</span></a>` : (noneWaiting && state.tag === 'All' && !q ? `<a href="#waiting" class="clear"><i></i>Not pushed yet<span class="n">0</span></a>` : ''))
     + days.map(d => `<a href="#d-${d}"><i></i>${new Date(d + 'T12:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}<span class="n">${pushes.filter(p => p.date === d).length}</span></a>`).join('');
   spy();
 }
