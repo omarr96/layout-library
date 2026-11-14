@@ -236,19 +236,19 @@ window.DESIGNS = {
       ]
     },
     {
-      "cat": "site-dashboard",
-      "slug": "mcp-settings",
-      "title": "MCP Settings",
-      "desc": "Earlier MCP settings screen.",
+      "cat": "woocommerce",
+      "slug": "divimerc-mcp",
+      "title": "DiviMerc MCP",
+      "desc": "Connect AI clients to the DiviMerc plugin: client tabs, setup with a one-time password, client passwords, sharing and turning access off.",
       "tags": [
-        "Dashboard",
+        "DiviMerc",
         "MCP"
       ],
-      "date": "2026-10-26",
+      "date": "2026-11-14",
       "pages": [
         {
           "label": "Settings",
-          "href": "site-dashboard/mcp-settings/index.html"
+          "href": "woocommerce/divimerc-mcp/index.html"
         }
       ]
     },

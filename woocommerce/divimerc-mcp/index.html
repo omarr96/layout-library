@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiviMerc MCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f2; --surface:#fff; --surface-2:#fafbf9; --border:#e5e7e3; --border-strong:#d3d7cf;
+  --text:#1a1f16; --text-2:#4e5648; --text-3:#8a9284;
+  --brand:#4a7c2a; --brand-hover:#3d6822; --brand-soft:#eef5e7; --brand-line:#d4e6c4;
+  --amber:#a16207; --amber-soft:#fdf6e3; --amber-line:#f2e2b5;
+  --red:#c62828; --red-soft:#fdf1f1; --red-line:#f3cfcf;
+  --shadow:0 1px 2px rgba(20,30,10,.04),0 1px 3px rgba(20,30,10,.06);
+  --wp:#1d2327; --wp-2:#2c3338; --wp-tx:#f0f0f1; --wp-blue:#2271b1;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:14px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+svg{flex-shrink:0}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px}
+
+/* ---------- page ---------- */
+.page{max-width:1320px;margin:0 auto;padding:44px 28px 80px;display:flex;flex-direction:column;gap:22px}
+.intro{text-align:center}
+.intro h1{margin:0 0 12px;font-size:32px;font-weight:700;letter-spacing:-.02em}
+.intro p{margin:0 auto;max-width:700px;color:var(--text-2);font-size:16.5px;line-height:1.6}
+.intro a{color:var(--brand);text-decoration:none;font-weight:500}
+.intro a:hover{text-decoration:underline}
+.state{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 16px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:15px}
+.state i{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(74,124,42,.18)}
+.state.off{background:var(--red-soft);color:var(--red)}
+.state.off i{box-shadow:0 0 0 3px rgba(198,40,40,.15)}
+.tabs{display:flex;justify-content:center;margin-top:4px}
+.tabs .in{display:flex;gap:2px;padding:4px;border-radius:12px;background:#e9ebe6;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.tabs .in::-webkit-scrollbar{display:none}
+.tab{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:0;border-radius:9px;background:none;font-size:16px;color:#3a4235;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.on{background:#fff;color:var(--brand);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tab i{width:7px;height:7px;border-radius:50%}
+.tab i.g{background:var(--brand)} .tab i.a{background:#e0a32a}
+
+/* ---------- client card ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
+.cc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,600px);gap:40px;padding:38px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.eyebrow.amber{color:var(--amber)} .eyebrow.grey{color:var(--text-3)} .eyebrow.red{color:var(--red)}
+.cc h2{margin:10px 0 12px;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.cc .lead{margin:0 0 22px;color:var(--text-2);font-size:16.5px;line-height:1.6}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px 8px;font-size:16px;margin:0 0 28px}
+.kv dt{color:var(--text-2)} .kv dd{margin:0;color:var(--text);overflow-wrap:anywhere}
+.row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.note{margin:16px 0 0;color:var(--text-2);font-size:14.5px}
+.steps{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:14px}
+.steps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;font-size:15.5px;color:var(--text-2);line-height:1.5}
+.steps b{color:var(--text);font-weight:600}
+.steps .n{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-strong);display:grid;place-items:center;font-size:12.5px;font-weight:600;color:var(--text)}
+.steps .n.done{background:var(--brand);border-color:var(--brand);color:#fff}
+.steps .n svg{width:13px;height:13px}
+.steps code{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:#f3f4f1;border:1px solid var(--border);border-radius:5px;padding:1px 5px;color:var(--text)}
+.warnline{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:10px;background:var(--amber-soft);border:1px solid var(--amber-line);color:#7c4a03;font-size:14px;line-height:1.5;margin:0 0 22px}
+.warnline svg{margin-top:2px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;padding:0 16px;border-radius:9px;border:1px solid var(--border-strong);background:var(--surface);font-weight:500;font-size:15px;color:var(--text);white-space:nowrap;transition:.15s}
+.btn:hover{border-color:var(--text-3)}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-hover);border-color:var(--brand-hover)}
+.btn-danger{color:var(--red);border-color:#e9a5a5}
+.btn-danger:hover{border-color:var(--red);background:var(--red-soft)}
+.btn-danger-solid{background:var(--red);border-color:var(--red);color:#fff}
+.btn-danger-solid:hover{background:#a51f1f}
+.btn-ghost{border-color:transparent;background:none;color:var(--text-2)}
+.btn-ghost:hover{background:#f1f3ef;border-color:transparent}
+.btn-sm{height:32px;padding:0 12px;font-size:13.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{color:var(--brand);font-weight:500;text-decoration:none;border:0;background:none;padding:0;font-size:15px}
+.link:hover{text-decoration:underline}
+
+/* terminal panel */
+.term{position:relative;border-radius:14px;background:linear-gradient(160deg,#3b5e22 0%,#2c4a19 45%,#1e3311 100%);color:#e8f0dc;padding:20px 22px 24px;font:13.5px/1.9 "JetBrains Mono",ui-monospace,monospace;min-height:340px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);overflow:hidden}
+.term .bar{display:flex;align-items:center;gap:6px;margin-bottom:14px}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.28)}
+.term .bar span{margin-left:auto;font-size:12.5px;color:#cfdcbf}
+.term .bar .btn{margin-left:10px;height:28px;font:500 12.5px Inter,sans-serif;padding:0 10px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+.term .bar .btn:hover{background:rgba(255,255,255,.18)}
+.term .k{color:#e8f0dc} .term .v{color:#b7e07c} .term .d{color:#8fa877} .term .h{color:#c9d6b8}
+.term pre{margin:0;font:inherit;white-space:pre-wrap;word-break:break-all}
+.term .grid{display:grid;grid-template-columns:120px minmax(0,1fr);gap:0 10px}
+.term .blank{position:absolute;inset:56px 22px 22px;display:grid;place-items:center;text-align:center;font-family:Inter,sans-serif;color:#cfdcbf;font-size:14px}
+.term .blank b{display:block;color:#fff;font-size:15px;margin-bottom:4px}
+.term .blur{filter:blur(5px);opacity:.45;user-select:none}
+
+/* ---------- Client passwords ---------- */
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 28px 18px}
+.card-head h2{margin:0;font-size:22px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.card-head p{margin:8px 0 0;color:var(--text-2);line-height:1.55;max-width:820px;font-size:15px}
+.count{font-size:12.5px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 9px;border-radius:999px}
+.list{margin:0 28px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cols,.client-row{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1.2fr) minmax(0,1.2fr) 110px;gap:16px;align-items:center;padding:0 20px}
+.cols{height:44px;background:var(--surface-2);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4e5648}
+.client{border-bottom:1px solid var(--border)}
+.client:last-child{border-bottom:0}
+.client-row{min-height:76px;padding-top:12px;padding-bottom:12px}
+.who{display:flex;align-items:center;gap:14px;min-width:0}
+.logo{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.who b{display:block;font-weight:600;font-size:15.5px}
+.who small{display:block;color:var(--text-3);font-size:13.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap}
+.status i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-live{color:var(--brand);background:var(--brand-soft)}
+.s-live i{box-shadow:0 0 0 3px rgba(74,124,42,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(74,124,42,.06)}}
+.s-never{color:var(--amber);background:var(--amber-soft)}
+.s-idle{color:var(--text-2);background:#f1f2ef}
+.s-idle i{background:#b7bdb1}
+.when b{display:block;font-weight:600;font-size:15.5px}
+.when small{display:block;color:var(--text-3);font-size:13.5px;margin-top:2px}
+.actions{display:flex;justify-content:flex-end}
+.manage[aria-expanded="true"]{background:#f1f3ef}
+.manage svg{transition:transform .2s}
+.manage[aria-expanded="true"] svg{transform:rotate(180deg)}
+.details{display:none;margin:0 20px 18px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);overflow:hidden}
+.client.open .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--border)}
+.fact{background:var(--surface-2);padding:14px 16px}
+.fact span{display:block;font-size:12.5px;color:var(--text-3);margin-bottom:4px}
+.fact b{font-weight:500}
+.d-foot{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--border);flex-wrap:wrap}
+.d-foot p{margin:0;color:var(--text-2);flex:1;min-width:240px;font-size:13.5px;line-height:1.5}
+.confirm{display:none;align-items:center;gap:10px;background:var(--red-soft);border-top:1px solid var(--red-line);padding:12px 16px;color:#8f1d1d;font-size:13.5px;flex-wrap:wrap}
+.confirm span{flex:1;min-width:220px}
+.client.confirming .confirm{display:flex}
+.client.confirming .d-foot{display:none}
+.list-foot{display:flex;align-items:center;gap:10px;padding:16px 28px 22px;color:var(--text-2);font-size:14px}
+.empty{padding:36px 24px;text-align:center;color:var(--text-3)}
+.empty b{display:block;color:var(--text);font-size:15px;margin:10px 0 4px}
+
+/* ---------- settings ---------- */
+.setting{display:flex;gap:22px;align-items:flex-start;padding:4px 28px 26px}
+.setting .icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:#f1f3ef;color:var(--text-2);flex-shrink:0}
+.setting .text{flex:1;min-width:0}
+.setting h3{margin:0;font-size:18px;font-weight:600;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.setting p{margin:8px 0 0;color:var(--text-2);line-height:1.6;max-width:860px;font-size:15.5px}
+.pill{font-size:13px;font-weight:500;padding:2px 10px;border-radius:999px;background:#f1f2ef;color:var(--text-2)}
+.pill.on{background:var(--brand-soft);color:var(--brand)}
+.pill.off{background:var(--red-soft);color:var(--red)}
+.paths{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.path{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-2);flex-wrap:wrap}
+.path code{background:#f6f7f4;border:1px solid var(--border);padding:5px 10px;border-radius:7px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--text-2);overflow-wrap:anywhere}
+.path .st{font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px}
+.path .st.y{color:var(--brand)} .path .st.n{color:var(--text-2)}
+.path .st i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.path .st.n i{background:none;border:1.5px solid var(--text-3)}
+.switch{position:relative;width:52px;height:28px;flex-shrink:0;margin-top:2px}
+.switch input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;z-index:1}
+.switch span{position:absolute;inset:0;border-radius:999px;background:var(--border-strong);transition:.2s}
+.switch span::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:.2s}
+.switch input:checked + span{background:var(--brand)}
+.switch input:checked + span::after{left:27px}
+.switch input:disabled{cursor:not-allowed}
+.danger{border-color:var(--red-line)}
+.danger .setting .icon{background:var(--red-soft);color:var(--red)}
+.danger-confirm{display:none;margin:0 28px 24px;border:1px solid var(--red-line);background:var(--red-soft);border-radius:12px;padding:16px}
+.danger-confirm.show{display:block}
+.danger-confirm b{color:#8f1d1d}
+.danger-confirm ul{margin:8px 0 14px;padding-left:18px;color:#8f1d1d;line-height:1.6;font-size:14px}
+.danger-confirm .row{gap:10px}
+.danger-confirm input{height:40px;border:1px solid var(--red-line);border-radius:8px;padding:0 12px;background:#fff;outline:none;min-width:240px}
+.danger-confirm input:focus{border-color:var(--red)}
+
+/* demo + toast */
+.demo{position:fixed;left:20px;bottom:16px;z-index:40;display:flex;align-items:center;gap:4px;padding:5px;border-radius:12px;background:#1a1f16;box-shadow:0 14px 30px -12px rgba(0,0,0,.45);max-width:calc(100vw - 40px);overflow-x:auto;scrollbar-width:none}
+.demo span{color:#9aa391;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:0 8px 0 6px;white-space:nowrap}
+.demo button{height:30px;padding:0 10px;border-radius:8px;border:0;background:none;color:#d8ddd2;font-size:12.5px;font-weight:500;white-space:nowrap}
+.demo button.on{background:#fff;color:#1a1f16}
+.toast{position:fixed;bottom:70px;left:50%;transform:translate(-50%,20px);background:#1a1f16;color:#fff;padding:10px 16px;border-radius:10px;font-weight:500;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pulse-dot{width:9px;height:9px;border-radius:50%;background:#e0a32a;display:inline-block;animation:pd 1.6s infinite;margin-right:6px}
+@keyframes pd{50%{opacity:.35}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){.cc{grid-template-columns:minmax(0,1fr);gap:28px}}
+@media (max-width:960px){
+  .demo{left:12px;max-width:calc(100vw - 24px)}
+  .cols{display:none}
+  .client-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"who act" "st when";row-gap:10px}
+  .who{grid-area:who}.actions{grid-area:act}.st-cell{grid-area:st}.when{grid-area:when}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .page{padding:28px 14px 90px}
+  .intro h1{font-size:26px} .intro p{font-size:15px}
+  .tabs{justify-content:flex-start}
+  .cc{padding:22px 18px}
+  .cc h2{font-size:24px}
+  .kv{grid-template-columns:96px minmax(0,1fr);font-size:14.5px}
+  .term{padding:16px;font-size:12px;min-height:0}
+  .term .grid{grid-template-columns:minmax(0,1fr)}
+  .card-head{flex-direction:column;padding:20px 18px 14px}
+  .list{margin:0 18px}
+  .list-foot{padding:14px 18px 18px}
+  .setting{flex-wrap:wrap;padding:4px 18px 22px}
+  .setting .icon{display:none}
+  .danger-confirm{margin:0 18px 20px}
+  .danger-confirm input{min-width:0;flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+
+
+  <div>
+
+    <main class="page">
+      <div class="intro">
+        <h1>DiviMerc MCP</h1>
+        <p>Connect an AI agent to this site and let it design WooCommerce pages with DiviMerc modules — as drafts, until you publish. <a href="#" data-toast="Opens a short explainer about MCP">What is MCP?</a></p>
+        <div id="state"></div>
+      </div>
+      <div class="tabs"><div class="in" role="tablist" id="tabs"></div></div>
+      <section class="card" id="clientCard" aria-live="polite"></section>
+
+      <!-- Client passwords -->
+      <section class="card" aria-labelledby="cp-title">
+        <div class="card-head">
+          <div><h2 id="cp-title">Client passwords <span class="count" id="clientCount">0</span></h2>
+            <p>Every AI client gets its own password. Revoking one disconnects only that client — the others keep working.</p></div>
+          <button class="btn" id="addClient">Set up another client</button>
+        </div>
+        <div class="list" id="list"></div>
+        <div class="list-foot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Passwords are shown once, when the client is set up. They are stored as WordPress Application Passwords for WPRio Admin.</span></div>
+      </section>
+
+      <!-- Connection -->
+      <section class="card" aria-labelledby="share-title">
+        <div class="card-head" style="padding-bottom:16px"><div><h2 id="share-title">Connection</h2></div></div>
+        <div class="setting">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+          <div class="text"><h3>Share with the site's MCP server <span class="pill" id="sharePill">Off</span></h3><p id="shareText"></p><div class="paths" id="paths"></div></div>
+          <label class="switch" title="Share with the site's MCP server"><input type="checkbox" id="share" role="switch" aria-label="Share with the site's MCP server"><span></span></label>
+        </div>
+      </section>
+
+      <!-- Danger zone -->
+      <section class="card danger" aria-labelledby="off-title">
+        <div class="card-head" style="padding-bottom:16px"><div class="eyebrow red">Danger zone</div></div>
+        <div class="setting">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/><path d="M12 2v10"/></svg></div>
+          <div class="text"><h3 id="off-title">Turn off MCP access <span class="pill on" id="accessPill">On</span></h3><p id="offText"></p></div>
+          <button class="btn btn-danger" id="turnOff">Turn off</button>
+        </div>
+        <div class="danger-confirm" id="dangerConfirm">
+          <b>Turn off MCP access?</b>
+          <ul id="impact"></ul>
+          <div class="row">
+            <input id="confirmInput" placeholder='Type "turn off" to confirm' autocomplete="off" aria-label="Type turn off to confirm">
+            <button class="btn btn-danger-solid" id="confirmOff" disabled>Turn off MCP access</button>
+            <button class="btn btn-ghost" id="cancelOff">Cancel</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="demo" role="group" aria-label="Demo" id="demo"><span>Demo</span>
+  <button data-demo="full" class="on">Two clients</button><button data-demo="none">Nothing set up</button><button data-demo="off">Access off</button></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- data ---------- */
+const SERVER = "http://woo-commerce.local/wp-json/divimerc-mcp/mcp";
+const SHARED = "http://woo-commerce.local/wp-json/mcp/mcp-adapter-default-server";
+const USER = "bicipugoma6431";
+// lastUsed: minutes ago (null = never)
+const CLIENTS = [
+  { id: "cc", name: "Claude Code", color: "#1a1f16", letter: ">_" },
+  { id: "cd", name: "Claude Desktop", color: "#d97757", letter: "C" },
+  { id: "cu", name: "Cursor", color: "#2f6feb", letter: "Cu" },
+  { id: "cx", name: "Codex", color: "#3b45d1", letter: "Cx" },
+  { id: "ot", name: "Other", color: "#6b7280", letter: "•••" },
+];
+let creds = {};                 // id -> credential
+const state = { tab: "cc", open: null, confirming: null, share: false, access: true, fresh: null };
+function seed(kind) {
+  state.fresh = null; state.open = state.confirming = null; state.access = kind !== "off"; state.share = false;
+  creds = kind === "none" ? {} : {
+    cc: { label: "DiviMerc MCP - Claude Code (2026-10-26 11:38)", created: "Oct 26, 2026", createdShort: "10/26/2026", lastUsed: 4, seen: "10/26/2026", calls7d: 214, lastIp: "192.168.1.24" },
+    cd: { label: "DiviMerc MCP - Claude Desktop (2026-10-27 09:05)", created: "Oct 27, 2026", createdShort: "10/27/2026", lastUsed: null, seen: null, calls7d: 0, lastIp: "—" },
+  };
+  state.tab = kind === "none" ? "cc" : "cc";
+}
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const ago = m => m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`;
+const C = id => CLIENTS.find(c => c.id === id);
+const stateOf = id => { const k = creds[id]; if (!k) return "none"; if (!state.access) return "paused"; if (k.lastUsed === null) return "never"; return k.lastUsed <= 15 ? "live" : "idle"; };
+const connectedCount = () => Object.keys(creds).filter(id => ["live", "idle"].includes(stateOf(id))).length;
+const chev = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>';
+const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 4.5 4.5L19 7"/></svg>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+/* config snippet for each client; the real password only exists right after setup */
+function config(id, pass) {
+  const pw = pass || "YOUR-APP-PASSWORD";
+  const basic = pass ? btoa(`${USER}:${pass}`) : "BASE64(username:password)";
+  const v = s => `<span class="v">${esc(s)}</span>`;
+  switch (id) {
+    case "cc": return `<span class="d">$</span> claude mcp add --transport http divimerc \\\n  ${v(SERVER)} \\\n  --header ${v(`"Authorization: Basic ${basic}"`)}`;
+    case "cd": return `{\n  "mcpServers": {\n    "divimerc": {\n      "command": "npx",\n      "args": ["-y", "mcp-remote", ${v(`"${SERVER}"`)},\n        "--header", "Authorization:\${AUTH}"],\n      "env": { "AUTH": ${v(`"Basic ${basic}"`)} }\n    }\n  }\n}`;
+    case "cu": return `{\n  "mcpServers": {\n    "divimerc": {\n      "url": ${v(`"${SERVER}"`)},\n      "headers": { "Authorization": ${v(`"Basic ${basic}"`)} }\n    }\n  }\n}`;
+    case "cx": return `[mcp_servers.divimerc]\ncommand = "npx"\nargs = ["-y", "mcp-remote", ${v(`"${SERVER}"`)},\n  "--header", "Authorization:\${AUTH}"]\nenv = { AUTH = ${v(`"Basic ${basic}"`)} }`;
+    default: return `<div class="grid"><span class="k">Server URL:</span>${v(SERVER)}<span class="k">Username:</span>${v(USER)}<span class="k">Password:</span>${v(pw)}<span class="k">Auth:</span><span class="h">HTTP Basic (WordPress Application Password)</span></div>`;
+  }
+}
+const WHERE = { cc: "Run this in your terminal", cd: "Add to claude_desktop_config.json", cu: "Add to .cursor/mcp.json", cx: "Add to ~/.codex/config.toml", ot: "Use these details in your client" };
+const AFTER = { cc: "Start Claude Code and type <code>/mcp</code> to check it.", cd: "Quit Claude Desktop fully and open it again.", cu: "Turn the server on in Cursor's MCP settings.", cx: "Restart Codex.", ot: "Connect, then ask it to list DiviMerc modules." };
+
+/* ---------- top: status pill, tabs, client card ---------- */
+function renderTop() {
+  const n = connectedCount();
+  $("#state").innerHTML = state.access
+    ? `<span class="state"><i></i>MCP access is on · ${n} client${n === 1 ? "" : "s"} connected</span>`
+    : `<span class="state off"><i></i>MCP access is off · no client can connect</span>`;
+  $("#tabs").innerHTML = CLIENTS.map(c => { const s = stateOf(c.id);
+    return `<button class="tab ${state.tab === c.id ? "on" : ""}" data-tab="${c.id}" role="tab" aria-selected="${state.tab === c.id}">${["live", "idle"].includes(s) ? '<i class="g"></i>' : s === "never" ? '<i class="a"></i>' : ""}${c.name}</button>`; }).join("");
+
+  const c = C(state.tab), k = creds[c.id], s = stateOf(c.id);
+  let left, right;
+  if (!state.access) {
+    left = `<div class="eyebrow red">MCP access is off</div><h2>No client can reach this site</h2>
+      <p class="lead">${k ? `${c.name} keeps its password, so it reconnects on its own when you turn access back on.` : `Turn access back on to set up ${c.name}.`}</p>
+      <div class="row"><button class="btn btn-primary" data-on>Turn MCP access back on</button></div>`;
+    right = term(c, `<div class="blank"><div><b>Paused</b>The MCP endpoint is stopped.</div></div><pre class="blur">${config(c.id)}</pre>`);
+  } else if (state.fresh && state.fresh.id === c.id) {
+    // password just created: shown once
+    left = `<div class="eyebrow amber">Almost done</div><h2>Add DiviMerc to ${c.name}</h2>
+      <div class="warnline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></svg><span><b>Copy it now.</b> The password is only shown this once. If you lose it, disconnect and set ${c.name} up again.</span></div>
+      <ol class="steps"><li><span class="n done">${check}</span><span><b>Password created</b> · ${esc(state.fresh.label)}</span></li>
+        <li><span class="n">2</span><span><b>${WHERE[c.id]}.</b> Copy it from the panel. The password is already filled in.</span></li>
+        <li><span class="n">3</span><span><b>${AFTER[c.id]}</b> This page shows ${c.name} as connected after its first request.</span></li></ol>
+      <div class="row"><button class="btn btn-primary" data-done>I've added it</button><button class="link" data-copy>Copy configuration</button></div>`;
+    right = term(c, `<pre>${config(c.id, state.fresh.pass)}</pre>`, true);
+  } else if (s === "none") {
+    left = `<div class="eyebrow grey">Not set up</div><h2>Connect ${c.name}</h2>
+      <p class="lead">Create a password just for ${c.name}. It can read your modules and create pages as drafts. Nothing it makes goes live until you publish it.</p>
+      <ol class="steps"><li><span class="n">1</span><span><b>Create a password</b> for ${c.name}. It's saved as a WordPress Application Password.</span></li>
+        <li><span class="n">2</span><span><b>${WHERE[c.id]}</b> with the configuration we give you.</span></li>
+        <li><span class="n">3</span><span><b>${AFTER[c.id]}</b></span></li></ol>
+      <div class="row"><button class="btn btn-primary" data-create>Create password for ${c.name}</button></div>`;
+    right = term(c, `<div class="blank"><div><b>Your configuration appears here</b>after you create a password.</div></div><pre class="blur">${config(c.id)}</pre>`);
+  } else if (s === "never") {
+    left = `<div class="eyebrow amber"><span class="pulse-dot"></span>Waiting</div><h2>${c.name} hasn't connected yet</h2>
+      <p class="lead">The password is ready, but ${c.name} hasn't made a request with it. Check that the configuration is added and the app was restarted.</p>
+      <dl class="kv"><dt>Credential</dt><dd>${esc(k.label)}</dd><dt>Created</dt><dd>${k.createdShort}</dd><dt>Last seen</dt><dd>Never</dd></dl>
+      <div class="row"><button class="btn btn-danger" data-disconnect>Disconnect ${c.name}</button><button class="link" data-sim>Simulate first request</button></div>
+      <p class="note">Lost the configuration? Disconnect, then set ${c.name} up again for a new password.</p>`;
+    right = term(c, `<pre>${config(c.id)}</pre>`);
+  } else {
+    left = `<div class="eyebrow">Connected</div><h2>${c.name} is connected</h2>
+      <p class="lead">It can read your modules and create pages as drafts. Nothing it makes goes live until you publish it.</p>
+      <dl class="kv"><dt>Credential</dt><dd>${esc(k.label)}</dd><dt>Created</dt><dd>${k.createdShort}</dd><dt>Last seen</dt><dd>${k.seen} · ${ago(k.lastUsed)}</dd></dl>
+      <div class="row"><button class="btn btn-danger" data-disconnect>Disconnect ${c.name}</button><button class="link" data-details>Server details</button></div>
+      <p class="note">To issue a new password, disconnect first.</p>`;
+    right = term(c, `<div class="grid"><span class="k">${c.name} –</span><span class="v">connected</span></div><br><div class="grid">
+      <span class="k">Server URL:</span><span class="v">${SERVER}</span><span class="k">Username:</span><span class="v">${USER}</span><span class="k">Password:</span><span class="h">•••••••••••••••• hidden – only your client has it</span></div><br>
+      <div class="grid"><span class="k">Created:</span><span class="h">${k.createdShort}</span><span class="k">Last seen:</span><span class="v">${k.seen}</span><span class="k">Requests 7d:</span><span class="h">${k.calls7d}</span></div>`);
+  }
+  $("#clientCard").innerHTML = `<div class="cc">${`<div>${left}</div>`}${right}</div>`;
+}
+function term(c, body, copy) {
+  return `<div class="term"><div class="bar"><i></i><i></i><i></i><span>${c.name}</span>${copy ? '<button class="btn" data-copy>Copy</button>' : ""}</div>${body}</div>`;
+}
+
+/* ---------- bottom: client passwords ---------- */
+function renderList() {
+  const ids = CLIENTS.map(c => c.id).filter(id => creds[id]);
+  $("#clientCount").textContent = ids.length;
+  if (!ids.length) {
+    $("#list").innerHTML = `<div class="empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--border-strong)" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <b>No clients connected</b>Pick a client in the tabs above to create its password.</div>`;
+    return;
+  }
+  $("#list").innerHTML = `<div class="cols"><span>Client</span><span>Status</span><span>Last used</span><span></span></div>` + ids.map(id => {
+    const c = C(id), k = creds[id], s = stateOf(id), open = state.open === id, conf = state.confirming === id;
+    const st = { live: '<span class="status s-live"><i></i>Connected</span>', idle: '<span class="status s-idle"><i></i>Idle</span>', never: '<span class="status s-never"><i></i>Never used</span>', paused: '<span class="status s-idle"><i></i>Paused</span>' }[s];
+    const hint = k.lastUsed === null ? `${c.name} hasn't connected yet. If you lost its configuration, revoke this password and set the client up again.`
+      : k.lastUsed > 7 * 1440 ? `Not used for ${ago(k.lastUsed).replace(" ago", "")}. If you no longer use ${c.name}, revoking keeps your site tidier and safer.`
+      : `${c.name} is actively using this password. Revoking it disconnects it right away.`;
+    return `<div class="client ${open ? "open" : ""} ${conf ? "confirming" : ""}" data-id="${id}">
+      <div class="client-row">
+        <div class="who"><span class="logo" style="background:${c.color}">${c.letter}</span><div style="min-width:0"><b>${c.name}</b><small title="${esc(k.label)}">${esc(k.label)}</small></div></div>
+        <div class="st-cell">${st}</div>
+        <div class="when"><b>${k.lastUsed === null ? "Never" : ago(k.lastUsed)}</b><small>Created ${k.created}</small></div>
+        <div class="actions"><button class="btn btn-sm manage" data-manage aria-expanded="${open}">Manage ${chev}</button></div>
+      </div>
+      <div class="details">
+        <div class="facts"><div class="fact"><span>Credential name</span><b>${esc(k.label.replace("DiviMerc MCP - ", ""))}</b></div><div class="fact"><span>Created</span><b>${k.created}</b></div>
+          <div class="fact"><span>Requests · 7 days</span><b>${k.calls7d}</b></div><div class="fact"><span>Last IP</span><b class="mono">${k.lastIp}</b></div></div>
+        <div class="d-foot"><p>${hint}</p><button class="btn btn-sm btn-danger" data-revoke>Revoke password</button></div>
+        <div class="confirm"><span>Revoke the password for <b>${c.name}</b>? It will be disconnected immediately and needs a new setup to reconnect.</span>
+          <button class="btn btn-sm btn-ghost" data-cancel>Cancel</button><button class="btn btn-sm btn-danger-solid" data-confirm>Revoke</button></div>
+      </div></div>`;
+  }).join("");
+}
+
+/* ---------- connection + danger zone ---------- */
+function renderShare() {
+  $("#share").checked = state.share; $("#share").disabled = !state.access;
+  $("#sharePill").textContent = state.share ? "On" : "Off"; $("#sharePill").className = "pill" + (state.share ? " on" : "");
+  $("#shareText").textContent = state.share
+    ? "DiviMerc's tools are also listed on the site's shared MCP server, alongside tools from other plugins and the MCP Adapter. Clients can use either address."
+    : "DiviMerc is reachable through its own address below. Turn this on to also list its tools on the site's shared MCP server, the one other plugins and the MCP Adapter use.";
+  $("#paths").innerHTML = `<div class="path"><code>${SERVER}</code><span class="st ${state.access ? "y" : "n"}"><i></i>${state.access ? "Active" : "Off"}</span></div>
+    <div class="path"><code>${SHARED}</code><span class="st ${state.share && state.access ? "y" : "n"}"><i></i>${state.share && state.access ? "Active" : "Not shared"}</span></div>`;
+}
+function renderAccess() {
+  $("#accessPill").textContent = state.access ? "On" : "Off"; $("#accessPill").className = "pill " + (state.access ? "on" : "off");
+  $("#turnOff").textContent = state.access ? "Turn off" : "Turn back on"; $("#turnOff").className = state.access ? "btn btn-danger" : "btn btn-primary";
+  $("#offText").textContent = state.access
+    ? "Disconnects every AI client immediately and stops the MCP endpoint. Your site, pages and drafts are not affected — you can turn it back on any time."
+    : "MCP access is off. No AI client can reach this site. Turning it back on restores the existing passwords — clients reconnect without a new setup.";
+  const n = Object.keys(creds).length, live = Object.keys(creds).filter(id => stateOf(id) === "live").length;
+  $("#impact").innerHTML = `<li>${n} client password${n === 1 ? "" : "s"} stop working${live ? ` — ${live} client${live === 1 ? " is" : "s are"} connected right now` : ""}.</li>
+    <li>Any agent task in progress stops; drafts it already saved stay as drafts.</li><li>Passwords are kept, so turning access back on reconnects clients automatically.</li>`;
+}
+function render() { renderTop(); renderList(); renderShare(); renderAccess(); }
+
+/* ---------- events ---------- */
+const toast = msg => { const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2200); };
+const pad = n => String(n).padStart(2, "0");
+function newPassword() { const a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; const r = crypto.getRandomValues(new Uint8Array(24)); return Array.from(r, b => a[b % a.length]).join("").match(/.{4}/g).join(" "); }
+
+document.addEventListener("click", async e => {
+  const t = e.target;
+  const tab = t.closest("[data-tab]"); if (tab) { state.tab = tab.dataset.tab; if (state.fresh && state.fresh.id !== state.tab) state.fresh = null; return renderTop(); }
+  if (t.closest("[data-create]")) {
+    const b = t.closest("[data-create]"), c = C(state.tab); b.disabled = true; b.innerHTML = '<span class="spin"></span>Creating…';
+    await new Promise(r => setTimeout(r, 700));
+    const d = new Date(), stamp = `2026-11-14 ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    const label = `DiviMerc MCP - ${c.name} (${stamp})`;
+    creds[c.id] = { label, created: "Nov 14, 2026", createdShort: "11/14/2026", lastUsed: null, seen: null, calls7d: 0, lastIp: "—" };
+    state.fresh = { id: c.id, pass: newPassword(), label };
+    render(); return toast(`Password created for ${c.name}`);
+  }
+  if (t.closest("[data-copy]")) { const p = document.querySelector(".term pre"); navigator.clipboard?.writeText(p ? p.innerText : ""); return toast("Configuration copied"); }
+  if (t.closest("[data-done]")) { state.fresh = null; render(); return toast(`Waiting for ${C(state.tab).name} to connect`); }
+  if (t.closest("[data-sim]")) { const k = creds[state.tab]; k.lastUsed = 0; k.seen = "11/14/2026"; k.calls7d = 1; k.lastIp = "192.168.1.31"; render(); return toast(`${C(state.tab).name} connected`); }
+  if (t.closest("[data-disconnect]")) { const c = C(state.tab); delete creds[c.id]; state.fresh = null; render(); return toast(`${c.name} disconnected — its password no longer works`); }
+  if (t.closest("[data-details]")) return document.querySelector("#share-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  if (t.closest("[data-on]")) { state.access = true; render(); return toast("MCP access is back on"); }
+  const ts = t.closest("[data-toast]"); if (ts) { e.preventDefault(); return toast(ts.dataset.toast); }
+  const dm = t.closest("[data-demo]"); if (dm) { document.querySelectorAll("[data-demo]").forEach(b => b.classList.toggle("on", b === dm)); seed(dm.dataset.demo); return render(); }
+  // client passwords list
+  const row = t.closest(".client");
+  if (row) {
+    const id = row.dataset.id, c = C(id);
+    if (t.closest("[data-manage]")) { state.open = state.open === id ? null : id; state.confirming = null; }
+    else if (t.closest("[data-revoke]")) state.confirming = id;
+    else if (t.closest("[data-cancel]")) state.confirming = null;
+    else if (t.closest("[data-confirm]")) { delete creds[id]; if (state.fresh?.id === id) state.fresh = null; state.open = state.confirming = null; toast(`${c.name} disconnected — its password no longer works`); }
+    else return;
+    render();
+  }
+});
+$("#addClient").onclick = () => {
+  const next = CLIENTS.find(c => !creds[c.id]); if (next) state.tab = next.id; state.fresh = null; renderTop();
+  document.querySelector(".tabs").scrollIntoView({ behavior: "smooth", block: "center" });
+};
+$("#share").onchange = e => { state.share = e.target.checked; renderShare(); toast(state.share ? "Shared with the site's MCP server" : "No longer shared — only DiviMerc's own address works"); };
+$("#turnOff").onclick = () => {
+  if (!state.access) { state.access = true; render(); return toast("MCP access is back on"); }
+  $("#dangerConfirm").classList.add("show"); $("#turnOff").disabled = true; $("#confirmInput").focus();
+};
+const closeConfirm = () => { $("#dangerConfirm").classList.remove("show"); $("#turnOff").disabled = false; $("#confirmInput").value = ""; $("#confirmOff").disabled = true; };
+$("#cancelOff").onclick = closeConfirm;
+$("#confirmInput").oninput = e => $("#confirmOff").disabled = e.target.value.trim().toLowerCase() !== "turn off";
+$("#confirmOff").onclick = () => { state.access = false; state.fresh = null; closeConfirm(); render(); toast("MCP access turned off — all clients disconnected"); scrollTo({ top: 0, behavior: "smooth" }); };
+
+seed("full"); render();
+</script>
+</body>
+</html>
