@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111113; --tx: #3f3f46; --mut: #71717a; --faint: #a1a1aa;
+  --line: #ececef; --line2: #e2e2e6; --soft: #f7f7f8; --hover: #f4f4f5; --side: #fafafa;
+  --ok: #16a34a; --warn: #ca8a04; --err: #dc2626;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font: 14px/1.55 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
+
+/* shell */
+.app { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+.side { background: var(--side); border-right: 1px solid var(--line); padding: 14px 12px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: auto; }
+.brand { display: flex; gap: 10px; align-items: center; padding: 2px 4px 18px; }
+.brand .lg { width: 32px; height: 32px; border-radius: 9px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.brand b { display: block; color: var(--ink); font-weight: 600; line-height: 1.2; }
+.brand small { color: var(--mut); font-size: 12px; }
+.side h6 { margin: 14px 10px 6px; font-size: 12px; font-weight: 500; color: var(--mut); display: flex; align-items: center; }
+.side h6 button { margin-left: auto; color: var(--faint); }
+.side h6 button:hover { color: var(--ink); }
+.nav a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; color: var(--tx); }
+.nav a:hover { background: var(--hover); }
+.nav a svg { color: var(--mut); }
+.nav a.on { background: #efeff1; font-weight: 500; color: var(--ink); }
+.nav a.on svg { color: var(--ink); }
+.nav a .n { margin-left: auto; color: var(--faint); font-size: 12px; font-weight: 400; }
+.nav a .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.me { margin-top: auto; display: flex; gap: 10px; align-items: center; padding: 14px 4px 4px; }
+.me .av { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; font-weight: 500; background: #fff; }
+.me b { display: block; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.me small { color: var(--mut); font-size: 12px; }
+.top { height: 60px; display: flex; align-items: center; gap: 10px; padding: 0 24px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); z-index: 5; }
+.top b { color: var(--ink); font-weight: 500; }
+.menu-btn { display: none; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 36px; padding: 0 14px; border-radius: 9px; font-weight: 500; white-space: nowrap; transition: background .15s, border-color .15s; }
+.btn.p { background: var(--ink); color: #fff; }
+.btn.p:hover { background: #2a2a2e; }
+.btn.s { border: 1px solid var(--line2); color: var(--ink); background: #fff; }
+.btn.s:hover { background: var(--soft); }
+.btn.sm { height: 30px; padding: 0 11px; font-size: 13px; border-radius: 8px; }
+.btn svg { width: 15px; height: 15px; }
+.icon-btn { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; color: var(--mut); }
+.icon-btn:hover { background: var(--hover); color: var(--ink); }
+.ml { margin-left: auto; }
+
+/* page */
+main { padding: 32px 28px 100px; }
+.wrap { max-width: 1240px; margin: 0 auto; }
+.head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.head h1 { margin: 0; font-size: 26px; font-weight: 600; color: var(--ink); letter-spacing: -.02em; }
+.head .n { color: var(--faint); font-size: 15px; }
+.head .sub { width: 100%; margin: 0; color: var(--mut); }
+
+/* status summary */
+.sum { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.sum button { text-align: left; border: 1px solid var(--line2); border-radius: 12px; padding: 14px 16px; transition: border-color .15s, box-shadow .15s; }
+.sum button:hover { border-color: #cfcfd6; }
+.sum button.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.sum small { display: flex; align-items: center; gap: 7px; color: var(--mut); font-size: 13px; }
+.sum b { display: block; font-size: 24px; font-weight: 600; color: var(--ink); margin-top: 2px; letter-spacing: -.02em; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex: none; display: inline-block; }
+.dot.ok { background: var(--ok); } .dot.warn { background: var(--warn); } .dot.err { background: var(--err); }
+
+/* toolbar */
+.tools { display: flex; align-items: center; gap: 8px; margin: 24px 0 14px; flex-wrap: wrap; }
+.search { position: relative; flex: 1; min-width: 220px; max-width: 360px; }
+.search svg { position: absolute; left: 11px; top: 10px; color: var(--faint); width: 15px; height: 15px; }
+.search input { width: 100%; height: 36px; border: 1px solid var(--line2); border-radius: 9px; padding: 0 12px 0 34px; outline: none; }
+.search input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
+.search kbd { position: absolute; right: 9px; top: 8px; font: 11px Inter; color: var(--faint); border: 1px solid var(--line2); border-radius: 5px; padding: 1px 6px; }
+.sel { height: 36px; border: 1px solid var(--line2); border-radius: 9px; padding: 0 30px 0 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 14px; appearance: none; color: var(--ink); cursor: pointer; }
+.seg { display: flex; gap: 2px; padding: 3px; background: var(--soft); border: 1px solid var(--line); border-radius: 9px; }
+.seg button { width: 32px; height: 28px; border-radius: 6px; display: grid; place-items: center; color: var(--mut); }
+.seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
+/* bulk bar */
+.bulk { display: none; align-items: center; gap: 10px; padding: 8px 10px 8px 14px; margin-bottom: 12px; border-radius: 10px; background: var(--ink); color: #fff; font-size: 13px; }
+.bulk.on { display: flex; }
+.bulk .btn { height: 28px; background: #27272a; color: #fff; border: 1px solid #3f3f46; }
+.bulk .btn:hover { background: #3f3f46; }
+.bulk .x { color: #a1a1aa; }
+
+/* pinned */
+.pinned { margin-bottom: 26px; }
+.pinned h3, .group h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.pinned h3 .n, .group h3 .n { color: var(--faint); font-weight: 400; }
+.pins { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+
+/* table */
+.table { border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; }
+.tr { display: grid; grid-template-columns: 36px minmax(0, 2.4fr) minmax(0, 1.1fr) 130px 110px 150px 70px; align-items: center; gap: 12px; padding: 10px 14px; }
+.tr + .tr { border-top: 1px solid var(--line); }
+.th { background: var(--soft); font-size: 12px; font-weight: 500; color: var(--mut); padding-top: 9px; padding-bottom: 9px; }
+.th button { display: inline-flex; align-items: center; gap: 4px; color: inherit; }
+.th button:hover { color: var(--ink); }
+.th button.on { color: var(--ink); }
+.th svg { width: 12px; height: 12px; }
+.tr:not(.th):hover { background: #fcfcfd; }
+.tr.picked { background: #f7f7fb; }
+.ck { width: 16px; height: 16px; border-radius: 4px; accent-color: var(--ink); cursor: pointer; }
+.site { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site .nm { min-width: 0; }
+.site b { display: block; color: var(--ink); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.site small { display: block; color: var(--mut); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tn { width: 56px; height: 38px; border-radius: 6px; border: 1px solid var(--line); position: relative; overflow: hidden; flex: none; }
+.tn i { position: absolute; display: block; border-radius: 2px; }
+.client { display: flex; align-items: center; gap: 8px; min-width: 0; color: var(--tx); }
+.client span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.client i { width: 8px; height: 8px; border-radius: 3px; flex: none; }
+.st { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink); white-space: nowrap; }
+.st.err { color: var(--err); }
+.spark { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink); }
+.spark svg { width: 48px; height: 18px; stroke-width: 1.5; color: var(--mut); }
+.when { font-size: 13px; color: var(--mut); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.when .av { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-weight: 600; color: #fff; flex: none; }
+.acts { display: flex; justify-content: flex-end; gap: 2px; }
+.star { color: var(--faint); }
+.star.on { color: #eab308; }
+.star.on svg { fill: currentColor; }
+
+/* grid view */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.card { border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; transition: border-color .15s, box-shadow .2s; position: relative; }
+.card:hover { border-color: #cfcfd6; box-shadow: 0 14px 30px -22px rgba(0,0,0,.35); }
+.card .big { display: block; aspect-ratio: 16/10; position: relative; border-bottom: 1px solid var(--line); }
+.card .big i { position: absolute; display: block; border-radius: 3px; }
+.card .cb { padding: 12px 14px; }
+.card .cb b { display: block; color: var(--ink); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card .cb small { display: block; color: var(--mut); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card .cf { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 12.5px; color: var(--mut); }
+.card .star { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.92); width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.card .badge { position: absolute; left: 8px; top: 8px; background: rgba(255,255,255,.95); border-radius: 99px; padding: 2px 9px; font-size: 12px; display: flex; align-items: center; gap: 6px; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+
+.group + .group { margin-top: 28px; }
+.group h3 i { width: 9px; height: 9px; border-radius: 3px; }
+
+/* footer + menus */
+.foot { display: flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--mut); font-size: 13px; flex-wrap: wrap; }
+.pager { display: flex; gap: 4px; margin-left: auto; }
+.pager button { min-width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); font-size: 13px; color: var(--ink); padding: 0 8px; }
+.pager button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pager button:disabled { opacity: .4; cursor: not-allowed; }
+.empty { text-align: center; padding: 60px 20px; border: 1px dashed var(--line2); border-radius: 12px; color: var(--mut); }
+.empty b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 4px; }
+.empty .btn { margin-top: 16px; }
+.pop { position: fixed; z-index: 60; min-width: 200px; background: #fff; border: 1px solid var(--line2); border-radius: 10px; padding: 4px; box-shadow: 0 14px 34px -12px rgba(0,0,0,.2); display: none; }
+.pop.on { display: block; }
+.pop button { display: flex; width: 100%; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 7px; font-size: 13.5px; text-align: left; }
+.pop button:hover { background: var(--hover); }
+.pop button svg { color: var(--mut); width: 15px; height: 15px; }
+.pop hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
+.pop .dg { color: var(--err); }
+.pop .dg svg { color: var(--err); }
+
+.demo { position: fixed; left: calc(260px + 24px); bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 12px; background: var(--ink); box-shadow: 0 14px 30px -12px rgba(0,0,0,.45); }
+.demo span { color: #a1a1aa; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px 0 6px; }
+.demo button { height: 30px; padding: 0 10px; border-radius: 8px; color: #d4d4d8; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+.demo button.on { background: #fff; color: var(--ink); }
+.toast { position: fixed; left: 50%; bottom: 70px; transform: translate(-50%, 10px); opacity: 0; pointer-events: none; background: var(--ink); color: #fff; padding: 9px 14px; border-radius: 9px; font-size: 13px; transition: .2s; z-index: 90; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 1180px) { .tr { grid-template-columns: 36px minmax(0, 2.4fr) minmax(0, 1.1fr) 130px 150px 70px; } .col-vis { display: none !important; } }
+@media (max-width: 980px) { .pins { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sum { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { position: fixed; inset: 0 auto 0 0; width: 270px; z-index: 30; transform: translateX(-100%); transition: transform .2s; box-shadow: 0 0 40px rgba(0,0,0,.15); }
+  body.nav-open .side { transform: none; }
+  .menu-btn { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; margin-left: -6px; }
+  .top { padding: 0 16px; }
+  main { padding: 24px 16px 100px; }
+  .tr { grid-template-columns: 28px minmax(0, 1fr) auto 36px; }
+  .col-client, .col-when, .col-vis { display: none !important; }
+  .search { max-width: none; flex-basis: 100%; }
+  .pins { grid-template-columns: minmax(0, 1fr); }
+  .demo { left: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="lg"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg></span><div><b>Northfold Studio</b><small>Agency · 8 members</small></div></div>
+    <h6>Workspace</h6>
+    <nav class="nav">
+      <a href="#" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>Sites<span class="n" id="navAll"></span></a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>Members</a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg>Billing</a>
+      <a href="http://localhost:3210/settings/ai"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg>Connect your model</a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/></svg>Token use</a>
+    </nav>
+    <h6 id="clientsH">Clients<button aria-label="Add client" data-toast="Add a client folder"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button></h6>
+    <nav class="nav" id="clientNav"></nav>
+    <div class="me"><span class="av">Y</span><div><b>you@northfold.co</b><small>Owner</small></div></div>
+  </aside>
+
+  <div>
+    <header class="top">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <b id="crumb">Sites</b>
+      <a class="btn p sm ml" href="#" data-toast="Opens Create a new site"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New site</a>
+    </header>
+    <main><div class="wrap" id="page"></div></main>
+  </div>
+</div>
+<div class="pop" id="pop"></div>
+<div class="demo" role="group" aria-label="Demo"><span>Demo</span><button data-demo="agency" class="on">Agency · 48 sites</button><button data-demo="few">3 sites</button><button data-demo="none">No sites</button></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const ic = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
+const I = {
+  search: ic('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'), list: ic('<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>'),
+  grid: ic('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
+  folder: ic('<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
+  more: ic('<circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/>'),
+  star: ic('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>'),
+  sort: ic('<path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>'), down: ic('<path d="m6 9 6 6 6-6"/>'), up: ic('<path d="m18 15-6-6-6 6"/>'),
+  edit: ic('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'), home: ic('<path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>'),
+  ext: ic('<path d="M7 17 17 7M8 7h9v9"/>'), copy: ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>'),
+  move: ic('<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5 12 11l2.5 2.5"/>'),
+  archive: ic('<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4"/>'),
+  user: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'), x: ic('<path d="M18 6 6 18M6 6l12 12"/>'),
+};
+
+/* ---------- dummy data ---------- */
+const CLIENTS = [
+  ['Greenleaf Co.', '#4d6b3c'], ['Harbor Coffee', '#b4703c'], ['Nordic Dental', '#0e7490'], ['Atlas Fitness', '#be123c'],
+  ['Maple Realty', '#a16207'], ['Bloom Florist', '#c026d3'], ['Peak Outdoors', '#334155'], ['Internal', '#71717a'],
+];
+const NAMES = ['Indoor Plant House', 'Harbor Coffee', 'Spring Sale 2026', 'Nordic Dental Oslo', 'Nordic Dental Bergen', 'Atlas Fitness', 'Atlas Kids Club', 'Maple Realty', 'Maple Open House', 'Bloom Florist', 'Bloom Weddings', 'Peak Outdoors', 'Peak Rentals', 'Northfold Portfolio', 'Careers Page',
+  'Greenleaf Blog', 'Harbor Catering', 'Nordic Dental Booking', 'Atlas Summer Camp', 'Maple Listings', 'Bloom Gift Cards', 'Peak Trail Guide', 'Agency Templates', 'Greenleaf Wholesale', 'Harbor Roastery', 'Nordic Careers', 'Atlas Nutrition', 'Maple Rentals', 'Bloom Subscriptions', 'Peak Events',
+  'Greenleaf Workshops', 'Harbor Pop-up', 'Nordic Kids', 'Atlas Black Friday', 'Maple Commercial', 'Bloom Mother\'s Day', 'Peak Winter', 'Client Onboarding', 'Greenleaf Care Guide', 'Harbor Menu', 'Nordic Teeth Whitening', 'Atlas Personal Training', 'Maple Valuation', 'Bloom Corporate', 'Peak Ski School', 'Design System', 'Greenleaf Launch', 'Harbor Loyalty'];
+const PEOPLE = [['You', '#111113'], ['Maya', '#4d6b3c'], ['Daniel', '#9c4a2f'], ['Sofia', '#3b45d1']];
+const TIMES = ['2 min ago', '18 min ago', '1 hour ago', '3 hours ago', 'Yesterday', '2 days ago', '4 days ago', 'Last week', '2 weeks ago', 'Last month'];
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+function build(n) {
+  return NAMES.slice(0, n).map((name, i) => {
+    const ci = name.startsWith('Greenleaf') || name === 'Indoor Plant House' ? 0 : name.startsWith('Harbor') ? 1 : name.startsWith('Nordic') ? 2 : name.startsWith('Atlas') ? 3 : name.startsWith('Maple') || name === 'Spring Sale 2026' ? 4 : name.startsWith('Bloom') ? 5 : name.startsWith('Peak') ? 6 : 7;
+    const st = [2, 9, 17, 31].includes(i) ? 'draft' : [11, 24].includes(i) ? 'issue' : [5, 20].includes(i) ? 'pending' : i % 7 === 6 ? 'draft' : 'live';
+    const hasDom = st !== 'draft' && i % 4 !== 3;
+    const domain = hasDom ? slug(name).replace(/-/g, '') + (i % 3 ? '.com' : '.co') : null;
+    return { id: i, name, client: ci, status: st, domain, free: slug(name) + '.zejify.app', edited: i, who: PEOPLE[i % 4], visits: st === 'draft' ? 0 : Math.round(80 + (Math.sin(i * 7.3) + 1) * 2400 / (1 + i * .08)), trend: Array.from({ length: 8 }, (_, k) => 4 + Math.round((Math.sin(i + k * 1.3) + 1) * 6)), pin: [0, 1, 3, 5].includes(i) };
+  });
+}
+let SITES = build(48);
+
+const S = { view: 'list', q: '', status: 'all', client: 'all', sort: 'edited', dir: 1, page: 1, per: 12, picked: new Set(), group: false };
+let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2000); }
+const STATUS = { live: ['ok', 'Live'], draft: ['', 'Draft'], pending: ['warn', 'Domain pending'], issue: ['err', 'Domain issue'] };
+const fmtN = n => n >= 1000 ? (n / 1000).toFixed(1).replace('.0', '') + 'k' : String(n);
+
+function thumb(s, cls = 'tn') {
+  const c = CLIENTS[s.client][1];
+  return `<span class="${cls}" style="background:linear-gradient(180deg,${c}14,${c}2a)"><i style="left:0;right:0;top:0;height:12%;background:${c};opacity:.85"></i><i style="left:8%;top:28%;width:46%;height:10%;background:${c}"></i><i style="left:8%;top:44%;width:30%;height:7%;background:${c};opacity:.45"></i><i style="left:8%;top:62%;width:20%;height:11%;background:${c};border-radius:3px"></i><i style="right:7%;top:24%;width:32%;bottom:12%;background:${c};opacity:.25"></i></span>`;
+}
+const spark = t => { const max = Math.max(...t), pts = t.map((v, k) => `${k * 48 / 7},${18 - v / max * 15}`).join(' '); return `<svg viewBox="0 0 48 18"><polyline points="${pts}"/></svg>`; };
+const statusEl = s => { const [c, l] = STATUS[s.status]; return `<span class="st ${s.status === 'issue' ? 'err' : ''}"><span class="dot ${c}"></span>${l}</span>`; };
+const addr = s => s.domain || s.free;
+
+function filtered() {
+  const q = S.q.toLowerCase();
+  let l = SITES.filter(s => (S.client === 'all' || s.client === +S.client)
+    && (S.status === 'all' || (S.status === 'attention' ? ['issue', 'pending'].includes(s.status) : s.status === S.status))
+    && (!q || [s.name, s.domain || '', s.free, CLIENTS[s.client][0]].join(' ').toLowerCase().includes(q)));
+  const by = { edited: (a, b) => a.edited - b.edited, name: (a, b) => a.name.localeCompare(b.name), visits: (a, b) => b.visits - a.visits, client: (a, b) => CLIENTS[a.client][0].localeCompare(CLIENTS[b.client][0]) || a.edited - b.edited };
+  return l.sort((a, b) => by[S.sort](a, b) * S.dir);
+}
+
+function row(s) {
+  const p = S.picked.has(s.id);
+  return `<div class="tr ${p ? 'picked' : ''}"><input type="checkbox" class="ck" data-pick="${s.id}" ${p ? 'checked' : ''} aria-label="Select ${s.name}">
+    <a class="site" href="../site-start/index.html">${thumb(s)}<span class="nm"><b>${s.name}</b><small class="mono">${addr(s)}</small></span></a>
+    <span class="client col-client"><i style="background:${CLIENTS[s.client][1]}"></i><span>${CLIENTS[s.client][0]}</span></span>
+    ${statusEl(s)}
+    <span class="spark col-vis">${s.visits ? spark(s.trend) + fmtN(s.visits) : '<span style="color:var(--faint)">—</span>'}</span>
+    <span class="when col-when"><span class="av" style="background:${s.who[1]}">${s.who[0][0]}</span>${TIMES[Math.min(s.edited, 9)]}</span>
+    <span class="acts"><button class="icon-btn star ${s.pin ? 'on' : ''}" data-pin="${s.id}" aria-label="Pin">${I.star}</button><button class="icon-btn" data-more="${s.id}" aria-label="More">${I.more}</button></span></div>`;
+}
+function card(s) {
+  const [c, l] = STATUS[s.status];
+  return `<div class="card"><a href="../site-start/index.html">${thumb(s, 'big')}</a><span class="badge"><span class="dot ${c}"></span>${l}</span>
+    <button class="star ${s.pin ? 'on' : ''}" data-pin="${s.id}" aria-label="Pin">${I.star}</button>
+    <div class="cb"><b>${s.name}</b><small class="mono">${addr(s)}</small>
+      <div class="cf"><span class="client"><i style="background:${CLIENTS[s.client][1]}"></i><span>${CLIENTS[s.client][0]}</span></span><span class="ml">${TIMES[Math.min(s.edited, 9)]}</span><button class="icon-btn" data-more="${s.id}" aria-label="More" style="width:26px;height:26px">${I.more}</button></div></div></div>`;
+}
+function head() {
+  const h = (k, t, cls = '') => `<button class="${S.sort === k ? 'on' : ''} ${cls}" data-sort="${k}">${t}${S.sort === k ? (S.dir === 1 ? I.down : I.up) : ''}</button>`;
+  const vis = filtered().slice((S.page - 1) * S.per, S.page * S.per), all = vis.length && vis.every(s => S.picked.has(s.id));
+  return `<div class="tr th"><input type="checkbox" class="ck" data-pickall ${all ? 'checked' : ''} aria-label="Select all">${h('name', 'Site')}<span class="col-client">${h('client', 'Client')}</span><span>Status</span><span class="col-vis">${h('visits', 'Visitors · 7d')}</span><span class="col-when">${h('edited', 'Last edited')}</span><span></span></div>`;
+}
+
+function render() {
+  const total = SITES.length;
+  $('#navAll').textContent = total || '';
+  $('#clientsH').style.display = total > 3 ? '' : 'none';
+  $('#clientNav').innerHTML = total > 3 ? CLIENTS.map((c, i) => { const n = SITES.filter(s => s.client === i).length; return n ? `<a href="#" data-client="${i}" class="${S.client === String(i) ? 'on' : ''}"><span class="sw" style="background:${c[1]}"></span>${c[0]}<span class="n">${n}</span></a>` : ''; }).join('') : '';
+  $('#crumb').textContent = S.client === 'all' ? 'Sites' : 'Sites / ' + CLIENTS[+S.client][0];
+
+  if (!total) {
+    $('#page').innerHTML = `<div class="head"><h1>Sites</h1></div><div class="empty" style="margin-top:24px"><b>No sites yet</b>Create your first site. It takes a minute with AI.<br><button class="btn p" data-toast="Opens Create a new site">New site</button></div>`;
+    return;
+  }
+  const small = total <= 3;
+  const base = S.client === 'all' ? SITES : SITES.filter(s => s.client === +S.client);
+  const cnt = k => k === 'all' ? base.length : k === 'attention' ? base.filter(s => ['issue', 'pending'].includes(s.status)).length : base.filter(s => s.status === k).length;
+  const list = filtered(), pages = Math.max(1, Math.ceil(list.length / S.per));
+  if (S.page > pages) S.page = pages;
+  const shown = list.slice((S.page - 1) * S.per, S.page * S.per);
+  const pins = SITES.filter(s => s.pin);
+
+  let body;
+  if (!list.length) body = `<div class="empty"><b>No sites match</b>Try another search or clear the filters.<br><button class="btn s" data-clear>Clear filters</button></div>`;
+  else if (S.group && S.client === 'all') {
+    body = CLIENTS.map((c, i) => { const g = list.filter(s => s.client === i); if (!g.length) return '';
+      return `<div class="group"><h3><i style="background:${c[1]}"></i>${c[0]} <span class="n">${g.length}</span></h3>${S.view === 'list' ? `<div class="table">${g.map(row).join('')}</div>` : `<div class="cards">${g.map(card).join('')}</div>`}</div>`; }).join('');
+  } else body = S.view === 'list' ? `<div class="table">${head()}${shown.map(row).join('')}</div>` : `<div class="cards">${shown.map(card).join('')}</div>`;
+
+  const paged = !(S.group && S.client === 'all') && list.length > S.per;
+  $('#page').innerHTML = `
+    <div class="head"><h1>${S.client === 'all' ? 'Sites' : CLIENTS[+S.client][0]}</h1><span class="n">${base.length}</span>
+      <p class="sub">${S.client === 'all' ? `All sites in Northfold Studio${small ? '' : ', across ' + new Set(SITES.map(s => s.client)).size + ' clients'}.` : 'Sites for this client.'}</p></div>
+    ${small ? '' : `<div class="sum">${[['all', '', 'All sites'], ['live', 'ok', 'Live'], ['draft', '', 'Drafts'], ['attention', 'err', 'Needs attention']].map(([k, d, t]) => `<button class="${S.status === k ? 'on' : ''}" data-status="${k}"><small><span class="dot ${d}"></span>${t}</small><b>${cnt(k)}</b></button>`).join('')}</div>`}
+    <div class="tools">
+      <label class="search">${I.search}<input id="q" placeholder="Search by name, domain or client" value="${S.q.replace(/"/g, '&quot;')}" aria-label="Search sites"><kbd>/</kbd></label>
+      ${small ? '' : `<select class="sel" id="fClient" aria-label="Client"><option value="all">All clients</option>${CLIENTS.map((c, i) => `<option value="${i}" ${S.client === String(i) ? 'selected' : ''}>${c[0]}</option>`).join('')}</select>
+      <select class="sel" id="fSort" aria-label="Sort"><option value="edited" ${S.sort === 'edited' ? 'selected' : ''}>Last edited</option><option value="name" ${S.sort === 'name' ? 'selected' : ''}>Name</option><option value="visits" ${S.sort === 'visits' ? 'selected' : ''}>Most visitors</option><option value="client" ${S.sort === 'client' ? 'selected' : ''}>Client</option></select>
+      <label class="btn s" style="gap:8px;cursor:pointer"><input type="checkbox" class="ck" id="fGroup" ${S.group ? 'checked' : ''} ${S.client !== 'all' ? 'disabled' : ''}>Group by client</label>`}
+      <div class="seg ml" role="group" aria-label="View"><button class="${S.view === 'list' ? 'on' : ''}" data-view="list" aria-label="List">${I.list}</button><button class="${S.view === 'grid' ? 'on' : ''}" data-view="grid" aria-label="Grid">${I.grid}</button></div>
+    </div>
+    <div class="bulk ${S.picked.size ? 'on' : ''}"><b>${S.picked.size} selected</b><button class="btn sm" data-bulk="Moved to a client">${I.move}Move to client</button><button class="btn sm" data-bulk="Duplicated">${I.copy}Duplicate</button><button class="btn sm" data-bulk="Archived">${I.archive}Archive</button><button class="icon-btn x ml" data-unpick aria-label="Clear selection">${I.x}</button></div>
+    ${!small && pins.length && S.status === 'all' && !S.q && S.client === 'all' && S.page === 1 ? `<div class="pinned"><h3>${I.star.replace('<svg', '<svg style="color:#eab308;fill:#eab308;width:14px;height:14px"')}Pinned <span class="n">${pins.length}</span></h3><div class="pins">${pins.map(card).join('')}</div></div>` : ''}
+    ${body}
+    ${paged ? `<div class="foot"><span>Showing ${(S.page - 1) * S.per + 1}–${Math.min(S.page * S.per, list.length)} of ${list.length}</span>
+      <div class="pager"><button data-pg="${S.page - 1}" ${S.page === 1 ? 'disabled' : ''}>Previous</button>${Array.from({ length: pages }, (_, k) => `<button class="${k + 1 === S.page ? 'on' : ''}" data-pg="${k + 1}">${k + 1}</button>`).join('')}<button data-pg="${S.page + 1}" ${S.page === pages ? 'disabled' : ''}>Next</button></div></div>` : ''}`;
+
+  const qi = $('#q'); qi.oninput = e => { S.q = e.target.value; S.page = 1; render(); const n = $('#q'); n.focus(); n.setSelectionRange(n.value.length, n.value.length); };
+  if ($('#fClient')) { $('#fClient').onchange = e => { S.client = e.target.value; S.page = 1; render(); }; $('#fSort').onchange = e => { S.sort = e.target.value; S.dir = 1; render(); }; $('#fGroup').onchange = e => { S.group = e.target.checked; render(); }; }
+}
+
+/* ---------- row menu ---------- */
+function menu(btn, id) {
+  const s = SITES.find(x => x.id === id), p = $('#pop'), r = btn.getBoundingClientRect();
+  p.innerHTML = `<button data-toast="Opening the editor">${I.edit}Open editor</button><button data-toast="Opening the overview">${I.home}Overview</button><button data-toast="Opening ${addr(s)}">${I.ext}Visit site</button><hr>
+    <button data-toast="${s.name} duplicated">${I.copy}Duplicate</button><button data-toast="Pick a client to move it to">${I.move}Move to client</button><button data-toast="Pick a member to hand it to">${I.user}Transfer</button><hr>
+    <button class="dg" data-toast="${s.name} archived">${I.archive}Archive</button>`;
+  p.classList.add('on'); p.style.top = Math.min(r.bottom + 4, innerHeight - p.offsetHeight - 8) + 'px'; p.style.left = Math.max(8, r.right - p.offsetWidth) + 'px';
+}
+
+document.addEventListener('click', e => {
+  const t = e.target;
+  if (!t.closest('#pop') && !t.closest('[data-more]')) $('#pop').classList.remove('on');
+  const m = t.closest('[data-more]'); if (m) { e.preventDefault(); return menu(m, +m.dataset.more); }
+  const ts = t.closest('[data-toast]'); if (ts) { e.preventDefault(); $('#pop').classList.remove('on'); return toast(ts.dataset.toast); }
+  const pin = t.closest('[data-pin]'); if (pin) { e.preventDefault(); const s = SITES.find(x => x.id === +pin.dataset.pin); s.pin = !s.pin; render(); return toast(s.pin ? `${s.name} pinned` : `${s.name} unpinned`); }
+  const st = t.closest('[data-status]'); if (st) { S.status = st.dataset.status; S.page = 1; return render(); }
+  const cl = t.closest('[data-client]'); if (cl) { e.preventDefault(); S.client = S.client === cl.dataset.client ? 'all' : cl.dataset.client; S.page = 1; return render(); }
+  const so = t.closest('[data-sort]'); if (so) { if (S.sort === so.dataset.sort) S.dir *= -1; else { S.sort = so.dataset.sort; S.dir = 1; } return render(); }
+  const v = t.closest('[data-view]'); if (v) { S.view = v.dataset.view; return render(); }
+  const pg = t.closest('[data-pg]'); if (pg && !pg.disabled) { S.page = +pg.dataset.pg; render(); return scrollTo({ top: 0 }); }
+  const pk = t.closest('[data-pick]'); if (pk) { const id = +pk.dataset.pick; S.picked.has(id) ? S.picked.delete(id) : S.picked.add(id); return render(); }
+  if (t.closest('[data-pickall]')) { const vis = filtered().slice((S.page - 1) * S.per, S.page * S.per), all = vis.every(s => S.picked.has(s.id)); vis.forEach(s => all ? S.picked.delete(s.id) : S.picked.add(s.id)); return render(); }
+  if (t.closest('[data-unpick]')) { S.picked.clear(); return render(); }
+  const bk = t.closest('[data-bulk]'); if (bk) { toast(`${bk.dataset.bulk}: ${S.picked.size} sites`); S.picked.clear(); return render(); }
+  if (t.closest('[data-clear]')) { Object.assign(S, { q: '', status: 'all', client: 'all', page: 1 }); return render(); }
+  const dm = t.closest('[data-demo]');
+  if (dm) { $$('[data-demo]').forEach(b => b.classList.toggle('on', b === dm)); SITES = build({ agency: 48, few: 3, none: 0 }[dm.dataset.demo]); Object.assign(S, { q: '', status: 'all', client: 'all', page: 1, group: false }); S.picked.clear(); return render(); }
+  if (t.closest('#menuBtn')) document.body.classList.toggle('nav-open');
+});
+addEventListener('keydown', e => { if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); $('#q')?.focus(); } if (e.key === 'Escape') $('#pop').classList.remove('on'); });
+render();
+</script>
+</body>
+</html>

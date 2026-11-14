@@ -156,6 +156,23 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "sites-list",
+      "title": "Sites List · Agency",
+      "desc": "All sites for an agency: clients, status tiles, pinned sites, search, list and grid views, bulk actions.",
+      "tags": [
+        "Dashboard",
+        "Agency"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Sites",
+          "href": "site-dashboard/sites-list/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "site-start",
       "title": "Site Overview · Get started",
       "desc": "New site page: build with AI or connect with MCP, then publish and connect a domain.",
