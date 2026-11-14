@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support Tickets – Reply Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6f8; --surface:#fff; --surface-2:#f9fafb; --border:#e6e8ec; --border-strong:#d5d9e0;
+  --text:#111827; --text-2:#4b5563; --text-3:#8a93a3;
+  --primary:#2563eb; --primary-soft:#eef3ff; --primary-hover:#1d4ed8;
+  --green:#16a34a; --green-soft:#ecfdf3;
+  --amber:#d97706; --amber-soft:#fff7ed;
+  --red:#dc2626; --red-soft:#fef2f2;
+  --violet:#7c3aed; --violet-soft:#f5f3ff;
+  --gray-soft:#f1f3f6;
+  --radius:10px; --shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:13px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+svg{flex-shrink:0}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px}
+
+/* ---------- Top bar ---------- */
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:24px;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;white-space:nowrap}
+.brand-logo{width:30px;height:30px;border-radius:8px;background:var(--primary);display:grid;place-items:center;color:#fff}
+.brand span{color:var(--text-3);font-weight:500}
+.nav{display:flex;gap:4px;margin-left:auto;height:100%}
+.nav a{display:flex;align-items:center;gap:6px;padding:0 12px;color:var(--text-2);text-decoration:none;font-weight:500;border-bottom:2px solid transparent;height:100%}
+.nav a:hover{color:var(--text)}
+.nav a.active{color:var(--primary);border-color:var(--primary)}
+.nav .count{background:var(--primary-soft);color:var(--primary);font-size:11px;padding:1px 6px;border-radius:999px}
+.top-actions{display:flex;align-items:center;gap:12px}
+.select-btn{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-2);font-weight:500}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border:1px solid transparent;background:transparent;border-radius:8px;color:var(--text-2);position:relative}
+.icon-btn:hover{background:var(--gray-soft)}
+.icon-btn .dot{position:absolute;top:7px;right:8px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--surface)}
+.me{width:32px;height:32px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:600}
+
+/* ---------- Page ---------- */
+.page{max-width:1240px;margin:0 auto;padding:24px}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.page-head h1{font-size:20px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+.page-head p{margin:0;color:var(--text-3)}
+.btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);font-weight:500;color:var(--text-2);white-space:nowrap}
+.btn:hover{border-color:var(--border-strong);color:var(--text)}
+.btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-hover);color:#fff;border-color:var(--primary-hover)}
+.btn-danger{color:var(--red)}
+
+/* ---------- KPIs ---------- */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);text-align:left;cursor:pointer;transition:border-color .15s}
+.kpi:hover{border-color:var(--border-strong)}
+.kpi.active{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.kpi-label{display:flex;align-items:center;gap:6px;color:var(--text-2);font-weight:500;margin-bottom:8px}
+.kpi-icon{width:22px;height:22px;border-radius:6px;display:grid;place-items:center}
+.kpi-value{font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.kpi-sub{margin-top:6px;color:var(--text-3);font-size:12px}
+.kpi-sub b{font-weight:500}
+.up{color:var(--red)} .down{color:var(--green)}
+
+/* ---------- Card ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.card-head{display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--border);gap:12px}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tab{display:flex;align-items:center;gap:6px;padding:14px 10px;border:0;background:none;color:var(--text-2);font-weight:500;border-bottom:2px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--primary);border-color:var(--primary)}
+.tab .count{background:var(--gray-soft);color:var(--text-2);font-size:11px;padding:1px 6px;border-radius:999px}
+.tab.active .count{background:var(--primary-soft);color:var(--primary)}
+.head-actions{display:flex;gap:8px}
+
+.toolbar{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seg{display:flex;background:var(--gray-soft);border-radius:8px;padding:3px}
+.seg button{border:0;background:none;padding:5px 12px;border-radius:6px;color:var(--text-2);font-weight:500}
+.seg button.active{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.toggle{display:flex;align-items:center;gap:8px;color:var(--text-2);font-weight:500;cursor:pointer;user-select:none}
+.toggle input{display:none}
+.switch{width:32px;height:18px;border-radius:999px;background:var(--border-strong);position:relative;transition:.15s}
+.switch::after{content:"";position:absolute;width:14px;height:14px;top:2px;left:2px;background:#fff;border-radius:50%;transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.toggle input:checked + .switch{background:var(--primary)}
+.toggle input:checked + .switch::after{left:16px}
+.search{margin-left:auto;position:relative;width:280px;max-width:100%}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3)}
+.search input{width:100%;height:34px;border:1px solid var(--border);border-radius:8px;padding:0 10px 0 32px;outline:none;background:var(--surface)}
+.search input:focus,.filter:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.filter{height:34px;border:1px solid var(--border);border-radius:8px;padding:0 30px 0 10px;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238a93a3' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;color:var(--text-2);font-weight:500;min-width:130px;outline:none}
+.filter.set{border-color:var(--primary);color:var(--primary);background-color:var(--primary-soft)}
+
+/* bulk bar */
+.bulk{display:none;align-items:center;gap:10px;padding:10px 16px;background:var(--primary-soft);border-bottom:1px solid #d7e3ff;color:var(--primary);font-weight:500}
+.bulk.show{display:flex}
+.bulk .btn{height:30px}
+.bulk .spacer{flex:1}
+
+/* ---------- Table ---------- */
+.table{width:100%;border-collapse:collapse}
+.table th{text-align:left;font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;background:var(--surface-2);border-bottom:1px solid var(--border);white-space:nowrap}
+.table th.sortable{cursor:pointer;user-select:none}
+.table th.sortable:hover{color:var(--text)}
+.table td{padding:14px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.table tr:last-child td{border-bottom:0}
+.table tbody tr{transition:background .1s;cursor:pointer}
+.table tbody tr:hover{background:#fafbfc}
+.table tbody tr.selected{background:var(--primary-soft)}
+.table tbody tr.needs td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+.col-check{width:44px;padding-left:16px!important}
+.chk{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;margin:2px 0 0}
+
+.t-main{display:flex;gap:12px;min-width:0}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
+.avatar.sm{width:24px;height:24px;font-size:10px}
+.t-body{min-width:0}
+.t-title{display:flex;align-items:center;gap:6px;font-weight:500;color:var(--text);font-size:13.5px}
+.t-title .unread{width:7px;height:7px;border-radius:50%;background:var(--primary);flex-shrink:0}
+tr.is-unread .t-title{font-weight:600}
+.t-title span.txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.t-meta{color:var(--text-3);margin-top:3px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.t-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--border-strong)}
+.t-excerpt{color:var(--text-2);margin-top:4px;max-width:520px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.t-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;height:20px;padding:0 7px;border-radius:5px;font-size:11px;font-weight:500;border:1px solid transparent;white-space:nowrap}
+.b-open{background:var(--primary-soft);color:var(--primary);border-color:#d7e3ff}
+.b-pending{background:var(--violet-soft);color:var(--violet);border-color:#e6defe}
+.b-resolved{background:var(--green-soft);color:var(--green);border-color:#cdf1da}
+.b-closed{background:var(--gray-soft);color:var(--text-2);border-color:var(--border)}
+.b-await{background:var(--amber-soft);color:var(--amber);border-color:#fde3c4}
+.b-replied{background:var(--green-soft);color:var(--green);border-color:#cdf1da}
+.b-id{background:var(--surface);color:var(--text-3);border-color:var(--border)}
+.b-tag{background:var(--gray-soft);color:var(--text-2)}
+.b-product{background:var(--surface);color:var(--text-2);border-color:var(--border)}
+
+.prio{display:inline-flex;align-items:center;gap:6px;font-weight:500;white-space:nowrap}
+.prio i{width:8px;height:8px;border-radius:2px}
+.p-urgent{color:var(--red)} .p-urgent i{background:var(--red)}
+.p-high{color:var(--amber)} .p-high i{background:var(--amber)}
+.p-medium{color:var(--text-2)} .p-medium i{background:#60a5fa}
+.p-low{color:var(--text-3)} .p-low i{background:var(--border-strong)}
+
+.replies{display:inline-flex;align-items:center;gap:5px;color:var(--text-2)}
+.agent{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.agent.none{color:var(--text-3)}
+.agent .ph{width:24px;height:24px;border-radius:50%;border:1.5px dashed var(--border-strong);display:grid;place-items:center}
+.dates{display:flex;flex-direction:column;gap:4px;color:var(--text-3);font-size:12px;white-space:nowrap}
+.dates div{display:flex;align-items:center;gap:5px}
+.wait{font-weight:500}
+.wait.ok{color:var(--green)} .wait.warn{color:var(--amber)} .wait.late{color:var(--red)}
+
+.empty{padding:60px 20px;text-align:center;color:var(--text-3)}
+.empty h3{color:var(--text);margin:12px 0 4px;font-size:15px}
+
+.foot{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border);color:var(--text-3);gap:12px;flex-wrap:wrap}
+.pager{display:flex;gap:4px}
+.pager button{min-width:30px;height:30px;border:1px solid var(--border);background:var(--surface);border-radius:7px;color:var(--text-2);font-weight:500}
+.pager button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.pager button:disabled{opacity:.4;cursor:default}
+.per-page{display:flex;align-items:center;gap:8px}
+.per-page select{height:30px;min-width:70px}
+
+/* toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#111827;color:#fff;padding:10px 16px;border-radius:8px;font-weight:500;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .col-replies{display:none}
+  .t-excerpt{max-width:38vw}
+}
+@media (max-width:860px){
+  .nav{display:none}
+  .top-actions{margin-left:auto}
+  .select-btn{display:none}
+  .col-prio,.col-agent{display:none}
+  .search{margin-left:0;width:100%}
+}
+@media (max-width:640px){
+  .page{padding:16px}
+  .topbar{padding:0 16px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpi:last-child{grid-column:span 2}
+  .t-excerpt{max-width:none}
+  .card-head{flex-direction:column;align-items:stretch;padding:0}
+  .tabs{padding:0 8px}
+  .head-actions{padding:10px 16px;border-top:1px solid var(--border)}
+  .head-actions .btn-primary{flex:1;justify-content:center}
+  .filter{flex:1 1 calc(50% - 10px);min-width:0}
+  .col-date{display:none}
+  .t-excerpt{display:none}
+  .seg{width:100%;overflow-x:auto;scrollbar-width:none}.seg button{flex:1;padding:5px 8px;white-space:nowrap}
+  .brand span{display:none}
+  #productTop{min-width:0;width:120px}
+  .top-actions{gap:6px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    WPRio <span>Support</span>
+  </div>
+  <nav class="nav">
+    <a href="#" class="active">Support Tickets <span class="count" id="navOpen">0</span></a>
+    <a href="#">Live Chat</a>
+    <a href="#">Customers</a>
+    <a href="#">Reports</a>
+    <a href="#">Settings</a>
+  </nav>
+  <div class="top-actions">
+    <select class="filter" id="productTop" aria-label="Product"></select>
+    <button class="icon-btn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+    <div class="me" title="Alex Morgan (you)">AM</div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <div>
+      <h1>Support Tickets</h1>
+      <p id="subhead">Every ticket is either waiting for your reply or already replied.</p>
+    </div>
+  </div>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="tabs" id="tabs"></div>
+      <div class="head-actions">
+        <button class="btn" id="refresh" title="Refresh"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        <button class="btn btn-primary" id="addTicket"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New Ticket</button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="row">
+        <div class="seg" id="statusSeg"></div>
+        <div class="search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" type="search" placeholder="Search by title, customer, email or #ID">
+        </div>
+      </div>
+      <div class="row">
+        <select class="filter" id="fCategory" aria-label="Category"></select>
+        <select class="filter" id="fPriority" aria-label="Priority"></select>
+        <select class="filter" id="fAgent" aria-label="Agent"></select>
+        <select class="filter" id="fTag" aria-label="Tag"></select>
+        <select class="filter" id="fSort" aria-label="Sort"></select>
+        <button class="btn" id="reset"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      </div>
+    </div>
+
+    <div class="bulk" id="bulk">
+      <span id="bulkCount">0 selected</span>
+      <span class="spacer"></span>
+      <button class="btn" data-bulk="assign">Assign to me</button>
+      <button class="btn" data-bulk="resolve">Mark as replied</button>
+      <button class="btn btn-danger" data-bulk="trash">Move to trash</button>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" class="chk" id="checkAll" aria-label="Select all"></th>
+            <th>Ticket</th>
+            <th class="col-prio sortable" data-sort="priority">Priority</th>
+            <th class="col-replies">Replies</th>
+            <th class="col-agent">Agent</th>
+            <th class="col-date sortable" data-sort="activity">Last activity</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div class="foot">
+      <span id="showing"></span>
+      <div class="row">
+        <label class="per-page">Rows<select class="filter" id="perPage"><option>10</option><option selected>20</option><option>50</option></select></label>
+        <div class="pager" id="pager"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Data ---------- */
+const ME = "Alex Morgan";
+const AGENTS = [
+  { name: "Alex Morgan", color: "#7c3aed" },
+  { name: "Priya Shah",  color: "#0891b2" },
+  { name: "Daniel Kim",  color: "#ea580c" },
+  { name: "Sofia Rossi", color: "#db2777" },
+];
+const PRODUCTS = ["DiviMerc", "TableCraft", "FormPilot", "SpeedBoost"];
+const CATEGORIES = ["Bug report", "Pre-sale", "Billing", "License", "Installation", "Feature request", "How-to"];
+const PRIORITIES = ["Urgent", "High", "Medium", "Low"];
+const PRIO_RANK = { Urgent: 0, High: 1, Medium: 2, Low: 3 };
+
+// minutes ago: created / last activity. lastBy: "customer" | "agent"
+const T = (id, title, customer, email, product, category, priority, status, agent, replies, created, activity, lastBy, tags, excerpt, extra = {}) =>
+  ({ id, title, customer, email, product, category, priority, status, agent, replies, created, activity, lastBy, tags, excerpt, unread: false, trashed: false, ...extra });
+
+const H = 60, D = 1440;
+let tickets = [
+  T(1048,"Checkout page shows blank after updating to 3.2.1","Maria Gonzalez","maria@bloomstudio.co","DiviMerc","Bug report","Urgent","Open",null,0,18,18,"customer",["checkout","regression"],"After the latest update our checkout is completely blank on Chrome and Safari. We're losing orders.",{unread:true}),
+  T(1047,"How do I add a size chart to variable products?","Ethan Brooks","ethan@urbanthreads.com","DiviMerc","How-to","Low","Open",null,0,42,42,"customer",["size-chart"],"I can't find where to attach a size chart to a variable product with 6 variations.",{unread:true}),
+  T(1046,"Refund request – purchased wrong license tier","Hannah Lee","hannah.lee@gmail.com","TableCraft","Billing","Medium","Open","Priya Shah",2,3*H,55,"customer",["refund"],"I bought the single-site license but need the 5-site one. Can I get a refund or an upgrade?",{unread:true}),
+  T(1045,"Form submissions not reaching Mailchimp","Lucas Martin","lucas@growthlab.io","FormPilot","Bug report","High","Open","Alex Morgan",3,5*H,2*H,"customer",["integration","mailchimp"],"Entries save in the dashboard but nothing appears in our Mailchimp audience since Tuesday."),
+  T(1044,"Do you support WPML for product tables?","Aiko Tanaka","aiko@kyotoshop.jp","TableCraft","Pre-sale","Medium","Open",null,0,6*H,6*H,"customer",["wpml","pre-sale"],"We run a bilingual store and want to know if TableCraft works with WPML before buying.",{unread:true}),
+  T(1043,"License key says 'activation limit reached'","Robert Chen","robert@chenmedia.com","SpeedBoost","License","High","Open","Daniel Kim",1,9*H,8*H,"customer",["activation"],"I deactivated the old staging site but the key still says the limit is reached."),
+  T(1042,"My Account page layout breaks on mobile","Fatima Noor","fatima@noorboutique.com","DiviMerc","Bug report","High","Open","Alex Morgan",4,26*H,25*H,"customer",["my-account","responsive"],"Navigation tabs overflow off-screen on iPhone 13. Screenshot attached."),
+  T(1041,"Feature request: conditional logic on file uploads","Tom Becker","tom@beckerdesign.de","FormPilot","Feature request","Low","Pending","Sofia Rossi",3,2*D,1*D,"agent",["conditional-logic"],"Would be great to show the upload field only when a specific option is selected."),
+  T(1040,"Site slow after enabling lazy-load images","Grace Okafor","grace@okaforlaw.ng","SpeedBoost","Bug report","Medium","Open","Daniel Kim",5,2*D,30*H,"customer",["performance"],"Largest Contentful Paint went from 1.8s to 4.2s once lazy-load was enabled on the homepage."),
+  T(1039,"Invoice needs our VAT number","Oliver Smith","accounts@smithco.co.uk","DiviMerc","Billing","Low","Pending","Priya Shah",2,2*D,40*H,"agent",["invoice"],"Please reissue invoice INV-20931 with our VAT number GB123456789."),
+  T(1038,"Quick view modal not opening on shop page","Isabella Costa","isa@costahome.pt","DiviMerc","Bug report","Medium","Open","Alex Morgan",2,3*D,3*H,"agent",["quick-view"],"Clicking quick view does nothing; console shows a jQuery error from another plugin."),
+  T(1037,"Can I use TableCraft on a client site?","Noah Williams","noah@pixelforge.agency","TableCraft","Pre-sale","Low","Resolved","Sofia Rossi",2,3*D,2*D,"agent",["agency"],"We're an agency — does the developer license cover client projects?"),
+  T(1036,"Multi-step form loses data on back button","Chloe Dubois","chloe@atelierdubois.fr","FormPilot","Bug report","Urgent","Open","Daniel Kim",6,3*D,20,"customer",["multi-step"],"Users who press browser back lose everything entered on step 2 and 3.",{unread:true}),
+  T(1035,"Installation fails: 'missing style.css'","Mohammed Al-Farsi","m.alfarsi@desertgear.ae","DiviMerc","Installation","Medium","Resolved","Alex Morgan",3,4*D,3*D,"agent",["install"],"Uploaded the zip from my account page and WordPress says the package is missing style.css."),
+  T(1034,"Product compare table column widths","Emma Johansson","emma@nordicliving.se","TableCraft","How-to","Low","Closed","Priya Shah",4,5*D,4*D,"agent",["styling"],"How do I make the first column fixed width while the others stretch?"),
+  T(1033,"Renewal charged twice this month","James O'Connor","james@oconnorbikes.ie","SpeedBoost","Billing","High","Resolved","Priya Shah",3,5*D,4*D,"agent",["refund","renewal"],"I see two charges of $79 on my card statement for the same renewal."),
+  T(1032,"Spam submissions bypassing reCAPTCHA","Liam Nguyen","liam@saigonbrew.vn","FormPilot","Bug report","High","Pending","Alex Morgan",4,6*D,2*D,"agent",["spam","recaptcha"],"Getting 200+ spam entries a day even though reCAPTCHA v3 is enabled."),
+  T(1031,"Need help migrating from WooCommerce Blocks","Sarah Mitchell","sarah@mitchellbakery.com","DiviMerc","How-to","Medium","Open",null,0,6*D,6*D,"customer",["migration"],"We currently use the default block cart and checkout. What's the cleanest way to switch?",{unread:true}),
+  T(1030,"Wishlist icon missing in header","Diego Ramirez","diego@ramirezsurf.mx","DiviMerc","Bug report","Low","Closed","Daniel Kim",2,8*D,7*D,"agent",["wishlist"],"The heart icon disappeared from the header after switching theme builder templates."),
+  T(1029,"Annual vs lifetime license difference?","Ava Patel","ava@patelcrafts.in","SpeedBoost","Pre-sale","Low","Resolved","Sofia Rossi",1,9*D,9*D,"agent",["pre-sale"],"What do I lose if I choose annual instead of lifetime?"),
+  T(1028,"CSV import skips rows with commas","Benjamin Wright","ben@wrightanalytics.com","TableCraft","Bug report","Medium","Open","Daniel Kim",3,10*D,4*D,"customer",["import","csv"],"Rows where a cell contains a quoted comma are silently skipped on import."),
+  T(1027,"Webhook to Zapier sends empty payload","Mia Schneider","mia@schneiderevents.de","FormPilot","Bug report","High","Resolved","Alex Morgan",5,10*D,8*D,"agent",["zapier","integration"],"Zapier receives the request but every field is empty."),
+  T(1026,"Critical CSS breaks Divi menu","Henry Clark","henry@clarkfitness.com","SpeedBoost","Bug report","High","Open","Sofia Rossi",4,11*D,5*D,"customer",["critical-css"],"With critical CSS on, the mobile hamburger menu doesn't open until full page load."),
+  T(1025,"Transfer license to new domain","Zoe Anderson","zoe@andersonphoto.com","DiviMerc","License","Low","Closed","Priya Shah",2,12*D,12*D,"agent",["activation"],"We moved from zoeanderson.net to andersonphoto.com."),
+  T(1024,"Feature request: sticky add-to-cart on mobile","Kenji Watanabe","kenji@tokyoink.jp","DiviMerc","Feature request","Medium","Pending","Alex Morgan",2,13*D,6*D,"agent",["roadmap"],"A sticky add-to-cart bar on mobile product pages would help our conversion a lot."),
+  T(1023,"Date picker shows wrong locale","Lena Fischer","lena@fischerdental.at","FormPilot","Bug report","Low","Resolved","Daniel Kim",3,14*D,13*D,"agent",["i18n"],"Date picker shows US format although site language is German."),
+  T(1022,"Cannot download plugin from account","Jack Thompson","jack@thompsonauto.com.au","SpeedBoost","Installation","Medium","Closed","Sofia Rossi",2,15*D,14*D,"agent",["download"],"Download button on my account page returns a 403 error."),
+  T(1021,"Pricing table toggle for monthly/yearly","Olivia Brown","olivia@brownconsult.com","TableCraft","How-to","Low","Resolved","Priya Shah",2,16*D,15*D,"agent",["pricing-table"],"How do I add a monthly/yearly switch above the pricing table?"),
+  T(1020,"Account login redirects to homepage","Samuel Adeyemi","sam@adeyemistore.ng","DiviMerc","Bug report","Medium","Open",null,0,30,30,"customer",["login","my-account"],"After login customers land on the homepage instead of My Account.",{unread:true}),
+  T(1019,"Old spam ticket","Unknown","noreply@spam.biz","FormPilot","How-to","Low","Closed",null,0,20*D,20*D,"customer",[],"Buy cheap backlinks now!!!",{trashed:true}),
+  T(1018,"Duplicate: checkout blank","Maria Gonzalez","maria@bloomstudio.co","DiviMerc","Bug report","Urgent","Closed",null,0,20,20,"customer",["checkout"],"Same as #1048, submitted twice.",{trashed:true}),
+];
+
+/* ---------- State ---------- */
+const state = { tab: "all", status: "Waiting", q: "", category: "", priority: "", agent: "", tag: "", product: "", sort: "activity", page: 1, perPage: 20, selected: new Set(), kpi: "" };
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const initials = n => n.split(/\s+/).map(p => p[0]).slice(0, 2).join("").toUpperCase();
+const PALETTE = ["#16a34a","#0891b2","#2563eb","#7c3aed","#db2777","#ea580c","#ca8a04","#0d9488","#4f46e5","#be123c"];
+const colorFor = s => PALETTE[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % PALETTE.length];
+const ago = m => m < 1 ? "just now" : m < 60 ? `${m}m ago` : m < D ? `${Math.round(m / 60)}h ago` : `${Math.round(m / D)}d ago`;
+const dur = m => m < 60 ? `${m}m` : m < D ? `${Math.floor(m / 60)}h ${m % 60 ? (m % 60) + "m" : ""}`.trim() : `${Math.floor(m / D)}d ${Math.round((m % D) / 60)}h`;
+// Two states only: the customer wrote last -> Waiting, an agent wrote last -> Replied
+const stateOf = t => t.lastBy === "customer" ? "Waiting" : "Replied";
+const STATE_LABEL = { Waiting: "Waiting for reply", Replied: "Replied" };
+const needsReply = t => !t.trashed && stateOf(t) === "Waiting";
+const isOverdue = t => needsReply(t) && t.activity > 24 * H;
+const agentColor = n => (AGENTS.find(a => a.name === n) || {}).color || "#64748b";
+const ICON = {
+  chat: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  plus: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>',
+  clock: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  user: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+};
+
+/* ---------- Filtering ---------- */
+function scoped() {
+  // tickets in current tab + product scope, before status/filters
+  return tickets.filter(t => {
+    if (state.product && t.product !== state.product) return false;
+    if (state.tab === "trash") return t.trashed;
+    if (t.trashed) return false;
+    if (state.tab === "mine") return t.agent === ME;
+    if (state.tab === "unassigned") return !t.agent;
+    return true;
+  });
+}
+function filtered() {
+  const q = state.q.trim().toLowerCase().replace(/^#/, "");
+  let list = scoped().filter(t => {
+    if (state.tab !== "trash" && state.status !== "All" && stateOf(t) !== state.status) return false;
+    if (state.kpi === "overdue" && !isOverdue(t)) return false;
+    if (state.category && t.category !== state.category) return false;
+    if (state.priority && t.priority !== state.priority) return false;
+    if (state.agent === "__none" && t.agent) return false;
+    if (state.agent && state.agent !== "__none" && t.agent !== state.agent) return false;
+    if (state.tag && !t.tags.includes(state.tag)) return false;
+    if (q && !`${t.id} ${t.title} ${t.customer} ${t.email}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  const by = {
+    activity: (a, b) => a.activity - b.activity,
+    oldest: (a, b) => b.activity - a.activity,
+    newest: (a, b) => a.created - b.created,
+    priority: (a, b) => PRIO_RANK[a.priority] - PRIO_RANK[b.priority] || a.activity - b.activity,
+    waiting: (a, b) => (needsReply(b) ? b.activity : -1) - (needsReply(a) ? a.activity : -1),
+  }[state.sort];
+  return list.sort(by);
+}
+
+/* ---------- Render: KPIs ---------- */
+function renderKpis() {
+  const live = tickets.filter(t => !t.trashed && (!state.product || t.product === state.product));
+  const waiting = live.filter(needsReply);
+  const replied = live.filter(t => stateOf(t) === "Replied");
+  const unassigned = waiting.filter(t => !t.agent);
+  const overdue = live.filter(isOverdue);
+  const urgent = waiting.filter(t => t.priority === "Urgent");
+  const replied24 = replied.filter(t => t.activity <= D);
+  const oldestWait = waiting.reduce((m, t) => Math.max(m, t.activity), 0);
+  $("#navOpen").textContent = waiting.length;
+
+  const cards = [
+    { key: "waiting", label: "Waiting for reply", value: waiting.length, sub: oldestWait ? `Oldest waiting <b class="${oldestWait > D ? "up" : ""}">${dur(oldestWait)}</b>` : "All caught up", color: "var(--amber)", bg: "var(--amber-soft)", icon: ICON.clock },
+    { key: "replied", label: "Replied", value: replied.length, sub: `<b class="down">${replied24.length}</b> replied in last 24h`, color: "var(--green)", bg: "var(--green-soft)", icon: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>' },
+    { key: "unassigned", label: "Unassigned", value: unassigned.length, sub: "Waiting with no agent", color: "var(--violet)", bg: "var(--violet-soft)", icon: ICON.user },
+    { key: "overdue", label: "Over SLA (24h)", value: overdue.length, sub: `<b class="up">${urgent.length}</b> urgent waiting`, color: "var(--red)", bg: "var(--red-soft)", icon: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>' },
+    { key: "response", label: "Avg first reply", value: "2h 14m", sub: `<b class="down">↓ 18%</b> vs last week`, color: "var(--primary)", bg: "var(--primary-soft)", icon: ICON.chat },
+  ];
+  $("#kpis").innerHTML = cards.map(c => `
+    <button class="kpi ${state.kpi === c.key ? "active" : ""}" data-kpi="${c.key}">
+      <div class="kpi-label"><span class="kpi-icon" style="color:${c.color};background:${c.bg}">${c.icon}</span>${c.label}</div>
+      <div class="kpi-value">${c.value}</div>
+      <div class="kpi-sub">${c.sub}</div>
+    </button>`).join("");
+}
+
+/* ---------- Render: tabs & segments ---------- */
+function renderTabs() {
+  const base = tickets.filter(t => !state.product || t.product === state.product);
+  const live = base.filter(t => !t.trashed);
+  const tabs = [
+    ["all", "All Tickets", live.filter(needsReply).length],
+    ["mine", "My Tickets", live.filter(t => t.agent === ME && needsReply(t)).length],
+    ["unassigned", "Unassigned", live.filter(t => !t.agent && needsReply(t)).length],
+    ["trash", "Trashed", base.filter(t => t.trashed).length],
+  ];
+  $("#tabs").innerHTML = tabs.map(([k, l, n]) =>
+    `<button class="tab ${state.tab === k ? "active" : ""}" data-tab="${k}">${l}<span class="count">${n}</span></button>`).join("");
+
+  const sc = scoped();
+  const segs = ["Waiting", "Replied", "All"];
+  $("#statusSeg").innerHTML = segs.map(s => {
+    const n = s === "All" ? sc.length : sc.filter(t => stateOf(t) === s).length;
+    return `<button class="${state.status === s ? "active" : ""}" data-status="${s}">${STATE_LABEL[s] || s} <span style="color:var(--text-3)">${n}</span></button>`;
+  }).join("");
+  $("#statusSeg").style.display = state.tab === "trash" ? "none" : "";
+}
+
+/* ---------- Render: rows ---------- */
+function rowHtml(t) {
+  const nr = needsReply(t);
+  const waitCls = t.activity > D ? "late" : t.activity > 4 * H ? "warn" : "ok";
+  const agent = t.agent
+    ? `<div class="agent"><span class="avatar sm" style="background:${agentColor(t.agent)}">${initials(t.agent)}</span>${esc(t.agent)}${t.agent === ME ? ' <span style="color:var(--text-3)">(you)</span>' : ""}</div>`
+    : `<div class="agent none"><span class="ph">${ICON.user}</span>Unassigned</div>`;
+  return `
+  <tr data-id="${t.id}" class="${state.selected.has(t.id) ? "selected" : ""} ${nr ? "needs" : ""} ${t.unread ? "is-unread" : ""}">
+    <td class="col-check"><input type="checkbox" class="chk row-chk" ${state.selected.has(t.id) ? "checked" : ""} aria-label="Select ticket ${t.id}"></td>
+    <td>
+      <div class="t-main">
+        <span class="avatar" style="background:${colorFor(t.customer)}">${initials(t.customer)}</span>
+        <div class="t-body">
+          <div class="t-title">${t.unread ? '<span class="unread" title="Unread"></span>' : ""}<span class="txt">${esc(t.title)}</span></div>
+          <div class="t-meta">${esc(t.customer)}<span class="sep"></span>${esc(t.email)}<span class="sep"></span>${esc(t.category)}</div>
+          <div class="t-excerpt">${esc(t.excerpt)}</div>
+          <div class="t-badges">
+            ${nr ? `<span class="badge b-await">${ICON.clock}Waiting for reply · ${dur(t.activity)}</span>` : `<span class="badge b-replied"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Replied ${ago(t.activity)}</span>`}
+            <span class="badge b-id mono">#${t.id}</span>
+            <span class="badge b-product">${esc(t.product)}</span>
+            ${t.tags.slice(0, 2).map(g => `<span class="badge b-tag">#${esc(g)}</span>`).join("")}
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="col-prio"><span class="prio p-${t.priority.toLowerCase()}"><i></i>${t.priority}</span></td>
+    <td class="col-replies"><span class="replies">${ICON.chat}${t.replies}</span></td>
+    <td class="col-agent">${agent}</td>
+    <td class="col-date">
+      <div class="dates">
+        <div title="Last activity">${ICON.chat}<span class="${nr ? "wait " + waitCls : ""}">${ago(t.activity)}</span>${t.lastBy === "customer" ? "" : " · agent"}</div>
+        <div title="Created">${ICON.plus}Opened ${ago(t.created)}</div>
+      </div>
+    </td>
+  </tr>`;
+}
+
+function render() {
+  renderKpis();
+  renderTabs();
+  const list = filtered();
+  const pages = Math.max(1, Math.ceil(list.length / state.perPage));
+  state.page = Math.min(state.page, pages);
+  const start = (state.page - 1) * state.perPage;
+  const pageItems = list.slice(start, start + state.perPage);
+
+  $("#rows").innerHTML = pageItems.length ? pageItems.map(rowHtml).join("") : `
+    <tr><td colspan="6"><div class="empty">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--border-strong)" stroke-width="1.5"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+      <h3>No tickets match</h3>Try a different status or clear your filters.
+    </div></td></tr>`;
+
+  $("#showing").textContent = list.length ? `Showing ${start + 1}–${start + pageItems.length} of ${list.length} tickets` : "0 tickets";
+  let pg = `<button data-page="${state.page - 1}" ${state.page === 1 ? "disabled" : ""} aria-label="Previous">‹</button>`;
+  for (let i = 1; i <= pages; i++) pg += `<button data-page="${i}" class="${i === state.page ? "active" : ""}">${i}</button>`;
+  pg += `<button data-page="${state.page + 1}" ${state.page === pages ? "disabled" : ""} aria-label="Next">›</button>`;
+  $("#pager").innerHTML = pg;
+
+  const ids = pageItems.map(t => t.id);
+  const all = $("#checkAll");
+  all.checked = ids.length > 0 && ids.every(id => state.selected.has(id));
+  all.indeterminate = !all.checked && ids.some(id => state.selected.has(id));
+  $("#bulk").classList.toggle("show", state.selected.size > 0);
+  $("#bulkCount").textContent = `${state.selected.size} ticket${state.selected.size === 1 ? "" : "s"} selected`;
+  $("#bulk [data-bulk=trash]").textContent = state.tab === "trash" ? "Restore" : "Move to trash";
+
+  for (const [id, key] of [["#fCategory","category"],["#fPriority","priority"],["#fAgent","agent"],["#fTag","tag"]])
+    $(id).classList.toggle("set", !!state[key]);
+}
+
+/* ---------- Filters setup ---------- */
+const opts = (sel, first, values) => $(sel).innerHTML = `<option value="">${first}</option>` + values.map(v => Array.isArray(v) ? `<option value="${v[0]}">${v[1]}</option>` : `<option>${v}</option>`).join("");
+opts("#productTop", "All products", PRODUCTS);
+opts("#fCategory", "All categories", CATEGORIES);
+opts("#fPriority", "All priorities", PRIORITIES);
+opts("#fAgent", "All agents", [["__none", "Unassigned"], ...AGENTS.map(a => [a.name, a.name === ME ? `${a.name} (you)` : a.name])]);
+opts("#fTag", "All tags", [...new Set(tickets.flatMap(t => t.tags))].sort());
+$("#fSort").innerHTML = [["activity","Recently active"],["waiting","Longest waiting"],["priority","Priority"],["newest","Newest first"],["oldest","Oldest activity"]].map(([v,l]) => `<option value="${v}">${l}</option>`).join("");
+
+const toast = msg => { const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2000); };
+const set = patch => { Object.assign(state, patch, { page: patch.page ?? 1 }); if (!("selected" in patch) && patch.page === undefined) state.selected.clear(); render(); };
+
+/* ---------- Events ---------- */
+$("#tabs").onclick = e => { const b = e.target.closest("[data-tab]"); if (b) set({ tab: b.dataset.tab, kpi: "" }); };
+$("#statusSeg").onclick = e => { const b = e.target.closest("[data-status]"); if (b) set({ status: b.dataset.status, kpi: "" }); };
+$("#q").oninput = e => set({ q: e.target.value });
+$("#fCategory").onchange = e => set({ category: e.target.value });
+$("#fPriority").onchange = e => set({ priority: e.target.value });
+$("#fAgent").onchange = e => set({ agent: e.target.value });
+$("#fTag").onchange = e => set({ tag: e.target.value });
+$("#fSort").onchange = e => set({ sort: e.target.value });
+$("#productTop").onchange = e => set({ product: e.target.value });
+$("#perPage").onchange = e => set({ perPage: +e.target.value });
+document.querySelectorAll("th[data-sort]").forEach(th => th.onclick = () => { $("#fSort").value = th.dataset.sort; set({ sort: th.dataset.sort }); });
+
+function resetFilters(extra = {}) {
+  Object.assign(state, { status: "Waiting", q: "", category: "", priority: "", agent: "", tag: "", sort: "activity", kpi: "", ...extra });
+  $("#q").value = "";
+  ["#fCategory","#fPriority","#fAgent","#fTag"].forEach(s => $(s).value = ""); $("#fSort").value = state.sort;
+  set({});
+}
+$("#reset").onclick = () => resetFilters({ tab: "all" });
+
+$("#kpis").onclick = e => {
+  const b = e.target.closest("[data-kpi]"); if (!b) return;
+  const k = b.dataset.kpi;
+  if (state.kpi === k) return resetFilters({ tab: "all" });
+  const map = {
+    waiting: { tab: "all", status: "Waiting", sort: "waiting" },
+    replied: { tab: "all", status: "Replied" },
+    unassigned: { tab: "unassigned", status: "Waiting", sort: "waiting" },
+    overdue: { tab: "all", status: "Waiting", sort: "waiting" },
+    response: { tab: "all", status: "All" },
+  };
+  resetFilters({ ...map[k], kpi: k });
+};
+
+$("#pager").onclick = e => { const b = e.target.closest("[data-page]"); if (b && !b.disabled) { state.page = +b.dataset.page; render(); } };
+
+$("#rows").onclick = e => {
+  const tr = e.target.closest("tr[data-id]"); if (!tr) return;
+  const id = +tr.dataset.id;
+  if (e.target.classList.contains("row-chk")) {
+    e.target.checked ? state.selected.add(id) : state.selected.delete(id);
+    return render();
+  }
+  const t = tickets.find(x => x.id === id); t.unread = false; render();
+  toast(`Opening #${id} — ${t.title}`);
+};
+$("#checkAll").onchange = e => {
+  const list = filtered(), start = (state.page - 1) * state.perPage;
+  list.slice(start, start + state.perPage).forEach(t => e.target.checked ? state.selected.add(t.id) : state.selected.delete(t.id));
+  render();
+};
+$("#bulk").onclick = e => {
+  const b = e.target.closest("[data-bulk]"); if (!b) return;
+  const sel = tickets.filter(t => state.selected.has(t.id)), n = sel.length;
+  if (b.dataset.bulk === "assign") { sel.forEach(t => t.agent = ME); toast(`${n} assigned to you`); }
+  if (b.dataset.bulk === "resolve") { sel.forEach(t => { if (t.lastBy === "customer") t.replies++; t.lastBy = "agent"; t.activity = 0; t.unread = false; if (!t.agent) t.agent = ME; }); toast(`${n} marked as replied`); }
+  if (b.dataset.bulk === "trash") { const restore = state.tab === "trash"; sel.forEach(t => t.trashed = !restore); toast(restore ? `${n} restored` : `${n} moved to trash`); }
+  state.selected.clear(); render();
+};
+$("#refresh").onclick = () => toast("Tickets up to date");
+$("#addTicket").onclick = () => toast("New ticket form would open here");
+
+render();
+</script>
+</body>
+</html>

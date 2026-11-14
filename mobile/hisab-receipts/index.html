@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hisab Receipts – Mobile Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --page: #cfdedd;
+  --app: #f3f2ee;
+  --card: #ffffff;
+  --ink: #171717;
+  --dim: #78756e;
+  --faint: #b3b0a8;
+  --line: #e6e3dc;
+  --paper: #fdfcf8;
+  --paper-2: #f1efe9;
+  --red: #c2372b;
+  --red-bg: #fbeceA;
+  --green: #1d7a4c;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 14px/1.45 Manrope, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+svg { flex: none; }
+
+.page { max-width: 1240px; margin: 0 auto; padding: 56px 24px 80px; }
+.intro { margin-bottom: 44px; max-width: 720px; }
+.intro h1 { margin: 0 0 8px; font-size: 38px; font-weight: 300; letter-spacing: -.03em; }
+.intro h1 b { font-weight: 800; }
+.intro p { margin: 0; color: #4c5b5a; }
+
+.phones { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 56px 32px; justify-items: center; }
+.phone-wrap { text-align: center; max-width: 340px; }
+.phone-wrap > b { display: block; margin-top: 20px; font-size: 14px; font-weight: 700; }
+.phone-wrap > p { margin: 4px 0 0; font-size: 12.5px; color: #4c5b5a; }
+
+/* Phone */
+.phone { position: relative; width: 340px; height: 720px; border-radius: 46px; background: var(--app); overflow: hidden; text-align: left; box-shadow: 0 0 0 8px #111, 0 0 0 9px #2a2a2a, 0 40px 70px -25px rgba(20, 50, 50, .45); }
+.phone::before { content: ""; position: absolute; top: 12px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: #111; z-index: 40; }
+.status { position: absolute; top: 0; left: 0; right: 0; height: 36px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; z-index: 30; }
+.status .r { display: flex; align-items: center; gap: 5px; }
+.batt { display: inline-block; width: 20px; height: 10px; border-radius: 3px; border: 1.3px solid var(--ink); padding: 1px; }
+.batt::before { content: ""; display: block; height: 100%; width: 70%; background: var(--ink); border-radius: 1px; }
+.gesture { position: absolute; bottom: 8px; left: 50%; width: 100px; height: 4px; margin-left: -50px; border-radius: 4px; background: rgba(0, 0, 0, .35); z-index: 60; }
+.screen { position: absolute; inset: 0; padding-top: 38px; display: flex; flex-direction: column; }
+.scroll { flex: 1; overflow-y: auto; scrollbar-width: none; }
+.scroll::-webkit-scrollbar { display: none; }
+
+/* Shared */
+.top { display: flex; align-items: center; gap: 10px; padding: 8px 18px 12px; }
+.top h2 { margin: 0; flex: 1; font-size: 26px; font-weight: 300; letter-spacing: -.03em; }
+.top h2 b { font-weight: 800; }
+.top .title { flex: 1; min-width: 0; }
+.top .title b { display: block; font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top .title span { display: block; font-size: 11.5px; color: var(--dim); }
+.iconbtn { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); }
+.iconbtn svg { width: 18px; height: 18px; }
+.money { font-family: var(--mono); font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
+
+/* ---------- Screen 1: list ---------- */
+.summary { margin: 0 18px 14px; padding: 18px; border-radius: 22px; background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+.summary::after { content: ""; position: absolute; right: -30px; top: -30px; width: 120px; height: 120px; border-radius: 50%; border: 22px solid rgba(255, 255, 255, .05); }
+.summary small { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.summary .big { display: block; margin: 4px 0 14px; font-size: 30px; }
+.summary .big i { font-style: normal; font-weight: 400; color: rgba(255, 255, 255, .55); margin-right: 4px; }
+.summary .split { display: flex; gap: 8px; }
+.summary .split div { flex: 1; padding: 9px 11px; border-radius: 12px; background: rgba(255, 255, 255, .08); font-size: 11px; color: rgba(255, 255, 255, .6); }
+.summary .split b { display: block; margin-top: 1px; font: 700 13.5px var(--mono); color: #fff; }
+.summary .split .ret b { color: #ff9b90; }
+
+.searchbox { margin: 0 18px 10px; height: 44px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); display: flex; align-items: center; gap: 10px; padding: 0 16px; color: var(--dim); }
+.searchbox input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font-size: 13.5px; color: var(--ink); }
+.chips { display: flex; gap: 6px; padding: 0 18px 6px; }
+.chip { height: 30px; padding: 0 13px; border-radius: 15px; background: var(--card); border: 1px solid var(--line); font-size: 12px; font-weight: 600; color: var(--dim); }
+.chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.group { padding: 14px 24px 6px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.ledger { display: flex; align-items: center; gap: 12px; width: calc(100% - 24px); margin: 0 12px 6px; padding: 12px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); text-align: left; transition: border-color .15s, transform .15s; }
+.ledger:active { transform: scale(.985); }
+.ledger.sel { border-color: var(--ink); }
+.stub { width: 40px; height: 46px; flex: none; position: relative; border-radius: 6px 6px 0 0; background: var(--paper-2); padding: 9px 7px 0; }
+.stub::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 4px; background: radial-gradient(circle at 3px 4px, transparent 2.6px, var(--paper-2) 3px) 0 0/6px 4px repeat-x; }
+.stub i { display: block; height: 2.5px; border-radius: 2px; background: #cdc9bf; margin-bottom: 4px; }
+.stub i:nth-child(2) { width: 70%; } .stub i:nth-child(3) { width: 85%; } .stub i:nth-child(4) { width: 55%; background: var(--ink); }
+.ledger .info { flex: 1; min-width: 0; }
+.ledger .info b { display: block; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ledger .info span { display: block; font-size: 11.5px; color: var(--dim); }
+.ledger .info em { font-style: normal; color: var(--red); }
+.ledger .amt { text-align: right; }
+.ledger .amt .money { font-size: 14.5px; }
+.ledger .amt span { display: block; font-size: 10.5px; color: var(--faint); margin-top: 1px; }
+.empty { padding: 40px 30px; text-align: center; color: var(--dim); font-size: 13px; }
+
+.fab { position: absolute; right: 18px; bottom: 30px; height: 54px; padding: 0 22px 0 18px; border-radius: 27px; background: var(--ink); color: #fff; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .45); z-index: 20; }
+
+/* ---------- Screen 2: receipt ---------- */
+.receipt-bg { padding: 10px 18px 120px; }
+.paper-wrap { filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .08)) drop-shadow(0 10px 18px rgba(0, 0, 0, .08)); }
+.paper { position: relative; margin: 8px 0; padding: 22px 18px 20px; background: linear-gradient(180deg, var(--paper) 0%, var(--paper) 75%, #f2f1ec 100%); font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: #262626; }
+.paper::before, .paper::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; }
+.paper::before { top: -8px; background: radial-gradient(circle at 6px 0, transparent 5px, var(--paper) 5.5px) 0 0/12px 8px repeat-x; }
+.paper::after { bottom: -8px; background: radial-gradient(circle at 6px 8px, transparent 5px, #f2f1ec 5.5px) 0 0/12px 8px repeat-x; }
+.p-head { text-align: center; }
+.p-head .kicker { font-size: 11px; letter-spacing: .3em; color: #555; }
+.p-head h3 { margin: 6px 0 2px; font: 800 19px/1.2 var(--mono); letter-spacing: -.02em; color: #111; }
+.kv { display: flex; justify-content: space-between; gap: 10px; }
+.kv span:first-child { color: #777; }
+.rule { border: 0; border-top: 1.5px dashed #bdb9b0; margin: 12px 0; }
+.rule.double { border-top: 4px double #9d998f; }
+.stars { text-align: center; color: #aaa59a; letter-spacing: .1em; overflow: hidden; white-space: nowrap; margin: 12px 0; }
+.day { margin-top: 14px; }
+.day:first-of-type { margin-top: 0; }
+.day-h { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; margin: 0 -8px 6px; background: #efede6; border-radius: 4px; font-weight: 700; font-size: 11px; letter-spacing: .04em; }
+.day-h span { font-weight: 400; color: #888; }
+.cols { display: flex; justify-content: space-between; font-size: 10px; color: #999; letter-spacing: .08em; margin-bottom: 2px; }
+.line { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-radius: 4px; }
+.line .n { min-width: 0; }
+.line .n b { font-weight: 500; color: #1d1d1d; }
+.line .n small { display: block; font-size: 10.5px; color: #8a867c; }
+.line .a { text-align: right; white-space: nowrap; color: #1d1d1d; }
+.line.ret .n b, .line.ret .a { color: var(--red); }
+.line.ret .tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .08em; padding: 0 4px; margin-right: 5px; border: 1px solid var(--red); border-radius: 3px; vertical-align: 1px; line-height: 13px; }
+.line.flash { animation: flash 1.6s ease-out; }
+@keyframes flash { 0% { background: #fff2a8; } 100% { background: transparent; } }
+.subtotal { display: flex; justify-content: space-between; margin-top: 4px; padding-top: 4px; border-top: 1px dotted #c9c5bb; color: #666; }
+.subtotal b { color: #222; font-weight: 700; }
+.totals .kv { padding: 1px 0; }
+.totals .kv.ret span:last-child { color: var(--red); }
+.grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px; }
+.grand span { font-size: 15px; font-weight: 800; letter-spacing: .05em; }
+.grand b { font-size: 21px; font-weight: 800; letter-spacing: -.03em; color: #111; }
+.barcode { height: 38px; margin: 14px 18px 4px; }
+.foot { text-align: center; color: #888; font-size: 10.5px; }
+.foot b { display: block; color: #444; font-size: 11.5px; letter-spacing: .12em; margin-top: 8px; }
+
+.dock { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 18px 26px; display: flex; gap: 10px; background: linear-gradient(180deg, rgba(243, 242, 238, 0), var(--app) 35%); z-index: 20; }
+.dock .ghost { width: 54px; height: 54px; border-radius: 27px; background: var(--card); border: 1px solid var(--line); display: grid; place-items: center; }
+.dock .main { flex: 1; height: 54px; border-radius: 27px; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .45); }
+
+/* ---------- Screen 3: add entry ---------- */
+.dimmed { position: absolute; inset: 0; padding-top: 38px; filter: blur(1.5px); opacity: .55; pointer-events: none; }
+.scrim { position: absolute; inset: 0; background: rgba(20, 20, 20, .38); z-index: 10; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--app); border-radius: 28px 28px 0 0; padding: 10px 18px 28px; box-shadow: 0 -10px 30px rgba(0, 0, 0, .15); }
+.grip { width: 40px; height: 4px; border-radius: 2px; background: #d3d0c8; margin: 0 auto 12px; }
+.sheet h4 { margin: 0 0 2px; font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+.sheet .for { font-size: 12px; color: var(--dim); margin-bottom: 14px; }
+.seg { display: flex; padding: 4px; border-radius: 14px; background: #e7e5df; margin-bottom: 12px; }
+.seg button { flex: 1; height: 36px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--dim); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.seg button.on { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .1); }
+.seg button.on.ret { color: var(--red); }
+.field { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 7px 12px 6px; margin-bottom: 8px; }
+.field:focus-within { border-color: var(--ink); }
+.field span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+.field input, .field select { width: 100%; border: 0; outline: 0; background: none; font-size: 15px; font-weight: 600; padding: 1px 0; }
+.field input.mono { font-family: var(--mono); }
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; min-width: 0; }
+.row .unit { flex: .75; }
+.sugg { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px 10px; padding: 0 18px; }
+.sugg::-webkit-scrollbar { display: none; }
+.sugg button { flex: none; height: 28px; padding: 0 11px; border-radius: 14px; border: 1px dashed #c8c4bb; font-size: 12px; font-weight: 600; color: #555; }
+.sugg button i { font-style: normal; font-family: var(--mono); color: var(--faint); margin-left: 4px; font-size: 11px; }
+.dates { display: flex; gap: 6px; margin-bottom: 10px; }
+.dates button { height: 30px; padding: 0 11px; white-space: nowrap; border-radius: 15px; border: 1px solid var(--line); background: var(--card); font-size: 12px; font-weight: 600; color: var(--dim); }
+.dates button.on { border-color: var(--ink); color: var(--ink); }
+.calc { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; margin: 4px 0 12px; border-radius: 14px; background: var(--paper); border: 1.5px dashed #cfcbc2; font-family: var(--mono); }
+.calc small { color: var(--dim); font-size: 11.5px; }
+.calc b { font-size: 18px; font-weight: 800; }
+.calc.ret b { color: var(--red); }
+.save { width: 100%; height: 52px; border-radius: 26px; background: var(--ink); color: #fff; font-weight: 700; font-size: 14.5px; }
+.save:disabled { opacity: .35; cursor: default; }
+.save.ret { background: var(--red); }
+
+.toast { position: absolute; left: 50%; top: 52px; transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 600; padding: 9px 16px; border-radius: 20px; white-space: nowrap; transition: .25s; z-index: 50; pointer-events: none; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 400px) {
+  .page { padding: 32px 16px 60px; }
+  .intro h1 { font-size: 30px; }
+  .phone { width: 320px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <h1><b>Hisab</b> receipts</h1>
+    <p>Mobile mockup. Each receipt holds the entries you would write on paper: the date, then each item with its quantity, rate and cost. Returns are shown in red and taken off the total. You can click through it: open a receipt from the list, then add an entry in the third phone.</p>
+  </div>
+
+  <div class="phones">
+    <!-- 1. List -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="status"><span>21:40</span><span class="r">5G <span class="batt"></span></span></div>
+        <div class="screen">
+          <div class="top">
+            <h2><b>Hisab</b></h2>
+            <button class="iconbtn" aria-label="More"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+          </div>
+          <div class="scroll">
+            <div class="summary">
+              <small>Spent in November</small>
+              <span class="big money" id="sumNet"></span>
+              <div class="split">
+                <div>Bought<b id="sumBuy"></b></div>
+                <div class="ret">Returned<b id="sumRet"></b></div>
+              </div>
+            </div>
+            <label class="searchbox">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input id="q" placeholder="Search receipts or items">
+            </label>
+            <div class="chips" id="chips">
+              <button class="chip on" data-f="all">All</button>
+              <button class="chip" data-f="month">This month</button>
+              <button class="chip" data-f="ret">With returns</button>
+            </div>
+            <div id="list"></div>
+            <div style="height:100px"></div>
+          </div>
+          <button class="fab"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New receipt</button>
+        </div>
+        <div class="gesture"></div>
+      </div>
+      <b>1 · Receipts list</b>
+      <p>Each row shows the name, when it was last edited and its total. Search also matches item names.</p>
+    </div>
+
+    <!-- 2. Receipt -->
+    <div class="phone-wrap">
+      <div class="phone" id="phone2">
+        <div class="status"><span>21:40</span><span class="r">5G <span class="batt"></span></span></div>
+        <div class="screen" id="receiptScreen"></div>
+        <div class="gesture"></div>
+      </div>
+      <b>2 · Receipt view</b>
+      <p>The paper-receipt view, grouped by day, with a subtotal for each day. Bought minus returned gives the total.</p>
+    </div>
+
+    <!-- 3. Add entry -->
+    <div class="phone-wrap">
+      <div class="phone" id="phone3">
+        <div class="status"><span>21:40</span><span class="r">5G <span class="batt"></span></span></div>
+        <div class="dimmed" id="dimmed"></div>
+        <div class="scrim"></div>
+        <form class="sheet" id="form" autocomplete="off">
+          <div class="grip"></div>
+          <h4>Add entry</h4>
+          <div class="for" id="formFor"></div>
+          <div class="seg" id="seg">
+            <button type="button" class="on" data-t="buy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Bought</button>
+            <button type="button" class="ret" data-t="ret"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg>Returned</button>
+          </div>
+          <div class="dates" id="dates"></div>
+          <label class="field"><span>Item</span><input id="fItem" placeholder="e.g. Rice"></label>
+          <div class="sugg" id="sugg"></div>
+          <div class="row">
+            <label class="field"><span>Qty</span><input id="fQty" class="mono" inputmode="decimal" value="1"></label>
+            <label class="field unit"><span>Unit</span><select id="fUnit"><option>kg</option><option>pcs</option><option>L</option><option>dozen</option><option>pack</option></select></label>
+            <label class="field"><span>Rate ৳</span><input id="fRate" class="mono" inputmode="decimal" placeholder="0"></label>
+          </div>
+          <div class="calc" id="calc"><small id="calcExpr">1 × 0</small><b id="calcAmt">৳0.00</b></div>
+          <button class="save" id="save" disabled>Add to receipt</button>
+        </form>
+        <div class="toast" id="toast"></div>
+        <div class="gesture"></div>
+      </div>
+      <b>3 · Add entry</b>
+      <p>Choose Bought or Returned, pick the day, and type the item, qty and rate. The cost is worked out as you type. Tap a recent item to fill its last rate.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const NOW = new Date(2026, 10, 3, 21, 40);
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+// e(day, type, item, qty, unit, rate). Dates are "YYYY-MM-DD".
+const e = (d, t, item, qty, unit, rate) => ({ d, t, item, qty, unit, rate });
+const ledgers = [
+  { id: 12, name: "Daily Bazaar", created: "2026-11-01", edited: new Date(2026, 10, 3, 21, 40), entries: [
+    e("2026-11-01","buy","Rice (Miniket)",5,"kg",72), e("2026-11-01","buy","Potato",3,"kg",40), e("2026-11-01","buy","Onion",2,"kg",95),
+    e("2026-11-01","buy","Soybean oil",2,"L",175), e("2026-11-01","buy","Eggs",12,"pcs",12.5),
+    e("2026-11-02","buy","Hilsa fish",1,"kg",1200), e("2026-11-02","buy","Green chili",0.25,"kg",160), e("2026-11-02","buy","Lentils (masoor)",1,"kg",135),
+    e("2026-11-02","ret","Soybean oil",1,"L",175),
+    e("2026-11-03","buy","Chicken (broiler)",1.5,"kg",210), e("2026-11-03","buy","Tomato",1,"kg",80), e("2026-11-03","ret","Eggs (broken)",2,"pcs",12.5),
+  ]},
+  { id: 11, name: "Office Supplies", created: "2026-10-30", edited: new Date(2026, 10, 2, 16, 5), entries: [
+    e("2026-10-30","buy","A4 paper (ream)",4,"pack",480), e("2026-10-30","buy","Printer toner",1,"pcs",2350), e("2026-10-30","buy","Gel pens",2,"dozen",180),
+    e("2026-11-02","buy","Sticky notes",3,"pack",95), e("2026-11-02","ret","Printer toner",1,"pcs",2350), e("2026-11-02","buy","Toner (compatible)",1,"pcs",1650),
+  ]},
+  { id: 10, name: "Eid Shopping", created: "2026-10-24", edited: new Date(2026, 9, 28, 19, 20), entries: [
+    e("2026-10-24","buy","Panjabi",2,"pcs",1850), e("2026-10-24","buy","Saree",1,"pcs",4200), e("2026-10-25","buy","Sandals",3,"pcs",950),
+    e("2026-10-28","ret","Sandals (size)",1,"pcs",950), e("2026-10-28","buy","Attar",2,"pcs",350),
+  ]},
+  { id: 9, name: "Kitchen Repair", created: "2026-10-18", edited: new Date(2026, 9, 25, 11, 0), entries: [
+    e("2026-10-18","buy","Tiles",40,"pcs",65), e("2026-10-18","buy","Cement",2,"pack",560), e("2026-10-19","buy","Tap (mixer)",1,"pcs",1450),
+    e("2026-10-25","buy","Mason labour",2,"pcs",900),
+  ]},
+  { id: 8, name: "Bills & Recharge", created: "2026-10-05", edited: new Date(2026, 9, 20, 9, 15), entries: [
+    e("2026-10-05","buy","Electricity bill",1,"pcs",1840), e("2026-10-05","buy","Internet (Oct)",1,"pcs",1000), e("2026-10-12","buy","Mobile recharge",2,"pcs",300),
+    e("2026-10-20","buy","Gas cylinder",1,"pcs",1450),
+  ]},
+];
+
+let current = ledgers[0];
+let filter = "all";
+
+const amt = x => x.qty * x.rate;
+const fmt = n => n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const tk = n => (n < 0 ? "−" : "") + "৳" + fmt(Math.abs(n));
+const qtyStr = q => String(+q.toFixed(2));
+const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const sameDay = (a, b) => iso(a) === iso(b);
+const pad = n => String(n).padStart(2, "0");
+const hm = d => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function totals(l) {
+  let buy = 0, ret = 0, nRet = 0;
+  for (const x of l.entries) x.t === "ret" ? (ret += amt(x), nRet++) : (buy += amt(x));
+  return { buy, ret, net: buy - ret, nRet, days: new Set(l.entries.map(x => x.d)).size };
+}
+function editedLabel(d) {
+  const y = new Date(NOW); y.setDate(y.getDate() - 1);
+  if (sameDay(d, NOW)) return "Today, " + hm(d);
+  if (sameDay(d, y)) return "Yesterday, " + hm(d);
+  return `${d.getDate()} ${MONTHS[d.getMonth()]}, ${hm(d)}`;
+}
+
+/* ---------- Screen 1 ---------- */
+function renderSummary() {
+  let buy = 0, ret = 0;
+  for (const l of ledgers) for (const x of l.entries) {
+    const d = parse(x.d);
+    if (d.getMonth() !== NOW.getMonth() || d.getFullYear() !== NOW.getFullYear()) continue;
+    x.t === "ret" ? (ret += amt(x)) : (buy += amt(x));
+  }
+  document.getElementById("sumNet").innerHTML = "<i>৳</i>" + fmt(buy - ret);
+  document.getElementById("sumBuy").textContent = tk(buy);
+  document.getElementById("sumRet").textContent = "−" + tk(ret);
+}
+
+function renderList() {
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const rows = ledgers
+    .filter(l => !q || l.name.toLowerCase().includes(q) || l.entries.some(x => x.item.toLowerCase().includes(q)))
+    .filter(l => filter !== "month" || (l.edited.getMonth() === NOW.getMonth() && l.edited.getFullYear() === NOW.getFullYear()))
+    .filter(l => filter !== "ret" || l.entries.some(x => x.t === "ret"))
+    .sort((a, b) => b.edited - a.edited);
+  let html = "", lastGroup = "";
+  for (const l of rows) {
+    const g = `${["January","February","March","April","May","June","July","August","September","October","November","December"][l.edited.getMonth()]} ${l.edited.getFullYear()}`;
+    if (g !== lastGroup) { html += `<div class="group">${g}</div>`; lastGroup = g; }
+    const t = totals(l);
+    html += `<button class="ledger${l === current ? " sel" : ""}" data-id="${l.id}">
+      <span class="stub"><i></i><i></i><i></i><i></i></span>
+      <span class="info"><b>${esc(l.name)}</b><span>Edited ${editedLabel(l.edited)}</span>
+        <span>${l.entries.length} entries${t.nRet ? ` · <em>${t.nRet} returned</em>` : ""}</span></span>
+      <span class="amt"><span class="money">${tk(t.net)}</span><span>#${pad(l.id).padStart(4, "0")}</span></span>
+    </button>`;
+  }
+  document.getElementById("list").innerHTML = html || `<div class="empty">No receipts match “${esc(q)}”.</div>`;
+}
+
+/* ---------- Screen 2 ---------- */
+function barcode(seed) {
+  let x = seed * 9301 + 49297, bars = "", pos = 0;
+  while (pos < 260) {
+    x = (x * 9301 + 49297) % 233280;
+    const w = 1 + (x % 3), gap = 1 + ((x >> 3) % 3);
+    bars += `<rect x="${pos}" width="${w}" height="38"/>`;
+    pos += w + gap;
+  }
+  return `<svg class="barcode" viewBox="0 0 ${pos} 38" preserveAspectRatio="none" fill="#2a2a2a">${bars}</svg>`;
+}
+
+function receiptHTML(l, flashIdx = -1) {
+  const t = totals(l);
+  const byDay = {};
+  l.entries.forEach((x, i) => (byDay[x.d] ||= []).push([x, i]));
+  const days = Object.keys(byDay).sort();
+  const created = parse(l.created);
+  let body = "";
+  for (const d of days) {
+    const dt = parse(d);
+    let sub = 0, lines = "";
+    for (const [x, i] of byDay[d]) {
+      const a = amt(x), r = x.t === "ret";
+      sub += r ? -a : a;
+      lines += `<div class="line${r ? " ret" : ""}${i === flashIdx ? " flash" : ""}">
+        <div class="n">${r ? '<span class="tag">RET</span>' : ""}<b>${esc(x.item)}</b><small>${qtyStr(x.qty)} ${x.unit} × ${fmt(x.rate)}</small></div>
+        <div class="a">${r ? "−" : ""}${fmt(a)}</div></div>`;
+    }
+    body += `<div class="day">
+      <div class="day-h">${pad(dt.getDate())} ${MONTHS[dt.getMonth()].toUpperCase()} ${dt.getFullYear()}<span>${DAYS[dt.getDay()].toUpperCase()}</span></div>
+      <div class="cols"><span>ITEM · QTY × RATE</span><span>AMOUNT</span></div>
+      ${lines}
+      <div class="subtotal"><span>Day total</span><b>${sub < 0 ? "−" : ""}${fmt(Math.abs(sub))}</b></div></div>`;
+  }
+  return `<div class="paper-wrap"><div class="paper">
+    <div class="p-head"><div class="kicker">CASH RECEIPT</div><h3>${esc(l.name)}</h3></div>
+    <hr class="rule">
+    <div class="kv"><span>Receipt No</span><span>#${String(l.id).padStart(4, "0")}</span></div>
+    <div class="kv"><span>Started</span><span>${pad(created.getDate())}/${pad(created.getMonth() + 1)}/${created.getFullYear()}</span></div>
+    <div class="kv"><span>Last edit</span><span>${pad(l.edited.getDate())}/${pad(l.edited.getMonth() + 1)}/${l.edited.getFullYear()} ${hm(l.edited)}</span></div>
+    <div class="kv"><span>Days · Entries</span><span>${t.days} · ${l.entries.length}</span></div>
+    <hr class="rule">
+    ${body}
+    <hr class="rule">
+    <div class="totals">
+      <div class="kv"><span>Bought (${l.entries.length - t.nRet})</span><span>${fmt(t.buy)}</span></div>
+      <div class="kv ret"><span>Returned (${t.nRet})</span><span>−${fmt(t.ret)}</span></div>
+    </div>
+    <hr class="rule double">
+    <div class="grand"><span>TOTAL</span><b>৳${fmt(t.net)}</b></div>
+    <div class="stars">************************************************</div>
+    ${barcode(l.id)}
+    <div class="foot">${String(l.id).padStart(4, "0")}${iso(l.edited).replace(/-/g, "")}${hm(l.edited).replace(":", "")}<b>— END OF RECEIPT —</b></div>
+  </div></div>`;
+}
+
+function renderReceipt(flashIdx) {
+  const scr = document.getElementById("receiptScreen");
+  const prevScroll = scr.querySelector(".scroll")?.scrollTop ?? 0;
+  scr.innerHTML = `
+    <div class="top">
+      <button class="iconbtn" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="title"><b>${esc(current.name)}</b><span>Edited ${editedLabel(current.edited)}</span></div>
+      <button class="iconbtn" aria-label="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button>
+    </div>
+    <div class="scroll"><div class="receipt-bg">${receiptHTML(current, flashIdx)}</div></div>
+    <div class="dock">
+      <button class="ghost" aria-label="Edit"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg></button>
+      <button class="main" id="addBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add entry</button>
+    </div>`;
+  const sc = scr.querySelector(".scroll");
+  if (flashIdx >= 0) {
+    const el = sc.querySelector(".flash");
+    sc.scrollTop = el ? el.offsetTop - 160 : prevScroll;
+  } else sc.scrollTop = 0;
+  document.getElementById("addBtn").onclick = () => {
+    document.getElementById("phone3").scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => document.getElementById("fItem").focus({ preventScroll: true }), 400);
+  };
+  // Blurred copy of the receipt behind the sheet on phone 3
+  document.getElementById("dimmed").innerHTML = `<div class="top"><div class="title"><b>${esc(current.name)}</b></div></div>
+    <div class="receipt-bg" style="padding-top:0">${receiptHTML(current)}</div>`;
+  document.getElementById("formFor").textContent = `To “${current.name}” · receipt #${String(current.id).padStart(4, "0")}`;
+  renderSuggestions();
+}
+
+/* ---------- Screen 3 ---------- */
+let type = "buy";
+const yday = new Date(NOW); yday.setDate(yday.getDate() - 1);
+const dateOpts = [["Today", iso(NOW)], ["Yesterday", iso(yday)]];
+let pickedDate = dateOpts[0][1];
+
+function renderDates() {
+  document.getElementById("dates").innerHTML = dateOpts.map(([label, d]) =>
+    `<button type="button" class="${d === pickedDate ? "on" : ""}" data-d="${d}">${label}</button>`).join("")
+    + `<button type="button" data-d="pick">Pick date…</button>`;
+}
+function renderSuggestions() {
+  const seen = new Map();
+  for (const x of [...current.entries].reverse()) {
+    const key = x.item.replace(/\s*\(.*\)$/, "");
+    if (x.t === "buy" && !seen.has(key)) seen.set(key, x);
+  }
+  document.getElementById("sugg").innerHTML = [...seen.values()].slice(0, 8).map(x =>
+    `<button type="button" data-item="${esc(x.item)}" data-unit="${x.unit}" data-rate="${x.rate}">${esc(x.item)}<i>${x.rate}</i></button>`).join("");
+}
+function updateCalc() {
+  const q = parseFloat(document.getElementById("fQty").value) || 0;
+  const r = parseFloat(document.getElementById("fRate").value) || 0;
+  const a = q * r;
+  document.getElementById("calcExpr").textContent = `${qtyStr(q)} ${document.getElementById("fUnit").value} × ${fmt(r)}`;
+  document.getElementById("calcAmt").textContent = (type === "ret" ? "−" : "") + "৳" + fmt(a);
+  document.getElementById("calc").classList.toggle("ret", type === "ret");
+  const save = document.getElementById("save");
+  save.disabled = !(a > 0 && document.getElementById("fItem").value.trim());
+  save.classList.toggle("ret", type === "ret");
+  save.textContent = type === "ret" ? "Add return" : "Add to receipt";
+}
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+document.getElementById("seg").onclick = ev => {
+  const b = ev.target.closest("button"); if (!b) return;
+  type = b.dataset.t;
+  document.querySelectorAll("#seg button").forEach(x => x.classList.toggle("on", x === b));
+  updateCalc();
+};
+document.getElementById("dates").onclick = ev => {
+  const b = ev.target.closest("button"); if (!b) return;
+  if (b.dataset.d === "pick") {
+    const d = new Date(NOW); d.setDate(d.getDate() - 2);
+    if (!dateOpts.some(o => o[1] === iso(d))) dateOpts.push([DAYS[d.getDay()], iso(d)]);
+    pickedDate = iso(d);
+  } else pickedDate = b.dataset.d;
+  renderDates();
+};
+document.getElementById("sugg").onclick = ev => {
+  const b = ev.target.closest("button"); if (!b) return;
+  document.getElementById("fItem").value = b.dataset.item;
+  document.getElementById("fUnit").value = b.dataset.unit;
+  document.getElementById("fRate").value = b.dataset.rate;
+  document.getElementById("fQty").select();
+  updateCalc();
+};
+["fItem", "fQty", "fRate", "fUnit"].forEach(id => document.getElementById(id).addEventListener("input", updateCalc));
+document.getElementById("form").onsubmit = ev => {
+  ev.preventDefault();
+  const item = document.getElementById("fItem").value.trim();
+  const qty = parseFloat(document.getElementById("fQty").value), rate = parseFloat(document.getElementById("fRate").value);
+  if (!item || !(qty > 0) || !(rate > 0)) return;
+  current.entries.push(e(pickedDate, type, item, qty, document.getElementById("fUnit").value, rate));
+  current.edited = new Date(NOW);
+  renderReceipt(current.entries.length - 1);
+  renderList(); renderSummary();
+  toast(`${type === "ret" ? "Return" : "Entry"} added · total ${tk(totals(current).net)}`);
+  document.getElementById("fItem").value = ""; document.getElementById("fRate").value = ""; document.getElementById("fQty").value = "1";
+  updateCalc();
+};
+
+/* ---------- Wiring ---------- */
+document.getElementById("list").onclick = ev => {
+  const b = ev.target.closest(".ledger"); if (!b) return;
+  current = ledgers.find(l => l.id === +b.dataset.id);
+  renderList(); renderReceipt();
+  if (innerWidth < 760) document.getElementById("phone2").scrollIntoView({ behavior: "smooth", block: "center" });
+};
+document.getElementById("q").addEventListener("input", renderList);
+document.getElementById("chips").onclick = ev => {
+  const b = ev.target.closest(".chip"); if (!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll("#chips .chip").forEach(x => x.classList.toggle("on", x === b));
+  renderList();
+};
+
+renderSummary(); renderList(); renderReceipt(); renderDates(); updateCalc();
+</script>
+</body>
+</html>

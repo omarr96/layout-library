@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111113; --tx: #3f3f46; --mut: #71717a; --faint: #a1a1aa;
+  --line: #ececef; --line2: #e2e2e6; --soft: #f7f7f8; --hover: #f4f4f5; --side: #fafafa;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { font: 14px/1.55 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+.app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
+
+/* sidebar menu */
+.side { position: sticky; top: 0; height: 100vh; overflow: auto; background: var(--side); border-right: 1px solid var(--line); padding: 18px 14px; display: flex; flex-direction: column; gap: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 4px; }
+.brand .lg { width: 32px; height: 32px; border-radius: 9px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.brand b { display: block; color: var(--ink); font-weight: 600; line-height: 1.2; }
+.brand small { color: var(--mut); font-size: 12px; }
+.search { position: relative; }
+.search svg { position: absolute; left: 11px; top: 10px; color: var(--faint); width: 15px; height: 15px; }
+.search input { width: 100%; height: 36px; border: 1px solid var(--line2); border-radius: 9px; padding: 0 12px 0 34px; background: #fff; outline: none; }
+.search input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
+.menu { display: grid; gap: 2px; }
+.menu h6 { margin: 4px 10px 6px; font-size: 12px; font-weight: 500; color: var(--mut); }
+.menu a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; color: var(--tx); }
+.menu a:hover { background: var(--hover); }
+.menu a.on { background: #efeff1; color: var(--ink); font-weight: 500; }
+.menu a .n { margin-left: auto; color: var(--faint); font-size: 12px; font-weight: 400; }
+.menu a i { width: 8px; height: 8px; border-radius: 3px; flex: none; }
+.side .foot { margin-top: auto; color: var(--faint); font-size: 12px; padding: 0 6px; }
+
+/* main */
+main { padding: 40px 36px 80px; min-width: 0; }
+.wrap { max-width: 1240px; margin: 0 auto; }
+.hero { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.hero h1 { margin: 0; font-size: 28px; font-weight: 600; color: var(--ink); letter-spacing: -.02em; }
+.hero p { margin: 6px 0 0; color: var(--mut); }
+.sort { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--soft); border: 1px solid var(--line); border-radius: 10px; }
+.sort button { height: 30px; padding: 0 12px; border-radius: 7px; color: var(--mut); font-weight: 500; font-size: 13px; }
+.sort button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
+section { margin-top: 44px; }
+.sh { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.sh h2 { margin: 0; font-size: 17px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.sh h2 i { width: 10px; height: 10px; border-radius: 3px; }
+.sh .n { color: var(--faint); font-size: 13px; }
+.sh p { margin: 0; color: var(--mut); font-size: 13px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+
+/* card */
+.card { display: flex; flex-direction: column; border: 1px solid var(--line2); border-radius: 14px; overflow: hidden; background: #fff; transition: border-color .15s, box-shadow .2s, transform .2s; }
+.card:hover { border-color: #cfcfd6; box-shadow: 0 16px 34px -22px rgba(0,0,0,.35); transform: translateY(-2px); }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); display: block; }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; background: #fff; }
+.shot .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--faint); font-size: 12px; }
+.shot .open { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,.95); display: grid; place-items: center; color: var(--ink); opacity: 0; transition: opacity .15s; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.card:hover .open { opacity: 1; }
+.body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.body .t { display: flex; align-items: center; gap: 8px; }
+.body h3 { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--ink); }
+.body .new { font-size: 11px; font-weight: 600; color: #166534; background: #effaf2; border-radius: 5px; padding: 1px 6px; }
+.body p { margin: 0; color: var(--mut); font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { margin-top: auto; padding-top: 8px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px; color: var(--faint); }
+.tag { font-size: 11.5px; color: var(--mut); background: var(--soft); border-radius: 5px; padding: 1px 7px; }
+.meta time { margin-left: auto; }
+.pages { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.pages a { font-size: 12px; padding: 3px 9px; border: 1px solid var(--line2); border-radius: 99px; color: var(--ink); }
+.pages a:hover { background: var(--soft); }
+.empty { padding: 60px 20px; text-align: center; color: var(--mut); }
+
+.menu-btn { display: none; }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 16px; gap: 12px; }
+  .menu { display: flex; overflow-x: auto; gap: 4px; scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu h6 { display: none; }
+  .menu a { flex: none; white-space: nowrap; border: 1px solid var(--line2); background: #fff; }
+  .menu a .n { margin-left: 2px; }
+  .side .foot { display: none; }
+  main { padding: 26px 16px 60px; }
+  .sort { margin-left: 0; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="lg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><div><b>Design Library</b><small id="total"></small></div></div>
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search designs" aria-label="Search designs"></label>
+    <nav class="menu" id="menu" aria-label="Categories"></nav>
+    <div class="foot">Every design opens in a new tab. Most pages have their own demo switches.</div>
+  </aside>
+
+  <main><div class="wrap">
+    <div class="hero">
+      <div><h1 id="title">All designs</h1><p id="sub">HTML mockups for the site builder, DiviMerc and other projects.</p></div>
+      <div class="sort" role="group" aria-label="Sort"><button class="on" data-sort="cat">By category</button><button data-sort="new">Newest</button><button data-sort="az">A–Z</button></div>
+    </div>
+    <div id="out"></div>
+  </div></main>
+</div>
+
+<script src="designs.js"></script>
+<script>
+const { cats: CATS, items: ITEMS } = window.DESIGNS;
+const COLORS = { 'site-builder': '#6d5dfc', 'site-dashboard': '#111113', 'woocommerce': '#4f5a3a', 'checkout-account': '#0e7490', 'admin-support': '#b45309', 'landing-pages': '#be185d', 'mobile': '#475569' };
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const state = { cat: 'all', q: '', sort: 'cat' };
+const newest = ITEMS.map(i => i.date).sort().pop();
+const fmt = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+const recent = d => (new Date(newest) - new Date(d)) / 864e5 <= 3;
+
+$('#total').textContent = `${ITEMS.length} designs`;
+
+function menu() {
+  const count = id => ITEMS.filter(i => i.cat === id).length;
+  $('#menu').innerHTML = `<h6>Browse</h6><a href="#" data-cat="all" class="${state.cat === 'all' ? 'on' : ''}">All designs<span class="n">${ITEMS.length}</span></a>`
+    + CATS.map(c => `<a href="#${c.id}" data-cat="${c.id}" class="${state.cat === c.id ? 'on' : ''}"><i style="background:${COLORS[c.id]}"></i>${c.name}<span class="n">${count(c.id)}</span></a>`).join('');
+}
+
+function card(d) {
+  const main = d.pages[0].href;
+  return `<article class="card">
+    <a class="shot" href="${main}" target="_blank" rel="noopener" aria-label="Open ${esc(d.title)}"><span class="ph">Loading preview…</span><iframe data-src="${main}" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+      <span class="open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    <div class="body">
+      <div class="t"><h3><a href="${main}" target="_blank" rel="noopener">${esc(d.title)}</a></h3>${recent(d.date) ? '<span class="new">New</span>' : ''}</div>
+      <p>${esc(d.desc)}</p>
+      ${d.pages.length > 1 ? `<div class="pages">${d.pages.map(p => `<a href="${p.href}" target="_blank" rel="noopener">${esc(p.label)}</a>`).join('')}</div>` : ''}
+      <div class="meta">${d.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}<time datetime="${d.date}">${fmt(d.date)}</time></div>
+    </div></article>`;
+}
+
+function render() {
+  const q = state.q.toLowerCase();
+  let list = ITEMS.filter(i => (state.cat === 'all' || i.cat === state.cat)
+    && (!q || [i.title, i.desc, ...i.tags, i.slug].join(' ').toLowerCase().includes(q)));
+  const c = CATS.find(x => x.id === state.cat);
+  $('#title').textContent = c ? c.name : q ? 'Search results' : 'All designs';
+  $('#sub').textContent = c ? c.desc : `${list.length} HTML mockups for the site builder, DiviMerc and other projects.`;
+  let html;
+  if (!list.length) html = `<div class="empty">No designs match “${esc(state.q)}”.</div>`;
+  else if (state.sort === 'cat') {
+    html = CATS.filter(c => list.some(i => i.cat === c.id)).map(c => { const l = list.filter(i => i.cat === c.id);
+      return `<section id="${c.id}"><div class="sh"><h2><i style="background:${COLORS[c.id]}"></i>${c.name}</h2><span class="n">${l.length}</span><p>${c.desc}</p></div><div class="grid">${l.map(card).join('')}</div></section>`; }).join('');
+  } else {
+    list = [...list].sort(state.sort === 'new' ? (a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title) : (a, b) => a.title.localeCompare(b.title));
+    html = `<section><div class="grid">${list.map(card).join('')}</div></section>`;
+  }
+  $('#out').innerHTML = html;
+  menu(); previews();
+}
+
+/* live previews: load each page in a scaled-down frame once it scrolls into view */
+const ro = new ResizeObserver(es => es.forEach(e => { const f = e.target.querySelector('iframe'); if (f) f.style.transform = `scale(${e.contentRect.width / 1440})`; }));
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const f = e.target.querySelector('iframe'); io.unobserve(e.target);
+  f.onload = () => { const ph = e.target.querySelector('.ph'); if (ph) ph.remove(); };
+  f.src = f.dataset.src;
+}), { rootMargin: '300px' });
+function previews() { document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); }); }
+
+$('#menu').addEventListener('click', e => {
+  const a = e.target.closest('[data-cat]'); if (!a) return;
+  e.preventDefault(); state.cat = a.dataset.cat; render(); scrollTo({ top: 0 });
+});
+document.querySelector('.sort').addEventListener('click', e => {
+  const b = e.target.closest('[data-sort]'); if (!b) return;
+  state.sort = b.dataset.sort; document.querySelectorAll('.sort button').forEach(x => x.classList.toggle('on', x === b)); render();
+});
+$('#q').addEventListener('input', e => { state.q = e.target.value.trim(); if (state.q) state.cat = 'all'; render(); });
+addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== $('#q')) { e.preventDefault(); $('#q').focus(); } });
+render();
+</script>
+</body>
+</html>

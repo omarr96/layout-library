@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void – Incoming Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --s1: #0b0b0b;
+  --s2: #141414;
+  --line: #1a1a1a;
+  --text: #f5f5f5;
+  --dim: #8a8a8a;
+  --accent: #ffffff;
+  --on-accent: #000;
+  --answer: #2fd36b;
+  --decline: #ff3b30;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #000; color: var(--text); font: 400 14px/1.45 Manrope, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+svg { flex: none; }
+
+.page { max-width: 1100px; margin: 0 auto; padding: 56px 24px 80px; }
+.intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
+.intro h1 { margin: 0 0 8px; font-size: 40px; font-weight: 300; letter-spacing: -.03em; }
+.intro h1 b { font-weight: 700; }
+.intro p { margin: 0; color: var(--dim); max-width: 500px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.controls input[type="text"] { height: 40px; width: 170px; padding: 0 14px; border-radius: 20px; border: 1px solid #222; background: var(--s1); color: var(--text); font: 500 13px Manrope, sans-serif; }
+.controls input[type="text"]:focus { outline: none; border-color: #444; }
+.cbtn { height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid #222; background: var(--s1); color: var(--text); font: 600 13px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.cbtn:hover { border-color: #444; }
+.cbtn svg { width: 16px; height: 16px; }
+.faces { display: flex; gap: 6px; }
+.faces button { width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0; background: center/cover; cursor: pointer; box-shadow: 0 0 0 2px #000, 0 0 0 3px transparent; }
+.faces button[aria-pressed="true"] { box-shadow: 0 0 0 2px #000, 0 0 0 3.5px var(--text); }
+
+.phones { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; }
+.phone-wrap { text-align: center; }
+.phone-wrap > span { display: block; margin-top: 16px; font-size: 13px; color: var(--dim); }
+
+/* Phone */
+.phone { position: relative; width: 320px; height: 692px; border-radius: 46px; background: #000; overflow: hidden; text-align: left; user-select: none; box-shadow: 0 0 0 1px #1c1c1c, 0 0 0 7px #070707, 0 0 0 8px #232323, 0 50px 100px -30px rgba(255, 255, 255, .06); }
+.phone::before { content: ""; position: absolute; top: 12px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: #0a0a0a; box-shadow: inset 0 0 0 2px #151515; z-index: 30; }
+.status { position: absolute; top: 0; left: 0; right: 0; height: 36px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; z-index: 20; }
+.status .r { display: flex; align-items: center; gap: 5px; }
+.status svg { width: 14px; height: 14px; }
+.batt i { display: inline-block; vertical-align: -1px; margin-left: 3px; width: 20px; height: 10px; border-radius: 3px; border: 1.3px solid var(--text); padding: 1px; }
+.batt i::before { content: ""; display: block; height: 100%; width: 78%; background: var(--text); border-radius: 1px; }
+.gesture { position: absolute; bottom: 8px; left: 50%; width: 96px; height: 4px; margin-left: -48px; border-radius: 4px; background: rgba(255, 255, 255, .35); z-index: 20; }
+
+/* Photo background + overlay */
+.photo { position: absolute; inset: 0; background: #0b0b0b var(--img) center 20% / cover no-repeat; transform: scale(1.06); animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: scale(1.14) translateY(-8px); } }
+.photo.noimg { background: radial-gradient(120% 80% at 50% 25%, #2a2a2a, #000 70%); }
+.photo.noimg::after { content: attr(data-initials); position: absolute; top: 24%; left: 0; right: 0; text-align: center; font-size: 120px; font-weight: 200; color: rgba(255, 255, 255, .12); letter-spacing: -.04em; }
+.overlay { position: absolute; inset: 0; background:
+    linear-gradient(180deg, rgba(0, 0, 0, .65) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(0deg, #000 0%, rgba(0, 0, 0, .92) 26%, rgba(0, 0, 0, .35) 52%, rgba(0, 0, 0, 0) 70%),
+    radial-gradient(140% 70% at 50% 100%, rgba(0, 0, 0, .5), transparent 70%); }
+.grain { position: absolute; inset: 0; opacity: .08; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; }
+
+.ui { position: absolute; inset: 0; padding: 48px 22px 26px; display: flex; flex-direction: column; z-index: 10; }
+
+/* Top label */
+.call-kind { display: inline-flex; align-self: center; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(0, 0, 0, .45); border: 1px solid rgba(255, 255, 255, .1); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+.call-kind .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--answer); box-shadow: 0 0 0 0 rgba(47, 211, 107, .6); animation: beat 1.4s infinite; }
+@keyframes beat { 70% { box-shadow: 0 0 0 7px rgba(47, 211, 107, 0); } 100% { box-shadow: 0 0 0 0 rgba(47, 211, 107, 0); } }
+.call-kind svg { width: 13px; height: 13px; }
+
+/* Name block */
+.who { margin-top: auto; text-align: center; }
+.who .name { font-size: 40px; font-weight: 300; letter-spacing: -.035em; line-height: 1.05; text-shadow: 0 2px 24px rgba(0, 0, 0, .5); overflow-wrap: anywhere; }
+.who .name b { font-weight: 600; display: block; }
+.who .meta { margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, .7); }
+.who .meta i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+.who .timer { margin-top: 10px; font-size: 15px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--answer); }
+
+/* Quick actions */
+.quick { display: flex; justify-content: center; gap: 10px; margin: 26px 0 22px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 14px; border-radius: 18px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font-size: 12.5px; font-weight: 600; color: var(--text); cursor: pointer; }
+.chip svg { width: 15px; height: 15px; }
+
+/* Swipe track */
+.answer-row { display: flex; align-items: center; gap: 10px; }
+.answer-row > .knob--decline { width: 72px; height: 72px; flex: none; box-shadow: 0 10px 26px -8px rgba(255, 59, 48, .55); }
+.track { flex: 1; position: relative; height: 72px; border-radius: 36px; background: rgba(20, 20, 20, .72); border: 1px solid rgba(255, 255, 255, .08); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); display: flex; align-items: center; justify-content: space-between; padding: 0 6px; overflow: hidden; }
+.track .hint { white-space: nowrap; position: absolute; inset: 0 0 0 60px; display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, .55); pointer-events: none; }
+.track .hint span { background: linear-gradient(90deg, rgba(255, 255, 255, .35) 0%, #fff 50%, rgba(255, 255, 255, .35) 100%) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 2.4s linear infinite; }
+@keyframes shine { to { background-position: -200% 0; } }
+.knob { position: relative; z-index: 2; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; touch-action: none; }
+.knob svg { width: 24px; height: 24px; }
+.knob--decline { background: var(--decline); color: #fff; cursor: pointer; border: 0; padding: 0; }
+.knob--decline svg { transform: rotate(135deg); }
+.knob--answer { background: var(--answer); color: #000; cursor: grab; box-shadow: 0 0 0 0 rgba(47, 211, 107, .5); animation: ring 1.8s infinite; }
+.knob--answer svg { animation: wiggle 1.8s infinite; }
+.knob--answer.dragging { cursor: grabbing; animation: none; transition: none; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(47, 211, 107, .5); } 70%, 100% { box-shadow: 0 0 0 16px rgba(47, 211, 107, 0); } }
+@keyframes wiggle { 0%, 60%, 100% { transform: rotate(0); } 10%, 30%, 50% { transform: rotate(-14deg); } 20%, 40% { transform: rotate(14deg); } }
+
+/* In-call controls */
+.controls-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 10px; margin: 26px 0 22px; }
+.ctl { display: grid; justify-items: center; gap: 7px; font-size: 11.5px; color: rgba(255, 255, 255, .7); cursor: pointer; }
+.ctl i { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: var(--text); transition: background .15s, color .15s; }
+.ctl i svg { width: 22px; height: 22px; }
+.ctl.on i { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.end { margin: 0 auto; width: 68px; height: 68px; border-radius: 50%; background: var(--decline); color: #fff; display: grid; place-items: center; border: 0; cursor: pointer; box-shadow: 0 12px 30px -8px rgba(255, 59, 48, .6); }
+.end svg { width: 28px; height: 28px; transform: rotate(135deg); }
+
+.hidden { display: none !important; }
+.replay { margin-top: 12px; }
+
+@media (max-width: 600px) {
+  .page { padding: 32px 16px 56px; }
+  .intro h1 { font-size: 32px; }
+  .phone { width: 300px; height: 650px; }
+  .who .name { font-size: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo, .knob--answer, .knob--answer svg, .call-kind .dot, .track .hint span { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.6a1 1 0 01-.25 1z"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="i-alarm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M4 5l3-2.5M20 5l-3-2.5"/></g></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21M4 4l16 16"/></g></symbol>
+    <symbol id="i-keypad" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="6" cy="5" r="1.7"/><circle cx="12" cy="5" r="1.7"/><circle cx="18" cy="5" r="1.7"/><circle cx="6" cy="11" r="1.7"/><circle cx="12" cy="11" r="1.7"/><circle cx="18" cy="11" r="1.7"/><circle cx="6" cy="17" r="1.7"/><circle cx="12" cy="17" r="1.7"/><circle cx="18" cy="17" r="1.7"/><circle cx="12" cy="22" r="1.4"/></g></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9.5h3.5L12 5v14l-4.5-4.5H4z"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/></g></symbol>
+    <symbol id="i-add" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5M19 8v6M16 11h6"/></g></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3z"/></g></symbol>
+    <symbol id="i-hold" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M2.5 9a14 14 0 0119 0M5.5 12.5a9.5 9.5 0 0113 0M8.7 16a5 5 0 016.6 0"/><circle cx="12" cy="19.3" r=".9" fill="currentColor"/></g></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20h3v-4H3zM8 20h3v-8H8zM13 20h3V8h-3zM18 20h3V4h-3z"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></symbol>
+  </defs>
+</svg>
+
+<template id="call-tpl">
+  <div class="phone">
+    <div class="status"><span class="now">9:41</span><span class="r"><svg><use href="#i-wifi"/></svg><svg><use href="#i-signal"/></svg><span class="batt">78<i></i></span></span></div>
+    <div class="photo"></div>
+    <div class="overlay"></div>
+    <div class="grain"></div>
+
+    <div class="ui">
+      <span class="call-kind"><span class="dot"></span><span class="kind-text">Incoming call</span></span>
+
+      <div class="who">
+        <div class="name"></div>
+        <div class="meta"><span>Mobile</span><i></i><span class="num">+880 1712-345678</span></div>
+        <div class="timer hidden">00:00</div>
+      </div>
+
+      <!-- Ringing state -->
+      <div class="ringing">
+        <div class="quick">
+          <span class="chip"><svg><use href="#i-msg"/></svg>Message</span>
+          <span class="chip"><svg><use href="#i-alarm"/></svg>Remind me</span>
+        </div>
+        <div class="answer-row">
+          <button class="knob knob--decline" type="button" aria-label="Decline"><svg><use href="#i-phone"/></svg></button>
+          <div class="track">
+            <span class="hint"><span>Swipe to answer</span><svg width="14" height="14" style="opacity:.5"><use href="#i-chev"/></svg></span>
+            <span class="knob knob--answer" role="button" aria-label="Answer, drag right" tabindex="0"><svg><use href="#i-phone"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-call state -->
+      <div class="incall hidden">
+        <div class="controls-grid">
+          <span class="ctl" data-t><i><svg><use href="#i-mute"/></svg></i>Mute</span>
+          <span class="ctl"><i><svg><use href="#i-keypad"/></svg></i>Keypad</span>
+          <span class="ctl" data-t><i><svg><use href="#i-speaker"/></svg></i>Speaker</span>
+          <span class="ctl"><i><svg><use href="#i-add"/></svg></i>Add call</span>
+          <span class="ctl"><i><svg><use href="#i-video"/></svg></i>Video</span>
+          <span class="ctl" data-t><i><svg><use href="#i-hold"/></svg></i>Hold</span>
+        </div>
+        <button class="end" type="button" aria-label="End call"><svg><use href="#i-phone"/></svg></button>
+      </div>
+    </div>
+    <i class="gesture"></i>
+  </div>
+</template>
+
+<div class="page">
+  <header class="intro">
+    <div>
+      <h1><b>Void</b> — incoming call</h1>
+      <p>The caller's photo fills the screen. A black overlay fades it into the controls, so the name and buttons stay readable on any photo. Swipe the green button right to answer.</p>
+    </div>
+    <div class="controls">
+      <div class="faces" role="group" aria-label="Sample caller">
+        <button data-face="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&q=80" data-name="Rafiq Hasan" aria-pressed="true" aria-label="Rafiq Hasan"></button>
+        <button data-face="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&q=80" data-name="Ayesha Rahman" aria-pressed="false" aria-label="Ayesha Rahman"></button>
+        <button data-face="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&q=80" data-name="Tanvir Ahmed" aria-pressed="false" aria-label="Tanvir Ahmed"></button>
+        <button data-face="" data-name="Unknown Caller" aria-pressed="false" aria-label="No photo" style="background:#141414;color:#8a8a8a;font:600 12px Manrope">?</button>
+      </div>
+      <input type="text" id="name-in" value="Rafiq Hasan" aria-label="Caller name">
+      <label class="cbtn"><svg><use href="#i-upload"/></svg>Your photo<input type="file" id="file-in" accept="image/*" hidden></label>
+    </div>
+  </header>
+
+  <div class="phones">
+    <div class="phone-wrap" id="p-ring"><span>Ringing — swipe to answer</span></div>
+    <div class="phone-wrap" id="p-call"><span>On call</span></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var tpl = document.getElementById('call-tpl');
+  var state = { name: 'Rafiq Hasan', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&q=80' };
+  var phones = [];
+
+  function mount(wrap, live) {
+    var node = tpl.content.firstElementChild.cloneNode(true);
+    wrap.prepend(node);
+    var p = { el: node, live: live, timer: null, secs: 0 };
+    phones.push(p);
+    if (live) wireSwipe(p); else setInCall(p, 74);
+    node.querySelector('.end').addEventListener('click', function () { live ? reset(p) : null; });
+    node.querySelector('.knob--decline').addEventListener('click', function () { flash(p, 'Call declined'); });
+    node.querySelectorAll('[data-t]').forEach(function (c) { c.addEventListener('click', function () { c.classList.toggle('on'); }); });
+    return p;
+  }
+
+  function render() {
+    var parts = state.name.trim().split(/\s+/);
+    var first = parts.shift() || '';
+    var initials = (first[0] || '') + (parts.length ? parts[parts.length - 1][0] : '');
+    phones.forEach(function (p) {
+      p.el.querySelector('.name').innerHTML = esc(first) + (parts.length ? '<b>' + esc(parts.join(' ')) + '</b>' : '');
+      var ph = p.el.querySelector('.photo');
+      ph.style.setProperty('--img', state.img ? 'url("' + state.img + '")' : 'none');
+      ph.classList.toggle('noimg', !state.img);
+      ph.dataset.initials = initials.toUpperCase();
+    });
+  }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function fmt(s) { return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+  function setInCall(p, start) {
+    var el = p.el;
+    el.querySelector('.ringing').classList.add('hidden');
+    el.querySelector('.incall').classList.remove('hidden');
+    el.querySelector('.kind-text').textContent = 'HD Voice';
+    var t = el.querySelector('.timer');
+    t.classList.remove('hidden');
+    p.secs = start || 0;
+    t.textContent = fmt(p.secs);
+    clearInterval(p.timer);
+    p.timer = setInterval(function () { p.secs++; t.textContent = fmt(p.secs); }, 1000);
+  }
+  function reset(p) {
+    var el = p.el;
+    clearInterval(p.timer);
+    el.querySelector('.ringing').classList.remove('hidden');
+    el.querySelector('.incall').classList.add('hidden');
+    el.querySelector('.timer').classList.add('hidden');
+    el.querySelector('.kind-text').textContent = 'Incoming call';
+    el.querySelectorAll('.ctl.on').forEach(function (c) { c.classList.remove('on'); });
+    var k = el.querySelector('.knob--answer');
+    k.style.transform = '';
+  }
+  function flash(p, text) {
+    var k = p.el.querySelector('.kind-text');
+    k.textContent = text;
+    setTimeout(function () { k.textContent = 'Incoming call'; }, 1600);
+  }
+
+  // Drag the green knob left across the track to answer
+  function wireSwipe(p) {
+    var knob = p.el.querySelector('.knob--answer');
+    var track = p.el.querySelector('.track');
+    var startX = 0, dx = 0, max = 0, dragging = false;
+    knob.addEventListener('pointerdown', function (e) {
+      dragging = true; startX = e.clientX; dx = 0;
+      max = track.clientWidth - knob.offsetWidth - 12;
+      knob.classList.add('dragging');
+      knob.setPointerCapture(e.pointerId);
+    });
+    knob.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      dx = Math.max(0, Math.min(max, e.clientX - startX));
+      knob.style.transform = 'translateX(' + dx + 'px)';
+    });
+    function end() {
+      if (!dragging) return;
+      dragging = false;
+      knob.classList.remove('dragging');
+      if (dx > max * 0.7) { setInCall(p, 0); }
+      else { knob.style.transition = 'transform .3s cubic-bezier(.3, 1.4, .5, 1)'; knob.style.transform = ''; setTimeout(function () { knob.style.transition = ''; }, 300); }
+    }
+    knob.addEventListener('pointerup', end);
+    knob.addEventListener('pointercancel', end);
+    knob.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setInCall(p, 0); } });
+  }
+
+  mount(document.getElementById('p-ring'), true);
+  mount(document.getElementById('p-call'), false);
+  render();
+
+  // Clock
+  function tick() {
+    var d = new Date();
+    var t = (d.getHours() % 12 || 12) + ':' + String(d.getMinutes()).padStart(2, '0');
+    document.querySelectorAll('.now').forEach(function (e) { e.textContent = t; });
+  }
+  tick(); setInterval(tick, 15000);
+
+  // Controls
+  var nameIn = document.getElementById('name-in');
+  nameIn.addEventListener('input', function () { state.name = nameIn.value || 'Unknown'; render(); });
+  document.querySelectorAll('[data-face]').forEach(function (b) {
+    if (b.dataset.face) b.style.backgroundImage = 'url("' + b.dataset.face.replace('w=900', 'w=120') + '")';
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-face]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      state.img = b.dataset.face; state.name = b.dataset.name; nameIn.value = state.name; render();
+    });
+  });
+  document.getElementById('file-in').addEventListener('change', function (e) {
+    var f = e.target.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      state.img = r.result;
+      document.querySelectorAll('[data-face]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      render();
+    };
+    r.readAsDataURL(f);
+  });
+})();
+</script>
+</body>
+</html>

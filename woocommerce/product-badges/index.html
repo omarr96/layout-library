@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Badges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet">
+<script>
+  // Swap any image that fails to load for a seeded placeholder photo
+  window.addEventListener('error', e => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && !img.dataset.fallback) {
+      img.dataset.fallback = '1';
+      img.src = `https://picsum.photos/seed/badge${(img.alt || 'x').length}/600/760`;
+    }
+  }, true);
+</script>
+<style>
+:root{
+  --heading:#111827; --text:#4b5563; --muted:#6e7787;
+  --border:#e6e9ef; --page:#f7f7f5; --surface:#fff;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-head:"Inter Tight",Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);font-family:var(--font);color:var(--text);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+.page{max-width:1240px;margin:0 auto;padding:40px 24px 64px}
+.page-head h1{font-family:var(--font-head);font-size:26px;color:var(--heading);margin:0 0 4px;letter-spacing:-.01em}
+.page-head p{margin:0;color:var(--muted)}
+h2{font-family:var(--font-head);font-size:18px;color:var(--heading);margin:48px 0 6px}
+h2+p{margin:0 0 20px;color:var(--muted)}
+
+/* ---------- Badges ---------- */
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:1;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge .swatch{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.badge-sale    {background:#E11D48;color:#FFFFFF}
+.badge-low     {background:#FEE2E2;color:#B91C1C}
+.badge-low .dot{background:#EF4444;animation:pulse 1.6s ease-in-out infinite}
+.badge-few     {background:#FEF3C7;color:#92400E}
+.badge-few .dot{background:#F59E0B}
+.badge-limited {background:#1F2937;color:#FCD34D;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.badge-new     {background:#DBEAFE;color:#1D4ED8}
+.badge-best    {background:#EDE9FE;color:#6D28D9}
+.badge-variant {background:#FFFFFF;color:#374151;border:1px solid #E5E7EB;padding:5px 10px 5px 7px}
+.badge-eco     {background:#DCFCE7;color:#15803D}
+.badge-pre     {background:#E0F2FE;color:#0369A1}
+.badge-out     {background:#F3F4F6;color:#4B5563}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ---------- Palette table ---------- */
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.swatch-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.swatch-card .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.swatch-card .top b{color:var(--heading);font-size:14px}
+.codes{display:flex;flex-wrap:wrap;gap:6px}
+.code{display:inline-flex;align-items:center;gap:6px;font:500 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--heading);background:#f6f7f9;border:1px solid var(--border);border-radius:8px;padding:4px 8px 4px 5px;cursor:pointer;transition:border-color .15s}
+.code:hover{border-color:#b9c2d0}
+.code i{width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.code small{font-family:var(--font);color:var(--muted);font-weight:400}
+.swatch-card p{margin:0;font-size:13px;color:var(--muted)}
+
+/* ---------- Product cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 14px 20px;transition:box-shadow .25s}
+.card:hover{box-shadow:0 14px 30px -18px rgba(16,24,40,.35)}
+.media{position:relative;border-radius:10px;overflow:hidden;background:#eee;aspect-ratio:4/5}
+.media img{width:100%;height:100%;object-fit:cover}
+.badges-tl{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.badges-tr{position:absolute;top:12px;right:12px}
+.card h3{font-family:var(--font-head);font-size:16px;color:var(--heading);margin:16px 0 4px;font-weight:600}
+.rating{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.rating span{color:#F59E0B;letter-spacing:1px}
+.price{margin-top:10px;font-family:var(--font-head);font-size:19px;font-weight:700;color:var(--heading)}
+.price del{color:#E11D48;font-size:15px;font-weight:500;margin-right:6px}
+.card.sold .media img{opacity:.55;filter:grayscale(.4)}
+.card.sold .price{color:var(--muted)}
+
+/* ---------- Rules ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rule{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px}
+.rule b{display:block;color:var(--heading);margin-bottom:6px}
+.rule p{margin:0;font-size:13.5px}
+.priority{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.priority em{font-style:normal;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:#111827;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;transition:transform .3s;z-index:10}
+.toast.show{transform:translate(-50%,0)}
+
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.rules{grid-template-columns:1fr}}
+@media (max-width:520px){.page{padding:28px 16px 48px}.grid{grid-template-columns:1fr 1fr;gap:10px}.card{padding:8px 8px 14px;border-radius:12px}.card h3{font-size:14px}.price{font-size:16px}.card p.desc{display:none}.badges-tl{top:8px;left:8px}.badges-tr{top:8px;right:8px}.badge{font-size:10.5px;padding:5px 8px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-head">
+    <h1>Product Badges</h1>
+    <p>Ten badge types, each with its own colour. Click any colour code to copy it.</p>
+  </div>
+
+  <h2>Palette</h2>
+  <p>Every text colour meets WCAG AA contrast on its background.</p>
+  <div class="palette" id="palette"></div>
+
+  <h2>On product cards</h2>
+  <p>Up to two badges top-left; the colour/variant badge sits top-right.</p>
+  <div class="grid">
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=750&fit=crop" alt="Casual t-shirt" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-low"><span class="dot"></span>Only 10 left</span></div></div>
+      <h3>Women's Casual T-Shirt</h3><div class="rating"><span>★★★★★</span>(5 reviews)</div>
+      <div class="price">$100.00 – $120.00</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=750&fit=crop" alt="Fleece hoodie" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-new">New</span></div></div>
+      <h3>Campus Fleece Full-Zip Hoodie</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price">$200.00 – $359.55</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=750&fit=crop" alt="Tie back trouser" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-best">Bestseller</span><span class="badge badge-eco">Organic cotton</span></div></div>
+      <h3>High Waisted Tie Back Trouser</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price">$229.55 – $359.55</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&h=750&fit=crop" alt="Midi dress" width="600" height="750">
+        <div class="badges-tr"><span class="badge badge-variant"><span class="swatch" style="background:#C2603D"></span>Terracotta</span></div></div>
+      <h3>Amélie Midi Dress</h3><div class="rating"><span>★★★★★</span>(1 review)</div>
+      <div class="price">$120.00 – $520.00</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=750&fit=crop" alt="Cashmere cardigan" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-limited">Limited Edition</span><span class="badge badge-few"><span class="dot"></span>Only 44 left</span></div></div>
+      <h3>Cashmere Longline Feather</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price"><del>$120.00</del>$100.00</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=750&fit=crop" alt="Bomber jacket" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-sale">−17%</span><span class="badge badge-few"><span class="dot"></span>Only 70 left</span></div></div>
+      <h3>Cropped Nylon Bomber Jacket</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price"><del>$120.00</del>$100.00</div>
+    </article>
+    <article class="card">
+      <div class="media"><img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&h=750&fit=crop" alt="Sweatshirt" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-pre">Pre-order</span></div>
+        <div class="badges-tr"><span class="badge badge-variant"><span class="swatch" style="background:#F3EDB5"></span>Butter</span></div></div>
+      <h3>Cinched Halter Tank Top</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price">$100.00</div>
+    </article>
+    <article class="card sold">
+      <div class="media"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=750&fit=crop" alt="Polo sweatshirt" width="600" height="750">
+        <div class="badges-tl"><span class="badge badge-out">Sold out</span></div></div>
+      <h3>Relaxed Essential Polo Sweatshirt</h3><div class="rating"><span>★★★★☆</span>(4 reviews)</div>
+      <div class="price"><del>$120.00</del>$100.00</div>
+    </article>
+  </div>
+
+  <h2>Rules</h2>
+  <p>Keep the grid calm so the urgent badges still stand out.</p>
+  <div class="rules">
+    <div class="rule"><b>Max 2 per card</b><p>When more apply, keep the first two in this order:</p>
+      <div class="priority"><span class="badge badge-sale">Sale</span><em>→</em><span class="badge badge-limited">Limited</span><em>→</em><span class="badge badge-low"><span class="dot"></span>Low</span><em>→</em><span class="badge badge-new">New</span><em>→</em><span class="badge badge-best">Best</span><em>→</em><span class="badge badge-few">Few</span><em>→</em><span class="badge badge-eco">Eco</span></div></div>
+    <div class="rule"><b>Stock thresholds</b><p>10 or fewer → red "Only X left" with a pulsing dot. 11–70 → amber. Above 70 → no stock badge. 0 → grey "Sold out" and fade the image.</p></div>
+    <div class="rule"><b>Only Sale is solid</b><p>Every other badge uses a soft background, so solid red always means "price drop" and matches the red strike-through price.</p></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const TYPES = [
+    ['Sale', 'badge-sale', '−17%', '#E11D48', '#FFFFFF', null, 'Solid — the only loud badge.'],
+    ['Low stock (≤10)', 'badge-low', '<span class="dot"></span>Only 10 left', '#FEE2E2', '#B91C1C', ['Dot', '#EF4444'], 'Pulsing dot adds urgency.'],
+    ['Few left (11–70)', 'badge-few', '<span class="dot"></span>Only 44 left', '#FEF3C7', '#92400E', ['Dot', '#F59E0B'], 'Gentle reminder, not an alarm.'],
+    ['Limited edition', 'badge-limited', 'Limited Edition', '#1F2937', '#FCD34D', null, 'Uppercase, letter-spacing .06em.'],
+    ['New', 'badge-new', 'New', '#DBEAFE', '#1D4ED8', null, 'First 30 days after launch.'],
+    ['Bestseller', 'badge-best', 'Bestseller', '#EDE9FE', '#6D28D9', null, 'Top 10% by sales.'],
+    ['Colour / variant', 'badge-variant', '<span class="swatch" style="background:#C2603D"></span>Terracotta', '#FFFFFF', '#374151', ['Border', '#E5E7EB'], 'Swatch uses the product colour.'],
+    ['Eco / organic', 'badge-eco', 'Organic cotton', '#DCFCE7', '#15803D', null, 'Materials and certifications.'],
+    ['Pre-order', 'badge-pre', 'Pre-order', '#E0F2FE', '#0369A1', null, 'Not yet in stock.'],
+    ['Out of stock', 'badge-out', 'Sold out', '#F3F4F6', '#4B5563', null, 'Also fade the product image.'],
+  ];
+  const code = (label, hex) => `<button class="code" data-hex="${hex}"><i style="background:${hex}"></i>${hex} <small>${label}</small></button>`;
+  document.getElementById('palette').innerHTML = TYPES.map(([name, cls, html, bg, fg, extra, note]) => `
+    <div class="swatch-card">
+      <div class="top"><b>${name}</b><span class="badge ${cls}">${html}</span></div>
+      <div class="codes">${code('bg', bg)}${code('text', fg)}${extra ? code(extra[0].toLowerCase(), extra[1]) : ''}</div>
+      <p>${note}</p>
+    </div>`).join('');
+
+  const toast = document.getElementById('toast');
+  let t;
+  document.addEventListener('click', async e => {
+    const btn = e.target.closest('.code');
+    if (!btn) return;
+    try { await navigator.clipboard.writeText(btn.dataset.hex); toast.textContent = `Copied ${btn.dataset.hex}`; }
+    catch { toast.textContent = btn.dataset.hex; }
+    toast.classList.add('show');
+    clearTimeout(t); t = setTimeout(() => toast.classList.remove('show'), 1600);
+  });
+})();
+</script>
+</body>
+</html>

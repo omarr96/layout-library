@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Settings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f2; --surface:#fff; --surface-2:#fafbf9; --border:#e5e7e3; --border-strong:#d3d7cf;
+  --text:#1a1f16; --text-2:#4e5648; --text-3:#8a9284;
+  --brand:#4a7c2a; --brand-hover:#3d6822; --brand-soft:#eef5e7; --brand-line:#d4e6c4;
+  --amber:#a16207; --amber-soft:#fdf6e3; --amber-line:#f2e2b5;
+  --red:#c62828; --red-soft:#fdf1f1; --red-line:#f3cfcf;
+  --shadow:0 1px 2px rgba(20,30,10,.04),0 1px 3px rgba(20,30,10,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:14px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+svg{flex-shrink:0}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px}
+.page{max-width:1380px;margin:0 auto;padding:32px 24px 64px;display:flex;flex-direction:column;gap:20px}
+
+/* ---------- Card ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 24px 18px}
+.card-head h2{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.card-head p{margin:6px 0 0;color:var(--text-2);line-height:1.55;max-width:720px}
+.count{font-size:12px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:999px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:36px;padding:0 14px;border-radius:9px;border:1px solid var(--border-strong);background:var(--surface);font-weight:500;color:var(--text);white-space:nowrap;transition:.15s}
+.btn:hover{border-color:var(--text-3)}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-hover);border-color:var(--brand-hover)}
+.btn-danger{color:var(--red);border-color:var(--red-line)}
+.btn-danger:hover{border-color:var(--red);background:var(--red-soft)}
+.btn-danger-solid{background:var(--red);border-color:var(--red);color:#fff}
+.btn-danger-solid:hover{background:#a51f1f}
+.btn-ghost{border-color:transparent;background:none;color:var(--text-2)}
+.btn-ghost:hover{background:#f1f3ef;border-color:transparent}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}
+.link{color:var(--brand);font-weight:500;text-decoration:none;border:0;background:none;padding:0}
+.link:hover{text-decoration:underline}
+
+/* ---------- Client passwords ---------- */
+.list{border-top:1px solid var(--border)}
+.cols,.client-row{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.3fr) minmax(0,1fr) 120px;gap:16px;align-items:center;padding:0 24px}
+.cols{height:38px;background:var(--surface-2);border-bottom:1px solid var(--border);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3)}
+.client{border-bottom:1px solid var(--border)}
+.client:last-child{border-bottom:0}
+.client-row{min-height:68px;padding-top:12px;padding-bottom:12px}
+.who{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.who b{display:block;font-weight:600;font-size:14px}
+.who small{display:block;color:var(--text-3);font-size:12.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:500;border:1px solid;white-space:nowrap}
+.status i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-live{color:var(--brand);background:var(--brand-soft);border-color:var(--brand-line)}
+.s-live i{box-shadow:0 0 0 3px rgba(74,124,42,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(74,124,42,.06)}}
+.s-never{color:var(--amber);background:var(--amber-soft);border-color:var(--amber-line)}
+.s-idle{color:var(--text-2);background:#f3f4f1;border-color:var(--border)}
+.when{color:var(--text-2)}
+.when small{display:block;color:var(--text-3);font-size:12.5px;margin-top:2px}
+.actions{display:flex;justify-content:flex-end}
+.manage[aria-expanded="true"]{background:#f1f3ef}
+.manage svg{transition:transform .2s}
+.manage[aria-expanded="true"] svg{transform:rotate(180deg)}
+
+.details{display:none;margin:0 24px 18px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);overflow:hidden}
+.client.open .details{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--border)}
+.fact{background:var(--surface-2);padding:14px 16px}
+.fact span{display:block;font-size:12px;color:var(--text-3);margin-bottom:4px}
+.fact b{font-weight:500}
+.d-foot{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--border);flex-wrap:wrap}
+.d-foot p{margin:0;color:var(--text-2);flex:1;min-width:240px;font-size:13px;line-height:1.5}
+.confirm{display:none;align-items:center;gap:10px;background:var(--red-soft);border-top:1px solid var(--red-line);padding:12px 16px;color:#8f1d1d;font-size:13px;flex-wrap:wrap}
+.confirm span{flex:1;min-width:220px}
+.client.confirming .confirm{display:flex}
+.client.confirming .d-foot{display:none}
+
+.list-foot{display:flex;align-items:center;gap:10px;padding:14px 24px;border-top:1px solid var(--border);color:var(--text-3);font-size:13px;background:var(--surface-2);border-radius:0 0 14px 14px}
+.empty{padding:36px 24px;text-align:center;color:var(--text-3)}
+.empty b{display:block;color:var(--text);font-size:15px;margin:10px 0 4px}
+
+/* ---------- Setting rows ---------- */
+.setting{display:flex;gap:24px;align-items:flex-start;padding:22px 24px}
+.setting + .setting{border-top:1px solid var(--border)}
+.setting .icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:#f1f3ef;color:var(--text-2);flex-shrink:0}
+.setting .text{flex:1;min-width:0}
+.setting h3{margin:0;font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.setting p{margin:6px 0 0;color:var(--text-2);line-height:1.55;max-width:760px}
+.pill{font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;border:1px solid var(--border);background:#f3f4f1;color:var(--text-2)}
+.pill.on{background:var(--brand-soft);border-color:var(--brand-line);color:var(--brand)}
+.pill.off{background:var(--red-soft);border-color:var(--red-line);color:var(--red)}
+.paths{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.path{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}
+.path code{background:#f3f4f1;border:1px solid var(--border);padding:3px 8px;border-radius:6px}
+.path .st{font-size:12px;font-weight:500}
+.path .st.y{color:var(--brand)} .path .st.n{color:var(--text-3)}
+
+/* switch */
+.switch{position:relative;width:44px;height:24px;flex-shrink:0;margin-top:4px}
+.switch input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;z-index:1}
+.switch span{position:absolute;inset:0;border-radius:999px;background:var(--border-strong);transition:.2s}
+.switch span::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:.2s}
+.switch input:checked + span{background:var(--brand)}
+.switch input:checked + span::after{left:23px}
+.switch input:focus-visible + span{outline:2px solid var(--brand);outline-offset:2px}
+
+/* danger zone */
+.danger{border-color:var(--red-line)}
+.danger .card-head{padding-bottom:0}
+.danger .eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.danger .setting .icon{background:var(--red-soft);color:var(--red)}
+.danger-confirm{display:none;margin:0 24px 22px;border:1px solid var(--red-line);background:var(--red-soft);border-radius:12px;padding:16px}
+.danger-confirm.show{display:block}
+.danger-confirm b{color:#8f1d1d}
+.danger-confirm ul{margin:8px 0 14px;padding-left:18px;color:#8f1d1d;line-height:1.6;font-size:13px}
+.danger-confirm .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.danger-confirm input{height:36px;border:1px solid var(--red-line);border-radius:8px;padding:0 10px;background:#fff;outline:none;min-width:220px}
+.danger-confirm input:focus{border-color:var(--red)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#1a1f16;color:#fff;padding:10px 16px;border-radius:10px;font-weight:500;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .cols{display:none}
+  .client-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"who act" "st st" "when when";row-gap:10px}
+  .who{grid-area:who}.actions{grid-area:act}.st-cell{grid-area:st}.when{grid-area:when}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .page{padding:20px 12px 48px}
+  .card-head{flex-direction:column;padding:18px 16px 14px}
+  .card-head .btn{width:100%}
+  .client-row,.list-foot{padding-left:16px;padding-right:16px}
+  .details{margin:0 16px 16px}
+  .setting{flex-wrap:wrap;gap:14px;padding:18px 16px}
+  .setting .icon{display:none}
+  .setting > .btn{width:100%}
+  .danger-confirm{margin:0 16px 18px}
+  .danger-confirm input{min-width:0;flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- ===== Client passwords ===== -->
+  <section class="card" aria-labelledby="cp-title">
+    <div class="card-head">
+      <div>
+        <h2 id="cp-title">Client passwords <span class="count" id="clientCount">0</span></h2>
+        <p>Every AI client gets its own password. Revoking one disconnects only that client — the others keep working.</p>
+      </div>
+      <button class="btn" id="addClient"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Set up another client</button>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="list-foot">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span>Passwords are shown once, when the client is set up. They're stored as WordPress Application Passwords for <b style="color:var(--text-2);font-weight:500">WPRio Admin</b>.</span>
+    </div>
+  </section>
+
+  <!-- ===== Sharing ===== -->
+  <section class="card" aria-labelledby="share-title">
+    <div class="card-head" style="padding-bottom:0">
+      <div><h2 id="share-title">Connection</h2></div>
+    </div>
+    <div class="setting">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+      <div class="text">
+        <h3>Share with the site's MCP server <span class="pill" id="sharePill">Off</span></h3>
+        <p id="shareText"></p>
+        <div class="paths" id="paths"></div>
+      </div>
+      <label class="switch" title="Share with the site's MCP server"><input type="checkbox" id="share" role="switch" aria-labelledby="share-title"><span></span></label>
+    </div>
+  </section>
+
+  <!-- ===== Danger zone ===== -->
+  <section class="card danger" aria-labelledby="off-title">
+    <div class="card-head"><div class="eyebrow">Danger zone</div></div>
+    <div class="setting">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/><path d="M12 2v10"/></svg></div>
+      <div class="text">
+        <h3 id="off-title">Turn off MCP access <span class="pill on" id="accessPill">On</span></h3>
+        <p id="offText">Disconnects every AI client immediately and stops the MCP endpoint. Your site, pages and drafts are not affected — you can turn it back on any time.</p>
+      </div>
+      <button class="btn btn-danger" id="turnOff">Turn off</button>
+    </div>
+    <div class="danger-confirm" id="dangerConfirm">
+      <b>Turn off MCP access?</b>
+      <ul id="impact"></ul>
+      <div class="row">
+        <input id="confirmInput" placeholder='Type "turn off" to confirm' autocomplete="off" aria-label="Type turn off to confirm">
+        <button class="btn btn-danger-solid" id="confirmOff" disabled>Turn off MCP access</button>
+        <button class="btn btn-ghost" id="cancelOff">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Data ---------- */
+// lastUsed: minutes ago (null = never). calls7d: requests in the last 7 days.
+let clients = [
+  { id: "cd", client: "Claude Desktop", label: "DiviMerc MCP - Claude Desktop (2026-10-26)", color: "#d97757", letter: "C", created: "Today, 02:25 PM", lastUsed: null, calls7d: 0, lastIp: "—" },
+  { id: "cc", client: "Claude Code", label: "DiviMerc MCP - Claude Code (2026-10-21)", color: "#1a1f16", letter: ">_", created: "Oct 21, 2026", lastUsed: 3, calls7d: 214, lastIp: "192.168.1.24" },
+  { id: "cu", client: "Cursor", label: "DiviMerc MCP - Cursor (2026-10-02)", color: "#2f6feb", letter: "Cu", created: "Oct 2, 2026", lastUsed: 12 * 1440, calls7d: 0, lastIp: "84.12.201.7" },
+];
+const state = { open: null, confirming: null, share: false, access: true };
+const SERVER = "http://woo-commerce.local/wp-json/divimerc-mcp/mcp";
+const SHARED = "http://woo-commerce.local/wp-json/mcp/mcp-adapter-default-server";
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const ago = m => m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`;
+function status(c) {
+  if (!state.access) return `<span class="status s-idle"><i></i>Paused</span>`;
+  if (c.lastUsed === null) return `<span class="status s-never"><i></i>Never used</span>`;
+  if (c.lastUsed <= 15) return `<span class="status s-live"><i></i>Connected</span>`;
+  return `<span class="status s-idle"><i></i>Idle</span>`;
+}
+const chev = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>';
+
+/* ---------- Render ---------- */
+function renderClients() {
+  $("#clientCount").textContent = clients.length;
+  if (!clients.length) {
+    $("#list").innerHTML = `<div class="empty">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--border-strong)" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <b>No clients connected</b>Pick a client in the tabs above to create its password.</div>`;
+    return;
+  }
+  $("#list").innerHTML = `<div class="cols"><span>Client</span><span>Status</span><span>Last used</span><span></span></div>` +
+    clients.map(c => {
+      const open = state.open === c.id, conf = state.confirming === c.id;
+      const hint = c.lastUsed === null
+        ? `${c.client} hasn't connected yet. If you lost its configuration, revoke this password and set the client up again.`
+        : c.lastUsed > 7 * 1440 || c.calls7d === 0
+          ? `Not used for ${ago(c.lastUsed).replace(" ago", "")}. If you no longer use ${c.client}, revoking keeps your site tidier and safer.`
+          : `${c.client} is actively using this password. Revoking it disconnects it right away.`;
+      return `<div class="client ${open ? "open" : ""} ${conf ? "confirming" : ""}" data-id="${c.id}">
+        <div class="client-row">
+          <div class="who"><span class="logo" style="background:${c.color}">${c.letter}</span><div style="min-width:0"><b>${c.client}</b><small title="${c.label}">${c.label}</small></div></div>
+          <div class="st-cell">${status(c)}</div>
+          <div class="when">${c.lastUsed === null ? "Never" : ago(c.lastUsed)}<small>Created ${c.created}</small></div>
+          <div class="actions"><button class="btn btn-sm manage" data-manage aria-expanded="${open}">Manage ${chev}</button></div>
+        </div>
+        <div class="details">
+          <div class="facts">
+            <div class="fact"><span>Credential name</span><b>${c.label.replace("DiviMerc MCP - ", "")}</b></div>
+            <div class="fact"><span>Created</span><b>${c.created}</b></div>
+            <div class="fact"><span>Requests · 7 days</span><b>${c.calls7d}</b></div>
+            <div class="fact"><span>Last IP</span><b class="mono">${c.lastIp}</b></div>
+          </div>
+          <div class="d-foot"><p>${hint}</p><button class="btn btn-sm btn-danger" data-revoke>Revoke password</button></div>
+          <div class="confirm"><span>Revoke the password for <b>${c.client}</b>? It will be disconnected immediately and needs a new setup to reconnect.</span>
+            <button class="btn btn-sm btn-ghost" data-cancel>Cancel</button><button class="btn btn-sm btn-danger-solid" data-confirm>Revoke</button></div>
+        </div>
+      </div>`;
+    }).join("");
+}
+
+function renderShare() {
+  $("#share").checked = state.share;
+  $("#share").disabled = !state.access;
+  const pill = $("#sharePill");
+  pill.textContent = state.share ? "On" : "Off";
+  pill.className = "pill" + (state.share ? " on" : "");
+  $("#shareText").textContent = state.share
+    ? "DiviMerc tools are also listed on the site's shared MCP server, alongside tools from other plugins and the MCP Adapter. Clients can use either address."
+    : "DiviMerc is reachable only through its own address. Turn this on to also list its tools on the site's shared MCP server used by other plugins and the MCP Adapter.";
+  $("#paths").innerHTML = `
+    <div class="path"><code class="mono">${SERVER}</code><span class="st ${state.access ? "y" : "n"}">${state.access ? "● Active" : "○ Off"}</span></div>
+    <div class="path"><code class="mono">${SHARED}</code><span class="st ${state.share && state.access ? "y" : "n"}">${state.share && state.access ? "● Active" : "○ Not shared"}</span></div>`;
+}
+
+function renderAccess() {
+  $("#accessPill").textContent = state.access ? "On" : "Off";
+  $("#accessPill").className = "pill " + (state.access ? "on" : "off");
+  $("#turnOff").textContent = state.access ? "Turn off" : "Turn back on";
+  $("#turnOff").className = state.access ? "btn btn-danger" : "btn btn-primary";
+  $("#offText").textContent = state.access
+    ? "Disconnects every AI client immediately and stops the MCP endpoint. Your site, pages and drafts are not affected — you can turn it back on any time."
+    : "MCP access is off. No AI client can reach this site. Turning it back on restores the existing passwords — clients reconnect without a new setup.";
+  const live = clients.filter(c => c.lastUsed !== null && c.lastUsed <= 15).length;
+  $("#impact").innerHTML = `
+    <li>${clients.length} client password${clients.length === 1 ? "" : "s"} stop working${live ? ` — ${live} client${live === 1 ? " is" : "s are"} connected right now` : ""}.</li>
+    <li>Any agent task in progress stops; drafts it already saved stay as drafts.</li>
+    <li>Passwords are kept, so turning access back on reconnects clients automatically.</li>`;
+}
+
+function render() { renderClients(); renderShare(); renderAccess(); }
+
+/* ---------- Events ---------- */
+const toast = msg => { const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2200); };
+
+$("#list").addEventListener("click", e => {
+  const row = e.target.closest(".client"); if (!row) return;
+  const id = row.dataset.id, c = clients.find(x => x.id === id);
+  if (e.target.closest("[data-manage]")) { state.open = state.open === id ? null : id; state.confirming = null; }
+  else if (e.target.closest("[data-revoke]")) state.confirming = id;
+  else if (e.target.closest("[data-cancel]")) state.confirming = null;
+  else if (e.target.closest("[data-confirm]")) { clients = clients.filter(x => x.id !== id); state.open = state.confirming = null; toast(`${c.client} disconnected — its password no longer works`); }
+  else return;
+  render();
+});
+$("#addClient").onclick = () => toast("Scrolls up to the client tabs to set up a new one");
+$("#share").onchange = e => { state.share = e.target.checked; renderShare(); toast(state.share ? "Shared with the site's MCP server" : "No longer shared — only DiviMerc's own address works"); };
+
+$("#turnOff").onclick = () => {
+  if (!state.access) { state.access = true; render(); return toast("MCP access is back on"); }
+  $("#dangerConfirm").classList.add("show");
+  $("#turnOff").disabled = true;
+  $("#confirmInput").focus();
+};
+const closeConfirm = () => { $("#dangerConfirm").classList.remove("show"); $("#turnOff").disabled = false; $("#confirmInput").value = ""; $("#confirmOff").disabled = true; };
+$("#cancelOff").onclick = closeConfirm;
+$("#confirmInput").oninput = e => $("#confirmOff").disabled = e.target.value.trim().toLowerCase() !== "turn off";
+$("#confirmOff").onclick = () => { state.access = false; closeConfirm(); render(); toast("MCP access turned off — all clients disconnected"); };
+
+render();
+</script>
+</body>
+</html>

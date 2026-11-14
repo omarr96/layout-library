@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canopy Collective — Plant a Forest</title>
+<meta name="description" content="Canopy Collective restores forests, mangroves and urban green spaces with local communities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  // Swap any image that fails to load for a seeded placeholder photo
+  window.addEventListener('error', e => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && !img.dataset.fallback) {
+      img.dataset.fallback = '1';
+      img.src = `https://picsum.photos/seed/canopy${(img.alt || 'x').length}/${img.getAttribute('width') || 800}/${img.getAttribute('height') || 600}`;
+    }
+  }, true);
+</script>
+<style>
+:root{
+  --paper:#f3eee3; --paper-2:#ebe3d2; --card:#fbf8f1;
+  --ink:#1d2b22; --forest:#1f3a2c; --forest-2:#2e5340; --moss:#6f8f34; --sage:#b9c6a2; --leaf:#dfe7cc;
+  --clay:#c4693a; --sun:#e2b047; --muted:#5d6a60; --faint:#8a948b;
+  --line:rgba(29,43,34,.14); --line-2:rgba(29,43,34,.08);
+  --serif:"Fraunces",Georgia,serif; --sans:"DM Sans",system-ui,-apple-system,sans-serif;
+  --wrap:1180px; --gutter:28px;
+  --blob:62% 38% 54% 46% / 48% 58% 42% 52%;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+/* paper grain */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.015em;margin:0;color:var(--forest)}
+h1 em,h2 em,h3 em{font-style:italic;color:var(--moss)}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--forest);color:#fff;padding:10px 16px;border-radius:8px;z-index:200;text-decoration:none}
+.skip:focus{top:12px}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* ---------- Labels, stamps, tags ---------- */
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--moss)}
+.kicker::before{content:"";width:26px;height:1.5px;background:currentColor}
+.leaf-tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;padding:5px 12px 5px 10px;background:var(--leaf);color:var(--forest);border-radius:2px 14px 2px 14px;line-height:1.3}
+.leaf-tag.clay{background:#f2dccd;color:#8a3f17}
+.leaf-tag.sun{background:#f6e6bb;color:#7a5a0e}
+.leaf-tag.dark{background:var(--forest);color:var(--leaf)}
+.stamp{display:inline-grid;place-items:center;width:104px;height:104px;border-radius:50%;border:1.5px dashed currentColor;color:var(--clay);font-family:var(--serif);font-style:italic;text-align:center;font-size:14px;line-height:1.15;transform:rotate(-12deg);padding:12px}
+.stamp b{display:block;font-size:26px;font-style:normal;font-weight:600}
+mark{background:linear-gradient(transparent 55%,rgba(226,176,71,.55) 55%);color:inherit;padding:0 2px}
+abbr[title]{text-decoration:underline dotted var(--moss);text-underline-offset:3px;cursor:help}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--forest);transition:background .25s,color .25s,transform .25s;cursor:pointer;background:none}
+.btn-solid{background:var(--forest);color:var(--paper)}
+.btn-solid:hover{background:var(--forest-2);transform:translateY(-2px)}
+.btn-line{color:var(--forest)}
+.btn-line:hover{background:var(--forest);color:var(--paper)}
+.btn-clay{background:var(--clay);border-color:var(--clay);color:#fff}
+.btn-clay:hover{background:#ad5729;transform:translateY(-2px)}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--forest);text-decoration:none;border-bottom:1.5px solid var(--sage);padding-bottom:2px;transition:gap .25s,border-color .25s}
+.link-arrow:hover{gap:14px;border-color:var(--forest)}
+
+/* ---------- Header ---------- */
+.header{position:sticky;top:0;z-index:50;background:rgba(243,238,227,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-2)}
+.header .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:22px;color:var(--forest)}
+.brand svg{width:34px;height:34px}
+.brand i{font-style:italic;color:var(--moss)}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:var(--moss);transition:right .3s}
+.nav a:hover{color:var(--forest)}
+.nav a:hover::after{right:0}
+.header .btn{padding:10px 18px;font-size:14px}
+/* mobile menu: native disclosure, no JS */
+.menu{display:none;margin-left:auto}
+.menu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:600;padding:9px 14px;border:1.5px solid var(--forest);border-radius:999px;color:var(--forest)}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bars{width:16px;height:10px;position:relative}
+.menu .bars::before,.menu .bars::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .25s,top .25s}
+.menu .bars::before{top:1px}.menu .bars::after{top:8px}
+.menu[open] .bars::before{top:4.5px;transform:rotate(45deg)}
+.menu[open] .bars::after{top:4.5px;transform:rotate(-45deg)}
+.menu nav{position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1px solid var(--line);padding:8px var(--gutter) 24px;display:flex;flex-direction:column;box-shadow:0 24px 30px -24px rgba(29,43,34,.35)}
+.menu nav a{padding:14px 0;border-bottom:1px solid var(--line-2);text-decoration:none;font-family:var(--serif);font-size:22px;color:var(--forest)}
+.menu nav .btn{margin-top:18px;justify-content:center;font-family:var(--sans);font-size:15px}
+
+/* ---------- Hero ---------- */
+.hero{padding:64px 0 40px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,6.4vw,92px);line-height:.98;margin:22px 0 26px}
+.hero-lead{font-size:18.5px;color:var(--muted);max-width:500px}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:34px}
+.hero-art{position:relative;aspect-ratio:4/5}
+.hero-art .blob{position:absolute;inset:0;border-radius:var(--blob);overflow:hidden;animation:morph 14s ease-in-out infinite;box-shadow:0 40px 60px -40px rgba(31,58,44,.6)}
+.hero-art .blob img{width:100%;height:100%;object-fit:cover}
+.hero-art .stamp{position:absolute;top:-10px;left:-34px;background:var(--paper);z-index:2}
+.hero-art .leaf-deco{position:absolute;right:-18px;top:18%;width:90px;color:var(--moss);animation:sway 6s ease-in-out infinite;transform-origin:bottom left}
+@keyframes morph{0%,100%{border-radius:62% 38% 54% 46% / 48% 58% 42% 52%}50%{border-radius:42% 58% 40% 60% / 58% 42% 58% 42%}}
+@keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(8deg)}}
+
+/* live counter card */
+.counter{position:absolute;left:-40px;bottom:36px;z-index:2;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;width:290px;box-shadow:0 24px 40px -24px rgba(29,43,34,.45)}
+.counter small{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);font-weight:500}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--moss);box-shadow:0 0 0 0 rgba(111,143,52,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(111,143,52,0)}100%{box-shadow:0 0 0 0 rgba(111,143,52,0)}}
+.counter output{display:block;font-family:var(--serif);font-size:36px;color:var(--forest);line-height:1.1;margin:6px 0 12px;font-variant-numeric:tabular-nums}
+.counter label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+meter{width:100%;height:8px;border:0;border-radius:99px;background:var(--leaf);appearance:none;-webkit-appearance:none;display:block}
+meter::-webkit-meter-bar{background:var(--leaf);border:0;border-radius:99px;height:8px}
+meter::-webkit-meter-optimum-value{background:linear-gradient(90deg,var(--moss),var(--forest-2));border-radius:99px}
+meter::-moz-meter-bar{background:linear-gradient(90deg,var(--moss),var(--forest-2));border-radius:99px}
+
+/* trusted-by strip */
+.partners{display:flex;align-items:center;gap:20px 44px;flex-wrap:wrap;padding:28px 0;margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.partners small{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.partners span{font-family:var(--serif);font-style:italic;font-size:21px;color:#7d877e}
+
+/* ---------- Section scaffolding ---------- */
+.sec{padding:110px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.sec-head h2{font-size:clamp(36px,4.6vw,60px);margin-top:16px}
+.sec-head p{color:var(--muted);font-size:17px;max-width:460px;justify-self:end}
+.forest-bg{background:var(--forest);color:#d8e0cf}
+.forest-bg h2,.forest-bg h3{color:var(--paper)}
+.forest-bg h2 em,.forest-bg h3 em{color:var(--sun)}
+.forest-bg .kicker{color:var(--sun)}
+.forest-bg .sec-head p{color:#b3c0ad}
+
+/* ---------- Big pull quote ---------- */
+.manifesto{padding:120px 0;text-align:center}
+.manifesto blockquote{margin:0 auto;max-width:960px;position:relative}
+.manifesto blockquote svg{width:64px;height:64px;color:var(--sage);margin:0 auto 18px;display:block}
+.manifesto blockquote p{font-family:var(--serif);font-size:clamp(28px,3.8vw,48px);line-height:1.22;color:var(--forest);letter-spacing:-.01em}
+.manifesto blockquote p em{color:var(--clay)}
+.manifesto footer{margin-top:30px;display:inline-flex;align-items:center;gap:14px;text-align:left}
+.manifesto footer img{width:54px;height:54px;border-radius:50%;object-fit:cover;filter:sepia(.3)}
+.manifesto cite{font-style:normal;font-weight:600;display:block;color:var(--forest)}
+.manifesto footer small{color:var(--muted)}
+
+/* ---------- Impact (definition list) ---------- */
+.impact{display:grid;grid-template-columns:repeat(4,1fr);margin:0;border-top:1px solid rgba(223,231,204,.2)}
+.impact div{padding:34px 28px 10px 0;border-right:1px solid rgba(223,231,204,.2);margin-right:28px}
+.impact div:last-child{border-right:0;margin-right:0}
+.impact dt{font-size:14px;color:#b3c0ad;order:2}
+.impact dd{margin:0 0 8px;font-family:var(--serif);font-size:clamp(42px,5vw,64px);color:var(--paper);line-height:1}
+.impact dd sup{font-size:.4em;color:var(--sun);vertical-align:top;margin-left:4px}
+.impact div{display:flex;flex-direction:column}
+.impact dd{order:1}
+.impact div p{order:3;font-size:13.5px;color:#93a28d;margin-top:10px}
+
+/* ---------- Projects with CSS-only filter ---------- */
+.filter{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;border:0;padding:0}
+.filter legend{float:left;margin-right:10px;padding:10px 0;font-size:14px;color:var(--muted)}
+.filter input{position:absolute;opacity:0;pointer-events:none}
+.filter label{cursor:pointer;padding:9px 18px;border:1.5px solid var(--line);border-radius:999px;font-size:14.5px;font-weight:500;transition:all .2s;user-select:none}
+.filter label:hover{border-color:var(--forest)}
+.filter input:checked+label{background:var(--forest);color:var(--paper);border-color:var(--forest)}
+.filter input:focus-visible+label{outline:2px solid var(--clay);outline-offset:2px}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.projects:has(#f-forest:checked) .proj:not([data-type="forest"]),
+.projects:has(#f-mangrove:checked) .proj:not([data-type="mangrove"]),
+.projects:has(#f-urban:checked) .proj:not([data-type="urban"]){display:none}
+.filter{grid-column:1/-1}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s,box-shadow .35s;animation:rise .45s ease both}
+.proj:hover{transform:translateY(-6px);box-shadow:0 30px 40px -30px rgba(29,43,34,.5)}
+.proj figure{margin:0;position:relative;aspect-ratio:4/3;overflow:hidden}
+.proj figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.proj:hover figure img{transform:scale(1.06)}
+.proj figure .leaf-tag{position:absolute;top:14px;left:14px}
+.proj figcaption{position:absolute;bottom:12px;right:12px;font-size:12px;background:rgba(29,43,34,.7);color:#fff;padding:4px 10px;border-radius:99px;backdrop-filter:blur(4px)}
+.proj-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.proj h3{font-size:25px}
+.proj address{font-style:normal;font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.proj p{font-size:14.5px;color:var(--muted)}
+.fund{margin-top:auto;padding-top:14px}
+.fund div{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
+.fund b{color:var(--forest)}
+progress{width:100%;height:6px;border:0;border-radius:99px;background:var(--leaf);appearance:none;-webkit-appearance:none;display:block;overflow:hidden}
+progress::-webkit-progress-bar{background:var(--leaf);border-radius:99px}
+progress::-webkit-progress-value{background:var(--moss);border-radius:99px}
+progress::-moz-progress-bar{background:var(--moss);border-radius:99px}
+.proj.urgent progress::-webkit-progress-value{background:var(--clay)}
+.proj.urgent progress::-moz-progress-bar{background:var(--clay)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- Timeline (ordered list) ---------- */
+.journey{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:j;position:relative}
+.journey::before{content:"";position:absolute;top:31px;left:32px;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--sage) 0 10px,transparent 10px 18px)}
+.journey li{counter-increment:j;position:relative}
+.journey .seed{width:64px;height:64px;border-radius:50% 50% 50% 8%;background:var(--forest-2);display:grid;place-items:center;font-size:26px;position:relative;margin-bottom:22px;box-shadow:0 0 0 8px var(--forest)}
+.journey .seed::after{content:counter(j,lower-roman);position:absolute;top:-10px;right:-14px;font-family:var(--serif);font-style:italic;font-size:15px;background:var(--sun);color:var(--forest);width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
+.journey h3{font-size:24px;margin-bottom:8px}
+.journey time{display:inline-block;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sun);margin-bottom:10px}
+.journey p{font-size:15px;color:#b3c0ad}
+
+/* ---------- Carbon calculator (form + output) ---------- */
+.calc{display:grid;grid-template-columns:1.2fr .8fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.calc form{padding:44px;display:flex;flex-direction:column;gap:28px}
+.field label,.field legend{display:flex;justify-content:space-between;font-weight:600;font-size:15px;color:var(--forest);margin-bottom:12px;padding:0}
+.field label output{font-weight:500;color:var(--clay);font-variant-numeric:tabular-nums}
+.field fieldset{border:0;padding:0;margin:0}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--moss) var(--fill,30%),var(--leaf) var(--fill,30%));outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--paper);border:2px solid var(--forest);cursor:grab;box-shadow:0 4px 10px -4px rgba(0,0,0,.4)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--forest);cursor:grab}
+.ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:8px}
+select{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231f3a2c' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 16px center;appearance:none;-webkit-appearance:none;cursor:pointer}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg input{position:absolute;opacity:0}
+.seg label{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;font-size:13.5px;font-weight:500;color:var(--muted);margin:0;text-align:center;transition:all .2s}
+.seg label span{font-size:22px}
+.seg input:checked+label{border-color:var(--forest);background:var(--leaf);color:var(--forest)}
+.seg input:focus-visible+label{outline:2px solid var(--clay);outline-offset:2px}
+.calc-result{background:var(--forest);color:#cdd8c5;padding:44px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.calc-result::after{content:"";position:absolute;right:-60px;bottom:-60px;width:240px;height:240px;border-radius:var(--blob);background:var(--forest-2);opacity:.7}
+.calc-result>*{position:relative;z-index:1}
+.calc-result h3{color:var(--paper);font-size:22px}
+.big-out{font-family:var(--serif);font-size:72px;line-height:1;color:var(--sun);font-variant-numeric:tabular-nums}
+.big-out small{font-size:20px;color:#cdd8c5;font-family:var(--sans)}
+.trees-row{display:flex;flex-wrap:wrap;gap:4px;font-size:18px;min-height:30px}
+.calc-result hr{border:0;border-top:1px dashed rgba(223,231,204,.3);width:100%;margin:4px 0}
+.calc-result .plan{display:flex;justify-content:space-between;align-items:baseline}
+.calc-result .plan output{font-family:var(--serif);font-size:30px;color:var(--paper)}
+.calc-result del{color:#8fa08a}
+.calc-result ins{text-decoration:none;background:var(--sun);color:var(--forest);font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;margin-left:6px}
+
+/* ---------- Data table ---------- */
+.table-wrap{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:15px}
+caption{caption-side:bottom;text-align:left;padding:16px 24px;font-size:13px;color:var(--faint);border-top:1px solid var(--line-2)}
+thead th{text-align:left;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:18px 24px;background:var(--paper-2)}
+tbody td,tbody th{padding:18px 24px;border-top:1px solid var(--line-2);text-align:left;vertical-align:middle}
+tbody th{font-family:var(--serif);font-weight:400;font-size:19px;color:var(--forest)}
+tbody th small{display:block;font-family:var(--sans);font-size:13px;font-style:italic;color:var(--faint)}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:rgba(223,231,204,.35)}
+td.num{font-variant-numeric:tabular-nums;font-weight:600}
+.surv{display:flex;align-items:center;gap:12px;min-width:160px}
+.surv i{flex:1;height:6px;border-radius:99px;background:var(--leaf);position:relative;overflow:hidden}
+.surv i::after{content:"";position:absolute;inset:0;right:auto;width:var(--v);background:var(--moss);border-radius:99px}
+tfoot td,tfoot th{padding:18px 24px;border-top:2px solid var(--forest);font-weight:600;text-align:left;color:var(--forest)}
+
+/* ---------- Field notes (articles) ---------- */
+.notes{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.note-feature{grid-row:span 2}
+.note figure{margin:0;aspect-ratio:16/10;overflow:hidden}
+.note-feature figure{aspect-ratio:16/11}
+.note figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.note:hover figure img{transform:scale(1.04)}
+.note-body{padding:26px 28px 30px;display:flex;flex-direction:column;gap:12px}
+.note .meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
+.note h3{font-size:26px}
+.note-feature h3{font-size:clamp(28px,3vw,38px)}
+.note-feature .lede::first-letter{font-family:var(--serif);float:left;font-size:68px;line-height:.85;padding:6px 10px 0 0;color:var(--clay)}
+.note p{color:var(--muted);font-size:15.5px}
+.note-side{display:grid;grid-template-columns:150px 1fr}
+.note-side figure{aspect-ratio:auto;height:100%}
+.note-side .note-body{padding:22px}
+.note-side h3{font-size:21px}
+
+/* ---------- Voices: quote wall ---------- */
+.voices{columns:3;column-gap:24px}
+.voice{break-inside:avoid;margin:0 0 24px;background:var(--card);border:1px solid var(--line);border-radius:4px 22px 22px 22px;padding:28px}
+.voice blockquote{margin:0;font-family:var(--serif);font-size:20px;line-height:1.4;color:var(--forest)}
+.voice blockquote::before{content:"\201C";display:block;font-size:56px;line-height:.6;color:var(--sage);margin-bottom:10px}
+.voice figcaption{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:14px}
+.voice figcaption img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.voice figcaption cite{font-style:normal;font-weight:600;display:block}
+.voice figcaption span{color:var(--faint);font-size:13px}
+.voice.accent{background:var(--clay);border-color:var(--clay)}
+.voice.accent blockquote,.voice.accent figcaption{color:#fff}
+.voice.accent blockquote::before{color:rgba(255,255,255,.5)}
+.voice.accent figcaption span{color:rgba(255,255,255,.75)}
+.voice.leafy{background:var(--leaf);border-color:var(--leaf)}
+.voice q{quotes:"\2018" "\2019";font-style:italic}
+
+/* ---------- Sound + photo strip ---------- */
+.listen{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:26px 30px;border:1px solid var(--line);border-radius:999px;background:var(--card);margin-bottom:40px}
+.play-btn{width:64px;height:64px;border-radius:50%;background:var(--forest);color:var(--paper);border:0;cursor:pointer;display:grid;place-items:center;transition:transform .25s}
+.play-btn:hover{transform:scale(1.06)}
+.play-btn .ic{width:24px;height:24px}
+.play-btn .pause,.play-btn[aria-pressed="true"] .play{display:none}
+.play-btn[aria-pressed="true"] .pause{display:block}
+.listen h3{font-size:22px}
+.listen p{font-size:14px;color:var(--muted)}
+.eq{display:flex;align-items:flex-end;gap:4px;height:34px}
+.eq i{width:4px;height:20%;border-radius:4px;background:var(--sage);transition:height .3s}
+.listen.on .eq i{background:var(--moss);animation:eq 1s ease-in-out infinite alternate}
+.listen.on .eq i:nth-child(2n){animation-duration:.7s}
+.listen.on .eq i:nth-child(3n){animation-duration:1.3s}
+@keyframes eq{from{height:15%}to{height:100%}}
+.strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:thin;scrollbar-color:var(--sage) transparent}
+.strip figure{margin:0;flex:0 0 300px;scroll-snap-align:start;position:relative}
+.strip figure:nth-child(even){margin-top:48px}
+.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:180px 180px 18px 18px}
+.strip figure:nth-child(3n) img{border-radius:18px}
+.strip figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;font-style:italic;font-family:var(--serif)}
+
+/* ---------- FAQ (native details) ---------- */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--serif);font-size:22px;color:var(--forest)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex-shrink:0;position:relative;transition:background .25s,border-color .25s}
+.faq summary .pm::before,.faq summary .pm::after{content:"";position:absolute;width:12px;height:1.5px;background:var(--forest);transition:transform .3s}
+.faq summary .pm::after{transform:rotate(90deg)}
+.faq details[open] summary .pm{background:var(--forest);border-color:var(--forest)}
+.faq details[open] summary .pm::before,.faq details[open] summary .pm::after{background:var(--paper)}
+.faq details[open] summary .pm::after{transform:rotate(0)}
+.faq summary:hover{color:var(--moss)}
+.faq details>div{padding:0 56px 26px 0;color:var(--muted);animation:rise .35s ease}
+.faq details>div p+p{margin-top:10px}
+.kbd-note{margin-top:28px;font-size:14px;color:var(--muted)}
+kbd{font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:2px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:var(--card)}
+
+/* ---------- Join / newsletter ---------- */
+.join{position:relative;border-radius:36px;overflow:hidden;color:#fff;isolation:isolate;padding:90px 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.join>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.join::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,38,28,.92) 30%,rgba(20,38,28,.45));z-index:-1}
+.join h2{color:var(--paper);font-size:clamp(36px,4.6vw,58px)}
+.join h2 em{color:var(--sun)}
+.join p{color:#d0dac8;margin-top:16px;font-size:17px;max-width:460px}
+.join form{background:rgba(243,238,227,.1);border:1px solid rgba(243,238,227,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.join form>label{font-size:14px;font-weight:600}
+.join input[type=email]{width:100%;padding:15px 18px;border-radius:14px;border:1.5px solid rgba(243,238,227,.35);background:rgba(0,0,0,.2);color:#fff;outline:0}
+.join input[type=email]::placeholder{color:rgba(255,255,255,.55)}
+.join input[type=email]:focus{border-color:var(--sun)}
+.join fieldset{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.join legend{font-size:13px;color:#d0dac8;margin-bottom:10px;padding:0}
+.join fieldset input{position:absolute;opacity:0}
+.join fieldset label{padding:7px 14px;border-radius:2px 14px 2px 14px;border:1px solid rgba(243,238,227,.35);font-size:13.5px;cursor:pointer;transition:all .2s}
+.join fieldset input:checked+label{background:var(--sun);border-color:var(--sun);color:var(--forest)}
+.join fieldset input:focus-visible+label{outline:2px solid #fff;outline-offset:2px}
+.join .btn{justify-content:center}
+.form-msg{font-size:14px;min-height:22px;color:var(--sun)}
+
+/* ---------- Footer ---------- */
+.footer{padding:90px 0 36px;margin-top:110px;background:var(--paper-2);border-top:1px solid var(--line)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px}
+.footer h4{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:16px}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.footer ul a{text-decoration:none;color:var(--forest)}
+.footer ul a:hover{color:var(--clay)}
+.footer address{font-style:normal;color:var(--muted);line-height:1.8}
+.footer address a{color:var(--forest)}
+.footer .brand-col p{color:var(--muted);margin:14px 0 18px;max-width:300px;font-size:15px}
+.big-word{font-family:var(--serif);font-style:italic;font-size:clamp(70px,15vw,220px);line-height:.9;color:var(--sage);opacity:.55;letter-spacing:-.04em;margin:60px 0 24px;white-space:nowrap;overflow:hidden}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px;color:var(--muted);padding-top:24px;border-top:1px solid var(--line)}
+
+/* ---------- Reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .nav,.header .btn-solid{display:none}
+  .menu{display:block}
+  .hero .wrap,.sec-head,.calc,.faq-grid,.join,.notes{grid-template-columns:1fr}
+  .sec-head p{justify-self:start}
+  .hero-art{max-width:520px;width:100%;margin:0 auto}
+  .counter{left:0}
+  .hero-art .stamp{left:-6px}
+  .impact{grid-template-columns:1fr 1fr}
+  .impact div:nth-child(2){border-right:0;margin-right:0}
+  .projects{grid-template-columns:1fr 1fr}
+  .journey{grid-template-columns:1fr 1fr;row-gap:44px}
+  .journey::before{display:none}
+  .voices{columns:2}
+  .note-feature{grid-row:auto}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .join{padding:56px 36px}
+}
+@media (max-width:640px){
+  :root{--gutter:18px}
+  .sec{padding:76px 0}
+  .manifesto{padding:80px 0}
+  .hero{padding-top:36px}
+  .hero-lead{font-size:17px}
+  .hero-art .leaf-deco{width:60px;right:-4px}
+  .hero-art .stamp{width:84px;height:84px;font-size:12px}
+  .hero-art .stamp b{font-size:20px}
+  .counter{width:auto;right:12px;left:12px;bottom:14px;padding:14px 16px}
+  .counter output{font-size:28px}
+  .impact{grid-template-columns:1fr}
+  .impact div{border-right:0;margin-right:0;border-bottom:1px solid rgba(223,231,204,.2);padding:24px 0}
+  .projects{grid-template-columns:1fr}
+  .journey{grid-template-columns:1fr}
+  .calc form,.calc-result{padding:28px 22px}
+  .big-out{font-size:58px}
+  .seg label{font-size:12.5px;padding:12px 4px}
+  .voices{columns:1}
+  .note-side{grid-template-columns:1fr}
+  .note-side figure{aspect-ratio:16/9}
+  .listen{grid-template-columns:auto 1fr;border-radius:24px;padding:20px}
+  .listen .eq{grid-column:1/-1}
+  .strip figure{flex-basis:240px}
+  .faq summary{font-size:19px}
+  .faq details>div{padding-right:0}
+  .join{padding:44px 22px;border-radius:24px}
+  .footer-top{grid-template-columns:1fr}
+  /* stack the table into cards */
+  table,thead,tbody,tfoot,tr,th,td,caption{display:block}
+  caption{width:100%}
+  .brand{font-size:19px;white-space:nowrap}
+  .brand svg{width:30px;height:30px}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  tbody tr{padding:18px 20px;border-top:1px solid var(--line-2)}
+  tbody th{padding:0 0 10px;border:0}
+  tbody td{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:6px 0;border:0;font-size:14px}
+  tbody td::before{content:attr(data-label);color:var(--faint);font-weight:400;font-size:13px}
+  .surv{min-width:0;width:55%}
+  tfoot tr{display:flex;flex-wrap:wrap;justify-content:space-between;padding:16px 20px;border-top:2px solid var(--forest)}
+  tfoot td,tfoot th{padding:0;border:0}
+  tfoot td:empty{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 64 64"><path fill="currentColor" d="M14 46c-5 0-8-4-8-9 0-9 6-17 15-21l2 4c-5 3-8 7-8 11 4 0 8 3 8 7s-4 8-9 8zm28 0c-5 0-8-4-8-9 0-9 6-17 15-21l2 4c-5 3-8 7-8 11 4 0 8 3 8 7s-4 8-9 8z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="3"/></symbol>
+</svg>
+
+<header class="header">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Canopy Collective home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1f3a2c"/><path d="M20 30V17m0 6-5-4m5 1 5-5" stroke="#dfe7cc" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="20" cy="14" r="6" fill="#6f8f34"/></svg>
+      <span>Canopy <i>Collective</i></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#projects">Projects</a>
+      <a href="#journey">Our method</a>
+      <a href="#calculator">Footprint</a>
+      <a href="#notes">Field notes</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#join" class="btn btn-solid">Plant a tree <svg class="ic"><use href="#i-leaf"/></svg></a>
+    <details class="menu">
+      <summary><span class="bars" aria-hidden="true"></span> Menu</summary>
+      <nav aria-label="Mobile">
+        <a href="#projects">Projects</a>
+        <a href="#journey">Our method</a>
+        <a href="#calculator">Footprint</a>
+        <a href="#notes">Field notes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#join" class="btn btn-solid">Plant a tree</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Reforestation since 2014</span>
+      <h1>Every forest begins with <em>one small seed.</em></h1>
+      <p class="hero-lead">We work with local communities to restore native forests, mangroves and city green spaces — and we show you every tree, every season, every year.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn btn-clay">Plant your first tree — €1</a>
+        <a href="#projects" class="link-arrow">See our projects <svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <span class="stamp" aria-hidden="true"><span><b>4.8M</b>trees &amp; counting</span></span>
+      <div class="blob"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000&h=1250&fit=crop" alt="Sunlight streaming through a green forest" width="1000" height="1250"></div>
+      <svg class="leaf-deco" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 90C10 40 40 10 90 10 90 60 60 90 10 90z" fill="currentColor" opacity=".85"/><path d="M10 90 70 30" stroke="#f3eee3" stroke-width="2"/></svg>
+      <div class="counter" aria-live="off">
+        <small><span class="pulse"></span> Trees planted, live</small>
+        <output id="live-count" for="goal">4,812,309</output>
+        <label for="goal"><span>2026 goal</span><span>48% of 10M</span></label>
+        <meter id="goal" min="0" max="10000000" low="2000000" high="8000000" optimum="10000000" value="4812309">4.8 million of 10 million</meter>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="partners rv">
+      <small>Planting with</small>
+      <span>Greenline</span><span>Terra Fund</span><span>Wildroot</span><span>Kestrel &amp; Co.</span><span>Bloomfield</span>
+    </div>
+  </div>
+</section>
+
+<!-- Manifesto quote -->
+<section class="manifesto">
+  <div class="wrap">
+    <figure class="rv" style="margin:0">
+      <blockquote cite="#">
+        <svg aria-hidden="true"><use href="#i-quote"/></svg>
+        <p>The best time to plant a tree was twenty years ago. The second best time is <em>today</em> — and the best way is together, with the people who live beside the forest.</p>
+      </blockquote>
+      <footer>
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop" alt="Portrait of Dr. Amara Okoye" width="120" height="120" loading="lazy">
+        <div><cite>Dr. Amara Okoye</cite><small>Founder &amp; forest ecologist</small></div>
+      </footer>
+    </figure>
+  </div>
+</section>
+
+<!-- Impact numbers -->
+<section class="sec forest-bg" aria-labelledby="impact-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Our impact</span><h2 id="impact-h">Ten years of <em>roots</em> in the ground</h2></div>
+      <p>Independently verified every year by <abbr title="Forest Stewardship Council">FSC</abbr>-accredited auditors. Numbers as of <time datetime="2026-10-31">31 October 2026</time>.</p>
+    </div>
+    <dl class="impact">
+      <div class="rv"><dt>Native trees planted</dt><dd>4.8<sup>M</sup></dd><p>Across 214 species</p></div>
+      <div class="rv"><dt>Hectares restored</dt><dd>12,400</dd><p>About 17,000 football pitches</p></div>
+      <div class="rv"><dt>CO₂ captured per year</dt><dd>98<sup>kt</sup></dd><p>Measured by satellite &amp; soil cores</p></div>
+      <div class="rv"><dt>Local jobs created</dt><dd>3,150</dd><p>62% held by women</p></div>
+    </dl>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Live projects</span><h2>Choose where your <em>trees</em> grow</h2></div>
+      <p>Every project is led by a local partner. Pick one and you'll get GPS coordinates and seasonal photos of your trees.</p>
+    </div>
+    <div class="projects">
+      <fieldset class="filter" aria-label="Filter projects">
+        <legend>Show:</legend>
+        <input type="radio" name="ptype" id="f-all" checked><label for="f-all">All projects</label>
+        <input type="radio" name="ptype" id="f-forest"><label for="f-forest">🌳 Forests</label>
+        <input type="radio" name="ptype" id="f-mangrove"><label for="f-mangrove">🌊 Mangroves</label>
+        <input type="radio" name="ptype" id="f-urban"><label for="f-urban">🏙 Urban</label>
+      </fieldset>
+
+      <article class="proj" data-type="forest">
+        <figure><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&h=600&fit=crop" alt="Tall trees in a misty forest" width="800" height="600" loading="lazy"><span class="leaf-tag">Native forest</span><figcaption>Year 6</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Highlands, Kenya</address>
+          <h3>Mau Forest Revival</h3>
+          <p>Reconnecting fragmented forest so elephants can move freely again.</p>
+          <div class="fund"><div><span><b>78,400</b> of 100,000 trees</span><span>78%</span></div><progress max="100" value="78">78%</progress></div>
+        </div>
+      </article>
+      <article class="proj urgent" data-type="mangrove">
+        <figure><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop" alt="Green coastal landscape" width="800" height="600" loading="lazy"><span class="leaf-tag clay">Urgent · storm season</span><figcaption>Year 2</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Sundarbans, Bangladesh</address>
+          <h3>Sundarbans Shoreline</h3>
+          <p>Mangroves that shield 40 villages from cyclones and rising tides.</p>
+          <div class="fund"><div><span><b>31,200</b> of 120,000 trees</span><span>26%</span></div><progress max="100" value="26">26%</progress></div>
+        </div>
+      </article>
+      <article class="proj" data-type="urban">
+        <figure><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&h=600&fit=crop" alt="Potted plants in a bright room" width="800" height="600" loading="lazy"><span class="leaf-tag sun">Urban · New</span><figcaption>Year 1</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Lisbon, Portugal</address>
+          <h3>Pocket Forests Lisboa</h3>
+          <p>Dense Miyawaki forests on school grounds — 30× the biodiversity of a lawn.</p>
+          <div class="fund"><div><span><b>9,600</b> of 15,000 trees</span><span>64%</span></div><progress max="100" value="64">64%</progress></div>
+        </div>
+      </article>
+      <article class="proj" data-type="forest">
+        <figure><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop" alt="Fog over forested mountains" width="800" height="600" loading="lazy"><span class="leaf-tag">Cloud forest</span><figcaption>Year 4</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Andes, Ecuador</address>
+          <h3>Mindo Cloud Forest</h3>
+          <p>Protecting the water source for 200,000 people downstream.</p>
+          <div class="fund"><div><span><b>52,000</b> of 60,000 trees</span><span>87%</span></div><progress max="100" value="87">87%</progress></div>
+        </div>
+      </article>
+      <article class="proj" data-type="mangrove">
+        <figure><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&h=600&fit=crop" alt="Sunlit forest floor" width="800" height="600" loading="lazy"><span class="leaf-tag">Mangrove</span><figcaption>Year 3</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Mahajanga, Madagascar</address>
+          <h3>Bay of Life</h3>
+          <p>Restoring fish nurseries that feed coastal families year-round.</p>
+          <div class="fund"><div><span><b>44,700</b> of 80,000 trees</span><span>56%</span></div><progress max="100" value="56">56%</progress></div>
+        </div>
+      </article>
+      <article class="proj" data-type="urban">
+        <figure><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop" alt="Hands gardening young plants" width="800" height="600" loading="lazy"><span class="leaf-tag">Community garden</span><figcaption>Year 2</figcaption></figure>
+        <div class="proj-body">
+          <address><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Detroit, USA</address>
+          <h3>Green Corridors Detroit</h3>
+          <p>Shade trees on the hottest blocks, planted by neighbours.</p>
+          <div class="fund"><div><span><b>6,100</b> of 10,000 trees</span><span>61%</span></div><progress max="100" value="61">61%</progress></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Journey timeline -->
+<section class="sec forest-bg" id="journey">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Our method</span><h2>From seed to <em>self-sustaining</em> forest</h2></div>
+      <p>We don't plant and leave. Every tree is cared for until the forest can look after itself.</p>
+    </div>
+    <ol class="journey">
+      <li class="rv"><div class="seed" aria-hidden="true">🌰</div><time datetime="P2M">Months 0–2</time><h3>Seed collection</h3><p>Local seed keepers gather native species from nearby mother trees.</p></li>
+      <li class="rv"><div class="seed" aria-hidden="true">🌱</div><time datetime="P6M">Months 2–8</time><h3>Community nursery</h3><p>Seedlings grow strong in nurseries run by village cooperatives.</p></li>
+      <li class="rv"><div class="seed" aria-hidden="true">🌿</div><time datetime="P1Y">Year 1</time><h3>Planting season</h3><p>Planted with the first rains, mixed to mimic a natural forest.</p></li>
+      <li class="rv"><div class="seed" aria-hidden="true">🌳</div><time datetime="P5Y">Years 2–5</time><h3>Watch &amp; protect</h3><p>Satellite checks, fire breaks and paid rangers until canopy closes.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- Carbon calculator -->
+<section class="sec" id="calculator">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Footprint calculator</span><h2>How many trees would <em>balance</em> your year?</h2></div>
+      <p>A quick estimate based on average emissions. Move the sliders — the result updates as you go.</p>
+    </div>
+    <div class="calc rv">
+      <form id="calc" oninput="calcFootprint()">
+        <div class="field">
+          <label for="flights">Return flights per year <output for="flights" id="flights-out">2</output></label>
+          <input type="range" id="flights" min="0" max="20" value="2">
+          <div class="ticks" aria-hidden="true"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+        </div>
+        <div class="field">
+          <label for="km">Car kilometres per week <output for="km" id="km-out">150 km</output></label>
+          <input type="range" id="km" min="0" max="800" step="10" value="150">
+          <div class="ticks" aria-hidden="true"><span>0</span><span>200</span><span>400</span><span>600</span><span>800</span></div>
+        </div>
+        <div class="field">
+          <label for="diet">Your diet</label>
+          <select id="diet">
+            <optgroup label="Plant-based">
+              <option value="1.5">Vegan</option>
+              <option value="1.7">Vegetarian</option>
+            </optgroup>
+            <optgroup label="Includes meat">
+              <option value="2.5" selected>Mixed — meat a few times a week</option>
+              <option value="3.3">Meat most days</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <fieldset>
+            <legend>Home energy</legend>
+            <div class="seg">
+              <input type="radio" name="energy" id="e-green" value="0.5"><label for="e-green"><span>☀️</span>Renewable</label>
+              <input type="radio" name="energy" id="e-mixed" value="1.5" checked><label for="e-mixed"><span>⚡</span>Mixed grid</label>
+              <input type="radio" name="energy" id="e-fossil" value="2.8"><label for="e-fossil"><span>🏭</span>Gas &amp; oil</label>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+      <div class="calc-result" aria-live="polite">
+        <h3>Your estimated footprint</h3>
+        <div class="big-out"><output id="tonnes" form="calc">6.4</output> <small>t CO₂e / year</small></div>
+        <div class="trees-row" id="trees-row" aria-hidden="true"></div>
+        <p>That's about <b><output id="trees" form="calc">290</output> trees</b> growing for a year.</p>
+        <hr>
+        <div class="plan"><span>Monthly offset plan</span><output id="price" form="calc">€4.80</output></div>
+        <p style="font-size:13px">First month <del>€4.80</del> <ins>Free</ins></p>
+        <a href="#join" class="btn btn-clay" style="justify-content:center">Start my forest</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data table -->
+<section class="sec" style="padding-top:0" aria-labelledby="species-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Open data</span><h2 id="species-h">What we plant, and <em>how it's doing</em></h2></div>
+      <p>We publish survival rates for every species — including the ones that struggle. Transparency is how forests earn trust.</p>
+    </div>
+    <div class="table-wrap rv">
+      <table>
+        <caption>Survival measured 24 months after planting. Full dataset updated quarterly.</caption>
+        <thead><tr><th scope="col">Species</th><th scope="col">Project</th><th scope="col">Planted</th><th scope="col">Survival rate</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">African olive<small>Olea europaea cuspidata</small></th><td data-label="Project">Mau Forest</td><td class="num" data-label="Planted">21,400</td><td data-label="Survival"><span class="surv"><i style="--v:91%"></i>91%</span></td></tr>
+          <tr><th scope="row">Red mangrove<small>Rhizophora mangle</small></th><td data-label="Project">Sundarbans</td><td class="num" data-label="Planted">18,900</td><td data-label="Survival"><span class="surv"><i style="--v:84%"></i>84%</span></td></tr>
+          <tr><th scope="row">Cork oak<small>Quercus suber</small></th><td data-label="Project">Lisboa</td><td class="num" data-label="Planted">3,200</td><td data-label="Survival"><span class="surv"><i style="--v:88%"></i>88%</span></td></tr>
+          <tr><th scope="row">Andean alder<small>Alnus acuminata</small></th><td data-label="Project">Mindo</td><td class="num" data-label="Planted">14,750</td><td data-label="Survival"><span class="surv"><i style="--v:79%"></i>79%</span></td></tr>
+          <tr><th scope="row">Swamp white oak<small>Quercus bicolor</small></th><td data-label="Project">Detroit</td><td class="num" data-label="Planted">2,050</td><td data-label="Survival"><span class="surv"><i style="--v:73%"></i>73%</span></td></tr>
+        </tbody>
+        <tfoot><tr><th scope="row">All species</th><td></td><td class="num">4,812,309</td><td>86% avg.</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Field notes -->
+<section class="sec" id="notes" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Field notes</span><h2>Stories from the <em>understory</em></h2></div>
+      <p>Dispatches from our rangers, nursery keepers and scientists.</p>
+    </div>
+    <div class="notes">
+      <article class="note note-feature rv">
+        <figure><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1100&h=760&fit=crop" alt="Hands holding a young seedling in soil" width="1100" height="760" loading="lazy"></figure>
+        <div class="note-body">
+          <div class="meta"><span class="leaf-tag">Nursery</span><time datetime="2026-10-12">12 Oct 2026</time><span>· 6 min read</span></div>
+          <h3>The women who run Kenya's largest seed bank</h3>
+          <p class="lede">In a tin-roofed shed on the edge of the Mau, Grace Chepkoech keeps 140 native species alive in recycled jam jars. Her cooperative now supplies <mark>more than 60% of all seedlings</mark> we plant in East Africa.</p>
+          <a href="#" class="link-arrow">Read the story <svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="note note-side rv">
+        <figure><img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400&h=400&fit=crop" alt="Succulent plants" width="400" height="400" loading="lazy"></figure>
+        <div class="note-body">
+          <div class="meta"><span class="leaf-tag sun">Science</span><time datetime="2026-09-28">28 Sep</time></div>
+          <h3>Why we never plant monocultures</h3>
+          <p>Mixed forests store more carbon and survive drought better.</p>
+        </div>
+      </article>
+      <article class="note note-side rv">
+        <figure><img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400&h=400&fit=crop" alt="A single tree in a meadow" width="400" height="400" loading="lazy"></figure>
+        <div class="note-body">
+          <div class="meta"><span class="leaf-tag clay">Report</span><time datetime="2026-09-02">2 Sep</time></div>
+          <h3>Our 2026 impact report is out</h3>
+          <p>Including what went wrong — and what we changed.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Voices + sound + photo strip -->
+<section class="sec" style="padding-top:0" aria-labelledby="voices-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="kicker">Voices</span><h2 id="voices-h">Planted by people, <em>for</em> people</h2></div>
+      <p>Hear from the communities and supporters who make it happen.</p>
+    </div>
+    <div class="voices">
+      <figure class="voice rv"><blockquote>Before the mangroves came back, the water reached our doors every monsoon. This year my children slept dry.</blockquote><figcaption><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="" width="100" height="100" loading="lazy"><div><cite>Rafiq Hossain</cite><span>Fisherman, Sundarbans</span></div></figcaption></figure>
+      <figure class="voice accent rv"><blockquote>I gift a tree for every birthday in our family. My niece visits "her" oak on the map every week.</blockquote><figcaption><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="" width="100" height="100" loading="lazy"><div><cite>Hannah Weber</cite><span>Supporter since 2019</span></div></figcaption></figure>
+      <figure class="voice leafy rv"><blockquote>Our pupils planted 600 trees in a single morning. Now biology class happens <q>in the forest</q>.</blockquote><figcaption><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="" width="100" height="100" loading="lazy"><div><cite>João Ferreira</cite><span>Teacher, Lisbon</span></div></figcaption></figure>
+      <figure class="voice rv"><blockquote>The monthly photos are the best email I get. You can actually watch the canopy close.</blockquote><figcaption><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="" width="100" height="100" loading="lazy"><div><cite>Mei Lin</cite><span>Supporter, Singapore</span></div></figcaption></figure>
+      <figure class="voice rv"><blockquote>As a ranger I'm paid to protect the trees I grew up climbing. That's a job with meaning.</blockquote><figcaption><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="" width="100" height="100" loading="lazy"><div><cite>Lucía Andrade</cite><span>Forest ranger, Mindo</span></div></figcaption></figure>
+    </div>
+
+    <div class="listen rv" id="listen">
+      <button class="play-btn" id="sound" aria-pressed="false" aria-label="Play forest ambience">
+        <svg class="ic play"><use href="#i-play"/></svg><svg class="ic pause"><use href="#i-pause"/></svg>
+      </button>
+      <div><h3>Close your eyes for a minute</h3><p>A gentle wind-through-the-leaves ambience, generated live in your browser. Headphones recommended.</p></div>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="strip" tabindex="0" aria-label="Photo strip, scroll horizontally">
+      <figure><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=800&fit=crop" alt="Forest light" width="600" height="800" loading="lazy"><figcaption>Morning light, Mau Forest</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=800&fit=crop" alt="Seedling in hands" width="600" height="800" loading="lazy"><figcaption>Seedling #1,204,881</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=800&fit=crop" alt="Foggy hills" width="600" height="800" loading="lazy"><figcaption>Cloud forest, Ecuador</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=800&fit=crop" alt="Gardening" width="600" height="800" loading="lazy"><figcaption>Planting day, Detroit</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=800&fit=crop" alt="Misty forest" width="600" height="800" loading="lazy"><figcaption>Year six canopy</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&h=800&fit=crop" alt="Indoor plants" width="600" height="800" loading="lazy"><figcaption>School nursery, Lisbon</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq" id="faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="rv">
+      <span class="kicker">Questions</span>
+      <h2 style="font-size:clamp(36px,4.6vw,56px);margin-top:16px">Good questions <em>deserve</em> honest answers</h2>
+      <p class="kbd-note">Tip: press <kbd>Tab</kbd> to move between questions and <kbd>Enter</kbd> to open one.</p>
+    </div>
+    <div class="rv">
+      <details open>
+        <summary>How do I know my tree was really planted?<span class="pm" aria-hidden="true"></span></summary>
+        <div><p>Every tree is tagged to a planting site with GPS coordinates. You'll receive geotagged photos at planting, then seasonal satellite updates for five years.</p></div>
+      </details>
+      <details>
+        <summary>Where does my €1 actually go?<span class="pm" aria-hidden="true"></span></summary>
+        <div><p>€0.62 pays local planters and rangers, €0.21 covers seedlings and nurseries, €0.10 funds monitoring, and €0.07 runs Canopy.</p><p>Our audited accounts are published every April.</p></div>
+      </details>
+      <details>
+        <summary>Can trees really offset my footprint?<span class="pm" aria-hidden="true"></span></summary>
+        <div><p>Trees help, but they're not a licence to pollute. We encourage reducing emissions first — and planting for climate, biodiversity and communities together.</p></div>
+      </details>
+      <details>
+        <summary>Can my company partner with you?<span class="pm" aria-hidden="true"></span></summary>
+        <div><p>Yes. We offer per-product planting, employee forests and verified impact reports. Write to <a href="mailto:partners@canopy.example">partners@canopy.example</a>.</p></div>
+      </details>
+      <details>
+        <summary>Is my donation tax-deductible?<span class="pm" aria-hidden="true"></span></summary>
+        <div><p>In the EU, UK and US, yes. You'll receive a receipt automatically after each donation.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Join -->
+<section id="join">
+  <div class="wrap">
+    <div class="join rv">
+      <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1600&h=900&fit=crop" alt="" width="1600" height="900" loading="lazy">
+      <div>
+        <span class="leaf-tag dark">🌱 Monthly letter</span>
+        <h2 style="margin-top:18px">Grow a forest from <em>your inbox</em></h2>
+        <p>One honest letter a month: new projects, field photos and the science behind them. Unsubscribe whenever you like.</p>
+      </div>
+      <form id="join-form" novalidate>
+        <label for="j-email">Your email</label>
+        <input type="email" id="j-email" placeholder="you@example.com" autocomplete="email" required>
+        <fieldset>
+          <legend>I'm most interested in</legend>
+          <input type="checkbox" id="t1" checked><label for="t1">Forests</label>
+          <input type="checkbox" id="t2"><label for="t2">Oceans</label>
+          <input type="checkbox" id="t3"><label for="t3">Cities</label>
+          <input type="checkbox" id="t4"><label for="t4">Science</label>
+        </fieldset>
+        <button class="btn btn-clay" type="submit">Subscribe &amp; plant 1 tree free</button>
+        <output class="form-msg" id="join-msg" role="status"></output>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="brand-col">
+        <a href="#top" class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1f3a2c"/><path d="M20 30V17m0 6-5-4m5 1 5-5" stroke="#dfe7cc" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="20" cy="14" r="6" fill="#6f8f34"/></svg><span>Canopy <i>Collective</i></span></a>
+        <p>A registered non-profit restoring forests with the people who live beside them.</p>
+        <span class="leaf-tag">🌍 Carbon-neutral website</span>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#projects">Projects</a></li><li><a href="#journey">Our method</a></li><li><a href="#calculator">Footprint</a></li><li><a href="#notes">Field notes</a></li></ul></div>
+      <div><h4>Organisation</h4><ul><li><a href="#">About us</a></li><li><a href="#">Impact reports</a></li><li><a href="#">Careers</a></li><li><a href="#">Press kit</a></li></ul></div>
+      <div><h4>Visit &amp; contact</h4>
+        <address>Canopy Collective<br>14 Old Orchard Lane<br>Bristol BS1 4XE, UK<br><a href="mailto:hello@canopy.example">hello@canopy.example</a><br><a href="tel:+441170000000">+44 117 000 0000</a></address>
+      </div>
+    </div>
+    <p class="big-word" aria-hidden="true">grow together.</p>
+    <div class="footer-bottom">
+      <small>© <span id="year">2026</span> Canopy Collective · Registered charity no. 1170000</small>
+      <small>Printed on 0% paper. Hosted on 100% renewable energy.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const fmt = n => n.toLocaleString('en-US');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Live tree counter + goal meter */
+  let count = 4812309;
+  const out = $('#live-count'), meter = $('#goal');
+  if (!reduce) setInterval(() => {
+    count += Math.ceil(Math.random() * 3);
+    out.value = fmt(count);
+    meter.value = count;
+  }, 1400);
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
+
+  /* Close the mobile <details> menu after choosing a link */
+  document.querySelectorAll('.menu nav a').forEach(a => a.addEventListener('click', () => $('.menu').open = false));
+
+  /* Footprint calculator */
+  const paintRange = r => r.style.setProperty('--fill', (r.value - r.min) / (r.max - r.min) * 100 + '%');
+  window.calcFootprint = () => {
+    const flights = +$('#flights').value, km = +$('#km').value;
+    const diet = +$('#diet').value, energy = +document.querySelector('[name=energy]:checked').value;
+    const tonnes = flights * 0.9 + km * 52 * 0.00017 + diet + energy;
+    const trees = Math.round(tonnes / 0.022);
+    $('#flights-out').value = flights;
+    $('#km-out').value = km + ' km';
+    $('#tonnes').value = tonnes.toFixed(1);
+    $('#trees').value = fmt(trees);
+    const price = '€' + (trees * 0.2 / 12).toFixed(2);
+    $('#price').value = price;
+    $('#calc-del') && ($('#calc-del').textContent = price);
+    $('#trees-row').textContent = '🌳'.repeat(Math.min(Math.round(trees / 25), 24));
+    document.querySelectorAll('#calc input[type=range]').forEach(paintRange);
+  };
+  document.querySelector('.calc-result del').id = 'calc-del';
+  calcFootprint();
+
+  /* Forest ambience: brown noise through a breathing low-pass filter */
+  let ctx, gain;
+  const btn = $('#sound'), box = $('#listen');
+  btn.addEventListener('click', async () => {
+    const on = btn.getAttribute('aria-pressed') !== 'true';
+    if (on && !ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const buf = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate), d = buf.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < d.length; i++) { last = (last + .02 * (Math.random() * 2 - 1)) / 1.02; d[i] = last * 3.5; }
+      const src = ctx.createBufferSource(); src.buffer = buf; src.loop = true;
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 700;
+      const lfo = ctx.createOscillator(), lfoGain = ctx.createGain();
+      lfo.frequency.value = .12; lfoGain.gain.value = 400;
+      lfo.connect(lfoGain).connect(lp.frequency);
+      gain = ctx.createGain(); gain.gain.value = 0;
+      src.connect(lp).connect(gain).connect(ctx.destination);
+      src.start(); lfo.start();
+    }
+    if (on) { await ctx.resume(); gain.gain.setTargetAtTime(.5, ctx.currentTime, .6); }
+    else gain.gain.setTargetAtTime(0, ctx.currentTime, .3);
+    btn.setAttribute('aria-pressed', on);
+    btn.setAttribute('aria-label', on ? 'Pause forest ambience' : 'Play forest ambience');
+    box.classList.toggle('on', on);
+  });
+
+  /* Newsletter */
+  $('#join-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const email = $('#j-email'), msg = $('#join-msg');
+    if (!email.value || !email.checkValidity()) { msg.value = 'Please enter a valid email address.'; email.focus(); return; }
+    msg.value = `🌱 Welcome! A tree is being planted in your name — check ${email.value}.`;
+    email.value = '';
+  });
+
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

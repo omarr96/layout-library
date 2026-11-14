@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Filter Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #141414; --body: #3f3f46; --muted: #71717a; --faint: #a1a1aa;
+  --line: #e9e9e6; --soft: #f5f5f3; --bg: #fff; --card: #f3f3f0;
+  --accent: #141414; --sale: #dc2626; --new: #2563eb; --ok: #16a34a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 Inter, system-ui, sans-serif; color: var(--body); background: var(--bg); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+/* Layout switcher */
+.switch { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.switch .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+.switch h1 { margin: 0; font-size: 15px; color: var(--ink); white-space: nowrap; }
+.switch nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+.switch nav button { height: 34px; padding: 0 12px; border-radius: 8px; white-space: nowrap; color: var(--muted); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.switch nav button:hover { background: var(--soft); color: var(--ink); }
+.switch nav button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.switch nav small { font-size: 10.5px; opacity: .6; text-transform: uppercase; letter-spacing: .04em; }
+.intro { padding: 28px 0 18px; display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.intro h2 { margin: 0; font-size: 28px; letter-spacing: -.02em; color: var(--ink); }
+.intro p { margin: 4px 0 0; color: var(--muted); }
+.crumbs { font-size: 12.5px; color: var(--faint); margin-bottom: 6px; }
+
+/* Shared bits */
+.count { color: var(--muted); white-space: nowrap; }
+.count b { color: var(--ink); }
+.select { height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 34px 0 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2371717a' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; appearance: none; cursor: pointer; color: var(--ink); }
+.select:focus, .search input:focus { outline: 0; border-color: var(--ink); }
+.chk { display: flex; align-items: center; gap: 10px; padding: 6px 0; cursor: pointer; color: var(--body); user-select: none; }
+.chk input { appearance: none; width: 18px; height: 18px; border: 1.5px solid #cfcfcb; border-radius: 5px; margin: 0; display: grid; place-items: center; flex: none; cursor: pointer; transition: .12s; }
+.chk input[type=radio] { border-radius: 50%; }
+.chk input:checked { background: var(--ink); border-color: var(--ink); }
+.chk input:checked::after { content: ""; width: 9px; height: 5px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
+.chk input[type=radio]:checked::after { width: 6px; height: 6px; border: 0; border-radius: 50%; background: #fff; transform: none; }
+.chk .c { margin-left: auto; color: var(--faint); font-size: 12.5px; }
+.chk:hover { color: var(--ink); }
+.sizes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.sz { height: 36px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--line); font-weight: 500; color: var(--ink); font-size: 13px; }
+.sz:hover { box-shadow: inset 0 0 0 1px #bdbdb8; }
+.sz[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: none; }
+.colors { display: flex; flex-wrap: wrap; gap: 8px; }
+.sw { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); position: relative; }
+.sw[aria-pressed="true"]::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ink); }
+.colors.labeled { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+.colors.labeled button { display: flex; align-items: center; gap: 9px; padding: 5px 0; text-align: left; color: var(--body); }
+.colors.labeled .sw { width: 20px; height: 20px; }
+.colors.labeled .sw[aria-pressed="true"]::after { inset: -3px; }
+.colors.labeled button:hover { color: var(--ink); }
+.range { position: relative; height: 28px; margin: 4px 2px 6px; }
+.range .track { position: absolute; left: 0; right: 0; top: 12px; height: 4px; border-radius: 4px; background: var(--line); }
+.range .fill { position: absolute; top: 12px; height: 4px; border-radius: 4px; background: var(--ink); }
+.range input { position: absolute; inset: 0; width: 100%; margin: 0; appearance: none; background: none; pointer-events: none; }
+.range input::-webkit-slider-thumb { appearance: none; pointer-events: auto; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); cursor: grab; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.range input::-moz-range-thumb { pointer-events: auto; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); cursor: grab; }
+.price-vals { display: flex; align-items: center; gap: 8px; }
+.price-vals span { flex: 1; height: 38px; border: 1px solid var(--line); border-radius: 9px; display: flex; align-items: center; padding: 0 12px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.price-vals span small { color: var(--faint); margin-right: auto; font-size: 12px; }
+.switchrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 0; cursor: pointer; }
+.switchrow input { appearance: none; width: 36px; height: 20px; border-radius: 99px; background: #d9d9d5; position: relative; margin: 0; cursor: pointer; transition: .15s; flex: none; }
+.switchrow input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); transition: .15s; }
+.switchrow input:checked { background: var(--ink); }
+.switchrow input:checked::after { left: 18px; }
+.stars { color: #f59e0b; letter-spacing: 1px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 0; }
+.chips:empty { display: none; }
+.chip { height: 30px; padding: 0 8px 0 12px; border-radius: 99px; background: var(--soft); color: var(--ink); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.chip:hover { background: #eaeae6; }
+.chip svg { width: 14px; height: 14px; color: var(--muted); }
+.clear { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; padding: 0 6px; }
+.clear:hover { color: var(--ink); }
+
+/* Product cards */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 18px; }
+.grid.c3 { grid-template-columns: repeat(3, 1fr); }
+.card { display: grid; gap: 10px; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } }
+.card .im { position: relative; aspect-ratio: 1; border-radius: 14px; background: var(--card) center / cover no-repeat; overflow: hidden; }
+.card .bdg { position: absolute; top: 10px; left: 10px; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px; background: #fff; color: var(--ink); }
+.card .bdg.sale { background: var(--sale); color: #fff; }
+.card .fav { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; color: var(--ink); opacity: 0; transition: .15s; }
+.card:hover .fav { opacity: 1; }
+.card .fav.on { opacity: 1; color: var(--sale); }
+.card .fav.on svg { fill: currentColor; }
+.card .add { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 38px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 600; font-size: 13px; opacity: 0; transform: translateY(6px); transition: .18s; }
+.card:hover .add { opacity: 1; transform: none; }
+.card .nm { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.card h4 { margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); }
+.card .pr { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.card .pr s { color: var(--faint); font-weight: 400; margin-right: 5px; font-size: 13px; }
+.card .pr.on { color: var(--sale); }
+.card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); margin-top: -6px; }
+.card .dots { display: flex; gap: 4px; }
+.card .dots i { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+.none { grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: var(--muted); display: grid; justify-items: center; gap: 8px; }
+.none b { color: var(--ink); font-size: 16px; }
+.none button { margin-top: 6px; height: 38px; padding: 0 16px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 600; }
+
+/* ---------- 1. Dropdown pills ---------- */
+.l1-bar { display: flex; align-items: center; gap: 8px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; }
+.l1-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pw { position: relative; }
+.pill { height: 38px; padding: 0 12px 0 14px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--line); display: inline-flex; align-items: center; gap: 6px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.pill:hover { box-shadow: inset 0 0 0 1px #bdbdb8; }
+.pill.has { background: var(--ink); color: #fff; box-shadow: none; }
+.pill .n { min-width: 18px; height: 18px; border-radius: 99px; background: #fff; color: var(--ink); font-size: 11px; display: inline-grid; place-items: center; padding: 0 5px; }
+.pill svg { width: 14px; height: 14px; opacity: .6; transition: transform .15s; }
+.pill[aria-expanded="true"] svg { transform: rotate(180deg); }
+.l1-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.pop { position: absolute; top: calc(100% + 8px); left: 0; z-index: 20; width: 280px; background: #fff; border-radius: 14px; box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 18px 40px -12px rgba(0,0,0,.22); padding: 14px 16px; animation: pop .15s ease-out; }
+@keyframes pop { from { transform: translateY(-4px); } }
+.pop h5 { margin: 0 0 8px; font-size: 13px; color: var(--ink); }
+.pop .ft { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); margin: 12px -16px -14px; padding: 10px 16px; }
+.pop .ft .go { height: 34px; padding: 0 14px; border-radius: 9px; background: var(--ink); color: #fff; font-weight: 600; font-size: 13px; }
+.l1-chips { padding: 14px 0 0; }
+
+/* ---------- 2. Category tabs ---------- */
+.l2-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.l2-tabs button { position: relative; padding: 14px 0; font-size: 15px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.l2-tabs button sup { font-size: 11px; color: var(--faint); margin-left: 3px; }
+.l2-tabs button:hover { color: var(--ink); }
+.l2-tabs button[aria-pressed="true"] { color: var(--ink); }
+.l2-tabs button[aria-pressed="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--ink); }
+.l2-row { display: flex; align-items: center; gap: 8px; padding: 16px 0; flex-wrap: wrap; }
+.tg { height: 36px; padding: 0 14px; border-radius: 99px; background: var(--soft); font-weight: 500; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.tg:hover { background: #ebebe7; }
+.tg[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.l2-sep { width: 1px; height: 22px; background: var(--line); margin: 0 6px; }
+.l2-row .colors { gap: 6px; }
+.l2-row .sw { width: 24px; height: 24px; }
+.l2-row .select { height: 36px; border-radius: 99px; }
+.l2-row .l1-right .select { border-radius: 10px; }
+
+/* ---------- 3. Expanding panel ---------- */
+.l3-bar { display: flex; align-items: center; gap: 10px; padding: 0 0 16px; }
+.fbtn { height: 42px; padding: 0 16px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.fbtn .n { background: #fff; color: var(--ink); border-radius: 99px; font-size: 11px; min-width: 20px; height: 20px; display: inline-grid; place-items: center; padding: 0 6px; }
+.fbtn.ghost { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.fbtn.ghost .n { background: var(--ink); color: #fff; }
+.search { position: relative; flex: 1; max-width: 360px; }
+.search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--faint); }
+.search input { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 12px; padding: 0 14px 0 38px; background: #fff; }
+.l3-bar .select { height: 42px; border-radius: 12px; }
+.l3-panel { border-radius: 18px; background: var(--soft); padding: 22px 24px 18px; margin-bottom: 18px; animation: pop .18s ease-out; }
+.l3-cols { display: grid; grid-template-columns: 1fr 1.3fr 1.2fr 1.1fr; gap: 32px; }
+.l3-cols h5 { margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.l3-panel .sz { background: #fff; }
+.l3-panel .sz[aria-pressed="true"] { background: var(--ink); }
+.l3-panel .price-vals span { background: #fff; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.presets button { height: 30px; padding: 0 11px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 12.5px; font-weight: 500; color: var(--ink); }
+.presets button[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: none; }
+.l3-foot { display: flex; justify-content: flex-end; align-items: center; gap: 10px; border-top: 1px solid #e3e3df; margin-top: 18px; padding-top: 14px; }
+.l3-foot .go { height: 40px; padding: 0 18px; border-radius: 11px; background: var(--ink); color: #fff; font-weight: 600; }
+.l3-chips { margin-bottom: 18px; }
+
+/* ---------- 4. Classic sidebar ---------- */
+.side-wrap { display: grid; grid-template-columns: 264px minmax(0, 1fr); gap: 36px; align-items: start; }
+.l4-side { position: sticky; top: 80px; max-height: calc(100vh - 96px); overflow: auto; scrollbar-width: thin; padding-right: 4px; }
+.l4-side .hd { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.l4-side .hd b { font-size: 16px; color: var(--ink); }
+.acc { border-bottom: 1px solid var(--line); }
+.acc > button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-weight: 600; color: var(--ink); }
+.acc > button svg { transition: transform .15s; color: var(--muted); }
+.acc.open > button svg { transform: rotate(180deg); }
+.acc > button .n { margin-left: 8px; margin-right: auto; font-size: 11px; background: var(--ink); color: #fff; border-radius: 99px; padding: 1px 7px; }
+.acc .in { display: none; padding: 0 0 16px; }
+.acc.open .in { display: block; }
+.l4-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 14px; }
+.l4-chips { margin-bottom: 18px; }
+.mf { display: none; }
+
+/* ---------- 5. Minimal sidebar ---------- */
+.l5 .side-wrap { grid-template-columns: 210px minmax(0, 1fr); gap: 48px; }
+.l5-side { position: sticky; top: 80px; display: grid; gap: 28px; }
+.l5-side h6 { margin: 0 0 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); font-weight: 600; }
+.l5-side .search input { height: 38px; border-radius: 10px; background: var(--soft); border-color: transparent; }
+.l5-side .search input:focus { background: #fff; }
+.catlist { display: grid; gap: 2px; }
+.catlist button { display: flex; justify-content: space-between; align-items: center; padding: 6px 0 6px 12px; text-align: left; color: var(--muted); position: relative; }
+.catlist button::before { content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: transparent; }
+.catlist button small { color: var(--faint); font-size: 12px; }
+.catlist button:hover { color: var(--ink); }
+.catlist button[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.catlist button[aria-pressed="true"]::before { background: var(--ink); }
+.plist { display: grid; gap: 2px; }
+.plist button { text-align: left; padding: 5px 0; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.plist button::before { content: ""; width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px #cfcfcb; flex: none; }
+.plist button[aria-pressed="true"] { color: var(--ink); }
+.plist button[aria-pressed="true"]::before { box-shadow: inset 0 0 0 4.5px var(--ink); }
+.minis { display: flex; flex-wrap: wrap; gap: 5px; }
+.minis .sz { width: 38px; height: 32px; font-size: 12.5px; }
+.l5-side .sw { width: 22px; height: 22px; }
+.l5-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 20px; flex-wrap: wrap; }
+.l5-head h3 { margin: 0; font-size: 26px; letter-spacing: -.02em; color: var(--ink); }
+.sorts { display: flex; gap: 16px; }
+.sorts button { color: var(--faint); font-weight: 500; padding: 4px 0; white-space: nowrap; }
+.sorts button:hover { color: var(--ink); }
+.sorts button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.l5 .card .im { border-radius: 4px; aspect-ratio: 4 / 5; }
+.l5 .card .bdg { border-radius: 2px; text-transform: uppercase; letter-spacing: .06em; font-size: 10px; }
+.l5 .card h4 { font-weight: 500; }
+.l5 .card .pr { font-weight: 500; }
+.l5-chips { margin-bottom: 18px; }
+
+/* Drawer (sidebars on small screens) */
+.scrim { display: none; }
+.drawer-hd, .drawer-ft { display: none; }
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .grid.c3 { grid-template-columns: repeat(2, 1fr); }
+  .l3-cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .switch .wrap { gap: 10px; }
+  .switch h1 { display: none; }
+  .switch nav { margin-left: 0; }
+  .side-wrap, .l5 .side-wrap { grid-template-columns: 1fr; }
+  .grid, .grid.c3 { grid-template-columns: repeat(2, 1fr); gap: 22px 12px; }
+  .mf { display: inline-flex; }
+  .l4-side, .l5-side { position: fixed; z-index: 70; left: 0; top: 0; bottom: 0; width: min(340px, 88vw); max-height: none; background: #fff; padding: 0 20px 90px; overflow: auto; transform: translateX(-102%); transition: transform .25s ease; display: block; }
+  .l5-side > div { margin-bottom: 26px; }
+  .drawer-open .l4-side, .drawer-open .l5-side { transform: none; box-shadow: 20px 0 60px rgba(0,0,0,.2); }
+  .drawer-open .scrim { display: block; position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.35); }
+  .drawer-hd { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: #fff; padding: 16px 0; z-index: 1; }
+  .drawer-hd b { font-size: 17px; color: var(--ink); }
+  .drawer-hd button { width: 36px; height: 36px; border-radius: 50%; background: var(--soft); display: grid; place-items: center; }
+  .drawer-ft { display: block; position: fixed; left: 0; bottom: 0; width: min(340px, 88vw); padding: 12px 20px 16px; background: #fff; border-top: 1px solid var(--line); z-index: 71; transform: translateX(-102%); transition: transform .25s ease; }
+  .drawer-open .drawer-ft { transform: none; }
+  .drawer-ft button { width: 100%; height: 46px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 600; }
+  .l4-side .hd { display: none; }
+  .l1-right .count, .l3-bar .count, .l4-top .count { display: none; }
+  .side-wrap > section { min-width: 0; }
+  .l4-top .select { min-width: 0; flex: 0 1 auto; }
+  .l1-bar { flex-wrap: wrap; }
+  .l1-pills { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; flex: 1 1 100%; order: 2; }
+  .l1-right { margin-left: 0; width: 100%; justify-content: space-between; }
+  .pw { position: static; }
+  .pop { left: 0; right: 0; width: auto; }
+  .l2-sep { display: none; }
+  .l2-row .l1-right { width: 100%; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; }
+  .intro h2 { font-size: 22px; }
+  .l3-bar { flex-wrap: wrap; }
+  .l3-bar .search { order: 3; flex: 1 1 100%; max-width: none; }
+  .l3-bar .select { margin-left: auto; }
+  .l3-cols { grid-template-columns: 1fr; gap: 22px; }
+  .l3-panel { padding: 18px 16px 14px; }
+  .card .add { display: none; }
+  .card .fav { opacity: 1; }
+  .card .meta .stars { display: none; }
+  .sorts { gap: 12px; overflow-x: auto; scrollbar-width: none; width: 100%; }
+}
+</style>
+</head>
+<body>
+<header class="switch">
+  <div class="wrap">
+    <h1>Product filters</h1>
+    <nav id="switch"></nav>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<div class="scrim" id="scrim"></div>
+
+<script>
+/* ============ Data ============ */
+const U = id => `https://images.unsplash.com/photo-${id}?w=600&q=70&auto=format&fit=crop`;
+const COLORS = { Black: '#1c1c1c', White: '#f4f4f2', Red: '#d63a2f', Blue: '#2f5fd6', Green: '#3f8f5a', Beige: '#d9c6a5' };
+const CATS = ['Running', 'Lifestyle', 'Basketball', 'Trail'];
+const P = [
+  { name: 'Aero Run 2', cat: 'Running', price: 129, colors: ['White', 'Blue'], sizes: [7, 8, 9, 10, 11], rating: 4.7, reviews: 214, isNew: true, img: '1600185365483-26d7a4cc7519' },
+  { name: 'Cloud Walk', cat: 'Lifestyle', price: 89, was: 110, colors: ['White', 'Beige'], sizes: [6, 7, 8, 9], rating: 4.4, reviews: 98, img: '1560769629-975ec94e6a86' },
+  { name: 'Court Classic', cat: 'Basketball', price: 149, colors: ['Black', 'White'], sizes: [8, 9, 10, 11, 12], rating: 4.8, reviews: 312, img: '1491553895911-0055eca6402d' },
+  { name: 'Ridge Trail GTX', cat: 'Trail', price: 165, colors: ['Green', 'Black'], sizes: [8, 9, 10, 11], rating: 4.6, reviews: 141, isNew: true, img: '1543508282-6319a3e2621f' },
+  { name: 'Volt Racer', cat: 'Running', price: 99, was: 130, colors: ['Red', 'Black'], sizes: [7, 8, 9, 10], rating: 4.5, reviews: 187, img: '1542291026-7eec264c27ff' },
+  { name: 'Day One Low', cat: 'Lifestyle', price: 75, colors: ['White'], sizes: [6, 7, 8, 9, 10, 11, 12], rating: 4.2, reviews: 403, img: '1549298916-b41d501d3772' },
+  { name: 'Hoop Elite', cat: 'Basketball', price: 189, colors: ['Red', 'White'], sizes: [9, 10, 11, 12], rating: 4.9, reviews: 76, isNew: true, img: '1606107557195-0e29a4b5b4aa' },
+  { name: 'Canyon Grip', cat: 'Trail', price: 119, was: 145, colors: ['Beige', 'Green'], sizes: [7, 8, 9, 10, 11], rating: 4.3, reviews: 64, img: '1608231387042-66d1773070a5' },
+  { name: 'Pace Lite', cat: 'Running', price: 69, colors: ['Blue', 'White'], sizes: [6, 7, 8, 9, 10], rating: 4.1, reviews: 122, img: '1595950653106-6c9ebd614d3a' },
+  { name: 'Studio Knit', cat: 'Lifestyle', price: 109, colors: ['Black', 'Beige'], sizes: [6, 7, 8, 9, 10, 11], rating: 4.6, reviews: 158, isNew: true, img: '1525966222134-fcfa99b8ae77' },
+  { name: 'Rebound Mid', cat: 'Basketball', price: 135, was: 160, colors: ['Blue', 'Black'], sizes: [8, 9, 10, 11, 12], rating: 4.4, reviews: 90, img: '1597045566677-8cf032ed6634' },
+  { name: 'Summit Pro', cat: 'Trail', price: 210, colors: ['Black', 'Red'], sizes: [8, 9, 10, 11, 12], rating: 4.8, reviews: 51, img: '1552346154-21d32810aba3' },
+].map((p, i) => ({ ...p, id: i, order: i }));
+const SIZES = [6, 7, 8, 9, 10, 11, 12];
+const MAXP = 250;
+const SORTS = [['pop', 'Most popular'], ['new', 'Newest'], ['low', 'Price: low to high'], ['high', 'Price: high to low']];
+const PRESETS = [['Under $75', 0, 75], ['$75 – $125', 75, 125], ['$125 – $175', 125, 175], ['$175+', 175, MAXP]];
+
+/* ============ Filtering ============ */
+const fresh = () => ({ cats: new Set(), sizes: new Set(), colors: new Set(), min: 0, max: MAXP, sale: false, isNew: false, rating: 0, sort: 'pop', q: '' });
+function run(s) {
+  const l = P.filter(p => (!s.cats.size || s.cats.has(p.cat)) && (!s.sizes.size || p.sizes.some(z => s.sizes.has(z)))
+    && (!s.colors.size || p.colors.some(c => s.colors.has(c))) && p.price >= s.min && p.price <= s.max
+    && (!s.sale || p.was) && (!s.isNew || p.isNew) && p.rating >= s.rating && (!s.q || (p.name + ' ' + p.cat).toLowerCase().includes(s.q.toLowerCase())));
+  const by = { pop: (a, b) => b.reviews * b.rating - a.reviews * a.rating, new: (a, b) => (b.isNew | 0) - (a.isNew | 0) || a.order - b.order, low: (a, b) => a.price - b.price, high: (a, b) => b.price - a.price };
+  return l.sort(by[s.sort]);
+}
+// how many products a value would show, given everything else that is selected
+function countWith(s, key, val) {
+  const t = { ...s, cats: new Set(s.cats), sizes: new Set(s.sizes), colors: new Set(s.colors) };
+  if (t[key] instanceof Set) { t[key].clear(); t[key].add(val); } else t[key] = val;
+  return run(t).length;
+}
+const priceOn = s => s.min > 0 || s.max < MAXP;
+function active(s) {
+  const a = [];
+  s.cats.forEach(v => a.push([v, x => x.cats.delete(v)]));
+  if (priceOn(s)) a.push([`$${s.min} – $${s.max}${s.max === MAXP ? '+' : ''}`, x => { x.min = 0; x.max = MAXP; }]);
+  s.sizes.forEach(v => a.push([`Size ${v}`, x => x.sizes.delete(v)]));
+  s.colors.forEach(v => a.push([v, x => x.colors.delete(v)]));
+  if (s.sale) a.push(['On sale', x => x.sale = false]);
+  if (s.isNew) a.push(['New in', x => x.isNew = false]);
+  if (s.rating) a.push([`${s.rating}★ & up`, x => x.rating = 0]);
+  if (s.q) a.push([`“${s.q}”`, x => x.q = '']);
+  return a;
+}
+
+/* ============ Shared HTML ============ */
+const I = {
+  chev: '<path d="m6 9 6 6 6-6"/>', x: '<path d="M18 6 6 18M6 6l12 12"/>', heart: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>',
+  filter: '<path d="M4 6h16M7 12h10M10 18h4"/>', search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>', sliders: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+};
+const ic = n => `<svg viewBox="0 0 24 24">${I[n]}</svg>`;
+const favs = new Set([2]);
+const card = p => `<article class="card">
+  <div class="im" style="background-image:url(${U(p.img)})">
+    ${p.was ? `<span class="bdg sale">−${Math.round((1 - p.price / p.was) * 100)}%</span>` : p.isNew ? '<span class="bdg">New</span>' : ''}
+    <button class="fav ${favs.has(p.id) ? 'on' : ''}" data-fav="${p.id}" aria-label="Save">${ic('heart')}</button>
+    <button class="add">Quick add</button>
+  </div>
+  <div class="nm"><h4>${p.name}</h4><span class="pr ${p.was ? 'on' : ''}">${p.was ? `<s>$${p.was}</s>` : ''}$${p.price}</span></div>
+  <div class="meta"><span>${p.cat}</span><span class="dots">${p.colors.map(c => `<i style="background:${COLORS[c]}" title="${c}"></i>`).join('')}</span></div>
+</article>`;
+const grid = (s, cls = '') => { const l = run(s); return `<div class="grid ${cls}">${l.length ? l.map(card).join('') : `<div class="none"><b>No products match</b><span>Try removing a filter or two.</span><button data-clear>Clear all filters</button></div>`}</div>`; };
+const chips = s => { const a = active(s); return a.length ? a.map(([l], i) => `<button class="chip" data-rm="${i}">${l}${ic('x')}</button>`).join('') + '<button class="clear" data-clear>Clear all</button>' : ''; };
+const count = s => `<span class="count"><b>${run(s).length}</b> of ${P.length} products</span>`;
+const sortSel = s => `<select class="select" data-k="sort" aria-label="Sort by">${SORTS.map(([v, l]) => `<option value="${v}" ${s.sort === v ? 'selected' : ''}>${l}</option>`).join('')}</select>`;
+const cbs = (s, key, vals, lbl = v => v) => vals.map(v => `<label class="chk"><input type="checkbox" data-set="${key}" value="${v}" ${s[key].has(v) ? 'checked' : ''}>${lbl(v)}<span class="c">${countWith(s, key, v)}</span></label>`).join('');
+const sizes = (s, cls = 'sizes') => `<div class="${cls}">${SIZES.map(z => `<button class="sz" data-tog="sizes" data-v="${z}" aria-pressed="${s.sizes.has(z)}">${z}</button>`).join('')}</div>`;
+const colors = (s, labeled) => `<div class="colors ${labeled ? 'labeled' : ''}">${Object.entries(COLORS).map(([n, c]) => labeled
+  ? `<button data-tog="colors" data-v="${n}"><span class="sw" style="background:${c}" aria-pressed="${s.colors.has(n)}"></span>${n}</button>`
+  : `<button class="sw" style="background:${c}" data-tog="colors" data-v="${n}" aria-pressed="${s.colors.has(n)}" title="${n}" aria-label="${n}"></button>`).join('')}</div>`;
+const range = s => `<div class="range"><div class="track"></div><div class="fill" style="left:${s.min / MAXP * 100}%;right:${100 - s.max / MAXP * 100}%"></div>
+  <input type="range" min="0" max="${MAXP}" step="5" value="${s.min}" data-k="min" aria-label="Minimum price"><input type="range" min="0" max="${MAXP}" step="5" value="${s.max}" data-k="max" aria-label="Maximum price"></div>
+  <div class="price-vals"><span><small>Min</small>$<b data-pv="min">${s.min}</b></span>–<span><small>Max</small>$<b data-pv="max">${s.max}${s.max === MAXP ? '+' : ''}</b></span></div>`;
+const presets = s => `<div class="presets">${PRESETS.map(([l, a, b]) => `<button data-preset="${a},${b}" aria-pressed="${s.min === a && s.max === b}">${l}</button>`).join('')}</div>`;
+const sw = (k, label, s) => `<label class="switchrow">${label}<input type="checkbox" data-k="${k}" ${s[k] ? 'checked' : ''}></label>`;
+const ratings = s => [4.5, 4, 0].map(r => `<label class="chk"><input type="radio" name="rt${Math.random()}" data-k="rating" value="${r}" ${s.rating === r ? 'checked' : ''}>${r ? `<span class="stars">${'★'.repeat(Math.floor(r))}</span>${r} & up` : 'Any rating'}</label>`).join('');
+
+/* ============ Layouts ============ */
+const L = [
+  { key: 'pills', name: 'Dropdown pills', where: 'Top', title: 'Running & lifestyle sneakers', sub: 'Each filter is a pill that opens a small dropdown.', ui: { open: null },
+    view(s, ui) {
+      const n = { cats: s.cats.size, price: priceOn(s) ? 1 : 0, sizes: s.sizes.size, colors: s.colors.size, more: (s.sale | 0) + (s.isNew | 0) + (s.rating ? 1 : 0) };
+      const body = {
+        cats: `<h5>Category</h5>${cbs(s, 'cats', CATS)}`,
+        price: `<h5>Price</h5>${range(s)}${presets(s)}`,
+        sizes: `<h5>Size (US)</h5>${sizes(s)}`,
+        colors: `<h5>Colour</h5>${colors(s, true)}`,
+        more: `${sw('sale', 'On sale', s)}${sw('isNew', 'New arrivals', s)}<h5 style="margin-top:10px">Rating</h5>${ratings(s)}`,
+      };
+      const pill = (k, label) => `<div class="pw"><button class="pill ${n[k] ? 'has' : ''}" data-open="${k}" aria-expanded="${ui.open === k}">${label}${n[k] ? `<span class="n">${n[k]}</span>` : ''}${ic('chev')}</button>
+        ${ui.open === k ? `<div class="pop">${body[k]}<div class="ft"><button class="clear" data-reset="${k}">Reset</button><button class="go" data-open="${k}">Show ${run(s).length} results</button></div></div>` : ''}</div>`;
+      return `<div class="l1-bar"><div class="l1-pills">${pill('cats', 'Category')}${pill('price', 'Price')}${pill('sizes', 'Size')}${pill('colors', 'Colour')}${pill('more', 'More filters')}</div>
+        <div class="l1-right">${count(s)}${sortSel(s)}</div></div>
+        <div class="chips l1-chips">${chips(s)}</div><div style="height:22px"></div><div data-grid>${grid(s)}</div>`;
+    } },
+
+  { key: 'tabs', name: 'Category tabs', where: 'Top', title: 'Shop all sneakers', sub: 'Big category tabs with one-tap quick filters underneath.', ui: {},
+    view(s) {
+      const all = !s.cats.size, n = c => run({ ...s, cats: new Set([c]) }).length;
+      return `<div class="l2-tabs"><button data-cat="" aria-pressed="${all}">All<sup>${run({ ...s, cats: new Set() }).length}</sup></button>${CATS.map(c => `<button data-cat="${c}" aria-pressed="${s.cats.has(c) && s.cats.size === 1}">${c}<sup>${n(c)}</sup></button>`).join('')}</div>
+        <div class="l2-row">
+          <button class="tg" data-flag="sale" aria-pressed="${s.sale}">On sale</button>
+          <button class="tg" data-flag="isNew" aria-pressed="${s.isNew}">New in</button>
+          <button class="tg" data-flag="top" aria-pressed="${s.rating === 4.5}">★ 4.5+</button>
+          <button class="tg" data-preset="0,100" aria-pressed="${s.min === 0 && s.max === 100}">Under $100</button>
+          <span class="l2-sep"></span>${colors(s)}<span class="l2-sep"></span>
+          <select class="select" data-k="size" aria-label="Size"><option value="">Any size</option>${SIZES.map(z => `<option value="${z}" ${s.sizes.has(z) ? 'selected' : ''}>Size ${z}</option>`).join('')}</select>
+          <div class="l1-right">${count(s)}${sortSel(s)}</div>
+        </div>
+        <div class="chips l1-chips" style="padding:0 0 18px">${chips(s)}</div><div data-grid>${grid(s)}</div>`;
+    } },
+
+  { key: 'panel', name: 'Expanding panel', where: 'Top', title: 'Men’s sneakers', sub: 'One Filters button opens every option in a wide panel.', ui: { open: true },
+    view(s, ui) {
+      const n = active(s).filter(([l]) => !l.startsWith('“')).length;
+      return `<div class="l3-bar"><button class="fbtn ${ui.open ? '' : 'ghost'}" data-panel>${ic('sliders')}${ui.open ? 'Hide filters' : 'Filters'}${n ? `<span class="n">${n}</span>` : ''}</button>
+          <label class="search">${ic('search')}<input data-k="q" placeholder="Search sneakers" value="${s.q}"></label>
+          <span style="flex:1"></span>${count(s)}${sortSel(s)}</div>
+        ${ui.open ? `<div class="l3-panel"><div class="l3-cols">
+          <div><h5>Category</h5>${cbs(s, 'cats', CATS)}<h5 style="margin-top:16px">Show only</h5>${sw('sale', 'On sale', s)}${sw('isNew', 'New arrivals', s)}</div>
+          <div><h5>Price</h5>${range(s)}${presets(s)}</div>
+          <div><h5>Size (US)</h5>${sizes(s)}</div>
+          <div><h5>Colour</h5>${colors(s, true)}</div>
+        </div><div class="l3-foot"><button class="clear" data-clear>Reset all</button><button class="go" data-panel>Show ${run(s).length} results</button></div></div>` : ''}
+        <div class="chips l3-chips">${chips(s)}</div><div data-grid>${grid(s)}</div>`;
+    } },
+
+  { key: 'classic', name: 'Classic sidebar', where: 'Left', title: 'All sneakers', sub: 'Familiar sidebar with collapsible sections and counts.', ui: { acc: new Set(['cats', 'price', 'sizes', 'colors']) },
+    view(s, ui) {
+      const acc = (k, label, n, body) => `<div class="acc ${ui.acc.has(k) ? 'open' : ''}"><button data-acc="${k}">${label}${n ? `<span class="n">${n}</span>` : '<span style="margin-right:auto"></span>'}${ic('chev')}</button><div class="in">${body}</div></div>`;
+      return `<div class="side-wrap"><aside class="l4-side">
+          <div class="drawer-hd"><b>Filters</b><button data-drawer aria-label="Close">${ic('x')}</button></div>
+          <div class="hd"><b>Filters</b>${active(s).length ? '<button class="clear" data-clear>Clear all</button>' : ''}</div>
+          ${acc('cats', 'Category', s.cats.size, cbs(s, 'cats', CATS))}
+          ${acc('price', 'Price', priceOn(s) ? 1 : 0, range(s))}
+          ${acc('sizes', 'Size', s.sizes.size, sizes(s))}
+          ${acc('colors', 'Colour', s.colors.size, colors(s, true))}
+          ${acc('rating', 'Rating', s.rating ? 1 : 0, ratings(s))}
+          ${acc('avail', 'Availability', (s.sale | 0) + (s.isNew | 0), `<label class="chk"><input type="checkbox" data-k="sale" ${s.sale ? 'checked' : ''}>On sale<span class="c">${P.filter(p => p.was).length}</span></label><label class="chk"><input type="checkbox" data-k="isNew" ${s.isNew ? 'checked' : ''}>New arrivals<span class="c">${P.filter(p => p.isNew).length}</span></label>`)}
+          <div class="drawer-ft"><button data-drawer>Show ${run(s).length} results</button></div>
+        </aside>
+        <section><div class="l4-top"><button class="fbtn ghost mf" data-drawer>${ic('filter')}Filters${active(s).length ? `<span class="n">${active(s).length}</span>` : ''}</button>${count(s)}${sortSel(s)}</div>
+          <div class="chips l4-chips">${chips(s)}</div><div data-grid>${grid(s, 'c3')}</div></section></div>`;
+    } },
+
+  { key: 'minimal', name: 'Minimal sidebar', where: 'Left', title: '', sub: '', ui: {},
+    view(s) {
+      const cat = s.cats.size === 1 ? [...s.cats][0] : '';
+      const pr = PRESETS.find(([, a, b]) => s.min === a && s.max === b);
+      return `<div class="side-wrap"><aside class="l5-side">
+          <div class="drawer-hd"><b>Filters</b><button data-drawer aria-label="Close">${ic('x')}</button></div>
+          <label class="search">${ic('search')}<input data-k="q" placeholder="Search" value="${s.q}"></label>
+          <div><h6>Category</h6><div class="catlist"><button data-cat="" aria-pressed="${!cat}">All sneakers<small>${run({ ...s, cats: new Set() }).length}</small></button>${CATS.map(c => `<button data-cat="${c}" aria-pressed="${cat === c}">${c}<small>${run({ ...s, cats: new Set([c]) }).length}</small></button>`).join('')}</div></div>
+          <div><h6>Price</h6><div class="plist"><button data-preset="0,${MAXP}" aria-pressed="${!priceOn(s)}">Any price</button>${PRESETS.map(([l, a, b]) => `<button data-preset="${a},${b}" aria-pressed="${pr && pr[1] === a}">${l}</button>`).join('')}</div></div>
+          <div><h6>Colour</h6>${colors(s)}</div>
+          <div><h6>Size</h6>${sizes(s, 'minis')}</div>
+          <div>${sw('sale', 'On sale only', s)}${sw('isNew', 'New arrivals', s)}</div>
+          <div class="drawer-ft"><button data-drawer>Show ${run(s).length} results</button></div>
+        </aside>
+        <section><div class="l5-head"><div><div class="crumbs">Shop / Sneakers${cat ? ' / ' + cat : ''}</div><h3>${cat || 'All sneakers'} <span class="count" style="font-size:15px;font-weight:400">${run(s).length}</span></h3></div>
+          <button class="fbtn ghost mf" data-drawer>${ic('filter')}Filters${active(s).length ? `<span class="n">${active(s).length}</span>` : ''}</button>
+          <div class="sorts">${[['pop', 'Popular'], ['new', 'Newest'], ['low', 'Price ↑'], ['high', 'Price ↓']].map(([v, l]) => `<button data-sort="${v}" aria-pressed="${s.sort === v}">${l}</button>`).join('')}</div></div>
+          <div class="chips l5-chips">${chips(s)}</div><div data-grid>${grid(s, 'c3')}</div></section></div>`;
+    } },
+];
+L.forEach(l => l.s = fresh());
+L[0].s.sizes.add(12); // start one layout with a filter applied so chips are visible
+
+/* ============ Mounting ============ */
+const app = document.getElementById('app');
+let cur = +(new URLSearchParams(location.hash.slice(1)).get('l') || 1) - 1;
+if (!(cur in L)) cur = 0;
+function draw() {
+  const l = L[cur];
+  const intro = l.title ? `<div class="intro"><div><div class="crumbs">Shop / Sneakers</div><h2>${l.title}</h2><p>${l.sub}</p></div></div>` : '<div style="height:28px"></div>';
+  const focus = document.activeElement && document.activeElement.dataset.k === 'q' ? document.activeElement.selectionStart : null;
+  app.className = 'wrap l' + (cur + 1);
+  app.innerHTML = intro + l.view(l.s, l.ui) + '<div style="height:80px"></div>';
+  if (focus !== null) { const q = app.querySelector('[data-k="q"]'); q.focus(); q.setSelectionRange(focus, focus); }
+}
+function nav() {
+  document.getElementById('switch').innerHTML = L.map((l, i) => `<button data-l="${i}" aria-pressed="${i === cur}"><small>${l.where}</small>${i + 1}. ${l.name}</button>`).join('');
+}
+document.getElementById('switch').onclick = e => { const b = e.target.closest('[data-l]'); if (!b) return; cur = +b.dataset.l; history.replaceState(null, '', '#l=' + (cur + 1)); document.body.classList.remove('drawer-open'); nav(); draw(); scrollTo({ top: 0 }); };
+
+app.addEventListener('click', e => {
+  const t = e.target, l = L[cur], s = l.s, ui = l.ui;
+  const q = sel => t.closest(sel);
+  let b;
+  if ((b = q('[data-fav]'))) { const id = +b.dataset.fav; favs.has(id) ? favs.delete(id) : favs.add(id); b.classList.toggle('on'); return; }
+  if ((b = q('[data-open]'))) { ui.open = ui.open === b.dataset.open ? null : b.dataset.open; }
+  else if ((b = q('[data-reset]'))) { const k = b.dataset.reset; if (k === 'price') { s.min = 0; s.max = MAXP; } else if (k === 'more') { s.sale = s.isNew = false; s.rating = 0; } else s[k].clear(); }
+  else if ((b = q('[data-tog]'))) { const set = s[b.dataset.tog], v = b.dataset.tog === 'sizes' ? +b.dataset.v : b.dataset.v; set.has(v) ? set.delete(v) : set.add(v); }
+  else if ((b = q('[data-preset]'))) { const [a, c] = b.dataset.preset.split(',').map(Number); const on = s.min === a && s.max === c; s.min = on ? 0 : a; s.max = on ? MAXP : c; }
+  else if ((b = q('[data-cat]'))) { s.cats.clear(); if (b.dataset.cat) s.cats.add(b.dataset.cat); }
+  else if ((b = q('[data-flag]'))) { const f = b.dataset.flag; if (f === 'top') s.rating = s.rating === 4.5 ? 0 : 4.5; else s[f] = !s[f]; }
+  else if ((b = q('[data-sort]'))) s.sort = b.dataset.sort;
+  else if ((b = q('[data-rm]'))) active(s)[+b.dataset.rm][1](s);
+  else if ((b = q('[data-clear]'))) { l.s = fresh(); }
+  else if ((b = q('[data-acc]'))) { const k = b.dataset.acc; ui.acc.has(k) ? ui.acc.delete(k) : ui.acc.add(k); }
+  else if ((b = q('[data-panel]'))) ui.open = !ui.open;
+  else if ((b = q('[data-drawer]'))) { document.body.classList.toggle('drawer-open'); return; }
+  else return;
+  draw();
+});
+app.addEventListener('change', e => {
+  const t = e.target, s = L[cur].s;
+  if (t.dataset.set) { const set = s[t.dataset.set]; t.checked ? set.add(t.value) : set.delete(t.value); }
+  else if (t.dataset.k === 'sort') s.sort = t.value;
+  else if (t.dataset.k === 'size') { s.sizes.clear(); if (t.value) s.sizes.add(+t.value); }
+  else if (t.dataset.k === 'rating') s.rating = +t.value;
+  else if (t.dataset.k === 'sale' || t.dataset.k === 'isNew') s[t.dataset.k] = t.checked;
+  else return;
+  draw();
+});
+// sliders and search update only the results while you drag or type
+app.addEventListener('input', e => {
+  const t = e.target, l = L[cur], s = l.s;
+  if (t.dataset.k === 'q') { s.q = t.value.trim(); draw(); return; }
+  if (t.dataset.k !== 'min' && t.dataset.k !== 'max') return;
+  const v = +t.value;
+  if (t.dataset.k === 'min') { s.min = Math.min(v, s.max - 10); t.value = s.min; } else { s.max = Math.max(v, s.min + 10); t.value = s.max; }
+  const r = t.closest('.range'); r.querySelector('.fill').style.cssText = `left:${s.min / MAXP * 100}%;right:${100 - s.max / MAXP * 100}%`;
+  const box = r.parentElement;
+  box.querySelector('[data-pv="min"]').textContent = s.min;
+  box.querySelector('[data-pv="max"]').textContent = s.max + (s.max === MAXP ? '+' : '');
+  app.querySelector('[data-grid]').innerHTML = grid(s, cur > 2 ? 'c3' : '');
+  app.querySelectorAll('.count b').forEach(b => b.textContent = run(s).length);
+  app.querySelectorAll('.go, .drawer-ft button').forEach(b => b.textContent = `Show ${run(s).length} results`);
+});
+app.addEventListener('pointerup', e => { if (e.target.closest('.range')) draw(); });
+document.addEventListener('mousedown', e => { const l = L[cur]; if (cur === 0 && l.ui.open && !e.target.closest('.pw')) { l.ui.open = null; draw(); } });
+document.getElementById('scrim').onclick = () => document.body.classList.remove('drawer-open');
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.body.classList.remove('drawer-open'); if (cur === 0 && L[0].ui.open) { L[0].ui.open = null; draw(); } } });
+
+nav(); draw();
+</script>
+</body>
+</html>

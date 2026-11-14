@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kumo — Izakaya &amp; Sushi Bar</title>
+<meta name="description" content="Kumo is a charcoal izakaya and sushi bar. Seasonal omakase, robata grill and a deep sake list.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Swap any image that fails to load for a seeded placeholder photo
+  window.addEventListener('error', e => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && !img.dataset.fallback) {
+      img.dataset.fallback = '1';
+      img.src = `https://picsum.photos/seed/kumo${(img.alt || 'x').length}/${img.getAttribute('width') || 800}/${img.getAttribute('height') || 600}`;
+    }
+  }, true);
+</script>
+<style>
+:root{
+  --bg:#0f0e0d; --bg-2:#171513; --card:#1d1a17; --raise:#25211d;
+  --ink:#f1ebe0; --muted:#a59c8e; --faint:#73695d;
+  --paper:#efe7d8; --paper-ink:#1d1916;
+  --red:#d1442c; --red-2:#e2604a; --gold:#c9a15a;
+  --line:rgba(241,235,224,.12); --line-2:rgba(241,235,224,.06);
+  --serif:"Shippori Mincho","Hiragino Mincho ProN",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,sans-serif;
+  --wrap:1220px; --gutter:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0;letter-spacing:.005em}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+ruby rt{font-family:var(--sans);font-size:.32em;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* ---------- Labels & tags ---------- */
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.eyebrow span{font-family:var(--serif);letter-spacing:.1em;font-size:15px;color:var(--red-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--line);color:var(--muted);line-height:1.2}
+.chip.red{border-color:var(--red);color:var(--red-2)}
+.chip.gold{border-color:rgba(201,161,90,.5);color:var(--gold)}
+.chip.solid{background:var(--red);border-color:var(--red);color:#fff}
+.hanko{display:inline-grid;place-items:center;width:58px;height:58px;background:var(--red);color:#fff;font-family:var(--serif);font-size:22px;line-height:1;border-radius:6px;writing-mode:vertical-rl;letter-spacing:.05em;transform:rotate(-4deg);box-shadow:inset 0 0 0 3px var(--red),inset 0 0 0 4.5px rgba(255,255,255,.5)}
+abbr.diet{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid currentColor;font-size:9.5px;font-weight:700;text-decoration:none;cursor:help;vertical-align:middle;margin-left:4px;font-family:var(--sans);letter-spacing:0}
+abbr.v{color:#8db86b}abbr.gf{color:var(--gold)}abbr.sp{color:var(--red-2)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:15px 28px;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ink);cursor:pointer;background:none;transition:background .3s,color .3s,border-color .3s}
+.btn-red{background:var(--red);border-color:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-2);border-color:var(--red-2)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.btn .ic{transition:transform .3s}
+.btn:hover .ic{transform:translateX(4px)}
+
+/* ---------- Header ---------- */
+.header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s,border-color .35s,backdrop-filter .35s;border-bottom:1px solid transparent}
+.header.solid{background:rgba(15,14,13,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line-2)}
+.header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:80px}
+.nav{display:flex;gap:30px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.logo{font-family:var(--serif);font-size:28px;text-decoration:none;display:flex;align-items:center;gap:12px;letter-spacing:.06em}
+.logo b{color:var(--red-2);font-weight:500}
+.header-right{display:flex;justify-content:flex-end;align-items:center;gap:20px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.status i{width:7px;height:7px;border-radius:50%;background:#7bbf6a;box-shadow:0 0 0 3px rgba(123,191,106,.2)}
+.status.closed i{background:var(--faint);box-shadow:none}
+.header .btn{padding:11px 20px;font-size:11.5px}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);background:none;cursor:pointer;place-items:center}
+.burger span{display:block;width:18px;height:1.5px;background:var(--ink);box-shadow:0 -6px 0 var(--ink),0 6px 0 var(--ink)}
+
+/* full-screen menu */
+.overlay{position:fixed;inset:0;z-index:80;background:var(--bg);display:flex;flex-direction:column;padding:24px var(--gutter);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.overlay.open{opacity:1;visibility:visible}
+.overlay-top{display:flex;justify-content:space-between;align-items:center}
+.overlay-close{width:44px;height:44px;border:1px solid var(--line);background:none;cursor:pointer;display:grid;place-items:center}
+.overlay nav{margin:auto 0;display:flex;flex-direction:column;gap:6px}
+.overlay nav a{font-family:var(--serif);font-size:42px;text-decoration:none;display:flex;align-items:baseline;gap:16px}
+.overlay nav a small{font-family:var(--sans);font-size:12px;color:var(--gold);letter-spacing:.2em}
+.overlay .vert{position:absolute;right:28px;bottom:40px;writing-mode:vertical-rl;font-family:var(--serif);font-size:38px;color:var(--line);letter-spacing:.3em}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 72px;isolation:isolate;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.08);animation:slowzoom 18s ease-out forwards}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(15,14,13,.75),rgba(15,14,13,.1) 65%),linear-gradient(180deg,rgba(15,14,13,.55),rgba(15,14,13,.15) 30%,rgba(15,14,13,.65) 65%,var(--bg))}
+@keyframes slowzoom{to{transform:scale(1)}}
+.hero .wrap{width:100%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.hero h1{font-size:clamp(64px,11vw,168px);line-height:.95;font-weight:500;margin:22px 0 22px}
+.hero h1 ruby rt{font-size:.13em}
+.hero-sub{font-size:19px;color:#d8d0c3;max-width:520px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.vertical{writing-mode:vertical-rl;font-family:var(--serif);font-size:30px;letter-spacing:.5em;color:rgba(241,235,224,.75);border-right:1px solid var(--red);padding-right:16px;margin-bottom:8px}
+.hero-meta{display:flex;gap:40px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.hero-meta b{display:block;color:var(--ink);font-weight:600;font-size:14.5px}
+.scroll-cue{position:absolute;left:50%;bottom:24px;width:1px;height:48px;background:linear-gradient(var(--gold),transparent);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- Kanji ticker ---------- */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:20px 0;background:var(--bg-2)}
+.ticker div{display:flex;gap:48px;width:max-content;animation:tick 40s linear infinite;font-family:var(--serif);font-size:26px;color:var(--muted);white-space:nowrap}
+.ticker div span::after{content:"◆";color:var(--red);font-size:10px;margin-left:48px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+.sec{padding:130px 0}
+.sec-title{font-size:clamp(40px,5.6vw,76px);margin-top:20px}
+.sec-title em{font-style:normal;color:var(--red-2)}
+.lead{font-size:17.5px;color:var(--muted);max-width:520px}
+
+/* ---------- Story (chef) ---------- */
+.story{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:center}
+.story figure{margin:0;position:relative}
+.story figure img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.25) contrast(1.05)}
+.story figure::before{content:"";position:absolute;inset:24px -24px -24px 24px;border:1px solid var(--gold);z-index:-1;opacity:.5}
+.story figcaption{position:absolute;left:-28px;bottom:40px;background:var(--paper);color:var(--paper-ink);padding:18px 22px;display:flex;align-items:center;gap:16px;font-size:13.5px;max-width:280px}
+.story figcaption b{display:block;font-family:var(--serif);font-size:19px}
+.chef-quote{margin:40px 0 0;padding:0 0 0 34px;border-left:2px solid var(--red);font-family:var(--serif);font-size:clamp(22px,2.3vw,30px);line-height:1.45;color:var(--ink)}
+.chef-quote p+p{margin-top:16px;font-size:.8em;color:var(--muted)}
+.chef-quote footer{margin-top:22px;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.chef-quote cite{font-style:normal}
+.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:44px;color:var(--muted);margin-top:24px;transform:rotate(-4deg);display:inline-block}
+
+/* ---------- Menu (CSS-only tabs with radios) ---------- */
+.menu-sec{background:var(--paper);color:var(--paper-ink)}
+.menu-sec .eyebrow{color:#8a6a2e}
+.menu-sec .sec-title em{color:var(--red)}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:48px}
+.menu-head .lead{color:#5d544a}
+.menu-tabs{position:relative}
+.menu-tabs>input{position:absolute;opacity:0;pointer-events:none}
+.tab-labels{display:flex;border-bottom:1px solid rgba(29,25,22,.18);margin-bottom:44px;overflow-x:auto;scrollbar-width:none}
+.tab-labels::-webkit-scrollbar{display:none}
+.tab-labels label{cursor:pointer;padding:16px 28px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative;white-space:nowrap;color:#7c7166;transition:color .25s}
+.tab-labels label b{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1}
+.tab-labels label small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.tab-labels label::after{content:"";position:absolute;left:28px;right:28px;bottom:-1px;height:2px;background:var(--red);transform:scaleX(0);transition:transform .35s}
+.tab-labels label:hover{color:var(--paper-ink)}
+#t-sushi:checked~.tab-labels [for=t-sushi],#t-robata:checked~.tab-labels [for=t-robata],#t-ramen:checked~.tab-labels [for=t-ramen],#t-sweet:checked~.tab-labels [for=t-sweet]{color:var(--red)}
+#t-sushi:checked~.tab-labels [for=t-sushi]::after,#t-robata:checked~.tab-labels [for=t-robata]::after,#t-ramen:checked~.tab-labels [for=t-ramen]::after,#t-sweet:checked~.tab-labels [for=t-sweet]::after{transform:scaleX(1)}
+#t-sushi:focus-visible~.tab-labels [for=t-sushi],#t-robata:focus-visible~.tab-labels [for=t-robata],#t-ramen:focus-visible~.tab-labels [for=t-ramen],#t-sweet:focus-visible~.tab-labels [for=t-sweet]{outline:1.5px solid var(--red);outline-offset:-4px}
+.menu-panel{display:none;grid-template-columns:1fr 340px;gap:64px;animation:fade .5s ease}
+#t-sushi:checked~.p-sushi,#t-robata:checked~.p-robata,#t-ramen:checked~.p-ramen,#t-sweet:checked~.p-sweet{display:grid}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dishes{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 56px;align-content:start}
+.dish{padding:20px 0;border-bottom:1px dashed rgba(29,25,22,.2)}
+.dish dt{display:flex;align-items:baseline;gap:10px;font-family:var(--serif);font-size:21px;font-weight:500}
+.dish dt ruby rt{color:#8a6a2e}
+.dish dt::after{content:"";flex:1;border-bottom:1.5px dotted rgba(29,25,22,.35);transform:translateY(-5px);min-width:20px;order:2}
+.dish dt .name{order:1}
+.dish dt data{order:3;font-family:var(--sans);font-size:16px;font-weight:700}
+.dish dt data del{color:#9a8f82;font-weight:500;font-size:13px;margin-right:6px}
+.dish dt data ins{text-decoration:none;color:var(--red)}
+.dish dd{margin:6px 0 0;font-size:14.5px;color:#5d544a;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.dish dd .chip{font-size:10px;padding:3px 8px;border-color:rgba(29,25,22,.2);color:#6c6156}
+.dish dd .chip.red{border-color:var(--red);color:var(--red)}
+.menu-aside{position:relative}
+.menu-aside img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.menu-aside .note{position:absolute;left:-20px;bottom:-20px;right:20px;background:var(--paper-ink);color:var(--ink);padding:20px 22px;font-size:13.5px}
+.menu-aside .note b{font-family:var(--serif);font-size:18px;display:block;margin-bottom:4px;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:44px;padding-top:22px;border-top:1px solid rgba(29,25,22,.18);font-size:13px;color:#5d544a}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend abbr.v{color:#4f7d2e}
+
+/* ---------- Omakase (kanji-numbered list) ---------- */
+.omakase{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.courses{list-style:japanese-formal;padding-left:3.2em;margin:40px 0 0;font-family:var(--serif)}
+.courses li{padding:18px 0 18px 12px;border-bottom:1px solid var(--line);font-size:21px}
+.courses li::marker{color:var(--red-2);font-size:17px}
+.courses li span{display:block;font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:4px}
+.price-card{position:sticky;top:110px;background:var(--card);border:1px solid var(--line);padding:44px;overflow:hidden}
+.price-card::before{content:"雲";position:absolute;right:-30px;bottom:-80px;font-family:var(--serif);font-size:300px;color:rgba(241,235,224,.03);line-height:1}
+.price-card .chip{margin-bottom:22px}
+.price-card h3{font-size:34px}
+.price{display:flex;align-items:baseline;gap:10px;margin:22px 0 6px}
+.price data{font-family:var(--serif);font-size:72px;line-height:1}
+.price small{color:var(--muted)}
+.pairing{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;margin:22px 0;border-block:1px solid var(--line);font-size:14.5px}
+.toggle{position:relative;width:48px;height:26px;flex-shrink:0}
+.toggle input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;z-index:1}
+.toggle span{position:absolute;inset:0;border-radius:99px;background:var(--raise);border:1px solid var(--line);transition:background .25s}
+.toggle span::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--muted);transition:transform .25s,background .25s}
+.toggle input:checked+span{background:var(--red);border-color:var(--red)}
+.toggle input:checked+span::after{transform:translateX(22px);background:#fff}
+.toggle input:focus-visible+span{outline:1.5px solid var(--gold);outline-offset:3px}
+.price-card ul{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--muted)}
+.price-card ul li::before{content:"—";color:var(--red-2);margin-right:10px}
+.price-card .btn{width:100%}
+
+/* ---------- Gallery mosaic ---------- */
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:110px;gap:14px;grid-auto-flow:dense}
+.mosaic figure{margin:0;position:relative;overflow:hidden;background:var(--card)}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform 1s,filter .6s;filter:saturate(.85)}
+.mosaic figure:hover img{transform:scale(1.06);filter:saturate(1.1)}
+.mosaic figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.75));font-size:13px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;transform:translateY(100%);transition:transform .45s}
+.mosaic figure:hover figcaption,.mosaic figure:focus-within figcaption{transform:none}
+.mosaic figcaption b{font-family:var(--serif);font-size:18px;font-weight:500;display:block}
+.m1{grid-column:span 5;grid-row:span 4}.m2{grid-column:span 4;grid-row:span 2}.m3{grid-column:span 3;grid-row:span 3}
+.m4{grid-column:span 4;grid-row:span 2}.m5{grid-column:span 3;grid-row:span 3}.m6{grid-column:span 4;grid-row:span 2}.m7{grid-column:span 5;grid-row:span 2}
+.mosaic .m-text{background:var(--red);color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.mosaic .m-text p{font-family:var(--serif);font-size:23px;line-height:1.3}
+.mosaic .m-text small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+
+/* ---------- Sake table with meters ---------- */
+.sake-wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:72px;align-items:start}
+.sake{width:100%;border-collapse:collapse;font-size:14.5px}
+.sake caption{text-align:left;font-size:12.5px;color:var(--faint);caption-side:bottom;padding-top:18px}
+.sake th,.sake td{text-align:left;padding:18px 14px;border-bottom:1px solid var(--line)}
+.sake thead th{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;border-bottom-color:rgba(201,161,90,.4)}
+.sake tbody th{font-family:var(--serif);font-weight:500;font-size:19px}
+.sake tbody th small{display:block;font-family:var(--sans);font-size:12.5px;color:var(--faint);font-weight:400}
+.sake tbody tr{transition:background .25s}
+.sake tbody tr:hover{background:var(--card)}
+.sake td.p{font-weight:700;white-space:nowrap}
+.taste{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:11px;color:var(--faint);min-width:170px}
+.sake meter{width:100%;height:4px;appearance:none;-webkit-appearance:none;background:var(--raise);border:0;border-radius:0}
+.sake meter::-webkit-meter-bar{background:var(--raise);border:0;border-radius:0;height:4px}
+.sake meter::-webkit-meter-optimum-value,.sake meter::-webkit-meter-suboptimum-value{background:linear-gradient(90deg,var(--gold),var(--red-2))}
+.sake meter::-moz-meter-bar{background:linear-gradient(90deg,var(--gold),var(--red-2))}
+
+/* ---------- Press quotes ---------- */
+.press{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.press figure{margin:0;background:var(--bg);padding:40px;display:flex;flex-direction:column;gap:22px}
+.press figure:first-child{grid-row:span 2;background:var(--bg-2);justify-content:center}
+.press blockquote{margin:0;font-family:var(--serif);font-size:21px;line-height:1.5}
+.press figure:first-child blockquote{font-size:clamp(28px,3vw,40px);line-height:1.3}
+.press figure:first-child blockquote::before{content:"「";color:var(--red-2);display:block;font-size:1.3em;line-height:.8;margin-bottom:12px}
+.press figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto}
+.press cite{font-style:normal;font-family:var(--serif);font-size:17px;letter-spacing:.06em}
+.press cite small{display:block;font-family:var(--sans);font-size:12px;color:var(--faint);letter-spacing:.04em}
+.stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+.award{display:flex;align-items:center;gap:18px}
+.award .ring{width:64px;height:64px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);color:var(--gold);font-size:13px;text-align:center;line-height:1.1}
+
+/* ---------- Events ---------- */
+.events{list-style:none;margin:56px 0 0;padding:0;border-top:1px solid var(--line)}
+.event{display:grid;grid-template-columns:110px 1fr auto auto;gap:36px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);transition:padding .35s,background .35s}
+.event:hover{padding-inline:20px;background:var(--bg-2)}
+.event time{display:flex;flex-direction:column;align-items:center;justify-content:center;width:96px;height:96px;border:1px solid var(--line);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.event time b{font-family:var(--serif);font-size:38px;line-height:1;color:var(--ink);font-weight:500;letter-spacing:0}
+.event h3{font-size:26px;margin-bottom:6px}
+.event p{color:var(--muted);font-size:14.5px}
+.event .seats{font-size:13px;color:var(--muted);text-align:right}
+.event .seats s{color:var(--faint)}
+.event.soldout{opacity:.55}
+.event.soldout .btn{pointer-events:none;border-color:var(--line);color:var(--faint)}
+
+/* ---------- Reservation ---------- */
+.reserve-sec{background:var(--bg-2);border-top:1px solid var(--line-2)}
+.reserve{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px}
+.reserve form{background:var(--card);border:1px solid var(--line);padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+.f{display:flex;flex-direction:column;gap:9px}
+.f.full{grid-column:1/-1}
+.f>label,.f legend{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;padding:0}
+.f input:not([type=radio]):not([type=checkbox]),.f select,.f textarea{width:100%;background:var(--bg);border:1px solid var(--line);padding:14px 16px;outline:0;border-radius:0;transition:border-color .2s}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold)}
+.f textarea{resize:vertical;min-height:96px}
+.f select{appearance:none;-webkit-appearance:none;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a15a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 16px center;cursor:pointer}
+.f input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1) hue-rotate(5deg)}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);background:var(--bg)}
+.stepper button{width:50px;height:50px;background:none;border:0;cursor:pointer;font-size:20px;color:var(--gold);transition:background .2s}
+.stepper button:hover{background:var(--raise)}
+.stepper button:disabled{color:var(--faint);cursor:default;background:none}
+.stepper output{flex:1;text-align:center;font-family:var(--serif);font-size:22px}
+.f fieldset{border:0;padding:0;margin:0}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.slots input{position:absolute;opacity:0}
+.slots label{padding:9px 14px;border:1px solid var(--line);font-size:13.5px;cursor:pointer;font-variant-numeric:tabular-nums;transition:all .2s}
+.slots label:hover{border-color:var(--gold)}
+.slots input:checked+label{background:var(--red);border-color:var(--red);color:#fff}
+.slots input:focus-visible+label{outline:1.5px solid var(--gold);outline-offset:2px}
+.slots input:disabled+label{cursor:not-allowed;color:var(--faint);text-decoration:line-through;border-style:dashed}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--muted);cursor:pointer}
+.check input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1px solid var(--line);background:var(--bg);flex-shrink:0;margin-top:2px;display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--red);border-color:var(--red)}
+.check input:checked::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.reserve form .btn{grid-column:1/-1}
+.err{font-size:12.5px;color:var(--red-2);min-height:0}
+.info-list{margin:44px 0 0;display:flex;flex-direction:column;gap:0}
+.info-list>div{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.info-list dt{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;padding-top:3px}
+.info-list dd{margin:0;color:var(--ink)}
+.info-list dd small{display:block;color:var(--muted)}
+
+/* ---------- Visit ---------- */
+.visit{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.visit-info{padding:56px;display:flex;flex-direction:column;gap:30px}
+.visit address{font-style:normal;font-family:var(--serif);font-size:26px;line-height:1.45}
+.visit address a{text-decoration:none;font-family:var(--sans);font-size:15px;color:var(--gold);display:inline-block;margin-top:10px}
+.hours{width:100%;border-collapse:collapse;font-size:14.5px}
+.hours th,.hours td{padding:10px 0;border-bottom:1px solid var(--line-2);text-align:left;font-weight:400}
+.hours td{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.hours tr.today th,.hours tr.today td{color:var(--ink);font-weight:600}
+.hours tr.today th::after{content:"Today";font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 7px;margin-left:10px;vertical-align:middle;font-weight:600}
+.map{position:relative;min-height:460px;background:var(--card)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:invert(.9) hue-rotate(180deg) grayscale(.6) contrast(.9)}
+.map .pin{position:absolute;left:20px;bottom:20px;background:var(--red);color:#fff;padding:8px 14px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;pointer-events:none}
+
+/* ---------- Footer ---------- */
+.footer{padding:110px 0 36px;border-top:1px solid var(--line);margin-top:130px}
+.footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.3fr;gap:40px}
+.footer h4{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.footer ul a{text-decoration:none;color:var(--muted);transition:color .2s}
+.footer ul a:hover{color:var(--ink)}
+.footer .about p{color:var(--muted);margin:16px 0 0;max-width:300px;font-size:14.5px}
+.news{display:flex;border-bottom:1px solid var(--muted)}
+.news input{flex:1;min-width:0;background:none;border:0;padding:12px 0;outline:0}
+.news button{background:none;border:0;cursor:pointer;color:var(--gold);padding:0 4px}
+.news-msg{font-size:13px;color:var(--gold);margin-top:10px;min-height:20px}
+.giant{font-family:var(--serif);font-size:clamp(90px,22vw,320px);line-height:.85;text-align:center;color:transparent;-webkit-text-stroke:1px rgba(241,235,224,.18);margin:80px 0 30px;letter-spacing:.08em;user-select:none}
+.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+.footer-bottom small{font-size:13px}
+
+/* ---------- Confirmation dialog ---------- */
+dialog{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0;max-width:min(480px,calc(100vw - 32px));width:100%}
+dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(4px)}
+dialog[open]{animation:fade .35s ease}
+.dlg{padding:44px 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.dlg h3{font-size:32px}
+.dlg p{color:var(--muted)}
+.ticket{width:100%;margin:10px 0;display:grid;grid-template-columns:1fr 1fr 1fr;border-block:1px dashed var(--line);padding:18px 0}
+.ticket div{display:flex;flex-direction:column;gap:2px}
+.ticket small{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.ticket b{font-family:var(--serif);font-size:20px;font-weight:500}
+
+/* ---------- Reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1020px){
+  .nav,.header .status,.header .btn{display:none}
+  .header .wrap{grid-template-columns:1fr auto}
+  .burger{display:grid}
+  .story,.omakase,.sake-wrap,.reserve,.visit{grid-template-columns:1fr;gap:56px}
+  .story figure{max-width:520px}
+  .menu-panel{grid-template-columns:1fr}
+  .menu-aside{display:none}
+  .price-card{position:relative;top:0}
+  .press{grid-template-columns:1fr 1fr}
+  .press figure:first-child{grid-column:1/-1;grid-row:auto}
+  .mosaic{grid-template-columns:repeat(6,1fr);grid-auto-rows:120px}
+  .m1{grid-column:span 6;grid-row:span 3}.m2,.m4,.m6{grid-column:span 3;grid-row:span 2}.m3,.m5{grid-column:span 3;grid-row:span 2}.m7{grid-column:span 6;grid-row:span 2}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .visit-info{padding:40px}
+}
+@media (max-width:680px){
+  :root{--gutter:18px}
+  .sec{padding:84px 0}
+  .hero{padding:120px 0 56px}
+  .hero .wrap{grid-template-columns:1fr}
+  .vertical{display:none}
+  .hero-sub{font-size:16.5px}
+  .hero-actions .btn{flex:1;padding:15px 14px;letter-spacing:.1em;white-space:nowrap}
+  .hero-meta{gap:18px;flex-wrap:wrap;margin-top:40px}
+  .hero-meta>div{flex:1 1 40%}
+  .scroll-cue{display:none}
+  .ticker div{font-size:20px}
+  .story figcaption{left:12px;right:12px;bottom:12px;max-width:none}
+  .story figure::before{inset:14px -10px -14px 14px}
+  .chef-quote{padding-left:20px}
+  .tab-labels label{padding:14px 18px 16px}
+  .tab-labels label b{font-size:24px}
+  .tab-labels label::after{left:18px;right:18px}
+  .dishes{grid-template-columns:1fr}
+  .dish dt{font-size:19px;flex-wrap:wrap}
+  .price-card{padding:30px 22px}
+  .price data{font-size:56px}
+  .courses li{font-size:19px}
+  .mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:130px;gap:10px}
+  .mosaic>*{grid-column:span 1!important;grid-row:span 2!important}
+  .mosaic .m1,.mosaic .m-text{grid-column:span 2!important}
+  .mosaic .m-text{grid-row:span 1!important;padding:20px}
+  .mosaic .m-text p{font-size:19px}
+  .mosaic figcaption{transform:none;padding:30px 12px 10px}
+  .mosaic figcaption b{font-size:15px}
+  .mosaic figcaption span{display:none}
+  /* sake table → cards */
+  .sake,.sake tbody,.sake tr,.sake td,.sake th{display:block}
+  .sake thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sake tbody tr{padding:18px 0;border-bottom:1px solid var(--line)}
+  .sake th,.sake td{border:0;padding:4px 0}
+  .sake td{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .sake td::before{content:attr(data-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .taste{min-width:0;width:62%}
+  .press{grid-template-columns:1fr}
+  .press figure{padding:28px 22px}
+  .event{grid-template-columns:76px 1fr;gap:16px 18px;padding:22px 0}
+  .event:hover{padding-inline:0}
+  .event time{width:72px;height:72px;font-size:10px}
+  .event time b{font-size:28px}
+  .event h3{font-size:21px}
+  .event .seats{grid-column:2;text-align:left}
+  .event .btn{grid-column:1/-1}
+  .reserve form{grid-template-columns:1fr;padding:28px 20px}
+  .info-list>div{grid-template-columns:90px 1fr}
+  .visit-info{padding:28px 20px}
+  .visit address{font-size:22px}
+  .map{min-height:320px}
+  .footer{padding-top:80px;margin-top:84px}
+  .footer-top{grid-template-columns:1fr}
+  .overlay nav a{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+</svg>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a href="#story">Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#omakase">Omakase</a>
+      <a href="#events">Events</a>
+    </nav>
+    <a href="#top" class="logo" aria-label="Kumo home"><b>雲</b> KUMO</a>
+    <div class="header-right">
+      <span class="status" id="status"><i></i><span>Open now</span></span>
+      <a href="#reserve" class="btn btn-red">Reserve</a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay" id="burger"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="overlay-top">
+    <span class="logo"><b>雲</b> KUMO</span>
+    <button class="overlay-close" aria-label="Close menu" id="overlay-close"><svg class="ic"><use href="#i-x"/></svg></button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="#story"><small>01</small>Story</a>
+    <a href="#menu"><small>02</small>Menu</a>
+    <a href="#omakase"><small>03</small>Omakase</a>
+    <a href="#events"><small>04</small>Events</a>
+    <a href="#reserve"><small>05</small>Reserve</a>
+    <a href="#visit"><small>06</small>Visit</a>
+  </nav>
+  <a href="tel:+442000000000" class="btn btn-red"><svg class="ic"><use href="#i-phone"/></svg> Call to book</a>
+  <span class="vert" aria-hidden="true">炭火と酒</span>
+</div>
+
+<main id="top">
+<!-- Hero -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=2000&h=1300&fit=crop" alt="Assorted nigiri sushi on a dark plate" width="2000" height="1300">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span>炭火</span> Izakaya &amp; sushi bar · Est. 2016</p>
+      <h1><ruby>雲<rt>kumo</rt></ruby> — <br>fire, rice &amp; sake.</h1>
+      <p class="hero-sub">A sixteen-seat counter and charcoal grill in the heart of the city. Seasonal fish, binchōtan smoke and the quiet of a cloud.</p>
+      <div class="hero-actions">
+        <a href="#reserve" class="btn btn-red">Book a table <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a href="#menu" class="btn btn-ghost">View menu</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>Tue – Sun</b>17:30 – 23:00</div>
+        <div><b>Omakase</b>Counter · 12 courses</div>
+        <div><b>★ Michelin Bib</b>Gourmand 2026</div>
+      </div>
+    </div>
+    <p class="vertical" aria-hidden="true">炭火と酒の店</p>
+  </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div>
+    <span>鮨 Sushi</span><span>炉端 Robata</span><span>酒 Sake</span><span>拉麺 Ramen</span><span>旬 Seasonal</span><span>おまかせ Omakase</span>
+    <span>鮨 Sushi</span><span>炉端 Robata</span><span>酒 Sake</span><span>拉麺 Ramen</span><span>旬 Seasonal</span><span>おまかせ Omakase</span>
+  </div>
+</div>
+
+<!-- Story / chef -->
+<section class="sec" id="story">
+  <div class="wrap story">
+    <figure class="rv">
+      <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900&h=1125&fit=crop" alt="Chef plating a dish in the kitchen" width="900" height="1125" loading="lazy">
+      <figcaption><span class="hanko" aria-hidden="true">健二</span><span><b>Kenji Morita</b>Head chef · 22 years behind the counter</span></figcaption>
+    </figure>
+    <div class="rv">
+      <p class="eyebrow"><span>物語</span> Our story</p>
+      <h2 class="sec-title">Cooking is <em>listening</em> to the season.</h2>
+      <blockquote class="chef-quote" cite="#story">
+        <p>"I learned in Osaka that the fish tells you what it wants. My job is only to get out of the way — a little salt, a little fire, and rice at the temperature of skin."</p>
+        <p>We buy from three small boats and one farmer. When they have nothing, we have less on the menu. That's how it should be.</p>
+        <footer>— <cite>Kenji Morita, head chef</cite></footer>
+      </blockquote>
+      <span class="signature" aria-hidden="true">Kenji M.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Menu -->
+<section class="sec menu-sec" id="menu">
+  <div class="wrap">
+    <div class="menu-head rv">
+      <div><p class="eyebrow"><span>品書き</span> The menu</p><h2 class="sec-title">Small plates, <em>big</em> flavour.</h2></div>
+      <p class="lead">Built to share. Order a few, then a few more. Menu changes weekly — this is <time datetime="2026-11-02">week of 2 November</time>.</p>
+    </div>
+
+    <div class="menu-tabs rv">
+      <input type="radio" name="menutab" id="t-sushi" checked>
+      <input type="radio" name="menutab" id="t-robata">
+      <input type="radio" name="menutab" id="t-ramen">
+      <input type="radio" name="menutab" id="t-sweet">
+      <div class="tab-labels">
+        <label for="t-sushi"><b>鮨</b><small>Sushi</small></label>
+        <label for="t-robata"><b>炉端</b><small>Robata</small></label>
+        <label for="t-ramen"><b>麺</b><small>Noodles</small></label>
+        <label for="t-sweet"><b>甘味</b><small>Sweets</small></label>
+      </div>
+
+      <div class="menu-panel p-sushi">
+        <dl class="dishes">
+          <div class="dish"><dt><span class="name"><ruby>大トロ<rt>ō-toro</rt></ruby></span><data value="14">£14</data></dt><dd>Fatty bluefin belly, aged 5 days <span class="chip red">Signature</span></dd></div>
+          <div class="dish"><dt><span class="name"><ruby>鯛<rt>tai</rt></ruby> <abbr class="diet gf" title="Gluten free">GF</abbr></span><data value="7">£7</data></dt><dd>Sea bream, yuzu kosho, sea salt</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>帆立<rt>hotate</rt></ruby> <abbr class="diet gf" title="Gluten free">GF</abbr></span><data value="8">£8</data></dt><dd>Hokkaido scallop, torched, sudachi</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>鰻<rt>unagi</rt></ruby></span><data value="9"><del>£11</del><ins>£9</ins></data></dt><dd>Charcoal eel, sansho, tare <span class="chip">Happy hour</span></dd></div>
+          <div class="dish"><dt><span class="name"><ruby>雲丹<rt>uni</rt></ruby></span><data value="16">£16</data></dt><dd>Sea urchin gunkan, nori from Ariake <span class="chip gold">Limited</span></dd></div>
+          <div class="dish"><dt><span class="name"><ruby>茄子<rt>nasu</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="6">£6</data></dt><dd>Grilled aubergine nigiri, white miso</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>鮭<rt>sake</rt></ruby> <abbr class="diet gf" title="Gluten free">GF</abbr></span><data value="7">£7</data></dt><dd>Loch Duart salmon, ikura, shiso</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>手巻<rt>temaki</rt></ruby> <abbr class="diet sp" title="Spicy">🌶</abbr></span><data value="9">£9</data></dt><dd>Spicy tuna hand roll, crispy tempura bits</dd></div>
+        </dl>
+        <aside class="menu-aside"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=700&h=930&fit=crop" alt="Sushi platter" width="700" height="930" loading="lazy"><p class="note"><b>Today's catch</b>Line-caught mackerel from Cornwall, cured in rice vinegar at 4 pm.</p></aside>
+      </div>
+
+      <div class="menu-panel p-robata">
+        <dl class="dishes">
+          <div class="dish"><dt><span class="name"><ruby>焼鳥<rt>yakitori</rt></ruby> <abbr class="diet gf" title="Gluten free">GF</abbr></span><data value="6">£6</data></dt><dd>Chicken thigh &amp; negi, salt or tare <span class="chip red">Most ordered</span></dd></div>
+          <div class="dish"><dt><span class="name"><ruby>和牛<rt>wagyu</rt></ruby></span><data value="24">£24</data></dt><dd>A5 Kagoshima wagyu, wasabi, smoked salt</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>椎茸<rt>shiitake</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="5">£5</data></dt><dd>Shiitake, butter, soy, chive</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>銀鱈<rt>gindara</rt></ruby></span><data value="18">£18</data></dt><dd>Black cod, 72-hour saikyo miso</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>つくね<rt>tsukune</rt></ruby></span><data value="7">£7</data></dt><dd>Chicken meatball, egg yolk dip</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>玉蜀黍<rt>tōmorokoshi</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="5">£5</data></dt><dd>Sweetcorn, miso butter, shichimi</dd></div>
+        </dl>
+        <aside class="menu-aside"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&h=930&fit=crop" alt="Plated dish in a dark dining room" width="700" height="930" loading="lazy"><p class="note"><b>Binchōtan</b>Our white oak charcoal burns at 1,000 °C — almost smokeless and very fast.</p></aside>
+      </div>
+
+      <div class="menu-panel p-ramen">
+        <dl class="dishes">
+          <div class="dish"><dt><span class="name"><ruby>豚骨<rt>tonkotsu</rt></ruby></span><data value="15">£15</data></dt><dd>18-hour pork broth, chashu, ajitama <span class="chip red">Lunch Sat only</span></dd></div>
+          <div class="dish"><dt><span class="name"><ruby>担々麺<rt>tantanmen</rt></ruby> <abbr class="diet sp" title="Spicy">🌶</abbr></span><data value="15">£15</data></dt><dd>Sesame, chilli oil, minced pork</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>蕎麦<rt>soba</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="12">£12</data></dt><dd>Cold buckwheat noodles, tsuyu, wasabi</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>うどん<rt>udon</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="13">£13</data></dt><dd>Kombu dashi, tempura flakes, yuzu</dd></div>
+        </dl>
+        <aside class="menu-aside"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700&h=930&fit=crop" alt="Bowl of ramen" width="700" height="930" loading="lazy"><p class="note"><b>Noodles made in-house</b>Every morning, from Hokkaido flour and kansui.</p></aside>
+      </div>
+
+      <div class="menu-panel p-sweet">
+        <dl class="dishes">
+          <div class="dish"><dt><span class="name"><ruby>抹茶<rt>matcha</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="8">£8</data></dt><dd>Uji matcha tiramisu, kuromitsu</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>黒胡麻<rt>kurogoma</rt></ruby> <abbr class="diet v" title="Vegetarian">V</abbr></span><data value="7">£7</data></dt><dd>Black sesame ice cream, kinako</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>柚子<rt>yuzu</rt></ruby> <abbr class="diet gf" title="Gluten free">GF</abbr></span><data value="8">£8</data></dt><dd>Yuzu cheesecake, Japanese style</dd></div>
+          <div class="dish"><dt><span class="name"><ruby>わらび餅<rt>warabi mochi</rt></ruby></span><data value="7">£7</data></dt><dd>Bracken jelly, roasted soy flour <span class="chip gold">Seasonal</span></dd></div>
+        </dl>
+        <aside class="menu-aside"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&h=930&fit=crop" alt="Warm restaurant interior" width="700" height="930" loading="lazy"><p class="note"><b>Pair with umeshu</b>Our house plum wine, aged three years.</p></aside>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><abbr class="diet v" title="Vegetarian">V</abbr> Vegetarian</span>
+      <span><abbr class="diet gf" title="Gluten free">GF</abbr> Gluten free</span>
+      <span><abbr class="diet sp" title="Spicy">🌶</abbr> Spicy</span>
+      <span>Please tell us about any allergies — we're happy to adapt.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Omakase -->
+<section class="sec" id="omakase">
+  <div class="wrap omakase">
+    <div class="rv">
+      <p class="eyebrow"><span>お任せ</span> Counter omakase</p>
+      <h2 class="sec-title">Twelve courses. <em>One</em> chef's choice.</h2>
+      <p class="lead" style="margin-top:22px">Two sittings a night, eight seats each. Sit at the hinoki counter and let Kenji cook for you.</p>
+      <ol class="courses">
+        <li>Sakizuke<span>Seasonal appetiser — chawanmushi with crab</span></li>
+        <li>Owan<span>Clear dashi soup, matsutake, mitsuba</span></li>
+        <li>Otsukuri<span>Three-fish sashimi from today's boats</span></li>
+        <li>Yakimono<span>Binchōtan-grilled black cod</span></li>
+        <li>Nigiri<span>Seven pieces, one at a time</span></li>
+        <li>Shokuji<span>Rice, miso soup &amp; pickles</span></li>
+        <li>Mizugashi<span>Fruit and matcha</span></li>
+      </ol>
+    </div>
+    <aside class="price-card rv" aria-labelledby="oma-h">
+      <span class="chip solid">Only 16 seats a night</span>
+      <h3 id="oma-h">Omakase evening</h3>
+      <div class="price"><data id="oma-price" value="95">£95</data><small>per guest</small></div>
+      <p style="color:var(--muted);font-size:14px">Sittings at <time datetime="18:00">18:00</time> and <time datetime="20:45">20:45</time></p>
+      <label class="pairing" for="pair">
+        <span>Add sake pairing <small style="display:block;color:var(--faint)">Five pours, +£55</small></span>
+        <span class="toggle"><input type="checkbox" id="pair"><span></span></span>
+      </label>
+      <ul>
+        <li>Counter seating with the chef</li>
+        <li>Vegetarian menu on request</li>
+        <li>48-hour cancellation</li>
+      </ul>
+      <a href="#reserve" class="btn btn-red">Reserve the counter <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </aside>
+  </div>
+</section>
+
+<!-- Gallery mosaic -->
+<section class="sec" style="padding-top:0" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="menu-head rv">
+      <div><p class="eyebrow"><span>写真</span> Inside Kumo</p><h2 class="sec-title" id="gal-h">Smoke, steel <em>&amp;</em> cedar.</h2></div>
+      <p class="lead">Hover a photo to read its story.</p>
+    </div>
+    <div class="mosaic">
+      <figure class="m1 rv"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&h=900&fit=crop" alt="Dining room with warm lighting" width="900" height="900" loading="lazy"><figcaption><span><b>The dining room</b><span>40 seats, cedar walls</span></span><span class="chip gold">Room</span></figcaption></figure>
+      <figure class="m2 rv"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=700&h=400&fit=crop" alt="Sushi on a board" width="700" height="400" loading="lazy"><figcaption><span><b>Nigiri flight</b><span>Seven pieces</span></span></figcaption></figure>
+      <figure class="m3 rv"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&h=600&fit=crop" alt="Ramen bowl" width="500" height="600" loading="lazy"><figcaption><span><b>Tonkotsu</b><span>Saturday lunch</span></span></figcaption></figure>
+      <div class="m4 m-text rv"><p>"Rice at the temperature of skin."</p><small>— House rule nº 1</small></div>
+      <figure class="m5 rv"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop" alt="Chef at work" width="500" height="600" loading="lazy"><figcaption><span><b>Kenji</b><span>At the counter</span></span></figcaption></figure>
+      <figure class="m6 rv"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=700&h=400&fit=crop" alt="Sushi selection" width="700" height="400" loading="lazy"><figcaption><span><b>Moriawase</b><span>Chef's selection</span></span></figcaption></figure>
+      <figure class="m7 rv"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&h=400&fit=crop" alt="Elegant plated course" width="900" height="400" loading="lazy"><figcaption><span><b>Course four</b><span>Omakase</span></span><span class="chip gold">Counter</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Sake table -->
+<section class="sec" style="padding-top:0" aria-labelledby="sake-h">
+  <div class="wrap sake-wrap">
+    <div class="rv">
+      <p class="eyebrow"><span>日本酒</span> Sake list</p>
+      <h2 class="sec-title" id="sake-h">Forty sakes, <em>five</em> favourites.</h2>
+      <p class="lead" style="margin-top:22px">From crisp and dry to round and fruity. Our sommelier Aiko will happily guide you — or pour you a flight of three.</p>
+      <p style="margin-top:22px"><span class="chip gold">Flight of 3 · £21</span></p>
+    </div>
+    <div class="rv" style="overflow-x:auto">
+      <table class="sake">
+        <caption>Served by the 120 ml glass. Bottles available.</caption>
+        <thead><tr><th scope="col">Sake</th><th scope="col">Style</th><th scope="col">Sweet ↔ Dry</th><th scope="col">Glass</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Dassai 45<small>Yamaguchi</small></th><td data-label="Style">Junmai Daiginjo</td><td data-label="Taste"><span class="taste">S<meter min="0" max="10" value="5" title="Medium">5/10</meter>D</span></td><td class="p" data-label="Glass">£12</td></tr>
+          <tr><th scope="row">Kokuryu<small>Fukui</small></th><td data-label="Style">Ginjo</td><td data-label="Taste"><span class="taste">S<meter min="0" max="10" value="8" title="Dry">8/10</meter>D</span></td><td class="p" data-label="Glass">£11</td></tr>
+          <tr><th scope="row">Hakkaisan<small>Niigata</small></th><td data-label="Style">Tokubetsu Honjozo</td><td data-label="Taste"><span class="taste">S<meter min="0" max="10" value="9" title="Very dry">9/10</meter>D</span></td><td class="p" data-label="Glass">£9</td></tr>
+          <tr><th scope="row">Kamoizumi<small>Hiroshima</small></th><td data-label="Style">Nigori</td><td data-label="Taste"><span class="taste">S<meter min="0" max="10" value="2" title="Sweet">2/10</meter>D</span></td><td class="p" data-label="Glass">£10</td></tr>
+          <tr><th scope="row">Masumi Okuden<small>Nagano</small></th><td data-label="Style">Kimoto Junmai</td><td data-label="Taste"><span class="taste">S<meter min="0" max="10" value="7" title="Dry">7/10</meter>D</span></td><td class="p" data-label="Glass">£10</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Press -->
+<section class="sec" style="padding-top:0" aria-label="Press">
+  <div class="wrap">
+    <div class="press rv">
+      <figure>
+        <blockquote cite="#"><p>The best counter seat in the city. Kenji's nigiri is precise, generous and quietly thrilling.</p></blockquote>
+        <figcaption><cite>The Evening Table<small>Restaurant review, March 2026</small></cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption>
+      </figure>
+      <figure>
+        <blockquote><p>Order the black cod. Then order it again.</p></blockquote>
+        <figcaption><cite>City Eats<small>Top 50, 2026</small></cite><span class="stars" aria-label="4 out of 5 stars">★★★★</span></figcaption>
+      </figure>
+      <figure>
+        <div class="award"><span class="ring">Bib<br>2026</span><p style="font-family:var(--serif);font-size:19px">Bib Gourmand — good quality, good value cooking.</p></div>
+      </figure>
+      <figure>
+        <blockquote><p>A sake list that teaches you something every visit.</p></blockquote>
+        <figcaption><cite>Drink Weekly<small>Bar of the year</small></cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption>
+      </figure>
+      <figure>
+        <blockquote><p>Warm, unpretentious, and the ramen is worth the queue.</p></blockquote>
+        <figcaption><cite>Local Guide<small>4.8 from 2,140 reviews</small></cite><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Events -->
+<section class="sec" id="events" style="padding-top:0">
+  <div class="wrap">
+    <div class="menu-head rv" style="margin-bottom:0">
+      <div><p class="eyebrow"><span>催し</span> Upcoming</p><h2 class="sec-title">Evenings <em>worth</em> planning for.</h2></div>
+      <p class="lead">Small, ticketed nights with guest chefs, brewers and makers.</p>
+    </div>
+    <ul class="events">
+      <li class="event rv"><time datetime="2026-11-14"><b>14</b>Nov</time><div><h3>Sake &amp; smoke with Masumi brewery</h3><p>Five pours paired with robata, hosted by the head brewer from Nagano.</p></div><p class="seats"><b>6</b> seats left<br><span class="chip red">Selling fast</span></p><a href="#reserve" class="btn btn-ghost">Tickets · £85</a></li>
+      <li class="event rv"><time datetime="2026-11-28"><b>28</b>Nov</time><div><h3>Knife skills masterclass</h3><p>Learn to break down a whole mackerel with chef Kenji. Lunch included.</p></div><p class="seats"><b>10</b> seats left<br><span class="chip">Workshop</span></p><a href="#reserve" class="btn btn-ghost">Tickets · £120</a></li>
+      <li class="event soldout rv"><time datetime="2026-12-31"><b>31</b>Dec</time><div><h3>Ōmisoka — New Year's Eve soba</h3><p>Toshikoshi soba at midnight, sake from the barrel and mochi pounding.</p></div><p class="seats"><s>24 seats</s><br><span class="chip">Sold out</span></p><span class="btn btn-ghost" aria-disabled="true">Waitlist</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Reservation -->
+<section class="sec reserve-sec" id="reserve">
+  <div class="wrap reserve">
+    <div class="rv">
+      <p class="eyebrow"><span>予約</span> Reservations</p>
+      <h2 class="sec-title">Save us <em>a seat.</em></h2>
+      <p class="lead" style="margin-top:22px">Book up to 30 days ahead. For groups of 9 or more, private dining or the whole counter, please call us.</p>
+      <dl class="info-list">
+        <div><dt>Phone</dt><dd><a href="tel:+442000000000">+44 20 0000 0000</a><small>Daily from 12:00</small></dd></div>
+        <div><dt>Walk-ins</dt><dd>Bar seats held every night<small>First come, first served</small></dd></div>
+        <div><dt>Dress</dt><dd>Come as you are</dd></div>
+        <div><dt>Deposit</dt><dd>£20 pp for omakase<small>Fully refundable up to 48 h before</small></dd></div>
+      </dl>
+    </div>
+    <form id="book" class="rv" novalidate>
+      <div class="f">
+        <label for="b-date">Date</label>
+        <input type="date" id="b-date" required>
+      </div>
+      <div class="f">
+        <label id="party-l">Guests</label>
+        <div class="stepper" role="group" aria-labelledby="party-l">
+          <button type="button" id="minus" aria-label="Fewer guests">−</button>
+          <output id="party" aria-live="polite">2</output>
+          <button type="button" id="plus" aria-label="More guests">+</button>
+        </div>
+      </div>
+      <div class="f full">
+        <fieldset>
+          <legend>Time</legend>
+          <div class="slots" id="slots"></div>
+        </fieldset>
+        <span class="err" id="slot-err" role="alert"></span>
+      </div>
+      <div class="f">
+        <label for="b-seat">Seating</label>
+        <select id="b-seat">
+          <option>Dining room</option>
+          <option>Sushi counter</option>
+          <option>Omakase counter (£95 pp)</option>
+          <option>Terrace — heated</option>
+        </select>
+      </div>
+      <div class="f">
+        <label for="b-occ">Occasion</label>
+        <input id="b-occ" list="occasions" placeholder="Optional">
+        <datalist id="occasions"><option value="Birthday"><option value="Anniversary"><option value="Date night"><option value="Business dinner"><option value="Celebration"></datalist>
+      </div>
+      <div class="f">
+        <label for="b-name">Name</label>
+        <input id="b-name" autocomplete="name" required>
+      </div>
+      <div class="f">
+        <label for="b-email">Email</label>
+        <input id="b-email" type="email" autocomplete="email" required>
+      </div>
+      <div class="f full">
+        <label for="b-notes">Allergies or requests</label>
+        <textarea id="b-notes" placeholder="e.g. shellfish allergy, high chair, quiet table"></textarea>
+      </div>
+      <label class="check f full"><input type="checkbox" id="b-news"> Send me news about events and seasonal menus (about once a month).</label>
+      <span class="err f full" id="form-err" role="alert"></span>
+      <button class="btn btn-red" type="submit">Request booking <svg class="ic"><use href="#i-arrow"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<!-- Visit -->
+<section class="sec" id="visit">
+  <div class="wrap">
+    <div class="visit rv">
+      <div class="visit-info">
+        <p class="eyebrow"><span>所在地</span> Find us</p>
+        <address>Kumo<br>12 Charcoal Yard, Shoreditch<br>London E2 7DJ<br><a href="https://maps.google.com/?q=Shoreditch+London" target="_blank" rel="noopener">Get directions →</a></address>
+        <table class="hours" id="hours">
+          <caption class="sr-only">Opening hours</caption>
+          <tbody>
+            <tr data-day="1"><th scope="row">Monday</th><td>Closed</td></tr>
+            <tr data-day="2" data-open="17:30" data-close="23:00"><th scope="row">Tuesday</th><td><time>17:30</time> – <time>23:00</time></td></tr>
+            <tr data-day="3" data-open="17:30" data-close="23:00"><th scope="row">Wednesday</th><td><time>17:30</time> – <time>23:00</time></td></tr>
+            <tr data-day="4" data-open="17:30" data-close="23:00"><th scope="row">Thursday</th><td><time>17:30</time> – <time>23:00</time></td></tr>
+            <tr data-day="5" data-open="17:30" data-close="23:59"><th scope="row">Friday</th><td><time>17:30</time> – <time>00:00</time></td></tr>
+            <tr data-day="6" data-open="12:00" data-close="23:59"><th scope="row">Saturday</th><td><time>12:00</time> – <time>00:00</time></td></tr>
+            <tr data-day="0" data-open="12:00" data-close="22:00"><th scope="row">Sunday</th><td><time>12:00</time> – <time>22:00</time></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map">
+        <iframe title="Map showing Kumo in Shoreditch, London" src="https://maps.google.com/maps?q=Shoreditch%2C%20London&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <span class="pin">雲 Kumo</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="about"><span class="logo"><b>雲</b> KUMO</span><p>Charcoal izakaya and sushi bar. Seasonal, local where we can, Japanese where it matters.</p></div>
+      <div><h4>Visit</h4><ul><li><a href="#menu">Menu</a></li><li><a href="#omakase">Omakase</a></li><li><a href="#reserve">Reservations</a></li><li><a href="#visit">Find us</a></li></ul></div>
+      <div><h4>More</h4><ul><li><a href="#events">Events</a></li><li><a href="#">Gift cards</a></li><li><a href="#">Private dining</a></li><li><a href="#">Careers</a></li></ul></div>
+      <div>
+        <h4>Seasonal letter</h4>
+        <form class="news" id="news" novalidate>
+          <label for="n-email" class="sr-only">Email</label>
+          <input id="n-email" type="email" placeholder="Your email" autocomplete="email">
+          <button type="submit" aria-label="Subscribe"><svg class="ic"><use href="#i-arrow"/></svg></button>
+        </form>
+        <output class="news-msg" id="news-msg" role="status"></output>
+      </div>
+    </div>
+    <p class="giant" aria-hidden="true">雲 KUMO</p>
+    <div class="footer-bottom">
+      <small>© 2026 Kumo Restaurants Ltd.</small>
+      <small>An optional 12.5% service charge is added — 100% goes to the team.</small>
+    </div>
+  </div>
+</footer>
+
+<dialog id="confirm" aria-labelledby="c-h">
+  <form method="dialog" class="dlg">
+    <span class="hanko" aria-hidden="true">予約</span>
+    <h3 id="c-h">Request received</h3>
+    <p id="c-text">We'll confirm by email within the hour.</p>
+    <div class="ticket">
+      <div><small>Date</small><b id="c-date">—</b></div>
+      <div><small>Time</small><b id="c-time">—</b></div>
+      <div><small>Guests</small><b id="c-party">—</b></div>
+    </div>
+    <button class="btn btn-red" value="close">Done</button>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+
+  /* Header turns solid after the hero */
+  const header = $('#header');
+  const onScroll = () => header.classList.toggle('solid', scrollY > 60);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Full-screen mobile menu */
+  const overlay = $('#overlay'), burger = $('#burger');
+  const setMenu = open => {
+    overlay.classList.toggle('open', open);
+    overlay.setAttribute('aria-hidden', !open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) $('#overlay-close').focus();
+  };
+  burger.addEventListener('click', () => setMenu(true));
+  $('#overlay-close').addEventListener('click', () => setMenu(false));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .1 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+
+  /* Open-now status from the hours table, and highlight today */
+  const now = new Date(), day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+  const toMin = t => { const [h, m] = t.split(':'); return +h * 60 + +m; };
+  const row = $(`#hours tr[data-day="${day}"]`);
+  row.classList.add('today');
+  const status = $('#status');
+  const isOpen = row.dataset.open && mins >= toMin(row.dataset.open) && mins <= toMin(row.dataset.close);
+  status.classList.toggle('closed', !isOpen);
+  status.querySelector('span').textContent = isOpen
+    ? `Open now · until ${row.dataset.close === '23:59' ? 'midnight' : row.dataset.close}`
+    : row.dataset.open && mins < toMin(row.dataset.open) ? `Opens today at ${row.dataset.open}` : 'Closed now';
+
+  /* Omakase price with optional pairing */
+  $('#pair').addEventListener('change', e => {
+    const p = e.target.checked ? 150 : 95;
+    $('#oma-price').value = p;
+    $('#oma-price').textContent = '£' + p;
+  });
+
+  /* Booking form: date limits, guest stepper, time slots */
+  const date = $('#b-date'), pad = n => String(n).padStart(2, '0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const max = new Date(); max.setDate(max.getDate() + 30);
+  date.min = iso(now); date.max = iso(max); date.value = iso(now);
+
+  let party = 2;
+  const partyOut = $('#party'), minus = $('#minus'), plus = $('#plus');
+  const setParty = n => {
+    party = Math.min(8, Math.max(1, n));
+    partyOut.value = party;
+    minus.disabled = party === 1; plus.disabled = party === 8;
+  };
+  minus.addEventListener('click', () => setParty(party - 1));
+  plus.addEventListener('click', () => setParty(party + 1));
+  setParty(2);
+
+  const slots = ['17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00'];
+  const renderSlots = () => {
+    // Pseudo-random "fully booked" slots that stay stable for each date
+    const seed = date.value.split('-').reduce((a, b) => a + +b, 0);
+    $('#slots').innerHTML = slots.map((t, i) => {
+      const full = (seed + i * 7) % 5 === 0;
+      return `<input type="radio" name="slot" id="s${i}" value="${t}" ${full ? 'disabled' : ''}><label for="s${i}" ${full ? 'title="Fully booked"' : ''}>${t}</label>`;
+    }).join('');
+  };
+  date.addEventListener('change', renderSlots);
+  renderSlots();
+
+  const dlg = $('#confirm');
+  $('#book').addEventListener('submit', e => {
+    e.preventDefault();
+    const slot = document.querySelector('[name=slot]:checked');
+    const name = $('#b-name'), email = $('#b-email'), err = $('#form-err');
+    $('#slot-err').textContent = slot ? '' : 'Please choose a time.';
+    if (!slot) return;
+    if (!name.value.trim() || !email.value || !email.checkValidity()) { err.textContent = 'Please add your name and a valid email.'; (!name.value.trim() ? name : email).focus(); return; }
+    err.textContent = '';
+    const d = new Date(date.value + 'T12:00');
+    $('#c-date').textContent = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    $('#c-time').textContent = slot.value;
+    $('#c-party').textContent = party;
+    $('#c-text').textContent = `Thank you, ${name.value.trim().split(' ')[0]}. We'll confirm at ${email.value} within the hour.`;
+    dlg.showModal();
+    e.target.reset(); setParty(2); date.value = iso(now); renderSlots();
+  });
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+
+  /* Footer newsletter */
+  $('#news').addEventListener('submit', e => {
+    e.preventDefault();
+    const em = $('#n-email');
+    $('#news-msg').value = em.value && em.checkValidity() ? 'ありがとう — you\'re on the list.' : 'Please enter a valid email.';
+    if (em.checkValidity() && em.value) em.value = '';
+  });
+})();
+</script>
+</body>
+</html>

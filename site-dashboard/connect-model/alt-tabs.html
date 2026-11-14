@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect your model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111113; --tx: #3f3f46; --mut: #71717a; --faint: #a1a1aa;
+  --line: #ececef; --line2: #e2e2e6; --soft: #f7f7f8; --hover: #f4f4f5;
+  --ok: #16a34a; --err: #dc2626; --side: #fafafa;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font: 14px/1.55 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+a { color: inherit; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.mono, code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; }
+code { background: var(--soft); padding: 1px 5px; border-radius: 5px; color: var(--ink); }
+
+/* shell */
+.app { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+.side { background: var(--side); border-right: 1px solid var(--line); padding: 14px 12px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; gap: 10px; align-items: center; padding: 2px 4px 18px; }
+.brand .lg { width: 32px; height: 32px; border-radius: 9px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.brand b { display: block; color: var(--ink); font-weight: 600; line-height: 1.2; }
+.brand small { color: var(--mut); font-size: 12px; }
+.side h6 { margin: 10px 10px 6px; font-size: 12px; font-weight: 500; color: var(--mut); }
+.nav a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; text-decoration: none; color: var(--tx); }
+.nav a:hover { background: var(--hover); }
+.nav a svg { color: var(--mut); }
+.nav a.on { background: #efeff1; font-weight: 500; color: var(--ink); }
+.nav a.on svg { color: var(--ink); }
+.me { margin-top: auto; display: flex; gap: 10px; align-items: center; padding: 8px 4px; }
+.me .av { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; font-weight: 500; background: #fff; }
+.me b { display: block; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.me small { color: var(--mut); font-size: 12px; }
+.top { height: 60px; display: flex; align-items: center; gap: 10px; padding: 0 24px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); z-index: 5; }
+.top b { color: var(--ink); font-weight: 500; }
+.menu-btn { display: none; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 36px; padding: 0 14px; border-radius: 9px; font-weight: 500; white-space: nowrap; transition: background .15s, border-color .15s, opacity .15s; text-decoration: none; }
+.btn.p { background: var(--ink); color: #fff; }
+.btn.p:hover { background: #2a2a2e; }
+.btn.s { border: 1px solid var(--line2); color: var(--ink); background: #fff; }
+.btn.s:hover { background: var(--soft); }
+.btn.sm { height: 30px; padding: 0 11px; font-size: 13px; border-radius: 8px; }
+.btn.link { height: auto; padding: 0; color: var(--mut); font-size: 13px; }
+.btn.link:hover { color: var(--ink); }
+.btn.link.dg:hover { color: var(--err); }
+.btn svg { width: 15px; height: 15px; }
+.icon-btn { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; color: var(--mut); transition: background .15s, color .15s; }
+.icon-btn:hover { background: var(--hover); color: var(--ink); }
+.ml { margin-left: auto; }
+
+/* page */
+main { padding: 44px 24px 96px; }
+.wrap { max-width: 880px; margin: 0 auto; }
+h1 { margin: 0; font-size: 26px; font-weight: 600; color: var(--ink); letter-spacing: -.02em; }
+.sub { margin: 6px 0 0; color: var(--mut); }
+.card { border: 1px solid var(--line2); border-radius: 14px; background: #fff; margin-top: 20px; }
+.card > .in { padding: 22px 24px; }
+.ch { display: flex; align-items: center; gap: 10px; }
+.ch h2 { margin: 0; font-size: 15px; font-weight: 600; color: var(--ink); }
+.ch .n { color: var(--faint); font-size: 13px; }
+.ch p { margin: 0; color: var(--mut); font-size: 13px; }
+
+/* server */
+.server { display: flex; align-items: center; gap: 12px; padding: 14px 16px 14px 20px; margin-top: 28px; }
+.server .lbl { color: var(--mut); font-size: 13px; white-space: nowrap; }
+.server .mono { color: var(--ink); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.server .state { display: flex; align-items: center; gap: 6px; color: var(--mut); font-size: 13px; white-space: nowrap; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); flex: none; display: inline-block; }
+.dot.off { background: #d4d4d8; }
+
+/* client tabs */
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--soft); border-radius: 11px; margin-top: 16px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 8px; color: var(--mut); font-weight: 500; font-size: 13.5px; white-space: nowrap; transition: background .15s, color .15s; position: relative; }
+.tab:hover { color: var(--ink); }
+.tab.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 0 0 1px var(--line); }
+.tab .mk { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; }
+.tab .mk svg { width: 13px; height: 13px; }
+.tab .dot { position: absolute; top: 7px; right: 7px; width: 6px; height: 6px; }
+.logo { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; flex: none; }
+.logo svg { width: 17px; height: 17px; }
+.l-claude { background: #fbeee8; color: #d97757; }
+.l-gpt { background: #ececee; color: #111113; }
+.l-code { background: #f6ece7; color: #b5573a; }
+.l-codex { background: #eef0ff; color: #3b45d1; }
+
+/* steps */
+.setup { border-top: 1px solid var(--line); padding: 22px 24px; }
+.meta { display: flex; align-items: center; gap: 8px; color: var(--mut); font-size: 13px; margin-bottom: 20px; }
+.meta b { color: var(--ink); font-weight: 600; font-size: 14px; }
+.step { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; }
+.step + .step { margin-top: 24px; }
+.step .num { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 1px solid var(--line2); display: grid; place-items: center; font-size: 11.5px; font-weight: 600; color: var(--ink); margin-top: 1px; }
+.step.done .num { background: var(--ok); border-color: var(--ok); color: #fff; }
+.step h4 { margin: 0 0 4px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.step p { margin: 0 0 10px; color: var(--mut); font-size: 13px; }
+.step ol { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13.5px; overflow-wrap: anywhere; }
+.step ol b { color: var(--ink); font-weight: 500; }
+.field { display: flex; align-items: center; gap: 6px; padding: 4px 4px 4px 12px; border: 1px solid var(--line2); border-radius: 9px; background: var(--soft); max-width: 520px; }
+.field .mono { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); }
+.field input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; height: 28px; }
+.field.edit { background: #fff; }
+.field.edit:focus-within { border-color: var(--ink); }
+.hint { color: var(--faint); font-size: 12.5px; margin: 10px 0 0; }
+.code { position: relative; background: #0f0f11; border-radius: 10px; margin-top: 12px; }
+.code pre { margin: 0; padding: 14px 16px; padding-right: 84px; color: #e4e4e7; font: 12.5px/1.7 'JetBrains Mono', monospace; overflow-x: auto; }
+.code .k { color: #93c5fd; } .code .s { color: #86efac; } .code .c { color: #71717a; } .code .t { color: #fbbf24; } .code .ph { color: #fbbf24; }
+.code .btn { position: absolute; top: 8px; right: 8px; background: #27272a; color: #e4e4e7; border: 1px solid #3f3f46; }
+.code .btn:hover { background: #3f3f46; }
+.status { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--mut); }
+.status .dot { background: #eab308; animation: pulse 1.6s infinite; }
+.status.ok { color: var(--ink); }
+.status.ok .dot { background: var(--ok); animation: none; }
+@keyframes pulse { 50% { opacity: .35; } }
+
+/* tokens + apps */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.two .card { margin-top: 20px; }
+.rows { margin-top: 12px; }
+.row { display: flex; align-items: center; gap: 12px; padding: 11px 0; }
+.row + .row { border-top: 1px solid var(--line); }
+.row .logo { width: 30px; height: 30px; }
+.row .nm { min-width: 0; flex: 1; }
+.row .nm b { display: block; color: var(--ink); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row .nm small { color: var(--mut); font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
+.empty { margin-top: 12px; padding: 18px; border: 1px dashed var(--line2); border-radius: 10px; text-align: center; color: var(--mut); font-size: 13px; }
+
+/* activity */
+.acts { margin: 8px 0 0; padding: 0; list-style: none; }
+.acts li { display: flex; gap: 10px; align-items: center; padding: 10px 0; font-size: 13.5px; }
+.acts li + li { border-top: 1px solid var(--line); }
+.acts .logo { width: 24px; height: 24px; border-radius: 7px; }
+.acts .logo svg { width: 13px; height: 13px; }
+.acts b { color: var(--ink); font-weight: 500; }
+.acts .site { color: var(--mut); }
+.acts time { margin-left: auto; color: var(--faint); font-size: 12.5px; white-space: nowrap; padding-left: 12px; }
+
+/* demo switch (mockup only) */
+.demo { position: fixed; left: calc(260px + 24px); bottom: 18px; z-index: 40; display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--soft); border: 1px solid var(--line2); }
+.demo button { height: 28px; padding: 0 10px; border-radius: 7px; color: var(--mut); font-size: 12.5px; font-weight: 500; }
+.demo button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; background: var(--ink); color: #fff; padding: 9px 14px; border-radius: 9px; font-size: 13px; transition: .2s; z-index: 90; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.fade { animation: fd .2s ease-out; }
+@keyframes fd { from { opacity: 0; } }
+
+@media (max-width: 960px) { .tab .lb2 { display: none; } }
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { position: fixed; inset: 0 auto 0 0; width: 270px; z-index: 30; transform: translateX(-100%); transition: transform .2s; box-shadow: 0 0 40px rgba(0,0,0,.15); }
+  body.nav-open .side { transform: none; }
+  .menu-btn { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; margin-left: -6px; }
+  .top { padding: 0 16px; }
+  main { padding: 28px 16px 80px; }
+  .card > .in, .setup { padding-left: 16px; padding-right: 16px; }
+  .server { flex-wrap: wrap; padding-left: 16px; }
+  .server .state { order: 4; width: 100%; }
+  .server .mono { flex: 1; }
+  .tab { flex: none; }
+  .two { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .acts time { display: none; }
+  .demo { left: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="lg"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg></span><div><b>Local</b><small>Site builder</small></div></div>
+    <h6>Workspace</h6>
+    <nav class="nav">
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>Sites</a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>Members</a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg>Billing</a>
+      <a href="#" class="on"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg>Connect your model</a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/></svg>Token use</a>
+    </nav>
+    <div class="me"><span class="av">Y</span><div><b>you@localhost</b><small>Owner</small></div></div>
+  </aside>
+
+  <div>
+    <header class="top">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <b>Connect your model</b>
+      <a class="btn p sm ml" href="#"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New site</a>
+    </header>
+
+    <main><div class="wrap">
+      <h1>Connect your model</h1>
+      <p class="sub">Use Claude, ChatGPT or Codex to build and publish your sites. It acts as you, with your permissions.</p>
+
+      <section class="card server">
+        <span class="lbl">MCP server</span>
+        <span class="mono">http://localhost:3210/api/v1/mcp</span>
+        <button class="icon-btn" data-copy="http://localhost:3210/api/v1/mcp" aria-label="Copy server URL"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button>
+        <span class="state ml" id="srvState"></span>
+      </section>
+
+      <section class="card">
+        <div class="in" style="padding-bottom:18px">
+          <div class="ch"><h2>Set up a client</h2></div>
+          <div class="tabs" role="tablist" id="tabs"></div>
+        </div>
+        <div class="setup" id="setup"></div>
+      </section>
+
+      <div class="two">
+        <section class="card"><div class="in">
+          <div class="ch"><h2>Active tokens</h2><span class="n" id="tokN"></span></div>
+          <div id="tokens"></div>
+        </div></section>
+        <section class="card"><div class="in">
+          <div class="ch"><h2>Connected apps</h2><span class="n" id="appN"></span></div>
+          <div id="apps"></div>
+        </div></section>
+      </div>
+
+      <section class="card" id="actCard"><div class="in">
+        <div class="ch"><h2>Recent activity</h2></div>
+        <ul class="acts" id="acts"></ul>
+      </div></section>
+    </div></main>
+  </div>
+</div>
+
+<div class="demo" role="group" aria-label="Demo state"><button data-demo="empty">Empty</button><button data-demo="full" class="on">Connected</button></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const URL_ = 'http://localhost:3210/api/v1/mcp';
+const ic = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
+const COPY = ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>');
+const LOGO = {
+  claude: '<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg>',
+  gpt: '<svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 3a4 4 0 0 1 4 4v1.5l3 1.7a4 4 0 0 1-2 7.4M12 21a4 4 0 0 1-4-4v-1.5l-3-1.7a4 4 0 0 1 2-7.4M16 8.5 8 13M16 15.5 8 11"/></svg>',
+  code: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="m5 8 4 4-4 4M12 17h7"/></svg>',
+  codex: '<svg viewBox="0 0 24 24" stroke-width="2"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>',
+};
+const CLIENTS = {
+  'claude-web': { name: 'Claude', long: 'Claude on the web', sub: 'Also works for Connectors in the Claude Desktop app.', logo: 'claude', cls: 'l-claude', kind: 'oauth' },
+  'chatgpt': { name: 'ChatGPT', long: 'ChatGPT on the web', sub: 'Needs a paid plan with developer mode.', logo: 'gpt', cls: 'l-gpt', kind: 'oauth' },
+  'claude-desktop': { name: 'Claude Desktop', long: 'Claude Desktop', sub: 'Uses a token in its config file.', logo: 'claude', cls: 'l-claude', kind: 'token' },
+  'claude-code': { name: 'Claude Code', long: 'Claude Code', sub: 'Uses a token, added from the terminal.', logo: 'code', cls: 'l-code', kind: 'token' },
+  'codex': { name: 'Codex', long: 'Codex', sub: 'Uses a token in its config file.', logo: 'codex', cls: 'l-codex', kind: 'token' },
+};
+const lg = (id, cls = 'logo') => `<span class="${cls} ${CLIENTS[id].cls}">${LOGO[CLIENTS[id].logo]}</span>`;
+
+/* ---------- dummy data, two states ---------- */
+const state = { tab: 'claude-web', tokens: [], apps: [], acts: [], newToken: null };
+function seed(full) {
+  state.newToken = null;
+  state.tokens = full ? [
+    { id: 'claude-desktop', name: 'Claude Desktop', tail: 'a91f', made: 'Nov 2', used: '2 min ago' },
+    { id: 'claude-code', name: 'Claude Code · MacBook', tail: '7c20', made: 'Oct 28', used: 'Yesterday' },
+    { id: 'codex', name: 'Codex', tail: 'e4b1', made: 'Oct 12', used: null },
+  ] : [];
+  state.apps = full ? [
+    { id: 'claude-web', since: 'Nov 9', used: '1 hour ago' },
+    { id: 'chatgpt', since: 'Oct 30', used: 'Last week' },
+  ] : [];
+  state.acts = full ? [
+    ['claude-desktop', 'published', 'Indoor Plant House', '2 min ago'],
+    ['claude-desktop', 'updated the Home page of', 'Indoor Plant House', '5 min ago'],
+    ['claude-web', 'created', 'Harbor Coffee', '1 hour ago'],
+    ['claude-code', 'uploaded 12 images to', 'Indoor Plant House', 'Yesterday'],
+  ] : [];
+}
+const connOf = id => state.apps.find(a => a.id === id) || state.tokens.find(t => t.id === id && t.used);
+const isConn = id => !!connOf(id);
+
+let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2000); }
+
+/* ---------- setup steps ---------- */
+const tok = () => state.newToken ? `<span class="s">${state.newToken}</span>` : '<span class="ph">YOUR_TOKEN</span>';
+const SNIP = {
+  'claude-desktop': { title: 'Add it to the config file', how: ['Open <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>. On Windows: <code>%APPDATA%\\Claude\\claude_desktop_config.json</code>.', 'Paste this in. If other servers are listed under <code>mcpServers</code>, add <code>zejify</code> next to them.', 'Quit Claude Desktop fully and open it again. It needs Node.js.'],
+    code: () => `{
+  <span class="k">"mcpServers"</span>: {
+    <span class="k">"zejify"</span>: {
+      <span class="k">"command"</span>: <span class="s">"npx"</span>,
+      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"mcp-remote"</span>, <span class="s">"${URL_}"</span>,
+        <span class="s">"--header"</span>, <span class="s">"Authorization:\${AUTH}"</span>],
+      <span class="k">"env"</span>: { <span class="k">"AUTH"</span>: <span class="s">"Bearer </span>${tok()}<span class="s">"</span> }
+    }
+  }
+}`, hint: 'Not connecting? Run <code>which npx</code> and put the full path in <code>"command"</code>.' },
+  'claude-code': { title: 'Run this in your terminal', how: ['Run it in any folder.', 'Start Claude Code and type <code>/mcp</code> to check it is connected.'],
+    code: () => `<span class="c">$</span> claude mcp add --transport http zejify \\
+  ${URL_} \\
+  --header <span class="s">"Authorization: Bearer </span>${tok()}<span class="s">"</span>`, hint: 'Add <code>--scope user</code> to use it in every project.' },
+  'codex': { title: 'Add it to the config file', how: ['Open <code>~/.codex/config.toml</code>. Create it if it isn\'t there.', 'Paste this at the end, then restart Codex.'],
+    code: () => `<span class="t">[mcp_servers.zejify]</span>
+<span class="k">command</span> = <span class="s">"npx"</span>
+<span class="k">args</span> = [<span class="s">"-y"</span>, <span class="s">"mcp-remote"</span>, <span class="s">"${URL_}"</span>,
+  <span class="s">"--header"</span>, <span class="s">"Authorization:\${AUTH}"</span>]
+<span class="k">env</span> = { <span class="k">AUTH</span> = <span class="s">"Bearer </span>${tok()}<span class="s">"</span> }`, hint: 'Needs Node.js, since it uses <code>npx</code>.' },
+};
+function setupHTML(id) {
+  const c = CLIENTS[id], conn = connOf(id);
+  let body;
+  if (c.kind === 'oauth') {
+    const claude = id === 'claude-web';
+    body = `<div class="step"><span class="num">1</span><div><h4>Copy the server address</h4><p>No token needed. You sign in to Zejify and click Allow.</p>
+        <div class="field"><span class="mono">${URL_}</span><button class="btn s sm" data-copy="${URL_}">${COPY}Copy</button></div></div></div>
+      <div class="step"><span class="num">2</span><div><h4>Add it in ${c.name}</h4><ol>${claude ? `
+        <li>Open <b>Settings → Connectors</b>. On Team or Enterprise plans, an owner adds it under Organization settings first.</li>
+        <li>Click <b>Add custom connector</b>, name it <i>Zejify</i> and paste the address.</li>
+        <li>Click <b>Connect</b>, sign in, pick your workspace and click <b>Allow</b>.</li>
+        <li>In a chat, turn Zejify on from the tools menu and ask Claude to publish your site.</li>` : `
+        <li>Open <b>Settings → Apps &amp; Connectors → Advanced settings</b> and turn on <b>Developer mode</b>.</li>
+        <li>Back in <b>Apps &amp; Connectors</b>, click <b>Create</b>. Name it <i>Zejify</i>, paste the address and choose <b>OAuth</b>.</li>
+        <li>Click <b>Create</b>, sign in, pick your workspace and click <b>Allow</b>.</li>
+        <li>In a new chat, add Zejify from the <b>+</b> menu, e.g. <i>“Use Zejify to publish my site”</i>.</li>`}</ol>
+        <p class="hint">${claude ? '' : 'Menu names can differ a little between ChatGPT plans. '}${c.name} runs in the cloud, so it can't reach a <span class="mono">localhost</span> address. Use your live app's address there.</p></div></div>`;
+  } else {
+    const s = SNIP[id], has = state.tokens.find(t => t.id === id);
+    body = `<div class="step ${state.newToken || has ? 'done' : ''}"><span class="num">${state.newToken || has ? '✓' : 1}</span><div><h4>Create a token</h4>
+        ${state.newToken ? `<p>Copy it now. It won't be shown again. It's already filled in below.</p><div class="field"><span class="mono">${state.newToken}</span><button class="btn s sm" data-copy="${state.newToken}">${COPY}Copy</button></div>`
+        : has ? `<p>You already have one: <b style="color:var(--ink);font-weight:500">${has.name}</b> <span class="mono">••${has.tail}</span>. Lost it? <a href="#" data-mk>Create a new one</a>.</p>`
+        : `<p>It acts as you across your workspace. Keep it secret.</p><div class="field edit"><input id="tokName" value="${c.name}" aria-label="Token name"><button class="btn p sm" data-mk>Create token</button></div>`}</div></div>
+      <div class="step"><span class="num">2</span><div><h4>${s.title}</h4><ol>${s.how.map(h => `<li>${h}</li>`).join('')}</ol>
+        <div class="code"><button class="btn sm" data-cfg>${COPY}Copy</button><pre id="cfg">${s.code()}</pre></div>
+        <p class="hint">${state.newToken ? '' : 'Replace YOUR_TOKEN with your token. '}${s.hint}</p></div></div>`;
+  }
+  return `<div class="fade"><div class="meta">${lg(id)}<div><b>${c.long}</b><br>${c.sub}</div></div>${body}
+    <div class="status ${conn ? 'ok' : ''}"><span class="dot"></span>${conn ? `${c.name} is connected. Last used ${conn.used.toLowerCase()}.` : `Waiting for ${c.name} to connect. This updates on its own.`}
+      ${conn ? '' : `<button class="btn s sm ml" data-sim="${id}">Simulate</button>`}</div></div>`;
+}
+
+/* ---------- render ---------- */
+function render() {
+  $('#tabs').innerHTML = Object.entries(CLIENTS).map(([id, c]) => `<button class="tab ${id === state.tab ? 'on' : ''}" data-tab="${id}" role="tab" aria-selected="${id === state.tab}">
+    ${lg(id, 'mk')}<span>${c.name}</span>${isConn(id) ? '<span class="dot" title="Connected"></span>' : ''}</button>`).join('');
+  $('#setup').innerHTML = setupHTML(state.tab);
+
+  const n = Object.keys(CLIENTS).filter(isConn).length;
+  $('#srvState').innerHTML = n ? `<span class="dot"></span>${n} connected` : '<span class="dot off"></span>Not used yet';
+
+  $('#tokN').textContent = state.tokens.length || '';
+  $('#tokens').innerHTML = state.tokens.length ? `<div class="rows">${state.tokens.map((t, i) => `<div class="row">${lg(t.id)}
+      <div class="nm"><b>${t.name}</b><small><span class="mono">••${t.tail}</span>·<span class="dot ${t.used ? '' : 'off'}"></span>${t.used ? 'Used ' + t.used.toLowerCase() : 'Not used yet'}</small></div>
+      <button class="btn link dg" data-revoke="${i}">Revoke</button></div>`).join('')}</div>`
+    : '<div class="empty">No tokens yet</div>';
+
+  $('#appN').textContent = state.apps.length || '';
+  $('#apps').innerHTML = state.apps.length ? `<div class="rows">${state.apps.map((a, i) => `<div class="row">${lg(a.id)}
+      <div class="nm"><b>${CLIENTS[a.id].name}</b><small><span class="dot"></span>Used ${a.used.toLowerCase()}</small></div>
+      <button class="btn link dg" data-disc="${i}">Disconnect</button></div>`).join('')}</div>`
+    : '<div class="empty">No apps connected</div>';
+
+  $('#actCard').hidden = !state.acts.length;
+  $('#acts').innerHTML = state.acts.slice(0, 4).map(([id, what, site, when]) => `<li>${lg(id)}<span><b>${CLIENTS[id].name}</b> ${what} <span class="site">${site}</span></span><time>${when}</time></li>`).join('');
+}
+
+document.addEventListener('click', e => {
+  const t = e.target;
+  const tb = t.closest('[data-tab]'); if (tb) { state.tab = tb.dataset.tab; state.newToken = null; return render(); }
+  const cp = t.closest('[data-copy]'); if (cp) { navigator.clipboard?.writeText(cp.dataset.copy); return toast('Copied'); }
+  if (t.closest('[data-cfg]')) { navigator.clipboard?.writeText($('#cfg').innerText); return toast('Copied'); }
+  if (t.closest('[data-mk]')) {
+    e.preventDefault(); const id = state.tab;
+    const name = ($('#tokName') && $('#tokName').value.trim()) || CLIENTS[id].name;
+    state.newToken = 'zj_' + Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
+    state.tokens = state.tokens.filter(x => x.id !== id);
+    state.tokens.unshift({ id, name, tail: state.newToken.slice(-4), made: 'Today', used: null });
+    render(); return toast('Token created');
+  }
+  const sim = t.closest('[data-sim]');
+  if (sim) {
+    const id = sim.dataset.sim, c = CLIENTS[id];
+    if (c.kind === 'oauth') state.apps.unshift({ id, since: 'Today', used: 'Just now' });
+    else { let k = state.tokens.find(x => x.id === id); if (!k) { k = { id, name: c.name, tail: '0000', made: 'Today' }; state.tokens.unshift(k); } k.used = 'Just now'; }
+    state.acts.unshift([id, 'connected to', 'your workspace', 'Just now']);
+    render(); return toast(`${c.name} connected`);
+  }
+  const rv = t.closest('[data-revoke]'); if (rv) { state.tokens.splice(+rv.dataset.revoke, 1); state.newToken = null; render(); return toast('Token revoked'); }
+  const dc = t.closest('[data-disc]'); if (dc) { const a = state.apps.splice(+dc.dataset.disc, 1)[0]; render(); return toast(`${CLIENTS[a.id].name} disconnected`); }
+  const dm = t.closest('[data-demo]'); if (dm) { $$('[data-demo]').forEach(b => b.classList.toggle('on', b === dm)); seed(dm.dataset.demo === 'full'); return render(); }
+  if (t.closest('#menuBtn')) document.body.classList.toggle('nav-open');
+});
+seed(true); render();
+</script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #18181b; --body: #3f3f46; --muted: #71717a; --faint: #a1a1aa;
+  --line: #ececea; --soft: #f4f4f3; --bg: #ebebe8; --panel: #fff;
+  --accent: #2563eb; --accent-soft: #eef3ff; --ok: #16a34a; --warn: #f59e0b;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font: 13px/1.4 Inter, system-ui, sans-serif; color: var(--body); background: var(--bg); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Editor mock */
+.app { height: 100%; display: grid; grid-template-rows: 52px 1fr; }
+.top { background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; padding: 0 12px; }
+.logo { width: 28px; height: 28px; border-radius: 8px; background: #0e3a5c; color: #fff; display: grid; place-items: center; font-weight: 700; }
+.proj { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.proj small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.sp { flex: 1; }
+.ib { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--muted); }
+.ib:hover { background: var(--soft); color: var(--ink); }
+.ib:disabled { opacity: .35; cursor: default; background: none; }
+.btn { height: 32px; padding: 0 14px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.btn.p { background: var(--ink); color: #fff; }
+.btn.p:hover { background: #000; }
+.btn.o { box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); }
+.btn.o:hover { background: var(--soft); }
+.btn.b { background: var(--accent); color: #fff; }
+.btn.b:hover { background: #1d4fd8; }
+
+/* The mini trigger */
+.trig { position: relative; height: 32px; padding: 0 10px 0 9px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font-weight: 500; white-space: nowrap; }
+.trig:hover, .trig[aria-expanded="true"] { background: var(--soft); }
+.trig .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); box-shadow: 0 0 0 3px #fef3c7; }
+.trig.clean .dot { background: var(--ok); box-shadow: 0 0 0 3px #dcfce7; }
+.trig .chev { color: var(--faint); width: 14px; height: 14px; }
+.trig.bump { animation: bump .35s; }
+@keyframes bump { 40% { transform: scale(1.06); } }
+
+.body { display: grid; grid-template-columns: 220px 1fr 260px; min-height: 0; }
+.side { background: #fff; padding: 14px; display: grid; align-content: start; gap: 9px; }
+.side.l { border-right: 1px solid var(--line); }
+.side.r { border-left: 1px solid var(--line); }
+.side h6 { margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
+.ghost-row { height: 10px; border-radius: 5px; background: var(--soft); }
+.canvas { overflow: auto; padding: 28px; display: grid; justify-items: center; align-content: start; gap: 16px; }
+.demo-bar { display: flex; gap: 8px; align-items: center; background: #fff; border-radius: 999px; padding: 5px 5px 5px 14px; box-shadow: 0 1px 2px rgba(0,0,0,.05); font-size: 12px; color: var(--muted); }
+.demo-bar .btn { height: 28px; font-size: 12px; border-radius: 999px; }
+
+/* Demo page */
+.page { width: min(720px, 100%); background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px -14px rgba(0,0,0,.2); transition: box-shadow .2s; }
+body.previewing .page { box-shadow: 0 0 0 3px #fbbf24, 0 10px 30px -14px rgba(0,0,0,.2); }
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: center; transition: padding .25s, background .25s; }
+.hero h1 { margin: 0 0 10px; font: 500 var(--h, 40px)/1.05 Fraunces, serif; color: #0e3a5c; transition: font-size .25s; }
+.hero p { margin: 0 0 18px; color: #475569; font-size: 14px; line-height: 1.55; }
+.hero .cta { display: inline-block; padding: 10px 18px; border-radius: 999px; color: #fff; font-weight: 600; transition: background .25s; }
+.hero .img { aspect-ratio: 1; border-radius: 14px; background-size: cover; background-position: center; transition: background-image .25s; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 32px 32px; }
+.card { border-radius: 10px; background: #f1f5f9; padding: 14px; font-weight: 600; color: #0e3a5c; }
+.card small { display: block; color: #64748b; font-weight: 400; margin-top: 4px; }
+.flash { animation: flash .9s; }
+@keyframes flash { 0% { outline: 2px solid var(--accent); outline-offset: 3px; } 100% { outline: 2px solid transparent; outline-offset: 6px; } }
+.pv-tag { display: none; position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 20; background: #fbbf24; color: #422006; border-radius: 999px; padding: 6px 8px 6px 14px; font-size: 12px; font-weight: 600; align-items: center; gap: 10px; box-shadow: 0 8px 20px -8px rgba(0,0,0,.3); white-space: nowrap; }
+body.previewing .pv-tag { display: flex; }
+.pv-tag button { background: rgba(255,255,255,.55); border-radius: 999px; padding: 3px 10px; font-weight: 600; }
+.pv-tag button:hover { background: #fff; }
+
+/* Popover */
+.pop { position: fixed; z-index: 30; width: 340px; max-width: calc(100vw - 24px); max-height: min(540px, calc(100vh - 80px)); background: #fff; border-radius: 16px; box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 20px 50px -14px rgba(0,0,0,.22); display: none; flex-direction: column; overflow: hidden; }
+.pop.open { display: flex; animation: pop .16s ease-out; }
+@keyframes pop { from { opacity: 0; transform: translateY(-6px); } }
+.pop-h { display: flex; align-items: center; gap: 18px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+.pop-h [data-tab] { position: relative; height: 44px; font-weight: 500; color: var(--faint); display: inline-flex; align-items: center; gap: 6px; }
+.pop-h [data-tab]:hover { color: var(--body); }
+.pop-h [data-tab][aria-selected="true"] { color: var(--ink); }
+.pop-h [data-tab][aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--ink); }
+.pop-h .n { font-size: 11px; color: var(--faint); font-weight: 500; }
+.pop-b { overflow: auto; flex: 1; padding: 8px 8px 6px; }
+.pop-f { padding: 10px 12px 12px; }
+
+/* Changes: a quiet timeline */
+.row { position: relative; width: 100%; display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 8px 8px 12px; border-radius: 9px; text-align: left; }
+.row::before { content: ""; position: absolute; left: 18px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.row:first-child::before { top: 50%; }
+.row:last-child::before { bottom: 50%; }
+.row:hover { background: #fafaf9; }
+.row .d { position: relative; width: 7px; height: 7px; margin-left: 3px; border-radius: 50%; background: #d4d4d1; }
+.row .tx { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
+.row .tx b { color: var(--ink); font-weight: 500; margin-right: 4px; }
+.row time { font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.row.cur .d { width: 9px; height: 9px; margin-left: 2px; background: var(--accent); box-shadow: 0 0 0 3px #dbe6ff; }
+.row.cur time { color: var(--accent); font-weight: 500; }
+.row.undone { opacity: .4; }
+.row.undone:hover { opacity: .75; }
+.row.start .d { background: #fff; box-shadow: inset 0 0 0 1.5px #c4c4c0; }
+.row.start .tx { color: var(--muted); }
+
+.empty { padding: 34px 20px 28px; text-align: center; display: grid; justify-items: center; gap: 4px; color: var(--muted); }
+.empty .art { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #ecfdf3; color: var(--ok); margin-bottom: 8px; }
+.empty b { color: var(--ink); font-size: 14px; font-weight: 600; }
+.empty span { max-width: 240px; font-size: 12.5px; }
+
+.save { width: 100%; height: 38px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.save:hover { background: #000; }
+.save:disabled { background: var(--soft); color: var(--faint); cursor: default; }
+kbd { font: 500 11px Inter, sans-serif; color: inherit; opacity: .5; }
+.save-form { display: flex; gap: 6px; }
+.save-form input { flex: 1; min-width: 0; height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; font: inherit; outline: 0; color: var(--ink); }
+.save-form input:focus { border-color: var(--ink); }
+.save-form .save { width: auto; padding: 0 14px; }
+.link { color: var(--muted); font-size: 12.5px; display: block; margin: 0 auto; }
+.link:hover { color: var(--ink); }
+
+/* Saved versions */
+.ver { border-radius: 10px; }
+.ver.open, .ver.sel { background: #fafaf9; }
+.ver-h { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 10px 12px; text-align: left; border-radius: 10px; }
+.ver:not(.open) .ver-h:hover { background: #fafaf9; }
+.ver-h b { color: var(--ink); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ver-h time { color: var(--faint); font-size: 12px; }
+.ver-h small { grid-column: 1 / -1; color: var(--muted); font-size: 12px; }
+.live { color: var(--ok); font-weight: 500; }
+.live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); margin: 0 5px 1px 0; }
+.ver-d { display: none; padding: 0 12px 12px; }
+.ver.open .ver-d { display: block; }
+.ver-d ul { list-style: none; margin: 0 0 12px; padding: 10px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.ver-d li b { color: var(--ink); font-weight: 500; margin-right: 3px; }
+.ver-d .acts { display: flex; gap: 6px; }
+.ver-d .acts button { flex: 1; height: 32px; border-radius: 8px; font-weight: 500; box-shadow: inset 0 0 0 1px var(--line); background: #fff; color: var(--ink); }
+.ver-d .acts button:hover { box-shadow: inset 0 0 0 1px #d4d4d1; }
+.ver-d .acts .on { background: var(--ink); color: #fff; box-shadow: none; }
+.note { margin: 0; text-align: center; font-size: 12px; color: var(--faint); }
+
+.toast { position: fixed; bottom: 70px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--ink); color: #fff; padding: 9px 10px 9px 14px; border-radius: 10px; display: flex; gap: 12px; align-items: center; transition: .2s; z-index: 40; box-shadow: 0 12px 30px -10px rgba(0,0,0,.4); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.toast button { color: #93c5fd; font-weight: 600; }
+
+@media (max-width: 1000px) { .body { grid-template-columns: 1fr; } .side { display: none; } }
+@media (max-width: 640px) {
+  .proj small, .top .hide-s { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; padding: 0 20px 20px; }
+  .canvas { padding: 16px; }
+  .pop { left: 12px !important; right: 12px; width: auto; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo">D</div>
+    <div class="proj">Deep Blue <small>Home</small></div>
+    <div class="sp"></div>
+    <button class="ib" id="undoBtn" title="Undo (⌘Z)"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+    <button class="ib" id="redoBtn" title="Redo (⇧⌘Z)"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+    <!-- the mini trigger -->
+    <button class="trig" id="trig" aria-haspopup="dialog" aria-expanded="false" title="History (H)">
+      <span class="dot"></span><span id="trigTx"></span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <button class="btn o hide-s">Preview</button>
+    <button class="btn p">Publish</button>
+  </header>
+
+  <div class="body">
+    <aside class="side l"><h6>Layers</h6><div class="ghost-row" style="width:70%"></div><div class="ghost-row" style="width:55%;margin-left:14px"></div><div class="ghost-row" style="width:60%;margin-left:14px"></div><div class="ghost-row" style="width:45%;margin-left:28px"></div><div class="ghost-row" style="width:65%"></div><div class="ghost-row" style="width:50%;margin-left:14px"></div></aside>
+    <main class="canvas">
+      <div class="demo-bar">Try it: make an edit and watch the chip in the top bar
+        <button class="btn b" id="demoEdit">+ Make a demo edit</button>
+      </div>
+      <div class="page" id="page">
+        <section class="hero" id="hero">
+          <div><h1 id="h1"></h1><p id="sub"></p><a class="cta" id="cta"></a></div>
+          <div class="img" id="img"></div>
+        </section>
+        <div class="cards" id="cards"></div>
+      </div>
+    </main>
+    <aside class="side r"><h6>Settings</h6><div class="ghost-row" style="width:40%"></div><div class="ghost-row"></div><div class="ghost-row" style="width:40%;margin-top:8px"></div><div class="ghost-row"></div><div class="ghost-row" style="width:80%"></div></aside>
+  </div>
+</div>
+
+<div class="pv-tag" id="pvTag"><span id="pvTx"></span><button id="pvBack">Back to current</button></div>
+
+<div class="pop" id="pop" role="dialog" aria-label="History">
+  <div class="pop-h" role="tablist">
+    <button role="tab" data-tab="changes">Changes <span class="n" id="nChanges"></span></button>
+    <button role="tab" data-tab="versions">Saved <span class="n" id="nVersions"></span></button>
+  </div>
+  <div class="pop-b" id="popB"></div>
+  <div class="pop-f" id="popF"></div>
+</div>
+
+<div class="toast" id="toast"><span id="toastTx"></span><button id="toastBtn"></button></div>
+
+<script>
+const I = {
+  text: '<path d="M4 7V5h16v2M9 19h6M12 5v14"/>',
+  size: '<path d="M3 7V5h10v2M8 5v14M6 19h4M14 12v-1h7v1M17.5 11v8M16 19h3"/>',
+  color: '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18"/>',
+  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>',
+  space: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/>',
+  link: '<path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+  dup: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
+  trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>',
+  check: '<path d="m5 12 4.5 4.5L19 7"/>',
+  chev: '<path d="m6 9 6 6 6-6"/>',
+  save: '<path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M7 3v5h8V3M7 21v-7h10v7"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  reset: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/>',
+};
+const ic = n => `<svg viewBox="0 0 24 24">${I[n]}</svg>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const $ = s => document.querySelector(s);
+
+/* ---------- Page state (what the canvas shows) ---------- */
+const IMG = id => `url(https://images.unsplash.com/${id}?w=700&q=70&auto=format&fit=crop)`;
+const START = {
+  h1: 'The ocean is alive.', size: 40, sub: 'It makes half the oxygen we breathe and is home to most life on Earth.',
+  cta: 'Start the dive', ctaBg: '#0e7490', img: 'photo-1544551763-46a013bb70d5', pad: 32, bg: '#eaf6fa',
+  cards: [['Sunlight zone', '0 – 200 m'], ['Twilight zone', '200 – 1,000 m'], ['Midnight zone', '1,000 m +']],
+};
+const clone = o => JSON.parse(JSON.stringify(o));
+function paint(s, flashSel) {
+  $('#h1').textContent = s.h1; $('#h1').style.setProperty('--h', s.size + 'px');
+  $('#sub').textContent = s.sub;
+  $('#cta').textContent = s.cta; $('#cta').style.background = s.ctaBg;
+  $('#img').style.backgroundImage = IMG(s.img);
+  $('#hero').style.padding = `${s.pad}px 32px`; $('#hero').style.background = s.bg;
+  $('#cards').innerHTML = s.cards.map(([t, d]) => `<div class="card">${esc(t)}<small>${esc(d)}</small></div>`).join('');
+  if (flashSel) { const el = $(flashSel); if (el) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); } }
+}
+
+/* ---------- Demo edits ---------- */
+// each edit: element, plain-language action, icon, what it does to the page, and which node to flash
+const EDITS = [
+  ['Heading', 'Changed text', 'text', s => s.h1 = 'The ocean is deep.', '#h1'],
+  ['Heading', 'Changed font size', 'size', s => s.size = 46, '#h1'],
+  ['Button', 'Changed colour', 'color', s => s.ctaBg = '#1d4ed8', '#cta'],
+  ['Image', 'Replaced image', 'image', s => s.img = 'photo-1559825481-12a05cc00344', '#img'],
+  ['Section', 'Changed padding', 'space', s => s.pad = 48, '#hero'],
+  ['Text', 'Edited text', 'text', s => s.sub = 'Half the oxygen we breathe comes from the sea. Let’s keep it that way.', '#sub'],
+  ['Button', 'Changed link', 'link', s => s.cta = 'Dive in', '#cta'],
+  ['Card', 'Duplicated', 'dup', s => s.cards.push(['Abyss', '4,000 m +']), '#cards'],
+  ['Section', 'Changed background', 'color', s => s.bg = '#e0f2fe', '#hero'],
+  ['Card', 'Deleted', 'trash', s => s.cards.pop(), '#cards'],
+  ['Heading', 'Changed font size', 'size', s => s.size = 42, '#h1'],
+  ['Button', 'Changed text', 'text', s => s.cta = 'Take the pledge', '#cta'],
+];
+let nextEdit = 0;
+
+/* ---------- Session + versions ---------- */
+const now = Date.now(), MIN = 60e3, H = 60 * MIN, D = 24 * H;
+let base = clone(START);   // the page as it was at the last save
+let steps = [];            // this session's changes since the last save
+let at = 0;                // how many of `steps` are applied (undo moves this back)
+const PEOPLE = { You: '#2563eb', 'Sara K.': '#db2777', 'Tom R.': '#059669' };
+const V = (name, by, t, list, state, published) => ({ id: Math.random().toString(36).slice(2), name, by, t, list, state, published });
+const vState = mods => { const s = clone(START); mods(s); return s; };
+const VERSIONS = [
+  V('Hero layout', 'You', now - 40 * MIN, [['Image', 'Replaced image'], ['Section', 'Changed padding'], ['Heading', 'Changed text'], ['Button', 'Changed colour']], clone(START)),
+  V('Pricing cards', 'Sara K.', now - D - 3 * H, [['Card', 'Added'], ['Card', 'Changed text'], ['Card', 'Changed background'], ['Text', 'Edited text'], ['Card', 'Deleted']], vState(s => { s.h1 = 'The ocean is deep.'; s.cards[2] = ['Abyss', '4,000 m +']; })),
+  V('Launch', 'You', now - 3 * D, [['Page', 'Created 14 sections'], ['Header', 'Added logo'], ['Button', 'Added link']], vState(s => { s.h1 = 'Save the deep blue.'; s.ctaBg = '#0f172a'; s.bg = '#f1f5f9'; s.img = 'photo-1559825481-12a05cc00344'; }), true),
+  V('First draft', 'Tom R.', now - 6 * D, [['Page', 'Started from template'], ['Heading', 'Changed text']], vState(s => { s.h1 = 'Welcome to the ocean'; s.size = 34; s.ctaBg = '#64748b'; s.cta = 'Learn more'; s.bg = '#fafaf9'; s.img = 'photo-1544551763-46a013bb70d5'; })),
+];
+
+// Seed this session with some changes so the demo has something to show
+for (let i = 0; i < 7; i++) { const [on, what, icon, fn, f] = EDITS[i]; steps.push({ on, what, icon, fn, f, t: now - (26 - i * 3.5) * MIN }); }
+at = steps.length; nextEdit = 7;
+
+const stateAt = n => { const s = clone(base); steps.slice(0, n).forEach(x => x.fn(s)); return s; };
+const unsaved = () => at; // undone steps don't count as unsaved work
+
+/* ---------- Time helpers ---------- */
+const clock = t => new Date(t).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+const ago = t => { const s = (Date.now() - t) / 1000; return s < 45 ? 'just now' : s < 3600 ? Math.round(s / 60) + ' min ago' : s < 86400 ? Math.round(s / 3600) + ' h ago' : Math.round(s / 86400) + ' days ago'; };
+const when = t => { const d = new Date(t), n = new Date(), days = Math.round((new Date(n.toDateString()) - new Date(d.toDateString())) / D); return (days === 0 ? 'Today' : days === 1 ? 'Yesterday' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })) + ', ' + clock(t); };
+
+/* ---------- UI state ---------- */
+let tab = 'changes', saving = false, openVer = null, preview = null;
+
+function renderTrigger(bump) {
+  const n = unsaved(), t = $('#trig');
+  t.classList.toggle('clean', n === 0);
+  $('#trigTx').textContent = n === 0 ? 'All saved' : `${n} change${n > 1 ? 's' : ''}`;
+  t.title = n === 0 ? 'Everything is saved as a version' : `${n} change${n > 1 ? 's' : ''} since your last saved version`;
+  if (bump) { t.classList.remove('bump'); void t.offsetWidth; t.classList.add('bump'); }
+  $('#undoBtn').disabled = at === 0; $('#redoBtn').disabled = at === steps.length;
+}
+
+function render() {
+  $('#nChanges').textContent = unsaved() || '';
+  $('#nVersions').textContent = VERSIONS.length;
+  document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === tab));
+  tab === 'changes' ? renderChanges() : renderVersions();
+}
+
+function renderChanges() {
+  const b = $('#popB'), f = $('#popF');
+  if (!steps.length) {
+    b.innerHTML = `<div class="empty"><div class="art">${ic('check')}</div><b>All changes saved</b><span>New edits will show up here until you save a version.</span></div>`;
+    f.innerHTML = `<button class="link" data-act="toVersions">See saved versions</button>`;
+    return;
+  }
+  const rows = steps.map((s, i) => ({ s, i })).reverse().map(({ s, i }) => {
+    const cur = i === at - 1, undone = i >= at;
+    return `<button class="row ${cur ? 'cur' : ''} ${undone ? 'undone' : ''}" data-step="${i}" title="${undone ? 'Undone – click to bring it back' : 'Go back to this change'}">
+      <span class="d"></span><span class="tx"><b>${esc(s.on)}</b>${esc(s.what.toLowerCase())}</span><time>${cur ? 'Now' : clock(s.t)}</time></button>`;
+  }).join('');
+  const start = `<button class="row start ${at === 0 ? 'cur' : ''}" data-step="-1" title="Go back to your last saved version"><span class="d"></span><span class="tx">Last saved</span><time>${at === 0 ? 'Now' : clock(lastSaveT)}</time></button>`;
+  b.innerHTML = rows + start;
+  f.innerHTML = saving
+    ? `<form class="save-form" id="saveForm"><input id="vName" maxlength="50" placeholder="Version name (optional)"><button class="save">Save</button></form>`
+    : `<button class="save" data-act="save" ${at === 0 ? 'disabled' : ''}>Save version <kbd>⌘S</kbd></button>`;
+  if (saving) setTimeout(() => $('#vName')?.focus());
+}
+
+function renderVersions() {
+  const b = $('#popB'), f = $('#popF');
+  b.innerHTML = VERSIONS.map(v => `
+    <div class="ver ${openVer === v.id ? 'open' : ''} ${preview === v ? 'sel' : ''}">
+      <button class="ver-h" data-ver="${v.id}">
+        <b>${esc(v.name)}</b><time>${when(v.t)}</time>
+        <small>${v.list.length} changes${v.published ? ' · <span class="live">Live</span>' : ''}</small>
+      </button>
+      <div class="ver-d">
+        <ul>${v.list.slice(0, 6).map(([on, what]) => `<li><b>${esc(on)}</b>${esc(what.toLowerCase())}</li>`).join('')}${v.list.length > 6 ? `<li>and ${v.list.length - 6} more</li>` : ''}</ul>
+        <div class="acts"><button class="${preview === v ? 'on' : ''}" data-preview="${v.id}">${preview === v ? 'Previewing' : 'Preview'}</button><button data-restore="${v.id}">Restore</button></div>
+      </div>
+    </div>`).join('');
+  f.innerHTML = `<p class="note">Saved each time you press Save version or publish</p>`;
+}
+
+/* ---------- Actions ---------- */
+let lastSaveT = now - 30 * MIN;
+function goTo(n) {
+  at = n; endPreview(true);
+  const s = steps[n - 1];
+  paint(stateAt(at), s ? s.f : null);
+  renderTrigger(); render();
+}
+function makeEdit() {
+  endPreview(true);
+  steps.length = at; // a new change after undoing drops the undone steps
+  const [on, what, icon, fn, f] = EDITS[nextEdit % EDITS.length]; nextEdit++;
+  steps.push({ on, what, icon, fn, f, t: Date.now() }); at = steps.length;
+  paint(stateAt(at), f); renderTrigger(true); if (isOpen()) render();
+}
+function saveVersion(name) {
+  const list = steps.slice(0, at).map(s => [s.on, s.what]);
+  const state = stateAt(at);
+  VERSIONS.unshift(V(name || `Version ${VERSIONS.length + 1}`, 'You', Date.now(), list, state));
+  base = state; steps = []; at = 0; lastSaveT = Date.now(); saving = false;
+  renderTrigger(true); render();
+  toast(`Saved “${VERSIONS[0].name}” · ${list.length} change${list.length > 1 ? 's' : ''}`, 'View', () => { tab = 'versions'; openVer = VERSIONS[0].id; openPop(); });
+}
+function startPreview(v) {
+  preview = v; paint(v.state);
+  document.body.classList.add('previewing');
+  $('#pvTx').textContent = `Previewing “${v.name}” · ${when(v.t)}`;
+  render();
+}
+function endPreview(silent) {
+  if (!preview) return;
+  preview = null; document.body.classList.remove('previewing');
+  paint(stateAt(at)); if (!silent) render();
+}
+function restoreVersion(v) {
+  endPreview(true);
+  // keep current work safe: if there are unsaved changes, save them first
+  if (at) saveVersion('Before restoring “' + v.name + '”');
+  const prevBase = clone(base);
+  steps.push({ on: 'Page', what: `Restored “${v.name}”`, icon: 'reset', fn: s => Object.assign(s, clone(v.state)), f: '#page', t: Date.now() }); at = steps.length;
+  paint(stateAt(at), '#page'); tab = 'changes'; renderTrigger(true); render();
+  toast(`Restored “${v.name}”`, 'Undo', () => goTo(at - 1));
+}
+
+/* ---------- Popover ---------- */
+const pop = $('#pop'), trig = $('#trig');
+const isOpen = () => pop.classList.contains('open');
+function place() {
+  const r = trig.getBoundingClientRect();
+  pop.style.top = r.bottom + 8 + 'px';
+  pop.style.left = Math.max(12, Math.min(r.right - 360, innerWidth - 372)) + 'px';
+}
+function openPop() { place(); pop.classList.add('open'); trig.setAttribute('aria-expanded', 'true'); render(); }
+function closePop() { pop.classList.remove('open'); trig.setAttribute('aria-expanded', 'false'); saving = false; }
+trig.onclick = () => isOpen() ? closePop() : openPop();
+addEventListener('resize', () => isOpen() && place());
+document.addEventListener('mousedown', e => { if (isOpen() && !pop.contains(e.target) && !trig.contains(e.target) && !$('#toast').contains(e.target) && !$('#pvTag').contains(e.target)) closePop(); });
+
+pop.addEventListener('click', e => {
+  const t = e.target;
+  const tb = t.closest('[data-tab]'); if (tb) { tab = tb.dataset.tab; saving = false; render(); return; }
+  const st = t.closest('[data-step]'); if (st) { goTo(+st.dataset.step + 1); return; }
+  const a = t.closest('[data-act]')?.dataset.act;
+  if (a === 'undo' && at) goTo(at - 1);
+  if (a === 'redo' && at < steps.length) goTo(at + 1);
+  if (a === 'save' && at) { saving = true; render(); }
+  if (a === 'cancelSave') { saving = false; render(); }
+  if (a === 'toVersions') { tab = 'versions'; render(); }
+  const pv = t.closest('[data-preview]'); if (pv) { const v = VERSIONS.find(x => x.id === pv.dataset.preview); preview === v ? endPreview() : startPreview(v); return; }
+  const rs = t.closest('[data-restore]'); if (rs) { restoreVersion(VERSIONS.find(x => x.id === rs.dataset.restore)); return; }
+  const vh = t.closest('[data-ver]');
+  if (vh) { const id = vh.dataset.ver; openVer = openVer === id ? null : id; render(); }
+});
+pop.addEventListener('submit', e => { e.preventDefault(); saveVersion($('#vName').value.trim()); });
+
+$('#pvBack').onclick = () => endPreview();
+$('#demoEdit').onclick = makeEdit;
+$('#undoBtn').onclick = () => at && goTo(at - 1);
+$('#redoBtn').onclick = () => at < steps.length && goTo(at + 1);
+
+let tt;
+function toast(msg, label, fn) {
+  $('#toastTx').textContent = msg; $('#toastBtn').textContent = label || ''; $('#toastBtn').style.display = label ? '' : 'none';
+  $('#toastBtn').onclick = () => { $('#toast').classList.remove('on'); fn && fn(); };
+  $('#toast').classList.add('on'); clearTimeout(tt); tt = setTimeout(() => $('#toast').classList.remove('on'), 4000);
+}
+
+document.addEventListener('keydown', e => {
+  const mod = e.metaKey || e.ctrlKey, typing = e.target.matches('input, textarea');
+  if (mod && e.key.toLowerCase() === 's') { e.preventDefault(); if (at) { tab = 'changes'; saving = true; isOpen() ? render() : openPop(); } else toast('Nothing new to save'); return; }
+  if (mod && e.key.toLowerCase() === 'z' && !typing) { e.preventDefault(); e.shiftKey ? (at < steps.length && goTo(at + 1)) : (at && goTo(at - 1)); return; }
+  if (e.key === 'Escape') { if (saving) { saving = false; render(); } else if (preview) endPreview(); else closePop(); return; }
+  if (!typing && !mod && e.key.toLowerCase() === 'h') isOpen() ? closePop() : openPop();
+});
+
+paint(stateAt(at)); renderTrigger();
+setInterval(() => isOpen() && render(), 30000);
+openPop(); // open on load so the demo shows the panel straight away
+</script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop the Look Arrows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111827;          /* arrow hover fill, text */
+  --ink-2:#374151;
+  --muted:#6B7280;
+  --line:#E5E7EB;
+  --page:#F5F5F4;
+  --white:#FFFFFF;
+  --sale:#E11D48;
+  --ring:rgba(17,24,39,.22);
+  --shadow:0 1px 2px rgba(17,24,39,.06),0 8px 24px rgba(17,24,39,.10);
+  --shadow-hover:0 2px 4px rgba(17,24,39,.10),0 14px 32px rgba(17,24,39,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{font-family:"Inter Tight",system-ui,sans-serif;background:var(--page);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding:56px 72px 80px}
+
+/* ---------- variant picker ---------- */
+.picker{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
+.picker button{padding:9px 16px;border-radius:999px;background:var(--white);border:1px solid var(--line);font-size:14px;font-weight:500;color:var(--ink-2);transition:.2s}
+.picker button:hover{border-color:#D1D5DB}
+.picker button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.picker small{font-size:11px;font-weight:600;margin-left:6px;padding:2px 6px;border-radius:999px;background:#DCFCE7;color:#15803D}
+.picker-note{text-align:center;color:var(--muted);font-size:14px;max-width:620px;margin:0 auto 48px;min-height:42px}
+
+/* ---------- section layout (grid areas move the arrows per variant) ---------- */
+.stl{display:grid;grid-template-columns:1fr;grid-template-areas:"head" "stage";row-gap:40px;position:relative}
+.stl-head{grid-area:head;text-align:center}
+.stl-head h2{font-size:clamp(28px,3.4vw,38px);font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.stl-head p{color:#4B5563;font-size:17px;margin-top:10px}
+.viewport{grid-area:stage;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:16px;outline:none}
+.viewport::-webkit-scrollbar{display:none}
+.viewport:focus-visible{box-shadow:0 0 0 3px var(--ring)}
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*28px)/3);gap:28px}
+.progress,.counter{display:none}
+
+/* nav overlays the stage for side variants */
+.nav{grid-area:stage;align-self:center;display:flex;justify-content:space-between;align-items:center;pointer-events:none;z-index:3}
+.nav>*{pointer-events:auto}
+
+/* ---------- arrow base ---------- */
+.arrow{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none;
+  transition:background-color .2s,color .2s,box-shadow .2s,transform .2s,opacity .2s,border-color .2s}
+.arrow svg{width:20px;height:20px;transition:transform .25s cubic-bezier(.3,.7,.4,1)}
+.arrow:focus-visible{outline:none;box-shadow:0 0 0 3px var(--page),0 0 0 6px var(--ink)}
+.arrow:disabled{cursor:not-allowed}
+.prev:not(:disabled):hover svg{transform:translateX(-3px)}
+.next:not(:disabled):hover svg{transform:translateX(3px)}
+
+/* A · Solid (recommended) — white like the "Select options" pill, inverts to ink */
+[data-variant="a"] .nav{margin-inline:-26px}
+[data-variant="a"] .arrow,.arrow.style-a{background:var(--white);color:var(--ink);border:1px solid rgba(17,24,39,.06);box-shadow:var(--shadow)}
+[data-variant="a"] .arrow:not(:disabled):hover,.arrow.style-a.is-hover{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:var(--shadow-hover)}
+[data-variant="a"] .arrow:not(:disabled):active,.arrow.style-a.is-active{transform:scale(.94)}
+[data-variant="a"] .arrow:disabled,.arrow.style-a.is-disabled{background:var(--white);color:#9CA3AF;box-shadow:none;border-color:var(--line);opacity:.6}
+
+/* B · Glass — sits on the card edge, picks up the dark gradient */
+[data-variant="b"] .nav{margin-inline:14px}
+[data-variant="b"] .arrow,.arrow.style-b{width:46px;height:46px;background:rgba(17,24,39,.45);color:#fff;border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%)}
+[data-variant="b"] .arrow:not(:disabled):hover,.arrow.style-b.is-hover{background:rgba(255,255,255,.95);color:var(--ink);border-color:#fff}
+[data-variant="b"] .arrow:not(:disabled):active,.arrow.style-b.is-active{transform:scale(.94)}
+[data-variant="b"] .arrow:disabled,.arrow.style-b.is-disabled{opacity:0;pointer-events:none}
+.states .arrow.style-b.is-disabled{opacity:.35}
+
+/* C · Header pill — one white pill top-right, like the CTA */
+[data-variant="c"]{grid-template-columns:1fr auto;grid-template-areas:"head nav" "stage stage";row-gap:32px}
+[data-variant="c"] .stl-head{text-align:left}
+[data-variant="c"] .nav{grid-area:nav;align-self:end;justify-content:flex-start;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;box-shadow:0 1px 2px rgba(17,24,39,.05)}
+[data-variant="c"] .counter{display:block;font-size:14px;font-weight:600;color:var(--ink-2);min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
+[data-variant="c"] .counter span{color:#9CA3AF;font-weight:500}
+[data-variant="c"] .arrow,.arrow.style-c{width:42px;height:42px;color:var(--ink);background:transparent}
+[data-variant="c"] .arrow svg,.arrow.style-c svg{width:18px;height:18px}
+[data-variant="c"] .arrow:not(:disabled):hover,.arrow.style-c.is-hover{background:var(--ink);color:#fff}
+[data-variant="c"] .arrow:not(:disabled):active,.arrow.style-c.is-active{transform:scale(.92)}
+[data-variant="c"] .arrow:disabled,.arrow.style-c.is-disabled{color:#D1D5DB}
+.states .arrow.style-c{border:1px solid var(--line);background:var(--white)}
+.states .arrow.style-c.is-hover{background:var(--ink);border-color:var(--ink)}
+
+/* D · Footer bar — progress line + outline arrows under the cards */
+[data-variant="d"]{grid-template-columns:1fr auto;grid-template-areas:"head head" "stage stage" "prog nav";row-gap:32px;column-gap:32px}
+[data-variant="d"] .progress{display:block;grid-area:prog;align-self:center;height:3px;background:#E7E5E4;border-radius:99px;overflow:hidden}
+[data-variant="d"] .progress span{display:block;height:100%;width:50%;background:var(--ink);border-radius:inherit;transition:margin-left .35s ease,width .35s ease}
+[data-variant="d"] .nav{grid-area:nav;align-self:center;gap:10px}
+[data-variant="d"] .arrow,.arrow.style-d{width:48px;height:48px;border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+[data-variant="d"] .arrow:not(:disabled):hover,.arrow.style-d.is-hover{background:var(--ink);color:#fff}
+[data-variant="d"] .arrow:not(:disabled):active,.arrow.style-d.is-active{transform:scale(.94)}
+[data-variant="d"] .arrow:disabled,.arrow.style-d.is-disabled{border-color:#D6D3D1;color:#D6D3D1}
+
+/* ---------- product card (matches the screenshot) ---------- */
+.card{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:#E7E5E4;scroll-snap-align:start;isolation:isolate;color:#fff}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);z-index:-2}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,24,39,0) 30%,rgba(17,24,39,.35) 55%,rgba(17,24,39,.88) 100%)}
+.card:hover img{transform:scale(1.04)}
+.badges{position:absolute;top:18px;left:18px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.badge{font-size:13px;font-weight:600;line-height:1;padding:7px 11px;border-radius:999px}
+.badge-sale{background:var(--sale);color:#fff}
+.badge-stock{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.info{position:absolute;inset:auto 0 0;padding:0 36px 36px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.info h3{font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.015em;line-height:1.2;text-wrap:balance}
+.rating{display:flex;align-items:center;gap:8px;font-size:15px;margin-top:10px;color:rgba(255,255,255,.9)}
+.stars{letter-spacing:1px;font-size:16px;background:linear-gradient(90deg,#FBBF24 var(--r),rgba(255,255,255,.45) var(--r));-webkit-background-clip:text;background-clip:text;color:transparent}
+.price{margin-top:8px;font-size:22px;font-weight:600}
+.price del{color:#FDA4AF;font-weight:500;margin-right:6px}
+.swatches{display:flex;gap:10px;margin:14px 0 20px}
+.swatches i{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(17,24,39,.15)}
+.cta{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;color:var(--ink);font-weight:600;font-size:17px;padding:16px;border-radius:999px;transition:background .2s,transform .2s}
+.cta:hover{background:#F3F4F6}
+.cta:active{transform:scale(.98)}
+.cta svg{width:19px;height:19px}
+
+/* ---------- spec panel ---------- */
+.spec{margin-top:72px;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px}
+.spec h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px}
+.states{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.state{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 8px 14px;border-radius:14px;background:var(--page);font-size:13px;color:var(--muted)}
+.state.dark{background:linear-gradient(180deg,#6B7280,#1F2937)}
+.state.dark span{color:#E5E7EB}
+.state .arrow{pointer-events:none}
+.tokens{display:grid;gap:8px}
+.token{display:flex;align-items:center;gap:12px;font-size:14px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;text-align:left;width:100%}
+.token:hover{background:var(--page)}
+.token i{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);flex:none}
+.token b{font-weight:500;flex:1}
+.token code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--ink-2)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;transition:transform .3s;z-index:9}
+.toast.show{transform:translate(-50%,0)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .wrap{padding:48px 32px 64px}
+  [data-variant="a"] .nav{margin-inline:-14px}
+}
+@media (max-width:900px){
+  .track{grid-auto-columns:calc((100% - 20px)/2);gap:20px}
+  .spec{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:36px 16px 56px}
+  .track{grid-auto-columns:84%;gap:14px}
+  .viewport{scroll-padding-inline:0}
+  .info{padding:0 20px 22px}
+  .cta{font-size:16px;padding:14px}
+  /* side arrows get in the way of swiping on phones: shrink and tuck them in */
+  [data-variant="a"] .nav,[data-variant="b"] .nav{margin-inline:8px}
+  [data-variant="a"] .arrow,[data-variant="b"] .arrow{width:40px;height:40px}
+  [data-variant="a"] .arrow svg,[data-variant="b"] .arrow svg{width:17px;height:17px}
+  [data-variant="a"] .arrow:disabled{opacity:0;pointer-events:none}
+  [data-variant="c"]{grid-template-columns:1fr;grid-template-areas:"head" "stage" "nav";row-gap:20px}
+  [data-variant="c"] .stl-head{text-align:center}
+  [data-variant="c"] .nav{justify-self:center}
+  [data-variant="d"]{column-gap:16px}
+  [data-variant="d"] .arrow{width:42px;height:42px}
+  .spec{padding:20px}
+  .states{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="picker" role="group" aria-label="Arrow style">
+    <button type="button" data-set="a" aria-pressed="true">A · Solid<small>Pick</small></button>
+    <button type="button" data-set="b" aria-pressed="false">B · Glass on card</button>
+    <button type="button" data-set="c" aria-pressed="false">C · Header pill</button>
+    <button type="button" data-set="d" aria-pressed="false">D · Footer bar</button>
+  </div>
+  <p class="picker-note" id="note"></p>
+
+  <section class="stl" data-variant="a" aria-roledescription="carousel" aria-label="Shop the Look">
+    <header class="stl-head">
+      <h2>Shop the Look</h2>
+      <p>The pieces everyone is reaching for right now. Hover a product to add it to your bag in one click.</p>
+    </header>
+
+    <div class="viewport" tabindex="0" aria-label="Products, use arrow keys to scroll">
+      <div class="track" id="track"></div>
+    </div>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <div class="nav">
+      <button class="arrow prev" type="button" aria-label="Previous products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="counter" aria-live="polite"></div>
+      <button class="arrow next" type="button" aria-label="Next products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="spec" aria-label="Arrow specs">
+    <div>
+      <h4>States · <span id="specName">A · Solid</span></h4>
+      <div class="states" id="states"></div>
+    </div>
+    <div>
+      <h4>Colours (click to copy)</h4>
+      <div class="tokens" id="tokens"></div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// Image fallback
+addEventListener('error',e=>{const t=e.target;if(t.tagName==='IMG'&&!t.dataset.fb){t.dataset.fb=1;t.src='https://picsum.photos/seed/'+encodeURIComponent(t.alt)+'/800/1000'}},true);
+
+const products=[
+  {t:'The North Face Backpack',img:'photo-1553062407-98eeb64c6a62',stock:'Only 70 left',sw:['#FB923C','#F05A3E','#FACC15'],r:4.5},
+  {t:'Cinched Halter Tank Top',img:'photo-1576566588028-4147f3842f27',stock:'Only 70 left',sw:['#E7E2C6','#4C1D24'],r:4},
+  {t:'Relaxed Essential Polo Sweatshirt',img:'photo-1591047139829-d91aecb6caea',stock:'Only 10 left',sw:['#1F3D3A','#D1D5DB'],r:4.5},
+  {t:'Cropped Nylon Bomber Jacket',img:'photo-1551028719-00167b16eac5',stock:'Only 24 left',sw:['#3F4F2E','#111827'],r:5},
+  {t:'Everyday Cotton Tee',img:'photo-1521572163474-6864f9cf17ab',stock:'Only 40 left',sw:['#F9FAFB','#111827','#9CA3AF'],r:4},
+  {t:'Straight Leg Denim',img:'photo-1542272604-787c3835535d',stock:'Only 12 left',sw:['#3B5B8C','#1E293B'],r:4.5}
+];
+const bag='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>';
+const track=document.getElementById('track');
+track.innerHTML=products.map((p,i)=>`
+  <article class="card" role="group" aria-roledescription="slide" aria-label="${i+1} of ${products.length}">
+    <img src="https://images.unsplash.com/${p.img}?w=800&q=80&auto=format&fit=crop" alt="${p.t}" width="800" height="1000" loading="lazy">
+    <div class="badges"><span class="badge badge-sale">Sale</span><span class="badge badge-stock">${p.stock}</span></div>
+    <div class="info">
+      <h3>${p.t}</h3>
+      <div class="rating"><span class="stars" style="--r:${p.r/5*100}%" aria-label="${p.r} out of 5">★★★★★</span>4 reviews</div>
+      <div class="price"><del>$120.00</del>$100.00</div>
+      <div class="swatches">${p.sw.map(c=>`<i style="background:${c}"></i>`).join('')}</div>
+      <button class="cta" type="button">${bag}Select options</button>
+    </div>
+  </article>`).join('');
+
+// Carousel
+const sec=document.querySelector('.stl'),vp=sec.querySelector('.viewport'),
+      prev=sec.querySelector('.prev'),next=sec.querySelector('.next'),
+      counter=sec.querySelector('.counter'),bar=sec.querySelector('.progress span');
+const step=()=>{const c=track.children[0];return c.offsetWidth+parseFloat(getComputedStyle(track).columnGap)};
+prev.onclick=()=>vp.scrollBy({left:-step(),behavior:'smooth'});
+next.onclick=()=>vp.scrollBy({left:step(),behavior:'smooth'});
+vp.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();next.click()}if(e.key==='ArrowLeft'){e.preventDefault();prev.click()}});
+function update(){
+  const max=vp.scrollWidth-vp.clientWidth,x=vp.scrollLeft;
+  prev.disabled=x<=2; next.disabled=x>=max-2;
+  const n=products.length,visible=Math.max(1,Math.round(vp.clientWidth/step())),first=Math.round(x/step())+1;
+  counter.innerHTML=`${Math.min(first,n)}<span> / ${n}</span>`;
+  const w=Math.min(1,vp.clientWidth/vp.scrollWidth);
+  bar.style.width=w*100+'%'; bar.style.marginLeft=(max?x/max*(1-w)*100:0)+'%';
+}
+vp.addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+
+// Variant picker + spec
+const info={
+  a:{name:'A · Solid',note:'White circles in the gutters, same white as the "Select options" button. They turn black on hover, the arrow nudges in its direction, and they fade when there is nothing more to scroll.',
+     tokens:[['Fill','#FFFFFF'],['Arrow / hover fill','#111827'],['Border','rgba(17,24,39,.06)'],['Disabled arrow','#9CA3AF'],['Shadow','0 8px 24px rgba(17,24,39,.10)']]},
+  b:{name:'B · Glass on card',note:'Frosted dark circles sitting on the card edge, picking up the card’s dark gradient. Hover turns them white. Good when the grid is full width and there is no gutter.',
+     tokens:[['Fill','rgba(17,24,39,.45)'],['Border','rgba(255,255,255,.28)'],['Arrow','#FFFFFF'],['Hover fill','rgba(255,255,255,.95)'],['Blur','10px']]},
+  c:{name:'C · Header pill',note:'Both arrows in one white pill next to the heading, with a 1 / 6 counter. Keeps the cards completely clear, and echoes the rounded CTA.',
+     tokens:[['Pill fill','#FFFFFF'],['Pill border','#E5E7EB'],['Arrow / hover fill','#111827'],['Counter','#374151'],['Disabled','#D1D5DB']]},
+  d:{name:'D · Footer bar',note:'A progress line plus outline arrows under the cards. The line shows how far along you are. Feels editorial and works well on long rows.',
+     tokens:[['Outline / hover fill','#111827'],['Track','#E7E5E4'],['Progress','#111827'],['Disabled','#D6D3D1'],['Border width','1.5px']]}
+};
+const arrowSvg=document.querySelector('.next').innerHTML;
+const toast=document.getElementById('toast');let tt;
+const say=m=>{toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1600)};
+function setVariant(v){
+  sec.dataset.variant=v;
+  document.querySelectorAll('[data-set]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===v));
+  document.getElementById('note').textContent=info[v].note;
+  document.getElementById('specName').textContent=info[v].name;
+  const dark=v==='b'?' dark':'';
+  document.getElementById('states').innerHTML=['Default','Hover','Pressed','Disabled'].map((s,i)=>
+    `<div class="state${dark}"><span class="arrow style-${v} ${['','is-hover','is-active','is-disabled'][i]}">${arrowSvg}</span><span>${s}</span></div>`).join('');
+  document.getElementById('tokens').innerHTML=info[v].tokens.map(([k,c])=>
+    `<button class="token" type="button" data-c="${c}"><i style="background:${c.startsWith('#')||c.startsWith('rgba')?c:'#fff'}"></i><b>${k}</b><code>${c}</code></button>`).join('');
+  update();
+}
+document.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>setVariant(b.dataset.set));
+document.getElementById('tokens').addEventListener('click',e=>{const b=e.target.closest('.token');if(!b)return;
+  navigator.clipboard?.writeText(b.dataset.c).then(()=>say('Copied '+b.dataset.c),()=>say(b.dataset.c))});
+track.addEventListener('click',e=>{if(e.target.closest('.cta'))say('Choose a size and colour')});
+setVariant('a');
+</script>
+</body>
+</html>

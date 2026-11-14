@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divi Onesuite – WPrio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* WPrio brand */
+  --blue: #134feb;
+  --blue-600: #0f40c4;
+  --blue-50: #f3f6fe;
+  --blue-100: #e7edfd;
+  --blue-200: #b6c8f9;
+  --purple: #6431f6;
+
+  /* Product brands */
+  --flash: #7936ff;
+  --motion: #ff1a1a;
+  --merc: #5e8e3e;
+  --vizual: #1a73e8;
+
+  --ink: #121212;
+  --heading: #1f2937;
+  --body: #4b5563;
+  --muted: #6b7280;
+  --line: #e7e7e7;
+  --bg: #fafafa;
+  --white: #fff;
+  --green: #16a34a;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 4px 12px rgba(16, 24, 40, .04);
+  --shadow-lg: 0 12px 32px -8px rgba(19, 79, 235, .18);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--white); color: var(--body); font: 400 15px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { margin: 0; color: var(--ink); font-family: "Inter Tight", Inter, sans-serif; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.ico { width: 18px; height: 18px; flex: none; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: var(--r-sm); border: 1px solid transparent; font-weight: 500; font-size: 15px; transition: background .15s, border-color .15s, color .15s, box-shadow .15s; white-space: nowrap; }
+.btn .ico { width: 16px; height: 16px; }
+.btn--primary { background: var(--blue); color: #fff; box-shadow: 0 1px 2px rgba(19, 79, 235, .3); }
+.btn--primary:hover { background: var(--blue-600); }
+.btn--outline { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn--outline:hover { border-color: var(--blue-200); color: var(--blue); }
+.btn--soft { background: var(--blue-100); color: var(--blue); }
+.btn--soft:hover { background: #dbe4fc; }
+.btn--white { background: #fff; color: var(--blue); }
+.btn--white:hover { background: var(--blue-50); }
+.btn--sm { height: 38px; padding: 0 16px; font-size: 14px; }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--blue-100); color: var(--blue); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.sec { padding: 96px 0; }
+.sec--tint { background: var(--bg); border-block: 1px solid #f0f0f0; }
+.sec-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+.sec-head h2 { font-size: 40px; margin: 16px 0 12px; }
+.sec-head p { font-size: 17px; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .9); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.site-header .logo img { height: 32px; width: auto; }
+.site-nav { display: flex; gap: 36px; font-weight: 500; color: var(--heading); }
+.site-nav a:hover { color: var(--blue); }
+.site-nav a[aria-current] { color: var(--blue); }
+
+/* Product hero */
+.hero { background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M32 0H0v32' fill='none' stroke='%23eef0f4'/%3E%3C/svg%3E"); border-bottom: 1px solid #f0f0f0; padding: 28px 0 56px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: -40% 30% auto -10%; height: 560px; background: radial-gradient(closest-side, rgba(19, 79, 235, .10), transparent); pointer-events: none; }
+.crumbs { font-size: 14px; color: var(--muted); margin-bottom: 24px; position: relative; }
+.crumbs a:hover { color: var(--blue); }
+.crumbs span { margin: 0 8px; color: #c5c9d0; }
+.product { display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 40px; align-items: start; position: relative; }
+
+/* Gallery */
+.stage { background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); padding: 14px; box-shadow: var(--shadow); }
+.slide { aspect-ratio: 16 / 10.4; border-radius: var(--r-md); overflow: hidden; position: relative; }
+.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 10px; height: 100%; padding: 10px; background: var(--blue-50); }
+.tile { border-radius: 10px; background: #fff; border: 1px solid #e3e9f8; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+.tile b { font-family: "Inter Tight", sans-serif; font-weight: 600; color: var(--ink); font-size: clamp(22px, 3vw, 38px); letter-spacing: -.03em; line-height: 1; }
+.tile small { font-size: 12px; color: var(--muted); line-height: 1.35; }
+.tile--hero { grid-column: span 2; grid-row: span 2; background: var(--blue); border-color: var(--blue); color: #fff; position: relative; overflow: hidden; }
+.tile--hero::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 220px; height: 220px; border-radius: 50%; border: 36px solid rgba(255, 255, 255, .08); }
+.tile--hero b { color: #fff; font-size: clamp(26px, 3.4vw, 44px); }
+.tile--hero small { color: var(--blue-200); }
+.tile--hero .logos { display: flex; gap: 8px; }
+.tile--hero .logos span { width: 34px; height: 34px; border-radius: 9px; background: #fff; display: grid; place-items: center; }
+.tile--hero .logos img { width: 20px; height: 20px; object-fit: cover; object-position: left center; }
+.tile--wide { grid-column: span 2; }
+.tile .k { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--heading); }
+.tile .k i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--blue)); }
+.tile--flash { background: #f6f1ff; border-color: #e7dbff; } .tile--flash b { color: var(--flash); }
+.tile--motion { background: #fff3f3; border-color: #ffdcdc; } .tile--motion b { color: #e01111; }
+.tile--merc { background: #f3f8ef; border-color: #dcead1; } .tile--merc b { color: var(--merc); }
+
+.shot { height: 100%; display: grid; place-items: center; padding: 28px; background: var(--tint); position: relative; }
+.shot .win { width: 100%; height: 100%; background: #fff; border-radius: 10px; border: 1px solid rgba(0, 0, 0, .06); box-shadow: 0 20px 40px -16px rgba(0, 0, 0, .18); display: grid; grid-template-rows: 30px 1fr; overflow: hidden; }
+.shot .bar { display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #f0f0f0; }
+.shot .bar i { width: 8px; height: 8px; border-radius: 50%; background: #e5e7eb; }
+.shot .body { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; padding: 24px; align-items: center; }
+.shot .body img { height: 30px; width: auto; margin-bottom: 14px; }
+.shot .body h4 { font-size: clamp(18px, 2.2vw, 26px); margin-bottom: 8px; }
+.shot .body p { font-size: 13px; color: var(--muted); }
+.shot .mods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.shot .mods span { aspect-ratio: 1; border-radius: 8px; background: var(--tint); border: 1px solid var(--edge); display: grid; place-items: center; color: var(--c); }
+.shot .mods svg { width: 40%; height: 40%; }
+.shot--flash { --c: var(--flash); --tint: #f3edff; --edge: #e2d4ff; }
+.shot--motion { --c: #e01111; --tint: #fff1f1; --edge: #ffd6d6; }
+.shot--merc { --c: var(--merc); --tint: #f1f7ec; --edge: #d8e8cc; }
+
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+.thumb { border: 1px solid var(--line); background: #fff; border-radius: var(--r-md); padding: 6px; height: 74px; display: grid; place-items: center; transition: border-color .15s, box-shadow .15s; }
+.thumb > span { width: 100%; height: 100%; border-radius: 7px; display: grid; place-items: center; background: var(--tint, var(--blue-50)); }
+.thumb img { height: 22px; width: auto; max-width: 80%; }
+.thumb .mini { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3px; width: 70%; height: 60%; }
+.thumb .mini i { border-radius: 3px; background: #dbe4fc; }
+.thumb .mini i:first-child { background: var(--blue); grid-row: span 2; }
+.thumb:hover { border-color: var(--blue-200); }
+.thumb[aria-selected="true"] { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-100); }
+
+/* Buy box */
+.buy { background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); padding: 28px; box-shadow: var(--shadow); position: sticky; top: 96px; }
+.buy-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge--blue { background: var(--blue-100); color: var(--blue); }
+.badge--green { background: #e8f7ee; color: var(--green); }
+.rating { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.stars { color: #f5a524; letter-spacing: 1px; font-size: 13px; }
+.buy h1 { font-size: 34px; margin-bottom: 10px; }
+.buy .lead { font-size: 15px; margin-bottom: 22px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; background: #f3f4f6; border-radius: 10px; margin-bottom: 14px; }
+.seg button { height: 38px; border: 0; background: none; border-radius: 7px; font-weight: 500; color: var(--body); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.seg button small { font-size: 11px; font-weight: 600; color: var(--green); }
+.seg button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .1); }
+.field-label { font-size: 13px; font-weight: 500; color: var(--heading); margin-bottom: 6px; display: block; }
+.select { position: relative; margin-bottom: 20px; }
+.select select { appearance: none; width: 100%; height: 48px; padding: 0 40px 0 14px; border: 1px solid var(--line); border-radius: var(--r-sm); background: #fff; font: 500 15px Inter, sans-serif; color: var(--ink); cursor: pointer; }
+.select select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-100); }
+.select::after { content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; padding: 16px 0; border-top: 1px solid #f0f0f0; margin-bottom: 16px; }
+.price del { color: #9ca3af; font-size: 16px; }
+.price strong { font-family: "Inter Tight", sans-serif; font-size: 36px; font-weight: 600; color: var(--ink); letter-spacing: -.03em; }
+.price .per { color: var(--muted); font-size: 14px; }
+.price .save { margin-left: auto; }
+.actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; }
+.actions .btn { height: 50px; }
+.checks { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; font-size: 14px; }
+.checks li { display: flex; gap: 10px; align-items: flex-start; }
+.checks .ico { width: 18px; height: 18px; color: var(--green); margin-top: 1px; }
+.includes { margin-top: 20px; padding-top: 18px; border-top: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); }
+.includes .logos { display: flex; gap: 6px; }
+.includes .logos span { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; border: 1px solid var(--line); background: #fff; }
+.includes .logos img { width: 18px; height: 18px; object-fit: cover; object-position: left center; }
+
+/* Stats strip */
+.stats { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); box-shadow: var(--shadow); position: relative; }
+.stats div { padding: 26px 28px; display: flex; align-items: center; gap: 16px; }
+.stats div + div { border-left: 1px solid #f0f0f0; }
+.stats .si { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--blue-100); color: var(--blue); flex: none; }
+.stats .si .ico { width: 20px; height: 20px; }
+.stats b { display: block; font-family: "Inter Tight", sans-serif; font-weight: 600; font-size: 26px; color: var(--ink); letter-spacing: -.02em; line-height: 1.1; }
+.stats small { font-size: 13px; color: var(--muted); }
+
+/* Inside tabs */
+.ptabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+.ptab { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px 0 8px; border: 1px solid var(--line); background: #fff; border-radius: 999px; font-weight: 500; color: var(--heading); transition: all .15s; }
+.ptab .pl { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); }
+.ptab .pl img { width: 16px; height: 16px; object-fit: cover; object-position: left center; }
+.ptab small { font-size: 12px; color: var(--muted); font-weight: 400; }
+.ptab:hover { border-color: var(--c); }
+.ptab[aria-selected="true"] { border-color: var(--c); background: var(--tint); color: var(--c); box-shadow: 0 0 0 3px var(--ring); }
+.ptab[aria-selected="true"] small { color: inherit; opacity: .75; }
+[data-p="flash"] { --c: var(--flash); --tint: #f3edff; --ring: #ece2ff; }
+[data-p="motion"] { --c: #e01111; --tint: #fff1f1; --ring: #ffe2e2; }
+[data-p="merc"] { --c: var(--merc); --tint: #f1f7ec; --ring: #e3efda; }
+[data-p="vizual"] { --c: var(--vizual); --tint: #eef4fe; --ring: #dce9fc; }
+
+.inside { border: 1px solid var(--line); border-radius: var(--r-xl); padding: 14px; background: var(--bg); }
+.fgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.fcard { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; transition: border-color .15s, transform .15s, box-shadow .15s; }
+.fcard:hover { border-color: var(--ring); box-shadow: 0 8px 24px -12px rgba(0, 0, 0, .12); transform: translateY(-2px); }
+.fcard .fi { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--tint); color: var(--c); margin-bottom: 18px; }
+.fcard .fi .ico { width: 20px; height: 20px; }
+.fcard h3 { font-size: 17px; margin-bottom: 6px; letter-spacing: -.01em; }
+.fcard p { font-size: 14px; }
+.inside-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 12px 6px; font-size: 14px; }
+.inside-foot b { color: var(--ink); font-weight: 600; }
+.inside-foot .btn { background: var(--c); color: #fff; }
+.inside-foot .btn:hover { filter: brightness(.92); }
+
+/* Compare */
+.compare { background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow); }
+.compare table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.compare th, .compare td { padding: 18px 24px; text-align: left; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+.compare tr:last-child td { border-bottom: 0; }
+.compare thead th { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; background: #fcfcfc; }
+.compare tbody th { font-weight: 500; color: var(--ink); width: 22%; }
+.compare .us { background: var(--blue-50); color: var(--ink); font-weight: 500; width: 39%; }
+.compare thead .us { background: var(--blue); color: #fff; }
+.compare thead .us span { display: inline-flex; align-items: center; gap: 8px; }
+.compare thead .us em { font-style: normal; font-size: 11px; background: rgba(255, 255, 255, .2); padding: 2px 8px; border-radius: 999px; letter-spacing: .04em; }
+.compare .them { color: var(--muted); }
+.compare .ok { display: inline-flex; align-items: center; gap: 8px; }
+.compare .ok .ico { width: 18px; height: 18px; color: var(--blue); }
+.compare .num { font-family: "Inter Tight", sans-serif; font-weight: 600; font-size: 17px; }
+.compare .tag-save { margin-left: 8px; font-size: 12px; font-weight: 600; color: var(--green); background: #e8f7ee; padding: 2px 8px; border-radius: 999px; }
+.compare .them del { color: #9ca3af; }
+
+/* Why */
+.why { display: grid; grid-template-columns: 1fr 1.35fr; gap: 64px; align-items: center; }
+.why h2 { font-size: 40px; margin: 16px 0 14px; }
+.why .intro p { font-size: 17px; margin-bottom: 24px; }
+.why .trust { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.why .trust .faces { display: flex; }
+.why .trust .faces i { width: 34px; height: 34px; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; background: var(--g); }
+.why .trust .faces i:first-child { margin-left: 0; }
+.why .trust b { color: var(--ink); }
+.wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wcard { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; }
+.wcard .fi { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--blue-100); color: var(--blue); margin-bottom: 16px; }
+.wcard .fi .ico { width: 20px; height: 20px; }
+.wcard h3 { font-size: 17px; margin-bottom: 6px; letter-spacing: -.01em; }
+.wcard p { font-size: 14px; }
+.wcard:nth-child(2) { transform: translateY(24px); }
+.wcard:nth-child(4) { transform: translateY(24px); }
+
+/* FAQ */
+.faq { max-width: 800px; margin: 0 auto; display: grid; gap: 10px; }
+.faq details { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); transition: border-color .15s, box-shadow .15s; }
+.faq details[open] { border-color: var(--blue-200); box-shadow: 0 0 0 3px var(--blue-50); }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; font-weight: 500; color: var(--ink); font-size: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { width: 28px; height: 28px; border-radius: 50%; background: #f3f4f6; flex: none; position: relative; transition: background .15s, transform .2s; }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.6px; background: var(--heading); transform: translate(-50%, -50%); }
+.faq summary i::after { transform: translate(-50%, -50%) rotate(90deg); transition: opacity .2s; }
+.faq details[open] summary i { background: var(--blue); }
+.faq details[open] summary i::before { background: #fff; }
+.faq details[open] summary i::after { opacity: 0; }
+.faq details p { padding: 0 22px 20px; font-size: 15px; }
+.faq-more { text-align: center; margin-top: 28px; font-size: 15px; }
+.faq-more a { color: var(--blue); font-weight: 500; }
+
+/* CTA */
+.cta { background: var(--blue); border-radius: 24px; padding: 56px; display: grid; grid-template-columns: 1fr 440px; gap: 48px; align-items: center; color: #fff; position: relative; overflow: hidden; }
+.cta::before { content: ""; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0v40' fill='none' stroke='white' stroke-opacity='.07'/%3E%3C/svg%3E"); -webkit-mask: linear-gradient(90deg, #000, transparent 70%); mask: linear-gradient(90deg, #000, transparent 70%); }
+.cta::after { content: ""; position: absolute; left: -120px; bottom: -180px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, rgba(100, 49, 246, .55), transparent); }
+.cta > * { position: relative; z-index: 1; }
+.cta .eyebrow { background: rgba(255, 255, 255, .14); color: #fff; }
+.cta h2 { color: #fff; font-size: 42px; margin: 18px 0 14px; }
+.cta .sub { color: #dbe4fc; font-size: 17px; max-width: 460px; margin-bottom: 28px; }
+.cta .from { display: flex; align-items: baseline; gap: 8px; margin-bottom: 24px; }
+.cta .from strong { font-family: "Inter Tight", sans-serif; font-size: 44px; font-weight: 600; letter-spacing: -.03em; }
+.cta .from span { color: var(--blue-200); }
+.cta .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.cta .btn--ghost-w { color: #fff; border-color: rgba(255, 255, 255, .35); background: transparent; }
+.cta .btn--ghost-w:hover { background: rgba(255, 255, 255, .1); }
+.cta .mini-checks { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-size: 14px; color: #dbe4fc; }
+.cta .mini-checks span { display: inline-flex; align-items: center; gap: 6px; }
+.cta .mini-checks .ico { width: 16px; height: 16px; color: #fff; }
+.bundle { background: #fff; color: var(--body); border-radius: var(--r-xl); padding: 26px; box-shadow: 0 30px 60px -20px rgba(4, 20, 80, .45); position: relative; }
+.bundle .ribbon { position: absolute; top: -12px; right: 20px; background: var(--purple); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; box-shadow: 0 6px 14px -4px rgba(100, 49, 246, .6); }
+.bundle .lbl { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
+.bundle h3 { font-size: 22px; margin: 6px 0 4px; }
+.bundle > p { font-size: 14px; margin-bottom: 18px; }
+.plug { display: flex; align-items: center; gap: 14px; padding: 12px; border: 1px solid var(--line); border-radius: var(--r-md); margin-bottom: 8px; border-left: 3px solid var(--c); }
+.plug .pl { width: 40px; height: 40px; border-radius: 10px; background: var(--tint); display: grid; place-items: center; flex: none; }
+.plug .pl img { width: 22px; height: 22px; object-fit: cover; object-position: left center; }
+.plug b { display: block; color: var(--ink); font-weight: 600; font-size: 15px; }
+.plug small { font-size: 13px; color: var(--muted); }
+.plug .val { margin-left: auto; text-align: right; font-size: 13px; color: #9ca3af; }
+.plug .val del { display: block; }
+.bundle .btn { width: 100%; margin-top: 10px; height: 50px; }
+.bundle .note { text-align: center; font-size: 13px; color: var(--muted); margin-top: 12px; }
+.bundle .note b { color: var(--green); }
+
+/* More products */
+.more { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.pcard { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; transition: transform .15s, box-shadow .15s, border-color .15s; display: flex; flex-direction: column; }
+.pcard:hover { transform: translateY(-3px); box-shadow: 0 16px 32px -16px rgba(0, 0, 0, .18); border-color: var(--ring); }
+.pcard .art { aspect-ratio: 747 / 450; background: var(--tint); overflow: hidden; }
+.pcard .art img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.pcard:hover .art img { transform: scale(1.04); }
+.pcard .body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+.pcard .tagline { font-size: 13px; color: var(--muted); margin: 2px 0 16px; flex: 1; }
+.pcard h3 { font-size: 18px; }
+.pcard .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+.pcard .row small { display: block; font-size: 12px; color: var(--muted); }
+.pcard .row strong { font-family: "Inter Tight", sans-serif; font-weight: 600; font-size: 20px; color: var(--ink); }
+.pcard .btn { border-color: var(--line); color: var(--c); background: #fff; }
+.pcard:hover .btn { background: var(--c); border-color: var(--c); color: #fff; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--bg); padding: 28px 0; font-size: 14px; color: var(--muted); }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-footer nav { display: flex; gap: 24px; }
+.site-footer a:hover { color: var(--blue); }
+
+/* Mobile bar */
+.mbar { display: none; }
+
+@media (max-width: 1080px) {
+  .product { grid-template-columns: 1fr; }
+  .buy { position: static; }
+  .cta { grid-template-columns: 1fr; padding: 44px; }
+  .more { grid-template-columns: repeat(2, 1fr); }
+  .why { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 760px) {
+  body { font-size: 15px; padding-bottom: 76px; }
+  .wrap { padding: 0 16px; }
+  .site-nav { display: none; }
+  .site-header .wrap { height: 64px; }
+  .site-header .logo img { height: 28px; }
+  .sec { padding: 64px 0; }
+  .sec-head h2, .why h2 { font-size: 30px; }
+  .sec-head p, .why .intro p { font-size: 16px; }
+  .hero { padding-top: 20px; }
+  .stage { padding: 8px; border-radius: var(--r-lg); }
+  .bento { gap: 6px; padding: 6px; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+  .slide { aspect-ratio: auto; }
+  .slide[data-s="bento"] { aspect-ratio: auto; }
+  .tile { padding: 12px; gap: 10px; }
+  .tile--hero { grid-column: span 2; grid-row: auto; min-height: 170px; }
+  .tile--wide { grid-column: span 2; }
+  .tile--opt { display: none; }
+  .tile--merc { grid-column: span 2; }
+  .tile--hero b { font-size: 30px; }
+  .shot { aspect-ratio: 4 / 3.4; padding: 14px; }
+  .shot .body { grid-template-columns: 1fr; padding: 16px; gap: 14px; }
+  .shot .mods { grid-template-columns: repeat(6, 1fr); }
+  .thumbs { gap: 6px; }
+  .thumb { height: 56px; padding: 4px; }
+  .thumb img { height: 16px; }
+  .buy { padding: 20px; border-radius: var(--r-lg); }
+  .buy h1 { font-size: 28px; }
+  .price strong { font-size: 30px; }
+  .actions { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; margin-top: 28px; }
+  .stats div { padding: 18px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .stats div + div { border-left: 0; }
+  .stats div:nth-child(even) { border-left: 1px solid #f0f0f0; }
+  .stats div:nth-child(n+3) { border-top: 1px solid #f0f0f0; }
+  .stats b { font-size: 22px; }
+  .ptabs { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px 20px; padding: 4px 16px; scrollbar-width: none; }
+  .ptab { flex: none; }
+  .inside { padding: 8px; }
+  .fgrid { grid-template-columns: 1fr; gap: 8px; }
+  .fcard { padding: 18px; display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; }
+  .fcard .fi { margin: 0; grid-row: span 2; }
+  .inside-foot { flex-direction: column; align-items: stretch; text-align: center; padding: 14px 6px 6px; }
+  .compare { overflow-x: auto; }
+  .compare table { min-width: 620px; font-size: 14px; }
+  .compare th, .compare td { padding: 14px 16px; }
+  .wgrid { grid-template-columns: 1fr; gap: 10px; }
+  .wcard:nth-child(2), .wcard:nth-child(4) { transform: none; }
+  .faq summary { padding: 16px; font-size: 15px; }
+  .faq details p { padding: 0 16px 16px; }
+  .cta { padding: 32px 20px; border-radius: var(--r-xl); gap: 32px; }
+  .cta h2 { font-size: 30px; }
+  .cta .from strong { font-size: 36px; }
+  .bundle { padding: 20px; }
+  .plug .val { display: none; }
+  .more { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pcard .body { padding: 14px; }
+  .pcard h3 { font-size: 16px; }
+  .pcard .tagline { font-size: 12px; margin-bottom: 12px; }
+  .pcard .row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .pcard .row strong { font-size: 18px; }
+  .pcard .btn { width: 100%; padding: 0 8px; }
+  .site-footer .wrap { flex-direction: column; }
+  .mbar { display: flex; align-items: center; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: #fff; border-top: 1px solid var(--line); padding: 12px 16px; box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, .15); transform: translateY(110%); transition: transform .25s; }
+  .mbar.show { transform: none; }
+  .mbar div { flex: 1; min-width: 0; }
+  .mbar small { display: block; font-size: 12px; color: var(--muted); }
+  .mbar strong { font-family: "Inter Tight", sans-serif; font-size: 20px; color: var(--ink); }
+  .mbar .btn { height: 46px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-check-c" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 002 1.6h8.2a2 2 0 002-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></g></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.8 6 3.8 9.5S14.6 18.7 12 21.5C9.4 18.7 8.2 15.5 8.2 12S9.4 5.3 12 2.5z"/></g></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L20 3M16 7l3 3M18 5l2 2"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h16M4 12h10M4 18h16"/></symbol>
+  <symbol id="i-popup" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 9h10v6H7z"/></g></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></g></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-slides" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="6" y="5" width="12" height="14" rx="2"/><path d="M3 8v8M21 8v8"/></g></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 20V4M4 20h16M9 16v-5M14 16V8M19 16v-3"/></symbol>
+  <symbol id="i-scroll" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 7v3"/></g></symbol>
+  <symbol id="i-wand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L15 9M13 7l4 4"/><path d="M18 3v3M16.5 4.5h3M20 9v2M19 10h2M10 3v2M9 4h2"/></g></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3l14 7-6 2-2 6z"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6V4h16v2M12 4v16M9 20h6"/></symbol>
+  <symbol id="i-timeline" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h8M3 12h14M3 18h10"/><circle cx="15" cy="6" r="2"/><circle cx="20" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></g></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 016 0v2" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></g></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-8-4.6-8-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 018 2.5C20 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-support" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></g></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="https://wprio.com/wp-content/uploads/2026/04/wprio-logo.svg" alt="WPrio" width="130" height="32"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#">About</a>
+      <a href="#" aria-current="page">Products</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a class="btn btn--outline btn--sm" href="#"><svg class="ico"><use href="#i-user"/></svg>My Account</a>
+  </div>
+</header>
+
+<main>
+  <!-- Product hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#">Home</a><span>/</span><a href="#">Products</a><span>/</span>Divi Onesuite</p>
+
+      <div class="product">
+        <div class="gallery">
+          <div class="stage">
+            <div class="slide" data-s="bento">
+              <div class="bento">
+                <div class="tile tile--hero">
+                  <div class="logos">
+                    <span><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt=""></span>
+                    <span><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt=""></span>
+                    <span><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt=""></span>
+                  </div>
+                  <div><b>One license,<br>three plugins</b><small style="display:block;margin-top:10px">DiviFlash · DiviMotion · DiviMerc</small></div>
+                </div>
+                <div class="tile tile--wide tile--sites"><span class="k"><i></i>Sites</span><div><b>Unlimited</b><small style="display:block;margin-top:4px">Sites on every plugin license</small></div></div>
+                <div class="tile tile--flash"><span class="k" style="--c:var(--flash)"><i></i>DiviFlash</span><div><b>85+</b><small style="display:block">Modules</small></div></div>
+                <div class="tile tile--motion"><span class="k" style="--c:var(--motion)"><i></i>DiviMotion</span><div><b>15</b><small style="display:block">GSAP effects</small></div></div>
+                <div class="tile tile--merc"><span class="k" style="--c:var(--merc)"><i></i>DiviMerc</span><div><b>14</b><small style="display:block">Woo modules</small></div></div>
+                <div class="tile tile--opt"><span class="k"><i></i>Account</span><div><b>1</b><small style="display:block">For keys &amp; updates</small></div></div>
+                <div class="tile tile--wide tile--opt"><span class="k" style="--c:var(--green)"><i></i>Guarantee</span><div><b>30-day</b><small style="display:block;margin-top:4px">Money-back, no questions asked</small></div></div>
+              </div>
+            </div>
+
+            <div class="slide" data-s="flash" hidden>
+              <div class="shot shot--flash"><div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="body">
+                <div><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt="DiviFlash"><h4>85+ modules for every Divi layout</h4><p>Menus, popups, sliders, tables and post layouts in one plugin.</p></div>
+                <div class="mods"><span><svg><use href="#i-menu"/></svg></span><span><svg><use href="#i-popup"/></svg></span><span><svg><use href="#i-grid"/></svg></span><span><svg><use href="#i-slides"/></svg></span><span><svg><use href="#i-chart"/></svg></span><span><svg><use href="#i-download"/></svg></span></div>
+              </div></div></div>
+            </div>
+            <div class="slide" data-s="motion" hidden>
+              <div class="shot shot--motion"><div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="body">
+                <div><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt="DiviMotion"><h4>GSAP animation, no code</h4><p>Scroll, text, cursor and timeline effects for any Divi module.</p></div>
+                <div class="mods"><span><svg><use href="#i-scroll"/></svg></span><span><svg><use href="#i-text"/></svg></span><span><svg><use href="#i-cursor"/></svg></span><span><svg><use href="#i-timeline"/></svg></span><span><svg><use href="#i-wand"/></svg></span><span><svg><use href="#i-layers"/></svg></span></div>
+              </div></div></div>
+            </div>
+            <div class="slide" data-s="merc" hidden>
+              <div class="shot shot--merc"><div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="body">
+                <div><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt="DiviMerc"><h4>WooCommerce, designed in Divi</h4><p>Product, cart, checkout and My Account modules for Divi 5.</p></div>
+                <div class="mods"><span><svg><use href="#i-bag"/></svg></span><span><svg><use href="#i-cart"/></svg></span><span><svg><use href="#i-user"/></svg></span><span><svg><use href="#i-filter"/></svg></span><span><svg><use href="#i-image"/></svg></span><span><svg><use href="#i-heart"/></svg></span></div>
+              </div></div></div>
+            </div>
+          </div>
+
+          <div class="thumbs" role="tablist" aria-label="Product images">
+            <button class="thumb" role="tab" aria-selected="true" data-go="bento" aria-label="Onesuite overview"><span><span class="mini"><i></i><i></i><i></i><i></i><i></i></span></span></button>
+            <button class="thumb" role="tab" aria-selected="false" data-go="flash" aria-label="DiviFlash"><span style="--tint:#f3edff"><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt=""></span></button>
+            <button class="thumb" role="tab" aria-selected="false" data-go="motion" aria-label="DiviMotion"><span style="--tint:#fff1f1"><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt=""></span></button>
+            <button class="thumb" role="tab" aria-selected="false" data-go="merc" aria-label="DiviMerc"><span style="--tint:#f1f7ec"><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt=""></span></button>
+          </div>
+        </div>
+
+        <aside class="buy" id="buy">
+          <div class="buy-top">
+            <span class="badge badge--blue">Bundle · 3 plugins</span>
+            <span class="badge badge--green">Save up to 62%</span>
+          </div>
+          <h1>Divi Onesuite</h1>
+          <p class="lead">DiviFlash, DiviMotion and DiviMerc in one bundle, with an Unlimited Sites license for each plugin.</p>
+
+          <div class="seg" role="group" aria-label="Billing">
+            <button type="button" aria-pressed="true" data-plan="yearly">Yearly</button>
+            <button type="button" aria-pressed="false" data-plan="lifetime">Lifetime <small>Best deal</small></button>
+          </div>
+
+          <label class="field-label" for="lic">License</label>
+          <div class="select">
+            <select id="lic">
+              <option>Onesuite – Unlimited sites</option>
+            </select>
+          </div>
+
+          <div class="price">
+            <del id="p-was">$243.00</del>
+            <strong id="p-now">$147.00</strong>
+            <span class="per" id="p-per">per year</span>
+            <span class="badge badge--green save" id="p-save">Save 40%</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn--primary" href="#">Buy Now<svg class="ico"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--outline" href="#"><svg class="ico"><use href="#i-cart"/></svg>Add to Cart</a>
+          </div>
+
+          <ul class="checks">
+            <li><svg class="ico"><use href="#i-check-c"/></svg>Unlimited Sites license for all three plugins</li>
+            <li><svg class="ico"><use href="#i-check-c"/></svg>All features in every plugin</li>
+            <li><svg class="ico"><use href="#i-check-c"/></svg><span id="p-upd">1 year of updates and support</span></li>
+            <li><svg class="ico"><use href="#i-check-c"/></svg>30-day money-back guarantee</li>
+          </ul>
+
+          <div class="includes">
+            <span>Includes</span>
+            <span class="logos">
+              <span title="DiviFlash"><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt="DiviFlash"></span>
+              <span title="DiviMotion"><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt="DiviMotion"></span>
+              <span title="DiviMerc"><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt="DiviMerc"></span>
+            </span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="stats">
+        <div><span class="si"><svg class="ico"><use href="#i-layers"/></svg></span><span><b>3</b><small>Plugins in one bundle</small></span></div>
+        <div><span class="si"><svg class="ico"><use href="#i-globe"/></svg></span><span><b>Unlimited</b><small>Sites on every plugin</small></span></div>
+        <div><span class="si"><svg class="ico"><use href="#i-key"/></svg></span><span><b>1</b><small>Account for keys &amp; updates</small></span></div>
+        <div><span class="si"><svg class="ico"><use href="#i-shield"/></svg></span><span><b>30-day</b><small>Money-back guarantee</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's inside -->
+  <section class="sec" id="inside">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What is inside</span>
+        <h2>Three plugins, one license</h2>
+        <p>Onesuite puts DiviFlash, DiviMotion and DiviMerc under one license, for less than buying them separately.</p>
+      </div>
+
+      <div class="ptabs" role="tablist" aria-label="Plugins">
+        <button class="ptab" role="tab" data-p="flash" aria-selected="true"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt=""></span>DiviFlash <small>85+ modules</small></button>
+        <button class="ptab" role="tab" data-p="motion" aria-selected="false"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt=""></span>DiviMotion <small>15 effects</small></button>
+        <button class="ptab" role="tab" data-p="merc" aria-selected="false"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt=""></span>DiviMerc <small>14 modules</small></button>
+      </div>
+
+      <div class="inside" data-p="flash" id="inside-panel">
+        <div class="fgrid" id="fgrid"></div>
+        <div class="inside-foot">
+          <span id="inside-note"></span>
+          <a class="btn btn--sm" href="#" id="inside-link"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section class="sec sec--tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Bundle vs buying separately</span>
+        <h2>One license costs less than three</h2>
+        <p>Compared with buying the Unlimited Sites license of each plugin on its own, at today's prices.</p>
+      </div>
+      <div class="compare">
+        <table>
+          <thead>
+            <tr><th scope="col">What you get</th><th scope="col" class="us"><span>Divi Onesuite <em>Recommended</em></span></th><th scope="col">Buying separately</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Plugins</th><td class="us"><span class="ok"><svg class="ico"><use href="#i-check-c"/></svg>DiviFlash, DiviMotion and DiviMerc</span></td><td class="them">Three separate purchases</td></tr>
+            <tr><th scope="row">Sites per plugin</th><td class="us"><span class="ok"><svg class="ico"><use href="#i-check-c"/></svg>Unlimited</span></td><td class="them">Unlimited, on each license</td></tr>
+            <tr><th scope="row">Yearly</th><td class="us"><span class="num">$147.00</span> per year <span class="tag-save">Save $36.60</span></td><td class="them">$183.60 per year</td></tr>
+            <tr><th scope="row">Lifetime</th><td class="us"><span class="num">$397.00</span> one time <span class="tag-save">Save $651</span></td><td class="them">$1,048.00 one time</td></tr>
+            <tr><th scope="row">Account</th><td class="us"><span class="ok"><svg class="ico"><use href="#i-check-c"/></svg>One account for keys, downloads and updates</span></td><td class="them">One account for keys, downloads and updates</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="sec">
+    <div class="wrap why">
+      <div class="intro">
+        <span class="eyebrow">Why Onesuite</span>
+        <h2>Everything WPrio makes for Divi, in one purchase</h2>
+        <p>Animation, modules and WooCommerce design tools. From the same team, kept fast, current and well supported.</p>
+        <div class="trust">
+          <span class="faces"><i style="--g:#c7d6fb"></i><i style="--g:#e2d4ff"></i><i style="--g:#ffd6d6"></i><i style="--g:#d8e8cc"></i></span>
+          <span>Trusted by <b>375K+</b> websites worldwide</span>
+        </div>
+      </div>
+      <div class="wgrid">
+        <div class="wcard"><span class="fi"><svg class="ico"><use href="#i-layers"/></svg></span><h3>One license, three plugins</h3><p>DiviFlash, DiviMotion and DiviMerc come together under a single license.</p></div>
+        <div class="wcard"><span class="fi"><svg class="ico"><use href="#i-globe"/></svg></span><h3>Unlimited sites</h3><p>Every plugin comes with its Unlimited Sites license, so you can use them on client projects too.</p></div>
+        <div class="wcard"><span class="fi"><svg class="ico"><use href="#i-key"/></svg></span><h3>One account</h3><p>Find every license key, download and update in My Account.</p></div>
+        <div class="wcard"><span class="fi"><svg class="ico"><use href="#i-shield"/></svg></span><h3>Risk free</h3><p>A 30-day money-back guarantee, no questions asked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec--tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Before you click through</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>What is included in Onesuite?<i></i></summary><p>The Unlimited Sites license of DiviFlash, DiviMotion and DiviMerc, for one yearly or lifetime price.</p></details>
+        <details><summary>Can I use the plugins on client sites?<i></i></summary><p>Yes. Every plugin in the bundle comes with an Unlimited Sites license, so you can activate it on your own and your clients' websites.</p></details>
+        <details><summary>Which Divi versions do the plugins support?<i></i></summary><p>DiviFlash and DiviMotion work on Divi 4 and Divi 5. DiviMerc is built for Divi 5 and WooCommerce.</p></details>
+        <details><summary>Where do I find my license keys and downloads?<i></i></summary><p>Everything is in My Account on wprio.com: license keys, plugin downloads, invoices and renewal settings.</p></details>
+        <details><summary>What is the refund policy?<i></i></summary><p>If Onesuite isn't right for you, ask for a refund within 30 days of purchase and you'll get your money back in full.</p></details>
+      </div>
+      <p class="faq-more">Still have questions? <a href="#">Talk to our support team →</a></p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <span class="eyebrow">Get Onesuite</span>
+          <h2>Get all three plugins for your next Divi build</h2>
+          <p class="sub">One yearly or lifetime license for DiviFlash, DiviMotion and DiviMerc.</p>
+          <div class="from"><strong>From $147.00</strong><span>per year</span></div>
+          <div class="btns">
+            <a class="btn btn--white" href="#buy">Choose a license<svg class="ico"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost-w" href="#inside">See what's inside</a>
+          </div>
+          <div class="mini-checks">
+            <span><svg class="ico"><use href="#i-check"/></svg>30-day money-back guarantee</span>
+            <span><svg class="ico"><use href="#i-check"/></svg>Unlimited Sites on every plugin</span>
+          </div>
+        </div>
+
+        <div class="bundle">
+          <span class="ribbon">Best value</span>
+          <span class="lbl">Inside the bundle</span>
+          <h3>Three plugins, one license</h3>
+          <p>Each plugin comes with its Unlimited Sites license.</p>
+          <div class="plug" data-p="flash"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash-logo.svg" alt=""></span><span><b>DiviFlash</b><small>85+ modules, 30+ extensions</small></span></div>
+          <div class="plug" data-p="motion"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion-logo.svg" alt=""></span><span><b>DiviMotion</b><small>Animation and motion effects</small></span></div>
+          <div class="plug" data-p="merc"><span class="pl"><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc-logo.svg" alt=""></span><span><b>DiviMerc</b><small>WooCommerce modules for Divi</small></span></div>
+          <a class="btn btn--primary" href="#buy">Choose Onesuite license<svg class="ico"><use href="#i-arrow"/></svg></a>
+          <p class="note">All three plugins are made by WPrio · <b>Save up to 62%</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More from WPrio -->
+  <section class="sec sec--tint" style="border-bottom:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>More from WPrio</h2>
+        <p>Prefer a single plugin? Pick the one you need.</p>
+      </div>
+      <div class="more">
+        <a class="pcard" href="#" data-p="flash">
+          <span class="art"><img src="https://wprio.com/wp-content/uploads/2026/04/diviflash.svg" alt=""></span>
+          <span class="body"><h3>DiviFlash</h3><span class="tagline">All-in-one Divi plugin</span><span class="row"><span><small>From</small><strong>$49.00</strong></span><span class="btn btn--sm">Choose license</span></span></span>
+        </a>
+        <a class="pcard" href="#" data-p="motion">
+          <span class="art"><img src="https://wprio.com/wp-content/uploads/2026/04/divimotion.svg" alt=""></span>
+          <span class="body"><h3>DiviMotion</h3><span class="tagline">GSAP-powered Divi animation</span><span class="row"><span><small>From</small><strong>$29.40</strong></span><span class="btn btn--sm">Choose license</span></span></span>
+        </a>
+        <a class="pcard" href="#" data-p="merc">
+          <span class="art"><img src="https://wprio.com/wp-content/uploads/2026/08/divimerc.svg" alt=""></span>
+          <span class="body"><h3>DiviMerc</h3><span class="tagline">All-in-one WooCommerce for Divi</span><span class="row"><span><small>From</small><strong>$29.40</strong></span><span class="btn btn--sm">Choose license</span></span></span>
+        </a>
+        <a class="pcard" href="#" data-p="vizual">
+          <span class="art"><img src="https://wprio.com/wp-content/uploads/2026/04/riovizual.svg" alt=""></span>
+          <span class="body"><h3>RioVizual Pro</h3><span class="tagline">Next-gen WordPress table plugin</span><span class="row"><span><small>From</small><strong>$39.20</strong></span><span class="btn btn--sm">Choose license</span></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 WPrio · All rights reserved</span>
+    <nav><a href="#">Terms</a><a href="#">Privacy Policy</a><a href="#">Refund Policy</a></nav>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <div><small>Divi Onesuite · <span id="m-per">Yearly</span></small><strong id="m-now">$147.00</strong></div>
+  <a class="btn btn--primary" href="#buy">Buy Now</a>
+</div>
+
+<script>
+(function () {
+  // Gallery
+  var thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      thumbs.forEach(function (x) { x.setAttribute('aria-selected', x === t); });
+      document.querySelectorAll('.slide').forEach(function (s) { s.hidden = s.dataset.s !== t.dataset.go; });
+    });
+  });
+
+  // Plan toggle
+  var plans = {
+    yearly:   { was: '$243.00', now: '$147.00', per: 'per year', save: 'Save 40%', upd: '1 year of updates and support', label: 'Yearly' },
+    lifetime: { was: '$1,048.00', now: '$397.00', per: 'one time', save: 'Save 62%', upd: 'Lifetime updates and support', label: 'Lifetime' }
+  };
+  document.querySelectorAll('[data-plan]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = plans[b.dataset.plan];
+      document.querySelectorAll('[data-plan]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      document.getElementById('p-was').textContent = p.was;
+      document.getElementById('p-now').textContent = p.now;
+      document.getElementById('p-per').textContent = p.per;
+      document.getElementById('p-save').textContent = p.save;
+      document.getElementById('p-upd').textContent = p.upd;
+      document.getElementById('m-now').textContent = p.now;
+      document.getElementById('m-per').textContent = p.label;
+      document.getElementById('lic').options[0].text = 'Onesuite ' + p.label + ' – Unlimited sites';
+    });
+  });
+
+  // Inside tabs
+  var data = {
+    flash: {
+      note: '<b>Works on Divi 4 and Divi 5.</b> 50+ website packs, 300+ landing pages and 600+ sections included.',
+      link: 'See DiviFlash',
+      items: [
+        ['i-menu', 'Complete menu builder', 'Mega menus with any module or layout inside, vertical sidebar menus and off-canvas menus.'],
+        ['i-popup', 'Popup maker', 'Show the right popup to the right visitor at the right moment with display conditions and triggers.'],
+        ['i-grid', 'Ultimate CPT solution', 'Display any custom post type as a grid, masonry, carousel or filterable layout.'],
+        ['i-download', 'One-click layout importer', 'Import a full website pack, landing page or section from the starter templates library in one click.'],
+        ['i-slides', 'Carousels and sliders', 'Show images, logos, testimonials, posts, products or custom cards in carousels.'],
+        ['i-chart', 'Tables and charts', 'Pricing and comparison tables, plus data tables and charts that update from Google Sheets or CSV.']
+      ]
+    },
+    motion: {
+      note: '<b>Built on GSAP.</b> Add effects to any Divi module from the builder, with no code.',
+      link: 'See DiviMotion',
+      items: [
+        ['i-scroll', 'Scroll animations', 'Reveal, pin, scrub and parallax effects that follow the scroll position.'],
+        ['i-text', 'Text effects', 'Split, typewriter, scramble and highlight animations for headings and copy.'],
+        ['i-cursor', 'Custom cursors', 'Replace the cursor with shapes, text or images that react on hover.'],
+        ['i-timeline', 'Timeline builder', 'Chain several animations into one sequence with precise delays and easing.'],
+        ['i-wand', 'Hover and click effects', 'Magnetic buttons, tilt cards and click ripples for interactive layouts.'],
+        ['i-layers', 'Page transitions', 'Smooth transitions between pages so a site feels like one app.']
+      ]
+    },
+    merc: {
+      note: '<b>Built for Divi 5 and WooCommerce.</b> Design every store page in the Divi builder.',
+      link: 'See DiviMerc',
+      items: [
+        ['i-bag', 'Product page modules', 'Gallery, price, variations, badges and buy-now buttons styled in Divi.'],
+        ['i-cart', 'Cart and checkout', 'Custom cart, mini cart and checkout layouts with every field under your control.'],
+        ['i-user', 'My Account', 'Login, registration, orders, downloads and addresses designed to match your site.'],
+        ['i-filter', 'Shop filters', 'AJAX filters by category, price, attribute and rating for the shop page.'],
+        ['i-image', 'Product grids and carousels', 'Show any product query as a grid, list or carousel with quick view.'],
+        ['i-heart', 'Wishlist and compare', 'Let shoppers save products and compare them side by side.']
+      ]
+    }
+  };
+  var panel = document.getElementById('inside-panel');
+  function renderInside(key) {
+    var d = data[key];
+    panel.dataset.p = key;
+    document.getElementById('fgrid').innerHTML = d.items.map(function (it) {
+      return '<div class="fcard"><span class="fi"><svg class="ico"><use href="#' + it[0] + '"/></svg></span><h3>' + it[1] + '</h3><p>' + it[2] + '</p></div>';
+    }).join('');
+    document.getElementById('inside-note').innerHTML = d.note;
+    document.getElementById('inside-link').innerHTML = d.link + '<svg class="ico"><use href="#i-arrow"/></svg>';
+  }
+  document.querySelectorAll('.ptab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.ptab').forEach(function (x) { x.setAttribute('aria-selected', x === t); });
+      renderInside(t.dataset.p);
+    });
+  });
+  renderInside('flash');
+
+  // Mobile buy bar: show once the buy box scrolls away
+  var mbar = document.getElementById('mbar');
+  var buy = document.getElementById('buy');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      mbar.classList.toggle('show', !e[0].isIntersecting && e[0].boundingClientRect.top < 0);
+    }).observe(buy);
+  }
+})();
+</script>
+</body>
+</html>

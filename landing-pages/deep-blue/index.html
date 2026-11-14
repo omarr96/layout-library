@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Blue — Protect the Sea</title>
+<meta name="description" content="A dive through the ocean's layers, and what we can do to protect them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  // Swap any image that fails to load for a seeded placeholder photo
+  window.addEventListener('error', e => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && !img.dataset.fallback) {
+      img.dataset.fallback = '1';
+      img.src = `https://picsum.photos/seed/sea${(img.alt || 'x').length}/${img.getAttribute('width') || 800}/${img.getAttribute('height') || 600}`;
+    }
+  }, true);
+</script>
+<style>
+:root{
+  --surface:#7fd3e6; --shallow:#1d8fb5; --twilight:#0b3d63; --midnight:#061a33; --abyss:#020a16;
+  --foam:#eefbff; --text:#cfe9f3; --muted:#86a9bd; --coral:#ff7a5c; --glow:#5ff2e1;
+  --line:rgba(207,233,243,.16);
+  --serif:"Instrument Serif",Georgia,serif; --sans:"Outfit",system-ui,sans-serif;
+  --wrap:1120px; --gutter:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.65;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip;
+  /* the page itself is the water column: lighter at the top, darker as you scroll */
+  background:linear-gradient(180deg,var(--surface) 0,var(--shallow) 900px,var(--twilight) 2200px,var(--midnight) 3600px,var(--abyss) 100%);background-color:var(--abyss)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.02;margin:0;color:var(--foam);letter-spacing:-.01em}
+h1 i,h2 i{color:var(--glow)}
+p{margin:0}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--glow);display:inline-flex;align-items:center;gap:12px}
+.label::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor}
+
+/* ---------- Floating bubbles ---------- */
+.bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bubbles i{position:absolute;bottom:-20px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.5),transparent 60%);animation:rise linear infinite}
+@keyframes rise{to{transform:translate(var(--dx),-110vh)}}
+main,header,footer{position:relative;z-index:1}
+
+/* ---------- Depth gauge ---------- */
+.gauge{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.gauge-track{width:2px;height:220px;background:rgba(255,255,255,.18);border-radius:2px;position:relative}
+.gauge-fill{position:absolute;top:0;left:0;right:0;height:0;background:var(--glow);border-radius:2px;box-shadow:0 0 12px var(--glow)}
+.gauge output{font-family:var(--serif);font-size:30px;letter-spacing:0;text-transform:none;color:var(--foam);line-height:1;font-variant-numeric:tabular-nums}
+.gauge small{color:var(--muted)}
+
+/* ---------- Header ---------- */
+.header{padding:22px 0}
+.header .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-size:28px;color:#04314a;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{width:30px;height:30px}
+.nav{display:flex;gap:28px;font-size:15px;font-weight:400}
+.nav a{text-decoration:none;color:#04314a;opacity:.8}
+.nav a:hover{opacity:1}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none;transition:transform .25s,background .25s,box-shadow .25s}
+.pill-dark{background:#04314a;color:var(--foam)}
+.pill-dark:hover{transform:translateY(-2px)}
+.pill-glow{background:var(--glow);color:#03263b;box-shadow:0 0 30px -6px var(--glow)}
+.pill-glow:hover{transform:translateY(-2px);box-shadow:0 0 44px -4px var(--glow)}
+.pill-line{border:1px solid rgba(255,255,255,.4);color:var(--foam)}
+.pill-line:hover{background:rgba(255,255,255,.1)}
+
+/* ---------- Hero (surface) ---------- */
+.hero{text-align:center;padding:70px 0 0;color:#04314a}
+.hero .label{color:#04314a}
+.hero h1{font-size:clamp(58px,10vw,148px);color:#032a40;margin:22px 0 22px}
+.hero h1 i{color:#fff;text-shadow:0 2px 30px rgba(255,255,255,.5)}
+.hero p{font-size:19px;max-width:560px;margin:0 auto;color:#08405c;font-weight:400}
+.hero-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:34px}
+.waves{display:block;width:100%;height:120px;margin-top:70px}
+.waves use{animation:drift 9s ease-in-out infinite alternate}
+.waves use:nth-child(2){animation-duration:13s;animation-direction:alternate-reverse}
+.waves use:nth-child(3){animation-duration:7s}
+@keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(60px)}}
+
+/* ---------- Intro ---------- */
+.intro{padding:40px 0 120px}
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.intro h2{font-size:clamp(40px,5vw,64px);margin-top:18px}
+.intro p{margin-top:20px;color:#e3f5fb;font-size:18px}
+.intro figure{margin:0;position:relative}
+.intro figure img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:8px solid rgba(255,255,255,.12)}
+.intro figcaption{position:absolute;bottom:8%;left:-6%;background:rgba(3,38,59,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);padding:16px 20px;border-radius:18px;font-size:14px;max-width:240px}
+.intro figcaption b{display:block;font-family:var(--serif);font-size:34px;font-weight:400;color:var(--glow);line-height:1}
+
+/* ---------- Zones ---------- */
+.zone{padding:110px 0;border-top:1px solid var(--line)}
+.zone-head{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:50px}
+.depth{font-family:var(--serif);font-size:56px;line-height:1;color:var(--foam);white-space:nowrap}
+.depth small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.zone h2{font-size:clamp(40px,5vw,62px)}
+.zone-head p{color:var(--muted);margin-top:14px;max-width:560px}
+.creatures{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.creature{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:transform .35s,border-color .35s,background .35s}
+.creature:hover{transform:translateY(-6px);border-color:rgba(95,242,225,.45);background:rgba(255,255,255,.08)}
+.creature img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.creature div{padding:20px 22px 24px}
+.creature h3{font-size:28px}
+.creature p{font-size:15px;color:var(--muted);margin-top:6px}
+.badge{display:inline-block;font-size:11.5px;font-weight:500;letter-spacing:.06em;padding:4px 10px;border-radius:99px;margin-top:12px;border:1px solid var(--line);color:var(--text)}
+.badge.warn{border-color:rgba(255,122,92,.5);color:var(--coral)}
+.badge.ok{border-color:rgba(95,242,225,.45);color:var(--glow)}
+/* the midnight zone glows */
+.zone-dark .creature{background:rgba(95,242,225,.03)}
+.zone-dark .creature img{filter:brightness(.8) saturate(1.2)}
+.glow-dots{position:absolute;inset:0;pointer-events:none}
+.zone-dark{position:relative}
+.glow-dots i{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px 2px var(--glow);animation:blinkdot 3s ease-in-out infinite}
+@keyframes blinkdot{0%,100%{opacity:.1}50%{opacity:1}}
+
+/* ---------- Facts strip ---------- */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-block:1px solid var(--line);margin:0}
+.facts div{padding:40px 28px;border-left:1px solid var(--line)}
+.facts div:first-child{border-left:0}
+.facts dd{margin:0;font-family:var(--serif);font-size:56px;line-height:1;color:var(--foam)}
+.facts dt{font-size:14.5px;color:var(--muted);margin-top:10px}
+.facts div{display:flex;flex-direction:column-reverse;justify-content:flex-end}
+
+/* ---------- Help (pledge checklist) ---------- */
+.help{padding:120px 0}
+.help .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.help h2{font-size:clamp(40px,5vw,62px);margin-top:18px}
+.help .intro-text{color:var(--muted);margin-top:18px}
+.pledges{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.pledges label{display:flex;align-items:center;gap:18px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;cursor:pointer;transition:background .25s,border-color .25s}
+.pledges label:hover{background:rgba(255,255,255,.04)}
+.pledges input{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--muted);flex-shrink:0;display:grid;place-items:center;cursor:pointer;margin:0;transition:all .2s}
+.pledges input:checked{background:var(--glow);border-color:var(--glow)}
+.pledges input:checked::after{content:"";width:6px;height:11px;border:solid #03263b;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.pledges label:has(input:checked){border-color:rgba(95,242,225,.5);background:rgba(95,242,225,.06)}
+.pledges b{display:block;font-weight:500;color:var(--foam)}
+.pledges small{color:var(--muted);font-size:14px}
+.pledge-total{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:22px 24px;border-radius:18px;background:rgba(95,242,225,.08);border:1px solid rgba(95,242,225,.25)}
+.pledge-total output{font-family:var(--serif);font-size:30px;color:var(--glow)}
+
+/* ---------- CTA ---------- */
+.cta{text-align:center;padding:60px 0 140px}
+.cta blockquote{margin:0 auto;max-width:820px;font-family:var(--serif);font-size:clamp(30px,4.2vw,50px);line-height:1.2;color:var(--foam)}
+.cta blockquote footer{font-family:var(--sans);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:22px}
+.cta .hero-cta{margin-top:44px}
+
+/* ---------- Footer ---------- */
+.footer{border-top:1px solid var(--line);padding:36px 0 44px;font-size:14px;color:var(--muted)}
+.footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.footer nav{display:flex;gap:22px}
+.footer a{text-decoration:none}
+.footer a:hover{color:var(--foam)}
+
+/* ---------- Reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .rv.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.bubbles{display:none}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1260px){.gauge{display:none}}
+@media (max-width:900px){
+  .nav{display:none}
+  .gauge{right:12px}
+  .gauge-track{height:140px}
+  .gauge output{font-size:22px}
+  .intro .wrap,.help .wrap{grid-template-columns:1fr;gap:44px}
+  .intro figure{max-width:420px;margin:0 auto}
+  .zone-head{grid-template-columns:1fr;gap:18px}
+  .creatures{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(3){border-left:0}
+  .facts div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:600px){
+  :root{--gutter:20px}
+  body{font-size:16px}
+  .gauge{display:none}
+  .header .pill{padding:10px 16px;font-size:14px}
+  .hero{padding-top:40px}
+  .hero p{font-size:17px}
+  .waves{height:80px;margin-top:50px}
+  .intro{padding-bottom:80px}
+  .intro figcaption{left:0}
+  .zone{padding:80px 0}
+  .depth{font-size:48px}
+  .creatures{grid-template-columns:1fr}
+  .facts div{padding:28px 16px}
+  .facts dd{font-size:40px}
+  .help{padding:80px 0}
+  .pledges label{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles" aria-hidden="true"></div>
+
+<aside class="gauge" aria-hidden="true">
+  <small>Depth</small>
+  <output id="depth">0 m</output>
+  <div class="gauge-track"><div class="gauge-fill" id="gauge-fill"></div></div>
+</aside>
+
+<header class="header">
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#04314a"/><path d="M5 17c3-3 5-3 8 0s5 3 8 0 4-3 6-1" stroke="#5ff2e1" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      Deep Blue
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#sunlight">Sunlight</a>
+      <a href="#twilight">Twilight</a>
+      <a href="#midnight">Midnight</a>
+      <a href="#help">Take action</a>
+    </nav>
+    <a href="#help" class="pill pill-dark">Join the pledge</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Surface -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">A dive in four layers</span>
+      <h1>The ocean is<br><i>alive.</i></h1>
+      <p>It makes half the oxygen we breathe and is home to most life on Earth. Scroll down — we're going under.</p>
+      <div class="hero-cta">
+        <a href="#sunlight" class="pill pill-dark">Start the dive ↓</a>
+      </div>
+    </div>
+    <svg class="waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <defs><path id="wave" d="M-160 60c120-30 240-30 360 0s240 30 360 0 240-30 360 0 240 30 360 0 240-30 360 0 240 30 360 0v80H-160z"/></defs>
+      <use href="#wave" fill="rgba(255,255,255,.25)" y="-8"/>
+      <use href="#wave" fill="rgba(29,143,181,.45)" y="8"/>
+      <use href="#wave" fill="#2a9cc0" y="26"/>
+    </svg>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+    <div class="wrap">
+      <div class="rv">
+        <span class="label">Why it matters</span>
+        <h2>One connected <i>blue</i> world.</h2>
+        <p>From sunlit coral reefs to the pitch-black deep, every layer of the sea depends on the others. Plankton at the surface feed whales; falling "marine snow" feeds creatures that have never seen light.</p>
+        <p>When one layer suffers, the whole system feels it — and so do we.</p>
+      </div>
+      <figure class="rv">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&h=900&fit=crop" alt="Diver above a coral reef" width="900" height="900" loading="lazy">
+        <figcaption><b>80%</b>of the ocean has never been mapped, explored or even seen by people.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Sunlight zone -->
+  <section class="zone" id="sunlight" data-depth="0">
+    <div class="wrap">
+      <div class="zone-head rv">
+        <p class="depth">0–200<small>metres · Sunlight zone</small></p>
+        <div>
+          <h2>Where the light <i>lives.</i></h2>
+          <p>Only 1% of the ocean's water, yet home to 90% of known marine life. Coral reefs, kelp forests and seagrass meadows all thrive here.</p>
+        </div>
+      </div>
+      <div class="creatures">
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=700&h=525&fit=crop" alt="Sea turtle swimming" width="700" height="525" loading="lazy"><div><h3>Green sea turtle</h3><p>Grazes seagrass meadows, keeping them healthy enough to store carbon.</p><span class="badge warn">Endangered</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=700&h=525&fit=crop" alt="Colourful coral reef" width="700" height="525" loading="lazy"><div><h3>Coral reefs</h3><p>Cover under 1% of the seafloor but shelter a quarter of all fish species.</p><span class="badge warn">Bleaching risk</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b8?w=700&h=525&fit=crop" alt="Fish swimming in clear water" width="700" height="525" loading="lazy"><div><h3>Reef fish</h3><p>Parrotfish alone produce tonnes of the white sand on tropical beaches.</p><span class="badge ok">Recovering in protected areas</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Twilight zone -->
+  <section class="zone" id="twilight" data-depth="200">
+    <div class="wrap">
+      <div class="zone-head rv">
+        <p class="depth">200–1,000<small>metres · Twilight zone</small></p>
+        <div>
+          <h2>The great <i>nightly</i> migration.</h2>
+          <p>Every night, billions of animals rise from the twilight to feed near the surface, then sink back at dawn — the largest migration on the planet.</p>
+        </div>
+      </div>
+      <div class="creatures">
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?w=700&h=525&fit=crop" alt="Jellyfish glowing in dark water" width="700" height="525" loading="lazy"><div><h3>Jellyfish</h3><p>Drifting without a brain or heart for over 500 million years.</p><span class="badge">Thriving</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=700&h=525&fit=crop" alt="Deep blue water with sunbeams" width="700" height="525" loading="lazy"><div><h3>Lanternfish</h3><p>Possibly the most numerous vertebrate on Earth — and a key carbon carrier.</p><span class="badge warn">Targeted by new fisheries</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=700&h=525&fit=crop" alt="Ocean surface from below" width="700" height="525" loading="lazy"><div><h3>Sperm whale</h3><p>Dives past 1,000 m to hunt giant squid, holding its breath for 90 minutes.</p><span class="badge">Vulnerable</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facts -->
+  <section aria-label="Ocean facts">
+    <div class="wrap">
+      <dl class="facts rv">
+        <div><dt>of Earth's oxygen comes from the ocean</dt><dd>50%</dd></div>
+        <div><dt>of excess heat absorbed by the sea</dt><dd>90%</dd></div>
+        <div><dt>tonnes of plastic enter it every year</dt><dd>11M</dd></div>
+        <div><dt>of the ocean is fully protected today</dt><dd>3%</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Midnight zone -->
+  <section class="zone zone-dark" id="midnight" data-depth="1000">
+    <div class="glow-dots" id="glow-dots" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="zone-head rv">
+        <p class="depth">1,000 m+<small>metres · Midnight zone</small></p>
+        <div>
+          <h2>Light made by <i>life itself.</i></h2>
+          <p>No sunlight reaches this far. Here, three out of four animals make their own light — to hunt, hide, or find a mate in the dark.</p>
+        </div>
+      </div>
+      <div class="creatures">
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?w=700&h=525&fit=crop&sat=-40" alt="Glowing jelly in darkness" width="700" height="525" loading="lazy"><div><h3>Anglerfish</h3><p>Lures prey with a glowing fishing rod grown from its own head.</p><span class="badge">Rarely seen</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=700&h=525&fit=crop&sat=-40" alt="Dark deep water" width="700" height="525" loading="lazy"><div><h3>Giant squid</h3><p>Eyes the size of dinner plates — the largest in the animal kingdom.</p><span class="badge">Unknown population</span></div></article>
+        <article class="creature rv"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=700&h=525&fit=crop&sat=-40" alt="Deep sea floor" width="700" height="525" loading="lazy"><div><h3>Hydrothermal vents</h3><p>Life powered by chemicals, not sunlight — and threatened by deep-sea mining.</p><span class="badge warn">Mining threat</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Take action -->
+  <section class="help" id="help">
+    <div class="wrap">
+      <div class="rv">
+        <span class="label">Take action</span>
+        <h2>Small promises, <i>big</i> ocean.</h2>
+        <p class="intro-text">Tick the pledges you're ready to make. Each one is something real people can do this week — no boat required.</p>
+      </div>
+      <form class="rv" id="pledge-form" onsubmit="return false">
+        <ul class="pledges">
+          <li><label><input type="checkbox" data-kg="12"><span><b>Refuse single-use plastic</b><small>Bring your own bottle, bag and cup.</small></span></label></li>
+          <li><label><input type="checkbox" data-kg="0"><span><b>Choose sustainable seafood</b><small>Look for certified, local or plant-based options.</small></span></label></li>
+          <li><label><input type="checkbox" data-kg="5"><span><b>Join a beach or river clean-up</b><small>Most ocean plastic starts its journey inland.</small></span></label></li>
+          <li><label><input type="checkbox" data-kg="0"><span><b>Use reef-safe sunscreen</b><small>Skip oxybenzone and octinoxate.</small></span></label></li>
+          <li><label><input type="checkbox" data-kg="0"><span><b>Support marine protected areas</b><small>Sign the call for 30% protection by 2030.</small></span></label></li>
+        </ul>
+        <div class="pledge-total" aria-live="polite">
+          <span>You've pledged <output id="count">0 of 5</output></span>
+          <button type="button" class="pill pill-glow" id="pledge-btn" style="border:0;cursor:pointer;font-family:inherit">Make it official</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Closing quote -->
+  <section class="cta">
+    <div class="wrap rv">
+      <blockquote>
+        <p>"No water, no life. No blue, no green."</p>
+        <footer>— Dr. Sylvia Earle, oceanographer</footer>
+      </blockquote>
+      <div class="hero-cta">
+        <a href="#top" class="pill pill-line">Back to the surface ↑</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 Deep Blue · A project for healthier seas</span>
+    <nav aria-label="Footer"><a href="#sunlight">Zones</a><a href="#help">Pledge</a><a href="mailto:hello@deepblue.example">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Bubbles */
+  if (!reduce) {
+    const box = document.getElementById('bubbles');
+    for (let i = 0; i < 18; i++) {
+      const b = document.createElement('i'), s = 4 + Math.random() * 14;
+      b.style.cssText = `left:${Math.random() * 100}%;width:${s}px;height:${s}px;--dx:${(Math.random() - .5) * 80}px;animation-duration:${10 + Math.random() * 14}s;animation-delay:${-Math.random() * 20}s;opacity:${.3 + Math.random() * .5}`;
+      box.appendChild(b);
+    }
+  }
+
+  /* Bioluminescent dots in the midnight zone */
+  const dots = document.getElementById('glow-dots');
+  for (let i = 0; i < 28; i++) {
+    const d = document.createElement('i');
+    d.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${-Math.random() * 3}s`;
+    dots.appendChild(d);
+  }
+
+  /* Depth gauge: map scroll position to 0–4,000 m */
+  const out = document.getElementById('depth'), fill = document.getElementById('gauge-fill');
+  const onScroll = () => {
+    const p = Math.min(scrollY / (document.documentElement.scrollHeight - innerHeight), 1);
+    const metres = Math.round(Math.pow(p, 1.6) * 4000);
+    out.textContent = metres.toLocaleString('en-US') + ' m';
+    fill.style.height = p * 100 + '%';
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 100 + 'ms'; io.observe(el); });
+
+  /* Pledge counter */
+  const boxes = [...document.querySelectorAll('.pledges input')], count = document.getElementById('count');
+  const btn = document.getElementById('pledge-btn');
+  const update = () => {
+    const n = boxes.filter(b => b.checked).length;
+    count.value = `${n} of ${boxes.length}`;
+    btn.textContent = n === boxes.length ? 'Ocean hero 🌊' : 'Make it official';
+  };
+  boxes.forEach(b => b.addEventListener('change', update));
+  btn.addEventListener('click', () => {
+    const n = boxes.filter(b => b.checked).length;
+    if (!n) { boxes[0].focus(); count.value = 'nothing yet — pick at least one ↑'; return; }
+    count.value = `${n} of ${boxes.length} — thank you, the sea noticed 🐢`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>

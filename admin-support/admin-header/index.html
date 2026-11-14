@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6f8; --surface:#fff; --surface-2:#f9fafb; --border:#e6e8ec; --border-strong:#d5d9e0;
+  --text:#111827; --text-2:#4b5563; --text-3:#8a93a3;
+  --primary:#2563eb; --primary-soft:#eef3ff;
+  --amber:#d97706; --amber-soft:#fff7ed;
+  --red:#dc2626; --green:#16a34a;
+  --gray-soft:#f1f3f6;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:13px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+svg{flex-shrink:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+/* ---------- Row 1: app bar ---------- */
+.appbar{background:var(--surface);border-bottom:1px solid var(--border);position:relative;z-index:30}
+.appbar .wrap{height:56px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;white-space:nowrap;text-decoration:none;color:inherit}
+.brand-logo{width:30px;height:30px;border-radius:8px;background:var(--primary);display:grid;place-items:center;color:#fff}
+.brand span{color:var(--text-3);font-weight:500}
+
+/* primary: what you work on */
+.mainnav{display:flex;gap:2px;margin-left:8px}
+.mainnav a{display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:8px;color:var(--text-2);text-decoration:none;font-weight:500;white-space:nowrap}
+.mainnav a:hover{background:var(--gray-soft);color:var(--text)}
+.mainnav a.active{background:var(--primary-soft);color:var(--primary)}
+.mainnav .c{min-width:18px;height:18px;padding:0 5px;border-radius:999px;font-size:11px;font-weight:600;display:inline-grid;place-items:center;background:var(--gray-soft);color:var(--text-2)}
+.mainnav a.active .c{background:var(--primary);color:#fff}
+.live{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+
+/* secondary: admin pages (your Users / Settings menu) */
+.right{margin-left:auto;display:flex;align-items:center;gap:4px}
+.subnav{display:flex;gap:2px;padding-right:8px;margin-right:4px;border-right:1px solid var(--border)}
+.subnav a{display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:8px;color:var(--text-2);text-decoration:none;font-weight:500;white-space:nowrap}
+.subnav a:hover{background:var(--gray-soft);color:var(--text)}
+.subnav svg{color:var(--text-3)}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border:0;background:transparent;border-radius:8px;color:var(--text-2);position:relative}
+.icon-btn:hover,.icon-btn[aria-expanded="true"]{background:var(--gray-soft)}
+.icon-btn .num{position:absolute;top:2px;right:0;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--red);color:#fff;font-size:10px;font-weight:600;display:grid;place-items:center;border:2px solid var(--surface)}
+.me{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:600;border:0;margin-left:4px}
+.burger{display:none}
+
+/* hamburger dropdown (tablet / mobile) */
+.menu{position:absolute;right:16px;top:52px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(16,24,40,.14);padding:6px;display:none}
+.menu.open{display:block}
+.menu a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;color:var(--text);text-decoration:none;font-weight:500}
+.menu a:hover{background:var(--gray-soft)}
+.menu a svg{color:var(--text-3)}
+.menu a.active{background:var(--primary-soft);color:var(--primary)}
+.menu a.active .c{background:var(--primary);color:#fff}
+.menu a .c{margin-left:auto;min-width:18px;height:18px;padding:0 5px;border-radius:999px;font-size:11px;font-weight:600;display:inline-grid;place-items:center;background:var(--gray-soft);color:var(--text-2)}
+.menu .label{font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;padding:8px 10px 4px}
+.menu hr{border:0;border-top:1px solid var(--border);margin:6px 0}
+.menu .only-mobile{display:none}
+
+/* ---------- Row 2: product scope ---------- */
+.workbar{background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow);position:sticky;top:0;z-index:20}
+.workbar .wrap{display:flex;align-items:center;gap:10px;height:50px}
+.scope-label{color:var(--text-3);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.products{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.products::-webkit-scrollbar{display:none}
+.products.fade{mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+.pill{display:flex;align-items:center;gap:7px;height:32px;padding:0 9px 0 6px;border-radius:8px;border:1px solid transparent;background:none;color:var(--text-2);font-weight:500;white-space:nowrap;transition:background .12s}
+.pill:hover{background:var(--gray-soft);color:var(--text)}
+.pill.active{background:var(--primary-soft);color:var(--primary);border-color:#d7e3ff}
+.pill .logo{width:20px;height:20px;border-radius:5px;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700}
+.pill .logo.neutral{background:var(--gray-soft);color:var(--text-2)}
+.pill.active .logo.neutral{background:#fff;color:var(--primary)}
+.count{min-width:20px;height:18px;padding:0 6px;border-radius:999px;font-size:11px;font-weight:600;display:inline-grid;place-items:center;background:var(--amber-soft);color:var(--amber)}
+.count.zero{display:none}
+.pill.active .count{background:var(--primary);color:#fff}
+.divider{width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 4px}
+
+/* ---------- Demo content ---------- */
+.page{padding-top:24px;padding-bottom:48px}
+.crumb{display:flex;align-items:center;gap:6px;color:var(--text-3);margin-bottom:6px;font-weight:500}
+.crumb b{color:var(--text-2);font-weight:500}
+h1{font-size:20px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--text-3);margin:0 0 20px}
+.placeholder{border:1px dashed var(--border-strong);border-radius:12px;height:260px;display:grid;place-items:center;color:var(--text-3);background:var(--surface)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1000px){
+  .subnav{display:none}           /* Users / Settings move into the hamburger */
+  .burger{display:grid}
+  .scope-label{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .page{padding-top:20px}
+  .brand span{display:none}
+  .mainnav{display:none}          /* sections move into the hamburger too */
+  .menu{left:16px;right:16px;width:auto}
+  .menu .only-mobile{display:block}
+  .menu a.only-mobile{display:flex}
+  .products{margin:0 -16px;padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <div class="wrap">
+    <a href="#" class="brand">
+      <span class="brand-logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      WPRio <span>Support</span>
+    </a>
+
+    <nav class="mainnav" id="sections" aria-label="Section"></nav>
+
+    <div class="right">
+      <nav class="subnav" aria-label="Admin">
+        <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>Users</a>
+        <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+      </nav>
+      <button class="icon-btn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="num">24</span></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <button class="me" title="Omar F.">OF</button>
+    </div>
+  </div>
+
+  <div class="menu" id="menu">
+    <div class="label only-mobile">Workspace</div>
+    <div id="menuSections" class="only-mobile"></div>
+    <hr class="only-mobile">
+    <div class="label">Admin</div>
+    <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>Users</a>
+    <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Settings</a>
+  </div>
+</header>
+
+<div class="workbar">
+  <div class="wrap">
+    <span class="scope-label">Product</span>
+    <div class="products" id="products" role="tablist" aria-label="Product"></div>
+  </div>
+</div>
+
+<main class="wrap page">
+  <div class="crumb" id="crumb"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="placeholder">Page content (tickets list / live chat) goes here</div>
+</main>
+
+<script>
+// waiting = tickets awaiting an agent reply, chats = visitors waiting in live chat
+const PRODUCTS = [
+  { id: "diviflash",  name: "DiviFlash",  color: "#f59e0b", waiting: 1, chats: 0 },
+  { id: "divigear",   name: "DiviGear",   color: "#0ea5e9", waiting: 3, chats: 1 },
+  { id: "divimerc",   name: "DiviMerc",   color: "#7c3aed", waiting: 0, chats: 2 },
+  { id: "divimotion", name: "DiviMotion", color: "#ec4899", waiting: 1, chats: 0 },
+  { id: "rioforms",   name: "RioForms",   color: "#10b981", waiting: 0, chats: 0 },
+  { id: "riovizual",  name: "RioVizual",  color: "#ef4444", waiting: 0, chats: 0 },
+];
+const INBOX = { id: "inbox", name: "Support Inbox", waiting: 2, chats: 0 };   // general requests, not tied to a product
+const state = { product: "all", section: "tickets" };
+const $ = s => document.querySelector(s);
+const sum = k => [...PRODUCTS, INBOX].reduce((a, p) => a + p[k], 0);
+const current = () => state.product === "all" ? { name: "All products", waiting: sum("waiting"), chats: sum("chats") }
+  : state.product === "inbox" ? INBOX : PRODUCTS.find(p => p.id === state.product);
+const ICON_ALL = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>';
+const ICON_INBOX = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1z"/></svg>';
+
+function pill(id, name, logo, n) {
+  const active = state.product === id;
+  const what = state.section === "tickets" ? "tickets awaiting reply" : "chats waiting";
+  return `<button class="pill ${active ? "active" : ""}" data-id="${id}" role="tab" aria-selected="${active}" title="${n} ${what}">
+    ${logo}${name}<span class="count ${n ? "" : "zero"}">${n}</span></button>`;
+}
+
+function render() {
+  const k = state.section === "tickets" ? "waiting" : "chats";
+  const c = current();
+
+  const links = `
+    <a href="#" class="${state.section === "tickets" ? "active" : ""}" data-section="tickets">Support Tickets <span class="c">${c.waiting}</span></a>
+    <a href="#" class="${state.section === "chat" ? "active" : ""}" data-section="chat">${c.chats ? '<span class="live"></span>' : ""}Live Chat <span class="c">${c.chats}</span></a>`;
+  $("#sections").innerHTML = links;
+  $("#menuSections").innerHTML = links;
+
+  $("#products").innerHTML =
+    pill("all", "All products", `<span class="logo neutral">${ICON_ALL}</span>`, sum(k)) + '<span class="divider"></span>' +
+    PRODUCTS.map(p => pill(p.id, p.name, `<span class="logo" style="background:${p.color}">${p.name.replace(/^(Divi|Rio)/, "")[0]}</span>`, p[k])).join("") +
+    '<span class="divider"></span>' + pill("inbox", INBOX.name, `<span class="logo neutral">${ICON_INBOX}</span>`, INBOX[k]);
+  const pr = $("#products");
+  pr.classList.toggle("fade", pr.scrollLeft + pr.clientWidth < pr.scrollWidth - 2);
+
+  const sec = state.section === "tickets" ? "Support Tickets" : "Live Chat";
+  $("#crumb").innerHTML = `<b>${c.name}</b><span>/</span><span>${sec}</span>`;
+  $("#title").textContent = sec;
+  $("#sub").textContent = state.section === "tickets"
+    ? (c.waiting ? `${c.waiting} ticket${c.waiting === 1 ? "" : "s"} awaiting your reply.` : "All caught up — no tickets awaiting reply.")
+    : (c.chats ? `${c.chats} visitor${c.chats === 1 ? " is" : "s are"} waiting in chat.` : "No one is waiting in chat right now.");
+}
+
+const setMenu = open => { $("#menu").classList.toggle("open", open); $("#burger").setAttribute("aria-expanded", open); };
+$("#burger").onclick = e => { e.stopPropagation(); setMenu(!$("#menu").classList.contains("open")); };
+document.addEventListener("click", e => { if (!e.target.closest("#menu")) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+document.addEventListener("click", e => {
+  const s = e.target.closest("[data-section]");
+  if (s) { e.preventDefault(); state.section = s.dataset.section; setMenu(false); render(); }
+});
+$("#products").onclick = e => { const b = e.target.closest("[data-id]"); if (b) { state.product = b.dataset.id; render(); $(".pill.active").scrollIntoView({ inline: "nearest", block: "nearest" }); } };
+$("#products").onscroll = e => { const p = e.target; p.classList.toggle("fade", p.scrollLeft + p.clientWidth < p.scrollWidth - 2); };
+addEventListener("resize", render);
+render();
+</script>
+</body>
+</html>

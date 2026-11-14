@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.dm-co {
+  --ink: #111;
+  --body: #3a3a3a;
+  --muted: #7a7a7a;
+  --line: #e6e6e6;
+  --field: #dcdcdc;
+  --soft: #f5f5f5;
+  --req: #d0021b;
+  --ok: #22b35e;
+
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  color: var(--body);
+  font: 400 15px/1.55 "Instrument Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.dm-co *, .dm-co *::before, .dm-co *::after { box-sizing: border-box; }
+.dm-co h1, .dm-co h2 { margin: 0; color: var(--ink); font-weight: 600; letter-spacing: -.01em; }
+:where(.dm-co) p { margin: 0; }
+.dm-co svg { flex: none; }
+
+/* Page head */
+.dm-co__head { text-align: center; margin-bottom: 48px; }
+.dm-co__crumbs { font-size: 14px; color: var(--body); margin-bottom: 8px; }
+.dm-co__crumbs a { color: inherit; text-decoration: none; }
+.dm-co__crumbs a:hover { color: var(--ink); }
+.dm-co__head h1 { font-size: 40px; font-weight: 700; line-height: 1.1; margin-bottom: 14px; }
+.dm-co__head p { font-size: 15px; }
+
+.dm-co__layout { display: grid; grid-template-columns: minmax(0, 1fr) 456px; gap: 40px; align-items: start; }
+
+/* Left: section cards */
+.dm-co__form { display: grid; gap: 16px; }
+.dm-co__sec { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px 28px; }
+.dm-co__sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #f0f0f0; }
+.dm-co__num { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 13px; font-weight: 600; display: grid; place-items: center; }
+.dm-co__sec-head h2 { font-size: 18px; }
+.dm-co__sec-head .hint { margin-left: auto; font-size: 13px; color: var(--muted); }
+.dm-co__sec-head .hint a { color: var(--ink); font-weight: 500; }
+
+.dm-co__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 16px; }
+.dm-co__full { grid-column: 1 / -1; }
+
+.dm-co label { display: block; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 7px; }
+.dm-co label .req { color: var(--req); margin-left: 2px; }
+.dm-co label .opt { color: var(--muted); font-weight: 400; }
+
+.dm-co__input { position: relative; }
+.dm-co__input > svg { position: absolute; left: 15px; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); color: #a3a3a3; pointer-events: none; transition: color .15s; }
+.dm-co input, .dm-co select, .dm-co textarea { width: 100%; height: 52px; padding: 0 16px; border: 1px solid var(--field); border-radius: 12px; background: #fff; font: 400 15px "Instrument Sans", sans-serif; color: var(--ink); transition: border-color .15s, box-shadow .15s, background .15s; }
+.dm-co__input > svg ~ input { padding-left: 44px; }
+.dm-co input::placeholder, .dm-co textarea::placeholder { color: #a3a3a3; }
+.dm-co input:hover, .dm-co select:hover, .dm-co textarea:hover { border-color: #c4c4c4; }
+.dm-co input:focus, .dm-co select:focus, .dm-co textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(17, 17, 17, .07); }
+.dm-co__input:focus-within > svg { color: var(--ink); }
+.dm-co select { appearance: none; padding-right: 44px; cursor: pointer; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 18px center; }
+.dm-co textarea { height: 112px; padding: 14px 16px; resize: vertical; line-height: 1.5; }
+.dm-co__stack { display: grid; gap: 10px; }
+.dm-co__note { font-size: 13px; color: var(--muted); margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+.dm-co__note svg { width: 14px; height: 14px; }
+
+/* Payment options */
+.dm-co__pay { display: grid; gap: 10px; }
+.dm-co__opt { border: 1px solid var(--field); border-radius: 14px; background: #fff; transition: border-color .15s, background .15s, box-shadow .15s; }
+.dm-co__opt:hover { border-color: #c4c4c4; }
+.dm-co__opt > label { display: flex; align-items: center; gap: 14px; margin: 0; padding: 16px 18px; cursor: pointer; font-size: 15px; font-weight: 500; }
+.dm-co__opt input[type="radio"] { appearance: none; width: 20px; height: 20px; padding: 0; margin: 0; border: 1.5px solid #c4c4c4; border-radius: 50%; flex: none; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.dm-co__opt input[type="radio"]:checked { border-color: var(--ink); box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 10px var(--ink); }
+.dm-co__opt input[type="radio"]:focus-visible { box-shadow: 0 0 0 4px rgba(17, 17, 17, .1); }
+.dm-co__opt .ico { margin-left: auto; width: 38px; height: 38px; border-radius: 10px; background: var(--soft); color: var(--ink); display: grid; place-items: center; transition: background .15s, color .15s; }
+.dm-co__opt .ico svg { width: 19px; height: 19px; }
+.dm-co__opt .desc { margin: 0 18px 16px 52px; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 14px; color: var(--body); }
+.dm-co__opt:has(input:checked) { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); background: #fcfcfc; }
+.dm-co__opt:has(input:checked) .ico { background: var(--ink); color: #fff; }
+.dm-co__secure { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+.dm-co__secure svg { width: 15px; height: 15px; color: var(--ok); }
+
+/* Right: summary (kept as is) */
+.dm-co__summary { background: var(--soft); border-radius: 24px; padding: 36px; position: sticky; top: 24px; }
+.dm-co__summary h2 { font-size: 22px; margin-bottom: 24px; }
+.dm-co__item { display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: center; margin-bottom: 28px; }
+.dm-co__thumb { position: relative; width: 72px; height: 72px; border-radius: 12px; background: #fff; }
+.dm-co__thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block; }
+.dm-co__thumb b { position: absolute; top: -7px; right: -7px; width: 22px; height: 22px; border-radius: 50%; background: #6b6b6b; color: #fff; font-size: 12px; font-weight: 600; display: grid; place-items: center; border: 2px solid var(--soft); }
+.dm-co__item .name { display: block; font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.dm-co__item .meta { font-size: 13px; color: var(--muted); }
+.dm-co__item .meta b { font-weight: 500; color: var(--ink); }
+.dm-co__item .price { font-size: 16px; font-weight: 500; color: var(--ink); }
+.dm-co__coupon { display: flex; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid #e3e3e3; }
+.dm-co__coupon input { height: 50px; border-radius: 999px; padding: 0 22px; border-color: #e0e0e0; }
+.dm-co__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 28px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font: 500 16px "Instrument Sans", sans-serif; cursor: pointer; transition: background .15s, transform .15s; }
+.dm-co__btn:hover { background: #2a2a2a; }
+.dm-co__rows { margin: 0; }
+.dm-co__rows div { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #e3e3e3; font-size: 15px; }
+.dm-co__rows dt { color: var(--muted); }
+.dm-co__rows dd { margin: 0; color: var(--ink); font-weight: 500; }
+.dm-co__total { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 0 18px; }
+.dm-co__total span { font-size: 17px; font-weight: 600; color: var(--ink); }
+.dm-co__total strong { font-size: 26px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+.dm-co__privacy { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+.dm-co__privacy a { color: var(--ink); font-weight: 500; }
+.dm-co__summary .dm-co__btn--block { width: 100%; height: 54px; }
+
+@media (max-width: 1024px) {
+  .dm-co__layout { grid-template-columns: 1fr; gap: 24px; }
+  .dm-co__summary { position: static; }
+}
+@media (max-width: 600px) {
+  .dm-co { padding: 28px 16px 56px; }
+  .dm-co__head { margin-bottom: 28px; }
+  .dm-co__head h1 { font-size: 32px; }
+  .dm-co__sec { padding: 18px 16px 20px; border-radius: 16px; }
+  .dm-co__sec-head { margin-bottom: 16px; padding-bottom: 14px; }
+  .dm-co__sec-head h2 { font-size: 17px; }
+  .dm-co__sec-head .hint { display: none; }
+  .dm-co__grid { grid-template-columns: 1fr; gap: 14px; }
+  .dm-co input, .dm-co select { height: 50px; }
+  .dm-co__opt > label { padding: 14px; gap: 12px; }
+  .dm-co__opt .ico { width: 34px; height: 34px; }
+  .dm-co__opt .desc { margin: 0 14px 14px; }
+  .dm-co__summary { padding: 24px 18px; border-radius: 20px; }
+  .dm-co__summary h2 { font-size: 20px; }
+  .dm-co__item { grid-template-columns: 60px 1fr; gap: 4px 14px; }
+  .dm-co__thumb { width: 60px; height: 60px; grid-row: span 2; }
+  .dm-co__item .price { grid-column: 2; }
+  .dm-co__btn { padding: 0 20px; }
+  .dm-co__total strong { font-size: 24px; }
+}
+</style>
+</head>
+<body style="margin:0;background:#fff">
+
+<div class="dm-co">
+  <div class="dm-co__head">
+    <p class="dm-co__crumbs"><a href="#">Home</a> . Checkout</p>
+    <h1>Checkout</h1>
+    <p>Almost there! Add your details below to complete your order.</p>
+  </div>
+
+  <form class="dm-co__layout" onsubmit="event.preventDefault()">
+    <div class="dm-co__form">
+
+      <!-- Contact -->
+      <section class="dm-co__sec">
+        <div class="dm-co__sec-head"><span class="dm-co__num">1</span><h2>Contact information</h2></div>
+        <label for="billing_email">Email address<span class="req">*</span></label>
+        <div class="dm-co__input">
+          <svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5L12 13l8.5-6.5"/></g></svg>
+          <input id="billing_email" type="email" value="omar@echoasoft.com" autocomplete="email">
+        </div>
+      </section>
+
+      <!-- Billing -->
+      <section class="dm-co__sec">
+        <div class="dm-co__sec-head"><span class="dm-co__num">2</span><h2>Billing details</h2></div>
+        <div class="dm-co__grid">
+          <div>
+            <label for="billing_first_name">First name<span class="req">*</span></label>
+            <input id="billing_first_name" value="Omar" autocomplete="given-name">
+          </div>
+          <div>
+            <label for="billing_last_name">Last name<span class="req">*</span></label>
+            <input id="billing_last_name" value="Faruk" autocomplete="family-name">
+          </div>
+          <div class="dm-co__full">
+            <label for="billing_country">Country / Region<span class="req">*</span></label>
+            <select id="billing_country"><option selected>Bangladesh</option><option>India</option><option>United States (US)</option></select>
+          </div>
+          <div class="dm-co__full">
+            <label for="billing_address_1">Street address<span class="req">*</span></label>
+            <div class="dm-co__stack">
+              <input id="billing_address_1" value="Mirpur 11" placeholder="House number and street name" autocomplete="address-line1">
+              <input id="billing_address_2" placeholder="Apartment, suite, unit, etc. (optional)" aria-label="Apartment, suite, unit, etc. (optional)" autocomplete="address-line2">
+            </div>
+          </div>
+          <div>
+            <label for="billing_city">Town / City<span class="req">*</span></label>
+            <input id="billing_city" value="Dhaka" autocomplete="address-level2">
+          </div>
+          <div>
+            <label for="billing_state">State / County<span class="req">*</span></label>
+            <select id="billing_state"><option>Dhaka</option><option selected>Bandarban</option><option>Chattogram</option><option>Sylhet</option></select>
+          </div>
+          <div>
+            <label for="billing_postcode">Postcode / ZIP <span class="opt">(optional)</span></label>
+            <input id="billing_postcode" autocomplete="postal-code">
+          </div>
+          <div>
+            <label for="billing_phone">Phone <span class="opt">(optional)</span></label>
+            <div class="dm-co__input">
+              <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 006 6L16 13l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>
+              <input id="billing_phone" type="tel" value="+8801773357272" autocomplete="tel">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment -->
+      <section class="dm-co__sec">
+        <div class="dm-co__sec-head"><span class="dm-co__num">3</span><h2>Payment</h2></div>
+        <div class="dm-co__pay">
+          <div class="dm-co__opt">
+            <label><input type="radio" name="payment_method" value="bacs">Direct bank transfer
+              <span class="ico"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></g></svg></span>
+            </label>
+            <p class="desc" hidden>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+          </div>
+          <div class="dm-co__opt">
+            <label><input type="radio" name="payment_method" value="cheque">Check payments
+              <span class="ico"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 14h5M15 11h3"/></g></svg></span>
+            </label>
+            <p class="desc" hidden>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+          </div>
+          <div class="dm-co__opt">
+            <label><input type="radio" name="payment_method" value="cod" checked>Cash on delivery
+              <span class="ico"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5" stroke-linecap="round"/></g></svg></span>
+            </label>
+            <p class="desc">Pay with cash upon delivery.</p>
+          </div>
+        </div>
+        <p class="dm-co__secure"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 018 0v3"/></g></svg>All transactions are secure and encrypted.</p>
+      </section>
+
+      <!-- Additional -->
+      <section class="dm-co__sec">
+        <div class="dm-co__sec-head"><span class="dm-co__num">4</span><h2>Additional information</h2></div>
+        <label for="order_comments">Order Notes <span class="opt">(optional)</span></label>
+        <textarea id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+      </section>
+    </div>
+
+    <!-- Summary -->
+    <aside class="dm-co__summary">
+      <h2>Order Summary</h2>
+      <div class="dm-co__item">
+        <span class="dm-co__thumb"><img src="https://demo.divimerc.com/fashion/wp-content/uploads/sites/2/2026/08/Campus-Fleece-Full-Zip-Hoodie1.jpg" alt=""><b>1</b></span>
+        <div><span class="name">Campus Fleece Full-Zip Hoodie</span><span class="meta">Selected Size: <b>Medium</b> · Color: <b>Graphic Green</b></span></div>
+        <span class="price">$359.55</span>
+      </div>
+      <div class="dm-co__coupon">
+        <input placeholder="Coupon code" aria-label="Coupon code">
+        <button type="button" class="dm-co__btn">Apply</button>
+      </div>
+      <dl class="dm-co__rows">
+        <div><dt>Subtotal (1 item)</dt><dd>$359.55</dd></div>
+      </dl>
+      <div class="dm-co__total"><span>Total</span><strong>$359.55</strong></div>
+      <p class="dm-co__privacy">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#">privacy policy</a>.</p>
+      <button type="submit" class="dm-co__btn dm-co__btn--block">Place order</button>
+    </aside>
+  </form>
+</div>
+
+<script>
+document.querySelectorAll('.dm-co input[name="payment_method"]').forEach(function (r) {
+  r.addEventListener('change', function () {
+    document.querySelectorAll('.dm-co__opt').forEach(function (o) {
+      o.querySelector('.desc').hidden = !o.querySelector('input').checked;
+    });
+  });
+});
+</script>
+</body>
+</html>

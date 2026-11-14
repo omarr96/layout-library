@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Received</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/checkout.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 002 1.6h8.2a2 2 0 002-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></g></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 9h4l3 3.5V16h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></g></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17v.1"/></g></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v7H6z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></g></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="https://demo.divimerc.com/wp-content/uploads/sites/2/2026/08/divimerc-logo.png" alt="DiviMerc"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#">Explore Products</a>
+      <a href="#">Product Template</a>
+      <a href="#">Shopping Cart</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn-buy" href="#">Buy DiviMerc!</a>
+      <span class="mc-toggle"><svg class="ico"><use href="#i-cart"/></svg>Cart</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap woocommerce-order">
+  <div class="ty-hero">
+    <div class="ty-check" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <p class="crumbs"><a href="#">Home</a> . <a href="#">Cart</a> . Order received</p>
+    <h1>Thank you for your order!</h1>
+    <p class="woocommerce-thankyou-order-received">Your order has been received and is being prepared. We've sent a confirmation to <b>emma.carter@example.com</b>.</p>
+    <div class="share-row">
+      <button type="button" id="copy-order"><svg class="ico"><use href="#i-copy"/></svg><span>Copy order number</span></button>
+      <button type="button" onclick="window.print()"><svg class="ico"><use href="#i-print"/></svg>Print receipt</button>
+    </div>
+  </div>
+
+  <!-- WooCommerce order overview -->
+  <ul class="overview woocommerce-order-overview">
+    <li><span>Order number</span><strong id="order-no">#DM-10482</strong></li>
+    <li><span>Date</span><strong>October 27, 2026</strong></li>
+    <li><span>Email</span><strong>emma.carter@example.com</strong></li>
+    <li><span>Total</span><strong>$359.55</strong></li>
+    <li><span>Payment method</span><strong>Visa •••• 4242</strong></li>
+  </ul>
+
+  <div class="layout">
+    <div>
+      <section class="ty-section" aria-labelledby="h-status">
+        <h2 id="h-status">Order status</h2>
+        <ol class="timeline">
+          <li class="done"><span class="dot"><svg class="ico"><use href="#i-check"/></svg></span><strong>Order confirmed</strong><small>Oct 27, 10:24 AM</small></li>
+          <li class="current"><span class="dot"><svg class="ico"><use href="#i-box"/></svg></span><strong>Preparing</strong><small>Packing your items</small></li>
+          <li><span class="dot"><svg class="ico"><use href="#i-truck"/></svg></span><strong>Shipped</strong><small>Tracking link by email</small></li>
+          <li><span class="dot"><svg class="ico"><use href="#i-home"/></svg></span><strong>Delivered</strong><small>Est. Oct 30 – Nov 1</small></li>
+        </ol>
+      </section>
+
+      <section class="ty-section" aria-labelledby="h-details">
+        <h2 id="h-details">Order details</h2>
+        <table class="od-table woocommerce-table--order-details">
+          <thead><tr><th scope="col">Product</th><th scope="col">Quantity</th><th scope="col">Subtotal</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="od-prod">
+                  <img src="https://demo.divimerc.com/fashion/wp-content/uploads/sites/2/2026/08/Campus-Fleece-Full-Zip-Hoodie1.jpg" alt="">
+                  <div>
+                    <span class="badge-sale">SALE</span>
+                    <span class="name">Campus Fleece Full-Zip Hoodie</span>
+                    <span class="meta">Size: <b>Medium</b> Color: <b>Graphic Green</b></span>
+                    <span class="od-mobile-price">1 × $359.55</span>
+                  </div>
+                </div>
+              </td>
+              <td class="amt" style="font-weight:500">× 1</td>
+              <td class="amt"><del>$399.50</del>$359.55</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="ty-section" aria-labelledby="h-addr" style="margin-bottom:0">
+        <h2 id="h-addr">Addresses</h2>
+        <div class="addr-grid">
+          <div class="addr woocommerce-column--billing-address">
+            <h3><svg class="ico"><use href="#i-receipt"/></svg>Billing address</h3>
+            <address>Emma Carter<br>2450 Mission Street, Apt 4B<br>San Francisco, CA 94110<br>United States (US)</address>
+            <div class="contact">+1 (415) 555-0132<br>emma.carter@example.com</div>
+          </div>
+          <div class="addr woocommerce-column--shipping-address">
+            <h3><svg class="ico"><use href="#i-pin"/></svg>Shipping address</h3>
+            <address>Emma Carter<br>2450 Mission Street, Apt 4B<br>San Francisco, CA 94110<br>United States (US)</address>
+            <div class="contact">Standard delivery · 3–5 working days</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="summary" aria-labelledby="h-summary">
+      <h2 id="h-summary">Order Summary</h2>
+
+      <dl class="rows" style="padding-top:0">
+        <div><dt>Subtotal <span>(1 item)</span></dt><dd>$359.55</dd></div>
+        <div class="discount"><dt>You saved</dt><dd>$39.95</dd></div>
+        <div><dt>Shipping</dt><dd>Free</dd></div>
+        <div><dt>Tax</dt><dd>$0.00</dd></div>
+        <div><dt>Payment</dt><dd>Visa •••• 4242</dd></div>
+      </dl>
+
+      <div class="total">
+        <span>Total paid</span>
+        <div><strong>$359.55</strong><small>USD</small></div>
+      </div>
+
+      <a class="btn btn--dark" href="#"><svg class="ico"><use href="#i-user"/></svg>View Order in My Account</a>
+      <a class="btn btn--ghost" href="#">Continue Shopping</a>
+
+      <div class="help">
+        <svg class="ico"><use href="#i-help"/></svg>
+        <span>Questions about your order? <a href="#">Contact support</a> and mention <b style="color:var(--text)">#DM-10482</b>.</span>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Divimerc · All rights reserved</span>
+    <span><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Refund Policy</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-order');
+  btn.addEventListener('click', function () {
+    var label = btn.querySelector('span');
+    var text = document.getElementById('order-no').textContent;
+    var ok = function () { label.textContent = 'Copied!'; setTimeout(function () { label.textContent = 'Copy order number'; }, 1600); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, ok); else ok();
+  });
+})();
+</script>
+</body>
+</html>

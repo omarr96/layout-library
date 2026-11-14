@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indoor Plant House · Get started</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fff; --side: #fafafa; --ink: #111113; --tx: #2b2b30; --mut: #6b6b73; --faint: #a1a1aa;
+  --line: #ececef; --line2: #dedee3; --soft: #f6f6f7; --hover: #f1f1f3;
+  --ok: #16a34a; --okbg: #effaf2; --warn: #d97706; --warnbg: #fff8eb; --err: #dc2626; --dot: #eab308;
+  --r: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font: 14px/1.5 Inter, system-ui, sans-serif; color: var(--tx); background: var(--bg); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+a { color: inherit; }
+
+/* ---------- shell ---------- */
+.app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.side { background: var(--side); border-right: 1px solid var(--line); padding: 14px 12px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; gap: 10px; align-items: center; padding: 2px 4px 18px; }
+.brand .lg { width: 32px; height: 32px; border-radius: 9px; background: var(--ink); color: #fff; display: grid; place-items: center; }
+.brand b { display: block; color: var(--ink); font-weight: 600; line-height: 1.2; }
+.brand small { color: var(--mut); font-size: 12px; }
+.side h6 { margin: 10px 10px 6px; font-size: 12px; font-weight: 500; color: var(--mut); }
+.nav a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; text-decoration: none; color: var(--tx); }
+.nav a:hover { background: var(--hover); }
+.nav a svg { color: var(--mut); }
+.nav .site { font-weight: 500; color: var(--ink); }
+.nav .site span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav .sub { margin-left: 15px; padding-left: 8px; border-left: 1px solid var(--line); }
+.nav .sub a.on { background: #efeff1; font-weight: 500; color: var(--ink); }
+.nav .sub a.on svg { color: var(--ink); }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border: 1px solid var(--line2); border-radius: 6px; font-size: 12px; font-weight: 500; background: #fff; color: var(--ink); white-space: nowrap; flex: none; }
+.pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); }
+.pill.ok i { background: var(--ok); }
+.me { margin-top: auto; display: flex; gap: 10px; align-items: center; padding: 8px 4px; }
+.me .av { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; font-weight: 500; background: #fff; }
+.me b { display: block; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.me small { color: var(--mut); font-size: 12px; }
+
+.top { height: 60px; display: flex; align-items: center; gap: 10px; padding: 0 24px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(8px); z-index: 5; }
+.crumb { display: flex; align-items: center; gap: 8px; color: var(--mut); }
+.crumb b { color: var(--ink); font-weight: 500; }
+.crumb svg { width: 14px; height: 14px; }
+.menu-btn { display: none; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 10px; font-weight: 500; white-space: nowrap; transition: background .15s, border-color .15s, opacity .15s; }
+.btn.p { background: var(--ink); color: #fff; }
+.btn.p:hover { background: #2a2a2e; }
+.btn.p:disabled { opacity: .35; cursor: not-allowed; }
+.btn.s { background: #fff; border: 1px solid var(--line2); color: var(--ink); }
+.btn.s:hover { background: var(--soft); }
+.btn.sm { height: 32px; padding: 0 12px; font-size: 13px; border-radius: 8px; }
+.btn.gh { color: var(--mut); padding: 0 10px; }
+.btn.gh:hover { color: var(--ink); background: var(--hover); }
+.ml { margin-left: auto; }
+
+/* ---------- page ---------- */
+main { padding: 44px 24px 80px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.head h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); font-weight: 600; }
+.head p { margin: 10px 0 0; color: var(--mut); font-size: 15px; }
+.head code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .9em; }
+.head code { color: var(--ink); background: var(--soft); padding: 2px 6px; border-radius: 6px; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; margin-top: 32px; align-items: start; }
+
+.card { border: 1px solid var(--line2); border-radius: var(--r); background: #fff; }
+.card > .in { padding: 24px 28px; }
+.card h2 { margin: 0; font-size: 17px; font-weight: 600; color: var(--ink); }
+.card h3 { margin: 0; font-size: 15px; font-weight: 600; color: var(--ink); }
+.lead { color: var(--mut); margin: 4px 0 0; }
+
+/* source picker */
+.pick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+.opt { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left; border: 1px solid var(--line2); border-radius: 12px; padding: 16px; background: #fff; transition: border-color .15s, box-shadow .15s, background .15s; }
+.opt:hover { border-color: #c9c9d0; }
+.opt.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.opt .ico { width: 36px; height: 36px; border-radius: 10px; background: var(--soft); display: grid; place-items: center; color: var(--ink); margin-bottom: 14px; }
+.opt .ico svg { width: 18px; height: 18px; }
+.opt.on .ico { background: var(--ink); color: #fff; }
+.opt b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+.opt small { display: block; color: var(--mut); font-size: 13px; line-height: 1.45; }
+.opt .rd { position: absolute; top: 16px; right: 16px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line2); }
+.opt.on .rd { border: 5.5px solid var(--ink); }
+a.opt { text-decoration: none; color: inherit; }
+.opt .go { position: absolute; top: 14px; right: 14px; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; color: var(--mut); transition: background .15s, color .15s; }
+.opt.link:hover .go { background: var(--ink); color: #fff; }
+.opt .chips { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+.opt .chips span { font-size: 11.5px; color: var(--mut); background: var(--soft); border-radius: 5px; padding: 2px 7px; }
+
+.panel { border-top: 1px solid var(--line); padding: 24px 28px 28px; }
+.panel[hidden] { display: none; }
+.step { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-weight: 600; color: var(--ink); }
+.step .n { width: 22px; height: 22px; border-radius: 50%; background: var(--soft); border: 1px solid var(--line2); display: grid; place-items: center; font-size: 12px; font-weight: 600; }
+.step.done .n { background: var(--ok); border-color: var(--ok); color: #fff; }
+.step.done .n svg { width: 12px; height: 12px; stroke-width: 2.6; }
+.blk + .blk { margin-top: 26px; }
+
+/* forms */
+label.f { display: block; font-weight: 500; color: var(--ink); margin-bottom: 6px; font-size: 13.5px; }
+.f small { font-weight: 400; color: var(--faint); margin-left: 4px; }
+.inp, select.inp, textarea.inp { width: 100%; height: 42px; border: 1px solid var(--line2); border-radius: 10px; padding: 0 14px; background: #fff; outline: none; transition: border-color .15s, box-shadow .15s; }
+textarea.inp { height: auto; padding: 12px 14px; resize: vertical; line-height: 1.5; }
+.inp:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.07); }
+.inp::placeholder { color: var(--faint); }
+.inp.mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+.hint { color: var(--mut); font-size: 12.5px; margin-top: 6px; }
+.prefix { display: flex; align-items: center; border: 1px solid var(--line2); border-radius: 10px; overflow: hidden; }
+.prefix span { padding: 0 12px; color: var(--faint); background: var(--soft); align-self: stretch; display: flex; align-items: center; border-right: 1px solid var(--line2); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.prefix .inp { border: 0; border-radius: 0; box-shadow: none; }
+
+/* AI / editor */
+.ai-box { border: 1px solid var(--line2); border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
+.ai-box:focus-within { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.07); }
+.ai-box textarea { border: 0; outline: 0; width: 100%; resize: none; padding: 14px 16px 6px; min-height: 92px; background: none; line-height: 1.55; }
+.ai-box .bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px 10px 14px; }
+.ai-box .bar small { color: var(--faint); font-size: 12px; }
+.sugg { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.sugg button { font-size: 12.5px; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--line2); color: var(--tx); background: #fff; }
+.sugg button:hover { border-color: #c9c9d0; background: var(--soft); }
+.or { display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: 12px; margin: 22px 0 16px; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* segmented control */
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--soft); border: 1px solid var(--line); }
+.seg button { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 8px; color: var(--mut); font-weight: 500; font-size: 13.5px; transition: background .15s, color .15s; }
+.seg button:hover { color: var(--ink); }
+.seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px var(--line); }
+.seg.cl { display: flex; flex-wrap: wrap; }
+
+/* done state */
+.done { text-align: center; padding: 10px 0 4px; }
+.done .big { width: 52px; height: 52px; border-radius: 50%; background: var(--okbg); color: var(--ok); display: grid; place-items: center; margin: 0 auto 14px; }
+.done .big svg { width: 24px; height: 24px; stroke-width: 2.4; }
+.done h3 { font-size: 18px; }
+.done p { color: var(--mut); margin: 6px 0 18px; }
+.done .acts { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.done .url { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 8px; background: var(--soft); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--ink); margin-bottom: 18px; }
+
+/* right column */
+.aside { display: grid; gap: 16px; position: sticky; top: 84px; }
+.aside .card > .in { padding: 20px; }
+.prev { aspect-ratio: 16/10; border-radius: 10px; border: 1px solid var(--line); background: repeating-linear-gradient(135deg, #fafafa 0 10px, #f4f4f5 10px 20px); display: grid; place-items: center; color: var(--faint); font-size: 12.5px; margin-bottom: 16px; overflow: hidden; position: relative; }
+.prev.live { background: linear-gradient(180deg, #f3f6ef, #e6ecdf); }
+.prev .mock { position: absolute; inset: 12px; display: none; }
+.prev.live .mock { display: block; }
+.prev.live > span { display: none; }
+.mock i { position: absolute; display: block; border-radius: 3px; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 10px 14px; font-size: 13px; }
+.kv dt { color: var(--mut); }
+.kv dd { margin: 0; color: var(--ink); text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-width: 0; }
+.kv dd .mono { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.kv dd button { color: var(--mut); display: grid; place-items: center; }
+.kv dd button:hover { color: var(--ink); }
+.kv dd button svg { width: 14px; height: 14px; }
+.good { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+.good li { display: flex; gap: 10px; font-size: 13px; color: var(--mut); }
+.good li svg { color: var(--ink); margin-top: 2px; }
+.good b { color: var(--ink); font-weight: 500; display: block; }
+.links { display: grid; gap: 2px; margin-top: 8px; }
+.links a { display: flex; align-items: center; gap: 10px; padding: 8px 8px; margin: 0 -8px; border-radius: 8px; text-decoration: none; color: var(--tx); font-size: 13.5px; }
+.links a:hover { background: var(--hover); }
+.links a svg { color: var(--mut); }
+.links a .ar { margin-left: auto; width: 14px; height: 14px; color: var(--faint); }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; pointer-events: none; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13px; transition: .2s; z-index: 50; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.spin { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: sp .7s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.fade { animation: fd .25s ease-out; }
+@keyframes fd { from { opacity: 0; transform: translateY(4px); } }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .aside { position: static; grid-template-columns: 1fr 1fr; }
+  .aside .card:first-child { grid-row: span 2; }
+}
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .side { position: fixed; inset: 0 auto 0 0; width: 270px; z-index: 30; transform: translateX(-100%); transition: transform .2s; box-shadow: 0 0 40px rgba(0,0,0,.15); }
+  body.nav-open .side { transform: none; }
+  .menu-btn { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; margin-left: -6px; }
+  .top { padding: 0 16px; }
+  .top .btn.s span { display: none; }
+  main { padding: 28px 16px 64px; }
+  .pick { grid-template-columns: 1fr; }
+  .opt { display: grid; align-items: start; grid-template-columns: auto 1fr; column-gap: 14px; padding: 14px 44px 14px 14px; }
+  .opt .ico { margin: 0; grid-row: span 3; }
+  .opt .rd, .opt .go { top: 50%; transform: translateY(-50%); }
+  .opt .chips { margin-top: 8px; }
+  .card > .in, .panel { padding-left: 18px; padding-right: 18px; }
+  .keyrow, .wait { flex-wrap: wrap; } .keyrow .ml, .wait .ml { margin-left: 0; }
+  .aside { grid-template-columns: 1fr; }
+  .head h1 { font-size: 25px; }
+  .foot { flex-wrap: wrap; }
+  .foot .btn.ml { margin-left: 0; width: 100%; }
+}
+
+/* ---------- site lifecycle (after the site has content) ---------- */
+:root { --okln: #cdeed6; --warnln: #fde68a; --warntx: #854d0e; --errbg: #fef2f2; --errln: #fecaca; --errtx: #991b1b; }
+.lcol { display: grid; gap: 20px; min-width: 0; }
+.lcol > [hidden] { display: none; }
+#life { display: grid; gap: 20px; }
+#life .card > .in { padding: 22px 24px; }
+#life .ch { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+#life .ch h2 { margin: 0; font-size: 15px; font-weight: 600; color: var(--ink); }
+#life .muted { color: var(--mut); font-size: 13px; }
+#life .btn.lk { height: auto; padding: 0; color: var(--mut); font-size: 13px; }
+#life .btn.lk:hover { color: var(--ink); }
+#life .btn.lk.dg:hover { color: var(--err); }
+#life .btn:disabled { opacity: .4; cursor: not-allowed; }
+#life .icon-btn { width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; color: var(--mut); }
+#life .icon-btn:hover { background: var(--hover); color: var(--ink); }
+#life .icon-btn svg { width: 14px; height: 14px; }
+#life .spin { border-color: rgba(0,0,0,.12); border-top-color: currentColor; flex: none; }
+#life .spin.w { border-color: rgba(255,255,255,.35); border-top-color: #fff; }
+#life .pub { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 20px; align-items: center; }
+#life .thumb { aspect-ratio: 16/10; border-radius: 10px; border: 1px solid var(--line); position: relative; overflow: hidden; background: linear-gradient(180deg, #f3f6ef, #e6ecdf); }
+#life .thumb .mock { position: absolute; inset: 10px; }
+#life .thumb .mock i { position: absolute; display: block; border-radius: 3px; }
+#life .pub h3 { margin: 0 0 4px; font-size: 16px; font-weight: 600; color: var(--ink); }
+#life .pub p { margin: 0 0 14px; color: var(--mut); font-size: 13.5px; }
+#life .pub .row { display: flex; gap: 8px; flex-wrap: wrap; }
+#life .hist { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; }
+#life .hist h4 { margin: 0 0 6px; font-size: 12.5px; font-weight: 500; color: var(--mut); }
+#life .hist ul { list-style: none; margin: 0; padding: 0; }
+#life .hist li { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 13px; }
+#life .hist li + li { border-top: 1px solid var(--line); }
+#life .hist li b { color: var(--ink); font-weight: 500; }
+#life .hist li time { margin-left: auto; color: var(--faint); font-size: 12.5px; }
+#life .hist .cur { font-size: 11.5px; color: var(--ok); background: var(--okbg); border-radius: 5px; padding: 1px 6px; }
+#life .dom-empty { display: flex; align-items: center; gap: 14px; }
+#life .dom-empty .gi { width: 38px; height: 38px; border-radius: 10px; background: var(--soft); display: grid; place-items: center; color: var(--ink); flex: none; }
+#life .dom-empty b { display: block; color: var(--ink); font-weight: 500; }
+#life .dname { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#life .dname b { font-size: 15px; color: var(--ink); font-weight: 600; }
+#life .pill { border: 0; height: 22px; font-size: 12px; }
+#life .pill.wait { background: var(--warnbg); color: var(--warntx); }
+#life .pill.ok { background: var(--okbg); color: #166534; }
+#life .pill.err { background: var(--errbg); color: var(--errtx); }
+#life .pill.gr { background: var(--soft); color: var(--mut); }
+#life .pill .spin { width: 11px; height: 11px; border-width: 1.5px; }
+#life .pill svg { width: 12px; height: 12px; stroke-width: 2.4; }
+#life .steps { margin-top: 18px; }
+#life .dstep { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; position: relative; padding-bottom: 18px; }
+#life .dstep:last-child { padding-bottom: 0; }
+#life .dstep::after { content: ""; position: absolute; left: 10.5px; top: 24px; bottom: 2px; width: 1px; background: var(--line); }
+#life .dstep:last-child::after { display: none; }
+#life .dstep .num { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line2); background: #fff; display: grid; place-items: center; font-size: 11.5px; font-weight: 600; color: var(--ink); }
+#life .dstep.done .num { background: var(--ok); border-color: var(--ok); color: #fff; }
+#life .dstep.now .num { border-color: var(--ink); }
+#life .dstep.bad .num { background: var(--err); border-color: var(--err); color: #fff; }
+#life .dstep .num svg { width: 12px; height: 12px; stroke-width: 2.6; }
+#life .dstep h4 { margin: 1px 0 2px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+#life .dstep.todo h4 { color: var(--faint); }
+#life .dstep p { margin: 0; color: var(--mut); font-size: 13px; }
+#life .recs { margin-top: 10px; border: 1px solid var(--line2); border-radius: 10px; overflow: hidden; }
+#life .recs table { width: 100%; border-collapse: collapse; font-size: 13px; }
+#life .recs th { text-align: left; font-weight: 500; color: var(--mut); font-size: 12px; padding: 8px 12px; background: var(--soft); border-bottom: 1px solid var(--line2); }
+#life .recs td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: middle; }
+#life .recs tr:first-child td { border-top: 0; }
+#life .recs td.v { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--ink); }
+#life .recs .cp { display: flex; align-items: center; gap: 4px; }
+#life .recs .found { display: block; color: var(--errtx); font-size: 12px; font-family: Inter, sans-serif; margin-top: 2px; }
+#life .dfoot { display: flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--mut); font-size: 12.5px; flex-wrap: wrap; }
+#life .dlist > div { display: flex; align-items: center; gap: 4px 10px; padding: 10px 0; font-size: 13.5px; flex-wrap: wrap; }
+#life .dlist .d { overflow-wrap: anywhere; min-width: 0; }
+#life .dlist > div + div { border-top: 1px solid var(--line); }
+#life .dlist .d { color: var(--ink); font-weight: 500; }
+#life .dlist .to { color: var(--mut); font-size: 12.5px; }
+#life .dlist svg.lock { color: var(--ok); width: 14px; height: 14px; }
+#life .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-top: 14px; line-height: 1.5; background: var(--errbg); border: 1px solid var(--errln); color: var(--errtx); }
+#life .alert svg { margin-top: 2px; }
+#life .alert b { font-weight: 600; }
+#life .progress { height: 4px; border-radius: 4px; background: var(--soft); overflow: hidden; margin-top: 10px; }
+#life .progress i { display: block; height: 100%; width: 40%; background: var(--ink); border-radius: 4px; animation: lpr 2.2s ease-in-out infinite; }
+@keyframes lpr { 0% { margin-left: -40%; } 100% { margin-left: 100%; } }
+#life .ck-top { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--mut); }
+#life .cbar { height: 6px; border-radius: 6px; background: var(--soft); overflow: hidden; margin: 8px 0 6px; }
+#life .cbar i { display: block; height: 100%; background: var(--ok); border-radius: 6px; transition: width .4s; }
+#life .ck > div { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+#life .ck > div + div { border-top: 1px solid var(--line); }
+#life .ck .c { width: 20px; height: 20px; border-radius: 50%; border: 1.5px dashed #c4c4cc; flex: none; display: grid; place-items: center; }
+#life .ck .done .c { border: 0; background: var(--ok); color: #fff; }
+#life .ck .c svg { width: 11px; height: 11px; stroke-width: 3; }
+#life .ck b { display: block; color: var(--ink); font-weight: 500; font-size: 13.5px; }
+#life .ck .done b { color: var(--mut); text-decoration: line-through; text-decoration-color: #d4d4d8; }
+#life .ck small { color: var(--mut); font-size: 12.5px; }
+.head .hacts { display: flex; gap: 8px; margin-top: 14px; }
+.head .hacts[hidden] { display: none; }
+.pill.err { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+.pill.err i { background: var(--err); }
+.kv dd.bad { color: var(--err); }
+.lf-scrim { position: fixed; inset: 0; z-index: 70; background: rgba(17,17,19,.35); display: none; align-items: center; justify-content: center; padding: 16px; }
+.lf-scrim.on { display: flex; }
+.lf-modal { background: #fff; border-radius: 16px; width: 440px; max-width: 100%; padding: 24px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.35); }
+.lf-modal h3 { margin: 0 0 4px; font-size: 17px; color: var(--ink); font-weight: 600; }
+.lf-modal p { margin: 0 0 16px; color: var(--mut); font-size: 13.5px; }
+.lf-modal .r { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+.lf-modal .inp { width: 100%; height: 40px; border: 1px solid var(--line2); border-radius: 10px; padding: 0 14px; outline: none; }
+.lf-modal .inp:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
+.lf-ex { color: var(--faint); font-size: 12.5px; margin-top: 8px; }
+.lf-ex.bad { color: var(--err); }
+.lf-demo { position: fixed; left: calc(260px + 24px); bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 12px; background: var(--ink); box-shadow: 0 14px 30px -12px rgba(0,0,0,.45); overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 260px - 48px); }
+.lf-demo::-webkit-scrollbar { display: none; }
+.lf-demo span { color: #a1a1aa; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px 0 6px; white-space: nowrap; }
+.lf-demo button { height: 30px; padding: 0 10px; border-radius: 8px; color: #d4d4d8; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+.lf-demo button:hover { color: #fff; }
+.lf-demo button.on { background: #fff; color: var(--ink); }
+.lf-demo i { width: 1px; height: 18px; background: #3f3f46; margin: 0 4px; flex: none; }
+main { padding-bottom: 110px; }
+#life .dstep.done { text-align: left; padding: 0 0 18px; }
+#life .dstep.done:last-child { padding-bottom: 0; }
+#life .ck > div.done { text-align: left; padding: 12px 0; }
+.head .hacts .btn { text-decoration: none; }
+.toast { bottom: 70px; }
+@media (max-width: 860px) {
+  #life .pub { grid-template-columns: minmax(0, 1fr); }
+  #life .card > .in { padding: 18px 16px; }
+  #life .recs th:nth-child(2), #life .recs td:nth-child(2) { display: none; }
+  #life .recs td.v { word-break: break-all; }
+  .lf-demo { left: 12px; max-width: calc(100vw - 24px); }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- sidebar (same as the site dashboard) -->
+  <aside class="side">
+    <div class="brand"><span class="lg"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg></span><div><b>Local</b><small>Site builder</small></div></div>
+    <h6>Workspace</h6>
+    <nav class="nav">
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>Sites</a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>Members</a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg>Billing</a>
+      <a href="http://localhost:3210/settings/ai"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg>Connect your model</a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/></svg>Token use</a>
+    </nav>
+    <h6 style="margin-top:20px">Site</h6>
+    <nav class="nav">
+      <a href="#" class="site"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Indoor Plant House</span><em class="pill ml" id="sidePill" style="font-style:normal"><i></i><span>Draft</span></em></a>
+      <div class="sub">
+        <a href="#" class="on"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Overview</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Pages</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Files</a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Media</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/><path d="M12 21a2.5 2.5 0 0 1 0-5h2a3 3 0 0 0 3-3"/></svg>Design</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Domains</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Redirects</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/></svg>Analytics</a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Messages</a>
+      </div>
+    </nav>
+    <div class="me"><span class="av">Y</span><div><b>you@localhost</b><small>Owner</small></div></div>
+  </aside>
+
+  <div>
+    <header class="top">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="crumb"><span>Sites</span><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg><b>Indoor Plant House</b></div>
+      <button class="btn s sm ml" data-go="ai"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Open editor</span></button>
+    </header>
+
+    <main><div class="wrap">
+      <div class="head fade">
+        <h1>Indoor Plant House</h1>
+        <span class="pill" id="statusPill"><i></i><span>Draft · No content yet</span></span>
+        <p id="headAddr">Your site is ready at <code>indoor-plant-house.localhost:3210</code>. Add your content to get it online.</p>
+        <div class="hacts" id="hacts" hidden></div>
+      </div>
+
+      <div class="grid">
+        <!-- left: choose a source, then the lifecycle cards once there is content -->
+        <div class="lcol">
+        <section class="card" id="startCard">
+          <div class="in">
+            <h2>How do you want to add your site?</h2>
+            <p class="lead">Build it here with AI, or connect the AI tool you already use.</p>
+            <div class="pick" role="radiogroup">
+              <button class="opt on" data-src="ai" role="radio" aria-checked="true"><span class="rd"></span>
+                <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+                <b>Build with AI</b><small>Describe your site and the AI builds it. Edit everything after.</small>
+                <span class="chips"><span>No code</span><span>Editor</span></span></button>
+              <a class="opt link" href="http://localhost:3210/settings/ai"><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <span class="ico"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg></span>
+                <b>Connect with MCP</b><small>Build and update it from your own AI tool. Set it up on the Connect your model page.</small>
+                <span class="chips"><span>Claude</span><span>ChatGPT</span><span>Codex</span></span></a>
+            </div>
+          </div>
+
+          <!-- ===== Build it here ===== -->
+          <div class="panel" data-panel="ai">
+            <div class="blk">
+              <label class="f" for="aiIn">Describe your site</label>
+              <div class="ai-box">
+                <textarea id="aiIn" rows="3" placeholder="A small shop for indoor plants. Home, shop, care guides and a contact page. Calm, green and natural."></textarea>
+                <div class="bar"><small>The AI writes the pages. You can change everything after.</small>
+                  <button class="btn p sm ml" id="aiGo"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Build my site</button></div>
+              </div>
+              <div class="sugg">
+                <button>🪴 Plant shop with care guides</button><button>📅 Workshop bookings</button><button>📰 Plant blog</button><button>🏷️ One-page landing</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <div id="life" hidden></div>
+        </div>
+
+        <!-- right column -->
+        <div class="aside">
+          <section class="card"><div class="in">
+            <div class="prev" id="prev"><span>Nothing here yet</span><div class="mock">
+              <i style="left:0;right:0;top:0;height:10px;background:#4d6b3c;opacity:.85"></i>
+              <i style="left:8%;top:24%;width:46%;height:10px;background:#2f3b28"></i>
+              <i style="left:8%;top:36%;width:34%;height:10px;background:#2f3b28"></i>
+              <i style="left:8%;top:52%;width:40%;height:5px;background:#9aa58f"></i>
+              <i style="left:8%;top:66%;width:20%;height:12px;background:#4d6b3c;border-radius:4px"></i>
+              <i style="right:6%;top:20%;width:34%;bottom:12%;background:#b9c9a8;border-radius:6px"></i>
+            </div></div>
+            <dl class="kv">
+              <dt>Status</dt><dd><span class="pill" id="statusPill2"><i></i><span>Draft</span></span></dd>
+              <dt>Address</dt><dd><span class="mono" id="addrVal">indoor-plant-house.localhost:3210</span><button id="copy" aria-label="Copy address"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></dd>
+              <dt>Source</dt><dd id="srcVal">Not set</dd>
+              <dt>Domain</dt><dd id="domVal">None</dd>
+              <dt>Last published</dt><dd id="pubVal">Never</dd>
+            </dl>
+          </div></section>
+
+          <section class="card" id="goodCard"><div class="in">
+            <h3>Good to know</h3>
+            <ul class="good">
+              <li><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Private until you publish</b>Uploads and builds make a draft only you can see.</span></li>
+              <li><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span><b>Use both</b>Start with AI here, then keep editing from your own tool over MCP. Your address stays the same.</span></li>
+              <li><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span><b>Every version is kept</b>Roll back to any earlier upload or build in one click.</span></li>
+            </ul>
+          </div></section>
+
+          <section class="card"><div class="in">
+            <h3>Need a hand?</h3>
+            <div class="links">
+              <a href="#"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h6"/></svg>Write a good site prompt<svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              <a href="http://localhost:3210/settings/ai"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg>Connect an AI tool with MCP<svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            </div>
+          </div></section>
+        </div>
+      </div>
+    </div></main>
+  </div>
+</div>
+<div class="lf-scrim" id="lfScrim"><div class="lf-modal" role="dialog" aria-modal="true" aria-labelledby="lfT">
+  <h3 id="lfT">Add a domain</h3>
+  <p>Use an address you already own. You'll add two records where you bought it.</p>
+  <input class="inp" id="domIn" placeholder="indoorplanthouse.com" autocomplete="off" spellcheck="false">
+  <div class="lf-ex" id="domEx">We'll set up both indoorplanthouse.com and www.indoorplanthouse.com.</div>
+  <div class="r"><button class="btn s" data-lfclose>Cancel</button><button class="btn p" id="domGo">Continue</button></div>
+</div></div>
+<div class="lf-demo" role="group" aria-label="Demo state" id="lfDemo"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const ck = '<svg viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></svg>';
+let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2400); }
+
+/* ---- choose a source ---- */
+function pick(src) {
+  $$('.opt').forEach(o => { const on = o.dataset.src === src; o.classList.toggle('on', on); o.setAttribute('aria-checked', on); });
+  $$('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== src; if (!p.hidden) p.classList.add('fade'); });
+}
+$$('.opt[data-src]').forEach(o => o.onclick = () => pick(o.dataset.src));
+$('#menuBtn').onclick = () => document.body.classList.toggle('nav-open');
+$('#copy').onclick = () => { navigator.clipboard?.writeText('indoor-plant-house.localhost:3210'); toast('Address copied'); };
+
+/* ---- build it here ---- */
+$$('.sugg button').forEach(b => b.onclick = () => { $('#aiIn').value = b.textContent.replace(/^\S+\s/, '') + '. '; $('#aiIn').focus(); });
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]'); if (!g) return;
+  const k = g.dataset.go;
+  toast('Opening the editor…');
+});
+$('#aiGo').onclick = async () => {
+  const b = $('#aiGo'); if (!$('#aiIn').value.trim()) { $('#aiIn').focus(); return toast('Tell the AI a little about your site first'); }
+  b.innerHTML = '<span class="spin"></span>Starting…'; b.disabled = true; await wait(900);
+  toast('Opening the editor. The AI is building your pages.'); b.innerHTML = 'Build my site'; b.disabled = false;
+};
+
+</script>
+<script>
+/* ---------- site lifecycle: new → draft → live → domain pending → securing → connected ---------- */
+(function () {
+  const q = s => document.querySelector(s);
+  const ic = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
+  const I = {
+    check: ic('<path d="m5 12 4.5 4.5L19 7"/>'), x: ic('<path d="M18 6 6 18M6 6l12 12"/>'),
+    copy: ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>'),
+    globe: ic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+    ext: ic('<path d="M7 17 17 7M8 7h9v9"/>'), lock: ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+    arrow: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'), warn: ic('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
+    eye: ic('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+    refresh: ic('<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>'),
+  };
+  const FREE = 'indoor-plant-house.localhost:3210', IP = '203.0.113.10', CNAME = 'cname.zejify.app';
+  const S = { state: 'new', domain: 'indoorplanthouse.com', checked: '2 min ago' };
+  const DEMO = [['new', '1 New'], ['draft', '2 Draft'], ['live', '3 Live'], ['pending', '4 DNS pending'], ['securing', '5 Securing'], ['connected', '6 Connected'], null, ['dnswrong', '⚠ DNS wrong'], ['issue', '⚠ Domain issue']];
+  const isLive = () => !['new', 'draft'].includes(S.state);
+  const hasDomain = () => ['pending', 'securing', 'connected', 'dnswrong', 'issue'].includes(S.state);
+  const mainAddr = () => S.state === 'connected' ? S.domain : FREE;
+  const mock = `<div class="mock"><i style="left:0;right:0;top:0;height:8px;background:#4d6b3c;opacity:.85"></i><i style="left:6%;top:22%;width:48%;height:9px;background:#2f3b28"></i>
+    <i style="left:6%;top:34%;width:36%;height:9px;background:#2f3b28"></i><i style="left:6%;top:50%;width:40%;height:4px;background:#9aa58f"></i>
+    <i style="left:6%;top:64%;width:20%;height:10px;background:#4d6b3c;border-radius:4px"></i><i style="right:5%;top:18%;width:36%;bottom:10%;background:#b9c9a8;border-radius:6px"></i></div>`;
+
+  function status() {
+    return {
+      new: ['', 'Draft · No content yet'], draft: ['', 'Draft · Ready to publish'], live: ['ok', 'Live'],
+      pending: ['ok', 'Live · Domain pending'], dnswrong: ['ok', 'Live · Domain pending'], securing: ['ok', 'Live · Securing domain'],
+      connected: ['ok', `Live on ${S.domain}`], issue: ['err', 'Domain issue · Site still live'],
+    }[S.state];
+  }
+
+  function publishing() {
+    const inner = S.state === 'draft'
+      ? `<div class="pub"><div class="thumb">${mock}</div><div><h3>Ready to publish</h3><p>Your draft is private. Publish to put it on the web at ${FREE}.</p>
+         <div class="row"><button class="btn p" id="pubBtn">Publish</button><button class="btn s">${I.eye}Preview</button><button class="btn s" data-go="open">Open editor</button></div></div></div>`
+      : `<div class="pub"><div class="thumb">${mock}</div><div><h3>Live${S.state === 'connected' ? '' : ' on your free address'}</h3><p>Last published 2 min ago. No unpublished changes.</p>
+         <div class="row"><button class="btn p" disabled>Publish changes</button><button class="btn s">${I.eye}Preview</button></div></div></div>
+         <div class="hist"><h4>History</h4><ul><li><b>Published</b><span class="cur">Live now</span><time>2 min ago</time></li><li><b>Published</b><button class="btn lk" style="margin-left:6px">Restore</button><time>Yesterday</time></li></ul></div>`;
+    return `<section class="card"><div class="in"><div class="ch"><h2>Publishing</h2></div>${inner}</div></section>`;
+  }
+
+  function recRow(type, name, val, st, found) {
+    const pill = st === 'ok' ? `<span class="pill ok">${I.check}Found</span>` : st === 'bad' ? `<span class="pill err">${I.x}Wrong</span>` : '<span class="pill wait"><span class="spin"></span>Waiting</span>';
+    return `<tr><td><b style="color:var(--ink);font-weight:500">${type}</b></td><td class="v">${name}</td><td class="v"><span class="cp">${val}<button class="icon-btn" data-lfcopy="${val}" aria-label="Copy">${I.copy}</button></span>${found ? `<span class="found">We found ${found}</span>` : ''}</td><td style="text-align:right">${pill}</td></tr>`;
+  }
+  function domain() {
+    const d = S.domain, st = S.state;
+    let inner;
+    if (!hasDomain()) {
+      inner = `<div class="dom-empty"><span class="gi">${I.globe}</span><div><b>Use your own domain</b><span class="muted">Like ${d}. Your free address keeps working.</span></div>
+        <button class="btn s sm ml" ${isLive() ? 'data-add' : 'disabled'}>Add domain</button></div>
+        ${isLive() ? '' : '<p class="muted" style="margin:12px 0 0">Publish your site first, then connect a domain.</p>'}`;
+    } else if (st === 'connected') {
+      inner = `<div class="dname"><b>${d}</b><span class="pill ok">${I.check}Connected</span><span class="pill gr">${I.lock} HTTPS on</span><button class="btn lk ml">Manage</button></div>
+        <div class="dlist" style="margin-top:12px">
+          <div>${I.lock.replace('<svg', '<svg class="lock"')}<span class="d">${d}</span><span class="pill gr">Primary</span></div>
+          <div>${I.arrow}<span class="d">www.${d}</span><span class="to">redirects to ${d}</span></div>
+          <div>${I.arrow}<span class="d">${FREE}</span><span class="to">redirects to ${d}</span></div></div>`;
+    } else {
+      const recA = st === 'pending' ? 'wait' : ['dnswrong', 'issue'].includes(st) ? 'bad' : 'ok', recB = st === 'pending' ? 'wait' : st === 'issue' ? 'bad' : 'ok';
+      const pill = st === 'pending' ? '<span class="pill wait"><span class="spin"></span>Waiting for DNS</span>' : st === 'securing' ? '<span class="pill wait"><span class="spin"></span>Setting up HTTPS</span>'
+        : st === 'dnswrong' ? `<span class="pill err">${I.x}DNS needs a fix</span>` : `<span class="pill err">${I.x}Not pointing to us</span>`;
+      const s2 = st === 'pending' ? 'now' : st === 'securing' ? 'done' : 'bad', s3 = st === 'securing' ? 'now' : 'todo';
+      const h2 = s2 === 'done' ? 'DNS records found' : s2 === 'bad' ? (st === 'issue' ? 'DNS records were changed' : 'A record has the wrong value') : 'Add these records where you bought the domain';
+      const p2 = s2 === 'done' ? 'Both records point to your site.' : s2 === 'bad' ? (st === 'issue' ? 'Both records were changed or removed.' : 'Change the A record to the value below. The www record is fine.') : 'Log in to GoDaddy, Namecheap, Cloudflare or wherever you bought it, open DNS settings and add:';
+      inner = `<div class="dname"><b>${d}</b>${pill}<button class="btn lk dg ml" data-remove>Remove</button></div>
+        ${st === 'issue' ? `<div class="alert">${I.warn}<span><b>${d} stopped pointing to your site on Nov 12.</b> Visitors to ${d} can't reach it, but your site is still live at ${FREE}. Put the records below back to fix it.</span></div>` : ''}
+        <div class="steps">
+          <div class="dstep done"><span class="num">${I.check}</span><div><h4>Domain added</h4><p>We'll set up ${d} and www.${d}.</p></div></div>
+          <div class="dstep ${s2}"><span class="num">${s2 === 'done' ? I.check : s2 === 'bad' ? '!' : 2}</span><div><h4>${h2}</h4><p>${p2}</p>
+            ${s2 === 'done' ? '' : `<div class="recs"><table><thead><tr><th>Type</th><th>Name</th><th>Value</th><th></th></tr></thead><tbody>${recRow('A', '@', IP, recA, st === 'dnswrong' ? '198.51.100.7' : '')}${recRow('CNAME', 'www', CNAME, recB)}</tbody></table></div>
+            <div class="dfoot"><span>Changes can take up to 48 hours, often just minutes. We check every few minutes.</span><span class="ml">Last checked ${S.checked}</span><button class="btn s sm" data-check>${I.refresh}Check now</button></div>`}</div></div>
+          <div class="dstep ${s3}"><span class="num">3</span><div><h4>HTTPS turned on</h4><p>${s3 === 'now' ? "DNS is correct. We're getting a security certificate, usually a few minutes." : 'Happens on its own once DNS is correct.'}</p>${s3 === 'now' ? '<div class="progress"><i></i></div>' : ''}</div></div>
+        </div>`;
+    }
+    return `<section class="card"><div class="in"><div class="ch"><h2>Domain</h2></div>${inner}</div></section>`;
+  }
+
+  function checklist() {
+    if (!isLive()) return '';
+    const items = [
+      ['Publish your site', "It's on the web", true],
+      ['Connect your domain', S.state === 'connected' ? `${S.domain} is connected` : hasDomain() ? 'Waiting on DNS' : `Use your own address instead of ${FREE}`, S.state === 'connected', hasDomain() ? null : 'Connect'],
+      ['Add a social image', 'Shown when someone shares your link', false, 'Add'],
+      ['Add a site icon', 'Shown in browser tabs and bookmarks', false, 'Add'],
+      ['Set up analytics', 'See how many people visit', false, 'Set up'],
+    ];
+    const done = items.filter(i => i[2]).length;
+    return `<section class="card"><div class="in"><div class="ch"><h2>Before you share it</h2></div>
+      <div class="ck-top"><span>${done === items.length ? 'All done' : 'A few things to finish'}</span><span>${done} of ${items.length} done</span></div>
+      <div class="cbar"><i style="width:${done / items.length * 100}%"></i></div>
+      <div class="ck">${items.map(([t, d, ok, b]) => `<div class="${ok ? 'done' : ''}"><span class="c">${ok ? I.check : ''}</span><div><b>${t}</b><small>${d}</small></div>${!ok && b ? `<button class="btn s sm ml" ${t.includes('domain') ? 'data-add' : ''}>${b}</button>` : ''}</div>`).join('')}</div></div></section>`;
+  }
+
+  function render() {
+    const isNew = S.state === 'new';
+    q('#startCard').hidden = !isNew;
+    q('#life').hidden = isNew;
+    q('#goodCard').hidden = !isNew;
+    if (!isNew) q('#life').innerHTML = publishing() + domain() + checklist();
+
+    // header + status pills
+    const [cls, txt] = status();
+    ['#statusPill', '#statusPill2', '#sidePill'].forEach(s => { const el = q(s); el.className = 'pill' + (cls ? ' ' + cls : '') + (s === '#sidePill' ? ' ml' : ''); el.querySelector('span').textContent = s === '#statusPill' ? txt : (cls === 'err' ? 'Issue' : txt.split(' · ')[0].replace(/ on .*/, '')); });
+    q('#headAddr').innerHTML = isNew ? `Your site is ready at <code>${FREE}</code>. Add your content to get it online.`
+      : S.state === 'draft' ? `Not online yet. Your draft preview is at <code>preview--${FREE}</code>.`
+      : S.state === 'connected' ? `Live at <code>${S.domain}</code>. ${FREE} redirects there.`
+      : S.state === 'issue' ? `Live at <code>${FREE}</code>. ${S.domain} isn't working right now.`
+      : `Live at <code>${FREE}</code>.${hasDomain() ? ` ${S.domain} isn't connected yet.` : ''}`;
+    const ha = q('#hacts'); ha.hidden = !isLive();
+    ha.innerHTML = `<a class="btn s sm" href="#">${I.ext}Visit site</a><button class="btn s sm" data-lfcopy="https://${mainAddr()}">${I.copy}Copy link</button>`;
+
+    // right column facts
+    q('#prev').classList.toggle('live', !isNew);
+    q('#addrVal').textContent = mainAddr();
+    q('#srcVal').textContent = isNew ? 'Not set' : 'Built with AI';
+    const dv = q('#domVal'); dv.className = S.state === 'issue' ? 'bad' : '';
+    dv.textContent = !hasDomain() ? 'None' : S.state === 'connected' ? S.domain : S.state === 'issue' ? `${S.domain} · issue` : `${S.domain} · pending`;
+    q('#pubVal').textContent = isLive() ? '2 min ago' : 'Never';
+
+    q('#lfDemo').innerHTML = '<span>Demo</span>' + DEMO.map(d => d ? `<button class="${d[0] === S.state ? 'on' : ''}" data-lfstate="${d[0]}">${d[1]}</button>` : '<i></i>').join('');
+  }
+  function go(st, msg) { S.state = st; render(); if (msg) toast(msg); }
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // "Build my site" now leads into the draft state
+  q('#aiGo').onclick = async () => {
+    const b = q('#aiGo'); if (!q('#aiIn').value.trim()) { q('#aiIn').focus(); return toast('Tell the AI a little about your site first'); }
+    b.innerHTML = '<span class="spin"></span>Building…'; b.disabled = true; await wait(1200);
+    b.innerHTML = 'Build my site'; b.disabled = false; go('draft', 'The AI built 4 pages. Have a look, then publish.');
+  };
+
+  document.addEventListener('click', async e => {
+    const t = e.target;
+    const st = t.closest('[data-lfstate]'); if (st) return go(st.dataset.lfstate);
+    if (t.closest('#pubBtn')) { const b = t.closest('#pubBtn'); b.disabled = true; b.innerHTML = '<span class="spin w"></span>Publishing…'; await wait(900); return go('live', 'Your site is live'); }
+    if (t.closest('[data-add]')) { q('#lfScrim').classList.add('on'); q('#domIn').value = ''; q('#domIn').focus(); return; }
+    if (t.closest('[data-lfclose]') || t.id === 'lfScrim') return q('#lfScrim').classList.remove('on');
+    const cp = t.closest('[data-lfcopy]'); if (cp) { navigator.clipboard?.writeText(cp.dataset.lfcopy); return toast('Copied'); }
+    if (t.closest('[data-remove]')) return go('live', `${S.domain} removed`);
+    const ck = t.closest('[data-check]');
+    if (ck) {
+      ck.innerHTML = '<span class="spin"></span>Checking…'; ck.disabled = true; await wait(1000);
+      S.checked = 'just now'; go('securing', 'DNS records found');
+      setTimeout(() => { if (S.state === 'securing') go('connected', `${S.domain} is connected`); }, 3500);
+    }
+  });
+  function addDomain() {
+    const v = q('#domIn').value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+    if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)) { q('#domEx').textContent = "That doesn't look like a domain. Try something like indoorplanthouse.com"; q('#domEx').classList.add('bad'); return; }
+    S.domain = v; S.checked = 'just now'; q('#lfScrim').classList.remove('on');
+    go('pending', `${v} added. Now add the DNS records.`);
+  }
+  q('#domGo').onclick = addDomain;
+  q('#domIn').addEventListener('keydown', e => { if (e.key === 'Enter') addDomain(); if (e.key === 'Escape') q('#lfScrim').classList.remove('on'); });
+  q('#domIn').addEventListener('input', () => { const v = q('#domIn').value.trim().replace(/^www\./, '') || 'indoorplanthouse.com'; q('#domEx').classList.remove('bad'); q('#domEx').textContent = `We'll set up both ${v} and www.${v}.`; });
+  render();
+})();
+</script>
+</body>
+</html>

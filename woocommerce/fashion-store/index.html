@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiviMerc Fashion Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ---------- Olive Studio palette: every colour on the page comes from here ---------- */
+:root{
+  --bg:#ffffff;        /* main sections */
+  --soft:#f3f2ec;      /* stone: alternate sections, footer */
+  --soft2:#e7e6dc;     /* newsletter, image wells */
+  --card:#ffffff;
+  --ink:#23251f;       /* headings */
+  --text:#4b4d44;
+  --muted:#878a7d;
+  --line:#e2e1d6;
+  --accent:#9c4a2f;    /* rust: sale prices, badges, cart count */
+  --accent-ink:#ffffff;
+  --btn:#4f5a3a; --btn-ink:#ffffff; --btn-hover:#3f4930;        /* olive buttons */
+  --btn2:#e8e9dc; --btn2-ink:#2f3524; --btn2-hover:#dcdfcb;     /* soft buttons */
+  --star:#b8913f;
+  --bar:#4f5a3a; --bar-ink:#eef0e2; --bar-cta:#eef0e2; --bar-cta-ink:#2f3524;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--text);background:var(--bg);font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* promo bar + header */
+.promo{background:var(--bar);color:var(--bar-ink);display:flex;align-items:center;justify-content:center;gap:16px;padding:9px 16px;font-weight:500;font-size:14.5px;text-align:center;flex-wrap:wrap}
+.promo a{background:var(--bar-cta);color:var(--bar-cta-ink);font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px}
+header.site{background:var(--bg);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:19px;color:var(--ink);letter-spacing:-.01em}
+.logo i{width:22px;height:22px;border-radius:6px;background:var(--btn);display:grid;place-items:center;color:var(--btn-ink);font-style:normal;font-size:12px;font-weight:700}
+nav.main{margin-left:auto;display:flex;gap:26px;font-size:13.5px;color:var(--ink)}
+nav.main a{display:flex;align-items:center;gap:4px}
+nav.main a:hover{color:var(--accent)}
+nav.main svg{width:12px;height:12px}
+.buy{background:var(--btn);color:var(--btn-ink);font-size:13px;font-weight:600;padding:9px 16px;border-radius:999px}
+.buy:hover{background:var(--btn-hover)}
+.cart{position:relative;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);border:1px solid var(--line);padding:7px 12px;border-radius:999px}
+.cart b{position:absolute;top:-6px;left:16px;min-width:16px;height:16px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:10px;display:grid;place-items:center;padding:0 4px}
+
+/* section heads */
+section{padding:64px 0}
+.s-soft{background:var(--soft)}
+.head{text-align:center;margin-bottom:34px}
+.head h2{margin:0 0 10px;font-size:30px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.head p{margin:0;font-size:13px;color:var(--muted)}
+
+/* shared bits */
+.price{font-weight:600;color:var(--ink);font-size:14px}
+.price del{color:var(--muted);font-weight:400;font-size:12.5px;margin-right:6px}
+.price ins{text-decoration:none;color:var(--accent)}
+.thumb{background:var(--soft2);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+a.prod:hover .thumb img,.card:hover .thumb img{transform:scale(1.04)}
+.name{color:var(--ink);font-weight:500;font-size:13px;line-height:1.35}
+
+/* 1. grid with pill buttons */
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column}
+.card .thumb{aspect-ratio:4/4.6;border-radius:9px}
+.card .name{margin:14px 4px 10px;min-height:35px}
+.card .price{margin:0 4px 14px}
+.pill{margin-top:auto;height:36px;border-radius:999px;background:var(--btn2);color:var(--btn2-ink);font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s}
+.pill:hover{background:var(--btn2-hover)}
+.pill.in{background:var(--btn);color:var(--btn-ink)}
+
+/* 2. picks for you */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 16px}
+.pick .thumb{aspect-ratio:4/5.2;position:relative}
+.badge{position:absolute;top:10px;left:10px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px}
+.wish{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.wish:hover{color:var(--accent)}
+.pick .name{margin:12px 0 6px}
+.pick .price{font-size:13px;margin-bottom:12px}
+.sq{height:38px;width:100%;background:var(--btn);color:var(--btn-ink);font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:4px;transition:background .2s}
+.sq:hover{background:var(--btn-hover)}
+.pager{display:flex;justify-content:center;gap:8px;margin-top:34px}
+.pager a{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;border:1px solid var(--line);color:var(--ink)}
+.pager a.on{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+
+/* 3. horizontal cards */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;position:relative}
+.hcard .thumb{aspect-ratio:4/5;border-radius:8px}
+.hcard .sale{position:absolute;top:8px;left:8px;z-index:1;background:var(--accent);color:var(--accent-ink);font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:999px}
+.hcard .name{margin:0 0 6px}
+.hcard .price{margin-bottom:12px}
+.mini{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 14px;border-radius:999px;background:var(--btn);color:var(--btn-ink);font-size:12px;font-weight:600}
+.mini:hover{background:var(--btn-hover)}
+
+/* 4. lists */
+.g4l{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.g4l h3{margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:18px;font-weight:600;color:var(--ink)}
+.li{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center;padding:10px 0}
+.li .thumb{aspect-ratio:4/5;border-radius:6px}
+.li .name{font-size:12.5px;margin-bottom:3px}
+.stars{color:var(--star);font-size:11px;letter-spacing:1px;margin-bottom:3px}
+.stars s{color:var(--line);text-decoration:none}
+.li .price{font-size:12.5px}
+
+/* newsletter */
+.news{background:var(--soft2);text-align:center}
+.news h2{margin:0 0 10px;font-size:24px;font-weight:600;color:var(--ink)}
+.news p{margin:0 auto 24px;max-width:430px;line-height:1.55;font-size:13.5px}
+.news form{max-width:460px;margin:0 auto;display:grid;gap:10px}
+.news input{height:44px;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:0 14px;font:inherit;color:var(--ink);outline:0}
+.news input:focus{border-color:var(--ink)}
+.news button{height:44px;background:var(--btn);color:var(--btn-ink);border-radius:6px;font-weight:600}
+.news button:hover{background:var(--btn-hover)}
+
+/* footer */
+footer{background:var(--soft);padding:56px 0 24px;font-size:12.5px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+.fgrid h4{margin:6px 0 14px;font-size:13.5px;color:var(--ink);font-weight:600}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.fgrid li a:hover{color:var(--accent)}
+.tag{margin:12px 0 18px;color:var(--ink);font-weight:500}
+.soc{display:flex;gap:8px;margin-bottom:18px}
+.soc a{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);background:var(--bg)}
+.soc a:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.disc{color:var(--muted);line-height:1.55;max-width:260px;margin:0}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);flex-wrap:wrap}
+.pay{display:flex;gap:6px;flex-wrap:wrap}
+.pay span{height:22px;padding:0 7px;border-radius:4px;background:var(--bg);border:1px solid var(--line);font-size:9.5px;font-weight:700;color:var(--ink);display:grid;place-items:center;letter-spacing:.02em}
+
+/* ---------- carousels (shared) ---------- */
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;position:relative;cursor:grab;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.track > *{scroll-snap-align:start;flex:none}
+.track.drag{scroll-snap-type:none;cursor:grabbing;user-select:none}
+.track.drag *{pointer-events:none}
+.chead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}
+.chead h2{margin:0 0 8px;font-size:30px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.chead p{margin:0;font-size:13px;color:var(--muted);max-width:460px;line-height:1.5}
+.arrows{display:flex;gap:8px;align-items:center}
+.arr{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);display:grid;place-items:center;transition:background .2s,color .2s,opacity .2s}
+.arr:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.arr:disabled{opacity:.35;pointer-events:none}
+.arr svg{width:16px;height:16px}
+.viewall{font-size:13px;font-weight:600;color:var(--ink);border-bottom:1.5px solid var(--btn);padding-bottom:2px;margin-right:8px}
+.swatches{display:flex;gap:5px;margin-top:8px}
+.swatches i{width:11px;height:11px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+
+/* C1 · classic 4-up with progress bar and quick add */
+.c1 > *{width:calc((100% - 48px) / 4)}
+.c1 .thumb{aspect-ratio:4/5;border-radius:10px;position:relative}
+.c1 .wish{z-index:1}
+.qadd{position:absolute;left:10px;right:10px;bottom:10px;height:38px;border-radius:8px;background:var(--bg);color:var(--ink);font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transform:translateY(calc(100% + 12px));transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+.c1 > *:hover .qadd{transform:none}
+.qadd:hover{background:var(--btn);color:var(--btn-ink)}
+.c1 .name{margin:12px 0 4px}
+.prog{height:2px;background:var(--line);margin-top:28px;border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;width:25%;background:var(--btn);border-radius:2px;transition:margin-left .15s}
+
+/* C2 · editorial panel + peeking cards */
+.c2wrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:stretch}
+.c2panel{background:var(--btn);color:var(--bar-ink);border-radius:16px;padding:34px 30px;display:flex;flex-direction:column}
+.c2panel small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.c2panel h2{margin:12px 0 12px;font-size:32px;line-height:1.1;font-weight:600;color:#fff;letter-spacing:-.02em}
+.c2panel p{margin:0 0 24px;font-size:13.5px;line-height:1.55;opacity:.85}
+.c2panel .go{align-self:flex-start;background:var(--bar-cta);color:var(--bar-cta-ink);font-weight:600;font-size:13px;padding:11px 18px;border-radius:999px}
+.c2panel .arrows{margin-top:auto;padding-top:30px}
+.c2panel .arr{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+.c2panel .arr:hover{background:#fff;color:var(--btn)}
+.c2 > *{width:calc((100% - 32px) / 2.6)}
+.c2 .thumb{aspect-ratio:3/4;border-radius:14px;position:relative}
+.c2 .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-top:12px}
+.c2 .plus{width:34px;height:34px;border-radius:50%;background:var(--btn2);color:var(--btn2-ink);display:grid;place-items:center;flex:none}
+.c2 .plus:hover{background:var(--btn);color:var(--btn-ink)}
+
+/* C3 · centre focus */
+.c3sec .head{margin-bottom:20px}
+.c3box{position:relative}
+.c3{padding:20px calc(50% - 150px) 10px;gap:20px}
+.c3 > *{width:300px;scroll-snap-align:center;transition:transform .35s cubic-bezier(.2,.8,.3,1),opacity .35s;transform:scale(.84);opacity:.45;transform-origin:center 40%}
+.c3 > .on{transform:none;opacity:1}
+.c3 .thumb{aspect-ratio:4/5;border-radius:16px;box-shadow:0 20px 40px -24px rgba(0,0,0,.45)}
+.c3 .info{text-align:center;margin-top:16px;visibility:hidden}
+.c3 > .on .info{visibility:visible}
+.c3 .info .name{font-size:15px;margin-bottom:6px}
+.c3 .info .sq{width:auto;padding:0 22px;margin:14px auto 0;border-radius:999px}
+.c3box .arr{position:absolute;top:calc(20px + 187px);transform:translateY(-50%);z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.c3box [data-prev]{left:calc(50% - 205px)}
+.c3box [data-next]{right:calc(50% - 205px)}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:20px}
+.dots button{width:7px;height:7px;border-radius:999px;background:var(--line);transition:width .25s,background .25s}
+.dots button.on{width:22px;background:var(--btn)}
+
+/* C4 · full-bleed with glass info */
+.c4sec .wrap{margin-bottom:0}
+.c4{padding:0 20px 4px max(20px, calc((100vw - 1100px) / 2 + 20px));scroll-padding-left:max(20px, calc((100vw - 1100px) / 2 + 20px))}
+.c4 > *{width:290px}
+.c4 .thumb{aspect-ratio:3/4.1;border-radius:18px;position:relative}
+.glass{position:absolute;left:10px;right:10px;bottom:10px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;gap:10px}
+.glass > div{flex:1;min-width:0}
+.glass .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.glass .price{font-size:13px}
+.glass .plus{width:34px;height:34px;border-radius:50%;background:var(--btn);color:var(--btn-ink);display:grid;place-items:center;flex:none}
+.new{position:absolute;top:12px;left:12px;background:var(--bg);color:var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.08em;padding:4px 9px;border-radius:999px;z-index:1}
+
+/* C5 · ranked bestsellers */
+.c5{gap:8px}
+.c5 > *{width:330px;display:grid;grid-template-columns:92px 1fr;align-items:end}
+.rank{font-size:96px;line-height:.8;font-weight:700;color:transparent;-webkit-text-stroke:1.5px var(--btn);letter-spacing:-.06em;margin-right:-12px;text-align:right;position:relative;z-index:1;align-self:end;padding-bottom:84px}
+.c5 .thumb{aspect-ratio:4/5;border-radius:12px}
+.c5 .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
+.c5 .name{margin-bottom:4px}
+.c5 .plus{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);color:var(--ink);display:grid;place-items:center;flex:none}
+.c5 .plus:hover{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+
+@media (max-width:980px){
+  .c1 > *{width:calc((100% - 16px) / 2.3)}
+  .c2wrap{grid-template-columns:1fr}
+  .c2panel .arrows{display:none}
+  .c2 > *{width:calc((100% - 16px) / 2.2)}
+  .g5{grid-template-columns:repeat(3,1fr)}
+  .g4,.g4l{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .fgrid > div:first-child{grid-column:1/-1}
+  nav.main{display:none}
+  .buy{margin-left:auto}
+}
+@media (max-width:600px){
+  .g5,.g4{grid-template-columns:repeat(2,1fr);gap:10px}
+  .g3,.g4l{grid-template-columns:1fr}
+  .chead{flex-direction:column;align-items:flex-start}
+  .chead .arrows{display:none}
+  .c1 > *,.c2 > *{width:72%}
+  .c3{padding-inline:calc(50% - 120px)}
+  .c3 > *{width:240px}
+  .c3box .arr{display:none}
+  .c4 > *{width:240px}
+  .c5 > *{width:270px;grid-template-columns:72px 1fr}
+  .rank{font-size:76px}
+  section{padding:46px 0}
+  .head h2{font-size:24px}
+  .buy{display:none}
+  .cart{margin-left:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="promo">Save Up to 50% Before the Halloween Sale Ends <a href="#">Get It Now</a></div>
+<header class="site"><div class="wrap">
+  <a class="logo" href="#"><i>D</i>DiviMerc</a>
+  <nav class="main">
+    <a href="#">Explore Products</a>
+    <a href="#">Product Template <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></a>
+    <a href="#">Other Templates <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></a>
+  </nav>
+  <a class="buy" href="#">Buy DiviMerc!</a>
+  <a class="cart" href="#"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><b>1</b>Cart</a>
+</div></header>
+
+<section class="s-soft"><div class="wrap">
+  <div class="head"><h2>New Arrivals</h2><p>Fresh pieces for the new season, from easy everyday tees to soft knits and statement layers.</p></div>
+  <div class="g5" id="s1"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><h2>Picks For You</h2><p>Hand-picked styles our team loves right now, with a little extra off selected favourites.</p></div>
+  <div class="g4" id="s2"></div>
+  <div class="pager"><a class="on" href="#">1</a><a href="#">2</a><a href="#">›</a></div>
+</div></section>
+
+<section class="s-soft"><div class="wrap">
+  <div class="head"><h2>On Sale Now</h2><p>Wardrobe favourites at lower prices. Grab them while your size is still in stock.</p></div>
+  <div class="g3" id="s3"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><h2>Customer Favourites</h2><p>See what everyone is wearing, from our bestsellers and top rated pieces to the newest drops.</p></div>
+  <div class="g4l" id="s4"></div>
+</div></section>
+
+<section class="cs"><div class="wrap">
+  <div class="chead"><div><h2>Trending This Week</h2><p>The pieces everyone is reaching for right now. Hover a product to add it to your bag in one click.</p></div><div class="arrows"><button class="arr" data-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button class="arr" data-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  <div class="track c1" data-car="c1"></div>
+  <div class="prog"><i></i></div>
+</div></section>
+
+<section class="s-soft"><div class="wrap c2wrap">
+  <div class="c2panel"><small>The Autumn Edit</small><h2>Layers for cooler days</h2><p>Soft knits, relaxed outerwear and easy shirts, chosen to mix and match all season.</p><a class="go" href="#">Shop the edit</a><div class="arrows"><button class="arr" data-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button class="arr" data-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  <div class="track c2" data-car="c2"></div>
+</div></section>
+
+<section class="c3sec"><div class="wrap">
+  <div class="head"><h2>Shop the Look</h2><p>Swipe through our stylists' favourite outfits and find the one that feels like you.</p></div>
+  <div class="c3box"><div class="track c3" data-car="c3" data-center></div><button class="arr" data-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button class="arr" data-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  <div class="dots" id="c3dots"></div>
+</div></section>
+
+<section class="s-soft c4sec"><div class="wrap">
+  <div class="chead"><div><h2>Just Dropped</h2><p>New styles land every week. Be the first to wear them.</p></div><div class="arrows"><a class="viewall" href="#">View all</a><button class="arr" data-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button class="arr" data-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+</div>
+  <div class="track c4" data-car="c4"></div>
+</section>
+
+<section><div class="wrap">
+  <div class="chead"><div><h2>Bestsellers</h2><p>Our ten most-loved pieces, ranked by you. Restocked often, but they never stay long.</p></div><div class="arrows"><button class="arr" data-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button class="arr" data-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+  <div class="track c5" data-car="c5"></div>
+</div></section>
+
+<section class="news"><div class="wrap">
+  <h2>Sign up &amp; save 10%</h2>
+  <p>Get 10% off your first order plus early access to new arrivals, exclusive offers and updates from DiviMerc.</p>
+  <form onsubmit="return false"><input type="email" placeholder="Email" aria-label="Email"><button>Subscribe</button></form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="#"><i>D</i>DiviMerc</a>
+      <p class="tag">All-in-One Divi WooCommerce Plugin</p>
+      <div class="soc">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6 9v11M6 5v.01M10 20v-6a3 3 0 0 1 6 0v6M10 9v11"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="m10 9 5 3-5 3z"/></svg></a>
+      </div>
+      <p class="disc">Divi is a registered trademark of Elegant Themes, Inc. This website is not affiliated with nor endorsed by Elegant Themes.</p>
+    </div>
+    <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">WordPress SEO Service</a></li><li><a href="#">Contact</a></li><li><a href="#">Community</a></li></ul></div>
+    <div><h4>Special Features</h4><ul><li><a href="#">Variations Swatches</a></li><li><a href="#">Video &amp; 3D Gallery</a></li><li><a href="#">Custom Tabs</a></li><li><a href="#">Product Badges</a></li><li><a href="#">Size Chart</a></li></ul></div>
+    <div><h4>Our Products</h4><ul><li><a href="#">DiviFlash</a></li><li><a href="#">DiviMotion</a></li><li><a href="#">DiviGear</a></li><li><a href="#">RioVisual</a></li><li><a href="#">RioForms</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 Divimerc. All rights reserved</span>
+    <div class="pay"><span>VISA</span><span>PayPal</span><span>AMEX</span><span>MC</span><span>STRIPE</span><span>DISCOVER</span><span>GPAY</span></div>
+  </div>
+</div></footer>
+
+<script>
+const U = id => `https://images.unsplash.com/photo-${id}?w=500&h=620&q=72&auto=format&fit=crop`;
+const P = {
+  tee:      {n:"Women's Casual T-Shirt",           img:'1503342217505-b0a15ec3261c', p:'$100.00 – $120.00'},
+  hoodie:   {n:'Campus Fleece Full-Zip Hoodie',     img:'1578587018452-892bacefd3f2', p:'$200.00 – $359.55'},
+  trouser:  {n:'High Waisted Tie Back Trouser',     img:'1594633312681-425c7b97ccd1', p:'$229.55 – $359.55'},
+  amelie:   {n:'Amélie Midi Dress',                 img:'1572804013309-59a88b7e92f1', p:'$120.00 – $520.00'},
+  cashmere: {n:'Cashmere Longline Feather',         img:'1485968579580-b6d095142e6e', was:'$120.00', p:'$100.00'},
+  bomber:   {n:'Cropped Nylon Bomber Jacket',       img:'1591047139829-d91aecb6caea', was:'$120.00', p:'$100.00'},
+  halter:   {n:'Cinched Halter Tank Top',           img:'1495385794356-15371f348c31', was:'$120.00', p:'$100.00'},
+  polo:     {n:'Relaxed Essential Polo Sweatshirt', img:'1620799140408-edc6dcb6d633', was:'$120.00', p:'$100.00'},
+  luna:     {n:'Luna Cropped Shirt',                img:'1564257631407-4deb1f99d992', was:'$120.00', p:'$100.00'},
+  aerie:    {n:'Aerie Sunday Soft Cardigan',        img:'1434389677669-e08b4cac3105', was:'$120.00', p:'$100.00'},
+  backpack: {n:'The North Face Backpack',           img:'1553062407-98eeb64c6a62',    was:'$120.00', p:'$100.00'},
+};
+const cta = k => k==='cashmere' ? 'In cart' : k==='aerie' ? 'Explore Now' : 'Select options';
+const price = x => `<div class="price">${x.was?`<del>${x.was}</del><ins>${x.p}</ins>`:x.p}</div>`;
+const thumb = x => `<div class="thumb"><img src="${U(x.img)}" alt="${x.n}"></div>`;
+const ICON = {
+  check:'<svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>',
+  cart:'<svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>',
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>'
+};
+
+// 1 · five-column grid
+document.getElementById('s1').innerHTML = ['tee','hoodie','trouser','amelie','cashmere','bomber','halter','polo','luna','aerie'].map(k => { const x = P[k];
+  return `<a class="card prod" href="#">${thumb(x)}<div class="name">${x.n}</div>${price(x)}
+    <span class="pill ${k==='cashmere'?'in':''}">${k==='cashmere'?ICON.check:''}${cta(k)}</span></a>`; }).join('');
+
+// 2 · picks for you
+document.getElementById('s2').innerHTML = ['amelie','luna','cashmere','aerie','bomber','backpack','halter','polo'].map(k => { const x = P[k];
+  return `<div class="pick"><a class="prod" href="#"><div class="thumb">${x.was?'<span class="badge">-17%</span>':''}<span class="wish">${ICON.heart}</span><img src="${U(x.img)}" alt="${x.n}"></div></a>
+    <div class="name">${x.n}</div>${price(x)}<button class="sq">${k==='cashmere'?ICON.check:ICON.cart}${cta(k)}</button></div>`; }).join('');
+
+// 3 · horizontal cards
+document.getElementById('s3').innerHTML = ['amelie','luna','cashmere','aerie','bomber','backpack','halter','polo','hoodie'].map(k => { const x = P[k];
+  return `<div class="hcard">${x.was?'<span class="sale">Sale</span>':''}${thumb(x)}<div><div class="name">${x.n}</div>${price(x)}
+    <a class="mini" href="#">${k==='cashmere'?ICON.check:''}${cta(k)}</a></div></div>`; }).join('');
+
+// 4 · four lists
+const stars = n => `<div class="stars">${'★'.repeat(n)}<s>${'★'.repeat(5-n)}</s></div>`;
+const LISTS = [['Top Selling',['tee','hoodie','trouser'],[5,4,5]],['Trending Products',['amelie','luna','cashmere'],[5,4,4]],
+               ['Recently Added',['amelie','luna','cashmere'],[5,4,4]],['Top Rated',['amelie','tee','cashmere'],[5,5,4]]];
+document.getElementById('s4').innerHTML = LISTS.map(([t,ks,r]) => `<div><h3>${t}</h3>${ks.map((k,i) => { const x = P[k];
+  return `<a class="li prod" href="#">${thumb(x)}<div><div class="name">${x.n}</div>${stars(r[i])}${price(x)}</div></a>`; }).join('')}</div>`).join('');
+
+// ---------- carousels ----------
+const SW = {tee:['#23251f','#f3f2ec','#c9a98a'],hoodie:['#c9692d','#4f5a3a','#23251f'],trouser:['#d9a79a','#23251f'],amelie:['#b8322a','#e7d3b0'],
+  cashmere:['#2f3a3a','#a88f6c'],bomber:['#a5603a','#4f5a3a','#23251f'],halter:['#1f7b84','#23251f'],polo:['#f3f2ec','#2f4b3a'],
+  luna:['#f3f2ec','#9fb0c9'],aerie:['#efe4cf','#a88f6c'],backpack:['#1f2a44','#23251f','#4f5a3a']};
+const ALL = ['amelie','cashmere','bomber','luna','aerie','hoodie','halter','polo','backpack','tee','trouser'];
+const sw = k => `<div class="swatches">${SW[k].map(c=>`<i style="background:${c}"></i>`).join('')}</div>`;
+const img = x => `<img src="${U(x.img)}" alt="${x.n}" draggable="false">`;
+const PLUS = '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
+const C = {
+  c1: ['bomber','amelie','luna','hoodie','cashmere','polo','aerie','halter'].map(k => { const x = P[k];
+    return `<a class="prod" href="#"><div class="thumb">${x.was?'<span class="badge">-17%</span>':''}<span class="wish">${ICON.heart}</span>${img(x)}<span class="qadd">${ICON.cart}Quick add</span></div><div class="name">${x.n}</div>${price(x)}${sw(k)}</a>`; }),
+  c2: ['aerie','cashmere','bomber','polo','luna','hoodie'].map(k => { const x = P[k];
+    return `<a class="prod" href="#"><div class="thumb">${img(x)}</div><div class="row"><div><div class="name">${x.n}</div>${price(x)}</div><span class="plus">${PLUS}</span></div></a>`; }),
+  c3: ['amelie','luna','cashmere','halter','aerie','bomber','trouser'].map(k => { const x = P[k];
+    return `<div><a class="prod" href="#"><div class="thumb">${img(x)}</div></a><div class="info"><div class="name">${x.n}</div>${price(x)}<button class="sq">${ICON.cart}${cta(k)}</button></div></div>`; }),
+  c4: ['halter','luna','hoodie','backpack','amelie','tee','bomber','polo'].map(k => { const x = P[k];
+    return `<a class="prod" href="#"><div class="thumb"><span class="new">NEW</span>${img(x)}<div class="glass"><div><div class="name">${x.n}</div>${price(x)}</div><span class="plus">${PLUS}</span></div></div></a>`; }),
+  c5: ['amelie','tee','cashmere','hoodie','luna','bomber','aerie','trouser','polo','backpack'].map((k,i) => { const x = P[k];
+    return `<div><span class="rank">${String(i+1).padStart(2,'0')}</span><a class="prod" href="#"><div class="thumb">${img(x)}</div><div class="meta"><div><div class="name">${x.n}</div>${price(x)}</div><span class="plus">${ICON.cart}</span></div></a></div>`; })
+};
+document.querySelectorAll('[data-car]').forEach(track => {
+  track.innerHTML = C[track.dataset.car].join('');
+  const box = track.closest('.c3box, .c2wrap, section');
+  const prev = box.querySelector('[data-prev]'), next = box.querySelector('[data-next]');
+  const bar = box.querySelector('.prog i'), center = track.hasAttribute('data-center');
+  const items = [...track.children];
+  const dots = center ? document.getElementById('c3dots') : null;
+  if(dots){ dots.innerHTML = items.map((_,i) => `<button aria-label="Slide ${i+1}"></button>`).join('');
+    dots.onclick = e => { const i = [...dots.children].indexOf(e.target); if(i > -1) go(i); }; }
+  const go = i => { const it = items[i]; track.scrollTo({left: it.offsetLeft - (track.clientWidth - it.offsetWidth) / 2, behavior:'smooth'}); };
+  let active = 0;
+  function update(){
+    const max = track.scrollWidth - track.clientWidth;
+    if(prev) prev.disabled = !center && track.scrollLeft <= 2;
+    if(next) next.disabled = !center && track.scrollLeft >= max - 2;
+    if(bar){ const vis = track.clientWidth / track.scrollWidth; bar.style.width = vis*100 + '%'; bar.style.marginLeft = (max ? track.scrollLeft / max : 0) * (1 - vis) * 100 + '%'; }
+    if(center){
+      const mid = track.scrollLeft + track.clientWidth / 2;
+      active = items.reduce((b, it, i) => Math.abs(it.offsetLeft + it.offsetWidth/2 - mid) < Math.abs(items[b].offsetLeft + items[b].offsetWidth/2 - mid) ? i : b, 0);
+      items.forEach((it,i) => it.classList.toggle('on', i===active));
+      [...dots.children].forEach((d,i) => d.classList.toggle('on', i===active));
+      if(prev) prev.disabled = active===0; if(next) next.disabled = active===items.length-1;
+    }
+  }
+  const step = dir => center ? go(Math.max(0, Math.min(items.length-1, active + dir)))
+    : track.scrollBy({left: dir * Math.max(items[0].offsetWidth + 16, track.clientWidth - items[0].offsetWidth), behavior:'smooth'});
+  prev && (prev.onclick = () => step(-1)); next && (next.onclick = () => step(1));
+  let raf; track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
+  addEventListener('resize', update);
+  // mouse drag (touch and trackpads already scroll natively)
+  let x0, s0, moved = false;
+  track.addEventListener('pointerdown', e => { if(e.pointerType !== 'mouse') return; x0 = e.clientX; s0 = track.scrollLeft; moved = false;
+    const mv = ev => { const dx = ev.clientX - x0; if(Math.abs(dx) > 5){ moved = true; track.classList.add('drag'); } if(moved) track.scrollLeft = s0 - dx; };
+    const up = () => { removeEventListener('pointermove', mv); removeEventListener('pointerup', up);
+      if(moved){ const l = track.scrollLeft; track.classList.remove('drag'); track.scrollLeft = l; } };
+    addEventListener('pointermove', mv); addEventListener('pointerup', up); });
+  track.addEventListener('click', e => { if(moved){ e.preventDefault(); moved = false; } }, true);
+  if(center) requestAnimationFrame(() => { track.scrollLeft = items[1].offsetLeft - (track.clientWidth - items[1].offsetWidth) / 2; update(); });
+  update();
+});
+</script>
+</body>
+</html>

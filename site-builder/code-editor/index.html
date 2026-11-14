@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Editor Modal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<style>
+  :root{
+    --ink:#1b1d21; --muted:#6b7078; --faint:#a3a8b0; --line:#e6e8eb; --soft:#f5f6f8; --bg:#ffffff;
+    --blue:#0969da; --hit:rgba(255,196,0,.32); --hit-cur:rgba(255,140,0,.55); --red:#cf222e;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.45 Inter,system-ui,sans-serif;color:var(--ink);background:#e9ebee;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+  button{font:inherit;color:inherit}
+
+  .closed .modal{display:none}
+  .reopen{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);height:40px;padding:0 18px;border-radius:10px;border:0;background:var(--ink);color:#fff;font:500 14px Inter;cursor:pointer}
+  .closed .reopen{display:block}
+
+  /* ---------- modal ---------- */
+  .modal{position:fixed;inset:32px max(16px,calc((100vw - 1320px)/2));background:var(--bg);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.28),0 0 0 1px rgba(0,0,0,.04);display:flex;flex-direction:column;overflow:hidden}
+  .mhead{display:flex;align-items:center;gap:10px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--line)}
+  .mhead h2{font-size:16px;margin:0 6px 0 0;font-weight:600}
+  .file{position:relative}
+  .file select{appearance:none;border:1px solid var(--line);border-radius:8px;padding:7px 30px 7px 12px;font:14px Inter;background:#fff;cursor:pointer;color:var(--ink)}
+  .file::after{content:'';position:absolute;right:12px;top:50%;width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+  .dirty{font-size:12px;color:var(--muted);display:none;align-items:center;gap:6px}
+  .dirty i{width:7px;height:7px;border-radius:50%;background:#f59e0b;display:block}
+  .dirty.on{display:flex}
+  .tools{margin-left:auto;display:flex;align-items:center;gap:2px}
+  .ib{width:34px;height:34px;border:0;background:none;border-radius:8px;display:grid;place-items:center;color:#4a4f57;cursor:pointer;position:relative}
+  .ib:hover{background:var(--soft);color:var(--ink)}
+  .ib.on{background:#eaf2fe;color:var(--blue)}
+  .ib svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .sep{width:1px;height:20px;background:var(--line);margin:0 6px}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font:12px Inter;white-space:nowrap;padding:5px 8px;border-radius:6px;z-index:20;pointer-events:none}
+  [data-tip]:hover::before{content:'';position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);border:4px solid transparent;border-bottom-color:var(--ink);z-index:20}
+  .tools [data-tip]:last-child:hover::after{left:auto;right:0;transform:none}
+
+  .ebody{flex:1;min-height:0;position:relative;margin:14px 20px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .cmwrap{flex:1;min-height:0;position:relative}
+  .CodeMirror{height:100%;font:13.5px/1.75 var(--mono);color:#24292f}
+  .CodeMirror-gutters{background:#fff;border-right:1px solid #f0f1f3}
+  .CodeMirror-linenumber{color:#b6bbc2;padding:0 8px 0 14px;min-width:34px}
+  .CodeMirror-activeline-background{background:#f6f8fa}
+  .CodeMirror-activeline-gutter .CodeMirror-linenumber{color:var(--ink)}
+  .CodeMirror-lines{padding:10px 0}
+  .CodeMirror pre.CodeMirror-line,.CodeMirror pre.CodeMirror-line-like{padding:0 14px}
+  .CodeMirror-cursor{border-left:2px solid var(--blue)}
+  .CodeMirror-selected{background:#e4ecf7}
+  .CodeMirror-focused .CodeMirror-selected{background:#cfe0fb}
+  .CodeMirror-matchingtag{background:rgba(9,105,218,.09);border-bottom:1px solid rgba(9,105,218,.35)}
+  .CodeMirror-matchingbracket{color:inherit!important;outline:1px solid rgba(9,105,218,.45);border-radius:2px}
+  .cm-tag{color:#116329;font-weight:600}.cm-attribute{color:#0550ae}.cm-string{color:#0a3069}
+  .cm-comment{color:#8b929b;font-style:italic}.cm-keyword{color:#cf222e}.cm-def{color:#8250df}
+  .cm-variable-2,.cm-variable-3{color:#953800}.cm-property{color:#0550ae}.cm-number,.cm-atom{color:#0550ae}
+  .cm-qualifier,.cm-builtin{color:#8250df}.cm-bracket,.cm-meta{color:#8b929b}
+  .cm-match{background:var(--hit);border-radius:2px}
+  .cur-match,.cur-match .cm-match{background:var(--hit-cur);border-radius:2px;box-shadow:0 0 0 1px #f59e0b}
+
+  /* fold gutter */
+  .CodeMirror-foldgutter{width:16px}
+  .fold-open,.fold-closed{width:16px;height:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#9aa0a8}
+  .fold-open::before,.fold-closed::before{content:'';width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-1px,-1px)}
+  .fold-closed::before{transform:rotate(-45deg);color:var(--blue)}
+  .fold-closed{color:var(--blue)}
+  .fold-open{opacity:0;transition:opacity .15s}
+  .CodeMirror:hover .fold-open{opacity:1}
+  .fold-open:hover,.fold-closed:hover{color:var(--ink)}
+  .fold-pill{display:inline-block;margin:0 4px;padding:0 7px;line-height:18px;border-radius:5px;background:#eef1f5;color:#57606a;font:11.5px var(--mono);cursor:pointer;vertical-align:1px}
+  .fold-pill:hover{background:#dde7f6;color:var(--blue)}
+
+  /* match ticks on the scrollbar */
+  .ticks{position:absolute;top:0;right:0;width:10px;bottom:0;pointer-events:none;z-index:4}
+  .ticks i{position:absolute;right:1px;width:7px;height:3px;border-radius:2px;background:#f2b200}
+  .ticks i.cur{background:#ea7a00;height:4px}
+
+  /* ---------- find / replace panel ---------- */
+  .find{position:absolute;top:10px;right:22px;z-index:8;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(15,20,30,.12);padding:6px;display:none;width:min(470px,calc(100% - 32px))}
+  .find.open{display:block;animation:drop .14s ease-out}
+  @keyframes drop{from{transform:translateY(-6px);opacity:0}}
+  .frow{display:flex;align-items:center;gap:4px}
+  .frow + .frow{margin-top:5px}
+  .rtoggle{width:22px;align-self:stretch;border:0;background:none;border-radius:6px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
+  .rtoggle:hover{background:var(--soft)}
+  .rtoggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .15s}
+  .find.rep .rtoggle svg{transform:rotate(90deg)}
+  .field{flex:1;display:flex;align-items:center;border:1px solid var(--line);border-radius:7px;background:#fff;min-width:0;height:30px}
+  .field:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(9,105,218,.12)}
+  .field.bad{border-color:var(--red);box-shadow:0 0 0 3px rgba(207,34,46,.1)}
+  .field input{flex:1;border:0;outline:0;font:13px var(--mono);padding:0 8px;min-width:0;background:none;color:var(--ink)}
+  .opt{border:0;background:none;height:24px;min-width:24px;padding:0 4px;margin-right:2px;border-radius:5px;font:600 12px var(--mono);color:var(--muted);cursor:pointer;position:relative}
+  .opt:hover{background:var(--soft);color:var(--ink)}
+  .opt.on{background:#eaf2fe;color:var(--blue);box-shadow:inset 0 0 0 1px rgba(9,105,218,.35)}
+  .opt u{text-decoration:none;border-bottom:1.5px solid currentColor;line-height:1}
+  .count{font:12px var(--mono);color:var(--muted);min-width:66px;text-align:center;white-space:nowrap}
+  .count.none{color:var(--red)}
+  .fb{width:28px;height:28px;border:0;background:none;border-radius:6px;display:grid;place-items:center;cursor:pointer;color:#4a4f57;position:relative}
+  .fb:hover{background:var(--soft);color:var(--ink)}
+  .fb:disabled{opacity:.35;cursor:default;background:none}
+  .fb svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .tb{height:28px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:0 10px;font:500 12.5px Inter;cursor:pointer;white-space:nowrap}
+  .tb:hover:not(:disabled){background:var(--soft)}
+  .tb:disabled{opacity:.4;cursor:default}
+  .rrow{display:none}
+  .find.rep .rrow{display:flex}
+  .rrow .field{margin-left:26px}
+
+  /* go to line */
+  .goto{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:9;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(15,20,30,.12);padding:6px;display:none;align-items:center;gap:8px;width:min(320px,calc(100% - 32px))}
+  .goto.open{display:flex}
+  .goto span{font:12px Inter;color:var(--muted);white-space:nowrap;padding-left:6px}
+
+  /* keyboard help */
+  .keys{position:absolute;top:58px;right:14px;z-index:30;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(15,20,30,.16);padding:14px 16px;width:300px;display:none}
+  .keys.open{display:block}
+  .keys h4{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .keys div{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:13px}
+  kbd{font:11.5px var(--mono);background:var(--soft);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:#3a3d42;margin-left:3px}
+
+  /* status bar */
+  .status{display:flex;align-items:center;gap:4px;border-top:1px solid var(--line);background:#fafbfc;padding:0 6px;height:30px;font:12px var(--mono);color:var(--muted)}
+  .status button{border:0;background:none;padding:3px 8px;border-radius:5px;cursor:pointer;font:inherit;color:inherit}
+  .status button:hover{background:#eef0f3;color:var(--ink)}
+  .status .sp{margin-left:auto}
+  .toast{position:absolute;left:50%;bottom:44px;transform:translate(-50%,10px);background:var(--ink);color:#fff;font:13px Inter;padding:8px 14px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;z-index:10}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  .mfoot{display:flex;align-items:center;gap:10px;padding:14px 20px}
+  .mfoot p{margin:0 auto 0 0;color:var(--faint);font-size:13px}
+  .btn{height:34px;border-radius:8px;padding:0 16px;font:500 14px Inter;cursor:pointer;border:1px solid var(--line);background:#fff}
+  .btn:hover{background:var(--soft)}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.primary:disabled{background:#f1f2f4;color:var(--faint);border-color:var(--line);cursor:default}
+
+  @media (max-width:900px){
+    .modal{inset:8px}
+    .mhead{flex-wrap:wrap;padding:10px 12px}
+    .tools{margin-left:0;width:100%;justify-content:space-between}
+    .ebody{margin:10px 10px 0}
+    .find{right:10px;width:calc(100% - 20px)}
+    .count{min-width:50px}
+    .mfoot p{display:none}.mfoot{justify-content:flex-end;padding:10px}
+    .status .hide-s{display:none}
+    [data-tip]:hover::after,[data-tip]:hover::before{display:none}
+  }
+</style>
+</head>
+<body>
+
+<button class="reopen" id="openCode">Open code editor</button>
+
+<div class="modal" role="dialog" aria-label="Code editor">
+  <div class="mhead">
+    <h2>Code</h2>
+    <label class="file"><select id="file" aria-label="File"></select></label>
+    <span class="dirty" id="dirty"><i></i>Unapplied changes</span>
+    <div class="tools">
+      <button class="ib" id="tFind" data-tip="Find  ⌘F"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5"/><path d="M12.5 12.5L17 17"/></svg></button>
+      <button class="ib" id="tRep" data-tip="Replace  ⌥⌘F"><svg viewBox="0 0 20 20"><path d="M3 7h11l-3-3M17 13H6l3 3"/></svg></button>
+      <button class="ib" id="tGoto" data-tip="Go to line  ⌃G"><svg viewBox="0 0 20 20"><path d="M4 5h6M4 10h12M4 15h8"/><path d="M14 3v4M12 5h4" /></svg></button>
+      <span class="sep"></span>
+      <button class="ib" id="tFold" data-tip="Collapse all  ⌘K ⌘1"><svg viewBox="0 0 20 20"><path d="M6 3l4 4 4-4M6 17l4-4 4 4"/></svg></button>
+      <button class="ib" id="tUnfold" data-tip="Expand all  ⌘K ⌘0"><svg viewBox="0 0 20 20"><path d="M6 7l4-4 4 4M6 13l4 4 4-4"/></svg></button>
+      <button class="ib" id="tWrap" data-tip="Word wrap  ⌥Z"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h11a3 3 0 010 6h-4m0 0l2-2m-2 2l2 2M3 15h3"/></svg></button>
+      <span class="sep"></span>
+      <button class="ib" id="tKeys" data-tip="Shortcuts"><svg viewBox="0 0 20 20"><rect x="2.5" y="5" width="15" height="10" rx="2"/><path d="M6 8.5h.01M9 8.5h.01M12 8.5h.01M14.5 8.5h.01M7 11.5h6"/></svg></button>
+      <button class="ib" id="tClose" data-tip="Close  Esc"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+    </div>
+  </div>
+
+  <div class="keys" id="keys">
+    <h4>Shortcuts</h4>
+    <div>Find<span><kbd>⌘</kbd><kbd>F</kbd></span></div>
+    <div>Find &amp; replace<span><kbd>⌥</kbd><kbd>⌘</kbd><kbd>F</kbd></span></div>
+    <div>Next / previous match<span><kbd>↵</kbd><kbd>⇧↵</kbd></span></div>
+    <div>Select all matches<span><kbd>⌥</kbd><kbd>↵</kbd></span></div>
+    <div>Replace all<span><kbd>⌘</kbd><kbd>↵</kbd></span></div>
+    <div>Add next occurrence<span><kbd>⌘</kbd><kbd>D</kbd></span></div>
+    <div>Go to line<span><kbd>⌃</kbd><kbd>G</kbd></span></div>
+    <div>Fold / unfold block<span><kbd>⌥⌘[</kbd><kbd>⌥⌘]</kbd></span></div>
+    <div>Collapse / expand all<span><kbd>⌘K ⌘1</kbd><kbd>⌘K ⌘0</kbd></span></div>
+    <div>Toggle comment<span><kbd>⌘</kbd><kbd>/</kbd></span></div>
+  </div>
+
+  <div class="ebody">
+    <div class="cmwrap" id="cmwrap">
+      <div class="find" id="find">
+        <div class="frow">
+          <button class="rtoggle" id="rToggle" title="Toggle replace"><svg viewBox="0 0 20 20"><path d="M7 5l5 5-5 5"/></svg></button>
+          <div class="field" id="qField">
+            <input id="q" placeholder="Find" spellcheck="false" autocomplete="off">
+            <button class="opt" id="oCase" title="Match case">Aa</button>
+            <button class="opt" id="oWord" title="Whole word"><u>ab</u></button>
+            <button class="opt" id="oRe" title="Regular expression">.*</button>
+          </div>
+          <span class="count" id="count">No results</span>
+          <button class="fb" id="prev" title="Previous  ⇧↵"><svg viewBox="0 0 20 20"><path d="M5 12l5-5 5 5"/></svg></button>
+          <button class="fb" id="next" title="Next  ↵"><svg viewBox="0 0 20 20"><path d="M5 8l5 5 5-5"/></svg></button>
+          <button class="fb" id="selAll" title="Select all matches  ⌥↵"><svg viewBox="0 0 20 20"><path d="M6 4v12M10 4v12M14 4v12"/></svg></button>
+          <button class="fb" id="fClose" title="Close  Esc"><svg viewBox="0 0 20 20"><path d="M6 6l8 8M14 6l-8 8"/></svg></button>
+        </div>
+        <div class="frow rrow">
+          <div class="field"><input id="r" placeholder="Replace" spellcheck="false" autocomplete="off"></div>
+          <button class="tb" id="rOne" title="Replace  ↵">Replace</button>
+          <button class="tb" id="rAll" title="Replace all  ⌘↵">All</button>
+        </div>
+      </div>
+      <div class="goto" id="goto"><span id="gotoLbl">Line</span><div class="field"><input id="gotoIn" placeholder="line or line:col" inputmode="numeric"></div></div>
+      <div class="ticks" id="ticks"></div>
+    </div>
+    <div class="status">
+      <button id="sPos">Ln 1, Col 1</button>
+      <span id="sSel"></span>
+      <span class="sp"></span>
+      <button id="sWrap" class="hide-s">Wrap: off</button>
+      <span class="hide-s">Spaces: 2</span>
+      <span class="hide-s">UTF-8</span>
+      <span id="sLang">HTML</span>
+    </div>
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <div class="mfoot">
+    <p>Apply replaces the whole file as one step; undo takes it back.</p>
+    <button class="btn" id="bClose">Close</button>
+    <button class="btn primary" id="bApply" disabled>Apply</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/brace-fold.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchtags.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+<script>
+/* ---------- sample project files ---------- */
+const FILES = {
+'index.html': {mode:'htmlmixed', lang:'HTML', text:
+`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Blue — Protect the Sea</title>
+<meta name="description" content="A dive through the ocean's layers, and what we can do to protect them.">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Outfit:wght@300;400;500;600&amp;display=swap">
+<script src="/js/main.js" defer><\/script>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<aside class="gauge" aria-hidden="true">
+  <small>Depth</small>
+  <output id="depth">0 m</output>
+  <div class="gauge-track"><div class="gauge-fill" id="gauge-fill"></div></div>
+</aside>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="/">Deep Blue</a>
+    <nav class="nav">
+      <a href="#zones">Layers</a>
+      <a href="#help">Help</a>
+      <a class="btn" href="#cta">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">A dive in four layers</span>
+      <h1>The ocean is <em>alive</em>, all the way down.</h1>
+      <p>It makes half the oxygen we breathe. Scroll to dive in.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#zones">Start the dive</a>
+        <a class="btn ghost" href="#help">How to help</a>
+      </div>
+    </div>
+    <svg class="waves" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0 60 C240 120 480 0 720 60 C960 120 1200 0 1440 60 V120 H0 Z"/>
+    </svg>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p>The sea covers 71% of the planet. Most of it has never been seen by a person.</p>
+    </div>
+  </section>
+
+  <\!-- zones -->
+  <section class="zone" id="zones" data-depth="0">
+    <div class="wrap">
+      <h2>Sunlight zone</h2>
+      <p>0–200 m. Light reaches here, so plants and plankton can grow.</p>
+      <ul class="facts">
+        <li>90% of ocean life</li>
+        <li>Coral reefs</li>
+        <li>Most of the fish we eat</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="zone" data-depth="200">
+    <div class="wrap">
+      <h2>Twilight zone</h2>
+      <p>200–1,000 m. Faint blue light, and animals that make their own.</p>
+    </div>
+  </section>
+
+  <section class="stat">
+    <div class="wrap">
+      <strong>50%</strong>
+      <p>of Earth's oxygen comes from ocean plankton.</p>
+    </div>
+  </section>
+
+  <section class="zone" data-depth="1000">
+    <div class="wrap">
+      <h2>Midnight zone</h2>
+      <p>1,000–4,000 m. No sunlight at all. Pressure 100 times the surface.</p>
+    </div>
+  </section>
+
+  <section class="help" id="help">
+    <div class="wrap">
+      <h2>What you can do</h2>
+      <ol>
+        <li>Cut single-use plastic.</li>
+        <li>Choose sustainable seafood.</li>
+        <li>Support marine reserves.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="wrap">
+      <h2>Protect the deep blue.</h2>
+      <a class="btn" href="/donate">Donate now</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>© 2026 Deep Blue. Made for the sea.</p>
+  </div>
+</footer>
+
+</body>
+</html>
+`},
+'css/styles.css': {mode:'css', lang:'CSS', text:
+`:root {
+  --sea-1: #5aa9d6;
+  --sea-2: #0d4a7a;
+  --sea-3: #05213a;
+  --ink: #f4fbff;
+  --accent: #ffd36b;
+}
+
+body {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(var(--sea-1), var(--sea-2) 40%, var(--sea-3));
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+}
+
+.hero h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(48px, 8vw, 104px);
+  line-height: 1;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #05213a;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: var(--ink);
+}
+
+.gauge {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bubbles i {
+  position: fixed;
+  bottom: -20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .4);
+  animation: rise 9s linear infinite;
+}
+
+@keyframes rise {
+  to { transform: translateY(-110vh); }
+}
+
+@media (max-width: 768px) {
+  .gauge { display: none; }
+  .hero h1 { font-size: 48px; }
+}
+`},
+'js/main.js': {mode:'javascript', lang:'JavaScript', text:
+`// Depth gauge and bubbles for the Deep Blue page.
+const MAX_DEPTH = 4000;
+
+function depthAt(scroll) {
+  const max = document.body.scrollHeight - window.innerHeight;
+  return Math.round((scroll / max) * MAX_DEPTH);
+}
+
+function updateGauge() {
+  const depth = depthAt(window.scrollY);
+  document.getElementById('depth').textContent = depth + ' m';
+  document.getElementById('gauge-fill').style.height = (depth / MAX_DEPTH) * 100 + '%';
+}
+
+function spawnBubbles() {
+  const bubbles = document.querySelectorAll('#bubbles i');
+  bubbles.forEach(function (bubble, i) {
+    bubble.style.left = Math.random() * 100 + 'vw';
+    bubble.style.animationDelay = i * 0.8 + 's';
+  });
+}
+
+function revealZones() {
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      entry.target.classList.toggle('in', entry.isIntersecting);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.zone').forEach(function (zone) {
+    observer.observe(zone);
+  });
+}
+
+window.addEventListener('scroll', updateGauge, { passive: true });
+spawnBubbles();
+revealZones();
+updateGauge();
+`}
+};
+
+/* ---------- editor ---------- */
+const $ = id => document.getElementById(id);
+const mac = /Mac|iPhone|iPad/.test(navigator.platform);
+const MOD = mac ? 'Cmd' : 'Ctrl';
+const Pos = CodeMirror.Pos, cmp = CodeMirror.cmpPos;
+
+const docs = {};
+for (const name in FILES){
+  docs[name] = CodeMirror.Doc(FILES[name].text, FILES[name].mode);
+  $('file').add(new Option(name, name));
+}
+
+const cm = CodeMirror($('cmwrap'), {
+  value: docs['index.html'],
+  lineNumbers: true,
+  tabSize: 2, indentUnit: 2,
+  styleActiveLine: true,
+  matchTags: {bothTags: true},
+  matchBrackets: true,
+  autoCloseTags: true,
+  autoCloseBrackets: true,
+  foldGutter: {indicatorOpen: 'fold-open', indicatorFolded: 'fold-closed'},
+  foldOptions: {widget: (from, to) => {
+    const el = document.createElement('span');
+    el.className = 'fold-pill';
+    el.textContent = '··· ' + (to.line - from.line) + ' lines';
+    return el;
+  }},
+  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+  extraKeys: {
+    [MOD+'-F']: () => openFind(false),
+    [MOD+'-Alt-F']: () => openFind(true),
+    'Ctrl-H': () => openFind(true),
+    'Ctrl-G': () => openGoto(),
+    [MOD+'-G']: () => go(1),
+    ['Shift-'+MOD+'-G']: () => go(-1),
+    [MOD+'-D']: cm => addNextOccurrence(cm),
+    [MOD+'-/']: 'toggleComment',
+    [MOD+'-Alt-[']: cm => cm.foldCode(cm.getCursor(), null, 'fold'),
+    [MOD+'-Alt-]']: cm => cm.foldCode(cm.getCursor(), null, 'unfold'),
+    [MOD+'-K '+MOD+'-1']: () => collapseAll(),
+    [MOD+'-K '+MOD+'-0']: () => expandAll(),
+    'Alt-Z': () => toggleWrap(),
+    'Esc': () => { if (S.open) closeFind(); else if (cm.listSelections().length > 1) cm.setCursor(cm.getCursor()); },
+  }
+});
+
+/* ---------- find & replace ---------- */
+const S = {open:false, rep:false, caseS:false, word:false, re:false, matches:[], idx:-1, overlay:null, mark:null, rx:null};
+
+function compile(){
+  const q = $('q').value;
+  $('qField').classList.remove('bad');
+  if (!q) return null;
+  let src = S.re ? q : q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (S.word) src = '\\b(?:' + src + ')\\b';
+  try {
+    const rx = new RegExp(src, 'g' + (S.caseS ? '' : 'i'));
+    if (rx.test('')) throw 0;               // empty matches would loop forever
+    return rx;
+  } catch(e) { $('qField').classList.add('bad'); return null; }
+}
+
+function overlayFor(rx){
+  return {token(stream){
+    rx.lastIndex = stream.pos;
+    const m = rx.exec(stream.string);
+    if (!m) { stream.skipToEnd(); return null; }
+    if (m.index === stream.pos) { stream.pos += m[0].length; return 'match'; }
+    stream.pos = m.index; return null;
+  }};
+}
+
+function runSearch(from){
+  if (S.overlay) cm.removeOverlay(S.overlay);
+  if (S.mark) S.mark.clear();
+  S.overlay = S.mark = null; S.matches = []; S.idx = -1;
+  S.rx = S.open ? compile() : null;
+  if (S.rx){
+    S.overlay = overlayFor(S.rx);
+    cm.addOverlay(S.overlay);
+    const cur = cm.getSearchCursor(S.rx, Pos(0,0));
+    while (cur.findNext() && S.matches.length < 5000) S.matches.push({from:cur.from(), to:cur.to()});
+    const start = from || cm.getCursor('from');
+    S.idx = S.matches.findIndex(m => cmp(m.from, start) >= 0);
+    if (S.idx < 0 && S.matches.length) S.idx = 0;
+    markCurrent(false);
+  }
+  render();
+}
+
+function markCurrent(select){
+  if (S.mark) S.mark.clear();
+  const m = S.matches[S.idx];
+  if (!m) return;
+  S.mark = cm.markText(m.from, m.to, {className:'cur-match'});
+  if (select) cm.setSelection(m.from, m.to);
+  cm.scrollIntoView({from:m.from, to:m.to}, 120);
+}
+
+function go(dir){
+  if (!S.open) { openFind(false); return; }
+  const n = S.matches.length; if (!n) return;
+  S.idx = (S.idx + dir + n) % n;
+  markCurrent(true);
+  render();
+}
+
+function render(){
+  const n = S.matches.length, q = $('q').value;
+  const c = $('count');
+  c.textContent = !q ? '' : n ? `${S.idx+1} of ${n}${n>=5000?'+':''}` : 'No results';
+  c.classList.toggle('none', !!q && !n);
+  ['prev','next','selAll','rOne','rAll'].forEach(id => $(id).disabled = !n);
+  ticks();
+}
+
+function ticks(){
+  const box = $('ticks'), h = cm.getScrollInfo().height;
+  box.innerHTML = S.matches.slice(0, 800).map((m,i) =>
+    `<i class="${i===S.idx?'cur':''}" style="top:${(cm.heightAtLine(m.from.line,'local')/h*100).toFixed(2)}%"></i>`).join('');
+}
+
+function replacement(m){
+  const text = $('r').value;
+  if (!S.re) return text;
+  return cm.getRange(m.from, m.to).replace(new RegExp(S.rx.source, S.rx.flags.replace('g','')), text);
+}
+
+function replaceOne(){
+  const m = S.matches[S.idx]; if (!m) return;
+  const rep = replacement(m);
+  cm.replaceRange(rep, m.from, m.to, '+replace');
+  const after = cm.posFromIndex(cm.indexFromPos(m.from) + rep.length);
+  runSearch(after);
+  markCurrent(true); render();
+}
+
+function replaceAll(){
+  const list = S.matches.slice(); if (!list.length) return;
+  cm.operation(() => { for (let i = list.length-1; i >= 0; i--) cm.replaceRange(replacement(list[i]), list[i].from, list[i].to, '+replaceall'); });
+  runSearch();
+  toast(`Replaced ${list.length} ${list.length===1?'match':'matches'} · ${mac?'⌘':'Ctrl+'}Z to undo`);
+}
+
+function selectAll(){
+  if (!S.matches.length) return;
+  const sels = S.matches.map(m => ({anchor:m.from, head:m.to}));
+  closeFind();
+  cm.setSelections(sels, 0);
+  toast(`${sels.length} cursors · type to edit them all`);
+}
+
+function openFind(rep){
+  S.open = true;
+  if (rep) S.rep = true; else if (!S.rep) S.rep = false;
+  $('find').classList.add('open');
+  $('find').classList.toggle('rep', S.rep);
+  $('tFind').classList.add('on'); $('tRep').classList.toggle('on', S.rep);
+  const sel = cm.getSelection();
+  if (sel && !sel.includes('\n')) $('q').value = sel;
+  runSearch(cm.getCursor('from'));
+  const target = rep && $('q').value ? $('r') : $('q');
+  target.focus(); target.select();
+}
+function closeFind(){
+  S.open = false;
+  $('find').classList.remove('open');
+  $('tFind').classList.remove('on'); $('tRep').classList.remove('on');
+  runSearch();
+  cm.focus();
+}
+
+$('q').addEventListener('input', () => runSearch(cm.getCursor('from')));
+$('q').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.altKey) { e.preventDefault(); selectAll(); }
+  else if (e.key === 'Enter') { e.preventDefault(); go(e.shiftKey ? -1 : 1); }
+});
+$('r').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); replaceAll(); }
+  else if (e.key === 'Enter') { e.preventDefault(); replaceOne(); }
+});
+[['oCase','caseS'],['oWord','word'],['oRe','re']].forEach(([id,key]) => $(id).onclick = () => {
+  S[key] = !S[key]; $(id).classList.toggle('on', S[key]); runSearch(cm.getCursor('from')); $('q').focus();
+});
+$('prev').onclick = () => go(-1);
+$('next').onclick = () => go(1);
+$('selAll').onclick = selectAll;
+$('rOne').onclick = replaceOne;
+$('rAll').onclick = replaceAll;
+$('fClose').onclick = closeFind;
+$('rToggle').onclick = () => { S.rep = !S.rep; openFind(S.rep); };
+$('tFind').onclick = () => S.open && !S.rep ? closeFind() : openFind(false);
+$('tRep').onclick = () => S.open && S.rep ? closeFind() : (S.rep = true, openFind(true));
+
+let t;
+cm.on('changes', () => { clearTimeout(t); t = setTimeout(() => { if (S.open) { const i = S.idx; runSearch(); } updateDirty(); }, 120); updateDirty(); });
+cm.on('fold', ticks); cm.on('unfold', ticks); cm.on('refresh', ticks);
+
+/* ---------- multi-cursor: add next occurrence (Sublime ⌘D) ---------- */
+function addNextOccurrence(cm){
+  const sels = cm.listSelections(), last = sels[sels.length-1];
+  if (sels.length === 1 && last.empty()) { const w = cm.findWordAt(last.head); cm.setSelection(w.anchor, w.head); return; }
+  const text = cm.getRange(last.from(), last.to());
+  let cur = cm.getSearchCursor(text, last.to());
+  if (!cur.findNext()) { cur = cm.getSearchCursor(text, Pos(0,0)); if (!cur.findNext()) return; }
+  if (sels.some(s => cmp(s.from(), cur.from()) === 0)) { toast('All occurrences selected'); return; }
+  cm.addSelection(cur.from(), cur.to());
+  cm.scrollIntoView(cur.to(), 80);
+}
+
+/* ---------- folding ---------- */
+function collapseAll(){
+  const found = [];
+  for (let l = 0; l < cm.lineCount(); l++){
+    const text = cm.getLine(l);
+    if (/^\s*<(html|head|body|!doctype)\b/i.test(text)) continue;
+    const r = CodeMirror.fold.auto(cm, Pos(l, 0));
+    if (r && r.to.line > r.from.line) found.push({l, ind: text.search(/\S/)});
+  }
+  if (!found.length) return;
+  const min = Math.min(...found.map(f => f.ind));
+  cm.operation(() => found.filter(f => f.ind === min).forEach(f => cm.foldCode(Pos(f.l, 0), null, 'fold')));
+  toast(`Collapsed ${found.filter(f => f.ind === min).length} blocks`);
+}
+function expandAll(){ cm.execCommand('unfoldAll'); }
+$('tFold').onclick = collapseAll;
+$('tUnfold').onclick = expandAll;
+
+/* ---------- go to line ---------- */
+function openGoto(){
+  $('goto').classList.add('open');
+  $('gotoLbl').textContent = `Line 1–${cm.lineCount()}`;
+  $('gotoIn').value = ''; $('gotoIn').focus();
+}
+$('gotoIn').addEventListener('keydown', e => {
+  if (e.key === 'Escape') { $('goto').classList.remove('open'); cm.focus(); }
+  if (e.key !== 'Enter') return;
+  const [l, c] = $('gotoIn').value.split(':').map(n => parseInt(n, 10));
+  if (!l) return;
+  const line = Math.min(Math.max(l, 1), cm.lineCount()) - 1;
+  $('goto').classList.remove('open');
+  cm.setCursor(line, (c || 1) - 1);
+  cm.scrollIntoView(null, 200);
+  cm.focus();
+});
+$('gotoIn').addEventListener('blur', () => setTimeout(() => $('goto').classList.remove('open'), 100));
+$('tGoto').onclick = openGoto;
+$('sPos').onclick = openGoto;
+
+/* ---------- wrap, status, files ---------- */
+function toggleWrap(){
+  const on = !cm.getOption('lineWrapping');
+  cm.setOption('lineWrapping', on);
+  $('tWrap').classList.toggle('on', on);
+  $('sWrap').textContent = 'Wrap: ' + (on ? 'on' : 'off');
+}
+$('tWrap').onclick = toggleWrap;
+$('sWrap').onclick = toggleWrap;
+
+cm.on('cursorActivity', () => {
+  const p = cm.getCursor(), sels = cm.listSelections();
+  $('sPos').textContent = `Ln ${p.line+1}, Col ${p.ch+1}`;
+  const chars = sels.reduce((n, s) => n + cm.getRange(s.from(), s.to()).length, 0);
+  $('sSel').textContent = sels.length > 1 ? `${sels.length} cursors` : chars ? `${chars} selected` : '';
+});
+
+$('file').onchange = () => {
+  const name = $('file').value;
+  cm.swapDoc(docs[name]);
+  $('sLang').textContent = FILES[name].lang;
+  runSearch(); cm.focus();
+};
+
+function updateDirty(){
+  let any = false;
+  for (const name in docs){
+    const dirty = !docs[name].isClean();
+    any = any || dirty;
+    [...$('file').options].find(o => o.value === name).textContent = name + (dirty ? '  ●' : '');
+  }
+  $('dirty').classList.toggle('on', any);
+  $('bApply').disabled = !any;
+}
+$('bApply').onclick = () => {
+  for (const name in docs) docs[name].markClean();
+  updateDirty();
+  toast('Applied · one step added to History');
+};
+
+/* ---------- modal + global keys ---------- */
+function toast(msg){
+  const el = $('toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(el.t); el.t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+const closeModal = () => document.body.classList.add('closed');
+$('tClose').onclick = $('bClose').onclick = closeModal;
+$('openCode').onclick = () => { document.body.classList.remove('closed'); cm.refresh(); cm.focus(); };
+$('tKeys').onclick = e => { e.stopPropagation(); $('keys').classList.toggle('open'); $('tKeys').classList.toggle('on'); };
+document.addEventListener('click', e => { if (!$('keys').contains(e.target)) { $('keys').classList.remove('open'); $('tKeys').classList.remove('on'); } });
+
+document.addEventListener('keydown', e => {
+  if (document.body.classList.contains('closed')) return;
+  const mod = mac ? e.metaKey : e.ctrlKey;
+  if (mod && e.key.toLowerCase() === 'f') { e.preventDefault(); openFind(e.altKey); }
+  else if (e.ctrlKey && e.key.toLowerCase() === 'g') { e.preventDefault(); openGoto(); }
+  else if (e.key === 'Escape' && !cm.hasFocus()) {
+    if ($('keys').classList.contains('open')) { $('keys').classList.remove('open'); $('tKeys').classList.remove('on'); }
+    else if (S.open) closeFind();
+  }
+});
+
+if (!mac) document.querySelectorAll('kbd, [data-tip], [title]').forEach(el => {
+  const swap = s => s.replace(/⌘/g, 'Ctrl+').replace(/⌥/g, 'Alt+').replace(/⌃/g, 'Ctrl+').replace(/⇧/g, 'Shift+');
+  if (el.dataset.tip) el.dataset.tip = swap(el.dataset.tip);
+  if (el.title) el.title = swap(el.title);
+  if (el.tagName === 'KBD') el.textContent = swap(el.textContent);
+});
+
+updateDirty();
+cm.focus();
+</script>
+</body>
+</html>

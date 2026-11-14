@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/checkout.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 002 1.6h8.2a2 2 0 002-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></g></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="https://demo.divimerc.com/wp-content/uploads/sites/2/2026/08/divimerc-logo.png" alt="DiviMerc"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#">Explore Products</a>
+      <a href="#">Product Template</a>
+      <a href="#">Shopping Cart</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn-buy" href="#">Buy DiviMerc!</a>
+      <span class="mc-toggle"><svg class="ico"><use href="#i-cart"/></svg>Cart</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="crumbs"><a href="#">Home</a> . <a href="#">Cart</a> . Checkout</p>
+    <h1>Checkout</h1>
+    <p>Almost there! Add your details below to complete your order.</p>
+    <ol class="steps" aria-label="Checkout progress">
+      <li class="done"><span class="n"><svg class="ico" style="width:14px;height:14px"><use href="#i-check"/></svg></span><span class="lbl">Cart</span></li>
+      <li class="sep" aria-hidden="true"></li>
+      <li class="current" aria-current="step"><span class="n">2</span><span class="lbl">Checkout</span></li>
+      <li class="sep" aria-hidden="true"></li>
+      <li><span class="n">3</span><span class="lbl">Order complete</span></li>
+    </ol>
+  </div>
+
+  <form class="layout checkout woocommerce-checkout" action="thank-you.html" id="checkout" novalidate>
+    <div class="co-main">
+
+      <!-- 1. Contact -->
+      <section class="co-section" aria-labelledby="h-contact">
+        <div class="co-section__head">
+          <h2 id="h-contact"><span class="n">1</span>Contact information</h2>
+          <span class="aside">Have an account? <a href="#">Log in</a></span>
+        </div>
+        <div class="grid">
+          <div class="field span-2">
+            <label for="billing_email">Email address <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <label class="check mt-16"><input type="checkbox" checked> Email me about new arrivals and exclusive offers</label>
+      </section>
+
+      <!-- 2. Billing / shipping -->
+      <section class="co-section" aria-labelledby="h-address">
+        <div class="co-section__head">
+          <h2 id="h-address"><span class="n">2</span>Billing details</h2>
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label for="billing_first_name">First name <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_first_name" autocomplete="given-name" required>
+          </div>
+          <div class="field">
+            <label for="billing_last_name">Last name <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_last_name" autocomplete="family-name" required>
+          </div>
+          <div class="field span-2">
+            <label for="billing_company">Company name <span class="opt">(optional)</span></label>
+            <input class="input" id="billing_company" autocomplete="organization">
+          </div>
+          <div class="field span-2">
+            <label for="billing_country">Country / Region <abbr class="req" title="required">*</abbr></label>
+            <select class="select" id="billing_country" autocomplete="country">
+              <option>United States (US)</option>
+              <option>United Kingdom (UK)</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Germany</option>
+            </select>
+          </div>
+          <div class="field span-2">
+            <label for="billing_address_1">Street address <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_address_1" autocomplete="address-line1" placeholder="House number and street name" required>
+          </div>
+          <div class="field span-2">
+            <label for="billing_address_2" class="sr-only">Apartment, suite, unit</label>
+            <input class="input" id="billing_address_2" autocomplete="address-line2" placeholder="Apartment, suite, unit, etc. (optional)">
+          </div>
+        </div>
+        <div class="grid grid--3 mt-16">
+          <div class="field">
+            <label for="billing_city">Town / City <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_city" autocomplete="address-level2" required>
+          </div>
+          <div class="field">
+            <label for="billing_state">State <abbr class="req" title="required">*</abbr></label>
+            <select class="select" id="billing_state" autocomplete="address-level1">
+              <option>California</option><option>New York</option><option>Texas</option><option>Washington</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="billing_postcode">ZIP Code <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_postcode" autocomplete="postal-code" inputmode="numeric" required>
+          </div>
+        </div>
+        <div class="grid mt-16">
+          <div class="field span-2">
+            <label for="billing_phone">Phone <abbr class="req" title="required">*</abbr></label>
+            <input class="input" id="billing_phone" type="tel" autocomplete="tel" placeholder="For delivery updates" required>
+          </div>
+        </div>
+        <label class="check mt-16"><input type="checkbox" id="ship-diff"> Ship to a different address?</label>
+        <div class="grid mt-16" id="ship-fields" hidden>
+          <div class="field"><label for="shipping_first_name">First name</label><input class="input" id="shipping_first_name"></div>
+          <div class="field"><label for="shipping_last_name">Last name</label><input class="input" id="shipping_last_name"></div>
+          <div class="field span-2"><label for="shipping_address_1">Street address</label><input class="input" id="shipping_address_1" placeholder="House number and street name"></div>
+          <div class="field"><label for="shipping_city">Town / City</label><input class="input" id="shipping_city"></div>
+          <div class="field"><label for="shipping_postcode">ZIP Code</label><input class="input" id="shipping_postcode"></div>
+        </div>
+      </section>
+
+      <!-- 3. Shipping method -->
+      <section class="co-section" aria-labelledby="h-ship">
+        <div class="co-section__head">
+          <h2 id="h-ship"><span class="n">3</span>Shipping method</h2>
+        </div>
+        <div class="options" role="radiogroup" aria-labelledby="h-ship">
+          <label class="option">
+            <input type="radio" name="shipping_method" value="0" data-label="Free" checked>
+            <span class="option__card"><span class="option__dot"></span><span><span class="option__title">Standard delivery</span><span class="option__desc">3–5 working days</span></span><span class="option__price free">Free</span></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="shipping_method" value="15" data-label="$15.00">
+            <span class="option__card"><span class="option__dot"></span><span><span class="option__title">Express delivery</span><span class="option__desc">1–2 working days</span></span><span class="option__price">$15.00</span></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="shipping_method" value="0" data-label="Free">
+            <span class="option__card"><span class="option__dot"></span><span><span class="option__title">Store pickup</span><span class="option__desc">Ready today at 128 Market St.</span></span><span class="option__price free">Free</span></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 4. Payment -->
+      <section class="co-section" aria-labelledby="h-pay">
+        <div class="co-section__head">
+          <h2 id="h-pay"><span class="n">4</span>Payment</h2>
+          <span class="aside" style="display:inline-flex;align-items:center;gap:6px"><svg class="ico" style="width:15px;height:15px;color:var(--green)"><use href="#i-lock"/></svg>Encrypted &amp; secure</span>
+        </div>
+        <div class="options" role="radiogroup" aria-labelledby="h-pay">
+          <div>
+            <label class="option has-panel">
+              <input type="radio" name="payment_method" value="card" checked>
+              <span class="option__card"><span class="option__dot"></span><span><span class="option__title">Credit / Debit card</span><span class="option__desc">Pay securely with Stripe</span></span>
+                <span class="pay-logos" aria-hidden="true"><span style="background:#1a1f71">VISA</span><span style="background:#f79e1b">MC</span><span style="background:#2e77bc">AMEX</span></span></span>
+            </label>
+            <div class="pay-panel" data-panel="card">
+              <div class="grid">
+                <div class="field span-2">
+                  <label for="cc-number">Card number</label>
+                  <div class="input-icon"><input class="input" id="cc-number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234"><svg class="ico"><use href="#i-card"/></svg></div>
+                </div>
+                <div class="field"><label for="cc-exp">Expiry date</label><input class="input" id="cc-exp" autocomplete="cc-exp" placeholder="MM / YY"></div>
+                <div class="field"><label for="cc-cvc">Security code</label><div class="input-icon"><input class="input" id="cc-cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC"><svg class="ico"><use href="#i-lock"/></svg></div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="option has-panel">
+              <input type="radio" name="payment_method" value="paypal">
+              <span class="option__card"><span class="option__dot"></span><span><span class="option__title">PayPal</span><span class="option__desc">You'll be redirected to PayPal to pay</span></span>
+                <span class="pay-logos" aria-hidden="true"><span style="background:#003087">PayPal</span></span></span>
+            </label>
+            <div class="pay-panel" data-panel="paypal" hidden><p>After you place your order, we'll take you to PayPal to finish paying.</p></div>
+          </div>
+          <div>
+            <label class="option has-panel">
+              <input type="radio" name="payment_method" value="cod">
+              <span class="option__card"><span class="option__dot"></span><span><span class="option__title">Cash on delivery</span><span class="option__desc">Pay when your order arrives</span></span><span></span></span>
+            </label>
+            <div class="pay-panel" data-panel="cod" hidden><p>Please have the exact amount ready when the courier arrives.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Notes -->
+      <section class="co-section" aria-labelledby="h-notes">
+        <div class="co-section__head">
+          <h2 id="h-notes"><span class="n">5</span>Order notes <span class="opt" style="font-size:14px;color:var(--muted);font-weight:500">(optional)</span></h2>
+        </div>
+        <div class="field">
+          <label for="order_comments" class="sr-only">Order notes</label>
+          <textarea class="input" id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+        </div>
+      </section>
+    </div>
+
+    <!-- Order summary -->
+    <aside class="summary" aria-labelledby="h-summary">
+      <h2 id="h-summary">Order Summary <span class="count">(1 item)</span></h2>
+
+      <ul class="s-items">
+        <li class="s-item">
+          <div class="s-thumb"><img src="https://demo.divimerc.com/fashion/wp-content/uploads/sites/2/2026/08/Campus-Fleece-Full-Zip-Hoodie1.jpg" alt=""><span class="qty" aria-label="Quantity 1">1</span></div>
+          <div>
+            <span class="badge-sale">SALE</span>
+            <span class="name">Campus Fleece Full-Zip Hoodie</span>
+            <span class="meta">Size: <b>Medium</b> · Color: <b>Graphic Green</b></span>
+          </div>
+          <div class="price"><del>$399.50</del>$359.55</div>
+        </li>
+      </ul>
+
+      <div class="coupon">
+        <label for="coupon_code" class="sr-only">Coupon code</label>
+        <input id="coupon_code" placeholder="Coupon code" autocomplete="off">
+        <button type="button" id="apply-coupon">Apply</button>
+      </div>
+      <p class="coupon-msg" id="coupon-msg" role="status" hidden></p>
+
+      <dl class="rows">
+        <div><dt>Subtotal <span>(1 item)</span></dt><dd>$359.55</dd></div>
+        <div class="discount" id="row-discount" hidden><dt>Discount <span>(SAVE10)</span></dt><dd>−$35.96</dd></div>
+        <div><dt>Shipping</dt><dd id="ship-amt">Free</dd></div>
+        <div><dt>Estimated tax</dt><dd>$0.00</dd></div>
+      </dl>
+
+      <div class="total">
+        <span>Total</span>
+        <div><strong id="total" aria-live="polite">$359.55</strong><small>USD, incl. all taxes</small></div>
+      </div>
+
+      <button type="submit" class="btn btn--dark"><svg class="ico"><use href="#i-lock"/></svg>Place Order</button>
+      <a class="btn btn--ghost" href="#">Return to Cart</a>
+
+      <p class="terms">By placing your order you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      <div class="secure"><svg class="ico"><use href="#i-shield"/></svg>Secure SSL checkout · 30-day easy returns</div>
+    </aside>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Divimerc · All rights reserved</span>
+    <span><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Refund Policy</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var SUB = 359.55, ship = 0, discount = 0;
+  var money = function (n) { return '$' + n.toFixed(2); };
+  function render() {
+    document.getElementById('total').textContent = money(SUB - discount + ship);
+  }
+
+  document.querySelectorAll('input[name="shipping_method"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      ship = parseFloat(r.value);
+      document.getElementById('ship-amt').textContent = r.dataset.label;
+      render();
+    });
+  });
+
+  document.querySelectorAll('input[name="payment_method"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      document.querySelectorAll('[data-panel]').forEach(function (p) { p.hidden = p.dataset.panel !== r.value; });
+    });
+  });
+
+  document.getElementById('ship-diff').addEventListener('change', function (e) {
+    document.getElementById('ship-fields').hidden = !e.target.checked;
+  });
+
+  document.getElementById('apply-coupon').addEventListener('click', function () {
+    var code = document.getElementById('coupon_code').value.trim().toUpperCase();
+    var msg = document.getElementById('coupon-msg');
+    msg.hidden = false;
+    if (code === 'SAVE10') {
+      discount = Math.round(SUB * 10) / 100;
+      document.getElementById('row-discount').hidden = false;
+      msg.style.color = '';
+      msg.textContent = 'Coupon applied: 10% off your order.';
+    } else {
+      msg.style.color = 'var(--error)';
+      msg.textContent = code ? 'Coupon "' + code + '" isn’t valid. Try SAVE10.' : 'Please enter a coupon code.';
+    }
+    render();
+  });
+
+  document.getElementById('checkout').addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.location.href = 'thank-you.html';
+  });
+})();
+</script>
+</body>
+</html>

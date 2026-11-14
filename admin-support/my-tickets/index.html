@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Tickets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6f8; --surface:#fff; --surface-2:#f9fafb; --border:#e6e8ec; --border-strong:#d5d9e0;
+  --text:#111827; --text-2:#4b5563; --text-3:#8a93a3;
+  --primary:#2563eb; --primary-soft:#eef3ff; --primary-hover:#1d4ed8;
+  --green:#16a34a; --green-soft:#ecfdf3;
+  --amber:#d97706; --amber-soft:#fff7ed;
+  --red:#dc2626;
+  --violet:#7c3aed; --violet-soft:#f5f3ff;
+  --gray-soft:#f1f3f6;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;font-size:13px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+svg{flex-shrink:0}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px}
+
+/* ---------- Top bar ---------- */
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;white-space:nowrap}
+.brand-logo{width:30px;height:30px;border-radius:8px;background:var(--primary);display:grid;place-items:center;color:#fff}
+.brand span{color:var(--text-3);font-weight:500}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{padding:7px 12px;border-radius:8px;color:var(--text-2);text-decoration:none;font-weight:500}
+.nav a:hover{background:var(--gray-soft);color:var(--text)}
+.nav a.active{background:var(--primary-soft);color:var(--primary)}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border:0;background:transparent;border-radius:8px;color:var(--text-2);position:relative}
+.icon-btn:hover{background:var(--gray-soft)}
+.icon-btn .dot{position:absolute;top:7px;right:8px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--surface)}
+.me{width:32px;height:32px;border-radius:50%;background:#db2777;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:600}
+
+/* ---------- Page ---------- */
+.page{max-width:880px;margin:0 auto;padding:32px 24px 48px}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}
+.page-head h1{font-size:22px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+.page-head p{margin:0;color:var(--text-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);font-weight:500;color:var(--text-2);white-space:nowrap}
+.btn:hover{border-color:var(--border-strong);color:var(--text)}
+.btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:#fff}
+.btn-sm{height:30px;padding:0 10px;font-size:12px}
+
+/* attention banner */
+.notice{display:flex;align-items:center;gap:12px;background:var(--amber-soft);border:1px solid #fde3c4;border-radius:12px;padding:12px 16px;margin-bottom:20px}
+.notice-icon{width:32px;height:32px;border-radius:8px;background:#fff;color:var(--amber);display:grid;place-items:center;border:1px solid #fde3c4}
+.notice b{display:block;font-weight:600;color:#92400e}
+.notice span{color:#b45309}
+.notice .btn{margin-left:auto;border-color:#fcd9a8;color:#92400e;background:#fff}
+
+/* toolbar */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.seg{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:3px}
+.seg button{border:0;background:none;padding:5px 12px;border-radius:6px;color:var(--text-2);font-weight:500;white-space:nowrap}
+.seg button span{color:var(--text-3);margin-left:2px}
+.seg button.active{background:var(--primary-soft);color:var(--primary)}
+.seg button.active span{color:var(--primary)}
+.search{position:relative;flex:1;min-width:180px}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3)}
+.search input{width:100%;height:36px;border:1px solid var(--border);border-radius:8px;padding:0 10px 0 32px;outline:none;background:var(--surface)}
+.filter{height:36px;border:1px solid var(--border);border-radius:8px;padding:0 30px 0 10px;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238a93a3' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;color:var(--text-2);font-weight:500;outline:none}
+.filter.set{border-color:var(--primary);color:var(--primary);background-color:var(--primary-soft)}
+.search input:focus,.filter:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+
+/* ---------- Ticket list ---------- */
+.list{display:flex;flex-direction:column;gap:10px}
+.group-label{font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin:10px 2px 0}
+.group-label:first-child{margin-top:0}
+.ticket{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);display:flex;gap:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative}
+.ticket:hover{border-color:var(--border-strong);box-shadow:0 4px 12px rgba(16,24,40,.06)}
+.ticket.attn{border-color:#fde3c4}
+.ticket.attn::before{content:"";position:absolute;left:-1px;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--amber)}
+.t-body{flex:1;min-width:0}
+.t-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.t-title{font-size:14.5px;font-weight:500;color:var(--text);min-width:0}
+.ticket.unread .t-title{font-weight:600}
+.unread-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--primary);margin-right:7px;vertical-align:2px}
+.t-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px;color:var(--text-3)}
+.sep{width:3px;height:3px;border-radius:50%;background:var(--border-strong)}
+.last{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:10px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:9px}
+.last-text{min-width:0;flex:1}
+.last-who{font-weight:500;color:var(--text);font-size:12px}
+.last-who em{font-style:normal;color:var(--text-3);font-weight:400}
+.last-msg{color:var(--text-2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.avatar{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:600;flex-shrink:0}
+.t-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;text-align:right;white-space:nowrap;color:var(--text-3);font-size:12px}
+.t-side .time{color:var(--text-2);font-weight:500}
+.replies{display:inline-flex;align-items:center;gap:4px}
+
+.badge{display:inline-flex;align-items:center;gap:4px;height:21px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:500;border:1px solid transparent;white-space:nowrap}
+.b-yours{background:var(--amber-soft);color:var(--amber);border-color:#fde3c4}
+.b-support{background:var(--primary-soft);color:var(--primary);border-color:#d7e3ff}
+.b-resolved{background:var(--green-soft);color:var(--green);border-color:#cdf1da}
+.b-closed{background:var(--gray-soft);color:var(--text-2);border-color:var(--border)}
+.chip{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:5px;border:1px solid var(--border);color:var(--text-3);background:var(--surface)}
+.prio-high{color:var(--red)}
+
+.empty{background:var(--surface);border:1px dashed var(--border-strong);border-radius:12px;padding:48px 20px;text-align:center;color:var(--text-3)}
+.empty h3{color:var(--text);margin:12px 0 4px;font-size:15px}
+.empty .btn{margin-top:16px}
+.foot{display:flex;justify-content:center;margin-top:18px;color:var(--text-3)}
+
+/* help strip */
+.help{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.help a{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;color:var(--text)}
+.help a:hover{border-color:var(--border-strong)}
+.help .hi{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--gray-soft);color:var(--text-2)}
+.help b{display:block;font-weight:500}
+.help span{color:var(--text-3);font-size:12px}
+
+/* ---------- Modal ---------- */
+.overlay{position:fixed;inset:0;background:rgba(17,24,39,.45);display:none;align-items:flex-start;justify-content:center;padding:60px 16px;z-index:40;overflow-y:auto}
+.overlay.show{display:flex}
+.modal{background:var(--surface);border-radius:14px;width:100%;max-width:560px;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+.modal-head h2{margin:0;font-size:16px;font-weight:600}
+.modal-body{padding:20px;display:flex;flex-direction:column;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-weight:500;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 10px;outline:none;background:var(--surface)}
+.field textarea{min-height:120px;resize:vertical}
+.field .hint{color:var(--text-3);font-size:12px;margin-top:4px}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--border);background:var(--surface-2);border-radius:0 0 14px 14px}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#111827;color:#fff;padding:10px 16px;border-radius:8px;font-weight:500;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:720px){
+  .help{grid-template-columns:1fr}
+  .filter{flex:1 1 calc(50% - 10px);min-width:0}
+  .search{flex-basis:100%}
+}
+@media (max-width:560px){
+  .topbar{padding:0 16px}
+  .brand span,.nav{display:none}
+  .icon-btn{margin-left:auto}
+  .page{padding:20px 16px 40px}
+  .page-head .btn span{display:none}
+  .seg{width:100%}.seg button{flex:1}
+  .ticket{flex-direction:column;gap:10px;padding:14px}
+  .t-side{flex-direction:row;justify-content:space-between;align-items:center;width:100%;order:-1}
+  .notice{flex-wrap:wrap}
+  .notice-icon{display:none}
+  .notice .btn{margin-left:0;width:100%}
+  .grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    WPRio <span>Support</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Home</a>
+    <a href="#">Docs</a>
+    <a href="#" class="active">My Tickets</a>
+  </nav>
+  <button class="icon-btn" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+  <div class="me" title="Maria Gonzalez">MG</div>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <div>
+      <h1>My Tickets</h1>
+      <p>Track your support requests and reply to our team.</p>
+    </div>
+    <button class="btn btn-primary" id="newBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>New Ticket</span></button>
+  </div>
+
+  <div class="notice" id="notice"></div>
+
+  <div class="toolbar">
+    <div class="seg" id="seg"></div>
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Search your tickets or #ID">
+    </div>
+    <select class="filter" id="fProduct" aria-label="Product"></select>
+    <select class="filter" id="fCategory" aria-label="Category"></select>
+  </div>
+
+  <div class="list" id="list"></div>
+  <div class="foot" id="foot"></div>
+
+  <div class="help">
+    <a href="#"><span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg></span><div><b>Documentation</b><span>Guides for every product</span></div></a>
+    <a href="#"><span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></span><div><b>FAQ</b><span>Licenses, billing, updates</span></div></a>
+    <a href="#"><span class="hi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Support hours</b><span>Mon–Fri · avg reply 2h</span></div></a>
+  </div>
+</main>
+
+<!-- New ticket modal -->
+<div class="overlay" id="overlay">
+  <form class="modal" id="form">
+    <div class="modal-head">
+      <h2>Open a new ticket</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="grid2">
+        <div class="field"><label for="nProduct">Product</label><select id="nProduct" required></select></div>
+        <div class="field"><label for="nCategory">Category</label><select id="nCategory" required></select></div>
+      </div>
+      <div class="field"><label for="nTitle">Subject</label><input id="nTitle" required maxlength="120" placeholder="Short summary of the issue"></div>
+      <div class="field"><label for="nMsg">Message</label><textarea id="nMsg" required placeholder="What happened, what you expected, and steps to reproduce"></textarea><div class="hint">Include your site URL and plugin version if it's a bug.</div></div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn" data-close>Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit ticket</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Data (customer: Maria Gonzalez) ---------- */
+const PRODUCTS = ["DiviMerc", "TableCraft", "FormPilot", "SpeedBoost"];
+const CATEGORIES = ["Bug report", "Pre-sale", "Billing", "License", "Installation", "Feature request", "How-to"];
+const AGENT_COLOR = { "Alex Morgan": "#7c3aed", "Priya Shah": "#0891b2", "Daniel Kim": "#ea580c", "Sofia Rossi": "#db2777" };
+const H = 60, D = 1440;
+
+// status: Open | Resolved | Closed. lastBy: "me" | agent name. activity = minutes since last message.
+let tickets = [
+  { id: 1048, title: "Checkout page shows blank after updating to 3.2.1", product: "DiviMerc", category: "Bug report", priority: "High", status: "Open", agent: "Alex Morgan", replies: 3, created: 5*H, activity: 40, lastBy: "Alex Morgan", unread: true, last: "Thanks for the details! Could you send a temporary admin login so I can check the conflict with your payment gateway?" },
+  { id: 1045, title: "Order emails going to spam folder", product: "DiviMerc", category: "Bug report", priority: "Medium", status: "Open", agent: "Priya Shah", replies: 2, created: 2*D, activity: 6*H, lastBy: "Priya Shah", unread: true, last: "Please install the SMTP add-on from your account page and let me know whether the test email arrives in the inbox." },
+  { id: 1043, title: "Upgrade from single-site to 5-site license", product: "TableCraft", category: "Billing", priority: "Low", status: "Open", agent: "Priya Shah", replies: 1, created: 3*D, activity: 1*D, lastBy: "Priya Shah", unread: false, last: "I've created an upgrade link that only charges the difference ($40). Would you like me to apply it?" },
+  { id: 1041, title: "Size chart not showing on variable products", product: "DiviMerc", category: "How-to", priority: "Medium", status: "Open", agent: "Daniel Kim", replies: 4, created: 4*D, activity: 2*H, lastBy: "me", unread: false, last: "I followed the steps but the chart still doesn't appear on the 'Linen Dress' product. Screenshot attached." },
+  { id: 1039, title: "Multi-step form loses data on back button", product: "FormPilot", category: "Bug report", priority: "High", status: "Open", agent: null, replies: 0, created: 25, activity: 25, lastBy: "me", unread: false, last: "Customers who press the browser back button lose everything they entered on step 2 and 3." },
+  { id: 1036, title: "Does SpeedBoost work with Cloudflare APO?", product: "SpeedBoost", category: "Pre-sale", priority: "Low", status: "Open", agent: "Sofia Rossi", replies: 2, created: 6*D, activity: 3*D, lastBy: "me", unread: false, last: "Great, and would page caching need to be turned off on your side if APO is enabled?" },
+  { id: 1030, title: "Quick view modal not opening on shop page", product: "DiviMerc", category: "Bug report", priority: "Medium", status: "Resolved", agent: "Alex Morgan", replies: 5, created: 9*D, activity: 7*D, lastBy: "Alex Morgan", unread: false, last: "Fixed in version 3.1.4 — the conflict with the lazy-load script is gone. Marking this as resolved." },
+  { id: 1027, title: "Invoice needs our VAT number", product: "DiviMerc", category: "Billing", priority: "Low", status: "Resolved", agent: "Priya Shah", replies: 2, created: 12*D, activity: 11*D, lastBy: "Priya Shah", unread: false, last: "I've reissued invoice INV-20931 with your VAT number. You can download it from Account → Orders." },
+  { id: 1022, title: "Plugin download returns 403 error", product: "SpeedBoost", category: "Installation", priority: "Medium", status: "Closed", agent: "Sofia Rossi", replies: 3, created: 20*D, activity: 18*D, lastBy: "me", unread: false, last: "Works now, thank you so much!" },
+  { id: 1018, title: "Feature request: sticky add-to-cart on mobile", product: "DiviMerc", category: "Feature request", priority: "Low", status: "Closed", agent: "Alex Morgan", replies: 2, created: 34*D, activity: 30*D, lastBy: "Alex Morgan", unread: false, last: "Good news — sticky add-to-cart shipped in 3.0. Enable it under Product Page → Mobile." },
+  { id: 1012, title: "Transfer license to new domain", product: "TableCraft", category: "License", priority: "Low", status: "Closed", agent: "Daniel Kim", replies: 1, created: 45*D, activity: 44*D, lastBy: "Daniel Kim", unread: false, last: "Done — your license is now active on bloomstudio.co." },
+];
+
+/* ---------- State & helpers ---------- */
+const state = { tab: "Active", q: "", product: "", category: "", limit: 8 };
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const initials = n => n.split(/\s+/).map(p => p[0]).slice(0, 2).join("").toUpperCase();
+const ago = m => m < 1 ? "just now" : m < 60 ? `${m}m ago` : m < D ? `${Math.round(m / 60)}h ago` : `${Math.round(m / D)}d ago`;
+const isActive = t => t.status === "Open";
+const needsMe = t => isActive(t) && t.lastBy !== "me";      // support replied, ball in customer's court
+const ICON = {
+  chat: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  reply: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 17 4 12l5-5"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>',
+  clock: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  check: '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>',
+};
+
+function stateBadge(t) {
+  if (t.status === "Resolved") return `<span class="badge b-resolved">${ICON.check}Resolved</span>`;
+  if (t.status === "Closed") return `<span class="badge b-closed">Closed</span>`;
+  return needsMe(t)
+    ? `<span class="badge b-yours">${ICON.reply}Awaiting your reply</span>`
+    : `<span class="badge b-support">${ICON.clock}Waiting for support</span>`;
+}
+
+function filtered() {
+  const q = state.q.trim().toLowerCase().replace(/^#/, "");
+  return tickets.filter(t => {
+    if (state.tab === "Active" && !isActive(t)) return false;
+    if (state.tab === "Closed" && isActive(t)) return false;
+    if (state.product && t.product !== state.product) return false;
+    if (state.category && t.category !== state.category) return false;
+    if (q && !`${t.id} ${t.title} ${t.last}`.toLowerCase().includes(q)) return false;
+    return true;
+  }).sort((a, b) => (needsMe(b) - needsMe(a)) || (isActive(b) - isActive(a)) || a.activity - b.activity);
+}
+
+function ticketHtml(t) {
+  const fromMe = t.lastBy === "me";
+  const who = fromMe ? "You" : t.lastBy;
+  const avatar = fromMe
+    ? `<span class="avatar" style="background:#db2777">MG</span>`
+    : `<span class="avatar" style="background:${AGENT_COLOR[t.lastBy] || "#64748b"}">${initials(t.lastBy)}</span>`;
+  const sideAgent = t.agent ? `Handled by ${esc(t.agent.split(" ")[0])}` : "Not assigned yet";
+  return `
+  <article class="ticket ${needsMe(t) ? "attn" : ""} ${t.unread ? "unread" : ""}" data-id="${t.id}" tabindex="0">
+    <div class="t-body">
+      <div class="t-top">
+        <span class="t-title">${t.unread ? '<span class="unread-dot" title="New reply"></span>' : ""}${esc(t.title)}</span>
+        ${stateBadge(t)}
+      </div>
+      <div class="t-meta">
+        <span class="chip mono">#${t.id}</span>
+        <span>${esc(t.product)}</span><span class="sep"></span>
+        <span>${esc(t.category)}</span>
+        ${t.priority === "High" ? '<span class="sep"></span><span class="prio-high">High priority</span>' : ""}
+        <span class="sep"></span><span>Opened ${ago(t.created)}</span>
+      </div>
+      <div class="last">
+        ${avatar}
+        <div class="last-text">
+          <div class="last-who">${esc(who)} <em>${fromMe ? "wrote" : "· Support team"} · ${ago(t.activity)}</em></div>
+          <div class="last-msg">${esc(t.last)}</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-side">
+      <span class="time">${ago(t.activity)}</span>
+      <span class="replies">${ICON.chat}${t.replies} ${t.replies === 1 ? "reply" : "replies"}</span>
+      <span>${sideAgent}</span>
+      ${needsMe(t) ? `<button class="btn btn-primary btn-sm" data-reply>Reply</button>` : ""}
+    </div>
+  </article>`;
+}
+
+function render() {
+  const active = tickets.filter(isActive);
+  const mine = active.filter(needsMe);
+
+  // banner
+  const n = $("#notice");
+  if (mine.length) {
+    n.style.display = "";
+    n.innerHTML = `<span class="notice-icon">${ICON.reply}</span>
+      <div><b>${mine.length} ticket${mine.length > 1 ? "s" : ""} need${mine.length > 1 ? "" : "s"} your reply</b>
+      <span>Our team is waiting on you. Tickets with no reply for 7 days close automatically.</span></div>
+      <button class="btn btn-sm" id="showMine">View</button>`;
+  } else n.style.display = "none";
+
+  // tabs
+  const counts = { Active: active.length, Closed: tickets.length - active.length, All: tickets.length };
+  $("#seg").innerHTML = Object.entries(counts).map(([k, c]) =>
+    `<button class="${state.tab === k ? "active" : ""}" data-tab="${k}">${k}<span>${c}</span></button>`).join("");
+
+  const list = filtered();
+  const shown = list.slice(0, state.limit);
+  if (!list.length) {
+    $("#list").innerHTML = `<div class="empty">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--border-strong)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <h3>${state.q || state.product || state.category ? "No tickets match your filters" : "No tickets here"}</h3>
+      Need help with something? Our team usually replies within 2 hours.
+      <div><button class="btn btn-primary" data-new>New Ticket</button></div></div>`;
+  } else {
+    // group active list by whose turn it is
+    let html = "", lastGroup = "";
+    for (const t of shown) {
+      const g = needsMe(t) ? "Needs your reply" : isActive(t) ? "Waiting for support" : "Closed & resolved";
+      if (g !== lastGroup) { html += `<div class="group-label">${g}</div>`; lastGroup = g; }
+      html += ticketHtml(t);
+    }
+    $("#list").innerHTML = html;
+  }
+  $("#foot").innerHTML = list.length > state.limit
+    ? `<button class="btn" id="more">Show ${Math.min(8, list.length - state.limit)} more</button>`
+    : list.length ? `Showing all ${list.length} ticket${list.length > 1 ? "s" : ""}` : "";
+
+  $("#fProduct").classList.toggle("set", !!state.product);
+  $("#fCategory").classList.toggle("set", !!state.category);
+}
+
+/* ---------- Setup ---------- */
+const opts = (sel, first, vals) => $(sel).innerHTML = (first ? `<option value="">${first}</option>` : "") + vals.map(v => `<option>${v}</option>`).join("");
+opts("#fProduct", "All products", PRODUCTS);
+opts("#fCategory", "All categories", CATEGORIES);
+opts("#nProduct", "", PRODUCTS);
+opts("#nCategory", "", CATEGORIES);
+
+const toast = msg => { const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2200); };
+const openModal = () => { $("#overlay").classList.add("show"); setTimeout(() => $("#nTitle").focus(), 50); };
+const closeModal = () => { $("#overlay").classList.remove("show"); $("#form").reset(); };
+
+$("#seg").onclick = e => { const b = e.target.closest("[data-tab]"); if (b) { state.tab = b.dataset.tab; state.limit = 8; render(); } };
+$("#q").oninput = e => { state.q = e.target.value; render(); };
+$("#fProduct").onchange = e => { state.product = e.target.value; render(); };
+$("#fCategory").onchange = e => { state.category = e.target.value; render(); };
+$("#foot").onclick = e => { if (e.target.id === "more") { state.limit += 8; render(); } };
+$("#notice").onclick = e => { if (e.target.id === "showMine") { state.tab = "Active"; render(); document.querySelector(".ticket.attn")?.scrollIntoView({ behavior: "smooth", block: "center" }); } };
+$("#newBtn").onclick = openModal;
+$("#list").onclick = e => {
+  if (e.target.closest("[data-new]")) return openModal();
+  const el = e.target.closest(".ticket"); if (!el) return;
+  const t = tickets.find(x => x.id === +el.dataset.id);
+  t.unread = false; render();
+  toast(e.target.closest("[data-reply]") ? `Opening reply box for #${t.id}` : `Opening #${t.id}`);
+};
+$("#overlay").onclick = e => { if (e.target.id === "overlay" || e.target.closest("[data-close]")) closeModal(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+$("#form").onsubmit = e => {
+  e.preventDefault();
+  const id = Math.max(...tickets.map(t => t.id)) + 1;
+  tickets.unshift({ id, title: $("#nTitle").value.trim(), product: $("#nProduct").value, category: $("#nCategory").value, priority: "Medium", status: "Open", agent: null, replies: 0, created: 0, activity: 0, lastBy: "me", unread: false, last: $("#nMsg").value.trim() });
+  closeModal(); Object.assign(state, { tab: "Active", q: "", product: "", category: "" });
+  $("#q").value = ""; $("#fProduct").value = ""; $("#fCategory").value = "";
+  render(); toast(`Ticket #${id} submitted — we'll reply soon`);
+};
+
+render();
+</script>
+</body>
+</html>

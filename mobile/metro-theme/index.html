@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metro Android Theme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f4efe4;
+  --paper: #fffdf7;
+  --ink: #141414;
+  --ink-2: #4a4a48;
+  --mute: #8f8b82;
+  --rule: #ddd6c7;
+  --board: #0c0c0c;
+  --tile: #1c1c1c;
+  --flap: #f5c518;
+  --red: #e2231a;
+  --blue: #0067b1;
+  --green: #00a651;
+  --yellow: #f7b500;
+  --purple: #7b3fa0;
+  --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --sans: Barlow, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #1d1f22; color: #eee; font: 400 13px/1.45 var(--sans); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+svg { flex: none; }
+
+.page { max-width: 1520px; margin: 0 auto; padding: 48px 24px 80px; }
+.intro { margin-bottom: 40px; max-width: 760px; }
+.intro .line { display: flex; gap: 4px; margin-bottom: 14px; }
+.intro .line i { width: 34px; height: 6px; border-radius: 3px; }
+.intro h1 { margin: 0 0 6px; font: 800 44px/1 var(--cond); letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
+.intro p { margin: 0; color: #a3a39c; font-size: 14px; }
+
+.phones { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 56px 28px; justify-items: center; }
+.wrap { text-align: center; max-width: 340px; }
+.wrap > b { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 18px; font: 700 16px var(--cond); text-transform: uppercase; letter-spacing: .04em; color: #fff; }
+.wrap > b i { width: 20px; height: 20px; border-radius: 50%; font: 800 11px/20px var(--cond); font-style: normal; color: #fff; }
+.wrap > p { margin: 4px 0 0; font-size: 12.5px; color: #a3a39c; }
+
+.phone { position: relative; width: 340px; height: 720px; border-radius: 44px; overflow: hidden; text-align: left; box-shadow: 0 0 0 8px #0b0b0b, 0 0 0 9px #333, 0 40px 70px -25px rgba(0, 0, 0, .8); }
+.phone::before { content: ""; position: absolute; top: 12px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: #0b0b0b; z-index: 40; }
+.status { position: absolute; top: 0; left: 0; right: 0; height: 34px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; font: 700 12px var(--cond); letter-spacing: .04em; z-index: 30; }
+.status .r { display: flex; gap: 7px; align-items: center; }
+.batt { display: inline-block; width: 19px; height: 9px; border-radius: 2px; border: 1.3px solid currentColor; padding: 1px; }
+.batt::before { content: ""; display: block; height: 100%; width: 85%; background: currentColor; }
+.gesture { position: absolute; bottom: 8px; left: 50%; width: 96px; height: 4px; margin-left: -48px; border-radius: 4px; background: currentColor; opacity: .35; z-index: 30; }
+.screen { position: absolute; inset: 0; padding-top: 36px; display: flex; flex-direction: column; }
+
+/* ---------- 1 Lock: departure board ---------- */
+.p-lock { background: var(--board); color: #fff; }
+.board-h { display: flex; align-items: flex-end; justify-content: space-between; padding: 14px 18px 0; }
+.board-h h2 { margin: 0; font: 800 28px/1 var(--cond); letter-spacing: .02em; color: var(--flap); display: flex; align-items: center; gap: 8px; }
+.board-h h2 svg { width: 22px; height: 22px; }
+.board-h small { font: 600 11px/1.2 var(--cond); letter-spacing: .08em; color: #8a8a8a; text-align: right; text-transform: uppercase; }
+.flaps { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 22px 0 10px; perspective: 400px; }
+.ft { position: relative; width: 62px; height: 88px; border-radius: 6px; background: linear-gradient(180deg, #232323 0 49.4%, #0a0a0a 49.4% 50.6%, #1a1a1a 50.6%); display: grid; place-items: center; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 4px 10px rgba(0, 0, 0, .6); }
+.ft span { font: 700 72px/1 var(--cond); color: #f3f3f3; }
+.ft::before, .ft::after { content: ""; position: absolute; top: 50%; width: 4px; height: 10px; margin-top: -5px; background: #050505; border-radius: 1px; }
+.ft::before { left: -2px; } .ft::after { right: -2px; }
+.ft.flip { animation: flip .28s ease-in-out; }
+@keyframes flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(88deg); filter: brightness(.6); } 100% { transform: rotateX(0); } }
+.colon { display: flex; flex-direction: column; gap: 16px; }
+.colon i { width: 7px; height: 7px; border-radius: 50%; background: var(--flap); }
+.chars { display: flex; gap: 2px; justify-content: center; }
+.fc { display: inline-grid; place-items: center; width: 15px; height: 21px; border-radius: 2px; background: linear-gradient(180deg, #242424 0 49%, #0a0a0a 49% 53%, #1a1a1a 53%); font: 700 14px/1 var(--cond); color: #eee; }
+.fc.sp { background: none; width: 7px; }
+.fc.y { color: var(--flap); }
+.fc.g { color: #3ddc84; }
+.fc.r { color: #ff5a4f; }
+.dep { margin: 18px 14px 0; border-top: 2px solid #2a2a2a; }
+.dep .hd { display: grid; grid-template-columns: 50px 1fr auto; gap: 8px; padding: 6px 4px; font: 600 10.5px var(--cond); letter-spacing: .12em; color: #6e6e6e; text-transform: uppercase; }
+.dep .rw { display: grid; grid-template-columns: 50px 1fr auto; gap: 8px; align-items: center; padding: 8px 4px; border-top: 1px solid #1e1e1e; }
+.dep .tm { font: 700 15px var(--cond); color: var(--flap); }
+.dep .to b { display: block; font: 700 15px/1.1 var(--cond); letter-spacing: .03em; text-transform: uppercase; }
+.dep .to small { font-size: 11.5px; color: #8a8a8a; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+.dep .stt .fc { width: 12px; height: 18px; font-size: 12px; }
+.gate { margin-top: auto; display: flex; flex-direction: column; align-items: center; padding-bottom: 6px; }
+.reader { position: relative; width: 74px; height: 74px; border-radius: 50%; background: #161616; display: grid; place-items: center; color: #3ddc84; box-shadow: inset 0 0 0 2px #2a2a2a; }
+.reader::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid #3ddc84; opacity: 0; animation: pulse 2.2s ease-out infinite; }
+@keyframes pulse { 0% { transform: scale(.85); opacity: .7; } 100% { transform: scale(1.25); opacity: 0; } }
+.reader svg { width: 36px; height: 36px; }
+.gate .lbl { margin-top: 10px; font: 700 12px var(--cond); letter-spacing: .14em; color: #bbb; }
+.gate .sides { display: flex; justify-content: space-between; width: 100%; padding: 0 22px; margin-top: -48px; margin-bottom: 30px; font: 700 11px var(--cond); letter-spacing: .12em; color: #6e6e6e; }
+.ticker { height: 30px; margin-bottom: 30px; background: var(--flap); color: #111; overflow: hidden; display: flex; align-items: center; }
+.ticker div { white-space: nowrap; font: 700 13px var(--cond); letter-spacing: .06em; text-transform: uppercase; animation: marq 22s linear infinite; padding-left: 100%; }
+.ticker div span { margin: 0 14px; }
+@keyframes marq { to { transform: translateX(-100%); } }
+
+/* ---------- 2 Home: metro map ---------- */
+.p-home { background: var(--cream); color: var(--ink); }
+.here { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 18px 0; }
+.here .pin { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px 0 4px; border-radius: 11px; background: var(--ink); color: #fff; font: 700 11px var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+.here .pin i { width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--red); background: #fff; }
+.here .time { font: 800 56px/.95 var(--cond); letter-spacing: -.02em; margin-top: 6px; }
+.here .meta { font: 600 13px var(--cond); letter-spacing: .04em; color: var(--ink-2); text-transform: uppercase; }
+.here .wx { text-align: right; padding-top: 30px; }
+.here .wx b { display: block; font: 800 30px/1 var(--cond); }
+.here .wx span { font: 600 12px var(--cond); color: var(--mute); text-transform: uppercase; letter-spacing: .06em; }
+.lines { display: flex; gap: 6px; padding: 12px 18px 0; overflow-x: auto; scrollbar-width: none; }
+.lines::-webkit-scrollbar { display: none; }
+.lines span { flex: none; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 4px; border-radius: 13px; background: var(--paper); border: 1px solid var(--rule); font: 700 12px var(--cond); letter-spacing: .03em; text-transform: uppercase; }
+.lines span i { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font: 800 10px var(--cond); font-style: normal; color: #fff; }
+.lines span em { font-style: normal; color: var(--red); }
+.map { position: relative; flex: 1; margin: 8px 8px 0; }
+.map svg { display: block; width: 100%; height: 100%; }
+.map .st { cursor: pointer; }
+.map .st text { font: 700 10.5px var(--cond); letter-spacing: .02em; fill: var(--ink); text-transform: uppercase; }
+.map .st:hover circle.dot, .map .st.sel circle.dot { stroke-width: 4; }
+.map .st.sel text { fill: var(--red); }
+.callout { position: absolute; left: 10px; bottom: 6px; display: none; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 20px; background: var(--ink); color: #fff; font: 700 13px var(--cond); letter-spacing: .03em; text-transform: uppercase; box-shadow: 0 6px 16px rgba(0, 0, 0, .25); }
+.callout.show { display: flex; }
+.callout i { width: 22px; height: 22px; border-radius: 50%; }
+.callout small { font: 500 11px var(--sans); text-transform: none; color: #aaa; letter-spacing: 0; }
+.dock { display: flex; justify-content: space-around; padding: 10px 18px 26px; border-top: 3px solid var(--ink); background: var(--paper); }
+.rnd { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; position: relative; color: #fff; }
+.rnd svg { width: 22px; height: 22px; }
+.rnd::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .5); }
+
+/* ---------- 3 Apps: station index ---------- */
+.p-apps { background: #fff; color: var(--ink); }
+.idx-h { padding: 10px 18px 0; }
+.idx-h small { font: 700 11px var(--cond); letter-spacing: .16em; color: var(--mute); text-transform: uppercase; }
+.where { display: flex; align-items: center; gap: 10px; margin-top: 6px; padding: 0 0 8px; border-bottom: 3px solid var(--ink); }
+.where svg { width: 22px; height: 22px; }
+.where input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 800 30px/1.1 var(--cond); text-transform: uppercase; letter-spacing: -.01em; }
+.where input::placeholder { color: #c9c4ba; }
+.lfil { display: flex; gap: 6px; padding: 12px 18px 4px; overflow-x: auto; scrollbar-width: none; }
+.lfil::-webkit-scrollbar { display: none; }
+.lfil button { flex: none; height: 28px; padding: 0 12px 0 5px; border-radius: 14px; border: 2px solid var(--rule); display: inline-flex; align-items: center; gap: 6px; font: 700 12px var(--cond); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
+.lfil button i { width: 14px; height: 14px; border-radius: 50%; }
+.lfil button.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+.lfil button[data-l="all"] { padding-left: 12px; }
+.idx { flex: 1; overflow-y: auto; padding: 0 18px 24px; scrollbar-width: none; }
+.idx::-webkit-scrollbar { display: none; }
+.idx .L { position: sticky; top: 0; background: #fff; padding: 12px 0 2px; font: 800 30px/1 var(--cond); color: var(--ink); border-bottom: 1px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; z-index: 2; }
+.idx .L small { font: 600 11px var(--cond); letter-spacing: .1em; color: var(--mute); }
+.idx .a { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 0; border-bottom: 1px solid #eee9de; text-align: left; }
+.idx .a .nm { flex: 1; font: 700 17px/1.1 var(--cond); text-transform: uppercase; letter-spacing: .01em; }
+.idx .a .nm mark { background: var(--yellow); color: var(--ink); padding: 0 1px; }
+.idx .a .nm small { display: block; font: 500 11.5px var(--sans); text-transform: none; color: var(--mute); letter-spacing: 0; }
+.idx .a .ls { display: flex; }
+.idx .a .ls i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; margin-left: -4px; }
+.idx .a .z { font: 700 11px var(--cond); letter-spacing: .06em; padding: 2px 6px; border: 1.5px solid var(--ink); border-radius: 3px; }
+.idx .a:hover .nm { color: var(--blue); }
+.idx .none { padding: 40px 0; text-align: center; font: 700 18px var(--cond); color: var(--mute); text-transform: uppercase; }
+
+/* ---------- 4 Control + tickets ---------- */
+.p-ctl { background: #10223d; color: #fff; }
+.ctl-h { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 18px 0; }
+.ctl-h h2 { margin: 0; font: 800 26px var(--cond); text-transform: uppercase; letter-spacing: .01em; }
+.ctl-h span { font: 600 12px var(--cond); color: #8ea3c2; letter-spacing: .08em; text-transform: uppercase; }
+.signs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 18px 0; }
+.sign { aspect-ratio: 1 / .92; border-radius: 6px; border: 2px solid #2b4266; display: flex; flex-direction: column; justify-content: space-between; padding: 9px; text-align: left; color: #8ea3c2; transition: background .15s, border-color .15s; }
+.sign svg { width: 26px; height: 26px; }
+.sign b { font: 800 14px/1 var(--cond); letter-spacing: .04em; text-transform: uppercase; display: block; }
+.sign small { font: 500 10.5px var(--sans); display: block; margin-top: 2px; opacity: .8; }
+.sign.on { color: #fff; border-color: transparent; }
+.route { padding: 14px 18px 0; }
+.route .rl { display: flex; justify-content: space-between; font: 700 12px var(--cond); letter-spacing: .1em; text-transform: uppercase; color: #8ea3c2; }
+.route .rl b { color: #fff; }
+.track { position: relative; height: 26px; margin: 2px 6px 4px; cursor: pointer; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 11px; height: 4px; border-radius: 2px; background: #2b4266; }
+.track .fill { position: absolute; left: 0; top: 11px; height: 4px; border-radius: 2px; background: var(--yellow); }
+.track .stop { position: absolute; top: 7px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: #10223d; border: 3px solid #2b4266; }
+.track .stop.past { border-color: var(--yellow); }
+.track .train { position: absolute; top: 3px; width: 28px; height: 20px; margin-left: -14px; border-radius: 6px 10px 4px 4px; background: var(--yellow); display: grid; place-items: center; transition: left .25s; }
+.track .train::after { content: ""; width: 14px; height: 5px; border-radius: 1px; background: #10223d; margin-top: -4px; }
+.tix-h { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px 6px; font: 700 12px var(--cond); letter-spacing: .12em; text-transform: uppercase; color: #8ea3c2; }
+.tix-h button { color: var(--yellow); letter-spacing: .1em; }
+.tix { flex: 1; overflow-y: auto; padding: 0 18px 26px; scrollbar-width: none; }
+.tix::-webkit-scrollbar { display: none; }
+.tk { position: relative; display: flex; margin-bottom: 8px; border-radius: 6px; background: var(--paper); color: var(--ink); overflow: hidden; transition: transform .3s, opacity .3s; }
+.tk.gone { transform: translateX(110%) rotate(4deg); opacity: 0; }
+.tk .stub { width: 54px; flex: none; padding: 8px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; border-right: 2px dashed rgba(255, 255, 255, .0); position: relative; }
+.tk .stub b { font: 800 16px/1 var(--cond); }
+.tk .stub small { font: 600 9.5px var(--cond); letter-spacing: .1em; opacity: .85; text-transform: uppercase; }
+.tk .perf { width: 0; border-left: 2px dashed var(--rule); margin: 6px 0; }
+.tk::before, .tk::after { content: ""; position: absolute; left: 47px; width: 14px; height: 14px; border-radius: 50%; background: #10223d; }
+.tk::before { top: -7px; } .tk::after { bottom: -7px; }
+.tk .body { flex: 1; min-width: 0; padding: 9px 10px 9px 12px; }
+.tk .body b { display: block; font: 700 14px/1.1 var(--cond); text-transform: uppercase; letter-spacing: .03em; }
+.tk .body span { display: block; font-size: 12px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tk .body small { font: 600 10px var(--cond); letter-spacing: .1em; color: var(--mute); text-transform: uppercase; }
+.tk .punch { width: 40px; flex: none; display: grid; place-items: center; color: var(--mute); }
+.tk .punch:hover { color: var(--red); }
+.tix .empty { text-align: center; padding: 30px 0; font: 700 16px var(--cond); color: #8ea3c2; text-transform: uppercase; letter-spacing: .06em; }
+
+@media (max-width: 400px) {
+  .page { padding: 32px 14px 60px; }
+  .intro h1 { font-size: 34px; }
+  .phone { transform: scale(.92); transform-origin: top center; margin-bottom: -58px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <div class="line"><i style="background:var(--red)"></i><i style="background:var(--blue)"></i><i style="background:var(--green)"></i><i style="background:var(--yellow)"></i><i style="background:var(--purple)"></i></div>
+    <h1>Metro — a transit theme for Android</h1>
+    <p>Your phone styled as a city transit system. The lock screen is a split-flap departure board. On the home screen your apps are stations on coloured lines, and the app drawer is a station index. Quick settings look like station signs, and each notification is a ticket. Every screen below is clickable.</p>
+  </div>
+
+  <div class="phones">
+    <!-- 1 Lock -->
+    <div class="wrap">
+      <div class="phone p-lock">
+        <div class="status"><span>GP · 5G</span><span class="r">87% <span class="batt"></span></span></div>
+        <div class="screen">
+          <div class="board-h">
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2 0M15 21h2M8 17l-2 4M16 17l2 4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg>Departures</h2>
+            <small>Platform 1<br>Realme 8 Pro</small>
+          </div>
+          <div class="flaps" id="flaps">
+            <div class="ft"><span>2</span></div><div class="ft"><span>1</span></div>
+            <div class="colon"><i></i><i></i></div>
+            <div class="ft"><span>4</span></div><div class="ft"><span>0</span></div>
+          </div>
+          <div class="chars" id="dateFlap"></div>
+
+          <div class="dep" id="dep">
+            <div class="hd"><span>Time</span><span>From</span><span>Status</span></div>
+          </div>
+
+          <div class="gate">
+            <div class="sides"><span>← Camera</span><span>Torch →</span></div>
+            <div class="reader"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 11v3a8 8 0 0 1-1.5 4.7"/><path d="M8.5 9.5A3.5 3.5 0 0 1 15.5 11v2a12 12 0 0 1-.6 3.8"/><path d="M5.5 15.5A12 12 0 0 0 6 13v-2a6 6 0 0 1 9.5-4.9"/><path d="M18 9.5a6 6 0 0 1 .5 2.5v1a16 16 0 0 1-.4 3.6"/><path d="M3.5 9A9 9 0 0 1 19 6.2"/></svg></div>
+            <div class="lbl">TOUCH IN TO UNLOCK</div>
+          </div>
+          <div class="ticker" style="margin-top:14px"><div><span>● Battery 87%</span><span>● Next alarm 06:30</span><span>● Dhaka 27° haze</span><span>● 3 unread</span><span>● Mind the gap</span></div></div>
+        </div>
+        <div class="gesture"></div>
+      </div>
+      <b><i style="background:var(--yellow);color:#111">1</i>Lock · departure board</b>
+      <p>A split-flap clock that flips when the minute changes. Notifications are listed as departures, and you unlock by touching the fingerprint "gate".</p>
+    </div>
+
+    <!-- 2 Home -->
+    <div class="wrap">
+      <div class="phone p-home">
+        <div class="status"><span>GP · 5G</span><span class="r">87% <span class="batt"></span></span></div>
+        <div class="screen">
+          <div class="here">
+            <div>
+              <span class="pin"><i></i>You are here</span>
+              <div class="time" id="homeTime">21:40</div>
+              <div class="meta" id="homeDate">Tue 3 Nov</div>
+            </div>
+            <div class="wx"><b>27°</b><span>Dhaka · haze</span></div>
+          </div>
+          <div class="lines">
+            <span><i style="background:var(--red)">S</i>Social <em>· 3</em></span>
+            <span><i style="background:var(--blue)">W</i>Work</span>
+            <span><i style="background:var(--green)">M</i>Money</span>
+            <span><i style="background:var(--yellow)">P</i>Play</span>
+          </div>
+          <div class="map">
+            <svg viewBox="0 0 330 375" id="map"></svg>
+            <div class="callout" id="callout"></div>
+          </div>
+          <div class="dock">
+            <button class="rnd" style="background:var(--red)" title="Phone"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg></button>
+            <button class="rnd" style="background:var(--blue)" title="Messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/></svg></button>
+            <button class="rnd" style="background:var(--yellow)" title="Camera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4V8Z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+            <button class="rnd" style="background:var(--green)" title="Browser"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/></svg></button>
+          </div>
+        </div>
+        <div class="gesture"></div>
+      </div>
+      <b><i style="background:var(--red)">2</i>Home · line map</b>
+      <p>Apps are stations on four coloured lines. Big white stations are interchanges, apps that sit on two lines. Tap any station.</p>
+    </div>
+
+    <!-- 3 Apps -->
+    <div class="wrap">
+      <div class="phone p-apps">
+        <div class="status"><span>GP · 5G</span><span class="r">87% <span class="batt"></span></span></div>
+        <div class="screen">
+          <div class="idx-h">
+            <small>Station index · <span id="appCount"></span> apps</small>
+            <label class="where">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg>
+              <input id="where" placeholder="Where to?">
+            </label>
+          </div>
+          <div class="lfil" id="lfil">
+            <button class="on" data-l="all">All lines</button>
+            <button data-l="social"><i style="background:var(--red)"></i>Social</button>
+            <button data-l="work"><i style="background:var(--blue)"></i>Work</button>
+            <button data-l="money"><i style="background:var(--green)"></i>Money</button>
+            <button data-l="play"><i style="background:var(--yellow)"></i>Play</button>
+            <button data-l="tools"><i style="background:var(--purple)"></i>Tools</button>
+          </div>
+          <div class="idx" id="idx"></div>
+        </div>
+        <div class="gesture"></div>
+      </div>
+      <b><i style="background:var(--blue)">3</i>App drawer · station index</b>
+      <p>A large "Where to?" search field and filters by line. Each app shows the lines it belongs to and its storage "zone".</p>
+    </div>
+
+    <!-- 4 Control + tickets -->
+    <div class="wrap">
+      <div class="phone p-ctl">
+        <div class="status"><span>GP · 5G</span><span class="r">87% <span class="batt"></span></span></div>
+        <div class="screen">
+          <div class="ctl-h"><h2>Control room</h2><span id="ctlTime">21:40</span></div>
+          <div class="signs" id="signs"></div>
+          <div class="route" data-k="bright"><div class="rl"><span>Brightness</span><b></b></div><div class="track"></div></div>
+          <div class="route" data-k="vol"><div class="rl"><span>Volume</span><b></b></div><div class="track"></div></div>
+          <div class="tix-h"><span id="tixCount"></span><button id="punchAll">Punch all</button></div>
+          <div class="tix" id="tix"></div>
+        </div>
+        <div class="gesture"></div>
+      </div>
+      <b><i style="background:var(--green)">4</i>Quick settings · tickets</b>
+      <p>Toggles look like station signs. Brightness and volume are routes, and a small train moves to the stop you tap. Each notification is a ticket: punch it to dismiss.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const C = { social: "#e2231a", work: "#0067b1", money: "#00a651", play: "#f7b500", tools: "#7b3fa0" };
+const pad = n => String(n).padStart(2, "0");
+
+/* ---------- Split-flap ---------- */
+const FLAP_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+function flapWord(el, word, cls = "") {
+  // Build tiles, then shuffle each through random letters before it settles.
+  el.innerHTML = [...word].map(c => c === " " ? '<span class="fc sp"></span>' : `<span class="fc ${cls}">${c}</span>`).join("");
+  el.querySelectorAll(".fc:not(.sp)").forEach((t, i) => {
+    const final = t.textContent; let n = 6 + i * 2;
+    const h = setInterval(() => {
+      t.textContent = --n <= 0 ? final : FLAP_CHARS[Math.random() * FLAP_CHARS.length | 0];
+      if (n <= 0) clearInterval(h);
+    }, 45);
+  });
+}
+const tiles = [...document.querySelectorAll("#flaps .ft")];
+function setTile(t, ch) {
+  const s = t.querySelector("span");
+  if (s.textContent === ch) return;
+  t.classList.remove("flip"); void t.offsetWidth; t.classList.add("flip");
+  setTimeout(() => s.textContent = ch, 140);
+}
+function tick(first) {
+  const d = new Date(), hm = pad(d.getHours()) + pad(d.getMinutes());
+  if (first) tiles.forEach(t => t.querySelector("span").textContent = "0");
+  tiles.forEach((t, i) => setTimeout(() => setTile(t, hm[i]), first ? 200 + i * 120 : 0));
+  const txt = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  document.getElementById("homeTime").textContent = txt;
+  document.getElementById("ctlTime").textContent = txt;
+  document.getElementById("homeDate").textContent = d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  if (first) flapWord(document.getElementById("dateFlap"), d.toLocaleDateString("en-GB", { weekday: "short", day: "2-digit", month: "short" }).toUpperCase().replace(",", ""), "y");
+}
+tick(true); setInterval(() => tick(false), 5000);
+
+const DEPS = [
+  ["21:38", "Rafiq", "WhatsApp · are you coming tonight?", "NEW", "g"],
+  ["21:31", "Gmail", "wprio.com · 2 new orders", "2 NEW", "g"],
+  ["20:40", "Sadia", "Phone · missed call", "MISSED", "r"],
+  ["06:30", "Alarm", "Gym · weekdays", "ON TIME", "y"],
+];
+const dep = document.getElementById("dep");
+DEPS.forEach(([t, who, sub, st, c]) => {
+  const r = document.createElement("div");
+  r.className = "rw";
+  r.innerHTML = `<span class="tm">${t}</span><span class="to"><b>${who}</b><small>${sub}</small></span><span class="stt chars"></span>`;
+  dep.appendChild(r);
+  flapWord(r.querySelector(".stt"), st, c);
+});
+
+/* ---------- Metro map ---------- */
+const LINES = [
+  { id: "work",   d: "M30,40 V150 L100,220 H300" },
+  { id: "social", d: "M300,40 H210 L150,100 V340" },
+  { id: "play",   d: "M300,130 H70" },
+  { id: "money",  d: "M30,340 L90,280 H300" },
+];
+// [name, x, y, lines, label dx, label dy, anchor]
+const STATIONS = [
+  ["Gmail", 30, 40, ["work"], 10, 4, "start"],
+  ["Drive", 30, 95, ["work"], 10, 4, "start"],
+  ["Meet", 65, 185, ["work"], 10, 4, "start"],
+  ["Chrome", 150, 220, ["work", "social"], 10, -9, "start"],
+  ["Calendar", 225, 220, ["work"], 0, 18, "middle"],
+  ["Docs", 300, 220, ["work"], 0, 18, "end"],
+  ["Telegram", 300, 40, ["social"], 0, -10, "end"],
+  ["Facebook", 240, 40, ["social"], 0, 18, "middle"],
+  ["Messenger", 150, 100, ["social"], -10, 4, "end"],
+  ["Camera", 150, 130, ["social", "play"], -10, 18, "end"],
+  ["WhatsApp", 150, 165, ["social"], 10, 4, "start"],
+  ["Messages", 150, 280, ["social", "money"], 10, -9, "start"],
+  ["Phone", 150, 340, ["social"], 10, 4, "start"],
+  ["Spotify", 300, 130, ["play"], 0, 18, "end"],
+  ["YouTube", 225, 130, ["play"], 0, 18, "middle"],
+  ["Gallery", 70, 130, ["play"], 0, -10, "middle"],
+  ["bKash", 30, 340, ["money"], 10, 4, "start"],
+  ["Nagad", 90, 280, ["money"], 0, -10, "middle"],
+  ["Bank", 225, 280, ["money"], 0, 18, "middle"],
+  ["Wallet", 300, 280, ["money"], 0, 18, "end"],
+];
+const LINE_NAME = { social: "Social line", work: "Work line", money: "Money line", play: "Play line" };
+function drawMap() {
+  let s = `<path d="M-10,250 C60,240 90,310 170,312 S280,250 345,262" fill="none" stroke="#cfe3ee" stroke-width="22" stroke-linecap="round"/>
+    <text x="300" y="312" font-family="Barlow" font-style="italic" font-size="10" fill="#7fa9c0" text-anchor="end">Buriganga</text>`;
+  for (const l of LINES) s += `<path d="${l.d}" fill="none" stroke="${C[l.id]}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  STATIONS.forEach(([n, x, y, ls, dx, dy, a], i) => {
+    const inter = ls.length > 1;
+    s += `<g class="st" data-i="${i}">
+      <circle cx="${x}" cy="${y}" r="14" fill="transparent"/>
+      <circle class="dot" cx="${x}" cy="${y}" r="${inter ? 7.5 : 5}" fill="#fff" stroke="${inter ? "#141414" : C[ls[0]]}" stroke-width="${inter ? 3 : 2.6}"/>
+      <text x="${x + dx}" y="${y + dy}" text-anchor="${a}">${n}</text></g>`;
+  });
+  document.getElementById("map").innerHTML = s;
+}
+drawMap();
+document.getElementById("map").addEventListener("click", ev => {
+  const g = ev.target.closest(".st"); if (!g) return;
+  document.querySelectorAll(".map .st").forEach(x => x.classList.toggle("sel", x === g));
+  const [n, , , ls] = STATIONS[+g.dataset.i];
+  const co = document.getElementById("callout");
+  co.innerHTML = `<i style="background:${C[ls[0]]}"></i><span>${n}<br><small>${ls.map(l => LINE_NAME[l]).join(" ⇄ ")} · tap to open</small></span>`;
+  co.classList.add("show");
+});
+
+/* ---------- Station index ---------- */
+const APPS = [
+  ["bKash", ["money"], 1, "Payments"], ["Bank Asia", ["money"], 2, "Banking"], ["Calculator", ["tools"], 1, "Utility"],
+  ["Calendar", ["work"], 1, "Schedule"], ["Camera", ["play", "social"], 2, "Photo & video"], ["Canva", ["work", "play"], 3, "Design"],
+  ["Chrome", ["work", "social"], 3, "Browser"], ["Clock", ["tools"], 1, "Alarms"], ["Docs", ["work"], 2, "Documents"],
+  ["Drive", ["work"], 2, "Cloud storage"], ["Facebook", ["social"], 4, "Social"], ["Files", ["tools"], 1, "File manager"],
+  ["Gallery", ["play"], 2, "Photos"], ["Gmail", ["work"], 2, "Mail"], ["Maps", ["tools"], 3, "Navigation"],
+  ["Meet", ["work"], 2, "Video calls"], ["Messages", ["social", "money"], 1, "SMS"], ["Messenger", ["social"], 3, "Chat"],
+  ["Nagad", ["money"], 2, "Payments"], ["Omar Dialer", ["social", "tools"], 1, "Phone"], ["Play Store", ["tools"], 2, "Apps"],
+  ["Settings", ["tools"], 1, "System"], ["Spotify", ["play"], 3, "Music"], ["Telegram", ["social"], 3, "Chat"],
+  ["Uber", ["tools"], 3, "Rides"], ["Wallet", ["money"], 1, "Cards"], ["WhatsApp", ["social"], 4, "Chat"], ["YouTube", ["play"], 4, "Video"],
+];
+let lineF = "all";
+document.getElementById("appCount").textContent = APPS.length;
+function renderIdx() {
+  const q = document.getElementById("where").value.trim().toLowerCase();
+  const list = APPS.filter(a => (lineF === "all" || a[1].includes(lineF)) && (!q || a[0].toLowerCase().includes(q)));
+  let html = "", L = "";
+  for (const [n, ls, z, sub] of list) {
+    const letter = n[0].toUpperCase();
+    if (letter !== L) { L = letter; html += `<div class="L">${L}<small>${list.filter(a => a[0][0].toUpperCase() === L).length} stations</small></div>`; }
+    const k = q ? n.toLowerCase().indexOf(q) : -1;
+    const nm = k >= 0 ? n.slice(0, k) + `<mark>${n.slice(k, k + q.length)}</mark>` + n.slice(k + q.length) : n;
+    html += `<button class="a"><span class="ls">${ls.map(l => `<i style="background:${C[l]}"></i>`).join("")}</span><span class="nm">${nm}<small>${sub}</small></span><span class="z">ZONE ${z}</span></button>`;
+  }
+  document.getElementById("idx").innerHTML = html || `<div class="none">No station called “${q.replace(/</g, "&lt;")}”</div>`;
+}
+document.getElementById("where").addEventListener("input", renderIdx);
+document.getElementById("lfil").onclick = ev => {
+  const b = ev.target.closest("button"); if (!b) return;
+  lineF = b.dataset.l;
+  document.querySelectorAll("#lfil button").forEach(x => x.classList.toggle("on", x === b));
+  renderIdx();
+};
+renderIdx();
+
+/* ---------- Control room ---------- */
+const ICONS = {
+  wifi: '<path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r="1.2" fill="currentColor"/>',
+  data: '<path d="M7 20V6M3 10l4-4 4 4M17 4v14M13 14l4 4 4-4"/>',
+  bt: '<path d="m7 7 10 10-5 4V3l5 4L7 17"/>',
+  torch: '<path d="M8 3h8l-1 5H9L8 3ZM9 8h6v12a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V8Z"/><path d="M12 12v2"/>',
+  dnd: '<circle cx="12" cy="12" r="9"/><path d="M7 12h10"/>',
+  rotate: '<path d="M20 12a8 8 0 0 1-14.5 4.7M4 12a8 8 0 0 1 14.5-4.7"/><path d="M19 3v4.7h-4.7M5 21v-4.7h4.7"/>',
+};
+const SIGNS = [
+  ["wifi", "Wi-Fi", "Home_5G", true, C.work], ["data", "Data", "GP · 5G", true, C.money], ["bt", "Bluetooth", "Off", false, C.work],
+  ["torch", "Torch", "Off", false, C.play], ["dnd", "Quiet", "Until 07:00", false, C.social], ["rotate", "Rotate", "Auto", true, C.tools],
+];
+function renderSigns() {
+  document.getElementById("signs").innerHTML = SIGNS.map(([ic, n, sub, on, col], i) =>
+    `<button class="sign${on ? " on" : ""}" data-i="${i}" style="${on ? `background:${col}` : ""}${on && ic === "torch" ? ";color:#111" : ""}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ICONS[ic]}</svg>
+      <span><b>${n}</b><small>${on ? sub : "Off"}</small></span></button>`).join("");
+}
+document.getElementById("signs").onclick = ev => {
+  const b = ev.target.closest(".sign"); if (!b) return;
+  const s = SIGNS[b.dataset.i]; s[3] = !s[3];
+  if (s[0] === "bt") s[2] = "Buds Air";
+  if (s[0] === "torch") s[2] = "On";
+  renderSigns();
+};
+renderSigns();
+
+const STOPS = [0, 25, 50, 75, 100];
+const levels = { bright: 75, vol: 50 };
+function renderRoutes() {
+  document.querySelectorAll(".route").forEach(r => {
+    const v = levels[r.dataset.k];
+    r.querySelector(".rl b").textContent = v + "%";
+    r.querySelector(".track").innerHTML = `<div class="fill" style="width:${v}%"></div>` +
+      STOPS.map(s => `<span class="stop${s <= v ? " past" : ""}" style="left:${s}%"></span>`).join("") +
+      `<span class="train" style="left:${v}%"></span>`;
+  });
+}
+document.querySelectorAll(".route .track").forEach(t => t.addEventListener("click", ev => {
+  const r = t.getBoundingClientRect();
+  const pct = (ev.clientX - r.left) / r.width * 100;
+  levels[t.parentElement.dataset.k] = STOPS.reduce((a, b) => Math.abs(b - pct) < Math.abs(a - pct) ? b : a);
+  renderRoutes();
+}));
+renderRoutes();
+
+let TIX = [
+  ["21:38", "WhatsApp", "Rafiq", "are you coming tonight?", C.social],
+  ["21:31", "Gmail", "wprio.com", "2 new orders · ৳4,200", C.work],
+  ["21:12", "bKash", "Cash in", "৳1,500.00 received from 017••••21", C.money],
+  ["20:40", "Omar Dialer", "Missed call", "Sadia · 2 times", C.social],
+  ["19:02", "Calendar", "Standup", "moved to 10:00 tomorrow", C.work],
+];
+function renderTix() {
+  document.getElementById("tix").innerHTML = TIX.map(([t, app, title, msg, col], i) =>
+    `<div class="tk" data-i="${i}">
+      <div class="stub" style="background:${col}"><b>${t}</b><small>Single</small></div>
+      <div class="body"><small>${app}</small><b>${title}</b><span>${msg}</span></div>
+      <button class="punch" title="Punch (dismiss)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+    </div>`).join("") || `<div class="empty">No tickets · all clear</div>`;
+  document.getElementById("tixCount").textContent = `${TIX.length} ticket${TIX.length === 1 ? "" : "s"}`;
+}
+document.getElementById("tix").onclick = ev => {
+  const b = ev.target.closest(".punch"); if (!b) return;
+  const tk = b.closest(".tk"); tk.classList.add("gone");
+  setTimeout(() => { TIX.splice(+tk.dataset.i, 1); renderTix(); }, 300);
+};
+document.getElementById("punchAll").onclick = () => {
+  document.querySelectorAll(".tk").forEach((t, i) => setTimeout(() => t.classList.add("gone"), i * 70));
+  setTimeout(() => { TIX = []; renderTix(); }, 300 + TIX.length * 70);
+};
+renderTix();
+</script>
+</body>
+</html>

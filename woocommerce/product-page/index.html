@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Court Low-Top Sneaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111;
+  --body: #3d3d3d;
+  --muted: #767676;
+  --line: #e8e8e8;
+  --soft: #f4f4f2;
+  --accent: #d9493a;
+  --accent-ink: #b8352a;
+  --ok: #1f8a4c;
+  --warn: #c2410c;
+  --brand: #3fa14a;
+  --r: 14px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: #fff; color: var(--body);
+  font: 400 15px/1.55 "Instrument Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3 { margin: 0; color: var(--ink); letter-spacing: -.015em; }
+p { margin: 0; }
+svg { flex: none; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* Header */
+.hdr { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 30; }
+.hdr .wrap { display: flex; align-items: center; height: 76px; gap: 32px; }
+.logo { display: flex; align-items: center; gap: 10px; font-size: 26px; color: var(--ink); letter-spacing: -.02em; }
+.logo b { font-weight: 700; }
+.logo i { width: 32px; height: 32px; border-radius: 8px; background: var(--brand); display: grid; place-items: center; color: #fff; font: 700 16px/1 inherit; font-style: normal; }
+.nav { display: flex; gap: 6px; margin-left: auto; }
+.nav a { padding: 8px 14px; border-radius: 999px; font-weight: 500; color: var(--ink); }
+.nav a:hover { background: var(--soft); }
+.nav a.chev::after { content: ""; display: inline-block; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translate(-2px, -2px); margin-left: 8px; }
+.hdr-cta { display: flex; gap: 10px; align-items: center; }
+.btn-dark { background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 11px 20px; font-weight: 600; }
+.cart { position: relative; display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--soft); border: 0; font-weight: 600; color: var(--ink); }
+.cart .n { position: absolute; top: 2px; left: 26px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 11px; line-height: 18px; text-align: center; transition: transform .25s; }
+.cart .n.pop { transform: scale(1.35); }
+.menu-btn { display: none; background: none; border: 0; padding: 8px; }
+
+/* Breadcrumb */
+.crumbs { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); padding: 24px 0 28px; flex-wrap: wrap; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs span[aria-hidden] { opacity: .5; }
+.crumbs [aria-current] { color: var(--ink); }
+
+/* Product grid */
+.pp { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 64px; align-items: start; padding-bottom: 72px; }
+
+/* Gallery */
+.gal { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; position: sticky; top: 100px; }
+.thumbs { display: flex; flex-direction: column; gap: 10px; }
+.thumb { aspect-ratio: 1; border-radius: 10px; background: var(--soft); border: 1.5px solid transparent; padding: 0; overflow: hidden; transition: border-color .15s; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; opacity: .75; transition: opacity .15s; }
+.thumb:hover img, .thumb[aria-current="true"] img { opacity: 1; }
+.thumb[aria-current="true"] { border-color: var(--ink); }
+.stage { position: relative; aspect-ratio: 1 / 1; border-radius: var(--r); background: var(--soft); overflow: hidden; cursor: zoom-in; }
+.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; transition: transform .35s ease, opacity .25s; }
+.stage.zoom img { transform: scale(1.8); transition: transform .1s; }
+.stage .tag { position: absolute; top: 16px; left: 16px; z-index: 2; display: flex; gap: 6px; }
+.pill { font-size: 12px; font-weight: 600; letter-spacing: .02em; padding: 5px 10px; border-radius: 999px; background: #fff; color: var(--ink); }
+.pill.new { background: var(--accent); color: #fff; }
+.stage-tools { position: absolute; top: 14px; right: 14px; z-index: 2; display: flex; flex-direction: column; gap: 8px; }
+.ico { width: 40px; height: 40px; border-radius: 999px; border: 0; background: #fff; display: grid; place-items: center; box-shadow: 0 1px 2px rgba(0,0,0,.06); color: var(--ink); }
+.ico:hover { background: var(--ink); color: #fff; }
+.ico.on { color: var(--accent); }
+.ico.on:hover { color: #fff; }
+.ico.on svg path { fill: currentColor; }
+.stage-nav { position: absolute; bottom: 16px; right: 16px; z-index: 2; display: flex; gap: 8px; }
+.counter { position: absolute; bottom: 22px; left: 18px; z-index: 2; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Summary */
+.sum { display: flex; flex-direction: column; }
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 10px; }
+.eyebrow a:hover { color: var(--ink); }
+.eyebrow .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+.title { font-size: 38px; line-height: 1.12; font-weight: 600; }
+.rating { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 14px; }
+.stars { display: flex; gap: 2px; color: var(--ink); }
+.rating a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #ccc; }
+.rating a:hover { color: var(--ink); }
+.price-row { display: flex; align-items: baseline; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.price { font-size: 30px; font-weight: 600; color: var(--ink); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.was { color: var(--muted); text-decoration: line-through; font-size: 17px; }
+.save { font-size: 13px; font-weight: 600; color: var(--accent-ink); background: #fdeceb; padding: 3px 9px; border-radius: 999px; }
+.tax { width: 100%; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.lede { margin-top: 18px; font-size: 16px; max-width: 52ch; }
+
+.hr { height: 1px; background: var(--line); margin: 26px 0; border: 0; }
+
+.opt + .opt { margin-top: 22px; }
+.opt-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; font-size: 14px; }
+.opt-h b { color: var(--ink); font-weight: 600; }
+.opt-h b span { font-weight: 400; color: var(--muted); margin-left: 4px; }
+.opt-h a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #ccc; font-size: 13px; }
+.swatches { display: flex; gap: 10px; }
+.sw { width: 52px; height: 52px; border-radius: 12px; padding: 3px; border: 1.5px solid var(--line); background: #fff; }
+.sw i { display: block; width: 100%; height: 100%; border-radius: 8px; background: var(--c); }
+.sw[aria-checked="true"] { border-color: var(--ink); }
+.sizes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.sz { height: 46px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; position: relative; }
+.sz:hover { border-color: #bbb; }
+.sz[aria-checked="true"] { border-color: var(--ink); background: var(--ink); color: #fff; }
+.sz:disabled { color: #b5b5b5; cursor: not-allowed; background: repeating-linear-gradient(135deg, transparent 0 7px, #f1f1f1 7px 8px); }
+.sz.low::after { content: ""; position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--warn); }
+.size-hint { font-size: 13px; color: var(--muted); margin-top: 8px; min-height: 20px; }
+.size-hint.err { color: var(--accent-ink); }
+
+.stock { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-top: 22px; }
+.stock .led { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px #e3f3e9; }
+.stock b { color: var(--ok); font-weight: 600; }
+.stock .live { margin-left: auto; color: var(--muted); display: flex; align-items: center; gap: 6px; font-size: 13px; }
+
+.buy { display: grid; grid-template-columns: 132px 1fr; gap: 10px; margin-top: 16px; }
+.qty { display: flex; align-items: center; justify-content: space-between; height: 56px; border: 1.5px solid var(--line); border-radius: 999px; padding: 0 6px; }
+.qty button { width: 40px; height: 40px; border-radius: 999px; border: 0; background: none; display: grid; place-items: center; color: var(--ink); }
+.qty button:hover { background: var(--soft); }
+.qty button:disabled { color: #c4c4c4; background: none; cursor: default; }
+.qty input { width: 36px; border: 0; text-align: center; font: 600 16px/1 inherit; color: var(--ink); background: none; -moz-appearance: textfield; }
+.qty input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.cta { height: 56px; border-radius: 999px; border: 0; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background .15s, transform .1s; }
+.cta:active { transform: scale(.985); }
+.cta-cart { background: var(--ink); color: #fff; }
+.cta-cart:hover { background: #2b2b2b; }
+.cta-cart.done { background: var(--ok); }
+.cta-buy { grid-column: 1 / -1; background: var(--accent); color: #fff; }
+.cta-buy:hover { background: var(--accent-ink); }
+.pay-note { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.perks { list-style: none; margin: 26px 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r); }
+.perks li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 14px 16px; }
+.perks li + li { border-top: 1px solid var(--line); }
+.perks .pi { width: 40px; height: 40px; border-radius: 10px; background: var(--soft); display: grid; place-items: center; color: var(--ink); }
+.perks b { display: block; color: var(--ink); font-weight: 600; font-size: 14px; }
+.perks small { font-size: 13px; color: var(--muted); }
+
+.meta { display: grid; grid-template-columns: 90px 1fr; row-gap: 8px; margin-top: 26px; font-size: 14px; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; color: var(--ink); }
+.meta dd a { border-bottom: 1px solid #ccc; }
+.meta dd a:hover { border-color: var(--ink); }
+.meta code { font: 500 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--soft); padding: 3px 7px; border-radius: 6px; }
+.share { display: flex; align-items: center; gap: 4px; margin-top: 18px; font-size: 14px; color: var(--muted); }
+.share span { margin-right: 8px; }
+.share a { width: 36px; height: 36px; border-radius: 999px; display: grid; place-items: center; color: var(--ink); }
+.share a:hover { background: var(--soft); }
+
+/* Tabs */
+.info, .rel { scroll-margin-top: 84px; }
+.info { border-top: 1px solid var(--line); padding: 56px 0 96px; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 36px; overflow-x: auto; scrollbar-width: none; }
+.tab { background: none; border: 0; padding: 14px 18px; font-weight: 600; color: var(--muted); position: relative; white-space: nowrap; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px; background: var(--ink); border-radius: 2px; }
+.tab sup { font-size: 11px; color: var(--muted); margin-left: 3px; font-weight: 500; }
+.panel[hidden] { display: none; }
+.desc { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.desc h3 { font-size: 22px; margin-bottom: 12px; }
+.desc p + p { margin-top: 12px; }
+.feat { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.feat li { display: flex; gap: 12px; }
+.feat li svg { margin-top: 3px; color: var(--ok); }
+.spec { width: 100%; border-collapse: collapse; font-size: 15px; max-width: 760px; }
+.spec th, .spec td { text-align: left; padding: 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec th { width: 220px; color: var(--muted); font-weight: 500; }
+.spec td { color: var(--ink); }
+.rev { display: grid; grid-template-columns: 280px 1fr; gap: 64px; }
+.rev-sum .big { font-size: 56px; font-weight: 600; color: var(--ink); line-height: 1; letter-spacing: -.03em; }
+.rev-sum .stars { margin: 10px 0 4px; }
+.bars { display: grid; gap: 8px; margin: 22px 0; font-size: 13px; }
+.bars div { display: grid; grid-template-columns: 14px 1fr 30px; gap: 10px; align-items: center; }
+.bars i { height: 6px; border-radius: 6px; background: var(--soft); overflow: hidden; }
+.bars i b { display: block; height: 100%; background: var(--ink); border-radius: 6px; }
+.bars span:last-child { color: var(--muted); text-align: right; }
+.btn-line { border: 1.5px solid var(--ink); background: #fff; border-radius: 999px; padding: 11px 20px; font-weight: 600; width: 100%; }
+.btn-line:hover { background: var(--ink); color: #fff; }
+.review { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.review:first-child { padding-top: 0; }
+.review-h { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.av { width: 36px; height: 36px; border-radius: 50%; background: var(--soft); display: grid; place-items: center; font-weight: 600; color: var(--ink); font-size: 14px; }
+.review-h b { color: var(--ink); display: block; font-size: 14px; }
+.review-h small { color: var(--muted); font-size: 13px; }
+.review-h .stars { margin-left: auto; }
+.review h4 { margin: 0 0 4px; color: var(--ink); font-size: 15px; }
+.verified { font-size: 12px; color: var(--ok); font-weight: 600; margin-left: 6px; }
+
+/* Related */
+.rel { padding-bottom: 96px; }
+.rel-h { display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; }
+.rel-h h2 { font-size: 28px; }
+.rel-h a { font-weight: 600; color: var(--ink); border-bottom: 1.5px solid var(--ink); }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.card .im { aspect-ratio: 4 / 5; border-radius: var(--r); background: var(--soft); overflow: hidden; position: relative; }
+.card .im img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; transition: transform .4s; }
+.card:hover .im img { transform: scale(1.04); }
+.card .quick { position: absolute; left: 12px; right: 12px; bottom: 12px; height: 42px; border-radius: 999px; border: 0; background: #fff; font-weight: 600; opacity: 0; transform: translateY(6px); transition: .2s; }
+.card:hover .quick, .card .quick:focus-visible { opacity: 1; transform: none; }
+.card h3 { font-size: 15px; font-weight: 600; margin-top: 14px; }
+.card p { font-size: 14px; color: var(--muted); }
+.card .pr { color: var(--ink); font-weight: 600; margin-top: 4px; }
+
+/* Sticky bar */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); border-top: 1px solid var(--line); transform: translateY(100%); transition: transform .25s; }
+.sticky.show { transform: none; }
+.sticky .wrap { display: flex; align-items: center; gap: 16px; height: 76px; }
+.sticky img { width: 52px; height: 52px; border-radius: 10px; background: var(--soft); object-fit: cover; mix-blend-mode: multiply; }
+.sticky .t { flex: 1; min-width: 0; }
+.sticky .t b { display: block; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky .t small { color: var(--muted); }
+.sticky .cta { height: 48px; padding: 0 26px; }
+
+/* Toast */
+.toast { position: fixed; top: 92px; right: 24px; z-index: 50; width: 340px; background: #fff; border-radius: var(--r); box-shadow: 0 20px 50px -12px rgba(0,0,0,.25), 0 0 0 1px rgba(0,0,0,.04); padding: 16px; display: grid; grid-template-columns: 56px 1fr; gap: 14px; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: .25s; }
+.toast.show { opacity: 1; transform: none; pointer-events: auto; }
+.toast img { width: 56px; height: 56px; border-radius: 10px; background: var(--soft); object-fit: cover; mix-blend-mode: multiply; }
+.toast b { color: var(--ink); display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.toast b svg { color: var(--ok); }
+.toast small { color: var(--muted); font-size: 13px; display: block; }
+.toast .acts { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.toast .acts button { height: 40px; border-radius: 999px; font-weight: 600; font-size: 14px; border: 1.5px solid var(--line); background: #fff; }
+.toast .acts .go { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 60; background: #fff; display: none; place-items: center; }
+.lb.open { display: grid; }
+.lb img { max-width: 92vw; max-height: 86vh; object-fit: contain; mix-blend-mode: multiply; }
+.lb .ico { position: absolute; box-shadow: 0 0 0 1px var(--line); }
+.lb .x { top: 20px; right: 20px; }
+.lb .pv { left: 20px; top: 50%; }
+.lb .nx { right: 20px; top: 50%; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .pp { gap: 40px; }
+  .title { font-size: 32px; }
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .cards .card:nth-child(4) { display: none; }
+}
+@media (max-width: 900px) {
+  .wrap { padding: 0 20px; }
+  .nav, .hdr-cta .btn-dark { display: none; }
+  .menu-btn { display: block; }
+  .hdr-cta { margin-left: auto; }
+  .hdr .wrap { height: 64px; gap: 8px; }
+  .logo { font-size: 22px; }
+  .pp { grid-template-columns: 1fr; gap: 28px; padding-bottom: 48px; }
+  .gal { position: static; grid-template-columns: 1fr; }
+  .thumbs { flex-direction: row; order: 2; overflow-x: auto; scrollbar-width: none; }
+  .thumb { width: 72px; flex: none; }
+  .desc, .rev { grid-template-columns: 1fr; gap: 36px; }
+  .cards { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cards .card:nth-child(4) { display: block; }
+  .toast { left: 16px; right: 16px; width: auto; top: 76px; }
+  .info { padding: 40px 0 64px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; }
+  .cart .lbl { display: none; }
+  .title { font-size: 27px; }
+  .price { font-size: 26px; }
+  .sizes { grid-template-columns: repeat(4, 1fr); }
+  .buy { grid-template-columns: 116px 1fr; }
+  .stock .live { display: none; }
+  .crumbs { padding: 16px 0 18px; font-size: 13px; }
+  .stage-nav { display: none; }
+  .sticky .wrap { height: 68px; gap: 12px; }
+  .sticky img { display: none; }
+  .sticky .cta { padding: 0 20px; height: 46px; }
+  .spec th { width: 42%; }
+  .rel-h h2 { font-size: 22px; }
+  .card .quick { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="DiviMerc home"><i>D</i><span>Divi<b>Merc</b></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#">Home</a>
+      <a href="#">Explore Products</a>
+      <a href="#" class="chev">Modules</a>
+    </nav>
+    <div class="hdr-cta">
+      <button class="btn-dark">Buy DiviMerc</button>
+      <button class="cart" aria-label="Cart, 2 items">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="lbl">Cart</span><span class="n" id="cartN">2</span>
+      </button>
+      <button class="menu-btn" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="#">Home</a><span aria-hidden="true">/</span>
+    <a href="#">Shop</a><span aria-hidden="true">/</span>
+    <a href="#">Footwear</a><span aria-hidden="true">/</span>
+    <span aria-current="page">Court Low-Top Sneaker</span>
+  </nav>
+
+  <section class="pp">
+    <!-- Gallery -->
+    <div class="gal">
+      <div class="thumbs" id="thumbs" role="tablist" aria-label="Product images"></div>
+      <div class="stage" id="stage">
+        <div class="tag"><span class="pill new">New</span><span class="pill">−15%</span></div>
+        <div class="stage-tools">
+          <button class="ico" id="wish" aria-label="Add to wishlist" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5C19 15.6 12 20 12 20z"/></svg></button>
+          <button class="ico" id="expand" aria-label="View full screen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button>
+        </div>
+        <img id="main" alt="">
+        <span class="counter" id="counter">1 / 4</span>
+        <div class="stage-nav">
+          <button class="ico" data-step="-1" aria-label="Previous image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button class="ico" data-step="1" aria-label="Next image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="sum">
+      <div class="eyebrow"><a href="#">Footwear</a><span class="dot"></span><span>Unisex</span></div>
+      <h1 class="title">Court Low-Top Sneaker</h1>
+      <div class="rating">
+        <span class="stars" aria-label="4.8 out of 5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" opacity=".25"/><path d="M12 2.5v14.7l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>
+        </span>
+        <b style="color:var(--ink)">4.8</b>
+        <a href="#reviews" id="toReviews">128 reviews</a>
+      </div>
+
+      <div class="price-row">
+        <span class="price" id="price">$115.00</span>
+        <span class="was">$135.00</span>
+        <span class="save">Save $20</span>
+        <span class="tax">Tax included. Free shipping on orders over $75.</span>
+      </div>
+
+      <p class="lede">A clean low-top in full-grain leather on a cupsole, with perforated side panels for airflow and a padded collar for all-day comfort.</p>
+
+      <hr class="hr">
+
+      <div class="opt">
+        <div class="opt-h"><b>Colour <span id="colorName">Chalk Coral</span></b></div>
+        <div class="swatches" role="radiogroup" aria-label="Colour" id="swatches">
+          <button class="sw" role="radio" aria-checked="true" data-name="Chalk Coral" style="--c:linear-gradient(135deg,#f1efea 50%,#ef8a6b 50%)" aria-label="Chalk Coral"><i></i></button>
+          <button class="sw" role="radio" aria-checked="false" data-name="Glacier Blue" style="--c:linear-gradient(135deg,#7fa8c4 50%,#2f3d4c 50%)" aria-label="Glacier Blue"><i></i></button>
+          <button class="sw" role="radio" aria-checked="false" data-name="Graphite" style="--c:linear-gradient(135deg,#5b5f66 50%,#1d1f23 50%)" aria-label="Graphite"><i></i></button>
+          <button class="sw" role="radio" aria-checked="false" data-name="Ember" style="--c:linear-gradient(135deg,#e46a4c 50%,#7d2a1d 50%)" aria-label="Ember"><i></i></button>
+        </div>
+      </div>
+
+      <div class="opt">
+        <div class="opt-h"><b>Size <span id="sizeName">EU · Select a size</span></b><a href="#" id="guide">Size guide</a></div>
+        <div class="sizes" role="radiogroup" aria-label="Size" id="sizes"></div>
+        <p class="size-hint" id="sizeHint">Fits true to size. Between sizes? Go half a size up.</p>
+      </div>
+
+      <div class="stock">
+        <span class="led" aria-hidden="true"></span>
+        <span><b>In stock</b> · ships in 1–2 business days</span>
+        <span class="live"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="viewers">24</span> viewing now</span>
+      </div>
+
+      <div class="buy">
+        <div class="qty">
+          <button id="qMinus" aria-label="Decrease quantity" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+          <input id="qty" type="number" value="1" min="1" max="31" inputmode="numeric" aria-label="Quantity">
+          <button id="qPlus" aria-label="Increase quantity"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <button class="cta cta-cart" id="addCart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+          <span>Add to cart</span>
+        </button>
+        <button class="cta cta-buy" id="buyNow">Buy now</button>
+        <p class="pay-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure checkout · Visa, Mastercard, PayPal, Apple Pay</p>
+      </div>
+
+      <ul class="perks">
+        <li><span class="pi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></span><div><b>Free delivery by <span id="eta">Thu, 12 Nov</span></b><small>Order within <span id="cutoff">4h 22m</span> for express dispatch</small></div></li>
+        <li><span class="pi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><div><b>30-day free returns</b><small>Try them on at home, return them unworn</small></div></li>
+        <li><span class="pi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>1-year warranty</b><small>Covers sole separation and stitching</small></div></li>
+      </ul>
+
+      <dl class="meta">
+        <dt>SKU</dt><dd><code>DM-SNK-04</code></dd>
+        <dt>Category</dt><dd><a href="#">Footwear</a></dd>
+        <dt>Tags</dt><dd><a href="#">Best Sellers</a>, <a href="#">Everyday</a></dd>
+      </dl>
+
+      <div class="share">
+        <span>Share</span>
+        <a href="#" aria-label="Share on Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7H17l.5-4h-4V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+        <a href="#" aria-label="Share on WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-1.5-1-2-2l1-1-1-2z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Share on X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a>
+        <a href="#" aria-label="Share on Pinterest"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.8-2.5.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.9 1.6 1.9 1.9 0 3.3-2 3.3-4.9 0-2.6-1.8-4.4-4.5-4.4-3 0-4.8 2.3-4.8 4.6 0 .9.4 1.9.8 2.4l.1.4-.3 1.2c0 .2-.2.3-.4.2-1.3-.6-2.2-2.6-2.2-4.2 0-3.4 2.5-6.6 7.2-6.6 3.8 0 6.7 2.7 6.7 6.3 0 3.8-2.4 6.8-5.7 6.8-1.1 0-2.2-.6-2.5-1.3l-.7 2.6c-.3 1-.9 2.2-1.4 2.9A10 10 0 1 0 12 2z"/></svg></a>
+        <a href="#" aria-label="Copy link" id="copyLink"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info tabs -->
+  <section class="info" id="reviews">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p-desc" id="t-desc">Description</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-spec" id="t-spec">Details &amp; care</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-rev" id="t-rev">Reviews<sup>128</sup></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-ship" id="t-ship">Shipping &amp; returns</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-desc" aria-labelledby="t-desc">
+      <div class="desc">
+        <div>
+          <h3>Made for every day, not just game day</h3>
+          <p>The Court Low-Top takes the shape of a classic tennis shoe and builds it for the city. Full-grain leather softens with wear, while the stitched cupsole keeps its shape for years.</p>
+          <p>Perforated side panels let your feet breathe on warm days, and a cushioned EVA insole takes the edge off long walks.</p>
+        </div>
+        <ul class="feat">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg><span><b style="color:var(--ink)">Full-grain leather upper</b> that moulds to your foot</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg><span><b style="color:var(--ink)">Stitched rubber cupsole</b> with a non-marking grip</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg><span><b style="color:var(--ink)">Removable EVA insole</b>, orthotic friendly</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg><span><b style="color:var(--ink)">Padded collar and tongue</b> for all-day comfort</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-spec" aria-labelledby="t-spec" hidden>
+      <table class="spec">
+        <tr><th>Upper</th><td>Full-grain cow leather, perforated side panels</td></tr>
+        <tr><th>Lining</th><td>Recycled polyester mesh</td></tr>
+        <tr><th>Sole</th><td>Stitched natural rubber cupsole, 32 mm heel</td></tr>
+        <tr><th>Weight</th><td>390 g (EU 42)</td></tr>
+        <tr><th>Fit</th><td>True to size, regular width</td></tr>
+        <tr><th>Care</th><td>Wipe with a damp cloth. Air dry away from direct heat.</td></tr>
+      </table>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-rev" aria-labelledby="t-rev" hidden>
+      <div class="rev">
+        <div class="rev-sum">
+          <div class="big">4.8</div>
+          <div class="stars" id="sumStars"></div>
+          <small style="color:var(--muted)">Based on 128 reviews</small>
+          <div class="bars">
+            <div><span>5</span><i><b style="width:84%"></b></i><span>108</span></div>
+            <div><span>4</span><i><b style="width:11%"></b></i><span>14</span></div>
+            <div><span>3</span><i><b style="width:3%"></b></i><span>4</span></div>
+            <div><span>2</span><i><b style="width:1%"></b></i><span>1</span></div>
+            <div><span>1</span><i><b style="width:1%"></b></i><span>1</span></div>
+          </div>
+          <button class="btn-line">Write a review</button>
+        </div>
+        <div id="revList"></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-ship" aria-labelledby="t-ship" hidden>
+      <table class="spec">
+        <tr><th>Standard</th><td>Free over $75, otherwise $6. Arrives in 3–5 business days.</td></tr>
+        <tr><th>Express</th><td>$14. Order before 3 pm for next-day dispatch.</td></tr>
+        <tr><th>Returns</th><td>Free within 30 days. Shoes must be unworn and in the original box.</td></tr>
+        <tr><th>Exchanges</th><td>Swap sizes for free. We ship the new pair as soon as yours is scanned.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="rel">
+    <div class="rel-h"><h2>You may also like</h2><a href="#">View all</a></div>
+    <div class="cards" id="cards"></div>
+  </section>
+</main>
+
+<!-- Sticky add to cart -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="wrap">
+    <img id="stickyImg" alt="">
+    <div class="t"><b>Court Low-Top Sneaker</b><small id="stickyMeta">$115.00 · Chalk Coral</small></div>
+    <button class="cta cta-cart" id="stickyAdd" tabindex="-1">Add to cart</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <img id="toastImg" alt="">
+  <div><b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>Added to cart</b><small id="toastMeta"></small></div>
+  <div class="acts"><button id="toastClose">Keep shopping</button><button class="go">View cart</button></div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <img id="lbImg" alt="">
+  <button class="ico x" id="lbClose" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="ico pv" data-step="-1" aria-label="Previous image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+  <button class="ico nx" data-step="1" aria-label="Next image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const U = (id, w) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+const IMGS = ['photo-1600185365483-26d7a4cc7519','photo-1560769629-975ec94e6a86','photo-1491553895911-0055eca6402d','photo-1543508282-6319a3e2621f'];
+const STAR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
+let cur = 0;
+
+// Gallery
+const thumbs = $('#thumbs');
+IMGS.forEach((id, i) => {
+  const b = document.createElement('button');
+  b.className = 'thumb'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', `Image ${i + 1}`);
+  b.innerHTML = `<img src="${U(id, 200)}" alt="">`;
+  b.onclick = () => show(i);
+  thumbs.append(b);
+});
+function show(i) {
+  cur = (i + IMGS.length) % IMGS.length;
+  const m = $('#main');
+  m.style.opacity = .4;
+  const src = U(IMGS[cur], 1200);
+  const pre = new Image(); pre.onload = () => { m.src = src; m.style.opacity = 1; }; pre.src = src;
+  m.alt = `Court Low-Top Sneaker, view ${cur + 1}`;
+  [...thumbs.children].forEach((t, k) => t.setAttribute('aria-current', k === cur));
+  $('#counter').textContent = `${cur + 1} / ${IMGS.length}`;
+  $('#lbImg').src = src;
+}
+show(0);
+document.querySelectorAll('[data-step]').forEach(b => b.onclick = e => { e.stopPropagation(); show(cur + +b.dataset.step); });
+
+// Hover zoom
+const stage = $('#stage');
+stage.addEventListener('mousemove', e => {
+  if (e.target.closest('button')) { stage.classList.remove('zoom'); return; }
+  const r = stage.getBoundingClientRect();
+  $('#main').style.transformOrigin = `${(e.clientX - r.left) / r.width * 100}% ${(e.clientY - r.top) / r.height * 100}%`;
+  stage.classList.add('zoom');
+});
+stage.addEventListener('mouseleave', () => stage.classList.remove('zoom'));
+stage.addEventListener('click', e => { if (!e.target.closest('button')) openLb(); });
+
+// Lightbox
+const lb = $('#lb');
+const openLb = () => { lb.classList.add('open'); $('#lbClose').focus(); };
+$('#expand').onclick = e => { e.stopPropagation(); openLb(); };
+$('#lbClose').onclick = () => lb.classList.remove('open');
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lb.classList.remove('open');
+  if (e.key === 'ArrowRight') show(cur + 1);
+  if (e.key === 'ArrowLeft') show(cur - 1);
+});
+
+// Wishlist
+$('#wish').onclick = e => {
+  e.stopPropagation();
+  const on = e.currentTarget.classList.toggle('on');
+  e.currentTarget.setAttribute('aria-pressed', on);
+  e.currentTarget.setAttribute('aria-label', on ? 'Remove from wishlist' : 'Add to wishlist');
+};
+
+// Colour
+let colour = 'Chalk Coral';
+$('#swatches').addEventListener('click', e => {
+  const b = e.target.closest('.sw'); if (!b) return;
+  document.querySelectorAll('.sw').forEach(s => s.setAttribute('aria-checked', s === b));
+  colour = b.dataset.name; $('#colorName').textContent = colour; updSticky();
+});
+
+// Sizes
+const SIZES = [[38,0],[39,1],[40,1],[41,1],[42,1],[43,'low'],[44,1],[45,'low'],[46,0],[47,1],[48,0],[49,1]];
+let size = null;
+SIZES.forEach(([s, st]) => {
+  const b = document.createElement('button');
+  b.className = 'sz' + (st === 'low' ? ' low' : '');
+  b.textContent = s; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false');
+  if (!st) { b.disabled = true; b.title = 'Sold out'; b.setAttribute('aria-label', `${s}, sold out`); }
+  if (st === 'low') b.title = 'Only 2 left';
+  b.onclick = () => {
+    size = s;
+    document.querySelectorAll('.sz').forEach(x => x.setAttribute('aria-checked', x === b));
+    $('#sizeName').textContent = `EU ${s}`;
+    const h = $('#sizeHint'); h.classList.remove('err');
+    h.textContent = st === 'low' ? 'Only 2 left in this size. Order soon.' : 'Fits true to size. Between sizes? Go half a size up.';
+    h.style.color = st === 'low' ? 'var(--warn)' : '';
+    updSticky();
+  };
+  $('#sizes').append(b);
+});
+
+// Quantity
+const q = $('#qty');
+function setQ(v) {
+  v = Math.max(1, Math.min(31, parseInt(v) || 1));
+  q.value = v; $('#qMinus').disabled = v <= 1; $('#qPlus').disabled = v >= 31;
+}
+$('#qMinus').onclick = () => setQ(+q.value - 1);
+$('#qPlus').onclick = () => setQ(+q.value + 1);
+q.onchange = () => setQ(q.value);
+
+// Add to cart
+function needSize() {
+  if (size) return false;
+  const h = $('#sizeHint'); h.style.color = ''; h.classList.add('err'); h.textContent = 'Please choose a size first.';
+  $('#sizes').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  $('#sizes').animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(0)' }], { duration: 260 });
+  return true;
+}
+let toastT;
+function add() {
+  if (needSize()) return;
+  const n = $('#cartN'); n.textContent = +n.textContent + +q.value;
+  n.classList.add('pop'); setTimeout(() => n.classList.remove('pop'), 250);
+  const btn = $('#addCart'), lbl = btn.querySelector('span');
+  btn.classList.add('done'); lbl.textContent = 'Added';
+  setTimeout(() => { btn.classList.remove('done'); lbl.textContent = 'Add to cart'; }, 1600);
+  $('#toastImg').src = U(IMGS[0], 200);
+  $('#toastMeta').textContent = `Court Low-Top Sneaker · ${colour} · EU ${size} · Qty ${q.value}`;
+  $('#toast').classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => $('#toast').classList.remove('show'), 4000);
+}
+$('#addCart').onclick = add;
+$('#stickyAdd').onclick = () => { if (!size) { window.scrollTo({ top: 0 }); needSize(); } else add(); };
+$('#buyNow').onclick = () => { if (!needSize()) alert('→ Checkout'); };
+$('#toastClose').onclick = () => $('#toast').classList.remove('show');
+
+// Sticky bar: shown once the main buttons scroll out of view
+$('#stickyImg').src = U(IMGS[0], 200);
+function updSticky() { $('#stickyMeta').textContent = `$115.00 · ${colour}${size ? ' · EU ' + size : ''}`; $('#stickyAdd').textContent = size ? 'Add to cart' : 'Choose size'; }
+updSticky();
+new IntersectionObserver(([en]) => {
+  const show = !en.isIntersecting && en.boundingClientRect.top < 0;
+  $('#sticky').classList.toggle('show', show);
+  $('#sticky').setAttribute('aria-hidden', !show);
+  $('#stickyAdd').tabIndex = show ? 0 : -1;
+}).observe($('.buy'));
+
+// Tabs
+const tabs = [...document.querySelectorAll('.tab')];
+function selTab(t) {
+  tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; });
+}
+tabs.forEach((t, i) => {
+  t.onclick = () => selTab(t);
+  t.onkeydown = e => { const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; selTab(n); n.focus(); } };
+});
+$('#toReviews').onclick = e => { e.preventDefault(); selTab($('#t-rev')); $('#reviews').scrollIntoView({ behavior: 'smooth' }); };
+
+// Reviews
+$('#sumStars').innerHTML = STAR.repeat(5).replaceAll('14', '18');
+const REVS = [
+  ['Nadia R.', 'EU 39', 5, 'Comfortable from day one', 'No break-in needed. I walked about 12k steps the first day and had zero rubbing at the heel.', '2 weeks ago'],
+  ['Marco T.', 'EU 43', 5, 'Leather quality is great', 'Feels far more expensive than it is. The blue is a little lighter in person, which I actually prefer.', '1 month ago'],
+  ['Sam K.', 'EU 42', 4, 'Runs slightly narrow', 'Lovely shoe, but if you have wide feet I would go half a size up. Customer service swapped them quickly.', '1 month ago'],
+];
+$('#revList').innerHTML = REVS.map(([n, s, r, h, b, d]) => `
+  <article class="review">
+    <div class="review-h"><span class="av">${n[0]}</span><div><b>${n}<span class="verified">✓ Verified buyer</span></b><small>Size ${s} · ${d}</small></div>
+    <span class="stars" aria-label="${r} out of 5">${STAR.repeat(r)}${STAR.replace('currentColor', '#ddd').repeat(5 - r)}</span></div>
+    <h4>${h}</h4><p>${b}</p>
+  </article>`).join('');
+
+// Related products
+const REL = [['photo-1549298916-b41d501d3772','Canvas Work Low','Footwear',129],['photo-1552346154-21d32810aba3','Retro High Court','Everyday',98],['photo-1595950653106-6c9ebd614d3a','Pastel Platform','Everyday',89],['photo-1608231387042-66d1773070a5','Clean Court White','Best Sellers',110]];
+$('#cards').innerHTML = REL.map(([id, n, c, p]) => `
+  <a href="#" class="card"><div class="im"><img src="${U(id, 600)}" alt="${n}" loading="lazy"><button class="quick" onclick="event.preventDefault()">Quick add</button></div>
+  <h3>${n}</h3><p>${c}</p><p class="pr">$${p}.00</p></a>`).join('');
+
+// Delivery date + live viewers
+const eta = new Date(); eta.setDate(eta.getDate() + 4);
+$('#eta').textContent = eta.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+setInterval(() => { const v = $('#viewers'); v.textContent = Math.max(12, +v.textContent + Math.round(Math.random() * 4 - 2)); }, 5000);
+$('#copyLink').onclick = e => { e.preventDefault(); navigator.clipboard?.writeText(location.href); e.currentTarget.style.color = 'var(--ok)'; };
+</script>
+</body>
+</html>

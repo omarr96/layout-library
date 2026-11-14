@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor History Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0c0f;
+  --panel: #131418;
+  --raised: #1a1b20;
+  --hover: #202128;
+  --line: #24252c;
+  --line-2: #2e2f37;
+  --text: #ececef;
+  --dim: #8d8e97;
+  --faint: #5b5c66;
+  --accent: #7c6cff;
+  --accent-soft: rgba(124, 108, 255, .14);
+  --style: #a78bfa;
+  --content: #f5b454;
+  --structure: #3ccfb4;
+  --restore: #5aa9ff;
+  --red: #ff6b6b;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 13px/1.45 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 0; background: none; padding: 0; }
+svg { flex: none; }
+kbd { font: 500 10.5px var(--mono); padding: 1px 5px; border-radius: 4px; background: var(--raised); border: 1px solid var(--line-2); color: var(--dim); }
+
+.page { max-width: 1280px; margin: 0 auto; padding: 48px 24px 80px; }
+.intro { max-width: 760px; margin-bottom: 28px; }
+.intro .eyebrow { font: 600 11px var(--mono); letter-spacing: .14em; color: var(--accent); text-transform: uppercase; }
+.intro h1 { margin: 8px 0 8px; font-size: 34px; font-weight: 800; letter-spacing: -.03em; }
+.intro p { margin: 0; color: var(--dim); font-size: 14px; }
+
+/* ---------- Editor shell ---------- */
+.editor { height: 760px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); overflow: hidden; display: grid; grid-template-rows: 48px 1fr; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8); }
+.bar { display: flex; align-items: center; gap: 10px; padding: 0 12px; border-bottom: 1px solid var(--line); }
+.logo { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), #b06cff); display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+.crumb { color: var(--dim); font-weight: 500; }
+.crumb b { color: var(--text); font-weight: 600; }
+.bar .sp { flex: 1; }
+.tbtn { height: 30px; min-width: 30px; padding: 0 8px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--dim); font-weight: 500; }
+.tbtn:hover:not(:disabled) { background: var(--hover); color: var(--text); }
+.tbtn:disabled { opacity: .3; cursor: default; }
+.tbtn.on { background: var(--hover); color: var(--text); }
+.sep { width: 1px; height: 20px; background: var(--line); }
+.status-dot { display: inline-flex; align-items: center; gap: 6px; color: var(--dim); font-size: 12px; }
+.status-dot i { width: 7px; height: 7px; border-radius: 50%; background: var(--content); }
+.status-dot.saved i { background: var(--structure); }
+.btn { height: 30px; padding: 0 12px; border-radius: 8px; font-weight: 600; font-size: 12.5px; background: var(--raised); border: 1px solid var(--line-2); }
+.btn:hover { border-color: var(--faint); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.body { display: grid; grid-template-columns: 48px 340px 1fr; min-height: 0; }
+.rail { border-right: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 8px; }
+.rail .tbtn { width: 34px; height: 34px; }
+.rail .tbtn.on { color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- History panel ---------- */
+.hist { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; background: var(--panel); }
+.h-head { padding: 12px 14px 0; }
+.h-title { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.h-title h2 { margin: 0; flex: 1; font-size: 14px; font-weight: 700; }
+.tabs { display: flex; gap: 2px; padding: 3px; border-radius: 9px; background: var(--bg); border: 1px solid var(--line); }
+.tabs button { flex: 1; height: 28px; border-radius: 6px; font-weight: 600; font-size: 12.5px; color: var(--dim); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.tabs button.on { background: var(--raised); color: var(--text); box-shadow: 0 1px 2px rgba(0, 0, 0, .4); }
+.tabs .count { font: 500 10.5px var(--mono); color: var(--faint); }
+.filters { display: flex; gap: 4px; padding: 10px 0; }
+.fchip { height: 24px; padding: 0 9px; border-radius: 12px; font-size: 11.5px; font-weight: 600; color: var(--dim); border: 1px solid var(--line); display: inline-flex; align-items: center; gap: 5px; }
+.fchip i { width: 6px; height: 6px; border-radius: 50%; }
+.fchip.on { color: var(--text); border-color: var(--faint); background: var(--raised); }
+.h-list { flex: 1; overflow-y: auto; padding: 0 8px 10px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+
+.grp { display: flex; align-items: center; gap: 8px; padding: 12px 8px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.act { position: relative; display: flex; gap: 10px; width: 100%; padding: 8px 8px 8px 10px; border-radius: 9px; text-align: left; }
+.act:hover { background: var(--hover); }
+.act .ic { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; flex: none; margin-top: 1px; }
+.act .ic svg { width: 14px; height: 14px; }
+.k-style .ic { background: rgba(167, 139, 250, .14); color: var(--style); }
+.k-content .ic { background: rgba(245, 180, 84, .14); color: var(--content); }
+.k-structure .ic { background: rgba(60, 207, 180, .14); color: var(--structure); }
+.k-restore .ic { background: rgba(90, 169, 255, .14); color: var(--restore); }
+.k-start .ic { background: var(--raised); color: var(--dim); }
+.act .tx { flex: 1; min-width: 0; }
+.act .l1 { display: flex; align-items: center; gap: 6px; }
+.act .l1 b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.act .tgt { font: 500 10.5px var(--mono); color: var(--dim); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+.act .l2 { display: flex; align-items: center; gap: 6px; margin-top: 2px; font: 400 11px var(--mono); color: var(--dim); white-space: nowrap; overflow: hidden; }
+.act .l2 .arrow { color: var(--faint); }
+.act .l2 s { color: var(--faint); }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); vertical-align: -1px; margin-right: 3px; }
+.act .time { font-size: 11px; color: var(--faint); white-space: nowrap; margin-top: 2px; }
+.act .merged { font: 500 10px var(--mono); color: var(--faint); }
+/* Rail connecting the steps */
+.act::before { content: ""; position: absolute; left: 22px; top: -4px; bottom: -4px; width: 2px; background: var(--line); z-index: -1; }
+.h-list { position: relative; z-index: 0; }
+
+.act.current { background: var(--accent-soft); box-shadow: inset 0 0 0 1px rgba(124, 108, 255, .45); }
+.act.current .pill { font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 4px; padding: 1px 5px; }
+.act.future { opacity: .45; }
+.act.future .l1 b { font-weight: 500; }
+.act.future:hover { opacity: .8; }
+.act .redo { display: none; font-size: 11px; font-weight: 600; color: var(--accent); white-space: nowrap; margin-top: 2px; }
+.act.future:hover .redo { display: block; }
+.act.future:hover .time { display: none; }
+.act.flash { animation: flash 1.2s ease-out; }
+@keyframes flash { 0% { background: rgba(124, 108, 255, .35); } 100% { background: transparent; } }
+
+.saved-mark { display: flex; align-items: center; gap: 8px; margin: 4px 8px; padding: 5px 9px; border-radius: 7px; background: rgba(60, 207, 180, .07); border: 1px dashed rgba(60, 207, 180, .3); font-size: 11.5px; color: var(--structure); }
+.saved-mark span { color: var(--dim); margin-left: auto; font-size: 11px; }
+
+.future-note { display: flex; align-items: center; gap: 8px; margin: 2px 8px 6px; font-size: 11.5px; color: var(--dim); }
+.future-note button { margin-left: auto; color: var(--accent); font-weight: 600; font-size: 11.5px; }
+
+.branch { margin: 4px 4px 4px 34px; border-radius: 9px; border: 1px dashed var(--line-2); }
+.branch > button { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 10px; font-size: 12px; color: var(--dim); text-align: left; }
+.branch > button b { color: var(--text); font-weight: 600; }
+.branch > button .chev { margin-left: auto; transition: transform .15s; }
+.branch.open > button .chev { transform: rotate(90deg); }
+.branch .b-list { display: none; padding: 0 6px 6px; }
+.branch.open .b-list { display: block; }
+.branch .b-row { display: flex; align-items: center; gap: 8px; padding: 5px 6px; font-size: 12px; color: var(--dim); }
+.branch .b-row i { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--faint); flex: none; }
+.branch .b-row s { text-decoration: none; font: 400 10.5px var(--mono); color: var(--faint); margin-left: auto; }
+.branch .switch { width: 100%; margin-top: 4px; height: 28px; border-radius: 7px; background: var(--raised); border: 1px solid var(--line-2); font-size: 12px; font-weight: 600; }
+.branch .switch:hover { border-color: var(--accent); color: #fff; }
+
+.h-foot { border-top: 1px solid var(--line); padding: 10px 14px; display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--dim); }
+.h-foot .sp { flex: 1; }
+
+/* Versions */
+.ver { display: flex; gap: 10px; padding: 9px 10px; border-radius: 9px; width: 100%; text-align: left; position: relative; }
+.ver:hover, .ver.previewing { background: var(--hover); }
+.ver.previewing { box-shadow: inset 0 0 0 1px var(--restore); }
+.ver .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex: none; border: 2px solid var(--faint); }
+.ver.named .dot { border-color: var(--accent); background: var(--accent); }
+.ver.published .dot { border-color: var(--structure); background: var(--structure); }
+.ver.restore .dot { border-color: var(--restore); }
+.ver.live .dot { border-color: var(--content); background: var(--content); box-shadow: 0 0 0 3px rgba(245, 180, 84, .2); }
+.ver .tx { flex: 1; min-width: 0; }
+.ver b { display: block; font-weight: 600; }
+.ver.auto b { font-weight: 500; color: var(--dim); }
+.ver small { display: block; font-size: 11.5px; color: var(--faint); }
+.ver .tag { font: 600 9.5px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 1px 5px; border-radius: 4px; background: rgba(60, 207, 180, .14); color: var(--structure); margin-left: 4px; }
+.ver .acts { display: none; gap: 4px; align-self: center; }
+.ver:hover .acts, .ver.previewing .acts { display: flex; }
+.mini { height: 24px; padding: 0 8px; border-radius: 6px; font-size: 11.5px; font-weight: 600; background: var(--raised); border: 1px solid var(--line-2); }
+.mini.blue { background: var(--restore); border-color: var(--restore); color: #06121f; }
+.save-row { display: flex; gap: 6px; margin: 8px 6px 4px; }
+.save-row input { flex: 1; min-width: 0; height: 32px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--bg); padding: 0 10px; outline: 0; }
+.save-row input:focus { border-color: var(--accent); }
+
+/* ---------- Canvas ---------- */
+.stage { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0; background: #0f1013; }
+.try { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.try > span { font-size: 11.5px; color: var(--faint); margin-right: 2px; }
+.try button { height: 26px; padding: 0 10px; border-radius: 13px; border: 1px solid var(--line-2); font-size: 11.5px; font-weight: 600; color: var(--dim); display: inline-flex; align-items: center; gap: 5px; }
+.try button:hover { color: var(--text); border-color: var(--faint); }
+.try button i { width: 6px; height: 6px; border-radius: 50%; }
+.canvas { flex: 1; overflow: auto; padding: 28px; background-image: radial-gradient(#22232a 1px, transparent 1px); background-size: 18px 18px; position: relative; }
+.banner { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); z-index: 5; display: none; align-items: center; gap: 10px; padding: 7px 8px 7px 14px; border-radius: 10px; background: #1f1c3a; border: 1px solid rgba(124, 108, 255, .5); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); font-size: 12px; white-space: nowrap; }
+.banner.show { display: flex; }
+.banner.blue { background: #13243a; border-color: rgba(90, 169, 255, .5); }
+.banner b { font-weight: 700; }
+.banner span { color: var(--dim); }
+.site { max-width: 640px; margin: 36px auto 0; border-radius: 10px; overflow: hidden; background: #fff; color: #111; box-shadow: 0 20px 50px rgba(0, 0, 0, .5); transition: opacity .2s; }
+.site.ghosted { outline: 2px dashed rgba(124, 108, 255, .6); outline-offset: 4px; }
+.site .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; font: 700 13px Inter; border-bottom: 1px solid rgba(0, 0, 0, .06); }
+.site .nav span { font-weight: 500; font-size: 12px; color: #666; display: flex; gap: 14px; }
+.hero { transition: background .25s, padding .25s; }
+.hero .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: #111; color: #fff; margin-bottom: 12px; }
+.hero h1 { margin: 0 0 8px; font-size: 34px; font-weight: 800; letter-spacing: -.035em; line-height: 1.1; outline: 0; transition: color .25s; }
+.hero h1:hover { box-shadow: 0 0 0 1px rgba(124, 108, 255, .7); border-radius: 3px; }
+.hero h1:focus { box-shadow: 0 0 0 2px #7c6cff; border-radius: 3px; }
+.hero p { margin: 0 0 18px; color: #555; font-size: 14px; }
+.hero .cta { display: inline-block; padding: 10px 18px; font-weight: 700; font-size: 13px; color: #fff; transition: border-radius .25s, background .25s; }
+.sel-tag { position: absolute; font: 600 10px var(--mono); color: #fff; background: var(--accent); padding: 1px 5px; border-radius: 3px; transform: translateY(-100%); }
+.code { height: 150px; border-top: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; }
+.code .ctabs { display: flex; gap: 2px; padding: 6px 10px 0; border-bottom: 1px solid var(--line); }
+.code .ctabs span { padding: 5px 10px; font: 500 11.5px var(--mono); color: var(--dim); border-bottom: 2px solid transparent; }
+.code .ctabs span.on { color: var(--text); border-color: var(--accent); }
+.code pre { margin: 0; flex: 1; overflow: auto; padding: 8px 14px; font: 400 12px/1.6 var(--mono); color: #c9c9d1; }
+.code .p { color: #8be9c9; } .code .v { color: #f5b454; } .code .s { color: #a78bfa; } .code .chg { background: rgba(124, 108, 255, .18); border-radius: 3px; }
+
+.toast { position: absolute; left: 50%; bottom: 170px; transform: translate(-50%, 10px); opacity: 0; padding: 8px 14px; border-radius: 9px; background: var(--raised); border: 1px solid var(--line-2); font-size: 12px; white-space: nowrap; transition: .2s; pointer-events: none; z-index: 10; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Rules section ---------- */
+.rules { margin-top: 64px; }
+.rules h2 { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+.rules > p { color: var(--dim); margin: 0 0 24px; max-width: 720px; font-size: 14px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.card .n { font: 600 11px var(--mono); color: var(--accent); }
+.card h3 { margin: 4px 0 12px; font-size: 15px; }
+.card p { margin: 12px 0 0; color: var(--dim); font-size: 12.5px; }
+.card p b { color: var(--text); font-weight: 600; }
+.tl { display: flex; align-items: center; gap: 0; height: 26px; }
+.tl i { width: 14px; height: 14px; border-radius: 50%; background: var(--dim); flex: none; }
+.tl i.cur { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.tl i.f { background: none; border: 2px solid var(--faint); }
+.tl i.new { background: var(--structure); }
+.tl i.v { border-radius: 4px; }
+.tl em { width: 18px; height: 2px; background: var(--line-2); flex: none; }
+.tl em.f { background: repeating-linear-gradient(90deg, var(--faint) 0 3px, transparent 3px 6px); }
+.tl label { font: 500 10.5px var(--mono); color: var(--faint); margin-left: 8px; }
+.tl.sub { margin-left: 64px; position: relative; }
+.tl.sub::before { content: ""; position: absolute; left: -11px; top: -8px; width: 11px; height: 21px; border-left: 2px dashed var(--faint); border-bottom: 2px dashed var(--faint); border-bottom-left-radius: 8px; }
+table { width: 100%; border-collapse: collapse; margin-top: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 12.5px; }
+th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); background: var(--raised); }
+td:first-child { font-weight: 600; white-space: nowrap; }
+td .yes { color: var(--structure); font-weight: 700; } td .no { color: var(--faint); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+.src { margin-top: 18px; font-size: 12px; color: var(--faint); }
+.src a { color: var(--dim); }
+
+@media (max-width: 980px) {
+  .editor { height: auto; }
+  .body { grid-template-columns: 1fr; }
+  .rail { display: none; }
+  .hist { height: 520px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .stage { height: 640px; }
+  .bar .crumb, .bar .hide-sm { display: none; }
+  .table-wrap { overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <div class="eyebrow">Builder · History panel</div>
+    <h1>History that never loses your work</h1>
+    <p>A working prototype. <b>Actions</b> is the undo history for this session, one row per edit. <b>Versions</b> holds saved snapshots that stay after a reload. Try it: click an older step, make an edit from there, type in the heading, and restore a version. The rules are written out below the editor.</p>
+  </div>
+
+  <div class="editor">
+    <div class="bar">
+      <div class="logo">B</div>
+      <div class="crumb">Acme site / <b>Home</b></div>
+      <div class="sp"></div>
+      <button class="tbtn" id="undoBtn" title="Undo (⌘Z)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+      <button class="tbtn" id="redoBtn" title="Redo (⇧⌘Z)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+      <div class="sep"></div>
+      <span class="status-dot" id="saveState"><i></i><span>Unsaved changes</span></span>
+      <div class="sep hide-sm"></div>
+      <button class="btn hide-sm" id="saveBtn">Save version</button>
+      <button class="btn primary">Publish</button>
+    </div>
+    <div class="body">
+      <div class="rail">
+        <button class="tbtn" title="Layers"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg></button>
+        <button class="tbtn" title="Add"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="tbtn" title="Code"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></button>
+        <button class="tbtn on" title="History"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></button>
+      </div>
+
+      <aside class="hist">
+        <div class="h-head">
+          <div class="h-title">
+            <h2>History</h2>
+            <button class="tbtn" title="History settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></button>
+          </div>
+          <div class="tabs" id="tabs">
+            <button class="on" data-tab="actions">Actions <span class="count" id="actCount"></span></button>
+            <button data-tab="versions">Versions <span class="count" id="verCount"></span></button>
+          </div>
+          <div class="filters" id="filters">
+            <button class="fchip on" data-f="all">All</button>
+            <button class="fchip" data-f="style"><i style="background:var(--style)"></i>Style</button>
+            <button class="fchip" data-f="content"><i style="background:var(--content)"></i>Content</button>
+            <button class="fchip" data-f="structure"><i style="background:var(--structure)"></i>Structure</button>
+          </div>
+        </div>
+        <div class="h-list" id="hList"></div>
+        <div class="h-foot" id="hFoot"></div>
+      </aside>
+
+      <section class="stage">
+        <div class="try" id="try">
+          <span>Try an edit:</span>
+          <button data-e="bg"><i style="background:var(--style)"></i>Background</button>
+          <button data-e="color"><i style="background:var(--style)"></i>Heading colour</button>
+          <button data-e="pad"><i style="background:var(--style)"></i>Padding</button>
+          <button data-e="btn"><i style="background:var(--content)"></i>Button text</button>
+          <button data-e="badge"><i style="background:var(--structure)"></i>Badge</button>
+        </div>
+        <div class="canvas">
+          <div class="banner" id="banner"></div>
+          <div class="site" id="site"></div>
+        </div>
+        <div class="code">
+          <div class="ctabs"><span>index.html</span><span class="on">style.css</span></div>
+          <pre id="css"></pre>
+        </div>
+        <div class="toast" id="toast"></div>
+      </section>
+    </div>
+  </div>
+
+  <section class="rules">
+    <h2>How history behaves</h2>
+    <p>One rule drives everything: <b>moving around history never changes it, and nothing is deleted without a way back.</b> Clicking a step only moves you to it. Only a real edit or a restore adds a new entry.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="n">01</div><h3>Clicking an older step</h3>
+        <div class="tl"><i></i><em></em><i></i><em></em><i class="cur"></i><em class="f"></em><i class="f"></i><em class="f"></em><i class="f"></i><label>4 · 5 greyed</label></div>
+        <p>The page returns to how it looked after that step. Later steps turn grey but <b>stay in the list</b>, so you can click them or press ⇧⌘Z to go forward again. <b>No new entry is added.</b> The canvas shows a "Viewing an earlier step" bar with a "Back to latest" button.</p>
+      </div>
+      <div class="card">
+        <div class="n">02</div><h3>Editing from an older step</h3>
+        <div class="tl"><i></i><em></em><i></i><em></em><i></i><em></em><i class="cur new"></i><label>new edit</label></div>
+        <div class="tl sub"><i class="f"></i><em class="f"></em><i class="f"></i><label>kept as a branch</label></div>
+        <p>The edit becomes a <b>new entry</b> right after the step you're on, and it is now the latest step. The greyed steps are <b>not deleted</b>, unlike Photoshop's default. They fold into a "Branch · 2 actions" row you can open and switch back to.</p>
+      </div>
+      <div class="card">
+        <div class="n">03</div><h3>Restoring a saved version</h3>
+        <div class="tl"><i class="v"></i><em></em><i class="v"></i><em></em><i class="v"></i><em></em><i class="v f"></i><em></em><i class="v cur"></i><label>auto · restored</label></div>
+        <p>First, your current page is auto-saved as <b>"Before restore"</b>. The restore then adds <b>one Actions entry</b>, which a single ⌘Z undoes. The page stays unsaved until you save, so newer versions are never overwritten. This follows Figma, which keeps a checkpoint before restoring.</p>
+      </div>
+      <div class="card">
+        <div class="n">04</div><h3>Typing, dragging and saving</h3>
+        <div class="tl"><i></i><em></em><i></i><em></em><i class="cur"></i><label>“Edited heading” ×14</label></div>
+        <p>Keystrokes in the same field less than 1.5 s apart become <b>one entry</b>, and so does one slider drag, showing before → after. Saving adds a <b>"Saved"</b> marker and does not clear Actions. Reloading clears Actions; Versions stay.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+    <table>
+      <tr><th>User does</th><th>New history entry?</th><th>Result</th></tr>
+      <tr><td>Edits anything</td><td><span class="yes">Yes</span> · 1 entry</td><td>Added at the current step and becomes the latest. Typing in one field, or one drag, is merged into a single entry.</td></tr>
+      <tr><td>Clicks an older step</td><td><span class="no">No</span></td><td>The page returns to that step. Later steps turn grey and can be redone.</td></tr>
+      <tr><td>Undo ⌘Z / Redo ⇧⌘Z</td><td><span class="no">No</span></td><td>Moves back or forward one step, the same as clicking the step next to the current one.</td></tr>
+      <tr><td>Edits while on an older step</td><td><span class="yes">Yes</span></td><td>A new entry after that step. The greyed steps are kept as a branch you can switch to.</td></tr>
+      <tr><td>Previews a version</td><td><span class="no">No</span></td><td>The canvas shows that version as read-only, with Restore and Exit buttons.</td></tr>
+      <tr><td>Restores a version</td><td><span class="yes">Yes</span> · 1 action + 1 auto-save</td><td>The current page is auto-saved as "Before restore", then the restore is added as one entry that ⌘Z undoes.</td></tr>
+      <tr><td>Saves a version</td><td>Version only</td><td>A "Saved" marker appears in Actions, and Actions is not cleared.</td></tr>
+      <tr><td>Reloads the editor</td><td>—</td><td>Actions are cleared and Versions stay. Above 200 actions, the oldest are dropped and the panel shows "Older steps are in Versions".</td></tr>
+    </table>
+    </div>
+
+    <div class="src">Research: <a href="https://helpx.adobe.com/nz/photoshop/desktop/get-started/set-up-toolbars-panels/history-panel-overview.html">Photoshop History panel (non-linear history)</a> · <a href="https://elementor.com/help/revision-history-undo-and-redo">Elementor Actions / Revisions</a> · <a href="https://developers.elementor.com/docs/editor/history-panel">Elementor History panel docs</a> · <a href="https://help.figma.com/hc/en-us/articles/360038006754">Figma version history</a></div>
+  </section>
+</div>
+
+<script>
+/* ---------- Model ---------- */
+// Page state. Each action changes one prop (or replaces all of them, for a restore).
+const BASE = { bg: "#ffffff", heading: "Build faster websites", color: "#111111", pad: 48, badge: false, radius: 6, btn: "Get started", align: "left" };
+const PROPS = {
+  bg:      { kind: "style",     sel: ".hero",       css: "background",    label: "Background" },
+  color:   { kind: "style",     sel: ".hero-title", css: "color",         label: "Text colour" },
+  pad:     { kind: "style",     sel: ".hero",       css: "padding",       label: "Padding" },
+  radius:  { kind: "style",     sel: ".cta",        css: "border-radius", label: "Corner radius" },
+  align:   { kind: "style",     sel: ".hero",       css: "text-align",    label: "Alignment" },
+  heading: { kind: "content",   sel: "h1.hero-title",                     label: "Heading text" },
+  btn:     { kind: "content",   sel: "a.cta",                             label: "Button text" },
+  badge:   { kind: "structure", sel: ".badge" },
+};
+const NOW = Date.now();
+const min = m => NOW - m * 60000;
+
+let seq = 0;
+const nodes = {};           // id -> node
+const activeChild = {};     // id -> id of the child on the active line
+function node(parent, prop, from, to, t, extra = {}) {
+  const id = ++seq;
+  nodes[id] = { id, parent, prop, from, to, t, merged: 1, ...extra };
+  if (parent != null) activeChild[parent] = id;
+  return id;
+}
+const ROOT = node(null, null, null, null, min(34), { start: true });
+let h = ROOT;
+h = node(h, "heading", "Build faster websites", "Design. Code. Ship.", min(31), { merged: 14 });
+h = node(h, "pad", 48, 72, min(29), { merged: 22 });
+h = node(h, "badge", false, true, min(26));
+h = node(h, "bg", "#ffffff", "#f4f1ea", min(22));
+const SAVED_AT = h;  // "Saved v4" marker sits after this step
+h = node(h, "radius", 6, 999, min(9));
+h = node(h, "btn", "Get started", "Start free trial", min(7), { merged: 16 });
+h = node(h, "align", "left", "center", min(3));
+h = node(h, "color", "#111111", "#4f46e5", min(1));
+let head = h;
+
+function stateAt(id) {
+  const path = pathTo(id);
+  let s = { ...BASE };
+  for (const n of path) if (!n.start) s = n.prop === "__all" ? { ...n.to } : { ...s, [n.prop]: n.to };
+  return s;
+}
+function pathTo(id) { const p = []; for (let n = nodes[id]; n; n = nodes[n.parent]) p.unshift(n); return p; }
+function tipFrom(id) { while (activeChild[id] != null) id = activeChild[id]; return id; }
+function lineIds() { return pathTo(tipFrom(ROOT)).map(n => n.id); }   // the active line, oldest first
+
+const versions = [
+  { name: "Published", kind: "published", t: min(60 * 26), snap: { ...BASE } },
+  { name: "Client review", kind: "named", t: min(60 * 3), snap: { ...BASE, heading: "Design. Code. Ship.", pad: 72 } },
+  { name: "Autosave", kind: "auto", t: min(40), snap: { ...BASE, heading: "Design. Code. Ship.", pad: 72, badge: true } },
+  { name: "v4 · Warm background", kind: "named", t: min(22), snap: stateAt(SAVED_AT) },
+];
+let savedSnap = JSON.stringify(stateAt(SAVED_AT));
+let savedMarks = { [SAVED_AT]: "v4 · Warm background" };
+
+let tab = "actions", filter = "all", preview = null, openBranches = new Set(), lastFlash = null;
+
+/* ---------- Helpers ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function ago(t) {
+  const m = Math.round((Date.now() - t) / 60000);
+  if (m < 1) return "now";
+  if (m < 60) return m + "m";
+  const hrs = Math.round(m / 60);
+  return hrs < 24 ? hrs + "h" : Math.round(hrs / 24) + "d";
+}
+const ICON = {
+  style: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3 9 12l3 3 9-9"/><path d="M9 12c-3 0-5 2-5 5 0 1.5-1 2.5-2 3 5 1 10-1 10-5"/></svg>',
+  content: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></svg>',
+  structure: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 9v6M9 12h6"/></svg>',
+  removed: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12h6"/></svg>',
+  restore: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+  start: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/></svg>',
+};
+function kindOf(n) { return n.start ? "start" : n.prop === "__all" ? "restore" : PROPS[n.prop].kind; }
+function describe(n) {
+  if (n.start) return { label: "Opened page", tgt: "", detail: "Session started" };
+  if (n.prop === "__all") return { label: n.label, tgt: "page", detail: "Whole page replaced" };
+  const p = PROPS[n.prop];
+  if (n.prop === "badge") return { label: n.to ? "Added Badge" : "Removed Badge", tgt: ".hero", detail: n.to ? '<span>+ span.badge “New”</span>' : '<span>− span.badge “New”</span>' };
+  const val = v => n.prop === "pad" ? v + "px" : n.prop === "radius" ? v + "px" : (n.prop === "bg" || n.prop === "color") ? `<span class="sw" style="background:${v}"></span>${v}` : `“${esc(v)}”`;
+  return { label: p.label, tgt: p.sel, detail: `<s>${val(n.from)}</s><span class="arrow">→</span><span>${val(n.to)}</span>` };
+}
+
+/* ---------- Render: Actions ---------- */
+function actRow(n, cls) {
+  const k = kindOf(n), d = describe(n);
+  const icon = k === "structure" && !n.to ? ICON.removed : ICON[k];
+  return `<button class="act k-${k} ${cls}${n.id === lastFlash ? " flash" : ""}" data-id="${n.id}">
+    <span class="ic">${icon}</span>
+    <span class="tx">
+      <span class="l1"><b>${esc(d.label)}</b>${d.tgt ? `<span class="tgt">${esc(d.tgt)}</span>` : ""}${cls === "current" ? '<span class="pill">Now</span>' : ""}</span>
+      <span class="l2">${d.detail}${n.merged > 1 ? `<span class="merged">· ${n.merged} edits merged</span>` : ""}</span>
+    </span>
+    <span><span class="time">${ago(n.t)}</span><span class="redo">Redo to here</span></span>
+  </button>`;
+}
+function branchesAt(id) {
+  // Other children of this node that aren't on the active line.
+  return Object.values(nodes).filter(n => n.parent === id && n.id !== activeChild[id]);
+}
+function branchBlock(b) {
+  const chain = pathTo(tipFrom(b.id)).filter(n => pathTo(n.id).some(p => p.id === b.id));
+  const open = openBranches.has(b.id);
+  return `<div class="branch${open ? " open" : ""}" data-branch="${b.id}">
+    <button data-toggle="${b.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>
+      <span><b>Branch</b> · ${chain.length} action${chain.length > 1 ? "s" : ""} kept</span>
+      <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+    <div class="b-list">
+      ${chain.slice().reverse().map(n => `<div class="b-row"><i></i>${esc(describe(n).label)}<s>${ago(n.t)}</s></div>`).join("")}
+      <button class="switch" data-switch="${b.id}">Switch to this branch</button>
+    </div></div>`;
+}
+function renderActions() {
+  const ids = lineIds();
+  const headIdx = ids.indexOf(head);
+  let html = "";
+  const futureCount = ids.length - 1 - headIdx;
+  if (futureCount > 0) html += `<div class="future-note"><span>${futureCount} undone step${futureCount > 1 ? "s" : ""}: edit now to start a new branch</span><button data-latest>Back to latest</button></div>`;
+  let group = "";
+  for (let i = ids.length - 1; i >= 0; i--) {
+    const n = nodes[ids[i]];
+    const g = Date.now() - n.t < 15 * 60000 ? "Last 15 minutes" : "Earlier this session";
+    if (g !== group) { html += `<div class="grp">${g}</div>`; group = g; }
+    if (savedMarks[n.id] && i < ids.length - 1) html += `<div class="saved-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Saved “${esc(savedMarks[n.id])}”</div>`;
+    for (const b of branchesAt(n.id)) html += branchBlock(b);
+    const k = kindOf(n);
+    if (filter !== "all" && k !== filter && !n.start && n.id !== head) continue;
+    html += actRow(n, i === headIdx ? "current" : i > headIdx ? "future" : "");
+  }
+  return html;
+}
+
+/* ---------- Render: Versions ---------- */
+function renderVersions() {
+  const dirty = JSON.stringify(stateAt(head)) !== savedSnap;
+  let html = `<div class="save-row"><input id="verName" placeholder="Name this version…"><button class="btn primary" id="verSave">Save</button></div><div class="grp">Saved versions</div>`;
+  html += `<div class="ver live"><span class="dot"></span><span class="tx"><b>Current page</b><small>${dirty ? "Unsaved changes" : "Matches the last saved version"}</small></span></div>`;
+  versions.slice().reverse().forEach((v, ri) => {
+    const i = versions.length - 1 - ri;
+    html += `<div class="ver ${v.kind}${preview === i ? " previewing" : ""}" data-v="${i}">
+      <span class="dot"></span>
+      <span class="tx"><b>${esc(v.name)}${v.kind === "published" ? '<span class="tag">Live</span>' : ""}</b><small>${ago(v.t) === "now" ? "Just now" : ago(v.t) + " ago"} · ${v.kind === "auto" ? "Auto-saved" : v.kind === "restore" ? "Auto-saved before restore" : "Omar F."}</small></span>
+      <span class="acts">${preview === i ? `<button class="mini blue" data-restore="${i}">Restore</button>` : `<button class="mini" data-preview="${i}">Preview</button>`}</span>
+    </div>`;
+  });
+  return html;
+}
+
+/* ---------- Render: everything ---------- */
+function render() {
+  const ids = lineIds();
+  const headIdx = ids.indexOf(head);
+  document.getElementById("hList").innerHTML = tab === "actions" ? renderActions() : renderVersions();
+  document.getElementById("filters").style.display = tab === "actions" ? "" : "none";
+  document.getElementById("actCount").textContent = ids.length - 1;
+  document.getElementById("verCount").textContent = versions.length;
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  document.getElementById("undoBtn").disabled = head === ROOT;
+  document.getElementById("redoBtn").disabled = activeChild[head] == null;
+  const branches = Object.values(nodes).filter(n => n.parent != null && activeChild[n.parent] !== n.id).length;
+  document.getElementById("hFoot").innerHTML = tab === "actions"
+    ? `<span>${ids.length - 1} actions${branches ? ` · ${branches} branch${branches > 1 ? "es" : ""}` : ""}</span><span class="sp"></span><kbd>⌘Z</kbd><kbd>⇧⌘Z</kbd>`
+    : `<span>Versions are kept after reload</span><span class="sp"></span>`;
+
+  const dirty = JSON.stringify(stateAt(head)) !== savedSnap;
+  const ss = document.getElementById("saveState");
+  ss.classList.toggle("saved", !dirty);
+  ss.lastElementChild.textContent = dirty ? "Unsaved changes" : "All changes saved";
+
+  const banner = document.getElementById("banner");
+  if (preview != null) {
+    const v = versions[preview];
+    banner.className = "banner blue show";
+    banner.innerHTML = `<b>Previewing “${esc(v.name)}”</b><span>Read-only</span><button class="mini blue" data-restore="${preview}">Restore</button><button class="mini" data-exit>Exit</button>`;
+  } else if (headIdx < ids.length - 1) {
+    const back = ids.length - 1 - headIdx;
+    banner.className = "banner show";
+    banner.innerHTML = `<b>Viewing ${back} step${back > 1 ? "s" : ""} back</b><span>Editing here starts a new branch</span><button class="mini" data-latest>Back to latest</button>`;
+  } else banner.className = "banner";
+
+  renderSite(preview != null ? versions[preview].snap : stateAt(head), preview != null);
+}
+
+let typing = false;
+function renderSite(s, ro) {
+  const site = document.getElementById("site");
+  site.classList.toggle("ghosted", ro);
+  if (typing) return;  // don't reset the caret while the user types in the heading
+  site.innerHTML = `<div class="nav">acme<span><span>Product</span><span>Pricing</span><span>Docs</span></span></div>
+    <div class="hero" style="background:${s.bg};padding:${s.pad}px 40px;text-align:${s.align}">
+      ${s.badge ? '<span class="badge">New</span><br>' : ""}
+      <h1 class="hero-title" style="color:${s.color}" ${ro ? "" : 'contenteditable="true" spellcheck="false"'} id="h1">${esc(s.heading)}</h1>
+      <p>A visual HTML &amp; CSS builder. Every change is recorded in History.</p>
+      <span class="cta" style="background:${s.color === "#111111" ? "#111" : s.color};border-radius:${s.radius}px">${esc(s.btn)}</span>
+    </div>`;
+  const h1 = document.getElementById("h1");
+  if (h1 && !ro) {
+    h1.addEventListener("focus", () => { typing = true; });
+    h1.addEventListener("blur", () => { typing = false; render(); });
+    h1.addEventListener("input", () => onType(h1.textContent));
+    h1.addEventListener("keydown", ev => { if (ev.key === "Enter") { ev.preventDefault(); h1.blur(); } });
+  }
+  const last = nodes[head];
+  const changed = last && !last.start && last.prop !== "__all" ? PROPS[last.prop]?.css : null;
+  const line = (sel, prop, val) => `<span class="s">${sel}</span> { <span class="${prop === changed && !ro ? "chg" : ""}"><span class="p">${prop}</span>: <span class="v">${val}</span>;</span> }`;
+  document.getElementById("css").innerHTML = [
+    line(".hero", "background", s.bg),
+    line(".hero", "padding", `${s.pad}px 40px`),
+    line(".hero", "text-align", s.align),
+    line(".hero-title", "color", s.color),
+    line(".cta", "border-radius", s.radius + "px"),
+  ].join("\n");
+}
+
+/* ---------- Actions ---------- */
+function edit(prop, to, { merge = false } = {}) {
+  if (preview != null) return toast("Exit the preview before editing");
+  const cur = stateAt(head);
+  const n = nodes[head];
+  // Coalesce: same field, within 1.5 s, and nothing redo-able hanging off it.
+  if (merge && n.prop === prop && Date.now() - n.t < 1500 && activeChild[head] == null) {
+    n.to = to; n.t = Date.now(); n.merged++;
+  } else {
+    const wasBack = activeChild[head] != null;
+    head = node(head, prop, cur[prop], to, Date.now());
+    if (wasBack) toast("New branch started: the undone steps are kept");
+  }
+  lastFlash = head;
+  render();
+  lastFlash = null;
+}
+function onType(text) { edit("heading", text, { merge: true }); }
+
+function jump(id) { head = id; preview = null; render(); }
+function undo() { if (head !== ROOT) jump(nodes[head].parent); }
+function redo() { if (activeChild[head] != null) jump(activeChild[head]); }
+function latest() { jump(tipFrom(ROOT)); }
+
+function restore(i) {
+  const v = versions[i], cur = stateAt(head);
+  versions.push({ name: "Before restore", kind: "restore", t: Date.now(), snap: cur });
+  const id = node(head, "__all", cur, { ...v.snap }, Date.now(), { label: `Restored “${v.name}”` });
+  head = id; preview = null; lastFlash = id; tab = "actions";
+  render(); lastFlash = null;
+  toast(`Restored “${v.name}”. Your previous page was auto-saved`);
+}
+function saveVersion(name) {
+  name = name.trim() || `v${versions.filter(v => v.kind === "named").length + 4}`;
+  const s = stateAt(head);
+  versions.push({ name, kind: "named", t: Date.now(), snap: s });
+  savedSnap = JSON.stringify(s);
+  savedMarks[head] = name;
+  render();
+  toast(`Saved “${name}”`);
+}
+
+let toastT;
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ---------- Wiring ---------- */
+document.getElementById("hList").addEventListener("click", ev => {
+  const t = ev.target;
+  if (t.closest("[data-toggle]")) { const id = +t.closest("[data-toggle]").dataset.toggle; openBranches.has(id) ? openBranches.delete(id) : openBranches.add(id); return render(); }
+  if (t.closest("[data-switch]")) { const b = nodes[+t.closest("[data-switch]").dataset.switch]; activeChild[b.parent] = b.id; openBranches.delete(b.id); jump(tipFrom(b.id)); return toast("Switched branch"); }
+  if (t.closest("[data-latest]")) return latest();
+  if (t.closest("[data-preview]")) { preview = +t.closest("[data-preview]").dataset.preview; return render(); }
+  if (t.closest("[data-restore]")) return restore(+t.closest("[data-restore]").dataset.restore);
+  if (t.closest("#verSave")) return saveVersion(document.getElementById("verName").value);
+  const a = t.closest(".act"); if (a) return jump(+a.dataset.id);
+  const v = t.closest(".ver[data-v]"); if (v) { preview = +v.dataset.v; render(); }
+});
+document.getElementById("hList").addEventListener("keydown", ev => { if (ev.key === "Enter" && ev.target.id === "verName") saveVersion(ev.target.value); });
+document.getElementById("banner").addEventListener("click", ev => {
+  if (ev.target.closest("[data-latest]")) latest();
+  if (ev.target.closest("[data-exit]")) { preview = null; render(); }
+  if (ev.target.closest("[data-restore]")) restore(+ev.target.closest("[data-restore]").dataset.restore);
+});
+document.getElementById("tabs").onclick = ev => { const b = ev.target.closest("button"); if (b) { tab = b.dataset.tab; render(); } };
+document.getElementById("filters").onclick = ev => {
+  const b = ev.target.closest(".fchip"); if (!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll("#filters .fchip").forEach(x => x.classList.toggle("on", x === b));
+  render();
+};
+document.getElementById("undoBtn").onclick = undo;
+document.getElementById("redoBtn").onclick = redo;
+document.getElementById("saveBtn").onclick = () => { tab = "versions"; render(); document.getElementById("verName").focus(); };
+
+const CYCLE = {
+  bg: ["#f4f1ea", "#eef4ff", "#fff1f2", "#ecfdf5", "#ffffff"],
+  color: ["#4f46e5", "#e11d48", "#0f766e", "#111111"],
+  pad: [48, 72, 96, 32],
+  btn: ["Start free trial", "Get started", "Try it free", "Book a demo"],
+};
+document.getElementById("try").onclick = ev => {
+  const b = ev.target.closest("button[data-e]"); if (!b) return;
+  const p = b.dataset.e, s = stateAt(head);
+  if (p === "badge") return edit("badge", !s.badge);
+  const list = CYCLE[p], i = list.indexOf(s[p]);
+  edit(p, list[(i + 1) % list.length]);
+};
+document.addEventListener("keydown", ev => {
+  if (typing || ev.target.tagName === "INPUT") return;
+  if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "z") { ev.preventDefault(); ev.shiftKey ? redo() : undo(); }
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Realme 8 Pro Covers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Barlow+Condensed:wght@500;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ecebe7; --surface:#f7f6f3; --ink:#18181a; --muted:#6c6b67; --line:#d9d7d1; --chip:#ffffff; --acc:#18181a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 16px 48px}
+  header{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between;margin-bottom:22px}
+  h1{font-size:28px;line-height:1.15;margin:0 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0}
+  .filters{display:flex;gap:6px;background:var(--chip);padding:4px;border-radius:999px;border:1px solid var(--line)}
+  .filters button{border:0;background:none;font:600 13px Inter;padding:7px 14px;border-radius:999px;color:var(--muted);cursor:pointer}
+  .filters button.on{background:var(--ink);color:#fff}
+
+  .main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px}
+  .stage{position:relative;border-radius:24px;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background .4s}
+  .stage.dark{background:radial-gradient(120% 90% at 50% 30%,#3a3936,#1b1b1a)}
+  .stage.light{background:radial-gradient(120% 90% at 50% 30%,#ffffff,#dedbd3)}
+  .case-holder{height:560px;aspect-ratio:779/1626;transition:transform .6s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 30px 40px rgba(0,0,0,.35)) drop-shadow(0 4px 8px rgba(0,0,0,.25))}
+  .case-holder svg{width:100%;height:100%;display:block}
+  .stage.tilt .case-holder{transform:perspective(1400px) rotateY(-24deg) rotateX(8deg) rotateZ(-3deg)}
+  .views{position:absolute;top:14px;left:14px;display:flex;gap:4px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);padding:4px;border-radius:999px}
+  .stage.light .views{background:rgba(0,0,0,.06)}
+  .views button{border:0;background:none;font:600 12px Inter;padding:6px 12px;border-radius:999px;cursor:pointer;color:inherit;opacity:.7}
+  .stage.dark .views{color:#fff}
+  .views button.on{background:#fff;color:#111;opacity:1}
+  .nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.85);cursor:pointer;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  .nav.prev{left:14px}.nav.next{right:14px}
+  .count{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font:600 12px JetBrains Mono,monospace;letter-spacing:.1em;opacity:.6}
+  .stage.dark .count{color:#fff}
+
+  .info{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:20px}
+  .tag{display:inline-flex;align-items:center;gap:6px;font:600 11px Inter;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;width:max-content}
+  .tag i{width:9px;height:9px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.2)}
+  .info h2{font-size:34px;margin:10px 0 6px;letter-spacing:-.025em;line-height:1.1}
+  .info p{margin:0;color:#3d3c39}
+  .label{font:600 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .swatches{display:flex;flex-wrap:wrap;gap:10px}
+  .sw{display:flex;align-items:center;gap:8px;font:12px JetBrains Mono,monospace;background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 10px 5px 5px}
+  .sw b{width:22px;height:22px;border-radius:6px;display:block;border:1px solid rgba(0,0,0,.12)}
+  .specs{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:14px}
+  .specs dt{color:var(--muted)}
+  .specs dd{margin:0;font-weight:500}
+  .fit{font:12px JetBrains Mono,monospace;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:auto}
+
+  .thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+  .thumb{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 10px 12px;cursor:pointer;text-align:center;transition:transform .2s,border-color .2s,box-shadow .2s;font:inherit;color:inherit}
+  .thumb:hover{transform:translateY(-2px)}
+  .thumb.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+  .thumb.hide{display:none}
+  .thumb .mini{height:170px;aspect-ratio:779/1626;margin:0 auto 10px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2))}
+  .thumb .mini svg{width:100%;height:100%;display:block}
+  .thumb strong{display:block;font-size:14px}
+  .thumb span{font-size:12px;color:var(--muted)}
+
+  @media (max-width:860px){
+    .main{grid-template-columns:1fr}
+    .stage{min-height:520px}
+    .case-holder{height:460px}
+    .thumbs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media (max-width:480px){
+    h1{font-size:23px}
+    .case-holder{height:400px}
+    .stage{min-height:460px}
+    .info{padding:20px}
+    .info h2{font-size:28px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Realme 8 Pro · back covers</h1>
+      <p class="sub">3 black terminal covers: life in Islam, a daily routine and the human life cycle. Use ← → to browse.</p>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="stage" id="stage">
+      <div class="views">
+        <button class="on" data-v="flat">Back</button>
+        <button data-v="tilt">Angle</button>
+      </div>
+      <button class="nav prev" id="prev" aria-label="Previous">‹</button>
+      <div class="case-holder" id="big"></div>
+      <button class="nav next" id="next" aria-label="Next">›</button>
+      <div class="count" id="count"></div>
+    </div>
+
+    <aside class="info">
+      <div>
+        <span class="tag" id="tag"></span>
+        <h2 id="name"></h2>
+        <p id="desc"></p>
+      </div>
+      <div>
+        <div class="label">Print colours</div>
+        <div class="swatches" id="swatches"></div>
+      </div>
+      <div>
+        <div class="label">Case</div>
+        <dl class="specs" id="specs"></dl>
+      </div>
+      <div class="fit">Fits Realme 8 Pro (RMX3081) · phone 160.6 × 73.9 × 8.1 mm · quad camera cutout with 0.8 mm raised lip</div>
+    </aside>
+  </div>
+
+  <div class="thumbs" id="thumbs"></div>
+</div>
+
+<script>
+const W = 739, H = 1606, R = 95;            // case outline, 0.1 mm units
+const HOLE = {x:52, y:52, w:256, h:282, r:52}; // camera cutout
+
+/* ---------- shared case renderer ---------- */
+// SVG collapses repeated spaces in text, which breaks aligned terminal columns
+const keepSpaces = svg => svg.replace(/>([^<]*)</g, (all, txt) => /\S/.test(txt) ? '>' + txt.replace(/ /g, '\u00a0') + '<' : all);
+function caseSVG(d, uid){
+  const id = d.key + uid;
+  const lens = (cx,cy,r) => `
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="#0c0c0e" stroke="#3b3b40" stroke-width="5"/>
+    <circle cx="${cx}" cy="${cy}" r="${r*.62}" fill="#05050a" stroke="#1d2233" stroke-width="3"/>
+    <circle cx="${cx}" cy="${cy}" r="${r*.32}" fill="#141a33"/>
+    <circle cx="${cx-r*.28}" cy="${cy-r*.3}" r="${r*.12}" fill="#fff" opacity=".35"/>`;
+  return `
+<svg viewBox="-20 -10 779 1626" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="white-space:pre">
+  <defs>
+    <mask id="m${id}">
+      <rect width="${W}" height="${H}" rx="${R}" fill="#fff"/>
+      <rect x="${HOLE.x}" y="${HOLE.y}" width="${HOLE.w}" height="${HOLE.h}" rx="${HOLE.r}" fill="#000"/>
+    </mask>
+    <linearGradient id="sh${id}" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset=".12" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".85" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="gl${id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".10"/>
+      <stop offset=".4" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    ${d.defs ? d.defs(id) : ''}
+  </defs>
+  <!-- side buttons -->
+  <rect x="-12" y="330" width="16" height="230" rx="6" fill="${d.edge}"/>
+  <rect x="735" y="430" width="16" height="130" rx="6" fill="${d.edge}"/>
+  <!-- phone glass + camera module seen through the cutout -->
+  <rect x="${HOLE.x}" y="${HOLE.y}" width="${HOLE.w}" height="${HOLE.h}" rx="${HOLE.r}" fill="#16161a"/>
+  <rect x="${HOLE.x+14}" y="${HOLE.y+14}" width="${HOLE.w-28}" height="${HOLE.h-28}" rx="${HOLE.r-12}" fill="#1f1f24" stroke="#2c2c33" stroke-width="3"/>
+  ${lens(128,128,50)}${lens(128,258,50)}${lens(238,118,28)}${lens(238,196,28)}
+  <circle cx="238" cy="268" r="17" fill="#e9dfc2" stroke="#8d8570" stroke-width="3"/>
+  <text x="228" y="314" font-family="Inter" font-size="13" fill="#77777f" letter-spacing="1">108MP</text>
+  <!-- case body -->
+  <g mask="url(#m${id})">
+    <rect width="${W}" height="${H}" fill="${d.base}"/>
+    ${keepSpaces(d.art(id))}
+    <rect width="${W}" height="${H}" fill="url(#sh${id})"/>
+    <rect width="${W}" height="${H}" fill="url(#gl${id})"/>
+  </g>
+  <!-- edges -->
+  <rect x="2" y="2" width="${W-4}" height="${H-4}" rx="${R-2}" fill="none" stroke="${d.edge}" stroke-width="5" opacity=".9"/>
+  <rect x="${HOLE.x-4}" y="${HOLE.y-4}" width="${HOLE.w+8}" height="${HOLE.h+8}" rx="${HOLE.r+4}" fill="none" stroke="${d.edge}" stroke-width="9"/>
+  <rect x="${HOLE.x-8}" y="${HOLE.y-8}" width="${HOLE.w+16}" height="${HOLE.h+16}" rx="${HOLE.r+8}" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+</svg>`;
+}
+
+/* ---------- the designs ---------- */
+const MONO = 'font-family="JetBrains Mono,monospace"';
+const blink = (x,y,w,h,c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"><animate attributeName="opacity" values="1;1;0;0" dur="1.1s" repeatCount="indefinite"/></rect>`;
+const BLACK_SPECS = [['Material','Soft-touch matte TPU, 1.2 mm'],['Print','UV direct print'],['Finish','Matte, coloured ink slightly raised'],['Feel','Grippy, fingerprint-resistant']];
+
+const DESIGNS = [
+  {
+    key:'deen', tone:'black', name:'deen', sub:'Life in Islam · terminal',
+    desc:'A shell session about the Muslim way of life. fetch shows the basics, /etc/pillars lists the five pillars, and salah --today ticks off the five daily prayers. No sacred names or verses are printed, so the case is fine to carry anywhere.',
+    base:'#060606', edge:'#1a1a1a',
+    swatches:[['#060606','base'],['#9be564','phosphor'],['#f2b56b','amber'],['#6b6f76','dim'],['#33363b','tilde']],
+    specs:BLACK_SPECS,
+    defs:id=>`<pattern id="scan${id}" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="2" fill="#9be564" opacity=".05"/></pattern>`,
+    art:id=>{
+      const m = MONO, g = '#9be564', t = '#d6d6d6', d = '#6b6f76', a = '#f2b56b';
+      const prompt = (y,cmd) => `<text x="56" y="${y}" ${m} font-size="28"><tspan fill="${g}">omar@realme</tspan><tspan fill="${t}">:~$ ${cmd}</tspan></text>`;
+      const dome = ['     .     ','    / \\    ','  _/   \\_  ',' |  ___  | ',' | |   | | ',' |_|___|_| '];
+      const info = [['deen','islam'],['pillars','5'],['salah','5 / day'],['qibla','277° W'],['sadaqah','daily']];
+      const pillars = [['shahada','faith'],['salah','prayer'],['zakat','charity'],['sawm','fasting'],['hajj','pilgrimage']];
+      const prayers = [['fajr',1],['dhuhr',1],['asr',1],['maghrib',0],['isha',0]];
+      let tildes = ''; for (let y = 1290; y <= 1420; y += 44) tildes += `<text x="56" y="${y}" ${m} font-size="28" fill="#3a4a7a">~</text>`;
+      return `
+      <rect width="${W}" height="${H}" fill="url(#scan${id})"/>
+      <text x="360" y="118" ${m} font-size="22" fill="${d}">[0] 0:deen* 1:salah</text>
+      <text x="352" y="238" ${m} font-size="112" font-weight="700" fill="${g}">deen</text>
+      ${blink(626,150,54,94,g)}
+      <text x="360" y="290" ${m} font-size="22" fill="${d}">v1.0 · a way of life</text>
+      ${prompt(430,'fetch')}
+      ${dome.map((l,i)=>`<text x="56" y="${490+i*38}" ${m} font-size="27" fill="${g}">${l}</text>`).join('')}
+      ${info.map(([k,v],i)=>`<text x="300" y="${490+i*38}" ${m} font-size="27"><tspan fill="${g}">${k.padEnd(8)}</tspan><tspan fill="${t}">${v}</tspan></text>`).join('')}
+      ${prompt(780,'cat /etc/pillars')}
+      ${pillars.map(([k,v],i)=>`<text x="56" y="${830+i*40}" ${m} font-size="27"><tspan fill="${a}">${i+1}</tspan><tspan fill="${t}">  ${k.padEnd(9)}</tspan><tspan fill="${d}">· ${v}</tspan></text>`).join('')}
+      ${prompt(1080,'salah --today')}
+      ${prayers.map(([p,done],i)=>`<text x="${56+(i%3)*210}" y="${1130+Math.floor(i/3)*42}" ${m} font-size="26" fill="${done?g:d}">[${done?'x':' '}] ${p}</text>`).join('')}
+      <text x="56" y="1240" ${m} font-size="24" fill="${d}">[ ok ] 3/5 prayed · next: maghrib</text>
+      ${tildes}
+      <rect x="0" y="1460" width="${W}" height="56" fill="${g}"/>
+      <text x="56" y="1498" ${m} font-size="24" font-weight="700" fill="#060606">NORMAL</text>
+      <text x="210" y="1498" ${m} font-size="24" fill="#060606">~/deen</text>
+      <text x="683" y="1498" ${m} font-size="24" fill="#060606" text-anchor="end">5/5 pillars</text>
+      <text x="56" y="1556" ${m} font-size="22" fill="${d}">:wq</text>`;
+    }
+  },
+  {
+    key:'htop', tone:'black', name:'htop', sub:'Daily routine · process monitor',
+    desc:'A day shown as a running system. Each meter is how many hours go to sleep, work, family, food and the rest. Energy and focus are the memory bars, and the process list is today\'s schedule with deep work running right now.',
+    base:'#060606', edge:'#1a1a1a',
+    swatches:[['#060606','base'],['#9be564','meter'],['#ff6b6b','screen time'],['#6ec1d6','running'],['#d6d6d6','text']],
+    specs:BLACK_SPECS,
+    art:()=>{
+      const m = MONO, X = 196, S = 13; let out = '';
+      const meter = (y,label,parts,txt) => {
+        let x = X, s = `<text x="56" y="${y}" ${m} font-size="23" fill="#6ec1d6">${label}</text><text x="${X-20}" y="${y}" ${m} font-size="23" fill="#d6d6d6">[</text><text x="664" y="${y}" ${m} font-size="23" fill="#d6d6d6">]</text>`;
+        parts.forEach(([n,c])=>{ for(let j=0;j<n;j++){ s += `<rect x="${x}" y="${y-19}" width="9" height="22" fill="${c}"/>`; x += S; } });
+        return s + `<text x="656" y="${y}" ${m} font-size="20" fill="#6b6f76" text-anchor="end">${txt}</text>`;
+      };
+      const hours = [['sleep',8],['work',8],['family',3],['food',1.5],['salah',1],['move',1],['learn',1],['screen',.5,'#ff6b6b']];
+      hours.forEach(([l,h,c],i)=> out += meter(430+i*46, l, [[Math.round(h*4.5), c||'#9be564']], h+'h'));
+      out += meter(830,'energy',[[16,'#9be564'],[6,'#f2b56b']],'72%') + meter(876,'focus',[[12,'#6ec1d6'],[4,'#c792ea']],'58%');
+      const rows = [['05:00','done','wake + fajr'],['06:00','done','walk 30 min'],['09:00','RUN','deep work'],['13:00','wait','lunch + rest'],['18:00','wait','family time'],['22:30','wait','sleep']];
+      out += `<rect x="0" y="930" width="${W}" height="44" fill="#9be564"/>
+        <text x="56" y="961" ${m} font-size="23" font-weight="700" fill="#060606">TIME  STATE TASK</text>`;
+      rows.forEach(([tm,st,task],i)=>{
+        const y = 1020 + i*48, sel = st==='RUN';
+        if (sel) out += `<rect x="0" y="${y-32}" width="${W}" height="44" fill="#6ec1d6"/>`;
+        const sc = sel ? '#060606' : st==='done' ? '#6b6f76' : '#d6d6d6';
+        out += `<text x="56" y="${y}" ${m} font-size="23" fill="${sc}">${tm} ${st.padEnd(5)} <tspan fill="${sel?'#060606':st==='done'?'#6b6f76':'#9be564'}">${task}</tspan></text>`;
+      });
+      const keys = [['1','Wake'],['3','Plan'],['6','Rest'],['9','Snooze'],['10','Sleep']];
+      let x = 30; keys.forEach(([k,l])=>{
+        out += `<text x="${x}" y="1520" ${m} font-size="22" fill="#d6d6d6">F${k}</text>`; x += (k.length+1)*13.2 + 4;
+        out += `<rect x="${x-4}" y="1500" width="${l.length*13.2+10}" height="28" fill="#6ec1d6"/><text x="${x}" y="1520" ${m} font-size="22" fill="#060606">${l}</text>`; x += l.length*13.2 + 20;
+      });
+      return `
+      <text x="352" y="120" ${m} font-size="22" fill="#6b6f76">omar@day:~$ htop</text>
+      <text x="352" y="232" ${m} font-size="104" font-weight="700" fill="#9be564">htop</text>
+      <text x="352" y="282" ${m} font-size="22" fill="#6b6f76">day <tspan fill="#d6d6d6">24h</tspan> · awake <tspan fill="#d6d6d6">16h</tspan></text>
+      <text x="352" y="318" ${m} font-size="22" fill="#6b6f76">tasks <tspan fill="#d6d6d6">6</tspan> · tea <tspan fill="#d6d6d6">2</tspan></text>
+      ${out}`;
+    }
+  },
+  {
+    key:'git', tone:'black', name:'git log', sub:'Life cycle · commit graph',
+    desc:'A human life as a git history, from init: born at the bottom. Marriage merges in a separate branch, kids branch off and come back with grandkids. HEAD marks "you are here", and the commits above it are dimmed because they are still to come.',
+    base:'#060606', edge:'#1a1a1a',
+    swatches:[['#060606','base'],['#9be564','life'],['#c792ea','kids'],['#f2b56b','spouse'],['#6ec1d6','HEAD']],
+    specs:BLACK_SPECS,
+    art:()=>{
+      const m = MONO, Y = r => 420 + r*70, L0 = 80, L1 = 130, NOW = 5;
+      const C = [
+        [0,'e0f1a7c','','legacy: pass it on'],[0,'a9d0b3e','','old age: slow + wise'],[0,'7be2d10','',"merge 'grandkids'"],
+        [1,'3c94e0a','k','grandkid: first smile'],[0,'51ac8d3','','retire: more time'],[0,'c0ffee1','','career: build + grow'],
+        [1,'9d01f77','k','kids: first steps'],[1,'2aa0c5e','k','kids: born'],[0,'b16b00b','',"marriage: merge 'spouse'"],
+        [1,'08bd44c','s','meet: the one'],[0,'4c1d2e0','','grad: first job'],[0,'d00dfee','','school: abc → xyz'],
+        [0,'1a2b3c4','','first steps + words'],[0,'0000001','','init: born']];
+      let out = `
+        <line x1="${L0}" y1="${Y(0)}" x2="${L0}" y2="${Y(NOW)}" stroke="#9be564" stroke-width="7" stroke-dasharray="4 14" stroke-linecap="round" opacity=".6"/>
+        <line x1="${L0}" y1="${Y(NOW)}" x2="${L0}" y2="${Y(13)}" stroke="#9be564" stroke-width="7"/>
+        <path d="M${L0} ${Y(8)} C${L0} ${Y(7.5)} ${L1} ${Y(7.5)} ${L1} ${Y(7)} V${Y(NOW)}" fill="none" stroke="#c792ea" stroke-width="7"/>
+        <path d="M${L1} ${Y(NOW)} V${Y(3)} C${L1} ${Y(2.5)} ${L0} ${Y(2.5)} ${L0} ${Y(2)}" fill="none" stroke="#c792ea" stroke-width="7" stroke-dasharray="4 14" stroke-linecap="round" opacity=".6"/>
+        <path d="M${L1} ${Y(9)} C${L1} ${Y(8.5)} ${L0} ${Y(8.5)} ${L0} ${Y(8)}" fill="none" stroke="#f2b56b" stroke-width="7"/>`;
+      C.forEach(([lane,h,br,msg],r)=>{
+        const x = lane ? L1 : L0, col = br==='k' ? '#c792ea' : br==='s' ? '#f2b56b' : '#9be564', y = Y(r), fut = r < NOW;
+        out += `<g opacity="${fut?.45:1}"><circle cx="${x}" cy="${y}" r="15" fill="#060606" stroke="${col}" stroke-width="7"/>`;
+        out += `<text x="180" y="${y+9}" ${MONO} font-size="23" fill="#d6d6d6"><tspan fill="#f2b56b">${h}</tspan> ${msg}</text></g>`;
+        if (r === NOW) out += `<circle cx="${x}" cy="${y}" r="7" fill="#6ec1d6"/><text x="180" y="${y-24}" ${MONO} font-size="20" font-weight="700" fill="#6ec1d6">(HEAD → life) you are here</text>`;
+      });
+      return `
+      <text x="352" y="120" ${m} font-size="22" fill="#6b6f76">--graph --oneline</text>
+      <text x="352" y="228" ${m} font-size="96" font-weight="700" fill="#9be564">git</text>
+      <text x="352" y="296" ${m} font-size="44" font-weight="700" fill="#c792ea">log<tspan fill="#6b6f76" font-weight="400" font-size="22">  · life.git</tspan></text>
+      ${out}
+      <text x="56" y="1420" ${m} font-size="22" fill="#6b6f76">(END)</text>
+      <text x="56" y="1476" ${m} font-size="24"><tspan fill="#9be564">omar@life</tspan><tspan fill="#d6d6d6">:~$ git commit -m "today"</tspan></text>
+      <text x="56" y="1518" ${m} font-size="22" fill="#6b6f76">1 day changed, 24 insertions(+)</text>`;
+    }
+  }
+];
+
+/* ---------- UI ---------- */
+let cur = 0, filter = 'all';
+const $ = s => document.querySelector(s);
+const match = () => true;
+const visible = () => DESIGNS.map((d,i)=>i).filter(i => match(DESIGNS[i]));
+
+function show(i){
+  cur = i; const d = DESIGNS[i];
+  $('#big').innerHTML = caseSVG(d,'big');
+  $('#stage').classList.toggle('dark', d.tone==='black');
+  $('#stage').classList.toggle('light', d.tone!=='black');
+  $('#tag').innerHTML = `<i style="background:${d.base}"></i>${d.tone==='black'?'Black':'Light'} · ${d.sub}`;
+  $('#name').textContent = d.name;
+  $('#desc').textContent = d.desc;
+  $('#swatches').innerHTML = d.swatches.map(([c,n]) => `<span class="sw"><b style="background:${c}"></b>${n} ${c}</span>`).join('');
+  $('#specs').innerHTML = d.specs.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('#count').textContent = String(i+1).padStart(2,'0') + ' / ' + String(DESIGNS.length).padStart(2,'0');
+  document.querySelectorAll('.thumb').forEach((t,j)=>t.classList.toggle('on', j===i));
+}
+
+$('#thumbs').innerHTML = DESIGNS.map((d,i)=>`
+  <button class="thumb" data-i="${i}">
+    <div class="mini">${caseSVG(d,'t'+i)}</div>
+    <strong>${d.name}</strong><span>${d.tone==='black'?'Black':'Light'} · ${d.sub.split(' · ')[0]}</span>
+  </button>`).join('');
+document.querySelectorAll('.thumb').forEach(t => t.onclick = () => show(+t.dataset.i));
+
+function step(dir){
+  const v = visible(); const p = v.indexOf(cur);
+  show(v[(p<0?0:p+dir+v.length) % v.length]);
+}
+$('#prev').onclick = () => step(-1);
+$('#next').onclick = () => step(1);
+document.addEventListener('keydown', e => { if (e.key==='ArrowLeft') step(-1); if (e.key==='ArrowRight') step(1); });
+
+document.querySelectorAll('.views button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.views button').forEach(x => x.classList.toggle('on', x===b));
+  $('#stage').classList.toggle('tilt', b.dataset.v==='tilt');
+});
+
+show(0);
+</script>
+</body>
+</html>

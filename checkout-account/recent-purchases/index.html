@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recent Purchases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as my-account.html (from wprio.com), light palette */
+:root{
+  --brand:#134feb; --brand-soft:#f3f6fe; --brand-soft-2:#e9effd; --brand-line:#dde6fd; --brand-text:#3f68e6;
+  --heading:#1f2937; --text:#4b5563; --muted:#6e7787; --faint:#9aa1ae;
+  --border:#e6e9ef; --border-soft:#eef0f4; --surface:#fff; --surface-2:#f8fafc; --page:#fafafa;
+  --ok-text:#2f8a62; --ok-soft:#f1faf6; --ok-dot:#5cc195;
+  --bad-text:#c94c43; --bad-soft:#fff5f4; --bad-dot:#ec8a82;
+  --warm:#fffbeb; --warm-line:#f5e8c4; --amber:#e3a008; --amber-text:#92600a;   /* #FFFBEB is wprio.com's "quaternary" color */
+  --r:8px; --r-lg:12px; --r-xl:16px; --pill:50px;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);font-family:var(--font);color:var(--text);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+svg{flex-shrink:0}
+.page{max-width:900px;margin:0 auto;padding:40px 24px 64px}
+.page > h1{font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--heading);margin:0 0 4px}
+.page > p{margin:0 0 28px;color:var(--muted)}
+.variant{margin-bottom:40px}
+.v-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.v-num{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-text);background:var(--brand-soft);padding:3px 8px;border-radius:var(--pill)}
+.v-head b{font-weight:600;color:var(--heading)}
+.v-head span{color:var(--muted);font-size:13.5px}
+.frame{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px 28px}
+.sec{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec h3{margin:0;font-size:16px;font-weight:600;color:var(--heading)}
+.sec a{font-size:13.5px;font-weight:500;color:var(--brand-text)}
+.sec a:hover{text-decoration:underline}
+
+/* flat product tile: light tint + colored mark */
+.pt{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-family:"Inter Tight",var(--font);font-weight:700;font-size:13px;flex-shrink:0;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff)}
+.pt .dots{display:flex;gap:2px}.pt .dots i{width:5px;height:5px;border-radius:1.5px;background:var(--c)}
+.pt .dots i:nth-child(2){opacity:.65}.pt .dots i:nth-child(3){opacity:.35}
+.pt.sm{width:30px;height:30px;border-radius:8px;font-size:12px}
+.name{color:var(--heading);font-weight:500}
+.sub{color:var(--muted);font-size:13px}
+.amt{font-variant-numeric:tabular-nums;color:var(--heading);font-weight:500;white-space:nowrap}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;white-space:nowrap}
+.status i{width:7px;height:7px;border-radius:50%}
+.st-ok{color:var(--ok-text)}.st-ok i{background:var(--ok-dot)}
+.st-bad{color:var(--bad-text)}.st-bad i{background:var(--bad-dot)}
+.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:var(--pill);font-size:12.5px;font-weight:500;white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok-text)}
+.chip.bad{background:var(--bad-soft);color:var(--bad-text)}
+.chev{color:#c7ccd5;transition:transform .15s,color .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:36px;padding:0 14px;border-radius:var(--r);border:1px solid #d6dbe3;background:var(--surface);color:var(--heading);font-weight:500;font-size:13.5px;white-space:nowrap}
+.btn:hover{border-color:var(--heading)}
+.x{width:30px;height:30px;border-radius:var(--r);border:0;background:none;display:grid;place-items:center;color:var(--faint)}
+.x:hover{background:var(--surface-2);color:var(--heading)}
+.notice{margin-top:18px}
+
+/* ===== 1. Minimal list, no header ===== */
+.l1 a{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--border-soft);transition:background .12s}
+.l1 a:first-child{border-top:1px solid var(--border-soft)}
+.l1 a:hover{background:var(--surface-2)}
+.l1 a:hover .chev{color:var(--brand-text);transform:translateX(2px)}
+.l1 .mid{flex:1;min-width:0}
+.l1 .mid .sub{display:block}
+.l1 .end{display:flex;align-items:center;gap:22px}
+.l1 .amt{min-width:64px;text-align:right}
+.n1{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--r-lg)}
+.n1 .ic{width:34px;height:34px;border-radius:50%;background:var(--warm);color:var(--amber);display:grid;place-items:center}
+.n1 .t{flex:1;min-width:0}
+.n1 b{display:block;color:var(--heading);font-weight:600;font-size:14px}
+.n1 .t span{color:var(--muted);font-size:13px}
+
+/* ===== 2. Light table ===== */
+.t2{width:100%;border-collapse:collapse}
+.t2 th{text-align:left;font-size:12px;font-weight:500;color:var(--faint);padding:0 12px 10px;border-bottom:1px solid var(--border)}
+.t2 td{padding:14px 12px;border-bottom:1px solid var(--border-soft);vertical-align:middle}
+.t2 tr:last-child td{border-bottom:0}
+.t2 tbody tr{cursor:pointer;transition:background .12s}
+.t2 tbody tr:hover{background:var(--surface-2)}
+.t2 .r{text-align:right}
+.t2 .id{font-weight:500;color:var(--heading)}
+.t2 .item{display:flex;align-items:center;gap:10px}
+.t2 .chev{opacity:0}
+.t2 .id-sm{display:none}
+.t2 tr:hover .chev{opacity:1;color:var(--brand-text)}
+.n2{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:var(--r-lg);background:var(--warm);border:1px solid var(--warm-line)}
+.n2 .t{flex:1;min-width:0}
+.n2 b{display:block;color:var(--heading);font-weight:600;font-size:14px}
+.n2 .t span{color:var(--amber-text);font-size:13px;opacity:.85}
+.stars{display:flex;gap:2px}
+.stars button{border:0;background:none;padding:2px;color:#e8dcb5;transition:color .1s,transform .1s}
+.stars button.on{color:var(--amber)}
+.stars button:hover{transform:scale(1.12)}
+
+/* ===== 3. Grouped by month ===== */
+.g3 .month{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);margin:16px 0 6px}
+.g3 .month:first-child{margin-top:0}
+.g3 .box{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.g3 a{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto auto;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border-soft);transition:background .12s}
+.g3 a:last-child{border-bottom:0}
+.g3 a:hover{background:var(--surface-2)}
+.g3 a:hover .chev{color:var(--brand-text)}
+.g3 .day{width:38px;text-align:center;line-height:1.1}
+.g3 .day b{display:block;font-size:17px;font-weight:600;color:var(--heading)}
+.g3 .day span{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.g3 .mid .sub{display:block}
+.n3{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r-lg);background:var(--surface-2);border:1px solid var(--border)}
+.n3 .t{flex:1;min-width:0;font-size:13.5px;color:var(--text)}
+.n3 .t b{color:var(--heading);font-weight:600}
+.n3 .link{color:var(--brand-text);font-weight:500;font-size:13.5px;white-space:nowrap}
+.n3 .link:hover{text-decoration:underline}
+
+/* ===== 4. Soft cards ===== */
+.c4{display:grid;gap:8px}
+.c4 a{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r-lg);background:var(--surface-2);border:1px solid transparent;transition:border-color .15s,background .15s}
+.c4 a:hover{background:var(--surface);border-color:var(--brand-line)}
+.c4 a:hover .chev{color:var(--brand-text)}
+.c4 .mid{flex:1;min-width:0}
+.c4 .mid .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+.c4 .dotsep{width:3px;height:3px;border-radius:50%;background:#c7ccd5}
+.c4 .pt{background:#fff;box-shadow:0 0 0 1px var(--border)}
+.n4{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;padding:18px 18px 18px 20px;border-radius:var(--r-lg);border:1px solid var(--border);background:linear-gradient(100deg,#fff 55%,var(--warm))}
+.n4 .big{font-family:"Inter Tight",var(--font);font-size:30px;font-weight:700;color:var(--amber);line-height:1}
+.n4 .t{flex:1;min-width:0}
+.n4 b{display:block;color:var(--heading);font-weight:600;font-size:14px}
+.n4 .t span{color:var(--muted);font-size:13px}
+
+@media (max-width:640px){
+  .page{padding:24px 12px 48px}
+  .frame{padding:18px 14px}
+  .l1 .end{gap:12px}
+  .l1 .status span,.g3 .status span{display:none}
+  .t2 .hide-sm,.t2 .plan,.t2 .pt{display:none}
+  .t2 .id-sm{display:block}
+  .t2 .name{white-space:nowrap}
+  .notice{position:relative}
+  .notice .x{position:absolute;top:8px;right:8px}
+  .n1,.n2,.n3,.n4{padding-right:40px}
+  .t2 td,.t2 th{padding-left:6px;padding-right:6px}
+  .g3 a{grid-template-columns:auto minmax(0,1fr) auto;row-gap:4px}
+  .g3 .stc{grid-column:2;grid-row:2}
+  .g3 .chev{display:none}
+  .n1,.n2,.n3,.n4{flex-wrap:wrap}
+  .n2 .stars{width:100%}
+  .n4 .big{display:none}
+  .c4 .chev{display:none}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>Recent purchases + review prompt</h1>
+  <p>Four lighter takes on the dashboard's purchase table and the blue review notice. Same orders, softer colors, flat product tiles.</p>
+  <div id="variants"></div>
+</main>
+
+<script>
+const ORDERS = [
+  { id: "WPR-265", date: "2026-09-29", name: "Divi Onesuite", plan: "Onesuite Lifetime", status: "Completed", total: 0, c: "#3f68e6", mark: "dots" },
+  { id: "WPR-264", date: "2026-09-29", name: "Divi Onesuite", plan: "Onesuite Lifetime", status: "Canceled", total: 0, c: "#3f68e6", mark: "dots" },
+  { id: "WPR-231", date: "2026-07-14", name: "DiviMerc", plan: "Single Site Lifetime License", status: "Completed", total: 79, c: "#2f8a62", mark: "D" },
+];
+const fmt = (d, o = { month: "short", day: "numeric", year: "numeric" }) => new Date(d + "T00:00:00").toLocaleDateString("en-US", o);
+const money = n => "$" + n.toFixed(2);
+const tile = (o, sm) => `<span class="pt ${sm ? "sm" : ""}" style="--c:${o.c}">${o.mark === "dots" ? '<span class="dots"><i></i><i></i><i></i></span>' : o.mark}</span>`;
+const status = o => `<span class="status ${o.status === "Completed" ? "st-ok" : "st-bad"}"><i></i><span>${o.status}</span></span>`;
+const chip = o => `<span class="chip ${o.status === "Completed" ? "ok" : "bad"}">${o.status}</span>`;
+const CHEV = '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg>';
+const STAR = (s = 18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>`;
+const STAR_O = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>';
+const X = '<button class="x" data-dismiss aria-label="Dismiss"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+const head = `<div class="sec"><h3>Recent purchases</h3><a href="#">View all</a></div>`;
+
+const V = [
+  {
+    name: "Minimal list", note: "No header row and no box: just quiet rows with dividers. Status is a colored dot with text, not a pill.",
+    table: () => `<div class="l1">${ORDERS.map(o => `<a href="#">${tile(o)}
+      <div class="mid"><span class="name">${o.name}</span><span class="sub">#${o.id} · ${fmt(o.date)}</span></div>
+      <div class="end">${status(o)}<span class="amt">${money(o.total)}</span>${CHEV}</div></a>`).join("")}</div>`,
+    notice: () => `<div class="notice n1"><span class="ic">${STAR_O}</span><div class="t"><b>How is Divi Onesuite working for you?</b><span>A short review helps other customers and our team.</span></div><a class="btn" href="#">Write a review</a>${X}</div>`,
+  },
+  {
+    name: "Light table + quick rating", note: "Keeps the table, but the header is plain gray text with no fill, and the arrow only shows on hover. The notice lets you rate in one click.",
+    table: () => `<table class="t2"><thead><tr><th class="hide-sm">Order</th><th>Product</th><th class="hide-sm">Date</th><th>Status</th><th class="r">Total</th><th></th></tr></thead><tbody>
+      ${ORDERS.map(o => `<tr><td class="id hide-sm">#${o.id}</td><td><div class="item">${tile(o, true)}<div><div class="name">${o.name}</div><div class="sub plan">${o.plan}</div><div class="sub id-sm">#${o.id} · ${fmt(o.date, { month: "short", day: "numeric" })}</div></div></div></td>
+      <td class="sub hide-sm">${fmt(o.date)}</td><td>${chip(o)}</td><td class="r amt">${money(o.total)}</td><td class="r" style="width:20px">${CHEV}</td></tr>`).join("")}</tbody></table>`,
+    notice: () => `<div class="notice n2"><div class="t"><b>Rate Divi Onesuite</b><span>Tap a star. You can add a few words after.</span></div><div class="stars" data-stars>${[1, 2, 3, 4, 5].map(i => `<button data-star="${i}" aria-label="${i} star${i > 1 ? "s" : ""}">${STAR(22)}</button>`).join("")}</div>${X}</div>`,
+  },
+  {
+    name: "Grouped by month", note: "Orders sit under their month with a calendar-style day. Easy to scan once the list grows. The notice is a single neutral line.",
+    table: () => {
+      const groups = {};
+      ORDERS.forEach(o => (groups[fmt(o.date, { month: "long", year: "numeric" })] ||= []).push(o));
+      return `<div class="g3">${Object.entries(groups).map(([m, list]) => `<div class="month">${m}</div><div class="box">${list.map(o => `<a href="#">
+        <div class="day"><b>${fmt(o.date, { day: "numeric" })}</b><span>${fmt(o.date, { month: "short" })}</span></div>
+        <div class="mid"><span class="name">${o.name}</span><span class="sub">${o.plan} · #${o.id}</span></div>
+        <div class="stc">${status(o)}</div><span class="amt">${money(o.total)}</span>${CHEV}</a>`).join("")}</div>`).join("")}</div>`;
+    },
+    notice: () => `<div class="notice n3"><span style="color:var(--amber)">${STAR(18)}</span><div class="t"><b>Enjoying Divi Onesuite?</b> A short review helps other customers.</div><a class="link" href="#">Write a review →</a>${X}</div>`,
+  },
+  {
+    name: "Soft cards", note: "Each order is a light gray card that turns white with a blue edge on hover. No table lines at all. The notice uses a large star and a warm fade on the right.",
+    table: () => `<div class="c4">${ORDERS.map(o => `<a href="#">${tile(o)}
+      <div class="mid"><span class="name">${o.name}</span><div class="meta"><span class="sub">#${o.id}</span><span class="dotsep"></span><span class="sub">${fmt(o.date)}</span><span class="dotsep"></span>${status(o)}</div></div>
+      <span class="amt">${money(o.total)}</span>${CHEV}</a>`).join("")}</div>`,
+    notice: () => `<div class="notice n4"><span class="big">★</span><div class="t"><b>Share your experience with Divi Onesuite</b><span>Takes about a minute. Your review helps others choose.</span></div><a class="btn" href="#">Write a review</a>${X}</div>`,
+  },
+];
+
+document.getElementById("variants").innerHTML = V.map((v, i) => `<section class="variant">
+  <div class="v-head"><span class="v-num">Design ${i + 1}</span><b>${v.name}</b><span>${v.note}</span></div>
+  <div class="frame">${head}${v.table()}${v.notice()}</div></section>`).join("");
+
+document.addEventListener("click", e => {
+  if (e.target.closest('a[href="#"]')) e.preventDefault();
+  const d = e.target.closest("[data-dismiss]");
+  if (d) { const n = d.closest(".notice"); n.style.opacity = ".4"; setTimeout(() => n.style.opacity = "", 600); return; }   // demo: real page would hide it
+  const s = e.target.closest("[data-star]");
+  if (s) { const v = +s.dataset.star; s.parentElement.querySelectorAll("button").forEach((b, i) => b.classList.toggle("on", i < v)); }
+});
+document.addEventListener("mouseover", e => {
+  const s = e.target.closest("[data-star]"); if (!s) return;
+  const v = +s.dataset.star; s.parentElement.querySelectorAll("button").forEach((b, i) => b.style.color = i < v ? "var(--amber)" : "");
+});
+document.addEventListener("mouseout", e => { const s = e.target.closest("[data-stars]"); if (s && !s.contains(e.relatedTarget)) s.querySelectorAll("button").forEach(b => b.style.color = ""); });
+</script>
+</body>
+</html>

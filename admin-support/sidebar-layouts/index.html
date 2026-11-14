@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as my-account.html (from wprio.com), light palette */
+:root{
+  --brand:#134feb; --brand-soft:#f3f6fe; --brand-soft-2:#e9effd; --brand-line:#dde6fd; --brand-text:#3f68e6;
+  --heading:#1f2937; --text:#4b5563; --muted:#6e7787;
+  --border:#e6e9ef; --border-strong:#d6dbe3; --surface:#fff; --surface-2:#f8fafc; --page:#fafafa;
+  --bad-text:#c94c43; --bad-soft:#fff5f4; --bad-line:#fbe1de;
+  --r:8px; --r-lg:12px; --r-xl:16px; --pill:50px;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);font-family:var(--font);color:var(--text);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+svg{flex-shrink:0}
+.page{max-width:1500px;margin:0 auto;padding:40px 24px 64px}
+.page > h1{font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--heading);margin:0 0 4px}
+.page > p{margin:0 0 28px;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px 20px;align-items:start}
+.demo-label{display:flex;align-items:baseline;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.v-num{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-text);background:var(--brand-soft);padding:3px 8px;border-radius:var(--pill)}
+.demo-label b{font-weight:600;color:var(--heading)}
+.demo-label > span:not(.v-num){display:block;width:100%;color:var(--muted);font-size:13px}
+
+/* sidebar shell shared by all designs */
+.sb{position:relative;width:100%;max-width:280px;height:720px;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:18px 14px;transition:max-width .25s ease}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--brand-soft-2);color:var(--brand-text);font-weight:600;flex-shrink:0}
+.who{min-width:0}
+.who b{display:block;color:var(--heading);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who span{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{display:flex;flex-direction:column;gap:2px}
+.item{position:relative;display:flex;align-items:center;gap:11px;height:40px;padding:0 10px;border:0;background:none;border-radius:var(--r);color:var(--text);font-weight:500;text-align:left;width:100%;white-space:nowrap}
+.item svg{color:#8b93a3}
+.item:hover{color:var(--heading);background:var(--surface-2)}
+.item .lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.cnt{min-width:20px;height:20px;padding:0 6px;border-radius:var(--pill);font-size:11.5px;font-weight:600;display:grid;place-items:center;background:var(--surface-2);color:var(--muted)}
+.cnt.bad{background:var(--bad-soft);color:var(--bad-text)}
+.cnt.info{background:var(--brand-soft-2);color:var(--brand-text)}
+.foot{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.logout{display:flex;align-items:center;gap:11px;height:40px;padding:0 10px;border:0;background:none;border-radius:var(--r);color:var(--text);font-weight:500;width:100%}
+.logout svg{color:#8b93a3}
+.logout:hover{background:var(--bad-soft);color:var(--bad-text)}
+.logout:hover svg{color:var(--bad-text)}
+.icon-btn{width:32px;height:32px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;color:var(--muted)}
+.icon-btn:hover{color:var(--heading);border-color:var(--border-strong)}
+
+/* ===== A. Refined ===== */
+.A .me{display:flex;align-items:center;gap:12px;padding:2px 4px 16px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.A .item.on{background:var(--brand-soft);color:var(--brand-text)}
+.A .item.on svg{color:var(--brand-text)}
+.A .help{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:var(--r-lg);background:var(--surface-2)}
+.A .help .ic{width:28px;height:28px;border-radius:8px;background:var(--brand-soft-2);color:var(--brand-text);display:grid;place-items:center}
+.A .help b{display:block;color:var(--heading);font-weight:600;font-size:13.5px}
+.A .help p{margin:1px 0 4px;color:var(--muted);font-size:12.5px;line-height:1.4}
+.A .help a{color:var(--brand-text);font-weight:500;font-size:13px}
+.A .help a:hover{text-decoration:underline}
+.A .foot hr{border:0;border-top:1px solid var(--border);margin:6px 0 2px;width:100%}
+
+/* ===== B. Grouped ===== */
+.B{background:var(--surface-2)}
+.B .group{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9aa1ae;padding:14px 10px 6px}
+.B .group:first-of-type{padding-top:4px}
+.B .brand{display:flex;align-items:center;gap:8px;padding:0 6px 10px;font-weight:600;color:var(--heading)}
+.B .brand i{width:24px;height:24px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+.B .item{height:36px}
+.B .item:hover{background:#eef1f5}
+.B .item.on{background:var(--surface);color:var(--heading);box-shadow:0 1px 2px rgba(16,24,40,.06),0 0 0 1px var(--border)}
+.B .item.on svg{color:var(--brand-text)}
+.B .usercard{display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--border)}
+.B .usercard .who{flex:1}
+.B .usercard .av{width:34px;height:34px;font-size:13px}
+.B .linkrow{display:flex;align-items:center;gap:10px;height:36px;padding:0 10px;border-radius:var(--r);color:var(--text);font-weight:500}
+.B .linkrow:hover{background:#eef1f5;color:var(--heading)}
+.B .linkrow svg{color:#8b93a3}
+
+/* ===== C. Minimal line ===== */
+.C{padding:22px 0}
+.C .me{display:flex;align-items:center;gap:10px;padding:0 22px 20px}
+.C .me .av{width:34px;height:34px;font-size:13px}
+.C .nav{gap:0}
+.C .item{border-radius:0;height:42px;padding:0 22px;gap:12px}
+.C .item:hover{background:none;color:var(--heading)}
+.C .item.on{color:var(--heading);font-weight:600}
+.C .item.on::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:2px;border-radius:0 2px 2px 0;background:var(--brand)}
+.C .item.on svg{color:var(--brand-text)}
+.C .cnt{display:inline-flex;align-items:center;white-space:nowrap;background:none;min-width:0;padding:0;font-weight:500;font-size:12.5px}
+.C .cnt::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;background:currentColor;vertical-align:1px}
+.C .foot{padding:0 12px;gap:0}
+.C .plain{display:flex;align-items:center;gap:12px;height:40px;padding:0 10px;color:var(--muted);font-weight:500;border:0;background:none;width:100%}
+.C .plain:hover{color:var(--heading)}
+.C .plain.out:hover{color:var(--bad-text)}
+.C .divider{border-top:1px solid var(--border);margin:10px 10px}
+
+/* ===== D. Profile card header + icon tiles ===== */
+.D .profile{position:relative;overflow:hidden;padding:16px;border-radius:var(--r-lg);background:linear-gradient(135deg,var(--brand-soft),#fff);border:1px solid var(--brand-line);margin-bottom:14px}
+.D .profile::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(19,79,235,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(19,79,235,.06) 1px,transparent 1px);background-size:20px 20px;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000);mask-image:linear-gradient(120deg,transparent 30%,#000)}
+.D .profile > *{position:relative}
+.D .profile .row{display:flex;align-items:center;gap:10px}
+.D .profile .av{background:#fff;box-shadow:0 0 0 1px var(--brand-line)}
+.D .meter{margin-top:14px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.D .meter b{color:var(--heading);font-weight:600}
+.D .bar{height:5px;border-radius:var(--pill);background:#fff;margin-top:5px;overflow:hidden;border:1px solid var(--brand-line)}
+.D .bar i{display:block;height:100%;width:75%;background:#8aa6f6;border-radius:var(--pill)}
+.D .item{height:42px;padding:0 6px}
+.D .tile{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--surface-2);transition:.15s}
+.D .item:hover{background:none}
+.D .item:hover .tile{background:var(--brand-soft)}
+.D .item.on{color:var(--heading);font-weight:600}
+.D .item.on .tile{background:var(--brand-soft-2)}
+.D .item.on svg{color:var(--brand-text)}
+.D .help{padding:14px;border-radius:var(--r-lg);border:1px dashed var(--border-strong);text-align:center}
+.D .help b{display:block;color:var(--heading);font-weight:600;font-size:13.5px}
+.D .help p{margin:2px 0 10px;color:var(--muted);font-size:12.5px}
+.D .help .btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:var(--r);background:var(--surface);border:1px solid var(--border-strong);font-weight:500;font-size:13px;color:var(--heading)}
+
+/* ===== E. Collapsible rail ===== */
+.E .top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 14px;margin-bottom:10px;border-bottom:1px solid var(--border)}
+.E .me{display:flex;align-items:center;gap:10px;min-width:0}
+.E .item.on{background:var(--brand-soft);color:var(--brand-text)}
+.E .item.on svg{color:var(--brand-text)}
+.E .dot{display:none;position:absolute;top:8px;right:10px;width:8px;height:8px;border-radius:50%;border:2px solid var(--surface)}
+.E .dot.bad{background:#e9867e}.E .dot.info{background:#8aa6f6}
+.E .tip{display:none}
+.E.collapsed{max-width:76px;padding:18px 12px}
+.E.collapsed .top{flex-direction:column;gap:12px;padding:0 0 14px}
+.E.collapsed .who,.E.collapsed .lbl,.E.collapsed .cnt,.E.collapsed .logout span,.E.collapsed .help-text{display:none}
+.E.collapsed .item,.E.collapsed .logout{justify-content:center;padding:0}
+.E.collapsed .dot{display:block}
+.E.collapsed .item:hover .tip,.E.collapsed .logout:hover .tip{display:block;position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);background:var(--heading);color:#fff;font-size:12.5px;font-weight:500;padding:5px 9px;border-radius:6px;white-space:nowrap;z-index:5}
+.E .toggle svg{transition:transform .25s}
+.E.collapsed .toggle svg{transform:rotate(180deg)}
+.E .helpbtn{display:flex;align-items:center;gap:11px;height:40px;padding:0 10px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);font-weight:500;color:var(--heading);width:100%}
+.E .helpbtn svg{color:var(--brand-text)}
+.E.collapsed .helpbtn{justify-content:center;padding:0}
+.pair{display:flex;gap:14px;align-items:flex-start}
+.pair .sb:not(.collapsed){flex:1;min-width:0}
+
+@media (max-width:640px){
+  .page{padding:24px 16px 48px}
+  .sb{max-width:none;height:auto;min-height:620px}
+  .pair .E.collapsed{min-height:620px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>Account sidebar layouts</h1>
+  <p>Five takes on the My Account sidebar: same menu, badges, support and log out. Click any menu item to try the active state.</p>
+  <div class="gallery" id="gallery"></div>
+</main>
+
+<script>
+const IC = {
+  dash: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>',
+  orders: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>',
+  subs: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg>',
+  lic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3M17 6l3 3M14 9l2 2"/></svg>',
+  dl: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>',
+  star: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>',
+  user: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  out: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>',
+  chat: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  help: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>',
+  dots: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>',
+  chev: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>',
+};
+const MENU = [
+  { k: "dash", label: "Dashboard", group: "Overview" },
+  { k: "orders", label: "Purchase History", group: "Billing" },
+  { k: "subs", label: "Subscription Plans", group: "Billing", n: 1, tone: "bad" },
+  { k: "lic", label: "Licenses", group: "Products", n: 1, tone: "bad" },
+  { k: "dl", label: "Downloads", group: "Products" },
+  { k: "star", label: "My Reviews", group: "Account", n: 1, tone: "info" },
+  { k: "user", label: "Profile", group: "Account" },
+];
+const user = { name: "Omar", email: "omar@echoasoft.com", initials: "O" };
+const who = `<div class="who"><b>${user.name}</b><span>${user.email}</span></div>`;
+
+const item = (m, i, opts = {}) => `<button class="item ${i === 0 ? "on" : ""}" data-item>
+  ${opts.tile ? `<span class="tile">${IC[m.k]}</span>` : IC[m.k]}<span class="lbl">${m.label}</span>
+  ${m.n ? (opts.cText ? `<span class="cnt ${m.tone}">${m.tone === "bad" ? "1 expired" : "1 to review"}</span>` : `<span class="cnt ${m.tone}">${m.n}</span>`) : ""}
+  ${opts.rail ? `${m.n ? `<span class="dot ${m.tone}"></span>` : ""}<span class="tip">${m.label}${m.n ? ` · ${m.n}` : ""}</span>` : ""}
+</button>`;
+
+const DESIGNS = [
+  {
+    id: "A", name: "Refined", note: "Closest to your current sidebar: softer badges, a lighter active pill and a compact help row instead of a big card.",
+    html: () => `<aside class="sb A">
+      <div class="me"><span class="av">${user.initials}</span>${who}</div>
+      <nav class="nav">${MENU.map((m, i) => item(m, i)).join("")}</nav>
+      <div class="foot">
+        <div class="help"><span class="ic">${IC.chat}</span><div><b>Need a hand?</b><p>We usually reply within 2 hours.</p><a href="#">Contact support →</a></div></div>
+        <hr>
+        <button class="logout">${IC.out}<span>Log out</span></button>
+      </div></aside>`,
+  },
+  {
+    id: "B", name: "Grouped sections", note: "Menu split into Overview, Billing, Products and Account. Your profile moves to a card at the bottom with log out next to it.",
+    html: () => {
+      let last = "", nav = "";
+      MENU.forEach((m, i) => { if (m.group !== last) { nav += `<div class="group">${m.group}</div>`; last = m.group; } nav += item(m, i); });
+      return `<aside class="sb B">
+        <div class="brand"><i>W</i>My account</div>
+        <nav class="nav">${nav}</nav>
+        <div class="foot">
+          <a class="linkrow" href="#">${IC.help}Help &amp; support</a>
+          <div class="usercard"><span class="av">${user.initials}</span>${who}<button class="icon-btn" title="Log out" aria-label="Log out">${IC.out}</button></div>
+        </div></aside>`;
+    },
+  },
+  {
+    id: "C", name: "Minimal line", note: "No backgrounds at all. A thin blue line marks the current page, and badges become short colored labels.",
+    html: () => `<aside class="sb C">
+      <div class="me"><span class="av">${user.initials}</span>${who}</div>
+      <nav class="nav">${MENU.map((m, i) => item(m, i, { cText: true })).join("")}</nav>
+      <div class="foot">
+        <div class="divider"></div>
+        <a class="plain" href="#">${IC.help}Help &amp; support</a>
+        <button class="plain out">${IC.out}Log out</button>
+      </div></aside>`,
+  },
+  {
+    id: "D", name: "Profile card + icon tiles", note: "A light profile card on top with a license progress bar. Each menu icon sits in its own small tile.",
+    html: () => `<aside class="sb D">
+      <div class="profile">
+        <div class="row"><span class="av">${user.initials}</span>${who}</div>
+        <div class="meter"><span>Active licenses</span><b>3 of 4</b></div>
+        <div class="bar"><i></i></div>
+      </div>
+      <nav class="nav">${MENU.map((m, i) => item(m, i, { tile: true })).join("")}</nav>
+      <div class="foot">
+        <div class="help"><b>Need a hand?</b><p>We usually reply within 2 hours.</p><a class="btn" href="#">${IC.chat}Contact support</a></div>
+        <button class="logout">${IC.out}<span>Log out</span></button>
+      </div></aside>`,
+  },
+  {
+    id: "E", name: "Collapsible rail", note: "Shrinks to an icon rail with dot badges and hover labels. Shown open and collapsed; the arrow switches it.", pair: true,
+    html: collapsed => `<aside class="sb E ${collapsed ? "collapsed" : ""}">
+      <div class="top"><div class="me"><span class="av">${user.initials}</span>${who}</div><button class="icon-btn toggle" data-toggle aria-label="Collapse menu">${IC.chev}</button></div>
+      <nav class="nav">${MENU.map((m, i) => item(m, i, { rail: true })).join("")}</nav>
+      <div class="foot">
+        <a class="helpbtn" href="#">${IC.chat}<span class="help-text">Contact support</span></a>
+        <button class="logout">${IC.out}<span>Log out</span><span class="tip">Log out</span></button>
+      </div></aside>`,
+  },
+];
+
+document.getElementById("gallery").innerHTML = DESIGNS.map(d => `<section${d.pair ? ' style="grid-column:1/-1"' : ""}>
+  <div class="demo-label"><span class="v-num">Design ${d.id}</span><b>${d.name}</b><span>${d.note}</span></div>
+  ${d.pair ? `<div class="pair">${d.html(false)}${d.html(true)}</div>` : d.html()}
+</section>`).join("");
+
+document.addEventListener("click", e => {
+  const it = e.target.closest("[data-item]");
+  if (it) { it.closest(".nav").querySelectorAll(".item").forEach(x => x.classList.toggle("on", x === it)); return; }
+  const tg = e.target.closest("[data-toggle]");
+  if (tg) { const sb = tg.closest(".sb"); sb.classList.toggle("collapsed"); tg.setAttribute("aria-label", sb.classList.contains("collapsed") ? "Expand menu" : "Collapse menu"); return; }
+  if (e.target.closest('a[href="#"]')) e.preventDefault();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Category Carousels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#134feb; --brand-soft:#f3f6fe; --brand-soft-2:#e9effd; --brand-line:#dde6fd; --brand-text:#3f68e6;
+  --heading:#1f2937; --text:#4b5563; --muted:#6e7787; --faint:#9aa1ae;
+  --border:#e6e9ef; --border-soft:#eef0f4; --surface:#fff; --surface-2:#f8fafc; --page:#fafafa;
+  --r:8px; --r-lg:12px; --r-xl:16px; --pill:50px;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-head:"Inter Tight",Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);font-family:var(--font);color:var(--text);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+svg{flex-shrink:0}
+.page-head{max-width:1240px;margin:0 auto;padding:40px 24px 0}
+.page-head h1{font-size:24px;font-weight:600;letter-spacing:-.01em;color:var(--heading);margin:0 0 4px}
+.page-head p{margin:0;color:var(--muted)}
+.section{max-width:1240px;margin:0 auto;padding:40px 24px 8px}
+.label{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.v-num{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-text);background:var(--brand-soft);padding:3px 8px;border-radius:var(--pill)}
+.label b{font-weight:600;color:var(--heading)}
+.label span{color:var(--muted);font-size:13.5px}
+.frame{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px 26px 20px;overflow:hidden}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
+.sec-head h2{margin:0;font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--heading)}
+.sec-head p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.controls{display:flex;gap:8px;flex-shrink:0}
+.arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;color:var(--heading);transition:border-color .15s,background .15s}
+.arrow:hover:not(:disabled){border-color:var(--brand-line);background:var(--brand-soft);color:var(--brand-text)}
+.arrow:disabled{opacity:.35;cursor:default}
+
+/* carousel engine */
+.track{--gap:16px;--per:6;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 12px;margin:-4px -2px 0;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.track > *{scroll-snap-align:start;min-width:0}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.dots button{width:7px;height:7px;border-radius:999px;border:0;padding:0;background:var(--border);transition:width .25s,background .25s}
+.dots button.on{width:20px;background:#8aa6f6}
+.progress{height:3px;border-radius:999px;background:var(--border-soft);margin-top:10px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:#8aa6f6;border-radius:999px;transition:width .2s}
+
+/* shared */
+.art{width:66%;height:auto;color:var(--c);filter:drop-shadow(0 8px 12px rgba(0,0,0,.08));transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.tint{background:color-mix(in srgb,var(--c) 11%,#fff)}
+.name{color:var(--heading);font-weight:600}
+.count{color:var(--muted);font-size:13px}
+.go{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--heading);transition:background .15s,color .15s,transform .15s}
+
+/* ===== 1. Round stories ===== */
+.t1{--per:8;--gap:12px}
+.c1{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:6px 0}
+.c1 .ring{width:100%;max-width:112px;aspect-ratio:1;border-radius:50%;padding:4px;background:linear-gradient(var(--surface),var(--surface)) padding-box,conic-gradient(from 210deg,color-mix(in srgb,var(--c) 45%,#fff),color-mix(in srgb,var(--c) 10%,#fff),color-mix(in srgb,var(--c) 45%,#fff)) border-box;border:2px solid transparent}
+.c1 .circle{width:100%;height:100%;border-radius:50%;display:grid;place-items:center}
+.c1:hover .art{transform:scale(1.08)}
+.c1 .name{font-size:14px;line-height:1.3}
+.c1 .count{font-size:12.5px;margin-top:-6px}
+
+/* ===== 2. Tall tiles ===== */
+.t2{--per:5}
+.c2{position:relative;display:block;aspect-ratio:3/4;border-radius:var(--r-xl);overflow:hidden}
+.c2 .stage{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:30%}
+.c2 .art{width:62%}
+.c2:hover .art{transform:translateY(-6px) scale(1.04)}
+.c2 .info{position:absolute;left:10px;right:10px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 10px 10px 14px;border-radius:var(--r-lg);background:rgba(255,255,255,.85);backdrop-filter:blur(8px)}
+.c2 .info .name{font-size:14.5px;display:block}
+.c2 .go{background:var(--brand-soft);color:var(--brand-text)}
+.c2:hover .go{background:var(--brand);color:#fff}
+
+/* ===== 3. Compact pills ===== */
+.t3{--per:4;--gap:12px;grid-template-rows:repeat(2,auto)}
+.c3{display:flex;align-items:center;gap:12px;padding:8px 14px 8px 8px;border:1px solid var(--border);border-radius:var(--r-lg);transition:border-color .15s,background .15s}
+.c3:hover{border-color:var(--brand-line);background:var(--brand-soft)}
+.c3 .thumb{width:56px;height:56px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.c3 .thumb .art{width:72%}
+.c3 .t{flex:1;min-width:0}
+.c3 .name{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c3 svg.chev{color:#c7ccd5;transition:transform .15s,color .15s}
+.c3:hover svg.chev{color:var(--brand-text);transform:translateX(2px)}
+
+/* ===== 4. Cards with arrow ===== */
+.t4{--per:5}
+.c4{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;transition:border-color .15s,box-shadow .15s,transform .15s}
+.c4:hover{border-color:var(--brand-line);box-shadow:0 12px 26px -16px rgba(19,79,235,.25);transform:translateY(-2px)}
+.c4 .img{aspect-ratio:4/3;display:grid;place-items:center}
+.c4:hover .art{transform:scale(1.06)}
+.c4 .body{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px}
+.c4 .name{display:block;font-size:14.5px}
+.c4 .go{background:var(--surface-2);color:var(--muted)}
+.c4:hover .go{background:var(--brand);color:#fff;transform:rotate(-45deg)}
+
+/* ===== 5. Typographic blocks ===== */
+.t5{--per:4}
+.c5{position:relative;display:block;height:200px;border-radius:var(--r-xl);overflow:hidden;padding:18px}
+.c5 .name{font-family:var(--font-head);font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.1;display:block;max-width:70%}
+.c5 .pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:var(--pill);background:rgba(255,255,255,.75);font-size:12.5px;font-weight:500;color:var(--text);margin-top:10px}
+.c5 .art{position:absolute;right:-8%;bottom:-10%;width:62%;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.c5:hover .art{transform:rotate(-8deg) scale(1.06)}
+.c5 .shop{position:absolute;left:18px;bottom:16px;font-size:13px;font-weight:500;color:var(--heading);display:flex;align-items:center;gap:6px;opacity:0;transform:translateY(6px);transition:.2s}
+.c5:hover .shop{opacity:1;transform:none}
+
+/* ===== View all cards (link to the all-categories / category archive page) ===== */
+.va-ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;flex-shrink:0;transition:transform .2s,background .15s;box-shadow:0 6px 14px -6px rgba(19,79,235,.55)}
+.all:hover .va-ic{transform:translateX(3px);background:var(--brand-hover,#0e3fc4)}
+.all .name{color:var(--brand-text)}
+/* 1 */
+.c1.all .ring{background:linear-gradient(var(--surface),var(--surface)) padding-box,repeating-conic-gradient(var(--brand-line) 0 8deg,transparent 8deg 14deg) border-box}
+.c1.all .circle{background:var(--brand-soft)}
+/* 2 */
+.c2.all{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:18px;background:var(--brand-soft);border:1.5px dashed var(--brand-line)}
+.c2.all .va-t{font-family:var(--font-head);font-size:22px;font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--heading);margin-top:14px}
+.c2.all .va-s{display:block;color:var(--muted);font-size:13px;margin-top:6px}
+.c2.all .va-link{display:flex;align-items:center;gap:6px;font-weight:500;font-size:14px;color:var(--brand-text)}
+/* 3 */
+.c3.all{border-style:dashed;border-color:var(--brand-line);background:var(--brand-soft)}
+.c3.all .thumb{background:none}
+.c3.all .va-ic{width:40px;height:40px}
+/* 4 */
+.c4.all{border:1.5px dashed var(--brand-line)}
+.c4.all .img{background:var(--brand-soft);flex-direction:column;gap:10px}
+.c4.all .img small{color:var(--brand-text);font-weight:500;font-size:13px}
+.c4.all .go{background:var(--brand);color:#fff}
+/* 5 */
+.c5.all{background:var(--brand-soft);border:1.5px dashed var(--brand-line)}
+.c5.all .name{color:var(--heading);max-width:80%}
+.c5.all .pill{background:#fff}
+.c5.all .va-ic{position:absolute;right:18px;bottom:18px;width:52px;height:52px}
+
+@media (max-width:1100px){
+  .t1{--per:6}.t2,.t4{--per:4}.t3{--per:3}.t5{--per:3}
+}
+@media (max-width:760px){
+  .t1{--per:4.5}.t2,.t4{--per:2.5}.t3{--per:1.6}.t5{--per:1.6}
+  .controls{display:none}
+}
+@media (max-width:520px){
+  .section{padding:30px 12px 4px}.page-head{padding:24px 16px 0}
+  .frame{padding:18px 14px 14px}
+  .t1{--per:3.6}.t2,.t4{--per:2.2;--gap:10px}.t3{--per:1.3;--gap:10px}.t5{--per:1.3;--gap:10px}
+  .c5{height:170px}.c5 .name{font-size:21px}
+  .c2 .info{left:8px;right:8px;bottom:8px;padding:8px 10px}
+  .c2 .info > span{min-width:0}
+  .c2 .go{display:none}
+  .c2 .info .name{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .c2 .count{font-size:12px}
+  .c4 .body{padding:10px 12px}
+  .c4 .go{display:none}
+  .c4 .name{font-size:13.5px}
+  .c4 .count{font-size:12px;white-space:nowrap}
+  .c2.all{padding:12px}
+  .c2.all .va-ic{width:36px;height:36px}
+  .c2.all .va-t{font-size:18px;margin-top:10px}
+  .c2.all .va-s{display:none}
+  .c3.all .name{white-space:normal;line-height:1.3}
+  .c5.all .va-ic{width:44px;height:44px;right:14px;bottom:14px}
+  .c5 .shop{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<header class="page-head">
+  <h1>Category carousels</h1>
+  <p>Five layouts showing category image, name and product count. Each row ends with a "View all" card, sized like the other items, that links to the product category taxonomy archive. Each category links to its own term archive.</p>
+</header>
+<div id="sections"></div>
+
+<script>
+/* product-style illustrations (same set as product-carousels.html) */
+const ART = {
+  sneaker: '<path d="M24 128c2-14 10-22 20-22 9 0 16 5 28 7 20 3 32-16 46-16 9 0 13 7 20 14 11 11 30 12 38 17 7 4 8 12 8 18H24z" fill="currentColor"/><path d="M24 140h160v8a7 7 0 0 1-7 7H31a7 7 0 0 1-7-7z" fill="#fff" stroke="rgba(0,0,0,.12)"/><path d="M92 108l8 10M104 104l8 10M116 100l8 10" stroke="#fff" stroke-width="4" stroke-linecap="round"/>',
+  tote: '<path d="M72 74a28 28 0 0 1 56 0" fill="none" stroke="currentColor" stroke-width="8"/><path d="M48 74h104l-8 90a8 8 0 0 1-8 7H64a8 8 0 0 1-8-7z" fill="currentColor"/><path d="M58 94h84" stroke="rgba(255,255,255,.35)" stroke-width="4"/>',
+  watch: '<rect x="80" y="28" width="40" height="144" rx="12" fill="currentColor"/><rect x="80" y="28" width="40" height="144" rx="12" fill="rgba(0,0,0,.15)"/><circle cx="100" cy="100" r="42" fill="currentColor"/><circle cx="100" cy="100" r="33" fill="#fff"/><path d="M100 100V78M100 100l14 8" stroke="#111827" stroke-width="4" stroke-linecap="round"/>',
+  headphones: '<path d="M48 122v-22a52 52 0 0 1 104 0v22" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><rect x="34" y="110" width="36" height="58" rx="15" fill="currentColor"/><rect x="130" y="110" width="36" height="58" rx="15" fill="currentColor"/><rect x="43" y="121" width="16" height="36" rx="8" fill="rgba(255,255,255,.28)"/><rect x="141" y="121" width="16" height="36" rx="8" fill="rgba(255,255,255,.28)"/>',
+  mug: '<path d="M134 88h10a22 22 0 0 1 0 44h-10" fill="none" stroke="currentColor" stroke-width="10"/><path d="M50 64h86v88a16 16 0 0 1-16 16H66a16 16 0 0 1-16-16z" fill="currentColor"/><path d="M50 80h86" stroke="rgba(255,255,255,.35)" stroke-width="5"/>',
+  lamp: '<path d="M150 82l22 46-48-16z" fill="rgba(250,204,21,.28)"/><rect x="58" y="160" width="74" height="12" rx="6" fill="currentColor"/><path d="M95 160 80 102l44-40" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="102" r="8" fill="currentColor"/><path d="M114 50l46 22-26 28z" fill="currentColor"/>',
+  chair: '<rect x="52" y="52" width="96" height="74" rx="24" fill="currentColor"/><rect x="38" y="106" width="124" height="36" rx="15" fill="currentColor"/><rect x="38" y="122" width="124" height="20" rx="10" fill="rgba(0,0,0,.14)"/><path d="M60 142l-8 28M140 142l8 28" stroke="#7c5a3a" stroke-width="7" stroke-linecap="round"/>',
+  bottle: '<rect x="84" y="24" width="32" height="22" rx="5" fill="#334155"/><path d="M78 50h44v8c12 6 16 14 16 26v78a12 12 0 0 1-12 12H74a12 12 0 0 1-12-12V84c0-12 4-20 16-26z" fill="currentColor"/><rect x="62" y="104" width="76" height="30" fill="rgba(255,255,255,.3)"/>',
+  shirt: '<path d="M72 38l28 14 28-14 40 24-14 30-16-8v86H62V84l-16 8-14-30z" fill="currentColor"/><path d="M86 44l14 22 14-22" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="4"/>',
+  cap: '<path d="M40 122a60 58 0 0 1 120 0z" fill="currentColor"/><path d="M40 122h128c14 0 18 12 6 17-32 9-82 6-134-5z" fill="currentColor"/><path d="M40 122h128c14 0 18 12 6 17-32 9-82 6-134-5z" fill="rgba(0,0,0,.18)"/><circle cx="100" cy="64" r="6" fill="rgba(0,0,0,.2)"/>',
+  backpack: '<path d="M82 50a18 18 0 0 1 36 0" fill="none" stroke="currentColor" stroke-width="8"/><rect x="54" y="46" width="92" height="126" rx="28" fill="currentColor"/><rect x="68" y="110" width="64" height="46" rx="10" fill="rgba(0,0,0,.16)"/>',
+  sunglasses: '<path d="M26 92h148" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M34 92h54v14a24 24 0 0 1-24 24h-6a24 24 0 0 1-24-24z" fill="currentColor"/><path d="M112 92h54v14a24 24 0 0 1-24 24h-6a24 24 0 0 1-24-24z" fill="currentColor"/>',
+};
+const CATS = [
+  { name: "Sneakers", art: "sneaker", c: "#3b6ff0", n: 48 },
+  { name: "Bags", art: "tote", c: "#c2722c", n: 32 },
+  { name: "Watches", art: "watch", c: "#6b7280", n: 21 },
+  { name: "Audio", art: "headphones", c: "#7c5cf0", n: 17 },
+  { name: "Home & Kitchen", art: "mug", c: "#0f9f8f", n: 36 },
+  { name: "Lighting", art: "lamp", c: "#d39b16", n: 14 },
+  { name: "Furniture", art: "chair", c: "#c8553d", n: 22 },
+  { name: "Outdoor", art: "bottle", c: "#1f8fd4", n: 19 },
+  { name: "Apparel", art: "shirt", c: "#b08350", n: 56 },
+  { name: "Hats & Caps", art: "cap", c: "#d4513c", n: 12 },
+  { name: "Backpacks", art: "backpack", c: "#2f62d8", n: 15 },
+  { name: "Eyewear", art: "sunglasses", c: "#8a5a2b", n: 9 },
+];
+const TOTAL = CATS.reduce((a, c) => a + c.n, 0);
+const art = c => `<svg class="art" viewBox="0 0 200 200" aria-hidden="true">${ART[c.art]}</svg>`;
+const cnt = n => `${n} product${n === 1 ? "" : "s"}`;
+const ARROW = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const CHEV = '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg>';
+const GRID = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>';
+const style = c => `style="--c:${c.c}"`;
+// WooCommerce product category taxonomy (product_cat). Each category links to its term archive;
+// "View all" links to the taxonomy base. Note: WordPress has no page at the bare base by default,
+// so /product-category/ needs a page (or redirect) that lists all categories.
+const TAX_BASE = "/product-category/";
+const ALL_URL = TAX_BASE;
+const slug = name => name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const termUrl = c => `${TAX_BASE}${slug(c.name)}/`;
+const BIG_ARROW = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+const LAYOUTS = [
+  {
+    title: "Round stories", note: "Circular thumbnails with a soft colored ring, like story bubbles. The last circle is a dashed ring with an arrow that opens the all-categories page.",
+    head: ["Shop by category", "Find what you need faster."], nav: "dots", track: "t1",
+    item: c => `<a class="c1" href="${termUrl(c)}" ${style(c)}><span class="ring"><span class="circle tint">${art(c)}</span></span><span class="name">${c.name}</span><span class="count">${c.n} items</span></a>`,
+    all: () => `<a class="c1 all" href="${ALL_URL}"><span class="ring"><span class="circle"><span class="va-ic">${BIG_ARROW}</span></span></span><span class="name">View all</span><span class="count">${CATS.length} categories</span></a>`,
+  },
+  {
+    title: "Tall tiles", note: "Tall colored tiles with a frosted label at the bottom. The last tile is a dashed blue card: \"View all categories\" with an arrow.",
+    head: ["Browse categories", `${TOTAL} products across ${CATS.length} categories`], nav: "arrows", track: "t2",
+    item: c => `<a class="c2 tint" href="${termUrl(c)}" ${style(c)}><span class="stage">${art(c)}</span><span class="info"><span><span class="name">${c.name}</span><span class="count">${cnt(c.n)}</span></span><span class="go">${ARROW}</span></span></a>`,
+    all: () => `<a class="c2 all" href="${ALL_URL}"><span><span class="va-ic">${BIG_ARROW}</span><span class="va-t" style="display:block">View all<br>categories</span><span class="va-s">${CATS.length} categories · ${TOTAL} products</span></span><span class="va-link">Browse all ${ARROW}</span></a>`,
+  },
+  {
+    title: "Compact pills, two rows", note: "Small thumbnail + name + count, two rows per slide. Fits many categories in little space. View all is a dashed blue pill with an arrow.",
+    head: ["All categories", "Tap a category to see its products."], nav: "arrows+dots", track: "t3",
+    item: c => `<a class="c3" href="${termUrl(c)}" ${style(c)}><span class="thumb tint">${art(c)}</span><span class="t"><span class="name">${c.name}</span><span class="count">${cnt(c.n)}</span></span>${CHEV}</a>`,
+    all: () => `<a class="c3 all" href="${ALL_URL}"><span class="thumb"><span class="va-ic">${BIG_ARROW}</span></span><span class="t"><span class="name">View all categories</span><span class="count">${TOTAL} products</span></span>${CHEV}</a>`,
+  },
+  {
+    title: "Cards with arrow", note: "Image on top, name and count below, an arrow that turns blue and tilts on hover. View all is the same card with a big arrow in place of the image.",
+    head: ["Popular categories", "Hand-picked collections for your store."], nav: "progress", track: "t4",
+    item: c => `<a class="c4" href="${termUrl(c)}" ${style(c)}><span class="img tint">${art(c)}</span><span class="body"><span><span class="name">${c.name}</span><span class="count">${cnt(c.n)}</span></span><span class="go">${ARROW}</span></span></a>`,
+    all: () => `<a class="c4 all" href="${ALL_URL}"><span class="img"><span class="va-ic">${BIG_ARROW}</span><small>All categories</small></span><span class="body"><span><span class="name">View all</span><span class="count">${CATS.length} categories</span></span><span class="go">${ARROW}</span></span></a>`,
+  },
+  {
+    title: "Typographic blocks", note: "Big category name over a soft color block, with the product peeking from the corner. View all is a soft blue block with a large arrow.",
+    head: ["Explore the store", "Big, bold entry points into each category."], nav: "arrows", track: "t5",
+    item: c => `<a class="c5 tint" href="${termUrl(c)}" ${style(c)}><span class="name">${c.name}</span><span class="pill">${cnt(c.n)}</span>${art(c)}<span class="shop">Shop now ${ARROW}</span></a>`,
+    all: () => `<a class="c5 all" href="${ALL_URL}"><span class="name">View all categories</span><span class="pill">${CATS.length} categories · ${TOTAL} products</span><span class="va-ic">${BIG_ARROW}</span></a>`,
+  },
+];
+
+document.getElementById("sections").innerHTML = LAYOUTS.map((L, i) => `
+<section class="section" data-carousel>
+  <div class="label"><span class="v-num">Layout ${i + 1}</span><b>${L.title}</b><span>${L.note}</span></div>
+  <div class="frame">
+    <div class="sec-head"><div><h2>${L.head[0]}</h2><p>${L.head[1]}</p></div>
+      ${L.nav.includes("arrows") || L.nav === "progress" ? `<div class="controls"><button class="arrow" data-prev aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button><button class="arrow" data-next aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button></div>` : ""}
+    </div>
+    <div class="track ${L.track}">${CATS.map(L.item).join("")}${L.all()}</div>
+    ${L.nav.includes("dots") ? '<div class="dots"></div>' : ""}${L.nav === "progress" ? '<div class="progress"><i></i></div>' : ""}
+  </div>
+</section>`).join("");
+
+/* ---------- carousel engine ---------- */
+document.querySelectorAll("[data-carousel]").forEach(sec => {
+  const track = sec.querySelector(".track"), prev = sec.querySelector("[data-prev]"), next = sec.querySelector("[data-next]");
+  const dots = sec.querySelector(".dots"), bar = sec.querySelector(".progress i");
+  const gap = () => parseFloat(getComputedStyle(track).columnGap) || 0;
+  const step = () => track.clientWidth + gap();
+  const pages = () => Math.max(1, Math.ceil((track.scrollWidth + gap()) / step() - 0.05));
+  const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+  const cur = () => atEnd() ? pages() - 1 : Math.round(track.scrollLeft / step());
+  const go = i => track.scrollTo({ left: Math.max(0, Math.min(pages() - 1, i)) * step(), behavior: "smooth" });
+  function build() { if (dots) { dots.innerHTML = Array.from({ length: pages() }, (_, i) => `<button data-i="${i}" aria-label="Slide ${i + 1}"></button>`).join(""); dots.style.display = pages() > 1 ? "" : "none"; } update(); }
+  function update() {
+    const i = cur();
+    if (dots) [...dots.children].forEach((d, k) => d.classList.toggle("on", k === i));
+    if (prev) prev.disabled = track.scrollLeft < 2;
+    if (next) next.disabled = atEnd();
+    if (bar) bar.style.width = Math.min(100, (track.scrollLeft + track.clientWidth) / track.scrollWidth * 100) + "%";
+  }
+  let raf; track.addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+  prev && prev.addEventListener("click", () => go(cur() - 1));
+  next && next.addEventListener("click", () => go(cur() + 1));
+  dots && dots.addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) go(+b.dataset.i); });
+  addEventListener("resize", build); build();
+});
+document.addEventListener("click", e => { const a = e.target.closest("a"); if (a && a.getAttribute("href").startsWith(TAX_BASE)) e.preventDefault(); });   // mockup: no real pages
+</script>
+</body>
+</html>

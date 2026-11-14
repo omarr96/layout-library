@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiviMerc Product Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+/* ---------- Olive Studio palette ---------- */
+:root{
+  --bg:#fff; --soft:#f3f2ec; --soft2:#e7e6dc; --card:#fff;
+  --ink:#23251f; --text:#4b4d44; --muted:#878a7d; --line:#e2e1d6;
+  --accent:#9c4a2f; --accent-ink:#fff;
+  --btn:#4f5a3a; --btn-ink:#fff; --btn-hover:#3f4930;
+  --btn2:#e8e9dc; --btn2-ink:#2f3524; --btn2-hover:#dcdfcb;
+  --star:#b8913f; --deep:#2b3120;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--text);background:var(--bg);font-size:14px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
+img{display:block;max-width:100%}
+svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.serif{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.01em}
+
+/* ---------- header ---------- */
+.promo{background:var(--btn);color:#eef0e2;text-align:center;padding:9px 16px;font-size:13.5px;font-weight:500}
+.promo a{margin-left:12px;background:#eef0e2;color:var(--btn2-ink);font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px}
+header.site{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;gap:28px;height:66px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:19px;color:var(--ink)}
+.logo i{width:24px;height:24px;border-radius:7px;background:var(--btn);display:grid;place-items:center;color:#fff;font-style:normal;font-size:12px}
+nav.main{margin-left:auto;display:flex;gap:26px;font-size:13.5px;color:var(--ink)}
+nav.main a:hover{color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 22px;border-radius:999px;font-weight:600;font-size:14px;transition:background .2s,transform .15s,border-color .2s}
+.btn:active{transform:scale(.98)}
+.btn.p{background:var(--btn);color:#fff}
+.btn.p:hover{background:var(--btn-hover)}
+.btn.o{border:1px solid var(--line);color:var(--ink);background:#fff}
+.btn.o:hover{border-color:var(--ink)}
+.btn.sm{height:38px;padding:0 16px;font-size:13px}
+.btn svg{width:16px;height:16px}
+.burger{display:none}
+
+/* ---------- section heads ---------- */
+section{padding:88px 0}
+.s-soft{background:var(--soft)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--btn)}
+.eyebrow::before{content:"";width:18px;height:1.5px;background:currentColor}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:38px;flex-wrap:wrap}
+.sh h2{margin:10px 0 10px;font-size:40px;line-height:1.08;color:var(--ink)}
+.sh p{margin:0;max-width:520px;line-height:1.6;color:var(--text);font-size:15px}
+.sh.c{flex-direction:column;align-items:center;text-align:center}
+.lay{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap}
+.lay b{color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{padding:72px 0 80px;background:
+  radial-gradient(900px 420px at 85% 10%, #e9ecdc 0, transparent 60%),
+  radial-gradient(700px 400px at 0% 100%, #f3eee4 0, transparent 60%), var(--bg);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.hero h1{margin:18px 0 18px;font-size:62px;line-height:1.02;color:var(--ink)}
+.hero h1 em{font-style:italic;color:var(--btn)}
+.hero .lead{font-size:17px;line-height:1.6;max-width:500px;margin:0 0 30px}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.stats{display:flex;gap:34px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font-size:28px;color:var(--ink)}
+.stats small{font-size:12.5px;color:var(--muted)}
+.collage{position:relative;height:540px}
+.collage .c{position:absolute;background:#fff;border-radius:16px;padding:10px;box-shadow:0 30px 60px -28px rgba(35,37,31,.35),0 0 0 1px rgba(35,37,31,.05)}
+.collage .c .thumb{border-radius:10px;aspect-ratio:4/5}
+.collage .c .name{margin:10px 4px 2px}
+.collage .c .price{margin:0 4px 4px}
+.collage .c1{width:230px;left:4%;top:40px;transform:rotate(-4deg)}
+.collage .c2{width:250px;left:36%;top:0;z-index:2}
+.collage .c3{width:210px;right:0;top:120px;transform:rotate(5deg)}
+.float{position:absolute;z-index:3;background:#fff;border-radius:12px;padding:10px 12px;font-size:12px;color:var(--ink);font-weight:600;box-shadow:0 16px 34px -14px rgba(35,37,31,.35),0 0 0 1px rgba(35,37,31,.06);display:flex;align-items:center;gap:10px;animation:bob 5s ease-in-out infinite}
+.float small{display:block;color:var(--muted);font-weight:500;font-size:11px}
+.float .seg{display:flex;gap:3px;background:var(--soft);padding:3px;border-radius:7px}
+.float .seg i{font-style:normal;width:22px;height:20px;border-radius:5px;display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.float .seg i.on{background:var(--btn);color:#fff}
+.f1{left:0;bottom:70px}
+.f2{right:6%;top:30px;animation-delay:-1.6s}
+.f3{left:44%;bottom:10px;animation-delay:-3s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* trust strip */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:var(--bg)}
+.trust .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.trust .tl{display:flex;gap:34px;flex-wrap:wrap;align-items:center}
+.trust .tl span{font-weight:700;color:#a6a899;font-size:15px;letter-spacing:.02em}
+
+/* ---------- shared product bits ---------- */
+.price{font-weight:600;color:var(--ink);font-size:14px}
+.price del{color:var(--muted);font-weight:400;font-size:12.5px;margin-right:6px}
+.price ins{text-decoration:none;color:var(--accent)}
+.thumb{background:var(--soft2);overflow:hidden;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.prod:hover .thumb img{transform:scale(1.05)}
+.name{color:var(--ink);font-weight:500;font-size:13.5px;line-height:1.35}
+.stars{color:var(--star);font-size:11px;letter-spacing:1px}
+.stars s{color:var(--line);text-decoration:none}
+.rc{color:var(--muted);font-size:11.5px;margin-left:4px;letter-spacing:0}
+.swatches{display:flex;gap:5px}
+.swatches i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.badge{position:absolute;top:10px;left:10px;z-index:1;background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px}
+.badge.new{background:var(--ink)}
+.qvi{position:absolute;top:10px;right:10px;z-index:1;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1);transition:background .2s,color .2s,transform .2s}
+.qvi:hover{background:var(--btn);color:#fff;transform:scale(1.08)}
+.qvi svg{width:15px;height:15px}
+.pill{height:38px;border-radius:999px;background:var(--btn2);color:var(--btn2-ink);font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s;width:100%}
+.pill:hover{background:var(--btn2-hover)}
+.pill.dk{background:var(--btn);color:#fff}
+.pill.dk:hover{background:var(--btn-hover)}
+.sq{height:40px;width:100%;background:var(--btn);color:#fff;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:5px;transition:background .2s}
+.sq:hover{background:var(--btn-hover)}
+
+/* ---------- live builder ---------- */
+.lab{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;position:sticky;top:90px;box-shadow:0 20px 40px -30px rgba(35,37,31,.3)}
+.panel h4{margin:0 0 4px;font-size:15px;color:var(--ink)}
+.panel > small{color:var(--muted);font-size:12.5px}
+.ctl{margin-top:20px}
+.ctl > label:not(.tg){display:block;font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:.02em}
+.lays{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.lays button{border:1px solid var(--line);border-radius:10px;padding:8px 6px 7px;text-align:center;font-size:11px;color:var(--text);transition:border-color .15s,background .15s}
+.lays button:hover{border-color:#c9cbb9}
+.lays button.on{border-color:var(--btn);background:#f4f5ec;color:var(--ink);font-weight:600;box-shadow:0 0 0 1px var(--btn)}
+.lays .ic{height:28px;margin-bottom:5px;display:grid;gap:2px}
+.lays .ic i{background:#d6d8c8;border-radius:2px}
+.lays button.on .ic i{background:var(--btn)}
+.segc{display:flex;background:var(--soft);border-radius:10px;padding:3px;gap:2px}
+.segc button{flex:1;height:32px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted)}
+.segc button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tg{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:13px;color:var(--ink);cursor:pointer}
+.tg + .tg{border-top:1px solid var(--soft)}
+.tg input{display:none}
+.tg i{display:block;flex:none;width:34px;height:20px;border-radius:99px;background:#d6d8c8;position:relative;transition:background .15s}
+.tg i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .15s}
+.tg input:checked + i{background:var(--btn)}
+.tg input:checked + i::after{transform:translateX(14px)}
+.stage{background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.stage .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:#fbfbf8}
+.stage .bar i{width:10px;height:10px;border-radius:50%;background:#e2e1d6}
+.stage .bar span{margin-left:10px;font-size:12px;color:var(--muted)}
+.stage .bar .code{margin-left:auto;font-size:12px;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:6px}
+.stage .out{padding:26px}
+#live{display:grid;gap:18px 16px;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));transition:opacity .2s}
+#live.fading{opacity:.2}
+
+/* layout variants used by the live grid and the showcase rows */
+.v-classic{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column}
+.v-classic .thumb{aspect-ratio:4/4.6;border-radius:9px}
+.v-classic .name{margin:12px 4px 6px;min-height:36px}
+.v-classic .stars,.v-classic .swatches{margin:0 4px 8px}
+.v-classic .price{margin:0 4px 12px}
+.v-classic .pill{margin-top:auto}
+
+.v-card .thumb{aspect-ratio:4/5.2}
+.v-card .name{margin:12px 0 4px}
+.v-card .stars,.v-card .swatches{margin-bottom:6px}
+.v-card .price{font-size:13.5px;margin-bottom:12px}
+
+.v-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center}
+.v-row .thumb{aspect-ratio:4/5;border-radius:8px}
+.v-row .badge{top:6px;left:6px;font-size:10px;padding:2px 7px}
+.v-row .name{margin:0 0 4px}
+.v-row .stars,.v-row .swatches{margin-bottom:5px}
+.v-row .price{margin-bottom:10px}
+.mini{white-space:nowrap;display:flex;width:100%;justify-content:center;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:999px;background:var(--btn);color:#fff;font-size:12px;font-weight:600}
+.mini:hover{background:var(--btn-hover)}
+
+.v-detail .thumb{aspect-ratio:4/4.8;border-radius:12px}
+.v-detail .tag{position:absolute;top:10px;left:10px;z-index:1;font-size:10.5px;background:rgba(255,255,255,.92);padding:3px 8px;border-radius:999px;color:var(--ink);font-weight:600}
+.v-detail .name{margin:14px 0 4px;font-size:14px}
+.v-detail .stars{margin-bottom:6px}
+.v-detail p{margin:0 0 10px;font-size:12.5px;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.v-image{position:relative;border-radius:14px;overflow:hidden}
+.v-image .thumb{aspect-ratio:4/5.3}
+.v-image .ov{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(20,22,16,.72));color:#fff;transform:translateY(30%);opacity:0;transition:.35s cubic-bezier(.2,.8,.3,1)}
+.v-image:hover .ov{transform:none;opacity:1}
+.v-image .ov .name{color:#fff}
+.v-image .ov .price{color:#fff}
+.v-image .ov .price ins{color:#ffd7c4}
+.v-image .ov .price del{color:rgba(255,255,255,.65)}
+
+.v-overlay{position:relative;border-radius:14px;overflow:hidden}
+.v-overlay .thumb{aspect-ratio:4/5.3}
+.v-overlay .glass{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;padding:12px;border-radius:12px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px)}
+.v-overlay .glass .mini{margin-top:10px}
+.v-overlay .glass .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.v-overlay .glass .price{font-size:12.5px}
+
+/* showcase blocks */
+.g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pager{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:36px}
+.pager a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;border:1px solid var(--line);color:var(--ink);background:#fff}
+.pager a.on{background:var(--btn);border-color:var(--btn);color:#fff}
+.lists{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.lists h3{margin:0 0 6px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:17px;font-weight:600;color:var(--ink);display:flex;align-items:center;justify-content:space-between}
+.lists h3 a{font-size:12px;color:var(--muted);font-weight:500}
+.li{display:grid;grid-template-columns:60px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed var(--line)}
+.li .thumb{aspect-ratio:4/5;border-radius:7px}
+.li .name{font-size:12.5px;margin-bottom:3px}
+.li .price{font-size:12.5px}
+.li .num{position:absolute;top:4px;left:4px;z-index:1;width:18px;height:18px;border-radius:50%;background:var(--ink);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:600}
+
+/* tabs + filter grid */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:500;color:var(--ink);transition:.15s}
+.tabs button:hover{border-color:var(--ink)}
+.tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabs button em{font-style:normal;opacity:.55;margin-left:4px;font-size:12px}
+.fbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.more{display:flex;justify-content:center;margin-top:34px}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:260px;gap:16px}
+.bento .b-big{grid-column:span 2;grid-row:span 2}
+.bento .b-tall{grid-row:span 2}
+.bento > *{border-radius:16px;overflow:hidden;position:relative}
+.bento .prod .thumb{position:absolute;inset:0}
+.bento .prod .lbl{position:absolute;left:12px;bottom:12px;right:12px;z-index:1;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:10px 12px;border-radius:10px}
+.bento .prod .lbl .mini{margin-top:8px}
+.bento .prod .lbl .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.bento .promo-t{background:var(--btn);color:#eef0e2;padding:26px;display:flex;flex-direction:column}
+.bento .promo-t small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.bento .promo-t h3{margin:10px 0 8px;font-size:30px;line-height:1.08;color:#fff}
+.bento .promo-t p{margin:0;font-size:13px;opacity:.85;line-height:1.5}
+.bento .promo-t a{margin-top:auto;align-self:flex-start;background:#eef0e2;color:var(--btn2-ink);font-weight:600;font-size:13px;padding:10px 16px;border-radius:999px}
+.bento .promo-r{background:var(--accent);color:#fff;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.bento .promo-r b{font-size:46px;line-height:1}
+.bento .promo-r span{font-size:13px;opacity:.9}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.feat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .2s,box-shadow .2s}
+.feat:hover{transform:translateY(-3px);box-shadow:0 20px 40px -28px rgba(35,37,31,.35)}
+.feat .fi{width:40px;height:40px;border-radius:11px;background:#eef0e2;color:var(--btn);display:grid;place-items:center;margin-bottom:16px}
+.feat .fi svg{width:19px;height:19px;stroke-width:1.8}
+.feat b{display:block;color:var(--ink);font-size:15px;margin-bottom:6px}
+.feat p{margin:0;font-size:13px;line-height:1.55}
+.feat .demo{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--ink)}
+.chip.r{background:var(--accent);color:#fff}
+.chip.d{background:var(--ink);color:#fff}
+.chip.g{background:#e3ecd6;color:#3f5a28}
+
+/* query */
+.query{display:grid;grid-template-columns:460px minmax(0,1fr);gap:40px;align-items:center}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 50px -32px rgba(35,37,31,.35)}
+.qcard h4{margin:0 0 16px;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.qrow{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--soft);font-size:13px}
+.qrow > span{color:var(--muted)}
+.qsel{display:flex;gap:6px;flex-wrap:wrap}
+.qsel button{font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink);transition:.15s}
+.qsel button.on{background:var(--btn);border-color:var(--btn);color:#fff}
+.qres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.qres .v-card .name{font-size:12.5px}
+.qmeta{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:13px;color:var(--muted)}
+.qmeta b{color:var(--ink)}
+
+/* devices */
+.devices{display:flex;align-items:flex-end;justify-content:center;gap:28px;flex-wrap:wrap}
+.dev{background:var(--ink);border-radius:18px;padding:10px;box-shadow:0 30px 60px -30px rgba(35,37,31,.5)}
+.dev .scr{background:#fff;border-radius:10px;padding:10px;display:grid;gap:8px;overflow:hidden}
+.dev .scr .thumb{border-radius:6px;aspect-ratio:4/5}
+.dev .scr .l{height:5px;border-radius:3px;background:var(--soft2);margin-top:5px}
+.dev .scr .l.s{width:55%}
+.dev-d{width:560px}.dev-d .scr{grid-template-columns:repeat(4,1fr)}
+.dev-t{width:300px}.dev-t .scr{grid-template-columns:repeat(3,1fr)}
+.dev-m{width:160px;border-radius:24px}.dev-m .scr{grid-template-columns:repeat(2,1fr);border-radius:16px}
+.dev-cap{text-align:center;margin-top:14px;font-size:12.5px;color:var(--muted)}
+.dev-cap b{color:var(--ink);display:block;font-size:14px}
+
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column}
+.quote p{margin:12px 0 22px;color:var(--ink);font-size:15.5px;line-height:1.55}
+.quote .who{margin-top:auto;display:flex;align-items:center;gap:12px;font-size:13px}
+.quote .who i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;color:#fff}
+.quote .who b{display:block;color:var(--ink)}
+.quote .who small{color:var(--muted)}
+
+/* cta + faq */
+.cta-band{background:var(--deep);color:#e9ecdc;border-radius:26px;padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.cta-band::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(184,145,63,.35),transparent 70%)}
+.cta-band h2{margin:0 0 12px;font-size:42px;line-height:1.05;color:#fff}
+.cta-band p{margin:0 0 26px;line-height:1.6;opacity:.85;max-width:460px}
+.cta-band .btn.p{background:#eef0e2;color:var(--deep)}
+.cta-band .btn.p:hover{background:#fff}
+.cta-band .btn.o{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.cta-band ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;position:relative;z-index:1}
+.cta-band li{display:flex;gap:10px;align-items:center;font-size:14px}
+.cta-band li svg{color:#c9d6a5;width:16px;height:16px}
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;gap:20px;font-size:16px;font-weight:500;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:18px;height:18px;transition:transform .2s;color:var(--muted)}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;line-height:1.65;max-width:640px}
+
+/* newsletter + footer */
+.news{background:var(--soft2);text-align:center}
+.news h2{margin:0 0 10px;font-size:30px;color:var(--ink)}
+.news p{margin:0 auto 24px;max-width:430px;line-height:1.55}
+.news form{max-width:460px;margin:0 auto;display:flex;gap:8px}
+.news input{flex:1;height:48px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 18px;font:inherit;color:var(--ink);outline:0;min-width:0}
+.news input:focus{border-color:var(--ink)}
+footer{background:var(--soft);padding:60px 0 24px;font-size:13px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+.fgrid h4{margin:6px 0 14px;font-size:14px;color:var(--ink);font-weight:600}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.fgrid li a:hover{color:var(--accent)}
+.ftag{margin:12px 0 18px;color:var(--ink);font-weight:500}
+.soc{display:flex;gap:8px;margin-bottom:18px}
+.soc a{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);background:#fff}
+.soc a:hover{background:var(--btn);color:#fff;border-color:var(--btn)}
+.disc{color:var(--muted);line-height:1.55;max-width:260px;margin:0;font-size:12.5px}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);flex-wrap:wrap;font-size:12.5px}
+.pay{display:flex;gap:6px;flex-wrap:wrap}
+.pay span{height:24px;padding:0 8px;border-radius:4px;background:#fff;border:1px solid var(--line);font-size:9.5px;font-weight:700;color:var(--ink);display:grid;place-items:center}
+
+/* quick view */
+.modal{position:fixed;inset:0;z-index:80;background:rgba(20,22,16,.5);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.modal.on{display:flex;animation:fi .2s}
+@keyframes fi{from{opacity:0}}
+.mbox{background:#fff;border-radius:20px;max-width:820px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;animation:up .25s cubic-bezier(.2,.8,.3,1)}
+@keyframes up{from{transform:translateY(16px)}}
+.mbox .thumb{aspect-ratio:4/5}
+.mbox .info{padding:34px 30px;display:flex;flex-direction:column}
+.mbox h3{margin:8px 0 8px;font-size:26px;line-height:1.15;color:var(--ink)}
+.mbox .price{font-size:18px;margin:10px 0 16px}
+.mbox p{margin:0 0 20px;line-height:1.6;font-size:13.5px}
+.sizes{display:flex;gap:6px;margin:8px 0 22px}
+.sizes button{width:42px;height:38px;border:1px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink)}
+.sizes button.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.mx{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.mx svg{width:16px;height:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:90;background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-size:13px;transition:.25s;pointer-events:none;display:flex;gap:8px;align-items:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr}
+  .collage{height:470px;max-width:620px;margin:0 auto;width:100%}
+  .lab{grid-template-columns:1fr}
+  .panel{position:static}
+  .g5{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lists,.feats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .query{grid-template-columns:1fr}
+  .cta-band{grid-template-columns:1fr;padding:40px}
+  .fgrid{grid-template-columns:1fr 1fr 1fr}
+  .fgrid > div:first-child{grid-column:1/-1}
+  .dev-d{width:100%;max-width:560px}
+}
+@media (max-width:760px){
+  nav.main,.site .btn.o{display:none}
+  .burger{display:grid;place-items:center;margin-left:auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line)}
+  .burger svg{width:18px;height:18px}
+  section{padding:64px 0}
+  .wrap{padding:0 16px}
+  .hero{padding:44px 0 56px}
+  .hero h1{font-size:42px}
+  .stats{gap:22px}
+  .collage{height:380px}
+  .collage .c1{width:150px;left:0}
+  .collage .c2{width:170px;left:28%}
+  .collage .c3{width:140px}
+  .f3{display:none}
+  .sh h2{font-size:30px}
+  .g5,.g4,.qres{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3,.lists,.feats,.quotes{grid-template-columns:1fr}
+  #live{--cols:2!important}
+  .stage .out{padding:14px}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:180px}
+  .bento .b-big{grid-column:span 2}
+  .mbox{grid-template-columns:1fr;max-height:90vh;overflow:auto}
+  .mbox .thumb{aspect-ratio:4/3}
+  .mbox .info{padding:22px}
+  .cta-band{padding:30px 22px;border-radius:20px}
+  .cta-band h2{font-size:30px}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .news form{flex-direction:column}
+  .dev-t{width:220px}
+}
+</style>
+</head>
+<body>
+
+<div class="promo">Product Grid is here. 12 layouts, one module, zero code. <a href="#try">Try it live</a></div>
+<header class="site"><div class="wrap">
+  <a class="logo" href="#"><i>D</i>DiviMerc</a>
+  <nav class="main"><a href="#layouts">Layouts</a><a href="#try">Try it</a><a href="#features">Features</a><a href="#faq">FAQ</a><a href="#">Docs</a></nav>
+  <a class="btn o sm" href="#">Live demo</a>
+  <a class="btn p sm" href="#get">Buy DiviMerc</a>
+  <button class="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Product Grid module · Divi 5 + WooCommerce</span>
+    <h1 class="serif">Every way to show your products. <em>One module.</em></h1>
+    <p class="lead">Pick a layout, choose your products, set the columns. Badges, swatches, ratings, quick view and pagination are all built in. No code, no extra plugins.</p>
+    <div class="cta"><a class="btn p" href="#get">Get DiviMerc <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn o" href="#layouts">See all layouts</a></div>
+    <div class="stats"><div><b class="serif">12</b><small>Ready layouts</small></div><div><b class="serif">40+</b><small>Design settings</small></div><div><b class="serif">8</b><small>Product queries</small></div></div>
+  </div>
+  <div class="collage" id="collage">
+    <div class="float f1"><div><small>Columns</small>Desktop</div><div class="seg"><i>2</i><i>3</i><i class="on">4</i><i>5</i></div></div>
+    <div class="float f2"><span class="chip r">-17%</span><span class="chip d">New</span><div><small>Badges</small>Auto</div></div>
+    <div class="float f3"><div class="swatches"><i style="background:#4f5a3a"></i><i style="background:#c9692d"></i><i style="background:#23251f"></i></div><div><small>Swatches</small>From variations</div></div>
+  </div>
+</div></section>
+
+<div class="trust"><div class="wrap"><span>Built for the tools you already use</span>
+  <div class="tl"><span>DIVI 5</span><span>WooCommerce</span><span>WPML</span><span>Polylang</span></div></div></div>
+
+<!-- LIVE BUILDER -->
+<section id="try" class="s-soft"><div class="wrap">
+  <div class="sh"><div><span class="eyebrow">Try it live</span><h2 class="serif">Change a setting. Watch the grid follow.</h2></div>
+    <p>This is the same panel you get inside the Divi builder. Every switch here is a real module setting.</p></div>
+  <div class="lab">
+    <aside class="panel">
+      <h4>Product Grid</h4><small>Module settings</small>
+      <div class="ctl"><label>Layout</label><div class="lays" id="lays"></div></div>
+      <div class="ctl"><label>Columns</label><div class="segc" id="cols"><button>2</button><button>3</button><button class="on">4</button><button>5</button></div></div>
+      <div class="ctl"><label>Show</label>
+        <label class="tg">Sale badge<input type="checkbox" data-opt="badge" checked><i></i></label>
+        <label class="tg">Rating<input type="checkbox" data-opt="rating" checked><i></i></label>
+        <label class="tg">Colour swatches<input type="checkbox" data-opt="swatch" checked><i></i></label>
+        <label class="tg">Quick view<input type="checkbox" data-opt="qv" checked><i></i></label>
+        <label class="tg">Button<input type="checkbox" data-opt="btn" checked><i></i></label>
+      </div>
+    </aside>
+    <div class="stage">
+      <div class="bar"><i></i><i></i><i></i><span>yourstore.com/shop</span><span class="code" id="layName">Layout 01 · Classic cards</span></div>
+      <div class="out"><div id="live"></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- LAYOUT 01 -->
+<section id="layouts"><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>01</b> · Classic cards</span><h2 class="serif">New Arrivals</h2></div>
+    <p>Fresh pieces for the new season, from easy everyday tees to soft knits and statement layers.</p></div>
+  <div class="g5" id="l1"></div>
+</div></section>
+
+<!-- LAYOUT 02 -->
+<section class="s-soft"><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>02</b> · Image first + pagination</span><h2 class="serif">Picks For You</h2></div>
+    <p>Hand-picked styles our team loves right now, with a little extra off selected favourites. Tap the eye icon for a quick view.</p></div>
+  <div class="g4" id="l2"></div>
+  <div class="pager" id="pager"><a href="#" class="on">1</a><a href="#">2</a><a href="#">3</a><a href="#" aria-label="Next">›</a></div>
+</div></section>
+
+<!-- LAYOUT 03 -->
+<section><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>03</b> · Horizontal cards</span><h2 class="serif">On Sale Now</h2></div>
+    <p>Wardrobe favourites at lower prices. Grab them while your size is still in stock.</p></div>
+  <div class="g3" id="l3"></div>
+</div></section>
+
+<!-- LAYOUT 04 -->
+<section class="s-soft"><div class="wrap">
+  <div class="sh c"><span class="lay">Layout <b>04</b> · Product lists</span><h2 class="serif">Customer Favourites</h2>
+    <p>See what everyone is wearing, from our bestsellers and top rated pieces to the newest drops.</p></div>
+  <div class="lists" id="l4"></div>
+</div></section>
+
+<!-- LAYOUT 05 -->
+<section><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>05</b> · Detailed</span><h2 class="serif">The Full Story</h2></div>
+    <p>Show the short description, review count and category tag when shoppers need a bit more before they click.</p></div>
+  <div class="g4" id="l5"></div>
+</div></section>
+
+<!-- LAYOUT 06 + 07 -->
+<section class="s-soft"><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>06</b> · Image only, reveal on hover</span><h2 class="serif">Just Dropped</h2></div>
+    <p>Let the photos do the selling. Name and price slide up only when shoppers hover.</p></div>
+  <div class="g4" id="l6"></div>
+  <div class="sh" style="margin-top:80px"><div><span class="lay">Layout <b>07</b> · Glass overlay</span><h2 class="serif">Weekend Edit</h2></div>
+    <p>Name, price and a full-width button sit on a frosted bar over the photo.</p></div>
+  <div class="g4" id="l7"></div>
+</div></section>
+
+<!-- LAYOUT 08 : tabs + load more -->
+<section><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>08</b> · Category tabs + load more</span><h2 class="serif">Shop by Category</h2></div>
+    <p>Tabs filter the grid instantly, without a page reload. Load more keeps shoppers scrolling.</p></div>
+  <div class="fbar"><div class="tabs" id="tabs"></div></div>
+  <div class="g4" id="l8"></div>
+  <div class="more"><button class="btn o" id="loadMore">Load more</button></div>
+</div></section>
+
+<!-- LAYOUT 09 : bento -->
+<section class="s-soft"><div class="wrap">
+  <div class="sh"><div><span class="lay">Layout <b>09</b> · Bento with promo tiles</span><h2 class="serif">The Autumn Edit</h2></div>
+    <p>Mix products with promo tiles in an editorial grid. Any tile can be a product, an image or your own content.</p></div>
+  <div class="bento" id="l9"></div>
+</div></section>
+
+<!-- FEATURES -->
+<section id="features"><div class="wrap">
+  <div class="sh c"><span class="eyebrow">Built in</span><h2 class="serif">Everything a product grid needs</h2><p>No add-ons to buy, no shortcodes to paste. Turn each part on or off from the module.</p></div>
+  <div class="feats" id="feats"></div>
+</div></section>
+
+<!-- QUERY -->
+<section class="s-soft"><div class="wrap">
+  <div class="query">
+    <div>
+      <span class="eyebrow">Smart queries</span>
+      <h2 class="serif" style="font-size:40px;line-height:1.08;color:var(--ink);margin:10px 0 14px">Show exactly the right products</h2>
+      <p style="line-height:1.6;margin:0 0 24px;font-size:15px">Pick a source, narrow it down, choose an order. The grid updates on its own when you add products or change stock.</p>
+      <div class="qcard">
+        <h4><svg viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Content</h4>
+        <div class="qrow"><span>Source</span><div class="qsel" data-q="src"><button class="on" data-v="all">All</button><button data-v="sale">On sale</button><button data-v="best">Best sellers</button><button data-v="new">Newest</button></div></div>
+        <div class="qrow"><span>Category</span><div class="qsel" data-q="cat"><button class="on" data-v="any">Any</button><button data-v="tops">Tops</button><button data-v="outer">Outerwear</button><button data-v="bottoms">Bottoms</button></div></div>
+        <div class="qrow"><span>Order by</span><div class="qsel" data-q="ord"><button class="on" data-v="pop">Popular</button><button data-v="price">Price</button><button data-v="name">Name</button></div></div>
+        <div class="qrow"><span>Limit</span><div class="qsel" data-q="lim"><button data-v="4" class="on">4</button><button data-v="8">8</button></div></div>
+      </div>
+    </div>
+    <div><div class="qmeta"><span class="chip g" id="qCount">11 products</span><span id="qDesc">All products, most popular first</span></div><div class="qres" id="qres"></div></div>
+  </div>
+</div></section>
+
+<!-- RESPONSIVE -->
+<section><div class="wrap">
+  <div class="sh c"><span class="eyebrow">Responsive</span><h2 class="serif">Set columns per device</h2><p>Four on desktop, three on tablet, two on phones. Or any mix you like. Gaps and image sizes adjust too.</p></div>
+  <div class="devices" id="devices"></div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="s-soft"><div class="wrap">
+  <div class="sh c"><span class="eyebrow">Loved by store owners</span><h2 class="serif">Built a shop page in an afternoon</h2></div>
+  <div class="quotes">
+    <div class="quote"><div class="stars">★★★★★</div><p>“I replaced three plugins with one module. The swatches alone were worth it, they just pick up my variations.”</p><div class="who"><i style="background:#4f5a3a">MR</i><div><b>Maya R.</b><small>Linen & Loom</small></div></div></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>“Switching between layouts is one click. I tried six on our homepage before lunch and kept the bento one.”</p><div class="who"><i style="background:#9c4a2f">DK</i><div><b>Daniel K.</b><small>Northfold Studio</small></div></div></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>“Clients edit it themselves now. It looks like a custom theme, but it's all settings they can understand.”</p><div class="who"><i style="background:#b8913f">SA</i><div><b>Sofia A.</b><small>Agency owner</small></div></div></div>
+  </div>
+</div></section>
+
+<!-- CTA + FAQ -->
+<section id="get"><div class="wrap">
+  <div class="cta-band">
+    <div><h2 class="serif">Make your shop look as good as your products.</h2>
+      <p>Product Grid comes with DiviMerc, along with 40+ other WooCommerce modules for Divi 5.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn p" href="#">Get DiviMerc</a><a class="btn o" href="#">View live demo</a></div></div>
+    <ul>
+      <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>12 grid layouts plus carousels and lists</li>
+      <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Quick view, swatches and badges</li>
+      <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Pagination, load more or infinite scroll</li>
+      <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Lifetime updates on the lifetime plan</li>
+    </ul>
+  </div>
+  <div class="sh c" id="faq" style="margin-top:96px"><span class="eyebrow">FAQ</span><h2 class="serif">Questions, answered</h2></div>
+  <div class="faq">
+    <details open><summary>Does it work with my theme?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. Product Grid is a Divi 5 module, so it works anywhere the Divi builder does: pages, the Theme Builder and shop templates.</p></details>
+    <details><summary>Can I use my own card design?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary><p>Start from any layout and change spacing, borders, colours, fonts and hover effects. You can also save your version as a new layout and reuse it.</p></details>
+    <details><summary>Will it slow my store down?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary><p>Only the CSS and JavaScript for the parts you turn on are loaded, and images are lazy loaded with the right size for each column count.</p></details>
+    <details><summary>Do swatches need another plugin?<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. Swatches are read from your product variations. Colour attributes show as dots, others as small labels.</p></details>
+  </div>
+</div></section>
+
+<section class="news"><div class="wrap">
+  <h2 class="serif">Sign up &amp; save 10%</h2>
+  <p>Get 10% off your first order plus early access to new arrivals, exclusive offers and updates from DiviMerc.</p>
+  <form id="news"><input type="email" placeholder="Email address" aria-label="Email address" required><button class="btn p" type="submit">Subscribe</button></form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><a class="logo" href="#"><i>D</i>DiviMerc</a><p class="ftag">All-in-One Divi WooCommerce Plugin</p>
+      <div class="soc"><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 3h-2a4 4 0 0 0-4 4v3H7v3h2v8h3v-8h3l1-3h-4V7a1 1 0 0 1 1-1h2z"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></a><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></a></div>
+      <p class="disc">Divi is a registered trademark of Elegant Themes, Inc. This website is not affiliated with nor endorsed by Elegant Themes.</p></div>
+    <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">WordPress SEO Service</a></li><li><a href="#">Contact</a></li><li><a href="#">Community</a></li></ul></div>
+    <div><h4>Special Features</h4><ul><li><a href="#">Variation Swatches</a></li><li><a href="#">Video &amp; 3D Gallery</a></li><li><a href="#">Custom Tabs</a></li><li><a href="#">Product Badges</a></li><li><a href="#">Size Chart</a></li></ul></div>
+    <div><h4>Our Products</h4><ul><li><a href="#">DiviFlash</a></li><li><a href="#">DiviEssential</a></li><li><a href="#">DiviBlox</a></li><li><a href="#">DiviShop</a></li><li><a href="#">DiviForms</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 DiviMerc. All rights reserved.</span><div class="pay"><span>VISA</span><span>PayPal</span><span>AMEX</span><span>MC</span><span>STRIPE</span><span>DISCOVER</span><span>GPAY</span></div></div>
+</div></footer>
+
+<div class="modal" id="qvm" role="dialog" aria-modal="true" aria-label="Quick view"><div class="mbox" id="qvb"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const U = (id, w = 500, h = 620) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&q=72&auto=format&fit=crop`;
+const P = {
+  tee:      {n:"Women's Casual T-Shirt",           img:'1503342217505-b0a15ec3261c', p:'$100.00 – $120.00', v:100, c:'tops',    r:5, rc:24},
+  hoodie:   {n:'Campus Fleece Full-Zip Hoodie',     img:'1578587018452-892bacefd3f2', p:'$200.00 – $359.55', v:200, c:'outer',   r:4, rc:18},
+  trouser:  {n:'High Waisted Tie Back Trouser',     img:'1594633312681-425c7b97ccd1', p:'$229.55 – $359.55', v:229, c:'bottoms', r:5, rc:11},
+  amelie:   {n:'Amélie Midi Dress',                 img:'1572804013309-59a88b7e92f1', p:'$120.00 – $520.00', v:120, c:'dresses', r:5, rc:37, nw:1},
+  cashmere: {n:'Cashmere Longline Feather',         img:'1485968579580-b6d095142e6e', was:'$120.00', p:'$100.00', v:100, c:'outer', r:4, rc:9},
+  bomber:   {n:'Cropped Nylon Bomber Jacket',       img:'1591047139829-d91aecb6caea', was:'$120.00', p:'$100.00', v:100, c:'outer', r:4, rc:15},
+  halter:   {n:'Cinched Halter Tank Top',           img:'1495385794356-15371f348c31', was:'$120.00', p:'$100.00', v:100, c:'tops', r:4, rc:6, nw:1},
+  polo:     {n:'Relaxed Essential Polo Sweatshirt', img:'1620799140408-edc6dcb6d633', was:'$120.00', p:'$100.00', v:100, c:'tops', r:5, rc:21},
+  luna:     {n:'Luna Cropped Shirt',                img:'1564257631407-4deb1f99d992', was:'$120.00', p:'$100.00', v:100, c:'tops', r:4, rc:13, nw:1},
+  aerie:    {n:'Aerie Sunday Soft Cardigan',        img:'1434389677669-e08b4cac3105', was:'$120.00', p:'$100.00', v:100, c:'outer', r:5, rc:28},
+  backpack: {n:'The North Face Backpack',           img:'1553062407-98eeb64c6a62',    was:'$120.00', p:'$100.00', v:100, c:'bags', r:4, rc:8},
+};
+const DESC = {
+  tee:'A soft cotton tee with a relaxed fit that works on its own or under a jacket.', hoodie:'Brushed fleece inside, a full zip and deep pockets for cold campus mornings.',
+  trouser:'High waisted and wide, with a tie back that cinches the waist.', amelie:'A flowing midi with a wrap front and a skirt that moves when you walk.',
+  cashmere:'A long, light cashmere coat with a soft feather-touch finish.', bomber:'A cropped bomber in crisp nylon with ribbed cuffs and hem.',
+  halter:'A fitted halter tank with a cinched front. Easy to dress up or down.', polo:'A heavyweight polo sweatshirt with a relaxed, roomy fit.',
+  luna:'A boxy cropped shirt in light cotton with a camp collar.', aerie:'A soft rib-knit cardigan you will live in all weekend.', backpack:'A sturdy everyday pack with a padded laptop sleeve.',
+};
+const SW = {tee:['#23251f','#f3f2ec','#c9a98a'],hoodie:['#9bd36a','#4f5a3a','#23251f'],trouser:['#d9a79a','#23251f'],amelie:['#b8322a','#e7d3b0'],
+  cashmere:['#2f3a3a','#a88f6c'],bomber:['#a5603a','#4f5a3a','#23251f'],halter:['#1f7b84','#23251f'],polo:['#2f4b3a','#f3f2ec'],
+  luna:['#f3f2ec','#9fb0c9'],aerie:['#efe4cf','#a88f6c'],backpack:['#c9a98a','#1f2a44','#23251f']};
+const I = {
+  cart:'<svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>',
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>',
+  eye:'<svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+  x:'<svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  check:'<svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>',
+};
+const price = x => `<div class="price">${x.was ? `<del>${x.was}</del><ins>${x.p}</ins>` : x.p}</div>`;
+const stars = (n, rc) => `<div class="stars">${'★'.repeat(n)}<s>${'★'.repeat(5 - n)}</s>${rc ? `<span class="rc">(${rc})</span>` : ''}</div>`;
+const sw = k => `<div class="swatches">${SW[k].map(c => `<i style="background:${c}"></i>`).join('')}</div>`;
+const badge = x => x.was ? '<span class="badge">-17%</span>' : x.nw ? '<span class="badge new">New</span>' : '';
+const cta = x => x.was ? 'Add to cart' : 'Select options';
+const img = (x, w, h) => `<img src="${U(x.img, w, h)}" alt="${x.n}">`;
+const qvI = k => `<button class="qvi" data-qv="${k}" aria-label="Quick view" title="Quick view">${I.eye}</button>`;
+
+/* ---------- card renderers (one per layout) ---------- */
+const R = {
+  classic: (k, o = {}) => { const x = P[k]; return `<div class="v-classic prod"><div class="thumb">${o.badge !== false ? badge(x) : ''}${o.qv !== false ? qvI(k) : ''}${img(x)}</div>
+    <div class="name">${x.n}</div>${o.rating !== false ? stars(x.r) : ''}${o.swatch !== false ? sw(k) : ''}${price(x)}${o.btn !== false ? `<button class="pill" data-add="${k}">${cta(x)}</button>` : ''}</div>`; },
+  card: (k, o = {}) => { const x = P[k]; return `<div class="v-card prod"><div class="thumb">${o.badge !== false ? badge(x) : ''}${o.qv !== false ? qvI(k) : ''}${img(x)}</div>
+    <div class="name">${x.n}</div>${o.rating !== false ? stars(x.r) : ''}${o.swatch !== false ? sw(k) : ''}${price(x)}${o.btn !== false ? `<button class="sq" data-add="${k}">${I.cart}${cta(x)}</button>` : ''}</div>`; },
+  row: (k, o = {}) => { const x = P[k]; return `<div class="v-row prod"><div class="thumb">${o.badge !== false ? badge(x) : ''}${img(x, 240, 300)}</div><div>
+    <div class="name">${x.n}</div>${o.rating !== false ? stars(x.r) : ''}${o.swatch !== false ? sw(k) : ''}${price(x)}${o.btn !== false ? `<button class="mini" data-add="${k}">${cta(x)}</button>` : ''}</div></div>`; },
+  detail: (k, o = {}) => { const x = P[k]; return `<div class="v-detail prod"><div class="thumb"><span class="tag">${x.c[0].toUpperCase() + x.c.slice(1)}</span>${o.qv !== false ? qvI(k) : ''}${img(x)}</div>
+    <div class="name">${x.n}</div>${o.rating !== false ? stars(x.r, x.rc) : ''}<p>${DESC[k]}</p>${o.swatch !== false ? `<div style="margin-bottom:8px">${sw(k)}</div>` : ''}${price(x)}${o.btn !== false ? `<button class="pill dk" data-add="${k}" style="margin-top:12px">${cta(x)}</button>` : ''}</div>`; },
+  image: (k, o = {}) => { const x = P[k]; return `<div class="v-image prod"><div class="thumb">${o.badge !== false ? badge(x) : ''}${o.qv !== false ? qvI(k) : ''}${img(x, 500, 660)}</div>
+    <div class="ov"><div class="name">${x.n}</div>${price(x)}</div></div>`; },
+  overlay: (k, o = {}) => { const x = P[k]; return `<div class="v-overlay prod"><div class="thumb">${o.badge !== false ? badge(x) : ''}${o.qv !== false ? qvI(k) : ''}${img(x, 500, 660)}</div>
+    <div class="glass"><div class="name">${x.n}</div>${price(x)}${o.btn !== false ? `<button class="mini" data-add="${k}">${cta(x)}</button>` : ''}</div></div>`; },
+};
+
+/* hero collage */
+$('#collage').insertAdjacentHTML('beforeend', [['c1', 'hoodie'], ['c2', 'amelie'], ['c3', 'bomber']].map(([c, k]) => { const x = P[k];
+  return `<div class="c ${c}"><div class="thumb">${badge(x)}${img(x)}</div><div class="name">${x.n}</div>${price(x)}</div>`; }).join(''));
+
+/* ---------- live builder ---------- */
+const LAYS = [
+  ['classic', '01', 'Classic cards', [[1,1,1]]], ['card', '02', 'Image first', [[1,1,1]]], ['row', '03', 'Horizontal', [[1],[1]]],
+  ['detail', '05', 'Detailed', [[1,1]]], ['image', '06', 'Image only', [[1,1,1]]], ['overlay', '07', 'Glass overlay', [[1,1]]],
+];
+const live = { lay: 'classic', cols: 4, o: { badge: true, rating: true, swatch: true, qv: true, btn: true } };
+$('#lays').innerHTML = LAYS.map(([k, n, t, ic], i) => `<button class="${i ? '' : 'on'}" data-lay="${k}"><div class="ic" style="grid-template-columns:repeat(${ic[0].length},1fr)">${ic.flat().map(() => '<i></i>').join('')}</div>${t}</button>`).join('');
+function renderLive(fade) {
+  const g = $('#live'), go = () => {
+    const isRow = live.lay === 'row', cols = isRow ? Math.min(live.cols, 2) : live.cols;
+    g.style.setProperty('--cols', cols);
+    g.innerHTML = ['amelie', 'cashmere', 'hoodie', 'bomber', 'luna', 'aerie', 'polo', 'halter', 'tee', 'backpack'].slice(0, isRow ? 6 : cols * 2).map(k => R[live.lay](k, live.o)).join('');
+    const L = LAYS.find(l => l[0] === live.lay); $('#layName').textContent = `Layout ${L[1]} · ${L[2]}`;
+    g.classList.remove('fading');
+  };
+  if (!fade) return go();
+  g.classList.add('fading'); setTimeout(go, 160);
+}
+$('#lays').onclick = e => { const b = e.target.closest('[data-lay]'); if (!b) return; $$('#lays button').forEach(x => x.classList.toggle('on', x === b)); live.lay = b.dataset.lay; renderLive(true); };
+$('#cols').onclick = e => { const b = e.target.closest('button'); if (!b) return; $$('#cols button').forEach(x => x.classList.toggle('on', x === b)); live.cols = +b.textContent; renderLive(true); };
+$$('[data-opt]').forEach(c => c.onchange = () => { live.o[c.dataset.opt] = c.checked; renderLive(); });
+renderLive();
+
+/* ---------- showcase rows ---------- */
+$('#l1').innerHTML = ['tee', 'hoodie', 'trouser', 'amelie', 'bomber', 'halter', 'polo', 'luna', 'backpack', 'aerie'].map(k => R.classic(k)).join('');
+const L2 = [['amelie', 'luna', 'cashmere', 'aerie', 'bomber', 'backpack', 'halter', 'polo'], ['tee', 'hoodie', 'trouser', 'polo', 'aerie', 'luna', 'amelie', 'bomber'], ['halter', 'backpack', 'cashmere', 'tee', 'hoodie', 'trouser', 'luna', 'aerie']];
+const page2 = n => { $('#l2').innerHTML = L2[n].map(k => R.card(k, { swatch: false, rating: false })).join(''); };
+page2(0);
+$('#pager').onclick = e => { e.preventDefault(); const a = e.target.closest('a'); if (!a) return; const as = $$('#pager a'); let n = as.indexOf(a); const cur = as.findIndex(x => x.classList.contains('on'));
+  if (n === 3) n = (cur + 1) % 3; as.forEach((x, i) => x.classList.toggle('on', i === n)); page2(n); $('#l2').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
+$('#l3').innerHTML = ['amelie', 'luna', 'cashmere', 'aerie', 'bomber', 'backpack', 'halter', 'polo', 'hoodie'].map(k => R.row(k, { swatch: false })).join('');
+const LISTS = [['Top Selling', ['tee', 'hoodie', 'trouser', 'polo']], ['Trending', ['amelie', 'luna', 'cashmere', 'bomber']], ['Recently Added', ['halter', 'luna', 'amelie', 'aerie']], ['Top Rated', ['amelie', 'tee', 'polo', 'aerie']]];
+$('#l4').innerHTML = LISTS.map(([t, ks], li) => `<div><h3>${t}<a href="#">View all</a></h3>${ks.map((k, i) => { const x = P[k];
+  return `<a class="li prod" href="#"><div class="thumb">${li === 0 ? `<span class="num">${i + 1}</span>` : ''}${img(x, 160, 200)}</div><div><div class="name">${x.n}</div>${stars(x.r)}${price(x)}</div></a>`; }).join('')}</div>`).join('');
+$('#l5').innerHTML = ['tee', 'hoodie', 'trouser', 'amelie', 'cashmere', 'bomber', 'halter', 'polo'].map(k => R.detail(k)).join('');
+$('#l6').innerHTML = ['amelie', 'luna', 'cashmere', 'aerie'].map(k => R.image(k)).join('');
+$('#l7').innerHTML = ['bomber', 'polo', 'hoodie', 'halter'].map(k => R.overlay(k)).join('');
+
+/* tabs + load more */
+const CATS = [['all', 'All'], ['tops', 'Tops'], ['outer', 'Outerwear'], ['bottoms', 'Bottoms'], ['dresses', 'Dresses'], ['bags', 'Bags']];
+const keys = Object.keys(P);
+let cat = 'all', shown = 4;
+$('#tabs').innerHTML = CATS.map(([v, t], i) => `<button class="${i ? '' : 'on'}" data-cat="${v}">${t}<em>${v === 'all' ? keys.length : keys.filter(k => P[k].c === v).length}</em></button>`).join('');
+function renderL8() {
+  let list = keys.filter(k => cat === 'all' || P[k].c === cat);
+  list.sort((a, b) => P[b].rc - P[a].rc);
+  $('#l8').innerHTML = list.slice(0, shown).map(k => R.card(k, { rating: true, swatch: true })).join('');
+  const n = Math.min(shown, list.length);
+  $('#loadMore').style.display = n < list.length ? '' : 'none';
+}
+$('#tabs').onclick = e => { const b = e.target.closest('[data-cat]'); if (!b) return; $$('#tabs button').forEach(x => x.classList.toggle('on', x === b)); cat = b.dataset.cat; shown = 4; renderL8(); };
+$('#loadMore').onclick = () => { shown += 4; renderL8(); };
+renderL8();
+
+/* bento */
+const bp = (k, cls = '') => { const x = P[k]; return `<div class="prod ${cls}"><div class="thumb">${badge(x)}${qvI(k)}${img(x, 700, 800)}</div><div class="lbl"><div class="name">${x.n}</div>${price(x)}<button class="mini" data-add="${k}">${cta(x)}</button></div></div>`; };
+$('#l9').innerHTML = bp('cashmere', 'b-big') + `<div class="promo-t"><small>New season</small><h3 class="serif">Layers for cooler days</h3><p>Soft knits, long coats and the jacket you'll wear all autumn.</p><a href="#">Shop the edit</a></div>`
+  + bp('aerie', 'b-tall') + bp('bomber') + `<div class="promo-r"><b class="serif">-17%</b><span>On selected outerwear this week only</span></div>` + bp('polo') + bp('luna') + bp('halter');
+
+/* features */
+const FEATS = [
+  ['Sale & stock badges', 'Show percent off, New, Low stock or your own label. Each one has its own colour.', '<path d="M20 12 12 20l-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.3"/>', '<span class="chip r">-17%</span><span class="chip d">New</span><span class="chip g">Low stock</span>'],
+  ['Colour swatches', 'Pulled straight from your product variations. Click a dot to switch the photo.', '<circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/>', sw('hoodie')],
+  ['Quick view', 'An eye icon on every card opens sizes, photos and price in a popup. Add to cart without leaving the page.', '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', '<button class="chip" data-qv="amelie">Open a quick view →</button>'],
+  ['Columns per device', 'Set a different column count and gap for desktop, tablet and phone.', '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/>', '<span class="chip d">4</span><span class="chip">3</span><span class="chip">2</span>'],
+  ['Pagination options', 'Numbered pages, a load more button or infinite scroll.', '<path d="M4 12h3M10.5 12h3M17 12h3"/>', '<span class="chip d">1</span><span class="chip">2</span><span class="chip">3</span><span class="chip">Load more</span>'],
+  ['Category tabs', 'Filter the grid by category or tag with tabs that don\'t reload the page.', '<rect x="3" y="5" width="7" height="5" rx="1.5"/><rect x="12" y="5" width="9" height="5" rx="1.5"/><path d="M3 14h18v5H3z"/>', '<span class="chip d">All</span><span class="chip">Tops</span><span class="chip">Bags</span>'],
+  ['Hover effects', 'Zoom, show a second photo, lift the card or slide up the details.', '<path d="M4 4l7 17 2.5-7.5L21 11z"/>', '<span class="chip">Zoom</span><span class="chip">Swap image</span><span class="chip">Lift</span>'],
+  ['Every detail is styleable', 'Spacing, borders, radius, shadows, fonts and colours, with hover states for each.', '<circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/>', '<span class="chip">40+ settings</span>'],
+];
+$('#feats').innerHTML = FEATS.map(([t, d, ic, demo]) => `<div class="feat reveal"><span class="fi"><svg viewBox="0 0 24 24">${ic}</svg></span><b>${t}</b><p>${d}</p><div class="demo">${demo}</div></div>`).join('');
+
+/* query demo */
+const Q = { src: 'all', cat: 'any', ord: 'pop', lim: 4 };
+const QTXT = { src: { all: 'All products', sale: 'Products on sale', best: 'Best sellers', new: 'Newest products' }, cat: { any: '', tops: 'in Tops', outer: 'in Outerwear', bottoms: 'in Bottoms' }, ord: { pop: 'most popular first', price: 'cheapest first', name: 'A to Z' } };
+function renderQ() {
+  let l = keys.filter(k => (Q.src !== 'sale' || P[k].was) && (Q.src !== 'new' || P[k].nw) && (Q.cat === 'any' || P[k].c === Q.cat));
+  if (Q.src === 'best' || Q.ord === 'pop') l.sort((a, b) => P[b].rc - P[a].rc);
+  if (Q.ord === 'price') l.sort((a, b) => P[a].v - P[b].v);
+  if (Q.ord === 'name') l.sort((a, b) => P[a].n.localeCompare(P[b].n));
+  $('#qCount').textContent = `${l.length} product${l.length === 1 ? '' : 's'}`;
+  $('#qDesc').textContent = [QTXT.src[Q.src], QTXT.cat[Q.cat]].filter(Boolean).join(' ') + ', ' + QTXT.ord[Q.ord];
+  $('#qres').innerHTML = l.length ? l.slice(0, Q.lim).map(k => R.card(k, { btn: false, swatch: false, rating: false, qv: false })).join('') : '<p style="grid-column:1/-1;color:var(--muted)">No products match. The module shows your “nothing found” message here.</p>';
+}
+$$('.qsel').forEach(g => g.onclick = e => { const b = e.target.closest('button'); if (!b) return; g.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); Q[g.dataset.q] = isNaN(b.dataset.v) ? b.dataset.v : +b.dataset.v; renderQ(); });
+renderQ();
+
+/* devices */
+const dv = (cls, n, ks, cap, sub) => `<div><div class="dev ${cls}"><div class="scr">${ks.slice(0, n).map(k => `<div><div class="thumb">${img(P[k], 200, 250)}</div><div class="l"></div><div class="l s"></div></div>`).join('')}</div></div><div class="dev-cap"><b>${cap}</b>${sub}</div></div>`;
+const DK = ['amelie', 'hoodie', 'bomber', 'luna', 'aerie', 'polo', 'tee', 'halter'];
+$('#devices').innerHTML = dv('dev-d', 8, DK, 'Desktop', '4 columns') + dv('dev-t', 6, DK, 'Tablet', '3 columns') + dv('dev-m', 4, DK, 'Phone', '2 columns');
+
+/* ---------- interactions ---------- */
+let tt; function toast(m) { const t = $('#toast'); t.innerHTML = I.check + m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2200); }
+function quick(k) {
+  const x = P[k];
+  $('#qvb').innerHTML = `<button class="mx" data-close aria-label="Close">${I.x}</button><div class="thumb">${img(x, 800, 1000)}</div><div class="info">
+    ${stars(x.r, x.rc)}<h3 class="serif">${x.n}</h3>${price(x)}<p>${DESC[k]}</p>
+    <div style="font-size:12px;font-weight:600;color:var(--ink)">Colour</div><div style="margin:8px 0 18px">${sw(k)}</div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink)">Size</div><div class="sizes">${['XS', 'S', 'M', 'L', 'XL'].map((s, i) => `<button class="${i === 2 ? 'on' : ''}">${s}</button>`).join('')}</div>
+    <button class="sq" data-add="${k}" style="margin-top:auto;border-radius:999px;height:46px">${I.cart}Add to cart</button></div>`;
+  $('#qvm').classList.add('on'); $('#qvb .mx').focus();
+}
+document.addEventListener('click', e => {
+  const q = e.target.closest('[data-qv]'); if (q) { e.preventDefault(); return quick(q.dataset.qv); }
+  const a = e.target.closest('[data-add]'); if (a) { e.preventDefault(); $('#qvm').classList.remove('on'); return toast(`${P[a.dataset.add].n} added to cart`); }
+  const s = e.target.closest('.sizes button'); if (s) { s.parentNode.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === s)); return; }
+  if (e.target.closest('[data-close]') || e.target.id === 'qvm') $('#qvm').classList.remove('on');
+  if (e.target.closest('a[href="#"]')) e.preventDefault();
+});
+addEventListener('keydown', e => { if (e.key === 'Escape') $('#qvm').classList.remove('on'); });
+$('#news').onsubmit = e => { e.preventDefault(); e.target.reset(); toast('Thanks! Check your inbox for 10% off'); };
+
+/* reveal on scroll */
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -60px' }) : null;
+$$('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+</script>
+</body>
+</html>
