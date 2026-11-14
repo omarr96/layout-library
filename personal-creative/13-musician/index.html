@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOVA · DJ &amp; Producer</title>
+<meta name="description" content="NOVA, DJ and electronic producer. New album 'Afterglow' out now. Tour dates, videos and booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #07060c; --kt-ink: #fff; --kt-tx: #b3aec9; --kt-mut: #6e6886; --kt-line: rgba(255,255,255,.1); --kt-accent: #ff3cac; --kt-accent-ink: #fff; --v: #7b2ff7; --c: #2bd2ff; --card: #110f1c; }
+body { font: 16px/1.65 Inter, system-ui, sans-serif; }
+.sy { font-family: Syne, sans-serif; font-weight: 800; letter-spacing: -.035em; text-transform: uppercase; line-height: .88; }
+.mono { font-family: 'Space Mono', monospace; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+.tg { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--c); letter-spacing: .08em; text-transform: uppercase; }
+.grad { background: linear-gradient(90deg, var(--accent, #ff3cac), #7b2ff7 50%, #2bd2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2.h { font-size: clamp(48px, 8vw, 120px); color: #fff; margin: 12px 0 24px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 99px; font-weight: 600; font-size: 15px; transition: .25s; }
+.btn.gr { background: linear-gradient(90deg, #ff3cac, #7b2ff7); color: #fff; box-shadow: 0 10px 30px -10px rgba(255,60,172,.6); }
+.btn.gr:hover { transform: translateY(-2px); box-shadow: 0 14px 40px -10px rgba(255,60,172,.8); }
+.btn.gl { border: 1px solid rgba(255,255,255,.25); color: #fff; } .btn.gl:hover { border-color: var(--c); color: var(--c); }
+section { padding: 120px 0; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 84px; }
+.nav.scrolled { background: rgba(7,6,12,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--kt-line); }
+.logo { font-family: Syne, sans-serif; font-weight: 800; font-size: 28px; color: #fff; letter-spacing: -.04em; }
+.kt-menu { display: flex; gap: 30px; margin-left: auto; }
+.kt-menu a { font-family: 'Space Mono', monospace; font-size: 13.5px; text-transform: uppercase; color: #ddd; }
+.kt-menu a:hover { color: var(--accent, #ff3cac); }
+.nav .btn { height: 44px; padding: 0 20px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 120px 0 80px; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .38; mix-blend-mode: screen; filter: grayscale(.4); }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(123,47,247,.55), transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,60,172,.45), transparent 50%), radial-gradient(circle at 60% 20%, rgba(43,210,255,.25), transparent 40%); animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: scale(1.15) translate(-3%, 2%); } }
+.hero .wrap { position: relative; z-index: 1; width: 100%; }
+.hero h1 { font-size: clamp(80px, 17vw, 250px); margin: 0; color: #fff; overflow-wrap: normal; white-space: nowrap; }
+.hero .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-top: 26px; }
+.hero p { font-size: 19px; max-width: 460px; margin: 0; color: #ddd; }
+.hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.eq { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 120px; display: flex; align-items: flex-end; gap: 4px; padding: 0 28px; opacity: .55; }
+.eq i { flex: 1; background: linear-gradient(0deg, #ff3cac, #7b2ff7, #2bd2ff); border-radius: 3px 3px 0 0; animation: eq 1.2s ease-in-out infinite; transform-origin: bottom; }
+@keyframes eq { 0%, 100% { transform: scaleY(.15); } 50% { transform: scaleY(1); } }
+
+/* marquee */
+.mq { background: linear-gradient(90deg, #ff3cac, #7b2ff7, #2bd2ff); color: #fff; padding: 18px 0; }
+.mq .kt-mq-track span { font-family: Syne, sans-serif; font-weight: 800; font-size: 40px; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.mq .kt-mq-track span::after { content: "✦"; font-size: 22px; }
+
+/* release */
+.rel .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+.cover { position: relative; aspect-ratio: 1; }
+.cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; position: relative; z-index: 2; box-shadow: 0 40px 80px -30px rgba(255,60,172,.5); }
+.cover .vinyl { position: absolute; z-index: 1; top: 4%; right: -14%; width: 92%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #ff3cac 0 9%, #111 9.5% 10%, #0d0d0d 10% 100%), repeating-radial-gradient(circle, #151515 0 2px, #0b0b0b 2px 4px); background-blend-mode: normal; animation: kt-spin 6s linear infinite; }
+.cover .vinyl::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 3px, rgba(255,255,255,.04) 3px 4px); }
+@keyframes kt-spin { to { transform: rotate(360deg); } }
+.rel h2.h { font-size: clamp(40px, 4vw, 60px); }
+.feat .kt-audio { --kt-audio-bg: var(--card); --kt-audio-ink: #fff; max-width: none; margin: 26px 0 30px; }
+.tracks { border-top: 1px solid var(--kt-line); }
+.tr { display: grid; grid-template-columns: 36px 1fr auto; gap: 16px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--kt-line); }
+.tr .n { font-family: 'Space Mono', monospace; color: var(--kt-mut); font-size: 13px; }
+.tr .kt-audio { background: none; padding: 6px 0; gap: 12px; max-width: none; }
+.tr .kt-audio .kt-a-btn { width: 36px; height: 36px; }
+.tr .kt-audio .kt-a-btn svg { width: 14px; height: 14px; }
+.tr .kt-audio input { display: none; }
+.tr .kt-audio .kt-a-t b { font-size: 15.5px; }
+.tr .dur { font-family: 'Space Mono', monospace; color: var(--kt-mut); font-size: 13px; }
+.stream { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.stream a { height: 44px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--kt-line); display: inline-flex; align-items: center; font-weight: 600; font-size: 14px; color: #fff; }
+.stream a:hover { border-color: var(--c); }
+
+/* tour */
+.tour { background: var(--card); }
+.th { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.ttabs { display: flex; gap: 6px; }
+.ttabs button { height: 42px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--kt-line); font-family: 'Space Mono', monospace; font-size: 13px; text-transform: uppercase; color: #ddd; }
+.ttabs button.on { background: #fff; color: #07060c; }
+.dates { margin-top: 30px; }
+.dt { display: grid; grid-template-columns: 120px 1.3fr 1fr auto; gap: 24px; align-items: center; padding: 24px 0; border-top: 1px solid var(--kt-line); transition: background .2s, padding .2s; }
+.dt:hover { background: rgba(255,255,255,.03); padding-left: 14px; padding-right: 14px; }
+.dt .d { font-family: Syne, sans-serif; font-weight: 800; font-size: 34px; color: #fff; line-height: 1; text-transform: uppercase; }
+.dt .d small { display: block; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--kt-mut); font-weight: 400; margin-top: 4px; }
+.dt b { color: #fff; font-size: 19px; display: block; }
+.dt .st { font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; border: 1px solid; }
+.dt .st.low { color: #fbbf24; } .dt .st.out { color: var(--kt-mut); }
+.dt .btn { height: 44px; padding: 0 20px; font-size: 14px; }
+.dt.soldout { opacity: .45; }
+
+/* videos */
+.vg { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; margin-top: 40px; height: 600px; }
+.vc { position: relative; overflow: hidden; border-radius: 10px; display: block; }
+.vc:first-child { grid-row: span 2; }
+.vc img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.vc:hover img { transform: scale(1.05); }
+.vc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.8)); }
+.vc .pl { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.4); display: grid; place-items: center; color: #fff; transition: transform .3s, background .3s; }
+.vc:hover .pl { transform: translate(-50%, -50%) scale(1.12); background: var(--kt-accent); }
+.vc .pl svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
+.vc .c { position: absolute; z-index: 1; left: 20px; bottom: 18px; }
+.vc .c b { display: block; color: #fff; font-family: Syne, sans-serif; font-size: 22px; text-transform: uppercase; }
+.vc .c small { font-family: 'Space Mono', monospace; color: #ccc; font-size: 12px; }
+
+/* gallery */
+.gal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 40px; }
+.gal a { overflow: hidden; aspect-ratio: 1; display: block; border-radius: 8px; }
+.gal a:nth-child(1), .gal a:nth-child(6) { grid-column: span 2; aspect-ratio: auto; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s, filter .5s; filter: grayscale(.5); }
+.gal a:hover img { transform: scale(1.06); filter: none; }
+
+/* press */
+.press { background: var(--card); }
+.press .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.pq blockquote { margin: 0; font-family: Syne, sans-serif; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; color: #fff; text-transform: uppercase; font-weight: 700; letter-spacing: -.02em; }
+.pq cite { display: block; margin-top: 18px; font-style: normal; font-family: 'Space Mono', monospace; color: var(--c); font-size: 13px; }
+.press .kt-dots { justify-content: flex-start; color: var(--kt-accent); }
+.kit { display: grid; gap: 10px; }
+.kit a { display: flex; justify-content: space-between; align-items: center; padding: 20px 22px; border: 1px solid var(--kt-line); border-radius: 12px; color: #fff; transition: border-color .2s, background .2s; }
+.kit a:hover { border-color: var(--kt-accent); background: rgba(255,60,172,.06); }
+.kit a small { font-family: 'Space Mono', monospace; color: var(--kt-mut); font-size: 12px; }
+
+/* booking */
+.book .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.book form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.book input, .book select, .book textarea { height: 54px; background: var(--card); border: 1px solid var(--kt-line); border-radius: 12px; color: #fff; padding: 0 16px; outline: none; }
+.book textarea { grid-column: 1 / -1; height: 110px; padding-top: 14px; resize: vertical; }
+.book input:focus, .book select:focus, .book textarea:focus { border-color: var(--kt-accent); }
+.book .full { grid-column: 1 / -1; }
+.book form .btn { grid-column: 1 / -1; justify-content: center; border: 0; }
+.book .kt-faq summary { font-family: Syne, sans-serif; text-transform: uppercase; font-size: 20px; }
+footer { padding: 50px 0; border-top: 1px solid var(--kt-line); }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+footer form { display: flex; gap: 8px; }
+footer input { height: 46px; border-radius: 99px; background: var(--card); border: 1px solid var(--kt-line); color: #fff; padding: 0 18px; outline: none; min-width: 0; width: 240px; }
+
+@media (max-width: 980px) {
+  section { padding: 90px 0; }
+  .rel .wrap, .press .wrap, .book .wrap { grid-template-columns: 1fr; gap: 50px; }
+  .cover { max-width: 420px; }
+  .dt { grid-template-columns: 90px 1fr auto; } .dt .ven { display: none; }
+  .vg { grid-template-columns: 1fr; grid-template-rows: none; height: auto; } .vc { height: 260px; } .vc:first-child { grid-row: auto; height: 340px; }
+  .gal { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .dt { grid-template-columns: 72px 1fr; } .dt .act { grid-column: 1 / -1; }
+  .dt .d { font-size: 26px; }
+  .book form { grid-template-columns: 1fr; }
+  footer form, footer input { width: 100%; }
+  .cover .vinyl { right: -8%; }
+}
+@media (max-width: 600px) { h2.h, .rel h2.h { font-size: 7.6vw; } .hero h1 { font-size: 18vw; } }
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">NOVA</a>
+    <nav class="kt-menu"><a href="#music">Music</a><a href="#tour">Tour</a><a href="#videos">Videos</a><a href="#press">Press</a><a href="#booking">Booking</a></nav>
+    <a href="#tour" class="btn gr">Tickets</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1900&q=70&auto=format&fit=crop" alt="">
+  <div class="wrap">
+    <span class="tg" data-reveal>New album · Afterglow · Out now</span>
+    <h1 class="sy grad" data-reveal="zoom">NOVA</h1>
+    <div class="row">
+      <p data-reveal data-delay="300">DJ and producer from Berlin. Melodic techno for <span data-type="late nights.|sunrise sets.|big rooms.|headphones."></span></p>
+      <div class="cta" data-reveal data-delay="400"><a href="#music" class="btn gr">▶ Listen now</a><a href="#tour" class="btn gl">Tour 2027</a></div>
+    </div>
+  </div>
+  <div class="eq" id="eq" aria-hidden="true"></div>
+</section>
+
+<div class="mq kt-marquee" data-speed="26s"><div class="kt-mq-track"><span>Afterglow out now</span><span>World tour 2027</span><span>Berghain · Fabric · Printworks</span><span>2M monthly listeners</span></div></div>
+
+<section class="rel" id="music">
+  <div class="wrap">
+    <div class="cover" data-reveal="left"><span class="vinyl" aria-hidden="true"></span><img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=900&q=75&auto=format&fit=crop" alt="Afterglow album cover"></div>
+    <div class="feat">
+      <span class="tg" data-reveal>Latest release · 12 tracks</span>
+      <h2 class="h sy" data-split>Afterglow</h2>
+      <p data-reveal>Written over a winter of night drives between Berlin and Leipzig. Warm synths, slow builds and the kind of drops you feel in your chest.</p>
+      <div data-audio="drive" data-title="Afterglow (Title track)" data-sub="NOVA · 6:42 · press play" data-reveal></div>
+      <div class="tracks" data-reveal>
+        <div class="tr"><span class="n">02</span><div data-audio="lofi" data-title="Neon Rain" data-sub="feat. Lumi"></div><span class="dur">4:18</span></div>
+        <div class="tr"><span class="n">03</span><div data-audio="jazz" data-title="Late Train to Leipzig" data-sub="Instrumental"></div><span class="dur">5:02</span></div>
+        <div class="tr"><span class="n">04</span><div data-audio="calm" data-title="Sunrise, Tempelhof" data-sub="Ambient interlude"></div><span class="dur">3:10</span></div>
+      </div>
+      <div class="stream" data-reveal><a href="#">Spotify</a><a href="#">Apple Music</a><a href="#">Bandcamp</a><a href="#">Beatport</a><a href="#">SoundCloud</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="tour" id="tour">
+  <div class="wrap" data-tabs>
+    <div class="th"><div><span class="tg" data-reveal>Live</span><h2 class="h sy" data-split>Tour 2027</h2></div>
+      <div class="ttabs" role="tablist" data-reveal><button data-tab="eu" class="on">Europe</button><button data-tab="na">North America</button><button data-tab="as">Asia</button></div></div>
+    <div class="dates" data-pane="eu">
+      <div class="dt"><div class="d">Mar 14<small>FRI</small></div><div><b>Berlin</b><span>Berghain</span></div><span class="ven"><span class="st low">Few left</span></span><div class="act"><a href="#" class="btn gr">Tickets</a></div></div>
+      <div class="dt"><div class="d">Mar 22<small>SAT</small></div><div><b>London</b><span>Printworks</span></div><span class="ven"></span><div class="act"><a href="#" class="btn gl">Tickets</a></div></div>
+      <div class="dt soldout"><div class="d">Apr 05<small>SAT</small></div><div><b>Amsterdam</b><span>Shelter</span></div><span class="ven"><span class="st out">Sold out</span></span><div class="act"><a href="#" class="btn gl">Waitlist</a></div></div>
+      <div class="dt"><div class="d">Apr 19<small>SAT</small></div><div><b>Barcelona</b><span>Razzmatazz</span></div><span class="ven"></span><div class="act"><a href="#" class="btn gl">Tickets</a></div></div>
+    </div>
+    <div class="dates" data-pane="na">
+      <div class="dt"><div class="d">May 10<small>SAT</small></div><div><b>New York</b><span>Brooklyn Mirage</span></div><span class="ven"><span class="st low">Few left</span></span><div class="act"><a href="#" class="btn gr">Tickets</a></div></div>
+      <div class="dt"><div class="d">May 17<small>SAT</small></div><div><b>Los Angeles</b><span>Exchange LA</span></div><span class="ven"></span><div class="act"><a href="#" class="btn gl">Tickets</a></div></div>
+    </div>
+    <div class="dates" data-pane="as">
+      <div class="dt"><div class="d">Jun 07<small>SAT</small></div><div><b>Tokyo</b><span>Womb</span></div><span class="ven"></span><div class="act"><a href="#" class="btn gl">Tickets</a></div></div>
+      <div class="dt"><div class="d">Jun 14<small>SAT</small></div><div><b>Seoul</b><span>Faust</span></div><span class="ven"></span><div class="act"><a href="#" class="btn gl">Tickets</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <span class="tg" data-reveal>Watch</span>
+    <h2 class="h sy" data-split>Videos</h2>
+    <div class="vg" data-reveal>
+      <a href="#" class="vc" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=72&auto=format&fit=crop" alt=""><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></span><span class="c"><b>Afterglow (Official video)</b><small>4.2M views</small></span></a>
+      <a href="#" class="vc" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=72&auto=format&fit=crop" alt=""><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></span><span class="c"><b>Live at Printworks</b><small>Full set · 2 h</small></span></a>
+      <a href="#" class="vc" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=72&auto=format&fit=crop" alt=""><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></span><span class="c"><b>Studio session</b><small>Making "Neon Rain"</small></span></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="tg" data-reveal>On the road</span>
+    <h2 class="h sy" data-split>Gallery</h2>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1800&q=80&auto=format&fit=crop" data-caption="Behind the decks"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=900&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1800&q=80&auto=format&fit=crop" data-caption="Soundcheck"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=1800&q=80&auto=format&fit=crop" data-caption="Berlin crowd"><img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=1800&q=80&auto=format&fit=crop" data-caption="In the studio"><img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1800&q=80&auto=format&fit=crop" data-caption="Lights"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1800&q=80&auto=format&fit=crop" data-caption="Festival main stage"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=900&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div class="wrap">
+    <div>
+      <span class="tg" data-reveal>Press</span>
+      <div class="kt-slider" data-autoplay="6000" style="margin-top:24px">
+        <div class="kt-track">
+          <div class="pq"><blockquote>“The most emotional techno record of the year.”</blockquote><cite>— Mixmag</cite></div>
+          <div class="pq"><blockquote>“NOVA makes a warehouse feel like a cathedral.”</blockquote><cite>— Resident Advisor</cite></div>
+          <div class="pq"><blockquote>“Afterglow is the soundtrack to every night drive.”</blockquote><cite>— DJ Mag</cite></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div class="kit" data-reveal="right">
+      <span class="tg">Press kit</span>
+      <a href="#" data-dl>Biography (PDF)<small>2 pages · EN / DE</small></a>
+      <a href="#" data-dl>Press photos (ZIP)<small>12 photos · high-res</small></a>
+      <a href="#" data-dl>Technical rider<small>Decks, monitors, booth</small></a>
+      <a href="#" data-dl>Logo pack<small>SVG, PNG</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="booking">
+  <div class="wrap">
+    <div>
+      <span class="tg" data-reveal>Booking</span>
+      <h2 class="h sy" data-split>Book NOVA</h2>
+      <p data-reveal>Clubs, festivals and private events. Management replies within 3 working days.</p>
+      <div data-faq data-reveal>
+        <details class="kt-faq"><summary>What are the set lengths?</summary><div class="kt-faq-a"><div>Club sets run 2–4 hours. Festival sets are usually 90 minutes, with a live version available.</div></div></details>
+        <details class="kt-faq"><summary>Do you play private events?</summary><div class="kt-faq-a"><div>Yes, a few each year. Please share the date, location and audience size.</div></div></details>
+        <details class="kt-faq"><summary>Is there a live show?</summary><div class="kt-faq-a"><div>The Afterglow live show includes synths, visuals and a lighting rig. See the technical rider for details.</div></div></details>
+      </div>
+    </div>
+    <form data-form="Thanks! Management will reply within 3 working days." data-reveal="right">
+      <input placeholder="Your name" required><input type="email" placeholder="Email" required>
+      <input placeholder="Event / venue"><input placeholder="City">
+      <input type="date"><select><option>Type of event</option><option>Club night</option><option>Festival</option><option>Private event</option></select>
+      <textarea placeholder="Capacity, budget and anything else"></textarea>
+      <button class="btn gr" type="submit">Send booking request</button>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap"><span class="logo">NOVA</span><form data-form="You're on the list. Early tickets come to you first."><input type="email" placeholder="Get tickets first" required aria-label="Email"><button class="btn gr" type="submit" style="height:46px">Join</button></form><span class="mono" style="font-size:13px">© 2026 NOVA · Mgmt: hello@nova.fm</span></div></footer>
+
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // animated equalizer bars
+  const eq = document.getElementById('eq'); eq.innerHTML = Array.from({ length: 64 }, (_, i) => `<i style="animation-delay:${-(Math.random() * 1.2).toFixed(2)}s;animation-duration:${(0.8 + Math.random() * .9).toFixed(2)}s"></i>`).join('');
+  document.querySelectorAll('[data-dl]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); ktToast('Download starts here on the real site'); }));
+</script>
+</body>
+</html>

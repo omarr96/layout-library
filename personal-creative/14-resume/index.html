@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sam Rivera · Product Designer &amp; Front-end Developer</title>
+<meta name="description" content="Sam Rivera, product designer and front-end developer with 8 years of experience. CV, projects and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #f4f4ef; --kt-ink: #121212; --kt-tx: #52524e; --kt-mut: #8d8d86; --kt-line: #e1e1da; --kt-accent: #0f9d6a; --kt-accent-ink: #fff; --card: #fff; }
+body { font: 16px/1.65 'IBM Plex Sans', system-ui, sans-serif; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.layout { max-width: 1280px; margin: 0 auto; padding: 28px; display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 28px; align-items: start; }
+
+/* profile card */
+.profile { position: sticky; top: 28px; background: var(--card); border: 1px solid var(--kt-line); border-radius: 22px; padding: 26px; }
+.profile .ph { position: relative; }
+.profile .ph img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; }
+.profile .ph .kt-play { position: absolute; right: 14px; bottom: 14px; width: 54px; height: 54px; }
+.profile .ph .kt-play svg { width: 18px; height: 18px; }
+.profile h1 { margin: 20px 0 2px; font-size: 30px; color: var(--kt-ink); letter-spacing: -.02em; line-height: 1.15; }
+.profile .role { color: var(--kt-tx); }
+.av { display: inline-flex; align-items: center; gap: 8px; margin: 14px 0; padding: 6px 12px; border-radius: 99px; background: #e5f6ee; color: #0b7a52; font-size: 13.5px; font-weight: 500; }
+.av i { width: 8px; height: 8px; border-radius: 50%; background: var(--kt-accent); box-shadow: 0 0 0 4px rgba(15,157,106,.2); animation: kt-blink 2s infinite; }
+.facts { list-style: none; padding: 0; margin: 6px 0 20px; display: grid; gap: 8px; font-size: 14.5px; }
+.facts li { display: flex; gap: 10px; align-items: center; }
+.facts span { width: 20px; text-align: center; }
+.profile .btns { display: grid; gap: 8px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 18px; border-radius: 12px; font-weight: 600; font-size: 15px; transition: .2s; }
+.btn.g { background: var(--kt-ink); color: #fff; } .btn.g:hover { background: var(--kt-accent); }
+.btn.o { border: 1px solid var(--kt-line); color: var(--kt-ink); background: #fff; } .btn.o:hover { border-color: var(--kt-ink); }
+.soc { display: flex; gap: 8px; margin-top: 16px; }
+.soc a { flex: 1; height: 42px; border-radius: 10px; border: 1px solid var(--kt-line); display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--kt-ink); }
+.soc a:hover { border-color: var(--kt-accent); color: var(--kt-accent); }
+.profile .kt-audio { --kt-audio-bg: var(--kt-bg); margin-top: 16px; padding: 10px 14px 10px 10px; gap: 12px; }
+.profile .kt-audio .kt-a-btn { width: 40px; height: 40px; }
+.profile .kt-audio input { width: 54px; }
+
+/* main column */
+main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.blk { background: var(--card); border: 1px solid var(--kt-line); border-radius: 22px; padding: 40px; }
+.k { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--kt-accent); }
+.k::before { content: "// "; color: var(--kt-mut); }
+h2.h { font-size: clamp(28px, 3.4vw, 40px); color: var(--kt-ink); letter-spacing: -.02em; margin: 8px 0 20px; line-height: 1.15; }
+.intro h2 { font-size: clamp(36px, 4.8vw, 60px); line-height: 1.05; }
+.intro h2 .ty { color: var(--kt-accent); }
+.intro p { font-size: 18px; margin: 0 0 24px; max-width: 640px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
+.stats div { padding: 18px; border-radius: 14px; background: var(--kt-bg); }
+.stats b { display: block; font-size: 32px; color: var(--kt-ink); letter-spacing: -.03em; line-height: 1.1; }
+.stats span { font-size: 13.5px; }
+
+/* tools marquee */
+.tools { padding: 18px 0; border-radius: 22px; background: var(--kt-ink); }
+.tools .kt-mq-track span { font-family: 'IBM Plex Mono', monospace; color: #d6d6d0; font-size: 18px; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.tools .kt-mq-track span::after { content: "/"; color: var(--kt-accent); }
+
+/* experience */
+.etabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--kt-bg); margin-bottom: 26px; flex-wrap: wrap; }
+.etabs button { height: 40px; padding: 0 16px; border-radius: 9px; font-weight: 600; font-size: 14px; color: var(--kt-tx); }
+.etabs button.on { background: #fff; color: var(--kt-ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.tl { position: relative; padding-left: 28px; }
+.tl::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--kt-line); }
+.job { position: relative; padding-bottom: 30px; }
+.job:last-child { padding-bottom: 0; }
+.job::before { content: ""; position: absolute; left: -28px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--kt-accent); }
+.job .t { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.job h3 { margin: 0; font-size: 19px; color: var(--kt-ink); }
+.job h3 span { color: var(--kt-accent); }
+.job time { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--kt-mut); }
+.job p { margin: 6px 0 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 3px 9px; border-radius: 6px; background: var(--kt-bg); color: var(--kt-ink); }
+
+/* skills */
+.sk { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
+.bar .t { display: flex; justify-content: space-between; font-size: 14.5px; margin-bottom: 6px; color: var(--kt-ink); font-weight: 500; }
+.bar .t span { font-family: 'IBM Plex Mono', monospace; color: var(--kt-mut); font-weight: 400; }
+.bar .tr { height: 8px; border-radius: 99px; background: var(--kt-bg); overflow: hidden; }
+.bar .tr i { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--kt-accent), #34d399); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.bar.in .tr i { width: var(--v); }
+
+/* projects */
+.ph2 { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.ph2 .ar { display: flex; gap: 8px; }
+.proj > div { width: 340px; }
+.proj a.im { display: block; overflow: hidden; border-radius: 14px; aspect-ratio: 16/11; }
+.proj img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+.proj a.im:hover img { transform: scale(1.05); }
+.proj h4 { margin: 14px 0 2px; color: var(--kt-ink); font-size: 17px; }
+.proj p { margin: 0 0 8px; font-size: 14.5px; }
+
+/* testimonials */
+.rec blockquote { margin: 0; font-size: 21px; line-height: 1.55; color: var(--kt-ink); }
+.rec .who { display: flex; gap: 12px; align-items: center; margin-top: 20px; }
+.rec .who img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.rec .who b { display: block; color: var(--kt-ink); }
+.rec .kt-dots { justify-content: flex-start; color: var(--kt-accent); margin-top: 22px; }
+
+/* contact */
+.ct form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ct input, .ct select, .ct textarea { height: 50px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); padding: 0 14px; outline: none; }
+.ct textarea { grid-column: 1 / -1; height: 120px; padding-top: 12px; resize: vertical; }
+.ct input:focus, .ct select:focus, .ct textarea:focus { border-color: var(--kt-accent); background: #fff; }
+.ct .full { grid-column: 1 / -1; }
+.ct form .btn { grid-column: 1 / -1; border: 0; }
+footer { text-align: center; padding: 10px 0 30px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--kt-mut); }
+
+@media (max-width: 1000px) { .layout { grid-template-columns: minmax(0, 1fr); } .profile { position: static; display: grid; grid-template-columns: 200px 1fr; gap: 24px; } .profile h1 { margin-top: 0; } }
+@media (max-width: 640px) {
+  .layout { padding: 14px; gap: 14px; } main { gap: 14px; }
+  .profile { grid-template-columns: 1fr; padding: 18px; }
+  .blk { padding: 24px 18px; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .sk { grid-template-columns: 1fr; }
+  .proj > div { width: 78vw; }
+  .ct form { grid-template-columns: 1fr; }
+  .rec blockquote { font-size: 18px; }
+}
+@media print { .profile { position: static; } .tools, .proj, .kt-play, .kt-audio, .ct form { display: none !important; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="profile" data-reveal="left">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=75&auto=format&fit=crop" alt="Sam Rivera"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch my 1-minute intro"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+    <div>
+      <h1>Sam Rivera</h1>
+      <div class="role">Product designer &amp; front-end developer</div>
+      <span class="av"><i></i>Open to new roles · remote or Berlin</span>
+      <ul class="facts mono"><li><span>📍</span>Berlin, Germany</li><li><span>🌐</span>English, Spanish, German (B2)</li><li><span>✉</span>sam@samrivera.dev</li></ul>
+      <div class="btns"><a href="#" class="btn g" id="dlcv">↓ Download CV (PDF)</a><a href="#contact" class="btn o">Get in touch</a></div>
+      <div class="soc"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Dribbble</a></div>
+      <div data-audio="calm" data-title="My 60-second intro" data-sub="Listen instead of reading"></div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="blk intro">
+      <span class="k" data-reveal>hello</span>
+      <h2 class="h" data-split>I design products and build them, too.</h2>
+      <p data-reveal>Eight years turning messy problems into clear, fast interfaces. Right now I'm most excited about <b class="ty" style="color:var(--kt-accent)" data-type="design systems.|accessibility.|tools for small teams.|AI-assisted products."></b></p>
+      <div class="stats" data-reveal><div><b data-count="8" data-suffix="+">0</b><span>years experience</span></div><div><b data-count="40" data-suffix="+">0</b><span>products shipped</span></div><div><b data-count="3">0</b><span>design systems built</span></div><div><b data-count="12" data-suffix="k">0</b><span>GitHub stars</span></div></div>
+    </section>
+
+    <div class="tools kt-marquee" data-speed="30s"><div class="kt-mq-track"><span>Figma</span><span>React</span><span>TypeScript</span><span>Next.js</span><span>Tailwind</span><span>Storybook</span><span>Framer</span><span>Node</span><span>Accessibility</span></div></div>
+
+    <section class="blk" data-tabs>
+      <span class="k" data-reveal>experience</span>
+      <h2 class="h" data-split>Where I've worked</h2>
+      <div class="etabs" role="tablist" data-reveal><button data-tab="work" class="on">Work</button><button data-tab="edu">Education</button><button data-tab="vol">Side projects</button></div>
+      <div class="tl" data-pane="work">
+        <div class="job" data-reveal><div class="t"><h3>Lead product designer <span>@ Linear-ish</span></h3><time>2023 — now</time></div><p>Lead design for the planning product (180k users). Built the design system with the front-end team and cut UI bugs by 60%.</p><div class="chips"><span>Design systems</span><span>React</span><span>Team of 5</span></div></div>
+        <div class="job" data-reveal><div class="t"><h3>Senior product designer <span>@ N26</span></h3><time>2020 — 2023</time></div><p>Redesigned onboarding in 4 markets, lifting completion from 61% to 78%. Ran weekly research sessions.</p><div class="chips"><span>Fintech</span><span>Research</span><span>A/B testing</span></div></div>
+        <div class="job" data-reveal><div class="t"><h3>Front-end developer <span>@ Agency Norte</span></h3><time>2017 — 2020</time></div><p>Built 30+ marketing sites and two e-commerce stores. Learned to love performance budgets.</p><div class="chips"><span>JavaScript</span><span>WordPress</span><span>Shopify</span></div></div>
+      </div>
+      <div class="tl" data-pane="edu">
+        <div class="job"><div class="t"><h3>MSc Human-Computer Interaction <span>@ TU Berlin</span></h3><time>2015 — 2017</time></div><p>Thesis on reading speed and interface density. Graduated with distinction.</p></div>
+        <div class="job"><div class="t"><h3>BA Graphic Design <span>@ Universidad de Madrid</span></h3><time>2011 — 2015</time></div><p>Typography, print and my first lines of code.</p></div>
+      </div>
+      <div class="tl" data-pane="vol">
+        <div class="job"><div class="t"><h3>Maintainer <span>@ open-source icon set</span></h3><time>2019 — now</time></div><p>400 icons, 12k GitHub stars, used by 3,000+ projects.</p><div class="chips"><span>SVG</span><span>Open source</span></div></div>
+        <div class="job"><div class="t"><h3>Mentor <span>@ ADPList</span></h3><time>2021 — now</time></div><p>Over 200 mentoring sessions with junior designers.</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <span class="k" data-reveal>skills</span>
+      <h2 class="h" data-split>What I'm good at</h2>
+      <div class="sk">
+        <div class="bar" data-reveal style="--v:95%"><div class="t">Product &amp; UX design<span>95%</span></div><div class="tr"><i></i></div></div>
+        <div class="bar" data-reveal style="--v:90%"><div class="t">Design systems<span>90%</span></div><div class="tr"><i></i></div></div>
+        <div class="bar" data-reveal style="--v:85%"><div class="t">React &amp; TypeScript<span>85%</span></div><div class="tr"><i></i></div></div>
+        <div class="bar" data-reveal style="--v:88%"><div class="t">Accessibility (WCAG)<span>88%</span></div><div class="tr"><i></i></div></div>
+        <div class="bar" data-reveal style="--v:75%"><div class="t">User research<span>75%</span></div><div class="tr"><i></i></div></div>
+        <div class="bar" data-reveal style="--v:70%"><div class="t">Motion &amp; prototyping<span>70%</span></div><div class="tr"><i></i></div></div>
+      </div>
+    </section>
+
+    <section class="blk" data-slider-scope>
+      <div class="ph2"><div><span class="k" data-reveal>projects</span><h2 class="h" data-split style="margin-bottom:0">Selected projects</h2></div>
+        <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+      <div class="kt-carousel proj" data-carousel data-lightbox>
+        <div><a class="im" href="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1600&q=80&auto=format&fit=crop" data-caption="Planning app redesign"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=700&q=70&auto=format&fit=crop" alt=""></a><h4>Planning app redesign</h4><p>Faster, calmer project planning for 180k users.</p><div class="chips"><span>Figma</span><span>React</span></div></div>
+        <div><a class="im" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format&fit=crop" data-caption="Analytics dashboard"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=70&auto=format&fit=crop" alt=""></a><h4>Analytics dashboard</h4><p>Charts anyone on the team can read in 5 seconds.</p><div class="chips"><span>Data viz</span><span>D3</span></div></div>
+        <div><a class="im" href="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=80&auto=format&fit=crop" data-caption="Brand &amp; design system"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=70&auto=format&fit=crop" alt=""></a><h4>Brand &amp; design system</h4><p>120 components, one source of truth.</p><div class="chips"><span>Storybook</span><span>Tokens</span></div></div>
+        <div><a class="im" href="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&q=80&auto=format&fit=crop" data-caption="Open-source icon set"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=700&q=70&auto=format&fit=crop" alt=""></a><h4>Open-source icon set</h4><p>400 icons, 12k stars.</p><div class="chips"><span>SVG</span><span>Open source</span></div></div>
+      </div>
+    </section>
+
+    <section class="blk rec">
+      <span class="k" data-reveal>recommendations</span>
+      <div class="kt-slider" data-autoplay="7000" style="margin-top:18px">
+        <div class="kt-track">
+          <div><blockquote>“Sam is the rare designer who ships production code. Our design system exists because of them.”</blockquote><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=60&auto=format&fit=crop" alt=""><div><b>Lena Fischer</b>VP Product, previous team</div></div></div>
+          <div><blockquote>“Calm under pressure, clear in writing and always kind in reviews. I'd hire Sam again tomorrow.”</blockquote><div class="who"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=60&auto=format&fit=crop" alt=""><div><b>Marcus Okoye</b>Engineering manager</div></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <span class="k" data-reveal>faq</span>
+      <h2 class="h" data-split>Quick answers</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Are you open to full-time roles?</summary><div class="kt-faq-a"><div>Yes, full-time from February 2027. Remote in Europe or on-site in Berlin.</div></div></details>
+        <details class="kt-faq"><summary>Do you take freelance work?</summary><div class="kt-faq-a"><div>A few small projects a year, mainly design system audits and accessibility reviews.</div></div></details>
+        <details class="kt-faq"><summary>What's your notice period?</summary><div class="kt-faq-a"><div>Four weeks.</div></div></details>
+      </div>
+    </section>
+
+    <section class="blk ct" id="contact">
+      <span class="k" data-reveal>contact</span>
+      <h2 class="h" data-split>Let's work together</h2>
+      <form data-form="Thanks! I'll reply within a day." data-reveal>
+        <input placeholder="Your name" required><input type="email" placeholder="Email" required>
+        <select class="full"><option>What's this about?</option><option>Full-time role</option><option>Freelance project</option><option>Just saying hi</option></select>
+        <textarea placeholder="Your message"></textarea>
+        <button class="btn g" type="submit">Send message</button>
+      </form>
+    </section>
+    <footer>© 2026 Sam Rivera · Built with care in Berlin</footer>
+  </main>
+</div>
+<script src="../../local-business/kit/kit.js"></script>
+<script>document.getElementById('dlcv').addEventListener('click', e => { e.preventDefault(); ktToast('Your CV PDF downloads here on the real site'); });</script>
+</body>
+</html>

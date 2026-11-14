@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mira Okafor · Artist &amp; Illustrator</title>
+<meta name="description" content="Paintings, illustration and murals by Mira Okafor. Shop prints, commission a piece and see upcoming exhibitions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #fff8ec; --kt-ink: #1d1a16; --kt-tx: #57514a; --kt-mut: #958c80; --kt-line: rgba(29,26,22,.14); --kt-accent: #ff5a3c; --kt-accent-ink: #fff; --blue: #2747d9; --sun: #ffc93c; --mint: #8fd9b6; --pink: #ffb3c7; }
+body { font: 17px/1.6 'Bricolage Grotesque', system-ui, sans-serif; }
+.hand { font-family: Caveat, cursive; font-weight: 600; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px; background: var(--kt-ink); color: var(--kt-bg); font-weight: 600; font-size: 14px; transform: rotate(-2deg); }
+h2.h { font-size: clamp(44px, 6.5vw, 92px); line-height: .95; color: var(--kt-ink); margin: 18px 0 22px; font-weight: 800; letter-spacing: -.04em; }
+h2.h .s { position: relative; display: inline-block; }
+h2.h .s::after { content: ""; position: absolute; left: -4%; right: -4%; bottom: 6%; height: 32%; background: var(--sun); z-index: -1; border-radius: 6px; transform: rotate(-1.5deg); }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 99px; font-weight: 700; font-size: 16px; border: 2px solid var(--kt-ink); transition: transform .2s, box-shadow .2s; }
+.btn.fl { background: var(--kt-accent); color: #fff; box-shadow: 4px 4px 0 var(--kt-ink); }
+.btn.fl:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--kt-ink); }
+.btn.wh { background: #fff; color: var(--kt-ink); box-shadow: 4px 4px 0 var(--kt-ink); }
+.btn.wh:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--kt-ink); }
+section { padding: 120px 0; position: relative; }
+
+.nav { position: sticky; top: 0; z-index: 50; background: var(--kt-bg); transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 2px 0 var(--kt-ink); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 82px; }
+.logo { font-family: Caveat, cursive; font-weight: 600; font-size: 36px; color: var(--kt-ink); }
+.kt-menu { display: flex; gap: 28px; margin-left: auto; }
+.kt-menu a { font-weight: 600; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.cart { position: relative; width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--kt-ink); display: grid; place-items: center; font-size: 18px; background: #fff; }
+.cart b { position: absolute; top: -6px; right: -6px; min-width: 22px; height: 22px; border-radius: 99px; background: var(--kt-accent); color: #fff; font-size: 12px; display: grid; place-items: center; border: 2px solid var(--kt-bg); transition: transform .3s; }
+.cart b.bump { transform: scale(1.4); }
+
+/* hero */
+.hero { padding: 60px 0 100px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero h1 { font-size: clamp(54px, 8vw, 120px); line-height: .9; letter-spacing: -.05em; font-weight: 800; color: var(--kt-ink); margin: 20px 0; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero p { font-size: 20px; max-width: 480px; margin: 0 0 30px; }
+.hero .note { font-family: Caveat, cursive; font-size: 28px; color: var(--kt-accent); margin-top: 24px; transform: rotate(-3deg); display: inline-block; }
+.collage { position: relative; height: 580px; }
+.art { position: absolute; background: #fff; padding: 10px 10px 34px; box-shadow: 6px 8px 0 var(--kt-ink); border: 2px solid var(--kt-ink); animation: float 6s ease-in-out infinite; }
+.art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.art span { position: absolute; left: 12px; bottom: 6px; font-family: Caveat, cursive; font-size: 20px; }
+.art.a { width: 52%; height: 64%; left: 0; top: 4%; transform: rotate(-6deg); }
+.art.b { width: 46%; height: 52%; right: 2%; top: 0; transform: rotate(5deg); animation-delay: -2s; }
+.art.c { width: 50%; height: 50%; left: 28%; bottom: 0; transform: rotate(-2deg); animation-delay: -4s; }
+@keyframes float { 50% { translate: 0 -12px; } }
+.blob { position: absolute; border-radius: 50%; z-index: -1; }
+.hero .blob.x { width: 320px; height: 320px; background: var(--pink); right: 6%; top: 14%; }
+.hero .blob.y { width: 180px; height: 180px; background: var(--mint); left: 44%; bottom: 4%; }
+
+/* marquee */
+.mq { background: var(--blue); color: #fff; padding: 20px 0; border-top: 2px solid var(--kt-ink); border-bottom: 2px solid var(--kt-ink); transform: rotate(-1.5deg); margin: 0 -20px; }
+.mq .kt-mq-track span { font-weight: 800; font-size: 42px; white-space: nowrap; display: flex; align-items: center; gap: 48px; letter-spacing: -.02em; }
+.mq .kt-mq-track span::after { content: "✿"; color: var(--sun); }
+
+/* gallery */
+.gtabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.gtabs button { height: 46px; padding: 0 20px; border-radius: 99px; border: 2px solid var(--kt-ink); font-weight: 700; color: var(--kt-ink); background: #fff; transition: .15s; }
+.gtabs button.on { background: var(--kt-ink); color: #fff; }
+.ggrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.ggrid a { display: block; border: 2px solid var(--kt-ink); background: #fff; padding: 10px; box-shadow: 5px 5px 0 var(--kt-ink); transition: transform .25s, box-shadow .25s; }
+.ggrid a:nth-child(3n+1) { transform: rotate(-1.2deg); } .ggrid a:nth-child(3n+2) { transform: rotate(1deg); }
+.ggrid a:hover { transform: rotate(0) translate(-3px, -3px); box-shadow: 8px 8px 0 var(--kt-ink); }
+.ggrid img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.ggrid b { display: block; margin-top: 10px; color: var(--kt-ink); }
+.ggrid small { color: var(--kt-mut); }
+
+/* shop */
+.shop { background: var(--sun); border-top: 2px solid var(--kt-ink); border-bottom: 2px solid var(--kt-ink); }
+.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.sh .ar { display: flex; gap: 10px; }
+.shop .kt-arrow { border: 2px solid var(--kt-ink); background: #fff; }
+.prints > div { width: 300px; background: #fff; border: 2px solid var(--kt-ink); border-radius: 18px; overflow: hidden; }
+.prints img { width: 100%; aspect-ratio: 1; object-fit: cover; border-bottom: 2px solid var(--kt-ink); }
+.prints .b { padding: 16px 18px 18px; }
+.prints h4 { margin: 0; font-size: 19px; color: var(--kt-ink); }
+.prints .sz { display: flex; gap: 6px; margin: 10px 0 14px; }
+.prints .sz button { height: 32px; padding: 0 10px; border-radius: 8px; border: 1.5px solid var(--kt-line); font-size: 13px; font-weight: 600; }
+.prints .sz button.on { border-color: var(--kt-ink); background: var(--kt-ink); color: #fff; }
+.prints .f { display: flex; justify-content: space-between; align-items: center; }
+.prints .pr { font-weight: 800; font-size: 22px; color: var(--kt-ink); }
+.prints .add { height: 40px; padding: 0 16px; border-radius: 99px; background: var(--kt-accent); color: #fff; font-weight: 700; border: 2px solid var(--kt-ink); }
+.prints .tag { position: absolute; }
+
+/* commissions */
+.com .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.steps { display: grid; gap: 14px; margin: 26px 0; }
+.steps div { display: grid; grid-template-columns: 54px 1fr; gap: 16px; align-items: center; padding: 16px; border: 2px solid var(--kt-ink); border-radius: 16px; background: #fff; }
+.steps b.n { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; font-weight: 800; border: 2px solid var(--kt-ink); }
+.steps div:nth-child(1) b.n { background: var(--pink); } .steps div:nth-child(2) b.n { background: var(--mint); } .steps div:nth-child(3) b.n { background: var(--sun); } .steps div:nth-child(4) b.n { background: #b9c7ff; }
+.steps strong { display: block; color: var(--kt-ink); }
+.com form { background: #fff; border: 2px solid var(--kt-ink); border-radius: 24px; padding: 30px; box-shadow: 8px 8px 0 var(--kt-ink); display: grid; gap: 12px; align-self: start; }
+.com form h3 { margin: 0; font-size: 26px; color: var(--kt-ink); }
+.com input, .com select, .com textarea { height: 52px; border: 2px solid var(--kt-line); border-radius: 12px; padding: 0 14px; outline: none; background: var(--kt-bg); }
+.com textarea { height: 110px; padding-top: 12px; resize: vertical; }
+.com input:focus, .com select:focus, .com textarea:focus { border-color: var(--kt-ink); }
+.price { display: flex; justify-content: space-between; padding: 14px 16px; border-radius: 12px; background: var(--kt-bg); font-weight: 600; color: var(--kt-ink); }
+.price b { color: var(--kt-accent); font-size: 22px; }
+.com form .btn { justify-content: center; }
+
+/* exhibitions */
+.ex { background: var(--kt-ink); color: #cfc7bb; }
+.ex h2.h { color: #fff; }
+.ex h2.h .s::after { background: var(--kt-accent); }
+.extabs { display: flex; gap: 10px; margin-bottom: 30px; }
+.extabs button { height: 44px; padding: 0 20px; border-radius: 99px; border: 2px solid #fff; color: #fff; font-weight: 700; }
+.extabs button.on { background: #fff; color: var(--kt-ink); }
+.exl { display: grid; gap: 0; }
+.exi { display: grid; grid-template-columns: 140px 1fr auto; gap: 24px; align-items: center; padding: 26px 0; border-top: 1px solid rgba(255,255,255,.15); }
+.exi .d { font-family: Caveat, cursive; font-size: 30px; color: var(--sun); }
+.exi b { display: block; color: #fff; font-size: 22px; }
+.exi a { color: #fff; font-weight: 700; border-bottom: 2px solid var(--kt-accent); }
+.studio { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; margin-top: 70px; }
+.studio .v { position: relative; border-radius: 22px; overflow: hidden; border: 2px solid #fff; }
+.studio .v img { width: 100%; height: 380px; object-fit: cover; }
+.studio .v .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.ex .kt-audio { --kt-audio-bg: rgba(255,255,255,.08); --kt-audio-ink: #fff; }
+
+/* reviews + faq */
+.rev .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rc { background: #fff; border: 2px solid var(--kt-ink); border-radius: 22px; padding: 30px; box-shadow: 6px 6px 0 var(--kt-ink); }
+.rc p { font-size: 20px; color: var(--kt-ink); margin: 0 0 18px; }
+.rc .who { display: flex; align-items: center; gap: 12px; }
+.rc .who img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--kt-ink); }
+.rev .kt-dots { justify-content: flex-start; color: var(--kt-ink); margin-top: 22px; }
+.rev .kt-faq summary { font-size: 20px; }
+footer { border-top: 2px solid var(--kt-ink); padding: 60px 0 30px; }
+footer .g { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-end; }
+footer .big { font-family: Caveat, cursive; font-size: clamp(60px, 10vw, 130px); color: var(--kt-ink); line-height: .9; }
+footer form { display: flex; gap: 8px; max-width: 420px; width: 100%; }
+footer input { flex: 1; min-width: 0; height: 52px; border-radius: 99px; border: 2px solid var(--kt-ink); padding: 0 18px; outline: none; background: #fff; }
+
+@media (max-width: 980px) {
+  section { padding: 84px 0; }
+  .hero .wrap, .com .wrap, .rev .wrap { grid-template-columns: 1fr; gap: 50px; }
+  .collage { height: 460px; }
+  .ggrid { grid-template-columns: 1fr 1fr; }
+  .studio { grid-template-columns: 1fr; }
+  .exi { grid-template-columns: 110px 1fr; } .exi a { grid-column: 2; justify-self: start; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .collage { height: 360px; }
+  .ggrid { grid-template-columns: 1fr; }
+  .prints > div { width: 76vw; }
+  .com form { padding: 22px; }
+  .exi { grid-template-columns: 1fr; gap: 6px; } .exi a { grid-column: auto; }
+  footer form { flex-direction: column; } footer .btn { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Mira Okafor</a>
+    <nav class="kt-menu"><a href="#work">Work</a><a href="#shop">Shop</a><a href="#commissions">Commissions</a><a href="#shows">Exhibitions</a></nav>
+    <a href="#shop" class="cart" aria-label="Cart">🛍<b id="cartN">0</b></a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal>✿ Painter · illustrator · muralist</span>
+      <h1 data-split>Colour makes <em>everything</em> louder</h1>
+      <p data-reveal data-delay="200">I paint bright, joyful worlds, on canvas, on paper and on the sides of buildings. Based in Lagos and London.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#shop" class="btn fl">Shop prints</a><a href="#commissions" class="btn wh">Commission me</a></div>
+      <span class="note" data-reveal data-delay="500">new mural in Peckham! ↓</span>
+    </div>
+    <div class="collage" data-reveal="zoom">
+      <span class="blob x"></span><span class="blob y"></span>
+      <div class="art a"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=700&q=72&auto=format&fit=crop" alt="Painting"><span>Market Day, 2025</span></div>
+      <div class="art b"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=72&auto=format&fit=crop" alt="Painting"><span>Blue Hour</span></div>
+      <div class="art c"><img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=72&auto=format&fit=crop" alt="Painting"><span>Sun Dance</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="mq kt-marquee" data-speed="30s"><div class="kt-mq-track"><span>Original paintings</span><span>Giclée prints</span><span>Murals</span><span>Book covers</span><span>Commissions open</span></div></div>
+
+<section id="work">
+  <div class="wrap" data-tabs>
+    <span class="pill" data-reveal>Portfolio</span>
+    <h2 class="h" data-split>Recent <span class="s">work</span></h2>
+    <div class="gtabs" role="tablist" data-reveal><button data-tab="paint" class="on">Paintings</button><button data-tab="illus">Illustration</button><button data-tab="mural">Murals</button></div>
+    <div class="ggrid" data-pane="paint" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&q=80&auto=format&fit=crop" data-caption="Market Day · acrylic on canvas · 120×100 cm"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=70&auto=format&fit=crop" alt=""><b>Market Day</b><small>Acrylic · 120×100 cm · Sold</small></a>
+      <a href="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1600&q=80&auto=format&fit=crop" data-caption="Blue Hour · oil on linen"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=70&auto=format&fit=crop" alt=""><b>Blue Hour</b><small>Oil · 80×100 cm · Available</small></a>
+      <a href="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=80&auto=format&fit=crop" data-caption="Sun Dance · acrylic"><img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=70&auto=format&fit=crop" alt=""><b>Sun Dance</b><small>Acrylic · 60×80 cm · Available</small></a>
+      <a href="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=1600&q=80&auto=format&fit=crop" data-caption="Garden Talk · mixed media"><img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=600&q=70&auto=format&fit=crop" alt=""><b>Garden Talk</b><small>Mixed media · Sold</small></a>
+      <a href="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80&auto=format&fit=crop" data-caption="In the studio"><img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&q=70&auto=format&fit=crop" alt=""><b>Work in progress</b><small>Coming spring 2027</small></a>
+      <a href="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=80&auto=format&fit=crop" data-caption="Palette studies"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=70&auto=format&fit=crop" alt=""><b>Palette studies</b><small>Series of 12</small></a>
+    </div>
+    <div class="ggrid" data-pane="illus" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=80&auto=format&fit=crop" data-caption="Book cover · Penguin"><img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=70&auto=format&fit=crop" alt=""><b>“The Long Summer”</b><small>Book cover · Penguin</small></a>
+      <a href="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=1600&q=80&auto=format&fit=crop" data-caption="Editorial · The New Yorker"><img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=600&q=70&auto=format&fit=crop" alt=""><b>City Gardens</b><small>Editorial</small></a>
+      <a href="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1600&q=80&auto=format&fit=crop" data-caption="Sketchbook"><img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=70&auto=format&fit=crop" alt=""><b>Sketchbook pages</b><small>Ink &amp; gouache</small></a>
+    </div>
+    <div class="ggrid" data-pane="mural" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1549490349-8643362247b5?w=1600&q=80&auto=format&fit=crop" data-caption="Peckham mural · 2026"><img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=70&auto=format&fit=crop" alt=""><b>Peckham Wall</b><small>12 m · 2026</small></a>
+      <a href="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1600&q=80&auto=format&fit=crop" data-caption="Lagos school mural"><img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=70&auto=format&fit=crop" alt=""><b>Yaba School</b><small>With 200 students</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="shop" id="shop" data-slider-scope>
+  <div class="wrap">
+    <div class="sh"><div><span class="pill" data-reveal>Shop</span><h2 class="h" data-split>Prints for your walls</h2><p data-reveal style="margin:0">Giclée prints on cotton paper, signed and numbered. Ships worldwide.</p></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel prints" data-carousel id="prints"></div>
+  </div>
+</section>
+
+<section class="com" id="commissions">
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal>Commissions · 3 spots left for spring</span>
+      <h2 class="h" data-split>Something made <span class="s">just for you</span></h2>
+      <p data-reveal>Portraits, pets, your street, your wedding. Tell me the story and I'll paint it.</p>
+      <div class="steps" data-reveal>
+        <div><b class="n">1</b><span><strong>Tell me your idea</strong>Photos, colours, the feeling you want.</span></div>
+        <div><b class="n">2</b><span><strong>Sketch &amp; approve</strong>Two rounds of changes included.</span></div>
+        <div><b class="n">3</b><span><strong>I paint it</strong>With progress photos along the way.</span></div>
+        <div><b class="n">4</b><span><strong>It arrives</strong>Framed and ready to hang, in 4–6 weeks.</span></div>
+      </div>
+    </div>
+    <form data-form="Yay! I'll send a sketch idea within 3 days." data-reveal="right">
+      <h3>Start a commission</h3>
+      <select id="cSize"><option value="250">Small · 30×40 cm</option><option value="480" selected>Medium · 50×70 cm</option><option value="900">Large · 80×100 cm</option></select>
+      <select id="cType"><option value="0">Portrait or pet</option><option value="80">Place or street</option><option value="150">Group or wedding</option></select>
+      <div class="price"><span>Estimated price</span><b id="cPrice">£480</b></div>
+      <input placeholder="Your name" required><input type="email" placeholder="Email" required>
+      <textarea placeholder="Tell me the story behind it"></textarea>
+      <button class="btn fl" type="submit">Send my idea</button>
+    </form>
+  </div>
+</section>
+
+<section class="ex" id="shows">
+  <div class="wrap" data-tabs>
+    <span class="pill" style="background:#fff;color:var(--kt-ink)" data-reveal>Exhibitions</span>
+    <h2 class="h" data-split>Come <span class="s">say hi</span></h2>
+    <div class="extabs" role="tablist" data-reveal><button data-tab="up" class="on">Upcoming</button><button data-tab="past">Past</button></div>
+    <div class="exl" data-pane="up">
+      <div class="exi"><span class="d">Mar 6 – Apr 12</span><div><b>“Loud Colour” · solo show</b>Gallery Hue, London</div><a href="#">Get directions</a></div>
+      <div class="exi"><span class="d">May 20</span><div><b>Live painting night</b>Art Basel Lagos</div><a href="#">RSVP</a></div>
+      <div class="exi"><span class="d">Jul 2 – 30</span><div><b>“Summer Rooms” · group show</b>Saatchi Gallery, London</div><a href="#">Details</a></div>
+    </div>
+    <div class="exl" data-pane="past">
+      <div class="exi"><span class="d">2025</span><div><b>“Market Day” · solo show</b>Rele Gallery, Lagos</div><a href="#">See photos</a></div>
+      <div class="exi"><span class="d">2024</span><div><b>Young Artists Prize · shortlist</b>Royal Academy, London</div><a href="#">Read more</a></div>
+    </div>
+    <div class="studio">
+      <div class="v" data-reveal="left"><img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1000&q=72&auto=format&fit=crop" alt="Studio"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch a studio visit"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div data-reveal><span class="hand" style="font-size:34px;color:var(--sun)">a peek into the studio</span><p>Brushes, music and too much coffee. Press play for the playlist I paint to.</p><div data-audio="lofi" data-title="Painting playlist" data-sub="Afrobeat, lo-fi and sunshine"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rev">
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal>Happy walls</span>
+      <h2 class="h" data-split>Kind words</h2>
+      <div class="kt-slider" data-autoplay="6500">
+        <div class="kt-track">
+          <div class="rc"><p>“The portrait of our dog is the first thing everyone notices. It's pure joy on a wall.”</p><div class="who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Hannah</b> · Commission</span></div></div>
+          <div class="rc"><p>“Mira painted our school wall with 200 kids. They still talk about it every day.”</p><div class="who"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Mr. Adeyemi</b> · Head teacher</span></div></div>
+          <div class="rc"><p>“The print quality is incredible and it arrived beautifully packed. Buying another.”</p><div class="who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Zoe</b> · Print buyer</span></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div>
+      <span class="pill" data-reveal>FAQ</span>
+      <h2 class="h" data-split>Questions</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Do you ship originals abroad?</summary><div class="kt-faq-a"><div>Yes, insured and tracked, to anywhere in the world. Shipping is quoted at checkout.</div></div></details>
+        <details class="kt-faq"><summary>Are prints framed?</summary><div class="kt-faq-a"><div>Prints come unframed in a sturdy tube. Framing in oak or black is available for £45.</div></div></details>
+        <details class="kt-faq"><summary>Can I use your art for a book cover or brand?</summary><div class="kt-faq-a"><div>Yes! I license work for books, packaging and campaigns. Get in touch with details.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap g">
+    <div><div class="big">say hello!</div><p>hello@miraokafor.art · Instagram · Behance</p></div>
+    <form data-form="You're in! First look at new prints is coming your way."><input type="email" placeholder="Get new prints first" required aria-label="Email"><button class="btn fl" type="submit">Join</button></form>
+  </div>
+  <div class="wrap" style="margin-top:30px;font-size:14px;color:var(--kt-mut)">© 2026 Mira Okafor. All artwork is mine, please ask before sharing.</div>
+</footer>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const PR = [['Market Day', '1579783902614-a3fb3927b6a5', 45], ['Blue Hour', '1541961017774-22349e4a1262', 45], ['Sun Dance', '1547891654-e66ed7ebb968', 40], ['Garden Talk', '1578926288207-a90a5366759d', 40], ['Peckham Wall', '1549490349-8643362247b5', 55]];
+  document.getElementById('prints').innerHTML = PR.map(([n, id, p]) => `<div><img src="${U(id, 600)}" alt="${n} print"><div class="b"><h4>${n}</h4><div class="sz" data-base="${p}"><button class="on" data-m="1">A4</button><button data-m="1.6">A3</button><button data-m="2.4">A2</button></div><div class="f"><span class="pr">£${p}</span><button class="add" data-n="${n}">Add</button></div></div></div>`).join('');
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // print sizes + cart count
+  let cart = 0; const cn = document.getElementById('cartN');
+  document.getElementById('prints').addEventListener('click', e => {
+    const s = e.target.closest('.sz button');
+    if (s) { const g = s.parentElement; g.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === s)); g.nextElementSibling.querySelector('.pr').textContent = '£' + Math.round(g.dataset.base * s.dataset.m); return; }
+    const a = e.target.closest('.add');
+    if (a) { cn.textContent = ++cart; cn.classList.add('bump'); setTimeout(() => cn.classList.remove('bump'), 300); ktToast(`“${a.dataset.n}” print added to your bag`); }
+  });
+  // commission estimate
+  const est = () => document.getElementById('cPrice').textContent = '£' + (+document.getElementById('cSize').value + +document.getElementById('cType').value);
+  ['cSize', 'cType'].forEach(id => document.getElementById(id).addEventListener('change', est));
+</script>
+</body>
+</html>

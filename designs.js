@@ -32,6 +32,11 @@ window.DESIGNS = {
       "desc": "One-page sites for local businesses"
     },
     {
+      "id": "personal-creative",
+      "name": "Personal & creative",
+      "desc": "Portfolios, resumes, artists and invitations"
+    },
+    {
       "id": "landing-pages",
       "name": "Landing pages",
       "desc": "Single page sites"
@@ -824,6 +829,102 @@ window.DESIGNS = {
         {
           "label": "Page",
           "href": "local-business/10-hotel/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "11-portfolio",
+      "title": "Inès Moreau · Architect portfolio",
+      "desc": "Architecture portfolio: filterable project grid, case study slider, showreel video, services FAQ, awards.",
+      "tags": [
+        "Portfolio"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/11-portfolio/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "12-photographer",
+      "title": "Kai Nordström · Photographer",
+      "desc": "Dark photographer site: hero slider, masonry gallery tabs with lightbox, series carousel, packages, booking.",
+      "tags": [
+        "Photographer"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/12-photographer/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "13-musician",
+      "title": "NOVA · DJ & producer",
+      "desc": "Neon DJ site: animated equalizer, playable tracklist, tour tabs, videos, press quotes and booking.",
+      "tags": [
+        "Musician"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/13-musician/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "14-resume",
+      "title": "Sam Rivera · Resume / CV",
+      "desc": "Personal CV: sticky profile with video intro, experience timeline tabs, skill bars, projects carousel, print styles.",
+      "tags": [
+        "Resume"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/14-resume/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "15-artist",
+      "title": "Mira Okafor · Artist & illustrator",
+      "desc": "Playful artist site: polaroid collage, gallery tabs, print shop with sizes and cart, commission estimate, exhibitions.",
+      "tags": [
+        "Artist"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/15-artist/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "personal-creative",
+      "slug": "16-wedding",
+      "title": "Amara & Leo · Wedding invitation",
+      "desc": "Wedding invite: countdown, story timeline, engagement film, schedule tabs, travel, RSVP with guests and meals, registry.",
+      "tags": [
+        "Wedding"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "personal-creative/16-wedding/index.html"
         }
       ]
     },

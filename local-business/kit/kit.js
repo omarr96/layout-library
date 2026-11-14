@@ -42,7 +42,19 @@
     if (el.dataset.count) count(el);
     io.unobserve(el);
   }), { rootMargin: '0px 0px -8% 0px' }) : null;
-  $$('[data-reveal],[data-split],[data-count]').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+  const pending = $$('[data-reveal],[data-split],[data-count]');
+  pending.forEach(el => io ? io.observe(el) : el.classList.add('in'));
+  // backup: also reveal anything already on screen, in case the observer is paused (hidden tabs, old browsers)
+  const sweep = () => {
+    const h = innerHeight;
+    for (let k = pending.length - 1; k >= 0; k--) {
+      const el = pending[k], r = el.getBoundingClientRect();
+      if (el.classList.contains('in')) { pending.splice(k, 1); continue; }
+      if (r.top < h * .95 && r.bottom > 0) { el.classList.add('in'); if (el.dataset.count) count(el); io && io.unobserve(el); pending.splice(k, 1); }
+    }
+  };
+  let sw; addEventListener('scroll', () => { clearTimeout(sw); sw = setTimeout(sweep, 120); }, { passive: true });
+  addEventListener('load', () => setTimeout(sweep, 300)); setTimeout(sweep, 1200);
 
   /* rotating words */
   $$('[data-rotate]').forEach(el => {

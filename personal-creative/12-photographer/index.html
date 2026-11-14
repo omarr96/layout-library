@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kai Nordström · Photographer</title>
+<meta name="description" content="Landscape, portrait and wedding photographer based in Oslo, working worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #0a0a0a; --kt-ink: #f2f0eb; --kt-tx: #a3a19b; --kt-mut: #6c6a65; --kt-line: rgba(255,255,255,.1); --kt-accent: #e8c39e; --kt-accent-ink: #0a0a0a; }
+body { font: 16px/1.7 Inter, system-ui, sans-serif; font-weight: 300; }
+.sy { font-family: Syne, sans-serif; font-weight: 800; letter-spacing: -.03em; text-transform: uppercase; line-height: .9; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
+.sm { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--kt-accent); font-weight: 500; }
+h2.h { font-size: clamp(44px, 7vw, 108px); color: var(--kt-ink); margin: 14px 0 22px; }
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 28px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; transition: .25s; }
+.btn.lt { background: var(--kt-accent); color: #0a0a0a; } .btn.lt:hover { background: #fff; }
+.btn.ot { border: 1px solid rgba(255,255,255,.35); color: #fff; } .btn.ot:hover { border-color: var(--kt-accent); color: var(--kt-accent); }
+section { padding: 130px 0; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 84px; }
+.nav.scrolled { background: rgba(10,10,10,.85); backdrop-filter: blur(10px); }
+.logo { font-family: Syne, sans-serif; font-weight: 800; font-size: 22px; color: #fff; text-transform: uppercase; letter-spacing: -.02em; }
+.kt-menu { display: flex; gap: 32px; margin-left: auto; }
+.kt-menu a { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: #ddd; }
+.kt-menu a:hover { color: var(--kt-accent); }
+.kt-burger { color: #fff; }
+
+/* hero slider with captions */
+.hero { position: relative; height: 100vh; min-height: 640px; padding: 0; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), transparent 30%, transparent 55%, rgba(0,0,0,.8)); pointer-events: none; }
+.hero .kt-slider, .hero .kt-track, .hero .kt-track > figure { height: 100%; }
+.hero figure { margin: 0; position: relative; }
+.hero figure img { width: 100%; height: 100%; object-fit: cover; }
+.hero .over { position: absolute; z-index: 2; left: 0; right: 0; bottom: 50px; }
+.hero .over .wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+.hero h1 { font-size: clamp(56px, 11vw, 180px); color: #fff; margin: 0; }
+.hero .cap { text-align: right; color: #ddd; font-size: 14px; }
+.hero .cap b { display: block; font-family: Syne, sans-serif; font-size: 40px; color: #fff; font-weight: 700; }
+.hero .ctrl { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; }
+.hero .kt-arrow { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.25); color: #fff; backdrop-filter: blur(6px); }
+
+/* marquee */
+.mq { padding: 26px 0; border-bottom: 1px solid var(--kt-line); }
+.mq .kt-mq-track span { font-family: Syne, sans-serif; font-weight: 800; font-size: 56px; text-transform: uppercase; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.35); display: flex; align-items: center; gap: 48px; }
+.mq .kt-mq-track span::after { content: "✶"; -webkit-text-stroke: 0; color: var(--kt-accent); font-size: 30px; }
+
+/* gallery */
+.gh { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.gtabs { display: flex; gap: 26px; }
+.gtabs button { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--kt-mut); padding-bottom: 8px; border-bottom: 1px solid transparent; }
+.gtabs button.on { color: #fff; border-color: var(--kt-accent); }
+.masonry { columns: 3; column-gap: 14px; }
+.masonry a { display: block; margin-bottom: 14px; position: relative; overflow: hidden; break-inside: avoid; }
+.masonry img { width: 100%; transition: transform 1s, filter .5s; filter: saturate(.9); }
+.masonry a:hover img { transform: scale(1.04); filter: saturate(1.1); }
+.masonry a::after { content: attr(data-caption); position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 14px; background: linear-gradient(transparent, rgba(0,0,0,.7)); color: #fff; font-size: 13px; letter-spacing: .1em; opacity: 0; transition: opacity .3s; }
+.masonry a:hover::after { opacity: 1; }
+
+/* series */
+.series { background: #111; }
+.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.sh .ar { display: flex; gap: 10px; }
+.series .kt-arrow { background: transparent; color: #fff; border-color: rgba(255,255,255,.25); }
+.series .kt-carousel > a { width: 460px; }
+.series .im { height: 560px; overflow: hidden; }
+.series img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.series a:hover img { transform: scale(1.04); }
+.series h4 { font-family: Syne, sans-serif; font-weight: 700; font-size: 28px; color: #fff; margin: 18px 0 2px; text-transform: uppercase; }
+.series small { color: var(--kt-mut); }
+
+/* about */
+.ab .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.ab .ph { position: relative; }
+.ab .ph img { width: 100%; height: 640px; object-fit: cover; }
+.ab .ph .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.kit { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 30px 0; }
+.kit div { border-top: 1px solid var(--kt-line); padding-top: 14px; }
+.kit b { display: block; color: #fff; font-weight: 500; }
+.ab .kt-audio { --kt-audio-bg: #161616; --kt-audio-ink: #fff; }
+
+/* packages */
+.pk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--kt-line); border: 1px solid var(--kt-line); margin-top: 50px; }
+.pk > div { background: var(--kt-bg); padding: 44px 36px; display: flex; flex-direction: column; transition: background .3s; }
+.pk > div:hover { background: #111; }
+.pk h3 { font-family: Syne, sans-serif; font-weight: 700; font-size: 30px; color: #fff; margin: 10px 0 4px; text-transform: uppercase; }
+.pk .p { font-family: Syne, sans-serif; font-size: 58px; font-weight: 800; color: var(--kt-accent); margin: 18px 0; line-height: 1; }
+.pk ul { list-style: none; padding: 0; margin: 0 0 30px; display: grid; gap: 10px; }
+.pk li { display: flex; gap: 10px; }
+.pk li::before { content: "—"; color: var(--kt-accent); }
+.pk .btn { margin-top: auto; justify-content: center; }
+
+/* testimonials */
+.tes { text-align: center; background: #111; }
+.tes .kt-slider { max-width: 900px; margin: 30px auto 0; }
+.tes blockquote { margin: 0; font-size: clamp(22px, 2.8vw, 34px); line-height: 1.45; color: #fff; font-weight: 300; }
+.tes .who { margin-top: 26px; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--kt-accent); }
+.tes .kt-dots { color: #fff; }
+
+/* booking */
+.bk .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.bk form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.bk input, .bk select, .bk textarea { background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.25); color: #fff; height: 54px; outline: none; font-weight: 300; }
+.bk select option { color: #000; }
+.bk textarea { grid-column: 1 / -1; height: 110px; padding-top: 14px; resize: vertical; }
+.bk input:focus, .bk select:focus, .bk textarea:focus { border-color: var(--kt-accent); }
+.bk .full { grid-column: 1 / -1; }
+.bk form .btn { grid-column: 1 / -1; justify-content: center; border: 0; }
+.insta { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.insta img { width: 100%; aspect-ratio: 1; object-fit: cover; opacity: .75; transition: opacity .3s; }
+.insta a:hover img { opacity: 1; }
+footer { padding: 40px 0; border-top: 1px solid var(--kt-line); }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 14px; }
+
+@media (max-width: 980px) {
+  section { padding: 90px 0; }
+  .masonry { columns: 2; }
+  .ab .wrap, .bk .wrap { grid-template-columns: 1fr; gap: 44px; }
+  .pk { grid-template-columns: 1fr; }
+  .ab .ph img { height: 460px; }
+  .insta { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .masonry { columns: 1; }
+  .series .kt-carousel > a { width: 80vw; } .series .im { height: 420px; }
+  .bk form { grid-template-columns: 1fr; }
+  .hero .cap { text-align: left; } .hero .ctrl { justify-content: flex-start; }
+  .gtabs { gap: 16px; flex-wrap: wrap; }
+}
+@media (max-width: 600px) { .hero h1 { font-size: 12vw; } h2.h { font-size: 8.6vw; } }
+.bk h2.h { font-size: clamp(34px, 4vw, 62px); } @media (max-width: 600px) { .bk h2.h { font-size: 7.6vw; } }
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Kai Nordström</a>
+    <nav class="kt-menu"><a href="#work">Work</a><a href="#series">Series</a><a href="#about">About</a><a href="#packages">Packages</a><a href="#book">Book</a></nav>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero" data-slider-scope>
+  <div class="kt-slider" data-autoplay="6000" id="heroSl">
+    <div class="kt-track">
+      <figure><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2000&q=75&auto=format&fit=crop" alt="Mountain ridge at dawn"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2000&q=75&auto=format&fit=crop" alt="Valley in golden light"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2000&q=75&auto=format&fit=crop" alt="Couple on their wedding day"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=2000&q=75&auto=format&fit=crop" alt="Misty landscape"></figure>
+    </div>
+  </div>
+  <div class="over"><div class="wrap">
+    <div><span class="sm" data-reveal>Photographer · Oslo / Worldwide</span><h1 class="sy" data-split>Light, waiting</h1></div>
+    <div><div class="cap"><b id="capN">01 / 04</b><span id="capT">Lofoten, Norway · 05:12</span></div>
+      <div class="ctrl"><button class="kt-arrow" data-prev aria-label="Previous photo"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-next aria-label="Next photo"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+  </div></div>
+</section>
+
+<div class="mq kt-marquee" data-speed="40s"><div class="kt-mq-track"><span>Landscapes</span><span>Portraits</span><span>Weddings</span><span>Editorial</span><span>Prints</span></div></div>
+
+<section id="work">
+  <div class="wrap" data-tabs>
+    <div class="gh"><div><span class="sm" data-reveal>Portfolio</span><h2 class="h sy" data-split>Selected frames</h2></div>
+      <div class="gtabs" role="tablist" data-reveal><button data-tab="land" class="on">Landscapes</button><button data-tab="port">Portraits</button><button data-tab="wed">Weddings</button></div></div>
+    <div class="masonry" data-pane="land" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2000&q=80&auto=format&fit=crop" data-caption="Lofoten · Norway"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=2000&q=80&auto=format&fit=crop" data-caption="Forest light · Sweden"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=900&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=2000&q=80&auto=format&fit=crop" data-caption="Lake at dusk · Canada"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=2000&q=80&auto=format&fit=crop" data-caption="Morning mist · Scotland"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=700&h=860&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=2000&q=80&auto=format&fit=crop" data-caption="Golden valley · Iceland"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2000&q=80&auto=format&fit=crop" data-caption="Calm sea · Portugal"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&h=780&q=72&auto=format&fit=crop" alt=""></a>
+    </div>
+    <div class="masonry" data-pane="port" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=2000&q=80&auto=format&fit=crop" data-caption="Clara · studio"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=2000&q=80&auto=format&fit=crop" data-caption="Mia · window light"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=2000&q=80&auto=format&fit=crop" data-caption="Jonas · street"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=2000&q=80&auto=format&fit=crop" data-caption="Lea · outdoor"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=72&auto=format&fit=crop" alt=""></a>
+    </div>
+    <div class="masonry" data-pane="wed" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=2000&q=80&auto=format&fit=crop" data-caption="Ingrid &amp; Ole"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=2000&q=80&auto=format&fit=crop" data-caption="The first dance"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=2000&q=80&auto=format&fit=crop" data-caption="Mountain vows"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=72&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=2000&q=80&auto=format&fit=crop" data-caption="Golden hour"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=72&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="series" id="series" data-slider-scope>
+  <div class="wrap">
+    <div class="sh"><div><span class="sm" data-reveal>Series</span><h2 class="h sy" data-split>Long stories</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel" data-carousel>
+      <a href="#"><div class="im"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=72&auto=format&fit=crop" alt=""></div><h4>Quiet Forests</h4><small>32 images · 2025</small></a>
+      <a href="#"><div class="im"><img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=900&q=72&auto=format&fit=crop" alt=""></div><h4>Edge of the North</h4><small>48 images · 2024</small></a>
+      <a href="#"><div class="im"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=72&auto=format&fit=crop" alt=""></div><h4>Atlantic Blue</h4><small>21 images · 2024</small></a>
+      <a href="#"><div class="im"><img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=900&q=72&auto=format&fit=crop" alt=""></div><h4>Faces of Oslo</h4><small>60 images · 2023</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="ab" id="about">
+  <div class="wrap">
+    <div class="ph" data-reveal="left"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1000&q=75&auto=format&fit=crop" alt="Camera in the field"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch behind the lens"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+    <div>
+      <span class="sm" data-reveal>About</span>
+      <h2 class="h sy" data-split>I wait for the light</h2>
+      <p data-reveal>I've spent twelve years chasing the 20 minutes before sunrise. Whether it's a fjord, a face or a first kiss, I'd rather wait for the right moment than make one up.</p>
+      <div class="kit" data-reveal><div><b>Leica SL3</b>Main camera</div><div><b>40+ countries</b>Shot in</div><div><b>Nat Geo, Kinfolk</b>Published in</div><div><b>Film &amp; digital</b>Both, always</div></div>
+      <div data-audio="calm" data-title="Field recordings" data-sub="Wind and water from my last trip to Lofoten" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" style="padding-top:0">
+  <div class="wrap">
+    <span class="sm" data-reveal>Packages</span>
+    <h2 class="h sy" data-split>Work with me</h2>
+    <div class="pk">
+      <div data-reveal><span class="sm">Portraits</span><h3>Session</h3><div class="p">€450</div><ul><li>2 hours, one location</li><li>40 edited images</li><li>Online gallery &amp; prints shop</li></ul><a href="#book" class="btn ot">Book a session</a></div>
+      <div data-reveal data-delay="100"><span class="sm">Weddings</span><h3>Full day</h3><div class="p">€3,200</div><ul><li>10 hours, two photographers</li><li>600+ edited images</li><li>Fine-art album</li><li>Engagement shoot included</li></ul><a href="#book" class="btn lt">Check my date</a></div>
+      <div data-reveal data-delay="200"><span class="sm">Brands</span><h3>Editorial</h3><div class="p">From €1,800</div><ul><li>Concept &amp; location scouting</li><li>Licensing for web and print</li><li>Fast turnaround</li></ul><a href="#book" class="btn ot">Get a quote</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="tes">
+  <div class="wrap">
+    <span class="sm" data-reveal>Clients</span>
+    <div class="kt-slider" data-autoplay="7000">
+      <div class="kt-track">
+        <div><blockquote>“We didn't notice Kai all day, and then the photos made us cry. Every single moment was there.”</blockquote><div class="who">Ingrid &amp; Ole · Wedding in Lofoten</div></div>
+        <div><blockquote>“The calmest shoot we've ever had. The images carried our whole autumn campaign.”</blockquote><div class="who">Norrøna · Brand campaign</div></div>
+        <div><blockquote>“I hate being photographed. Somehow these are the first portraits I actually like.”</blockquote><div class="who">Clara M. · Portrait session</div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="bk" id="book">
+  <div class="wrap">
+    <div><span class="sm" data-reveal>Book</span><h2 class="h sy" data-split>Let's make something</h2><p data-reveal>Weddings for 2027 and 2028 are booking now. I take on around 20 a year.</p></div>
+    <form data-form="Thank you! I'll get back to you within 48 hours." data-reveal="right">
+      <input placeholder="Name" required><input type="email" placeholder="Email" required>
+      <select class="full"><option>What would you like?</option><option>Wedding</option><option>Portrait session</option><option>Brand / editorial</option><option>Buy a print</option></select>
+      <input type="date"><input placeholder="Location">
+      <textarea placeholder="Tell me a little about it"></textarea>
+      <button class="btn lt" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+
+<div class="insta" data-lightbox>
+  <a href="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=60&auto=format&fit=crop" alt=""></a>
+  <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=60&auto=format&fit=crop" alt=""></a>
+  <a href="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=60&auto=format&fit=crop" alt=""></a>
+  <a href="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=60&auto=format&fit=crop" alt=""></a>
+  <a href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=60&auto=format&fit=crop" alt=""></a>
+  <a href="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=80&auto=format&fit=crop" data-caption="@kai.nordstrom"><img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&q=60&auto=format&fit=crop" alt=""></a>
+</div>
+<footer><div class="wrap"><span>© 2026 Kai Nordström Photography</span><span>Instagram · Vimeo · Prints</span></div></footer>
+
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // hero caption follows the slide
+  const CAP = [['Lofoten, Norway', '05:12'], ['Landmannalaugar, Iceland', '19:40'], ['Ingrid & Ole, Lofoten', '16:05'], ['Isle of Skye, Scotland', '06:30']];
+  document.getElementById('heroSl').addEventListener('kt-slide', e => { const i = e.detail; document.getElementById('capN').textContent = `0${i + 1} / 04`; document.getElementById('capT').textContent = CAP[i].join(' · '); });
+</script>
+</body>
+</html>
