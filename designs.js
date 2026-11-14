@@ -37,6 +37,16 @@ window.DESIGNS = {
       "desc": "Portfolios, resumes, artists and invitations"
     },
     {
+      "id": "community",
+      "name": "Community & information",
+      "desc": "Events, charities, communities, schools and blogs"
+    },
+    {
+      "id": "small-shops",
+      "name": "Small shops",
+      "desc": "Order via WhatsApp or a form, no full store"
+    },
+    {
       "id": "landing-pages",
       "name": "Landing pages",
       "desc": "Single page sites"
@@ -925,6 +935,134 @@ window.DESIGNS = {
         {
           "label": "Page",
           "href": "personal-creative/16-wedding/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "community",
+      "slug": "21-event",
+      "title": "SIGNAL 2027 · Conference",
+      "desc": "Design & AI conference: countdown, speaker modal, filterable 3-track schedule, ticket tiers with quantity, venue.",
+      "tags": [
+        "Event"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "community/21-event/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "community",
+      "slug": "22-nonprofit",
+      "title": "Wellspring · Charity",
+      "desc": "Water charity: impact counters, once/monthly donation widget with impact text, projects, transparency bars, volunteer form.",
+      "tags": [
+        "Non-profit"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "community/22-nonprofit/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "community",
+      "slug": "23-community",
+      "title": "Al-Noor · Community centre",
+      "desc": "Mosque & community centre: live prayer times with next-prayer countdown, week table, events with RSVP, classes, giving by fund.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "community/23-community/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "community",
+      "slug": "24-school",
+      "title": "Oakridge · School",
+      "desc": "International school: programme tabs, day timeline, teachers carousel, admissions steps, fee calculator, open-morning booking.",
+      "tags": [
+        "School"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "community/24-school/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "community",
+      "slug": "25-blog",
+      "title": "Slow Work · Blog / newsletter",
+      "desc": "Newsletter: featured letter, filterable and searchable essays, series carousel, podcast and video, free/paid subscribe.",
+      "tags": [
+        "Blog"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "community/25-blog/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "small-shops",
+      "slug": "26-florist",
+      "title": "Petal & Twine · Florist",
+      "desc": "Florist & gifts: quick view with size and card message, bag, order on WhatsApp or form, postcode check, open-now status.",
+      "tags": [
+        "Florist"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "small-shops/26-florist/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "small-shops",
+      "slug": "27-home-baker",
+      "title": "Crumb & Co. · Home baker",
+      "desc": "Home bakery: menu with quantity steppers, visual cake builder, ZIP delivery fee, weekend slots with cutoff countdown.",
+      "tags": [
+        "Bakery"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "small-shops/27-home-baker/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "small-shops",
+      "slug": "28-travel",
+      "title": "Wayfarer · Travel agency",
+      "desc": "Small-group tours: tour search, region tabs, itinerary panel with price calculator, guides, tailor-made enquiry.",
+      "tags": [
+        "Travel"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "small-shops/28-travel/index.html"
         }
       ]
     },

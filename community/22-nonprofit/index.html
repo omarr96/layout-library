@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wellspring · Clean water for every village</title>
+<meta name="description" content="Wellspring builds wells and water systems with rural communities. Donate, volunteer or start a fundraiser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #fffdf8; --kt-ink: #0f2a2e; --kt-tx: #4d6064; --kt-mut: #8a9a9c; --kt-line: #e4e8e3; --kt-accent: #0a8f8a; --kt-accent-ink: #fff; --sun: #ffb020; --sand: #f6efe2; --deep: #0f2a2e; }
+body { font: 17px/1.65 'DM Sans', system-ui, sans-serif; }
+.fr { font-family: Fraunces, serif; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.ey { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--kt-accent); }
+.ey::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+h2.h { font-family: Fraunces, serif; font-weight: 500; font-size: clamp(36px, 4.6vw, 62px); line-height: 1.06; letter-spacing: -.02em; color: var(--kt-ink); margin: 14px 0 20px; }
+h2.h em { font-style: italic; color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 54px; padding: 0 26px; border-radius: 99px; font-weight: 700; transition: .2s; }
+.btn.fl { background: var(--sun); color: var(--kt-ink); } .btn.fl:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(255,176,32,.9); }
+.btn.dk { background: var(--kt-ink); color: #fff; } .btn.dk:hover { background: var(--kt-accent); }
+.btn.ol { border: 2px solid currentColor; }
+section { padding: 110px 0; }
+
+.top { background: var(--kt-ink); color: #cfe1df; font-size: 14px; text-align: center; padding: 9px 18px; }
+.top b { color: var(--sun); }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(255,253,248,.95); backdrop-filter: blur(10px); transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 1px 0 var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 78px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: Fraunces, serif; font-size: 26px; font-weight: 700; color: var(--kt-ink); }
+.logo svg { width: 30px; height: 30px; }
+.kt-menu { display: flex; gap: 26px; margin-left: auto; font-weight: 500; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 46px; }
+
+/* hero */
+.hero { padding: 50px 0 90px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 50px; align-items: center; }
+.hero h1 { font-family: Fraunces, serif; font-weight: 500; font-size: clamp(46px, 6.4vw, 92px); line-height: 1; letter-spacing: -.03em; color: var(--kt-ink); margin: 18px 0 22px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--kt-accent); }
+.hero p { font-size: 19px; max-width: 520px; margin: 0 0 30px; }
+.hero .im { position: relative; }
+.hero .im img { width: 100%; height: 560px; object-fit: cover; border-radius: 280px 280px 24px 24px; }
+.hero .chip { position: absolute; left: -30px; bottom: 50px; background: #fff; border-radius: 18px; padding: 16px 18px; box-shadow: 0 24px 50px -24px rgba(15,42,46,.45); display: flex; gap: 12px; align-items: center; max-width: 280px; animation: bob 5s ease-in-out infinite; }
+.hero .chip img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.hero .chip small { display: block; color: var(--kt-mut); }
+@keyframes bob { 50% { translate: 0 -10px; } }
+.trust { display: flex; gap: 20px; align-items: center; margin-top: 30px; font-size: 14px; color: var(--kt-mut); flex-wrap: wrap; }
+.trust b { color: var(--kt-ink); }
+
+/* impact */
+.impact { background: var(--kt-ink); color: #a9c3c0; }
+.impact h2.h { color: #fff; } .impact h2.h em { color: var(--sun); }
+.ig { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+.ig div { padding: 28px; border-radius: 20px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
+.ig b { display: block; font-family: Fraunces, serif; font-weight: 500; font-size: 54px; color: #fff; line-height: 1; margin-bottom: 8px; }
+.ig i { font-style: normal; font-size: 28px; display: block; margin-bottom: 14px; }
+
+/* donate */
+.don .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.box { background: #fff; border-radius: 26px; padding: 34px; border: 1px solid var(--kt-line); box-shadow: 0 30px 60px -40px rgba(15,42,46,.4); }
+.freq { display: grid; grid-template-columns: 1fr 1fr; padding: 5px; border-radius: 99px; background: var(--sand); margin-bottom: 22px; }
+.freq button { height: 46px; border-radius: 99px; font-weight: 700; color: var(--kt-tx); }
+.freq button.on { background: var(--kt-ink); color: #fff; }
+.amts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.amts button { height: 60px; border-radius: 14px; border: 2px solid var(--kt-line); font-weight: 700; font-size: 20px; color: var(--kt-ink); transition: .15s; }
+.amts button.on { border-color: var(--kt-accent); background: rgba(10,143,138,.07); color: var(--kt-accent); }
+.cust { display: flex; align-items: center; height: 60px; border-radius: 14px; border: 2px solid var(--kt-line); padding: 0 16px; gap: 8px; margin-top: 10px; font-weight: 700; color: var(--kt-ink); }
+.cust input { border: 0; outline: none; flex: 1; min-width: 0; font: inherit; height: 100%; background: none; }
+.cust:focus-within { border-color: var(--kt-accent); }
+.eff { margin: 18px 0; padding: 16px 18px; border-radius: 14px; background: var(--sand); display: flex; gap: 14px; align-items: center; color: var(--kt-ink); }
+.eff i { font-style: normal; font-size: 28px; }
+.box .btn { width: 100%; height: 58px; font-size: 17px; }
+.box .sec { display: flex; justify-content: center; gap: 16px; margin-top: 14px; font-size: 13px; color: var(--kt-mut); flex-wrap: wrap; }
+.goal { margin-top: 30px; }
+.goal .bar { height: 12px; border-radius: 99px; background: var(--sand); overflow: hidden; margin: 10px 0; }
+.goal .bar i { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--kt-accent), #34c4b5); transition: width 1.8s ease; }
+.goal.in .bar i { width: 74%; }
+.goal .row { display: flex; justify-content: space-between; font-size: 15px; }
+.goal .row b { color: var(--kt-ink); }
+
+/* projects */
+.ptabs { display: flex; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
+.ptabs button { height: 44px; padding: 0 20px; border-radius: 99px; border: 1px solid var(--kt-line); font-weight: 700; color: var(--kt-tx); }
+.ptabs button.on { background: var(--kt-ink); border-color: var(--kt-ink); color: #fff; }
+.pg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.pc { border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid var(--kt-line); }
+.pc img { width: 100%; height: 220px; object-fit: cover; }
+.pc .b { padding: 22px; }
+.pc .st { font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: rgba(10,143,138,.1); color: var(--kt-accent); }
+.pc .st.done { background: var(--sand); color: #8a6a1e; }
+.pc h4 { font-family: Fraunces, serif; font-weight: 500; font-size: 24px; color: var(--kt-ink); margin: 12px 0 6px; }
+.pc .bar { height: 7px; border-radius: 99px; background: var(--sand); overflow: hidden; margin: 14px 0 8px; }
+.pc .bar i { display: block; height: 100%; background: var(--kt-accent); }
+.pc .row { display: flex; justify-content: space-between; font-size: 14px; }
+
+/* stories */
+.stories { background: var(--sand); }
+.stories .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.sq img { width: 100%; height: 480px; object-fit: cover; border-radius: 24px; }
+.sq blockquote { margin: 0; font-family: Fraunces, serif; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.3; color: var(--kt-ink); }
+.sq cite { display: block; margin-top: 20px; font-style: normal; color: var(--kt-tx); }
+.sq cite b { color: var(--kt-ink); }
+.stories .kt-dots { justify-content: flex-start; margin-top: 26px; color: var(--kt-ink); }
+.field { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 80px; align-items: center; }
+.vid { position: relative; border-radius: 22px; overflow: hidden; }
+.vid img { width: 100%; height: 360px; object-fit: cover; display: block; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--sun); color: var(--kt-ink); }
+.vid .kt-play::before { border-color: var(--sun); }
+.stories .kt-audio { --kt-audio-bg: #fff; margin-top: 20px; }
+
+/* money */
+.money .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.split { display: grid; gap: 18px; }
+.split .r { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; }
+.split .r b { color: var(--kt-ink); }
+.split .r .bar { grid-column: 1 / -1; height: 10px; border-radius: 99px; background: var(--sand); overflow: hidden; }
+.split .r .bar i { display: block; height: 100%; width: 0; border-radius: 99px; transition: width 1.6s ease; }
+.split.in .r .bar i { width: var(--v); }
+.badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+.badges span { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--kt-line); font-weight: 700; font-size: 14px; color: var(--kt-ink); background: #fff; }
+
+/* volunteer */
+.vol .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; }
+.roles { display: grid; gap: 12px; margin-top: 24px; }
+.roles label { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 16px; border: 2px solid var(--kt-line); cursor: pointer; transition: .15s; }
+.roles input { margin-top: 5px; accent-color: var(--kt-accent); }
+.roles label:has(input:checked) { border-color: var(--kt-accent); background: rgba(10,143,138,.05); }
+.roles b { display: block; color: var(--kt-ink); }
+.vol form { display: grid; gap: 12px; align-self: start; }
+.vol input:not([type]), .vol input[type=email], .vol select, .vol textarea { height: 54px; border-radius: 14px; border: 1px solid var(--kt-line); padding: 0 16px; background: #fff; font: inherit; outline: none; }
+.vol textarea { height: 100px; padding-top: 14px; }
+.vol .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.partners { padding: 40px 0; border-top: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); }
+.partners .kt-mq-track span { font-family: Fraunces, serif; font-size: 30px; color: #b3bdbb; white-space: nowrap; display: flex; align-items: center; gap: 60px; }
+.partners .kt-mq-track span::after { content: "✦"; font-size: 14px; color: var(--sun); }
+.more .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+footer { background: var(--kt-ink); color: #a9c3c0; padding: 80px 0 30px; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { color: #fff; margin: 0 0 12px; }
+footer a { display: block; margin: 6px 0; } footer a:hover { color: #fff; }
+footer form { display: flex; gap: 8px; margin-top: 16px; }
+footer input { flex: 1; min-width: 0; height: 50px; border-radius: 99px; border: 0; padding: 0 18px; font: inherit; outline: none; }
+footer .cp { margin-top: 50px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
+
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .don .wrap, .stories .wrap, .money .wrap, .vol .wrap, .more .wrap, .field { grid-template-columns: 1fr; gap: 40px; }
+  .hero .im img { height: 440px; } .hero .chip { left: 12px; }
+  .ig { grid-template-columns: 1fr 1fr; }
+  .pg { grid-template-columns: 1fr 1fr; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .ig { gap: 12px; } .ig div { padding: 20px; } .ig b { font-size: 38px; }
+  .pg { grid-template-columns: 1fr; }
+  .box { padding: 22px; }
+  .sq img { height: 320px; } .vid img { height: 240px; }
+  .vol .two { grid-template-columns: 1fr; }
+  footer .g { grid-template-columns: 1fr; } footer form { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="top">🎁 This month, every gift is <b>matched 2×</b> by the Hale Foundation, up to €100,000.</div>
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3C16 3 6 14.5 6 20.5a10 10 0 0 0 20 0C26 14.5 16 3 16 3Z" fill="#0a8f8a"/><path d="M11 21a5 5 0 0 0 5 5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>Wellspring</a>
+    <nav class="kt-menu"><a href="#impact">Our impact</a><a href="#projects">Projects</a><a href="#stories">Stories</a><a href="#volunteer">Volunteer</a></nav>
+    <a href="#donate" class="btn fl">Donate</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Since 2011 · 14 countries</span>
+      <h1><span data-split>Clean water changes</span> <span data-rotate="health.|school.|everything.|futures."></span></h1>
+      <p data-reveal data-delay="200">We build wells and water systems together with rural communities, and train local teams to keep them running for decades.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#donate" class="btn fl">Give clean water</a><a href="#volunteer" class="btn ol" style="color:var(--kt-ink)">Volunteer with us</a></div>
+      <div class="trust" data-reveal data-delay="400"><span>⭐ <b>4-star</b> Charity Navigator</span><span>✓ <b>100%</b> of public gifts fund water</span></div>
+    </div>
+    <div class="im" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1000&q=72&auto=format&fit=crop" alt="Children in a village we work with">
+      <div class="chip"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Anna from Oslo</b> just gave €50<small>2 minutes ago · matched 2×</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <div class="wrap">
+    <span class="ey" style="color:var(--sun)" data-reveal>Our impact</span>
+    <h2 class="h" data-split>15 years, <em>one goal</em></h2>
+    <div class="ig" data-reveal>
+      <div><i>💧</i><b data-count="2140">0</b>wells and water systems built</div>
+      <div><i>👨‍👩‍👧</i><b data-count="1.8" data-suffix="M">0</b>people with clean water today</div>
+      <div><i>🏫</i><b data-count="640">0</b>schools with safe water and toilets</div>
+      <div><i>🛠</i><b data-count="96" data-suffix="%">0</b>of our wells still working after 10 years</div>
+    </div>
+  </div>
+</section>
+
+<section class="don" id="donate">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Donate</span>
+      <h2 class="h" data-split>€30 gives one person <em>clean water</em> for life</h2>
+      <p data-reveal>Your gift pays for drilling, pipes, pumps and training. Monthly gifts let us plan ahead, which makes every euro go further.</p>
+      <div class="goal" data-reveal><div class="row"><b>Spring appeal: Kaduna, Nigeria</b><span>74%</span></div><div class="bar"><i></i></div><div class="row"><span><b>€74,120</b> raised of €100,000</span><span>812 donors</span></div></div>
+    </div>
+    <div class="box" data-reveal="right">
+      <div class="freq" role="tablist"><button class="on" data-fr="once">Give once</button><button data-fr="month">Monthly ❤️</button></div>
+      <div class="amts" id="amts"><button data-v="30">€30</button><button data-v="60" class="on">€60</button><button data-v="120">€120</button></div>
+      <label class="cust">€<input id="custom" inputmode="numeric" placeholder="Other amount" aria-label="Other amount"></label>
+      <div class="eff"><i id="effI">🚰</i><span id="effT"></span></div>
+      <button class="btn fl" id="give">Give €60</button>
+      <div class="sec"><span>🔒 Secure payment</span><span>Card · PayPal · Apple Pay</span><span>Tax deductible</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding-top:0">
+  <div class="wrap" data-tabs>
+    <span class="ey" data-reveal>Projects</span>
+    <h2 class="h" data-split>Where your money <em>goes</em></h2>
+    <div class="ptabs" role="tablist" data-reveal><button data-tab="now" class="on">Fundraising now</button><button data-tab="done">Completed</button></div>
+    <div class="pg" data-pane="now" id="pNow"></div>
+    <div class="pg" data-pane="done" id="pDone"></div>
+  </div>
+</section>
+
+<section class="stories" id="stories">
+  <div class="wrap">
+    <div data-reveal="left"><img class="sq" style="width:100%;height:480px;object-fit:cover;border-radius:24px" src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=900&q=72&auto=format&fit=crop" alt="Students at a school with a new well"></div>
+    <div>
+      <span class="ey" data-reveal>Stories</span>
+      <div class="kt-slider sq" data-autoplay="7000" style="margin-top:20px">
+        <div class="kt-track">
+          <div><blockquote>“I used to walk three hours for water every morning. Now I walk to school instead.”</blockquote><cite><b>Amina, 12</b> · Kaduna, Nigeria</cite></div>
+          <div><blockquote>“Since the well opened, not one child in our village has been sick with cholera.”</blockquote><cite><b>Dr. Joseph Mensah</b> · Tamale, Ghana</cite></div>
+          <div><blockquote>“I trained as a pump mechanic. Now I look after eleven wells and support my family.”</blockquote><cite><b>Grace</b> · Water committee lead, Malawi</cite></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div class="field" style="grid-column:1 / -1">
+      <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1100&q=72&auto=format&fit=crop" alt="Our team in the field"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch: the day the water came"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div data-reveal><h3 class="fr" style="font-size:32px;font-weight:500;color:var(--kt-ink);margin:0 0 10px">The day the water came</h3><p>A 3-minute film from our newest well in northern Ghana. Or listen to voices from the field, recorded by our local teams.</p><div data-audio="calm" data-title="Voices from the field · Ep. 7" data-sub="Women leading water committees · 22 min"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="money">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Transparency</span>
+      <h2 class="h" data-split>Every euro, <em>accounted for</em></h2>
+      <p data-reveal>Private donors cover our running costs, so 100% of public gifts go straight to water projects. Our accounts are audited every year.</p>
+      <div class="badges" data-reveal><span>📄 2025 annual report</span><span>✓ Audited by KPMG</span><span>🔎 Live project tracker</span></div>
+    </div>
+    <div class="split" data-reveal>
+      <div class="r"><b>Wells &amp; water systems</b><span>68%</span><div class="bar"><i style="--v:68%;background:var(--kt-accent)"></i></div></div>
+      <div class="r"><b>Training local mechanics</b><span>14%</span><div class="bar"><i style="--v:14%;background:#34c4b5"></i></div></div>
+      <div class="r"><b>Sanitation &amp; hygiene</b><span>12%</span><div class="bar"><i style="--v:12%;background:var(--sun)"></i></div></div>
+      <div class="r"><b>Monitoring for 10+ years</b><span>6%</span><div class="bar"><i style="--v:6%;background:#e77b5a"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="partners kt-marquee" data-speed="38s"><div class="kt-mq-track"><span>Hale Foundation</span><span>UNICEF</span><span>Rotary</span><span>WaterAid</span><span>Patagonia</span><span>The Gates Foundation</span></div></div>
+
+<section class="vol" id="volunteer">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Get involved</span>
+      <h2 class="h" data-split>Give your <em>time</em></h2>
+      <p data-reveal>Not everyone can give money, and that's okay. Pick how you'd like to help.</p>
+      <div class="roles" data-reveal>
+        <label><input type="radio" name="role" checked><span><b>Start a fundraiser</b>Run, bake, turn your birthday into wells. We'll send a kit.</span></label>
+        <label><input type="radio" name="role"><span><b>Volunteer locally</b>Help at events and school talks in your city.</span></label>
+        <label><input type="radio" name="role"><span><b>Skilled volunteering</b>Engineers, designers, translators: lend your skills remotely.</span></label>
+      </div>
+    </div>
+    <form data-form="Thank you! Our volunteer team will be in touch this week." data-reveal="right">
+      <div class="two"><input placeholder="First name" required aria-label="First name"><input placeholder="Last name" aria-label="Last name"></div>
+      <input type="email" placeholder="Email" required aria-label="Email">
+      <select aria-label="Country"><option>Country: Germany</option><option>United Kingdom</option><option>Netherlands</option><option>United States</option><option>Other</option></select>
+      <textarea placeholder="Tell us a little about you (optional)" aria-label="About you"></textarea>
+      <button class="btn dk" type="submit">Sign me up</button>
+    </form>
+  </div>
+</section>
+
+<section class="more" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="ey" data-reveal>FAQ</span><h2 class="h" data-split>Questions?</h2><p data-reveal>Can't find your answer? Write to hello@wellspring.org and we'll reply within a day.</p></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Is my donation tax deductible?</summary><div class="kt-faq-a"><div>Yes. Wellspring is a registered charity in Germany, the UK and the US. You'll get a receipt by email straight away.</div></div></details>
+      <details class="kt-faq"><summary>Can I choose which project I fund?</summary><div class="kt-faq-a"><div>Yes, pick any project above. Gifts without a project go where the need is greatest.</div></div></details>
+      <details class="kt-faq"><summary>How do I know the well was built?</summary><div class="kt-faq-a"><div>Within 18 months you'll get GPS coordinates, photos and a report from the community.</div></div></details>
+      <details class="kt-faq"><summary>Can I cancel a monthly gift?</summary><div class="kt-faq-a"><div>Anytime, in one click from your donor account or the link in every receipt.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo" style="color:#fff">Wellspring</a><p>Clean water for every village. Registered charity no. 1182 4471.</p><form data-form="You're subscribed. Stories from the field are on their way."><input type="email" placeholder="Monthly stories from the field" required aria-label="Email"><button class="btn fl" type="submit">Subscribe</button></form></div>
+      <div><h4>Organisation</h4><a href="#">About us</a><a href="#">Our team</a><a href="#">Annual reports</a><a href="#">Careers</a></div>
+      <div><h4>Ways to give</h4><a href="#">Monthly giving</a><a href="#">Corporate partners</a><a href="#">Gifts in wills</a><a href="#">Fundraise</a></div>
+    </div>
+    <div class="cp">© 2026 Wellspring e.V. · Berlin · Privacy · Imprint</div>
+  </div>
+</footer>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const card = ([t, place, id, raised, goal, done]) => `<div class="pc"><img src="${U(id, 600)}" alt=""><div class="b"><span class="st ${done ? 'done' : ''}">${done ? '✓ Completed ' + done : '● Fundraising'}</span><h4>${t}</h4><span>📍 ${place}</span>${done ? `<p style="margin:12px 0 0;font-size:15px">${raised}</p>` : `<div class="bar"><i style="width:${Math.round(raised / goal * 100)}%"></i></div><div class="row"><span><b style="color:var(--kt-ink)">€${raised.toLocaleString()}</b> of €${goal.toLocaleString()}</span><a href="#donate" style="color:var(--kt-accent);font-weight:700">Give →</a></div>`}</div></div>`;
+  document.getElementById('pNow').innerHTML = [['Village well for Kaduna', 'Nigeria', '1532629345422-7515f3d16bb6', 74120, 100000], ['School toilets in Tamale', 'Ghana', '1497486751825-1233686d5d80', 18400, 32000], ['Rainwater tanks', 'Kenya', '1593113598332-cd288d649433', 9600, 24000]].map(card).join('');
+  document.getElementById('pDone').innerHTML = [['Solar pump for Zomba', 'Malawi', '1469571486292-0ba58a3f068b', '4,200 people now have water 24/7.', 0, '2025'], ['12 wells in Sindh', 'Pakistan', '1542810634-71277d95dcbb', '9,800 people, 6 schools and 2 clinics.', 0, '2024'], ['Hygiene training', 'Uganda', '1559027615-cd4628902d4a', '1,100 families trained, diarrhoea cases down 61%.', 0, '2024']].map(card).join('');
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // donation widget
+  const IMPACT = [[30, '🚰', 'gives one person clean water for life'], [60, '👨‍👩‍👧', 'gives a family of two clean water for life'], [120, '🏫', 'brings safe water to 4 children at school'], [300, '🛠', 'trains one local pump mechanic'], [1000, '💧', 'pays for a third of a village well']];
+  let amt = 60, monthly = false; const give = document.getElementById('give'), custom = document.getElementById('custom');
+  const upd = () => { const it = [...IMPACT].reverse().find(x => amt >= x[0]) || IMPACT[0]; const n = Math.max(1, Math.floor(amt / it[0]));
+    document.getElementById('effI').textContent = it[1];
+    document.getElementById('effT').innerHTML = amt ? `<b>€${amt}${monthly ? '/month' : ''}</b> ${amt < 30 ? 'helps buy pipes and pumps' : it[2]} · <b>matched to €${amt * 2}</b>` : 'Choose an amount';
+    give.textContent = amt ? `Give €${amt}${monthly ? ' monthly' : ''}` : 'Give'; };
+  document.getElementById('amts').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; document.querySelectorAll('#amts button').forEach(x => x.classList.toggle('on', x === b)); custom.value = ''; amt = +b.dataset.v; upd(); });
+  custom.addEventListener('input', () => { custom.value = custom.value.replace(/\D/g, ''); document.querySelectorAll('#amts button').forEach(x => x.classList.remove('on')); amt = +custom.value || 0; upd(); });
+  document.querySelector('.freq').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; document.querySelectorAll('.freq button').forEach(x => x.classList.toggle('on', x === b)); monthly = b.dataset.fr === 'month'; upd(); });
+  give.addEventListener('click', () => amt ? ktToast(`Thank you! Secure checkout for €${amt}${monthly ? '/month' : ''} opens next.`) : custom.focus());
+  upd();
+  // bars inside .goal/.split animate when revealed (kit adds .in)
+</script>
+</body>
+</html>

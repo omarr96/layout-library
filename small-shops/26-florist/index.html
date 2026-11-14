@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petal &amp; Twine · Florist &amp; gift shop · Bristol</title>
+<meta name="description" content="Seasonal bouquets, plants and gifts from our little shop in Bristol. Order on WhatsApp or online, same-day delivery before 1pm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #fdf8f4; --kt-ink: #2b1e1a; --kt-tx: #6a5a54; --kt-mut: #a3948e; --kt-line: #eee2da; --kt-accent: #c2556b; --kt-accent-ink: #fff; --sage: #7d8f69; --blush: #f7e3e1; --wa: #25d366; }
+body { font: 17px/1.65 Karla, system-ui, sans-serif; }
+.pf { font-family: 'Playfair Display', serif; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+h2.h { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; color: var(--kt-ink); margin: 10px 0 18px; }
+h2.h em { color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 24px; border-radius: 99px; font-weight: 700; transition: .2s; }
+.btn.fl { background: var(--kt-accent); color: #fff; } .btn.fl:hover { background: #a8435a; }
+.btn.wa { background: var(--wa); color: #fff; } .btn.wa:hover { filter: brightness(.95); }
+.btn.ol { border: 1.5px solid var(--kt-ink); color: var(--kt-ink); }
+.btn svg { width: 20px; height: 20px; }
+section { padding: 100px 0; }
+
+.top { background: var(--sage); color: #fff; font-size: 14px; padding: 9px 0; overflow: hidden; }
+.top .kt-mq-track span { white-space: nowrap; display: flex; gap: 40px; align-items: center; }
+.top .kt-mq-track span::after { content: "✿"; }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(253,248,244,.95); backdrop-filter: blur(10px); transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 1px 0 var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 26px; height: 78px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 27px; font-style: italic; color: var(--kt-ink); }
+.kt-menu { display: flex; gap: 24px; margin-left: auto; font-weight: 500; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.bag { position: relative; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 99px; border: 1px solid var(--kt-line); background: #fff; font-weight: 700; color: var(--kt-ink); }
+.bag b { min-width: 22px; height: 22px; border-radius: 99px; background: var(--kt-accent); color: #fff; font-size: 12px; display: grid; place-items: center; transition: transform .3s; }
+.bag b.bump { transform: scale(1.35); }
+
+/* hero */
+.hero { padding: 40px 0 90px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 50px; align-items: center; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(48px, 6.6vw, 96px); line-height: 1; color: var(--kt-ink); margin: 16px 0 20px; letter-spacing: -.01em; }
+.hero h1 em { color: var(--kt-accent); }
+.hero p { font-size: 19px; max-width: 480px; margin: 0 0 28px; }
+.hero .im { position: relative; height: 580px; }
+.hero .im .a { position: absolute; right: 0; top: 0; width: 72%; height: 100%; object-fit: cover; border-radius: 300px 300px 24px 24px; }
+.hero .im .b { position: absolute; left: 0; bottom: 40px; width: 40%; height: 46%; object-fit: cover; border-radius: 24px; border: 8px solid var(--kt-bg); }
+.hero .stamp { position: absolute; left: 14%; top: 8%; width: 130px; height: 130px; animation: spin 20s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+.hero .open { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-weight: 700; font-size: 15px; color: var(--kt-ink); }
+.hero .open i { width: 10px; height: 10px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 4px rgba(37,211,102,.2); }
+.hero .open.closed i { background: #d64545; box-shadow: 0 0 0 4px rgba(214,69,69,.2); }
+
+/* shop */
+.shop { background: #fff; }
+.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.otabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.otabs button { height: 42px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--kt-line); font-weight: 700; color: var(--kt-tx); }
+.otabs button.on { background: var(--kt-ink); color: #fff; border-color: var(--kt-ink); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.pc { display: flex; flex-direction: column; }
+.pc .im { position: relative; border-radius: 20px; overflow: hidden; background: var(--blush); }
+.pc img { width: 100%; aspect-ratio: 4/5; object-fit: cover; transition: transform .6s; }
+.pc:hover img { transform: scale(1.05); }
+.pc .tg { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 99px; background: #fff; font-size: 12px; font-weight: 700; color: var(--kt-ink); }
+.pc .qv { position: absolute; left: 12px; right: 12px; bottom: 12px; height: 42px; border-radius: 99px; background: rgba(255,255,255,.95); font-weight: 700; color: var(--kt-ink); opacity: 0; transform: translateY(8px); transition: .25s; }
+.pc:hover .qv, .pc .qv:focus { opacity: 1; transform: none; }
+.pc h4 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 22px; color: var(--kt-ink); margin: 14px 0 2px; }
+.pc .pr { font-weight: 700; color: var(--kt-ink); }
+.pc .pr s { color: var(--kt-mut); font-weight: 400; margin-left: 6px; }
+.pc .add { margin-top: 12px; height: 44px; border-radius: 99px; border: 1.5px solid var(--kt-ink); font-weight: 700; color: var(--kt-ink); transition: .2s; }
+.pc .add:hover { background: var(--kt-ink); color: #fff; }
+
+/* quick view */
+.qvm { position: fixed; inset: 0; z-index: 200; background: rgba(43,30,26,.55); display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px); }
+.qvm.on { display: grid; animation: kt-fade .2s; }
+.qvm .bx { width: min(880px, 100%); max-height: calc(100vh - 40px); overflow: auto; background: var(--kt-bg); border-radius: 26px; display: grid; grid-template-columns: 1fr 1fr; }
+.qvm .bx > img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; }
+.qvm .ct { padding: 32px; position: relative; }
+.qvm .x { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: #fff; border: 1px solid var(--kt-line); }
+.qvm h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 32px; color: var(--kt-ink); margin: 6px 0; }
+.qvm .big { font-size: 26px; font-weight: 700; color: var(--kt-ink); }
+.qvm label.l { display: block; font-weight: 700; color: var(--kt-ink); font-size: 14.5px; margin: 18px 0 8px; }
+.sz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sz button { padding: 10px 6px; border-radius: 12px; border: 1.5px solid var(--kt-line); font-weight: 700; color: var(--kt-ink); background: #fff; }
+.sz button small { display: block; font-weight: 400; color: var(--kt-mut); font-size: 12.5px; }
+.sz button.on { border-color: var(--kt-accent); background: var(--blush); }
+.qvm textarea { width: 100%; height: 76px; border-radius: 12px; border: 1.5px solid var(--kt-line); padding: 10px 12px; font: inherit; resize: none; outline: none; background: #fff; }
+.qvm .acts { display: grid; gap: 10px; margin-top: 20px; }
+
+/* order */
+.order { background: var(--blush); }
+.order .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: start; }
+.how { display: grid; gap: 14px; margin-top: 26px; }
+.how div { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; background: #fff; padding: 16px; border-radius: 18px; }
+.how i { font-style: normal; width: 52px; height: 52px; border-radius: 50%; background: var(--kt-bg); display: grid; place-items: center; font-size: 24px; }
+.how b { display: block; color: var(--kt-ink); }
+.of { background: #fff; border-radius: 26px; padding: 30px; box-shadow: 0 30px 60px -40px rgba(43,30,26,.4); }
+.of h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 28px; margin: 0 0 4px; color: var(--kt-ink); }
+.bagl { margin: 16px 0; border-top: 1px solid var(--kt-line); }
+.bagl div { display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--kt-line); font-size: 15.5px; }
+.bagl div b { color: var(--kt-ink); font-weight: 500; }
+.bagl .rm { color: var(--kt-mut); margin-left: 10px; }
+.bagl .em { color: var(--kt-mut); justify-content: center; }
+.of .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.of input, .of select { width: 100%; height: 50px; border-radius: 12px; border: 1.5px solid var(--kt-line); padding: 0 14px; font: inherit; outline: none; background: #fff; }
+.of input:focus, .of select:focus { border-color: var(--kt-accent); }
+.of .fld { display: grid; gap: 10px; }
+.of .tot { display: flex; justify-content: space-between; align-items: center; margin: 18px 0; font-size: 18px; color: var(--kt-ink); }
+.of .tot b { font-family: 'Playfair Display', serif; font-size: 30px; }
+.of .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.zone { font-size: 14px; margin-top: 6px; min-height: 20px; }
+.zone.ok { color: #3c7a3c; } .zone.no { color: #b23c3c; }
+
+/* workshop + video */
+.ws { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+.vid { position: relative; border-radius: 24px; overflow: hidden; }
+.vid img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.ws .kt-audio { --kt-audio-bg: var(--blush); margin-top: 22px; }
+.ws .dates { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 24px; }
+.ws .dates span { padding: 8px 14px; border-radius: 12px; border: 1px solid var(--kt-line); background: #fff; font-weight: 700; font-size: 14.5px; color: var(--kt-ink); }
+.ws .dates span s { color: var(--kt-mut); font-weight: 400; }
+.gal { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 12px; margin-top: 60px; }
+.gal a { border-radius: 18px; overflow: hidden; } .gal a:first-child { grid-row: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; } .gal a:hover img { transform: scale(1.05); }
+
+/* reviews / visit */
+.rv { background: #fff; }
+.rv .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rq .st { color: #e6a33a; letter-spacing: 3px; }
+.rq p { font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.4; color: var(--kt-ink); margin: 10px 0 16px; }
+.rv .kt-dots { color: var(--kt-ink); justify-content: flex-start; margin-top: 20px; }
+.visit { margin-top: 40px; padding: 26px; border-radius: 22px; background: var(--kt-bg); }
+.hrs { display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; margin-top: 14px; font-size: 15.5px; }
+.hrs .today { font-weight: 700; color: var(--kt-ink); }
+footer { padding: 50px 0; font-size: 14.5px; } footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.fab { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgba(37,211,102,.7); transition: transform .2s; }
+.fab:hover { transform: scale(1.08); }
+.fab svg { width: 30px; height: 30px; }
+
+@media (max-width: 1000px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .order .wrap, .ws, .rv .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .hero .im { height: 460px; }
+  .grid { grid-template-columns: 1fr 1fr; }
+  .qvm .bx { grid-template-columns: 1fr; } .qvm .bx > img { min-height: 0; height: 260px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .hero .im { height: 360px; } .hero .stamp { width: 96px; height: 96px; left: 0; }
+  .grid { gap: 14px; } .pc h4 { font-size: 18px; } .pc .qv { opacity: 1; transform: none; height: 36px; font-size: 14px; }
+  .of { padding: 20px; } .of .row2, .of .acts { grid-template-columns: 1fr; }
+  .vid img { height: 260px; }
+  .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; } .gal a:first-child { grid-column: span 2; grid-row: auto; }
+  .qvm .ct { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top kt-marquee" data-speed="30s"><div class="kt-mq-track"><span>Same-day delivery in Bristol when you order before 1pm</span><span>Free delivery over £50</span><span>Every bouquet wrapped in recycled paper</span></div></div>
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Petal &amp; Twine</a>
+    <nav class="kt-menu"><a href="#shop">Shop</a><a href="#order">How to order</a><a href="#workshops">Workshops</a><a href="#visit">Visit</a></nav>
+    <a href="#order" class="bag">Bag <b id="bagN">0</b></a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Florist &amp; gift shop · Bristol</span>
+      <h1 data-split>Flowers that say it <em>better</em></h1>
+      <p data-reveal data-delay="200">Seasonal bouquets, potted plants and little gifts, made by hand in our shop on Gloucester Road.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#shop" class="btn fl">Shop bouquets</a><a href="#" class="btn wa wa-link" data-msg="Hi Petal & Twine! I'd like to order some flowers."><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2s-1 .3-3.3-.7c-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.3Z"/></svg>Order on WhatsApp</a></div>
+      <div class="open" id="openNow" data-reveal data-delay="400"><i></i><span>Open now</span></div>
+    </div>
+    <div class="im" data-reveal="zoom">
+      <img class="a" src="https://images.unsplash.com/photo-1487070183336-b863922373d4?w=900&q=72&auto=format&fit=crop" alt="Our florist at work">
+      <img class="b" src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=500&q=72&auto=format&fit=crop" alt="A bouquet">
+      <svg class="stamp" viewBox="0 0 120 120"><defs><path id="c" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><circle cx="60" cy="60" r="58" fill="#7d8f69"/><text font-size="11.5" font-weight="700" letter-spacing="3" fill="#fff"><textPath href="#c">HAND-TIED · SEASONAL · LOCAL · </textPath></text><text x="60" y="68" text-anchor="middle" font-size="26" fill="#fff">✿</text></svg>
+    </div>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="wrap" data-tabs>
+    <div class="sh"><div><span class="ey" data-reveal>This week's flowers</span><h2 class="h" data-split style="margin-bottom:0">Choose your <em>bunch</em></h2></div>
+      <div class="otabs" role="tablist" data-reveal><button data-tab="all" class="on">All</button><button data-tab="bq">Bouquets</button><button data-tab="pl">Plants</button><button data-tab="gf">Gifts</button></div></div>
+    <div class="grid" data-pane="all"></div><div class="grid" data-pane="bq"></div><div class="grid" data-pane="pl"></div><div class="grid" data-pane="gf"></div>
+  </div>
+</section>
+<div class="qvm" id="qvm" role="dialog" aria-modal="true"><div class="bx"><img alt=""><div class="ct"><button class="x" aria-label="Close">✕</button><span class="ey" id="qvC"></span><h3 id="qvT"></h3><p id="qvD" style="margin:0 0 10px"></p><div class="big" id="qvP"></div>
+  <label class="l">Size</label><div class="sz" id="qvS"><button data-m="1" class="on">Classic<small>as shown</small></button><button data-m="1.4">Deluxe<small>+40% stems</small></button><button data-m="2">Luxe<small>double</small></button></div>
+  <label class="l" for="qvN">Gift card message (free)</label><textarea id="qvN" placeholder="Happy birthday, love you lots! x"></textarea>
+  <div class="acts"><button class="btn fl" id="qvAdd">Add to bag</button><a href="#" class="btn wa" id="qvWa">Ask about it on WhatsApp</a></div></div></div></div>
+
+<section class="order" id="order">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>How to order</span>
+      <h2 class="h" data-split>No checkout, <em>no fuss</em></h2>
+      <p data-reveal>We're a small shop, so ordering is personal. Pick your flowers, then send us the order on WhatsApp or with the form. We'll confirm and send a payment link.</p>
+      <div class="how" data-reveal>
+        <div><i>💐</i><span><b>1. Pick your flowers</b>Add to your bag, choose a size and write a card.</span></div>
+        <div><i>💬</i><span><b>2. Send your order</b>On WhatsApp or with the form. We reply within 15 minutes.</span></div>
+        <div><i>🚲</i><span><b>3. We deliver by bike</b>Same day in Bristol before 1pm, or collect in store.</span></div>
+      </div>
+    </div>
+    <form class="of" id="of" data-reveal="right">
+      <h3>Your order</h3><p style="margin:0">Delivery £5 · free over £50</p>
+      <div class="bagl" id="bagl"></div>
+      <div class="fld">
+        <div class="row2"><input id="oName" placeholder="Your name" required aria-label="Your name"><input id="oPhone" placeholder="Phone" required aria-label="Phone"></div>
+        <div class="row2"><select id="oWay" aria-label="Delivery or collection"><option value="d">Deliver it</option><option value="c">I'll collect</option></select><input id="oDate" type="date" aria-label="Date"></div>
+        <div><input id="oPost" placeholder="Delivery postcode, e.g. BS7 8AA" aria-label="Postcode"><div class="zone" id="zone"></div></div>
+      </div>
+      <div class="tot"><span>Total</span><b id="oTot">£0</b></div>
+      <div class="acts"><button type="button" class="btn wa" id="sendWa">Send on WhatsApp</button><button type="submit" class="btn fl">Send with form</button></div>
+    </form>
+  </div>
+</section>
+
+<section id="workshops">
+  <div class="wrap">
+    <div class="ws">
+      <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1100&q=72&auto=format&fit=crop" alt="Inside our shop"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch a day at the shop"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div>
+        <span class="ey" data-reveal>Workshops</span>
+        <h2 class="h" data-split>Make your own <em>wreath</em></h2>
+        <p data-reveal>Two hours, mulled wine, all flowers included. You'll leave with a wreath and a new skill. £55 per person.</p>
+        <div class="dates" data-reveal><span>Sat 29 Nov</span><span>Sun 7 Dec</span><span><s>Sat 13 Dec</s> · full</span><span>Sun 14 Dec</span></div>
+        <a href="#" class="btn ol wa-link" data-msg="Hi! I'd like to book a wreath workshop." data-reveal>Book a spot</a>
+        <div data-audio="jazz" data-title="Shop playlist" data-sub="What we listen to while we work" data-reveal></div>
+      </div>
+    </div>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1600&q=80&auto=format&fit=crop" data-caption="Spring tulips"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=900&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=1600&q=80&auto=format&fit=crop" data-caption="Wedding flowers"><img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1470509037663-253afd7f0f51?w=1600&q=80&auto=format&fit=crop" data-caption="Wildflowers"><img src="https://images.unsplash.com/photo-1470509037663-253afd7f0f51?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=1600&q=80&auto=format&fit=crop" data-caption="Peonies in season"><img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1600&q=80&auto=format&fit=crop" data-caption="Window display"><img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=500&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="rv" id="visit">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Kind words · 4.9 on Google</span>
+      <div class="kt-slider rq" data-autoplay="6000" style="margin-top:18px">
+        <div class="kt-track">
+          <div><span class="st">★★★★★</span><p>“Ordered on WhatsApp at 11am, my mum had the most beautiful bouquet by 3pm. She cried!”</p><b>Laura M.</b></div>
+          <div><span class="st">★★★★★</span><p>“They did all the flowers for our wedding. Every guest asked who the florist was.”</p><b>Sam &amp; Josh</b></div>
+          <div><span class="st">★★★★★</span><p>“The wreath workshop was the best evening out. Lovely people, great mulled wine.”</p><b>Priya K.</b></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+      <div class="visit" data-reveal><b style="color:var(--kt-ink);font-size:19px">📍 142 Gloucester Road, Bristol BS7 8NT</b><div class="hrs" id="hrs"></div></div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>FAQ</span>
+      <h2 class="h" data-split>Good to know</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Where do you deliver?</summary><div class="kt-faq-a"><div>All BS postcodes by bike or electric van. Further afield, we can send plants and gifts by post.</div></div></details>
+        <details class="kt-faq"><summary>Can I choose the exact flowers?</summary><div class="kt-faq-a"><div>We use what's freshest each day, so your bouquet may vary slightly, but always in the same colours and style.</div></div></details>
+        <details class="kt-faq"><summary>Do you do weddings and events?</summary><div class="kt-faq-a"><div>Yes! Send us your date and ideas on WhatsApp and we'll book a free consultation.</div></div></details>
+        <details class="kt-faq"><summary>How do I pay?</summary><div class="kt-faq-a"><div>We send a secure card payment link once your order is confirmed. You can also pay in store.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Petal &amp; Twine · Bristol</span><span>Instagram · Pinterest · hello@petalandtwine.co.uk</span></div></footer>
+<a href="#" class="fab wa-link" data-msg="Hi Petal & Twine!" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2s-1 .3-3.3-.7c-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.3Z"/></svg></a>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const PR = [
+    ['bq', 'The Weekender', 'Seasonal mix in soft pinks and creams.', 38, 0, '1563241527-3004b7be0ffd', 'Bestseller'],
+    ['bq', 'Wild Meadow', 'Loose, garden-style bunch with grasses.', 45, 0, '1470509037663-253afd7f0f51', ''],
+    ['bq', 'Peony Cloud', 'Only in season: lush blush peonies.', 58, 0, '1519378058457-4c29a0a2efac', 'Seasonal'],
+    ['bq', 'Red Romance', '12 long-stem roses, hand-tied.', 65, 0, '1526047932273-341f2a7631f9', ''],
+    ['pl', 'Little Olive Tree', 'In a terracotta pot, 60 cm tall.', 42, 0, '1508610048659-a06b669e3321', ''],
+    ['pl', 'Orchid in Ceramic', 'White phalaenopsis, blooms for months.', 36, 44, '1561181286-d3fee7d55364', 'Sale'],
+    ['gf', 'Candle &amp; Bloom box', 'Mini bouquet, soy candle, chocolates.', 49, 0, '1457089328109-e5d9bd499191', 'Gift'],
+    ['gf', 'Dried Flower Wreath', 'Lasts all year, handmade in store.', 55, 0, '1455659817273-f96807779a8a', '']
+  ];
+  const CN = { bq: 'Bouquet', pl: 'Plant', gf: 'Gift' };
+  const card = i => { const [c, n, d, p, was, id, tg] = PR[i]; return `<div class="pc"><div class="im">${tg ? `<span class="tg">${tg}</span>` : ''}<img src="${U(id, 500)}" alt="${n}"><button class="qv" data-i="${i}">Quick view</button></div><h4>${n}</h4><span class="pr">£${p}${was ? `<s>£${was}</s>` : ''}</span><button class="add" data-i="${i}">Add to bag</button></div>`; };
+  document.querySelector('[data-pane="all"]').innerHTML = PR.map((_, i) => card(i)).join('');
+  ['bq', 'pl', 'gf'].forEach(k => document.querySelector(`[data-pane="${k}"]`).innerHTML = PR.map((p, i) => p[0] === k ? card(i) : '').join(''));
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  const WA = '447700900123'; // placeholder shop number
+  const waUrl = msg => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  document.querySelectorAll('.wa-link').forEach(a => a.href = waUrl(a.dataset.msg));
+  document.querySelectorAll('.wa-link, #qvWa').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+  // bag
+  const bag = []; const bagN = document.getElementById('bagN');
+  const SIZES = { 1: 'Classic', 1.4: 'Deluxe', 2: 'Luxe' };
+  const renderBag = () => { const el = document.getElementById('bagl');
+    el.innerHTML = bag.length ? bag.map((b, k) => `<div><span><b>${b.n}</b> · ${SIZES[b.m]}${b.note ? ' · 💌' : ''}</span><span>£${b.p}<button type="button" class="rm" data-k="${k}" aria-label="Remove">✕</button></span></div>`).join('') : '<div class="em">Your bag is empty. Add some flowers above.</div>';
+    const sub = bag.reduce((s, b) => s + b.p, 0), del = document.getElementById('oWay').value === 'd' && sub && sub < 50 ? 5 : 0;
+    document.getElementById('oTot').innerHTML = '£' + (sub + del) + (del ? '<small style="display:block;font:400 13px Karla,sans-serif;color:var(--kt-mut);text-align:right">incl. £5 delivery</small>' : '');
+    bagN.textContent = bag.length; bagN.classList.add('bump'); setTimeout(() => bagN.classList.remove('bump'), 300); };
+  const add = (i, m = 1, note = '') => { bag.push({ n: PR[i][1].replace('&amp;', '&'), m, p: Math.round(PR[i][3] * m), note }); renderBag(); ktToast(`${PR[i][1].replace('&amp;', '&')} added to your bag`); };
+  document.getElementById('bagl').addEventListener('click', e => { const r = e.target.closest('.rm'); if (r) { bag.splice(+r.dataset.k, 1); renderBag(); } });
+  // quick view
+  const qvm = document.getElementById('qvm'); let qi = 0, qm = 1;
+  const qprice = () => document.getElementById('qvP').textContent = '£' + Math.round(PR[qi][3] * qm);
+  const openQv = i => { qi = i; qm = 1; const p = PR[i]; qvm.querySelector('.bx > img').src = U(p[5], 900); document.getElementById('qvC').textContent = CN[p[0]]; document.getElementById('qvT').innerHTML = p[1]; document.getElementById('qvD').textContent = p[2];
+    document.querySelectorAll('#qvS button').forEach((b, k) => b.classList.toggle('on', !k)); document.getElementById('qvN').value = ''; qprice();
+    document.getElementById('qvWa').href = waUrl(`Hi! Is the "${p[1].replace('&amp;', '&')}" available today?`); qvm.classList.add('on'); };
+  document.getElementById('shop').addEventListener('click', e => { const q = e.target.closest('.qv'), a = e.target.closest('.add'); if (q) openQv(+q.dataset.i); if (a) add(+a.dataset.i); });
+  document.getElementById('qvS').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; document.querySelectorAll('#qvS button').forEach(x => x.classList.toggle('on', x === b)); qm = +b.dataset.m; qprice(); });
+  document.getElementById('qvAdd').addEventListener('click', () => { add(qi, qm, document.getElementById('qvN').value.trim()); qvm.classList.remove('on'); });
+  qvm.addEventListener('click', e => { if (e.target === qvm || e.target.closest('.x')) qvm.classList.remove('on'); });
+  addEventListener('keydown', e => e.key === 'Escape' && qvm.classList.remove('on'));
+  // order form
+  const d = new Date(); document.getElementById('oDate').value = d.toISOString().slice(0, 10); document.getElementById('oDate').min = d.toISOString().slice(0, 10);
+  const way = document.getElementById('oWay'), post = document.getElementById('oPost'), zone = document.getElementById('zone');
+  way.addEventListener('change', () => { post.parentElement.style.display = way.value === 'd' ? '' : 'none'; renderBag(); });
+  post.addEventListener('input', () => { const v = post.value.trim().toUpperCase(); zone.className = 'zone'; if (v.length < 3) { zone.textContent = ''; return; } const ok = /^BS\d/.test(v); zone.classList.add(ok ? 'ok' : 'no'); zone.textContent = ok ? '✓ We deliver here, same day before 1pm' : '✕ Outside Bristol. We can post plants and gifts.'; });
+  const summary = () => `Hi Petal & Twine! New order:\n${bag.map(b => `• ${b.n} (${SIZES[b.m]}) £${b.p}${b.note ? `\n  Card: "${b.note}"` : ''}`).join('\n')}\n${way.value === 'd' ? 'Deliver to ' + (post.value || '[postcode]') : 'Collect in store'} on ${document.getElementById('oDate').value}\nName: ${document.getElementById('oName').value || '-'}`;
+  document.getElementById('sendWa').addEventListener('click', () => { if (!bag.length) return ktToast('Add something to your bag first'); window.open(waUrl(summary()), '_blank', 'noopener'); });
+  document.getElementById('of').addEventListener('submit', e => { e.preventDefault(); if (!bag.length) return ktToast('Add something to your bag first'); ktToast('Order sent! We\'ll text you a payment link within 15 minutes.'); });
+  renderBag(); bagN.textContent = 0;
+  // opening hours + open now
+  const H = [['Sunday', 10, 16], ['Monday', 0, 0], ['Tuesday', 9, 18], ['Wednesday', 9, 18], ['Thursday', 9, 18], ['Friday', 9, 19], ['Saturday', 9, 18]];
+  const today = d.getDay(), hr = d.getHours() + d.getMinutes() / 60, [, o, c] = H[today], isOpen = c && hr >= o && hr < c;
+  document.getElementById('hrs').innerHTML = [1, 2, 3, 4, 5, 6, 0].map(k => `<span class="${k === today ? 'today' : ''}">${H[k][0]}</span><span class="${k === today ? 'today' : ''}">${H[k][2] ? `${H[k][1]}:00 – ${H[k][2]}:00` : 'Closed'}</span>`).join('');
+  const on = document.getElementById('openNow'); on.classList.toggle('closed', !isOpen); on.querySelector('span').textContent = isOpen ? `Open now · until ${c}:00` : 'Closed now · order on WhatsApp anytime';
+</script>
+</body>
+</html>

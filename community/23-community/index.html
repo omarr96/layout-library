@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al-Noor Community Centre · Prayer times, events &amp; classes</title>
+<meta name="description" content="Al-Noor Community Centre in Leeds: daily prayer times, Jumu'ah, events, classes for all ages and ways to give.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #fbfaf6; --kt-ink: #12322b; --kt-tx: #50625d; --kt-mut: #8d9b97; --kt-line: #e3e6df; --kt-accent: #c9a14a; --kt-accent-ink: #12322b; --green: #12322b; --soft: #f1efe6; }
+body { font: 17px/1.65 Figtree, system-ui, sans-serif; }
+.mc { font-family: Marcellus, serif; font-weight: 400; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--kt-accent); }
+h2.h { font-family: Marcellus, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 58px); line-height: 1.1; color: var(--kt-ink); margin: 12px 0 20px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 24px; border-radius: 12px; font-weight: 700; transition: .2s; }
+.btn.fl { background: var(--kt-accent); color: var(--kt-ink); } .btn.fl:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn.dk { background: var(--green); color: #fff; }
+.btn.ol { border: 1.5px solid currentColor; }
+section { padding: 100px 0; }
+.pat { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l8.8 21.2L60 30l-21.2 8.8L30 60l-8.8-21.2L0 30l21.2-8.8z' fill='none' stroke='%23c9a14a' stroke-opacity='.18'/%3E%3C/svg%3E"); }
+
+.top { background: var(--green); color: #cbd8d3; font-size: 14px; }
+.top .wrap { display: flex; justify-content: space-between; gap: 16px; padding-top: 9px; padding-bottom: 9px; flex-wrap: wrap; }
+.top b { color: var(--kt-accent); }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(251,250,246,.96); backdrop-filter: blur(10px); transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 1px 0 var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 26px; height: 78px; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--kt-ink); font-family: Marcellus, serif; font-size: 22px; line-height: 1.1; }
+.logo small { display: block; font-family: Figtree, sans-serif; font-size: 12px; color: var(--kt-mut); }
+.logo svg { width: 38px; height: 38px; }
+.kt-menu { display: flex; gap: 24px; margin-left: auto; font-weight: 600; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 44px; }
+
+/* hero */
+.hero { position: relative; min-height: 640px; display: flex; align-items: flex-end; color: #fff; overflow: hidden; padding: 0; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: kb 20s ease-in-out infinite alternate; }
+@keyframes kb { to { transform: scale(1.08); } }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,50,43,.15), rgba(18,50,43,.85)); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: 150px; }
+.hero h1 { font-family: Marcellus, serif; font-weight: 400; font-size: clamp(46px, 6.4vw, 92px); line-height: 1.02; margin: 14px 0 18px; max-width: 900px; }
+.hero p { font-size: 19px; max-width: 560px; color: #dfe9e5; margin: 0 0 28px; }
+
+/* prayer times */
+.pt { position: relative; z-index: 2; margin-top: -100px; }
+.ptc { background: #fff; border-radius: 24px; box-shadow: 0 30px 60px -30px rgba(18,50,43,.35); border: 1px solid var(--kt-line); overflow: hidden; }
+.pth { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 28px; border-bottom: 1px solid var(--kt-line); flex-wrap: wrap; }
+.pth h3 { margin: 0; font-family: Marcellus, serif; font-weight: 400; font-size: 26px; color: var(--kt-ink); }
+.next { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 12px; background: var(--soft); color: var(--kt-ink); }
+.next b { font-variant-numeric: tabular-nums; font-size: 20px; }
+.ptabs { display: flex; gap: 6px; }
+.ptabs button { height: 38px; padding: 0 14px; border-radius: 10px; font-weight: 600; color: var(--kt-tx); }
+.ptabs button.on { background: var(--green); color: #fff; }
+.prs { display: grid; grid-template-columns: repeat(6, 1fr); }
+.pr { padding: 24px 22px; border-right: 1px solid var(--kt-line); position: relative; transition: background .3s; }
+.pr:last-child { border-right: 0; }
+.pr small { display: block; font-weight: 600; color: var(--kt-mut); }
+.pr b { display: block; font-size: 30px; color: var(--kt-ink); font-variant-numeric: tabular-nums; margin: 4px 0 2px; font-weight: 600; }
+.pr span { font-size: 14px; }
+.pr span i { font-style: normal; color: var(--kt-accent); font-weight: 700; }
+.pr.on { background: var(--green); }
+.pr.on small, .pr.on span { color: #cbd8d3; } .pr.on b { color: #fff; }
+.pr.on::after { content: "Next"; position: absolute; top: 12px; right: 12px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: var(--kt-accent); color: var(--kt-ink); }
+.wk { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.wk th, .wk td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--kt-line); }
+.wk th { font-size: 13px; color: var(--kt-mut); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.wk tr.today td { background: #fbf6e8; font-weight: 700; color: var(--kt-ink); }
+.wkw { overflow-x: auto; }
+.jm { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 20px 28px; background: #fbf6e8; }
+.jm b { color: var(--kt-ink); }
+
+/* services marquee */
+.svc { padding: 26px 0; background: var(--green); }
+.svc .kt-mq-track span { font-family: Marcellus, serif; font-size: 26px; color: #e4ebe8; white-space: nowrap; display: flex; align-items: center; gap: 50px; }
+.svc .kt-mq-track span::after { content: "✦"; color: var(--kt-accent); font-size: 15px; }
+
+/* about */
+.about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about .ims { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.about .ims img { width: 100%; height: 300px; object-fit: cover; border-radius: 20px; }
+.about .ims img:nth-child(2) { margin-top: 60px; }
+.vals { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+.vals div { padding: 18px; border-radius: 16px; background: var(--soft); }
+.vals b { display: block; color: var(--kt-ink); }
+
+/* events */
+.events { background: var(--soft); }
+.eh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.etabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.etabs button { height: 42px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--kt-line); background: #fff; font-weight: 600; color: var(--kt-tx); }
+.etabs button.on { background: var(--green); border-color: var(--green); color: #fff; }
+.eg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ev { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid var(--kt-line); display: flex; flex-direction: column; }
+.ev .im { position: relative; }
+.ev img { width: 100%; height: 190px; object-fit: cover; }
+.ev .dt { position: absolute; top: 14px; left: 14px; width: 58px; padding: 8px 0; border-radius: 12px; background: #fff; text-align: center; line-height: 1.1; color: var(--kt-ink); }
+.ev .dt b { display: block; font-size: 22px; } .ev .dt small { font-size: 12px; text-transform: uppercase; font-weight: 700; color: var(--kt-accent); }
+.ev .b { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+.ev h4 { margin: 0 0 6px; font-size: 20px; color: var(--kt-ink); }
+.ev .m { font-size: 14.5px; color: var(--kt-mut); margin-bottom: 14px; }
+.ev .f { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+.ev .who { font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: var(--soft); color: var(--kt-ink); }
+.ev .rsvp { font-weight: 700; color: var(--kt-accent); }
+.ev .rsvp.on { color: var(--kt-ink); }
+
+/* classes */
+.ch { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.ch .ar { display: flex; gap: 10px; }
+.cls > div { width: 300px; border-radius: 20px; border: 1px solid var(--kt-line); background: #fff; padding: 26px; }
+.cls i { font-style: normal; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 16px; background: var(--soft); font-size: 26px; margin-bottom: 16px; }
+.cls h4 { margin: 0 0 6px; font-size: 20px; color: var(--kt-ink); }
+.cls .m { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.cls .m span { font-size: 13px; padding: 4px 10px; border-radius: 99px; background: var(--soft); color: var(--kt-ink); }
+
+/* give */
+.give { color: #cbd8d3; background-color: var(--green); }
+.give .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.give h2.h { color: #fff; }
+.fund { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.fund button { padding: 14px 10px; border-radius: 14px; border: 1px solid rgba(255,255,255,.15); color: #fff; text-align: left; }
+.fund button small { display: block; color: #9fb4ad; font-size: 12.5px; }
+.fund button.on { background: var(--kt-accent); border-color: var(--kt-accent); color: var(--kt-ink); } .fund button.on small { color: var(--kt-ink); }
+.gbox { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 24px; padding: 28px; }
+.gam { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.gam button { height: 54px; border-radius: 12px; border: 1px solid rgba(255,255,255,.18); color: #fff; font-weight: 700; font-size: 18px; }
+.gam button.on { background: #fff; color: var(--kt-ink); }
+.gbox .btn { width: 100%; margin-top: 16px; }
+.gbox .note { font-size: 13.5px; margin-top: 12px; text-align: center; }
+.build { margin-top: 30px; }
+.build .bar { height: 10px; border-radius: 99px; background: rgba(255,255,255,.12); overflow: hidden; margin: 10px 0 8px; }
+.build .bar i { display: block; height: 100%; width: 0; background: var(--kt-accent); border-radius: 99px; transition: width 1.8s ease; }
+.build.in .bar i { width: 61%; }
+.build .row { display: flex; justify-content: space-between; font-size: 15px; } .build b { color: #fff; }
+
+/* tour + gallery */
+.tour { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+.vid { position: relative; border-radius: 22px; overflow: hidden; }
+.vid img { width: 100%; height: 400px; object-fit: cover; display: block; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.tour .kt-audio { --kt-audio-bg: var(--soft); margin-top: 20px; }
+.gal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 50px; }
+.gal a { border-radius: 16px; overflow: hidden; } .gal img { width: 100%; height: 200px; object-fit: cover; transition: transform .6s; } .gal a:hover img { transform: scale(1.06); }
+
+/* voices + faq */
+.vf .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.vq p { font-family: Marcellus, serif; font-size: 26px; line-height: 1.4; color: var(--kt-ink); margin: 0 0 18px; }
+.vq .who { display: flex; gap: 12px; align-items: center; } .vq img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.vf .kt-dots { justify-content: flex-start; color: var(--kt-ink); margin-top: 22px; }
+.visit { margin-top: 40px; padding: 26px; border-radius: 20px; background: var(--soft); }
+.visit h4 { margin: 0 0 8px; color: var(--kt-ink); font-size: 20px; }
+
+/* contact */
+.contact .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; }
+.map { position: relative; border-radius: 22px; overflow: hidden; min-height: 380px; background: #dfe6df; }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map .pin { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -100%); background: var(--green); color: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 700; white-space: nowrap; }
+.map .pin::after { content: ""; position: absolute; left: 50%; bottom: -7px; border: 7px solid transparent; border-top-color: var(--green); border-bottom: 0; transform: translateX(-50%); }
+.contact form { display: grid; gap: 12px; }
+.contact input, .contact select, .contact textarea { height: 52px; border: 1px solid var(--kt-line); border-radius: 12px; padding: 0 16px; background: #fff; font: inherit; outline: none; }
+.contact textarea { height: 110px; padding-top: 14px; }
+.contact .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+footer { background: var(--green); color: #a9bdb6; padding: 50px 0 30px; font-size: 15px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .prs { grid-template-columns: repeat(3, 1fr); }
+  .pr:nth-child(3) { border-right: 0; } .pr:nth-child(-n+3) { border-bottom: 1px solid var(--kt-line); }
+  .about .wrap, .give .wrap, .tour, .vf .wrap, .contact .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .eg { grid-template-columns: 1fr 1fr; }
+  .gal { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .top .wrap span:last-child { display: none; }
+  .hero { min-height: 560px; }
+  .prs { grid-template-columns: 1fr 1fr; }
+  .pr { padding: 18px 16px; } .pr b { font-size: 24px; }
+  .pr:nth-child(3) { border-right: 1px solid var(--kt-line); } .pr:nth-child(2n) { border-right: 0; } .pr:nth-child(-n+4) { border-bottom: 1px solid var(--kt-line); }
+  .pth, .jm { padding: 18px; } .jm { grid-template-columns: 1fr; }
+  .eg { grid-template-columns: 1fr; }
+  .cls > div { width: 78vw; }
+  .about .ims img { height: 200px; }
+  .fund { grid-template-columns: 1fr; } .gam { grid-template-columns: 1fr 1fr; }
+  .vals { grid-template-columns: 1fr; }
+  .vid img { height: 260px; } .gal img { height: 140px; }
+  .contact .two { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap"><span id="hijri">📅 Today</span><span>Open daily from Fajr to Isha · <b>Sisters' entrance on Park Lane</b></span></div></div>
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#12322b"/><path d="M24 11a9 9 0 1 0 5 16.5A8 8 0 1 1 24 11Z" fill="#c9a14a"/><path d="m27 14 .9 2 2.1.2-1.6 1.4.5 2.1-1.9-1.1-1.9 1.1.5-2.1-1.6-1.4 2.1-.2z" fill="#c9a14a"/></svg><span>Al-Noor<small>Community Centre · Leeds</small></span></a>
+    <nav class="kt-menu"><a href="#prayer">Prayer times</a><a href="#events">Events</a><a href="#classes">Classes</a><a href="#visit">Visit</a></nav>
+    <a href="#give" class="btn fl">Donate</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1800&q=72&auto=format&fit=crop" alt="Al-Noor Community Centre">
+  <div class="wrap">
+    <span class="ey" data-reveal>Welcome · As-salamu alaykum</span>
+    <h1 data-split>A home for prayer, learning and community</h1>
+    <p data-reveal data-delay="200">Open to everyone. Join us for daily prayers, weekend school, youth nights, community meals and support for families in need.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#prayer" class="btn fl">Today's prayer times</a><a href="#visit" class="btn ol">Plan your first visit</a></div>
+  </div>
+</section>
+
+<div class="pt" id="prayer">
+  <div class="wrap">
+    <div class="ptc" data-reveal data-tabs>
+      <div class="pth"><h3>Prayer times · Leeds</h3><div class="next">🕌 <span id="nextN">Next prayer</span> in <b id="nextC">--:--:--</b></div><div class="ptabs" role="tablist"><button data-tab="today" class="on">Today</button><button data-tab="week">This week</button></div></div>
+      <div data-pane="today"><div class="prs" id="prs"></div></div>
+      <div data-pane="week" class="wkw"><table class="wk" id="wk"></table></div>
+      <div class="jm"><span>🕌 <b>Jumu'ah (Friday):</b> first khutbah 12:45 · second khutbah 1:45. Please arrive 15 minutes early.</span><a href="#" class="btn dk" style="height:44px">Download timetable (PDF)</a></div>
+    </div>
+  </div>
+</div>
+
+<section class="about">
+  <div class="wrap">
+    <div class="ims" data-reveal="left"><img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&q=70&auto=format&fit=crop" alt="Prayer hall"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=70&auto=format&fit=crop" alt="Community members"></div>
+    <div>
+      <span class="ey" data-reveal>About us</span>
+      <h2 class="h" data-split>Serving Leeds since 1994</h2>
+      <p data-reveal>What started as a small prayer room above a shop is now a centre serving over 3,000 families each week, run almost entirely by volunteers.</p>
+      <div class="vals" data-reveal>
+        <div><b>🤝 Open doors</b>Everyone is welcome, whatever your faith.</div>
+        <div><b>📖 Learning</b>Classes for children, adults and new Muslims.</div>
+        <div><b>🍲 Food bank</b>Hot meals and food parcels every Saturday.</div>
+        <div><b>♿ Accessible</b>Step-free entrance and wudu areas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="svc kt-marquee" data-speed="36s"><div class="kt-mq-track"><span>Daily prayers</span><span>Weekend school</span><span>Nikah services</span><span>Youth club</span><span>Food bank</span><span>Counselling</span><span>Funeral support</span></div></div>
+
+<section class="events" id="events">
+  <div class="wrap" data-tabs>
+    <div class="eh"><div><span class="ey" data-reveal>What's on</span><h2 class="h" data-split style="margin-bottom:0">Upcoming events</h2></div>
+      <div class="etabs" role="tablist" data-reveal><button data-tab="all" class="on">All</button><button data-tab="fam">Families</button><button data-tab="youth">Youth</button><button data-tab="sis">Sisters</button></div></div>
+    <div class="eg" data-pane="all" id="eAll"></div>
+    <div class="eg" data-pane="fam" id="eFam"></div>
+    <div class="eg" data-pane="youth" id="eYouth"></div>
+    <div class="eg" data-pane="sis" id="eSis"></div>
+  </div>
+</section>
+
+<section id="classes" class="pat" data-slider-scope>
+  <div class="wrap">
+    <div class="ch"><div><span class="ey" data-reveal>Learn with us</span><h2 class="h" data-split style="margin-bottom:0">Classes for every age</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel cls" data-carousel>
+      <div><i>🧒</i><h4>Weekend school</h4><p>Qur'an, Arabic and Islamic studies for ages 5–14.</p><div class="m"><span>Sat &amp; Sun</span><span>10am–1pm</span><span>£25/month</span></div></div>
+      <div><i>📖</i><h4>Qur'an for adults</h4><p>Learn to read from the very beginning, at your own pace.</p><div class="m"><span>Tue</span><span>7:30pm</span><span>Free</span></div></div>
+      <div><i>🗣</i><h4>Arabic, level 1–3</h4><p>Conversational and classical Arabic in small groups.</p><div class="m"><span>Wed</span><span>7pm</span><span>£40/term</span></div></div>
+      <div><i>🌱</i><h4>New Muslims circle</h4><p>A friendly space to learn, ask questions and make friends.</p><div class="m"><span>Thu</span><span>7pm</span><span>Free</span></div></div>
+      <div><i>⚽</i><h4>Youth club</h4><p>Football, mentoring and trips for ages 12–18.</p><div class="m"><span>Fri</span><span>after Isha</span><span>Free</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="give pat" id="give">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Give</span>
+      <h2 class="h" data-split>Your sadaqah keeps our doors open</h2>
+      <p data-reveal>We receive no government funding. Every pound comes from our community, and goes back into it.</p>
+      <div class="build" data-reveal><div class="row"><b>New community hall</b><span>61%</span></div><div class="bar"><i></i></div><div class="row"><span><b>£488,000</b> raised of £800,000</span><span>1,940 donors</span></div></div>
+    </div>
+    <div class="gbox" data-reveal="right">
+      <div class="fund" id="fund"><button class="on" data-f="General fund">General<small>Running costs</small></button><button data-f="Zakat">Zakat<small>100% to the needy</small></button><button data-f="Hall building fund">Building<small>New hall</small></button></div>
+      <div class="gam" id="gam"><button data-v="10">£10</button><button data-v="25" class="on">£25</button><button data-v="50">£50</button><button data-v="100">£100</button></div>
+      <button class="btn fl" id="gbtn">Give £25 to the General fund</button>
+      <p class="note">🔒 Secure · Gift Aid adds 25% at no cost to you · Monthly option at checkout</p>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="tour">
+      <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1200&q=72&auto=format&fit=crop" alt="Inside the centre"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch a tour of the centre"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div><span class="ey" data-reveal>Take a tour</span><h2 class="h" data-split>See inside before you visit</h2><p data-reveal>A 2-minute walk through the prayer halls, classrooms, café and food bank. Or listen to our weekly community podcast.</p><div data-audio="calm" data-title="The Al-Noor Podcast · Ep. 52" data-sub="Raising kids in a busy world · 31 min" data-reveal></div></div>
+    </div>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1600&q=80&auto=format&fit=crop" data-caption="Our centre at sunset"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600&q=80&auto=format&fit=crop" data-caption="Community iftar"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&q=80&auto=format&fit=crop" data-caption="Weekend school"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop" data-caption="Saturday food bank volunteers"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="vf" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Community voices</span>
+      <div class="kt-slider vq" data-autoplay="6500" style="margin-top:20px">
+        <div class="kt-track">
+          <div><p>“When we moved to Leeds we knew no one. Within a month, Al-Noor felt like family.”</p><div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Fatima</b> · Mother of three</span></div></div>
+          <div><p>“The youth club kept me off the streets and got me my first job. I volunteer there now.”</p><div class="who"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Yusuf</b> · Youth mentor</span></div></div>
+          <div><p>“I came for an open day with my school. I was welcomed with tea and every question answered.”</p><div class="who"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=60&auto=format&fit=crop" alt=""><span><b>Emma</b> · Teacher</span></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+      <div class="visit" data-reveal><h4>First time visiting?</h4><p style="margin:0">You're very welcome. Dress modestly, remove your shoes at the entrance, and ask any volunteer in a green lanyard for a tour.</p></div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>FAQ</span>
+      <h2 class="h" data-split>Questions</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Can non-Muslims visit?</summary><div class="kt-faq-a"><div>Of course. We run open days every month and school visits on request.</div></div></details>
+        <details class="kt-faq"><summary>Is there parking?</summary><div class="kt-faq-a"><div>We have 40 spaces, plus free street parking after 6pm. On Fridays please use the Park Lane car park.</div></div></details>
+        <details class="kt-faq"><summary>How do I book a nikah?</summary><div class="kt-faq-a"><div>Fill in the contact form below and choose "Nikah". Our imam will call you to arrange a meeting.</div></div></details>
+        <details class="kt-faq"><summary>Do you offer help for families in need?</summary><div class="kt-faq-a"><div>Yes, confidentially. Our welfare team helps with food, bills, housing advice and counselling.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="map" data-reveal="left"><svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice"><rect width="400" height="380" fill="#e6ebe3"/><path d="M0 120h400M0 260h400M120 0v380M290 0v380" stroke="#fff" stroke-width="14"/><path d="M0 40l400 120M60 380 340 0" stroke="#fff" stroke-width="8"/><rect x="150" y="150" width="110" height="80" rx="10" fill="#cfe0cf"/><circle cx="330" cy="320" r="40" fill="#cfe0cf"/></svg><span class="pin">🕌 Al-Noor Centre</span></div>
+    <div>
+      <span class="ey" data-reveal>Contact</span>
+      <h2 class="h" data-split>Get in touch</h2>
+      <p data-reveal style="margin-top:0">📍 22 Park Lane, Leeds LS6 2AB · 📞 0113 496 0000</p>
+      <form data-form="JazakAllahu khayran! We'll reply within two days." data-reveal>
+        <div class="two"><input placeholder="Your name" required aria-label="Your name"><input type="email" placeholder="Email" required aria-label="Email"></div>
+        <select aria-label="Topic"><option>General question</option><option>Nikah</option><option>School visit</option><option>Welfare support (confidential)</option><option>Volunteering</option></select>
+        <textarea placeholder="Your message" aria-label="Message"></textarea>
+        <button class="btn dk" type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Al-Noor Community Centre · Registered charity 1029 384</span><span>Facebook · Instagram · YouTube · WhatsApp updates</span></div></footer>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  // prayer times (demo values for Leeds in mid-November)
+  const P = [['Fajr', '06:05', '06:30'], ['Sunrise', '07:38', ''], ['Dhuhr', '12:01', '12:45'], ['Asr', '14:06', '14:30'], ['Maghrib', '16:12', '16:17'], ['Isha', '17:52', '19:30']];
+  const now = new Date(), mins = now.getHours() * 60 + now.getMinutes(), toM = t => +t.slice(0, 2) * 60 + +t.slice(3);
+  let ni = P.findIndex(p => p[0] !== 'Sunrise' && toM(p[1]) > mins); const tomorrow = ni < 0; if (tomorrow) ni = 0;
+  document.getElementById('prs').innerHTML = P.map(([n, a, j], i) => `<div class="pr ${i === ni ? 'on' : ''}"><small>${n}</small><b>${a}</b><span>${j ? `Jama'ah <i>${j}</i>` : 'Shuruq'}</span></div>`).join('');
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  document.getElementById('wk').innerHTML = '<tr><th>Day</th>' + P.map(p => `<th>${p[0]}</th>`).join('') + '</tr>' + Array.from({ length: 7 }, (_, d) => { const dt = new Date(now); dt.setDate(now.getDate() + d); const sh = t => { const m = toM(t) + (P.findIndex(p => p[1] === t) < 2 ? d : -d); return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
+    return `<tr class="${d ? '' : 'today'}"><td>${days[dt.getDay()]} ${dt.getDate()}</td>${P.map(p => `<td>${sh(p[1])}</td>`).join('')}</tr>`; }).join('');
+  document.getElementById('hijri').textContent = '📅 ' + now.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + ' · ' + (() => { try { return new Intl.DateTimeFormat('en-GB-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' }).format(now); } catch (e) { return ''; } })();
+  // events
+  const E = [['fam', '22', 'Nov', 'Family fun day', 'Bouncy castle, food stalls and a nasheed show.', '1511632765486-a01980e01a18', 'Families', 'Sat · 11am–4pm'], ['youth', '28', 'Nov', 'Youth football tournament', 'Five-a-side for ages 12–18. Teams of 6.', '1531058020387-3be344556be6', 'Youth', 'Fri · after Isha'], ['sis', '30', 'Nov', 'Sisters\' brunch & talk', '“Finding calm in a busy life” with Ustadha Maryam.', '1544027993-37dbfe43562a', 'Sisters', 'Sun · 10:30am'], ['fam', '06', 'Dec', 'Community dinner', 'Everyone welcome, bring a neighbour. Free.', '1529156069898-49953e39b3ac', 'Families', 'Sat · 6pm'], ['youth', '12', 'Dec', 'Careers evening', 'Meet doctors, engineers and founders from our community.', '1522202176988-66273c2fd55f', 'Youth', 'Fri · 7pm'], ['sis', '14', 'Dec', 'Sisters\' first aid course', 'Certified 1-day course with St John Ambulance.', '1503676260728-1c00da094a0b', 'Sisters', 'Sun · 10am']];
+  const ev = ([, d, m, t, s, id, who, when]) => `<div class="ev"><div class="im"><img src="${U(id, 600)}" alt=""><span class="dt"><b>${d}</b><small>${m}</small></span></div><div class="b"><h4>${t}</h4><div class="m">🕒 ${when}</div><p style="margin:0 0 16px;font-size:15.5px">${s}</p><div class="f"><span class="who">${who}</span><button class="rsvp">RSVP →</button></div></div></div>`;
+  document.getElementById('eAll').innerHTML = E.map(ev).join('');
+  ['fam', 'youth', 'sis'].forEach(k => document.getElementById({ fam: 'eFam', youth: 'eYouth', sis: 'eSis' }[k]).innerHTML = E.filter(e => e[0] === k).map(ev).join(''));
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // next prayer countdown
+  const target = () => { const t = new Date(); const [h, m] = P[ni][1].split(':'); t.setHours(+h, +m, 0, 0); if (tomorrow) t.setDate(t.getDate() + 1); return t; };
+  document.getElementById('nextN').textContent = P[ni][0];
+  const tk = () => { let s = Math.max(0, Math.floor((target() - Date.now()) / 1000)); document.getElementById('nextC').textContent = [3600, 60, 1].map(u => { const v = Math.floor(s / u); s %= u; return String(v).padStart(2, '0'); }).join(':'); };
+  tk(); setInterval(tk, 1000);
+  // RSVP buttons
+  document.querySelector('.events').addEventListener('click', e => { const b = e.target.closest('.rsvp'); if (!b) return; b.classList.toggle('on'); b.textContent = b.classList.contains('on') ? '✓ Going' : 'RSVP →'; if (b.classList.contains('on')) ktToast('You\'re on the list. See you there!'); });
+  // giving
+  let fund = 'General fund', amt = 25; const gb = document.getElementById('gbtn');
+  const g = () => gb.textContent = `Give £${amt} to ${fund === 'Zakat' ? 'Zakat' : 'the ' + fund}`;
+  document.getElementById('fund').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; document.querySelectorAll('#fund button').forEach(x => x.classList.toggle('on', x === b)); fund = b.dataset.f; g(); });
+  document.getElementById('gam').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; document.querySelectorAll('#gam button').forEach(x => x.classList.toggle('on', x === b)); amt = +b.dataset.v; g(); });
+  gb.addEventListener('click', () => ktToast(`JazakAllahu khayran! Secure checkout for £${amt} opens next.`));
+</script>
+</body>
+</html>

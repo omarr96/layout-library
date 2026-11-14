@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wayfarer Journeys · Small-group tours &amp; tailor-made trips</title>
+<meta name="description" content="Small-group tours and tailor-made trips across Asia, Europe and the islands. Local guides, no tourist traps. Plan your trip with us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #f7f5f0; --kt-ink: #102a2d; --kt-tx: #4e6062; --kt-mut: #8a9a9b; --kt-line: #e2e3dc; --kt-accent: #f26b3a; --kt-accent-ink: #fff; --teal: #0f5257; --sand: #efe7da; }
+body { font: 17px/1.6 Manrope, system-ui, sans-serif; }
+.ds { font-family: 'DM Serif Display', serif; font-weight: 400; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-accent); }
+h2.h { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(38px, 5vw, 66px); line-height: 1.04; color: var(--kt-ink); margin: 10px 0 18px; }
+h2.h em { color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 24px; border-radius: 99px; font-weight: 800; transition: .2s; }
+.btn.fl { background: var(--kt-accent); color: #fff; } .btn.fl:hover { background: #d9562a; }
+.btn.dk { background: var(--kt-ink); color: #fff; }
+.btn.ol { border: 1.5px solid currentColor; }
+section { padding: 100px 0; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; color: #fff; transition: background .3s, color .3s; }
+.nav.scrolled { background: rgba(247,245,240,.96); color: var(--kt-ink); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 26px; height: 80px; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 28px; display: flex; align-items: center; gap: 8px; }
+.logo svg { width: 28px; height: 28px; }
+.kt-menu { display: flex; gap: 26px; margin-left: auto; font-weight: 600; }
+.nav .btn { height: 44px; }
+
+/* hero */
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; color: #fff; padding: 120px 0 160px; overflow: hidden; }
+.hero .bg { position: absolute; inset: 0; }
+.hero .bg div { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.4s; transform: scale(1.06); }
+.hero .bg div.on { opacity: 1; animation: kb 8s linear forwards; }
+@keyframes kb { to { transform: scale(1); } }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,30,32,.75), rgba(10,30,32,.2)), linear-gradient(transparent 60%, rgba(10,30,32,.6)); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(52px, 8vw, 118px); line-height: .98; margin: 16px 0 20px; max-width: 900px; }
+.hero h1 [data-rotate] { font-style: italic; color: #ffc6ae; }
+.hero p { font-size: 20px; max-width: 520px; margin: 0; color: #e2ecec; }
+.hero .where { position: absolute; right: 28px; bottom: 170px; z-index: 1; text-align: right; font-weight: 700; }
+.hero .where small { display: block; font-weight: 500; opacity: .8; }
+
+/* search */
+.search { position: relative; z-index: 3; margin-top: -90px; }
+.sbox { background: #fff; border-radius: 24px; padding: 14px; display: grid; grid-template-columns: 1.3fr 1fr 1fr auto; gap: 8px; box-shadow: 0 30px 60px -30px rgba(16,42,45,.4); }
+.sbox label { display: block; padding: 10px 16px; border-radius: 16px; transition: background .2s; }
+.sbox label:hover, .sbox label:focus-within { background: var(--kt-bg); }
+.sbox small { display: block; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kt-mut); }
+.sbox select { width: 100%; border: 0; outline: none; background: none; font: inherit; font-weight: 700; color: var(--kt-ink); padding: 2px 0; appearance: none; cursor: pointer; }
+.sbox .btn { height: auto; min-height: 60px; border-radius: 16px; padding: 0 30px; }
+
+.mq { padding: 34px 0; }
+.mq .kt-mq-track span { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 50px; }
+.mq .kt-mq-track span::after { content: "✈"; font-family: Manrope; font-size: 20px; color: var(--kt-accent); }
+
+/* tours */
+.th { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.rtabs { display: flex; gap: 6px; padding: 5px; border-radius: 99px; background: #fff; border: 1px solid var(--kt-line); flex-wrap: wrap; }
+.rtabs button { height: 42px; padding: 0 18px; border-radius: 99px; font-weight: 700; color: var(--kt-tx); }
+.rtabs button.on { background: var(--kt-ink); color: #fff; }
+.tg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.tc { background: #fff; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+.tc:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -30px rgba(16,42,45,.4); }
+.tc .im { position: relative; height: 250px; overflow: hidden; }
+.tc .im img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+.tc:hover .im img { transform: scale(1.06); }
+.tc .badge { position: absolute; top: 14px; left: 14px; padding: 5px 12px; border-radius: 99px; background: #fff; font-size: 12.5px; font-weight: 800; color: var(--kt-ink); }
+.tc .days { position: absolute; bottom: 14px; left: 14px; padding: 5px 12px; border-radius: 99px; background: rgba(16,42,45,.75); color: #fff; font-size: 13px; font-weight: 700; backdrop-filter: blur(6px); }
+.tc .b { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+.tc .loc { font-size: 13.5px; color: var(--kt-mut); font-weight: 700; }
+.tc h4 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 27px; line-height: 1.15; color: var(--kt-ink); margin: 6px 0 10px; }
+.tc .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tc .tags span { font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: var(--sand); color: var(--kt-ink); }
+.tc .f { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--kt-line); }
+.tc .pr small { display: block; font-size: 12.5px; color: var(--kt-mut); }
+.tc .pr b { font-size: 24px; color: var(--kt-ink); }
+.tc .st { font-size: 14px; font-weight: 700; color: var(--kt-ink); }
+.tc .view { margin-top: 14px; height: 46px; border-radius: 99px; border: 1.5px solid var(--kt-ink); font-weight: 800; color: var(--kt-ink); transition: .2s; }
+.tc .view:hover { background: var(--kt-ink); color: #fff; }
+.nores { grid-column: 1 / -1; padding: 50px; text-align: center; border: 1.5px dashed var(--kt-line); border-radius: 22px; }
+
+/* itinerary modal */
+.itm { position: fixed; inset: 0; z-index: 200; display: none; justify-content: flex-end; background: rgba(10,30,32,.5); backdrop-filter: blur(4px); }
+.itm.on { display: flex; animation: kt-fade .2s; }
+.itm .pn { width: min(560px, 100%); height: 100%; overflow-y: auto; background: var(--kt-bg); animation: slide .3s ease; }
+@keyframes slide { from { transform: translateX(40px); } }
+.itm .hd { position: relative; height: 240px; }
+.itm .hd img { width: 100%; height: 100%; object-fit: cover; }
+.itm .hd::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(10,30,32,.8)); }
+.itm .hd h3 { position: absolute; left: 26px; right: 26px; bottom: 20px; z-index: 1; color: #fff; font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 34px; margin: 0; line-height: 1.1; }
+.itm .x { position: absolute; top: 16px; right: 16px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: #fff; font-size: 16px; }
+.itm .ct { padding: 26px; }
+.itm .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+.itm .facts div { padding: 12px; border-radius: 14px; background: #fff; font-size: 13px; color: var(--kt-mut); }
+.itm .facts b { display: block; color: var(--kt-ink); font-size: 15px; }
+.itm .kt-faq summary { font-size: 17px; }
+.itm .kt-faq summary span { color: var(--kt-accent); margin-right: 10px; font-weight: 800; }
+.calc { margin-top: 22px; padding: 20px; border-radius: 18px; background: #fff; }
+.calc .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+.calc .step { display: flex; align-items: center; gap: 10px; }
+.calc .step button { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--kt-line); font-size: 18px; }
+.calc select { height: 40px; border-radius: 10px; border: 1.5px solid var(--kt-line); padding: 0 10px; font: inherit; background: #fff; }
+.calc .tot { display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; border-top: 1px solid var(--kt-line); margin-top: 6px; }
+.calc .tot b { font-family: 'DM Serif Display', serif; font-size: 34px; font-weight: 400; color: var(--kt-ink); }
+.itm .btn { width: 100%; margin-top: 16px; }
+
+/* why */
+.why { background: var(--teal); color: #b8d1d2; }
+.why .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
+.why h2.h { color: #fff; } .why h2.h em { color: #ffc6ae; }
+.wg { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.wg div { padding: 26px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+.wg b { display: block; font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 52px; color: #fff; line-height: 1; margin-bottom: 6px; }
+.why .vid { position: relative; border-radius: 22px; overflow: hidden; margin-top: 30px; }
+.why .vid img { width: 100%; height: 260px; object-fit: cover; display: block; }
+.why .vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.why .kt-audio { --kt-audio-bg: rgba(255,255,255,.08); --kt-audio-ink: #fff; margin-top: 16px; }
+
+/* guides */
+.gh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.gh .ar { display: flex; gap: 10px; }
+.gd > div { width: 280px; background: #fff; border-radius: 22px; padding: 14px; }
+.gd img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; }
+.gd b { display: block; font-size: 19px; color: var(--kt-ink); margin-top: 12px; }
+.gd small { color: var(--kt-mut); }
+.gd p { margin: 6px 0 0; font-size: 15px; }
+.gal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 60px; }
+.gal a { border-radius: 16px; overflow: hidden; } .gal a:nth-child(1), .gal a:nth-child(4) { grid-column: span 2; }
+.gal img { width: 100%; height: 200px; object-fit: cover; transition: transform .6s; } .gal a:hover img { transform: scale(1.06); }
+
+/* reviews */
+.rv { background: var(--sand); }
+.rv .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rq .st { color: #e6a33a; letter-spacing: 3px; }
+.rq p { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.3; color: var(--kt-ink); margin: 10px 0 18px; }
+.rq .who { display: flex; gap: 12px; align-items: center; } .rq img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.rv .kt-dots { justify-content: flex-start; color: var(--kt-ink); margin-top: 20px; }
+.trusts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.trusts span { padding: 10px 16px; border-radius: 12px; background: #fff; font-weight: 700; font-size: 14px; color: var(--kt-ink); }
+
+/* enquiry */
+.enq .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 60px; align-items: start; }
+.enq form { background: #fff; border-radius: 26px; padding: 32px; display: grid; gap: 14px; box-shadow: 0 30px 60px -40px rgba(16,42,45,.35); }
+.enq .lb { font-weight: 800; color: var(--kt-ink); font-size: 14.5px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips label { cursor: pointer; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips span { display: inline-block; padding: 9px 14px; border-radius: 99px; border: 1.5px solid var(--kt-line); font-weight: 700; font-size: 14.5px; color: var(--kt-ink); transition: .15s; }
+.chips input:checked + span { background: var(--kt-ink); border-color: var(--kt-ink); color: #fff; }
+.enq input:not([type]), .enq input[type=email], .enq select, .enq textarea { height: 52px; border-radius: 14px; border: 1.5px solid var(--kt-line); padding: 0 16px; font: inherit; outline: none; background: var(--kt-bg); min-width: 0; }
+.enq textarea { height: 100px; padding-top: 14px; resize: vertical; }
+.enq .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rng { display: flex; align-items: center; gap: 14px; }
+.rng input { flex: 1; accent-color: var(--kt-accent); }
+.rng b { min-width: 110px; text-align: right; color: var(--kt-ink); }
+.contacts { display: grid; gap: 12px; margin-top: 26px; }
+.contacts div { display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 16px; background: #fff; }
+.contacts i { font-style: normal; width: 46px; height: 46px; border-radius: 50%; background: var(--sand); display: grid; place-items: center; font-size: 20px; flex: none; }
+.contacts b { display: block; color: var(--kt-ink); }
+footer { background: var(--kt-ink); color: #9fb3b4; padding: 60px 0 30px; }
+footer .g { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 30px; }
+footer h4 { color: #fff; margin: 0 0 10px; } footer a { display: block; margin: 5px 0; } footer a:hover { color: #fff; }
+footer .cp { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
+
+@media (max-width: 1000px) {
+  section { padding: 80px 0; }
+  .sbox { grid-template-columns: 1fr 1fr; } .sbox .btn { grid-column: span 2; }
+  .tg { grid-template-columns: 1fr 1fr; }
+  .why .wrap, .rv .wrap, .enq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .gal { grid-template-columns: repeat(3, 1fr); } .gal a:nth-child(1), .gal a:nth-child(4) { grid-column: auto; }
+  .hero .where { display: none; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .hero { padding-bottom: 140px; }
+  .sbox { grid-template-columns: 1fr; } .sbox .btn { grid-column: auto; }
+  .tg { grid-template-columns: 1fr; }
+  .mq .kt-mq-track span { font-size: 30px; }
+  .wg b { font-size: 38px; } .wg div { padding: 18px; }
+  .gd > div { width: 74vw; }
+  .gal { grid-template-columns: 1fr 1fr; } .gal img { height: 140px; } .gal a:nth-child(n+5) { display: none; }
+  .enq form { padding: 22px; } .enq .two { grid-template-columns: 1fr; }
+  .itm .facts { grid-template-columns: 1fr 1fr 1fr; } .itm .ct { padding: 20px; }
+  footer .g { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12.5" stroke="currentColor" stroke-width="1.6"/><path d="m14 5 3 9-3 9-3-9z" fill="#f26b3a"/></svg>Wayfarer</a>
+    <nav class="kt-menu"><a href="#tours">Tours</a><a href="#why">Why us</a><a href="#guides">Guides</a><a href="#plan">Tailor-made</a></nav>
+    <a href="#plan" class="btn fl">Plan my trip</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="bg" id="hbg"></div>
+  <div class="wrap">
+    <span class="ey" style="color:#ffc6ae" data-reveal>Small groups · Local guides · Since 2009</span>
+    <h1><span data-split>Travel that feels</span> <span data-rotate="unhurried.|personal.|unforgettable.|like home."></span></h1>
+    <p data-reveal data-delay="200">Hand-crafted small-group tours and tailor-made trips, led by people who grew up there.</p>
+  </div>
+  <div class="where" id="where" data-reveal data-delay="400"></div>
+</section>
+
+<div class="search">
+  <div class="wrap">
+    <form class="sbox" id="sbox" data-reveal>
+      <label><small>Where to?</small><select id="sReg"><option value="all">Anywhere</option><option value="asia">Asia</option><option value="europe">Europe</option><option value="islands">Islands &amp; beaches</option></select></label>
+      <label><small>Style</small><select id="sStyle"><option value="all">Any style</option><option value="Adventure">Adventure</option><option value="Culture">Culture</option><option value="Relax">Relax</option><option value="Family">Family</option></select></label>
+      <label><small>Length</small><select id="sLen"><option value="99">Any length</option><option value="8">Up to 8 days</option><option value="12">Up to 12 days</option></select></label>
+      <button class="btn fl" type="submit">Find tours</button>
+    </form>
+  </div>
+</div>
+
+<div class="mq kt-marquee" data-speed="44s"><div class="kt-mq-track"><span>Kyoto</span><span>Hội An</span><span>Ubud</span><span>Dolomites</span><span>Reykjavík</span><span>Maldives</span><span>Lisbon</span></div></div>
+
+<section id="tours" style="padding-top:40px">
+  <div class="wrap" data-tabs>
+    <div class="th"><div><span class="ey" data-reveal>Our tours</span><h2 class="h" data-split style="margin-bottom:0">Trips people <em>talk about</em></h2></div>
+      <div class="rtabs" role="tablist" data-reveal><button data-tab="all" class="on">All</button><button data-tab="asia">Asia</button><button data-tab="europe">Europe</button><button data-tab="islands">Islands</button></div></div>
+    <div class="tg" data-pane="all"></div><div class="tg" data-pane="asia"></div><div class="tg" data-pane="europe"></div><div class="tg" data-pane="islands"></div>
+  </div>
+</section>
+
+<div class="itm" id="itm" role="dialog" aria-modal="true"><div class="pn"><div class="hd"><img alt=""><button class="x" aria-label="Close">✕</button><h3 id="iT"></h3></div><div class="ct">
+  <div class="facts" id="iF"></div><p id="iD" style="margin:0 0 16px"></p>
+  <b style="color:var(--kt-ink);font-size:19px">Day by day</b><div data-faq id="iDays" style="margin-top:6px"></div>
+  <div class="calc"><div class="row"><span>Travellers</span><div class="step"><button type="button" data-t="-1" aria-label="Fewer">−</button><b id="iN">2</b><button type="button" data-t="1" aria-label="More">+</button></div></div>
+    <div class="row"><span>Departure</span><select id="iDep"></select></div>
+    <div class="row"><span>Room</span><select id="iRoom"><option value="0">Shared twin</option><option value="390">Private room (+$390 pp)</option></select></div>
+    <div class="tot"><span>Total for <span id="iN2">2</span></span><b id="iTot"></b></div></div>
+  <button class="btn fl" id="iBook">Request to book</button>
+  <p style="font-size:13.5px;text-align:center;margin:10px 0 0;color:var(--kt-mut)">No payment now. We'll confirm availability within 24 hours.</p>
+</div></div></div>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div>
+      <span class="ey" style="color:#ffc6ae" data-reveal>Why travel with us</span>
+      <h2 class="h" data-split>Fewer people, <em>deeper</em> trips</h2>
+      <p data-reveal>We keep groups to 12, stay in family-run places and spend our money locally. Our guides aren't reading from a script: they're showing you their home.</p>
+      <div class="vid" data-reveal><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1000&q=72&auto=format&fit=crop" alt="On the road"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch our film"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div data-audio="calm" data-title="The Wayfarer Podcast · Ep. 31" data-sub="A morning in Hội An with guide Linh · 24 min" data-reveal></div>
+    </div>
+    <div class="wg" data-reveal>
+      <div><b data-count="12">0</b>max group size</div>
+      <div><b data-count="48">0</b>local guides in 14 countries</div>
+      <div><b data-count="9400" data-suffix="+">0</b>happy travellers</div>
+      <div><b data-count="4.9">0</b>average rating, 2,100 reviews</div>
+      <div><b data-count="100" data-suffix="%">0</b>carbon offset on every trip</div>
+      <div><b data-count="24" data-suffix="/7">0</b>support while you travel</div>
+    </div>
+  </div>
+</section>
+
+<section id="guides" data-slider-scope>
+  <div class="wrap">
+    <div class="gh"><div><span class="ey" data-reveal>Meet the guides</span><h2 class="h" data-split style="margin-bottom:0">Locals who <em>love</em> sharing home</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel gd" data-carousel id="gd"></div>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1528127269322-539801943592?w=1600&q=80&auto=format&fit=crop" data-caption="Northern Vietnam"><img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=80&auto=format&fit=crop" data-caption="Bali"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80&auto=format&fit=crop" data-caption="Alpine lakes"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop" data-caption="Island time"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600&q=80&auto=format&fit=crop" data-caption="Mountain mornings"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80&auto=format&fit=crop" data-caption="Golden hour on the trail"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Traveller stories</span>
+      <div class="kt-slider rq" data-autoplay="6500" style="margin-top:16px">
+        <div class="kt-track">
+          <div><span class="st">★★★★★</span><p>“Our guide Linh took us to her aunt's kitchen for dinner. That night was the highlight of my year.”</p><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Rachel</b> · Vietnam, March 2026</span></div></div>
+          <div><span class="st">★★★★★</span><p>“Everything just worked. We didn't think about logistics once, we just enjoyed Japan.”</p><div class="who"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">David &amp; Tom</b> · Japan, April 2026</span></div></div>
+          <div><span class="st">★★★★★</span><p>“Travelling with two kids is hard. Wayfarer made it the easiest holiday we've ever had.”</p><div class="who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Aisha</b> · Bali family trip</span></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+      <div class="trusts" data-reveal><span>⭐ 4.9 Trustpilot</span><span>🛡 ATOL protected</span><span>🌱 B Corp certified</span></div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>FAQ</span>
+      <h2 class="h" data-split>Before you go</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Are flights included?</summary><div class="kt-faq-a"><div>Tours start and end in the destination, so you can use your own miles. We're happy to book flights for you too.</div></div></details>
+        <details class="kt-faq"><summary>Can I travel solo?</summary><div class="kt-faq-a"><div>About 40% of our travellers come alone. Choose a shared room to skip the single supplement.</div></div></details>
+        <details class="kt-faq"><summary>What if I need to cancel?</summary><div class="kt-faq-a"><div>Free changes up to 60 days before departure, and full refunds if we ever cancel a trip.</div></div></details>
+        <details class="kt-faq"><summary>How fit do I need to be?</summary><div class="kt-faq-a"><div>Each tour has an activity level from 1 to 5. Most are 2 or 3: a few hours of walking a day.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enq" id="plan">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Tailor-made</span>
+      <h2 class="h" data-split>Tell us your <em>dream trip</em></h2>
+      <p data-reveal>Our specialists have lived in the places they plan. Share a few details and we'll send a free draft itinerary within 2 days.</p>
+      <div class="contacts" data-reveal>
+        <div><i>📞</i><span><b>Call a specialist</b>+44 20 7946 0000 · Mon–Sat 9–7</span></div>
+        <div><i>💬</i><span><b>WhatsApp us</b>Usually replies in under an hour</span></div>
+        <div><i>📍</i><span><b>Visit our London office</b>14 Exmouth Market, EC1R 4QE</span></div>
+      </div>
+    </div>
+    <form data-form="Thank you! A travel specialist will email your draft itinerary within 2 days." data-reveal="right">
+      <span class="lb">Where would you like to go?</span>
+      <div class="chips"><label><input type="checkbox" checked><span>🇯🇵 Japan</span></label><label><input type="checkbox"><span>🇻🇳 Vietnam</span></label><label><input type="checkbox"><span>🇮🇩 Bali</span></label><label><input type="checkbox"><span>🇮🇹 Italy</span></label><label><input type="checkbox"><span>🇮🇸 Iceland</span></label><label><input type="checkbox"><span>🇲🇻 Maldives</span></label><label><input type="checkbox"><span>✨ Surprise me</span></label></div>
+      <span class="lb">Trip style</span>
+      <div class="chips"><label><input type="radio" name="sty" checked><span>Culture &amp; food</span></label><label><input type="radio" name="sty"><span>Adventure</span></label><label><input type="radio" name="sty"><span>Relax</span></label><label><input type="radio" name="sty"><span>Honeymoon</span></label><label><input type="radio" name="sty"><span>Family</span></label></div>
+      <span class="lb">Budget per person</span>
+      <div class="rng"><input type="range" id="bud" min="1500" max="12000" step="500" value="4000" aria-label="Budget per person"><b id="budV">$4,000</b></div>
+      <div class="two"><select aria-label="When"><option>When: Spring 2027</option><option>Summer 2027</option><option>Autumn 2027</option><option>Flexible</option></select><select aria-label="Travellers"><option>2 travellers</option><option>1 traveller</option><option>3–4 travellers</option><option>5+ travellers</option></select></div>
+      <div class="two"><input placeholder="Your name" required aria-label="Your name"><input type="email" placeholder="Email" required aria-label="Email"></div>
+      <textarea placeholder="Anything else? Special occasions, must-sees, mobility needs..." aria-label="Notes"></textarea>
+      <button class="btn fl" type="submit">Get my free itinerary</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo" style="color:#fff">Wayfarer</a><p>Small-group tours and tailor-made trips. ATOL 11234 · ABTA Y6789.</p></div>
+      <div><h4>Destinations</h4><a href="#">Japan</a><a href="#">Vietnam</a><a href="#">Indonesia</a><a href="#">Italy</a><a href="#">Iceland</a></div>
+      <div><h4>Company</h4><a href="#">About us</a><a href="#">Responsible travel</a><a href="#">Travel insurance</a><a href="#">Careers</a></div>
+    </div>
+    <div class="cp">© 2026 Wayfarer Journeys Ltd · Booking conditions · Privacy</div>
+  </div>
+</footer>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const T = [
+    { r: 'asia', n: 'Vietnam: lanterns &amp; limestone', loc: 'Hanoi → Hội An → Saigon', d: 12, p: 3290, rt: 4.9, id: '1528127269322-539801943592', b: 'Bestseller', s: 'Culture', tags: ['Culture', 'Food', 'Boat night'], desc: 'From Hanoi street food to a night on Lan Ha Bay and lantern-lit Hội An.' },
+    { r: 'asia', n: 'Bali slow & soulful', loc: 'Ubud → Sidemen → Amed', d: 9, p: 2190, rt: 4.8, id: '1537996194471-e657df975ab4', b: 'Small group', s: 'Relax', tags: ['Relax', 'Yoga', 'Rice terraces'], desc: 'Temples, rice terraces, a cooking class with a local family and snorkelling in Amed.' },
+    { r: 'asia', n: 'Japan in autumn', loc: 'Tokyo → Kyoto → Hakone', d: 11, p: 4650, rt: 5.0, id: '1530789253388-582c481c54b0', b: 'Only 3 spots', s: 'Culture', tags: ['Culture', 'Ryokan', 'Rail pass'], desc: 'Maple season in Kyoto, a ryokan with hot springs and Tokyo with a local foodie.' },
+    { r: 'europe', n: 'Dolomites hut to hut', loc: 'Cortina → Val Gardena', d: 8, p: 2790, rt: 4.9, id: '1501785888041-af3ef285b470', b: 'Adventure', s: 'Adventure', tags: ['Adventure', 'Hiking', 'Level 4'], desc: 'Walk between mountain huts, with luggage transfers and Italian dinners every night.' },
+    { r: 'europe', n: 'Iceland ring road', loc: 'Reykjavík → East Fjords', d: 10, p: 3980, rt: 4.8, id: '1476514525535-07fb3b4ae5f1', b: 'Northern lights', s: 'Adventure', tags: ['Adventure', 'Road trip', 'Hot springs'], desc: 'Waterfalls, glaciers and black beaches, with a chance of the northern lights.' },
+    { r: 'islands', n: 'Maldives family escape', loc: 'Baa Atoll', d: 7, p: 3450, rt: 4.9, id: '1507525428034-b723cf961d3e', b: 'Family', s: 'Family', tags: ['Family', 'Beach', 'Snorkelling'], desc: 'A family-run island resort with a kids\' marine biology club and manta snorkelling.' }
+  ];
+  const card = i => { const t = T[i]; return `<div class="tc"><div class="im"><img src="${U(t.id, 700)}" alt=""><span class="badge">${t.b}</span><span class="days">🕒 ${t.d} days</span></div><div class="b"><span class="loc">📍 ${t.loc}</span><h4>${t.n}</h4><div class="tags">${t.tags.map(x => `<span>${x}</span>`).join('')}</div><div class="f"><span class="pr"><small>From, per person</small><b>$${t.p.toLocaleString()}</b></span><span class="st">★ ${t.rt.toFixed(1)}</span></div><button class="view" data-i="${i}">View itinerary</button></div></div>`; };
+  const fill = (list) => { document.querySelector('[data-pane="all"]').innerHTML = list.length ? list.map(card).join('') : '<div class="nores">No tours match that search yet. <a href="#plan" style="color:var(--kt-accent);font-weight:800">Ask us for a tailor-made trip →</a></div>'; };
+  fill(T.map((_, i) => i));
+  ['asia', 'europe', 'islands'].forEach(r => document.querySelector(`[data-pane="${r}"]`).innerHTML = T.map((t, i) => t.r === r ? card(i) : '').join(''));
+  const G = [['Linh Nguyen', 'Hội An, Vietnam', '1517841905240-472988babdf9', 'Grew up above her family\'s noodle shop. Knows every tailor in town.'], ['Kenji Mori', 'Kyoto, Japan', '1507003211169-0a1dd7228f2d', 'Former temple gardener who now shows guests the quiet side of Kyoto.'], ['Made Sudana', 'Ubud, Bali', '1500648767791-00dcc994a43e', 'Third-generation rice farmer and the best cook in the village.'], ['Giulia Ferri', 'Dolomites, Italy', '1534528741775-53994a69daeb', 'Mountain guide and ski instructor. Has climbed every peak you\'ll see.'], ['Sigrún Jóns', 'Reykjavík, Iceland', '1494790108377-be9c29b29330', 'Geologist who can explain every volcano and find the best hot pots.']];
+  document.getElementById('gd').innerHTML = G.map(([n, w, id, t]) => `<div><img src="${U(id, 500)}" alt="${n}"><b>${n}</b><small>📍 ${w}</small><p>${t}</p></div>`).join('');
+  const H = [['1530789253388-582c481c54b0', 'Kyoto, Japan', 'Japan in autumn · 11 days'], ['1528127269322-539801943592', 'Northern Vietnam', 'Lanterns & limestone · 12 days'], ['1501785888041-af3ef285b470', 'Dolomites, Italy', 'Hut to hut · 8 days']];
+  document.getElementById('hbg').innerHTML = H.map((h, i) => `<div class="${i ? '' : 'on'}" style="background-image:url(${U(h[0], 1900)})"></div>`).join('');
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  // hero crossfade + caption
+  const bgs = document.querySelectorAll('#hbg div'), where = document.getElementById('where'); let hi = 0;
+  const cap = () => where.innerHTML = `📍 ${H[hi][1]}<small>${H[hi][2]}</small>`; cap();
+  setInterval(() => { bgs[hi].classList.remove('on'); hi = (hi + 1) % bgs.length; bgs[hi].classList.add('on'); cap(); }, 6000);
+  // search -> filter "All" tab
+  document.getElementById('sbox').addEventListener('submit', e => { e.preventDefault(); const r = sReg.value, s = sStyle.value, l = +sLen.value;
+    fill(T.map((t, i) => i).filter(i => (r === 'all' || T[i].r === r) && (s === 'all' || T[i].s === s) && T[i].d <= l));
+    document.querySelector('.rtabs [data-tab="all"]').click(); document.getElementById('tours').scrollIntoView({ behavior: 'smooth' }); });
+  // itinerary panel
+  const itm = document.getElementById('itm'); let cur = 0, pax = 2;
+  const DAYS = n => { const base = [['Arrive &amp; welcome dinner', 'Meet your guide and group over a local feast.'], ['Old town on foot', 'A slow morning walk, markets and a hidden café.'], ['Into the countryside', 'Drive out to villages and meet local makers.'], ['Free day', 'Rest, explore or join an optional activity.'], ['Cooking with a family', 'Learn three dishes and eat them together.'], ['Scenic journey', 'Travel by train or boat to the next stop.']];
+    return Array.from({ length: n }, (_, k) => k === n - 1 ? ['Farewell', 'Breakfast together and transfers to the airport.'] : base[k % base.length]); };
+  const total = () => { const t = T[cur]; const sum = (t.p + +document.getElementById('iRoom').value) * pax; document.getElementById('iTot').textContent = '$' + sum.toLocaleString(); document.getElementById('iN').textContent = pax; document.getElementById('iN2').textContent = pax + (pax === 1 ? ' traveller' : ' travellers'); };
+  const open = i => { cur = i; pax = 2; const t = T[i];
+    itm.querySelector('.hd img').src = U(t.id, 1000); document.getElementById('iT').innerHTML = t.n;
+    document.getElementById('iF').innerHTML = `<div><b>${t.d} days</b>length</div><div><b>Max 12</b>group</div><div><b>★ ${t.rt.toFixed(1)}</b>rating</div>`;
+    document.getElementById('iD').textContent = t.desc;
+    document.getElementById('iDays').innerHTML = DAYS(t.d).map(([h, b], k) => `<details class="kt-faq" ${k ? '' : 'open'}><summary><span>Day ${k + 1}</span>${h}</summary><div class="kt-faq-a"><div>${b}</div></div></details>`).join('');
+    const dep = document.getElementById('iDep'); dep.innerHTML = ['Mar 14, 2027', 'Apr 11, 2027', 'May 9, 2027', 'Sep 19, 2027', 'Oct 17, 2027'].map((d, k) => `<option>${d}${k === 1 ? ' · 2 left' : ''}</option>`).join('');
+    document.getElementById('iRoom').value = '0'; total(); itm.classList.add('on'); itm.querySelector('.pn').scrollTop = 0; };
+  document.getElementById('tours').addEventListener('click', e => { const b = e.target.closest('.view'); if (b) open(+b.dataset.i); });
+  itm.addEventListener('click', e => { if (e.target === itm || e.target.closest('.x')) itm.classList.remove('on'); const s = e.target.closest('[data-t]'); if (s) { pax = Math.max(1, Math.min(12, pax + +s.dataset.t)); total(); } });
+  document.getElementById('iRoom').addEventListener('change', total);
+  document.getElementById('iBook').addEventListener('click', () => { itm.classList.remove('on'); ktToast('Request sent! We\'ll confirm your places within 24 hours.'); });
+  addEventListener('keydown', e => e.key === 'Escape' && itm.classList.remove('on'));
+  // budget range
+  const bud = document.getElementById('bud'); bud.addEventListener('input', () => document.getElementById('budV').textContent = '$' + (+bud.value).toLocaleString() + (bud.value == 12000 ? '+' : ''));
+</script>
+</body>
+</html>

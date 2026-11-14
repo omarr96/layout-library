@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slow Work · A newsletter by Hana Ito</title>
+<meta name="description" content="Slow Work: a weekly letter about doing good work without burning out. Essays, tools and a podcast. 42,000 readers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../local-business/kit/kit.css">
+<style>
+:root { --kt-bg: #fbf9f4; --kt-ink: #1a1915; --kt-tx: #55524a; --kt-mut: #96928a; --kt-line: #e8e4da; --kt-accent: #d1495b; --kt-accent-ink: #fff; --paper: #f3efe4; }
+body { font: 17px/1.65 Inter, system-ui, sans-serif; }
+.nw { font-family: Newsreader, serif; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-accent); }
+h2.h { font-family: Newsreader, serif; font-weight: 400; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.08; letter-spacing: -.015em; color: var(--kt-ink); margin: 10px 0 18px; }
+h2.h em { color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 22px; border-radius: 10px; font-weight: 600; transition: .2s; }
+.btn.fl { background: var(--kt-ink); color: #fff; } .btn.fl:hover { background: var(--kt-accent); }
+.btn.ol { border: 1px solid var(--kt-line); color: var(--kt-ink); background: #fff; }
+section { padding: 90px 0; }
+.prog { position: fixed; top: 0; left: 0; height: 3px; background: var(--kt-accent); z-index: 100; width: 0; }
+
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(251,249,244,.94); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.nav.scrolled { border-color: var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 26px; height: 72px; }
+.logo { font-family: Newsreader, serif; font-size: 28px; font-weight: 600; color: var(--kt-ink); letter-spacing: -.02em; }
+.logo i { color: var(--kt-accent); font-style: normal; }
+.kt-menu { display: flex; gap: 24px; margin-left: auto; font-weight: 500; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 42px; }
+
+/* hero */
+.hero { padding: 70px 0 60px; text-align: center; }
+.hero h1 { font-family: Newsreader, serif; font-weight: 400; font-size: clamp(46px, 7vw, 100px); line-height: 1; letter-spacing: -.03em; color: var(--kt-ink); margin: 18px auto 20px; max-width: 900px; }
+.hero h1 em { color: var(--kt-accent); }
+.hero .tag { font-size: 20px; max-width: 600px; margin: 0 auto 30px; }
+.hero .tag b { color: var(--kt-ink); font-weight: 500; border-bottom: 2px solid var(--kt-accent); }
+.sub { display: flex; gap: 8px; max-width: 480px; margin: 0 auto; padding: 6px; border-radius: 14px; background: #fff; border: 1px solid var(--kt-line); box-shadow: 0 20px 40px -30px rgba(26,25,21,.4); }
+.sub input { flex: 1; min-width: 0; border: 0; outline: none; padding: 0 14px; font: inherit; background: none; }
+.sub .btn { height: 48px; }
+.proof { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 22px; font-size: 14.5px; flex-wrap: wrap; }
+.faces { display: flex; } .faces img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--kt-bg); object-fit: cover; margin-left: -8px; } .faces img:first-child { margin-left: 0; }
+.proof b { color: var(--kt-ink); }
+
+.feat { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; padding: 30px; border-radius: 26px; background: #fff; border: 1px solid var(--kt-line); margin-top: 60px; }
+.feat img { width: 100%; height: 400px; object-fit: cover; border-radius: 18px; }
+.feat h3 { font-family: Newsreader, serif; font-weight: 400; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.1; color: var(--kt-ink); margin: 12px 0; }
+.meta { display: flex; gap: 14px; align-items: center; font-size: 14px; color: var(--kt-mut); flex-wrap: wrap; }
+.meta img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.pill { padding: 4px 10px; border-radius: 99px; background: var(--paper); color: var(--kt-ink); font-size: 12.5px; font-weight: 600; }
+
+.press { padding: 24px 0; border-top: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); }
+.press .kt-mq-track span { font-family: Newsreader, serif; font-style: italic; font-size: 26px; color: #a9a499; white-space: nowrap; display: flex; align-items: center; gap: 56px; }
+.press .kt-mq-track span::after { content: "•"; color: var(--kt-accent); font-style: normal; }
+
+/* posts */
+.ph { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+.flt { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.flt button { height: 38px; padding: 0 16px; border-radius: 99px; border: 1px solid var(--kt-line); font-weight: 500; color: var(--kt-tx); background: #fff; }
+.flt button.on { background: var(--kt-ink); color: #fff; border-color: var(--kt-ink); }
+.srch { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--kt-line); background: #fff; }
+.srch input { border: 0; outline: none; font: inherit; font-size: 15px; width: 160px; background: none; }
+.posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 26px; }
+.post { display: block; }
+.post .im { overflow: hidden; border-radius: 16px; margin-bottom: 16px; }
+.post img { width: 100%; aspect-ratio: 3/2; object-fit: cover; transition: transform .6s; }
+.post:hover img { transform: scale(1.05); }
+.post h4 { font-family: Newsreader, serif; font-weight: 400; font-size: 25px; line-height: 1.2; color: var(--kt-ink); margin: 10px 0 8px; }
+.post:hover h4 { color: var(--kt-accent); }
+.post p { margin: 0 0 10px; font-size: 15.5px; }
+.post .lk { font-size: 12.5px; font-weight: 600; color: #8a6a1e; }
+.empty { grid-column: 1 / -1; text-align: center; padding: 50px; border: 1px dashed var(--kt-line); border-radius: 16px; display: none; }
+.more { text-align: center; margin-top: 40px; }
+
+/* series */
+.series { background: var(--kt-ink); color: #b9b5aa; }
+.series h2.h { color: #fff; }
+.sh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.sh .ar { display: flex; gap: 10px; }
+.series .kt-arrow { background: transparent; color: #fff; border-color: rgba(255,255,255,.2); }
+.sr > div { width: 330px; border-radius: 20px; overflow: hidden; background: #26241f; }
+.sr img { width: 100%; height: 190px; object-fit: cover; }
+.sr .b { padding: 20px; }
+.sr b { display: block; font-family: Newsreader, serif; font-weight: 400; font-size: 24px; color: #fff; margin-bottom: 4px; }
+.sr .n { font-size: 13px; color: #e8a04c; font-weight: 600; }
+
+/* listen + watch */
+.lw { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.lw > div { border-radius: 24px; padding: 34px; }
+.pod { background: var(--paper); }
+.pod .ep { display: grid; gap: 4px; margin-top: 20px; }
+.pod .ep div { display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; border-top: 1px solid var(--kt-line); font-size: 15px; }
+.pod .ep b { color: var(--kt-ink); font-weight: 500; }
+.pod .kt-audio { --kt-audio-bg: #fff; }
+.ve { background: #fff; border: 1px solid var(--kt-line); }
+.vid { position: relative; border-radius: 16px; overflow: hidden; margin-top: 18px; }
+.vid img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.lw h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 32px; color: var(--kt-ink); margin: 8px 0; }
+
+/* about */
+.about .wrap { display: grid; grid-template-columns: 380px 1fr; gap: 60px; align-items: center; }
+.about img { width: 100%; height: 460px; object-fit: cover; border-radius: 200px 200px 22px 22px; }
+.about p.big { font-family: Newsreader, serif; font-size: 24px; line-height: 1.45; color: var(--kt-ink); }
+.stat { display: flex; gap: 40px; margin-top: 26px; flex-wrap: wrap; }
+.stat b { display: block; font-family: Newsreader, serif; font-size: 44px; font-weight: 400; color: var(--kt-ink); line-height: 1; }
+
+/* readers + faq */
+.rf .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rq p { font-family: Newsreader, serif; font-size: 27px; line-height: 1.35; color: var(--kt-ink); margin: 0 0 18px; }
+.rq .who { display: flex; gap: 12px; align-items: center; font-size: 15px; } .rq img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.rf .kt-dots { color: var(--kt-ink); justify-content: flex-start; margin-top: 22px; }
+
+/* subscribe */
+.join { margin: 0 28px 28px; border-radius: 30px; background: var(--kt-accent); color: #fde7ea; padding: 80px 28px; text-align: center; }
+.join h2 { font-family: Newsreader, serif; font-weight: 400; font-size: clamp(38px, 5vw, 66px); line-height: 1.05; color: #fff; margin: 0 0 14px; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 560px; margin: 30px auto 14px; text-align: left; }
+.plans label { cursor: pointer; padding: 18px; border-radius: 16px; background: rgba(255,255,255,.1); border: 2px solid transparent; color: #fff; display: block; }
+.plans input { display: none; }
+.plans label:has(input:checked) { border-color: #fff; background: rgba(255,255,255,.18); }
+.plans b { display: block; font-size: 18px; } .plans small { opacity: .85; }
+.join .sub { box-shadow: none; border: 0; }
+.join .sub .btn { background: var(--kt-ink); }
+footer { padding: 30px 0 50px; font-size: 14px; } footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+@media (max-width: 980px) {
+  section { padding: 70px 0; }
+  .feat, .lw, .rf .wrap { grid-template-columns: 1fr; }
+  .about .wrap { grid-template-columns: 1fr; gap: 40px; } .about img { height: 380px; max-width: 420px; }
+  .posts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .sub { flex-direction: column; } .sub input { height: 48px; }
+  .feat { padding: 16px; margin-top: 40px; } .feat img { height: 240px; }
+  .posts { grid-template-columns: 1fr; }
+  .srch { width: 100%; } .srch input { width: 100%; }
+  .sr > div { width: 78vw; }
+  .lw > div { padding: 22px; } .vid img { height: 200px; }
+  .plans { grid-template-columns: 1fr; }
+  .join { margin: 0 12px 12px; padding: 56px 18px; }
+}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Slow Work<i>.</i></a>
+    <nav class="kt-menu"><a href="#posts">Essays</a><a href="#series">Series</a><a href="#listen">Podcast</a><a href="#about">About</a></nav>
+    <a href="#join" class="btn fl">Subscribe</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="ey" data-reveal>A weekly letter · every Sunday</span>
+    <h1 data-split>Do good work, <em>without</em> burning out</h1>
+    <p class="tag" data-reveal data-delay="200">Essays and tools for people who want to <b data-type="think more clearly.|work fewer hours.|make better things.|enjoy Mondays again."></b></p>
+    <form class="sub" data-form="Welcome to Slow Work! Check your inbox to confirm." data-reveal data-delay="300"><input type="email" placeholder="Your email address" required aria-label="Email"><button class="btn fl" type="submit">Subscribe free</button></form>
+    <div class="proof" data-reveal data-delay="400"><span class="faces"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=60&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=60&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&q=60&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=60&auto=format&fit=crop" alt=""></span><span>Join <b><span data-count="42000">0</span></b> readers · No spam, unsubscribe anytime</span></div>
+
+    <a href="#" class="feat" data-reveal="zoom" style="text-align:left">
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1100&q=72&auto=format&fit=crop" alt="">
+      <div><span class="pill">✨ Latest letter · #212</span><h3>The four-hour deep work day</h3><p>Why I stopped trying to focus for eight hours, and how doing less made my best work possible.</p><div class="meta"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=60&auto=format&fit=crop" alt=""><span>Hana Ito</span><span>Nov 8, 2026</span><span>9 min read</span></div></div>
+    </a>
+  </div>
+</section>
+
+<div class="press kt-marquee" data-speed="36s"><div class="kt-mq-track"><span>The Guardian</span><span>Fast Company</span><span>Monocle</span><span>Wired</span><span>The Verge</span><span>Kinfolk</span></div></div>
+
+<section id="posts">
+  <div class="wrap">
+    <div class="ph"><div><span class="ey" data-reveal>From the archive</span><h2 class="h" data-split style="margin-bottom:0">Recent essays</h2></div>
+      <div class="flt" data-reveal><span id="cats"></span><label class="srch">🔎<input id="q" placeholder="Search essays" aria-label="Search essays"></label></div></div>
+    <div class="posts" id="posts-grid"></div>
+    <div class="more"><button class="btn ol" id="moreBtn">Load more essays</button></div>
+  </div>
+</section>
+
+<section class="series" id="series" data-slider-scope>
+  <div class="wrap">
+    <div class="sh"><div><span class="ey" style="color:#e8a04c" data-reveal>Series</span><h2 class="h" data-split style="margin-bottom:0">Start here</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel sr" data-carousel>
+      <div><img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=600&q=70&auto=format&fit=crop" alt=""><div class="b"><span class="n">7 essays</span><b>The calm calendar</b>Planning weeks you actually look forward to.</div></div>
+      <div><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=70&auto=format&fit=crop" alt=""><div class="b"><span class="n">5 essays</span><b>Writing to think</b>Why writing is the best thinking tool we have.</div></div>
+      <div><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=70&auto=format&fit=crop" alt=""><div class="b"><span class="n">9 essays</span><b>Rituals</b>Small habits that make big days easier.</div></div>
+      <div><img src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=600&q=70&auto=format&fit=crop" alt=""><div class="b"><span class="n">4 essays</span><b>Rest is work</b>Holidays, sabbaticals and the art of stopping.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="listen">
+  <div class="wrap">
+    <div class="lw">
+      <div class="pod" data-reveal="left"><span class="ey">Podcast</span><h3>Slow Work, out loud</h3><p style="margin:0 0 18px">Every letter, read by me, plus monthly conversations.</p><div data-audio="lofi" data-title="Ep. 88 · The four-hour deep work day" data-sub="Slow Work Podcast · 14 min"></div>
+        <div class="ep"><div><b>Ep. 87 · Saying no, kindly</b><span>18 min</span></div><div><b>Ep. 86 · With Cal R. on focus</b><span>52 min</span></div><div><b>Ep. 85 · Notebooks over apps</b><span>11 min</span></div></div></div>
+      <div class="ve" data-reveal="right"><span class="ey">Video essay</span><h3>A day of slow work</h3><p style="margin:0">What my actual work day looks like, from 7 am to 3 pm.</p><div class="vid"><img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=900&q=72&auto=format&fit=crop" alt=""><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch the video essay"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about" style="padding-top:0">
+  <div class="wrap">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&q=72&auto=format&fit=crop" alt="Hana Ito" data-reveal="left">
+    <div>
+      <span class="ey" data-reveal>About</span>
+      <h2 class="h" data-split>Hi, I'm Hana</h2>
+      <p class="big" data-reveal>I spent ten years as a product designer working 60-hour weeks. In 2021 I burned out, quit and started writing about a better way.</p>
+      <p data-reveal>Slow Work is what I've learned since: honest essays, simple tools and conversations with people who do great work at a human pace. I write from a small flat in Kyoto.</p>
+      <div class="stat" data-reveal><div><b data-count="212">0</b>letters sent</div><div><b data-count="68" data-suffix="%">0</b>average open rate</div><div><b data-count="5">0</b>years writing</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rf" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Readers say</span>
+      <div class="kt-slider rq" data-autoplay="6500" style="margin-top:20px">
+        <div class="kt-track">
+          <div><p>“The only newsletter I read on the day it arrives. It changed how I plan my weeks.”</p><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Maria</b> · Engineering manager</span></div></div>
+          <div><p>“Hana writes like a friend who's a few steps ahead of you. Kind, clear and useful.”</p><div class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Daniel</b> · Founder</span></div></div>
+          <div><p>“I forwarded the four-hour day essay to my whole team. We changed our meeting rules the next week.”</p><div class="who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Aisha</b> · Head of design</span></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>FAQ</span>
+      <h2 class="h" data-split>Before you subscribe</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>How often will I hear from you?</summary><div class="kt-faq-a"><div>Once a week, on Sunday morning. Paid members also get a monthly deep-dive.</div></div></details>
+        <details class="kt-faq"><summary>Is it really free?</summary><div class="kt-faq-a"><div>Yes. Every weekly letter is free forever. Membership just supports the work and adds extras.</div></div></details>
+        <details class="kt-faq"><summary>Can I read old issues?</summary><div class="kt-faq-a"><div>The full archive of 212 letters is free to read on this site.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="join" id="join" data-reveal="zoom">
+  <span class="ey" style="color:#fff">Join 42,000 readers</span>
+  <h2>One calm letter, every Sunday</h2>
+  <p style="margin:0">Choose how you'd like to read.</p>
+  <div class="plans"><label><input type="radio" name="pl" checked><b>Free</b><small>The weekly letter + archive</small></label><label><input type="radio" name="pl"><b>Member · €6/month</b><small>+ deep-dives, templates, community</small></label></div>
+  <form class="sub" data-form="Welcome to Slow Work! Check your inbox to confirm."><input type="email" placeholder="Your email address" required aria-label="Email"><button class="btn fl" type="submit">Subscribe</button></form>
+</div>
+<footer><div class="wrap"><span>© 2026 Slow Work by Hana Ito</span><span>RSS · Instagram · LinkedIn · Privacy</span></div></footer>
+
+<script>
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const POSTS = [
+    ['Focus', 'Notebooks beat apps (for me)', 'Why I went back to paper for planning, and the three notebooks I use.', '1517842645767-c639042777db', 'Nov 1', 6],
+    ['Rest', 'The case for a boring weekend', 'Doing nothing is a skill. Here is how to practise it.', '1495474472287-4d71bcdd2085', 'Oct 25', 7],
+    ['Writing', 'Write the ugly first draft', 'Perfectionism is the enemy of getting anything done.', '1455390582262-044cdead277a', 'Oct 18', 5],
+    ['Focus', 'One tab at a time', 'A small browser rule that gave me back an hour a day.', '1486312338219-ce68d2c6f44d', 'Oct 11', 4],
+    ['Career', 'Quitting well', 'What I wish I knew before I left my job.', '1434030216411-0b793f4b4173', 'Oct 4', 11],
+    ['Rest', 'Walks are work', 'My best ideas come between home and the bakery.', '1473186578172-c141e6798cf4', 'Sep 27', 6],
+    ['Writing', 'How I write every week', 'My whole process, from messy notes to Sunday morning.', '1456513080510-7bf3a84b82f8', 'Sep 20', 9],
+    ['Career', 'Saying no, kindly', 'Ten scripts for turning down work without guilt.', '1513258496099-48168024aec0', 'Sep 13', 8],
+    ['Focus', 'The 3-task day', 'Why my to-do list never has more than three things.', '1501504905252-473c47e087f8', 'Sep 6', 5]
+  ];
+  let cat = 'All', shown = 6;
+  document.getElementById('cats').outerHTML = ['All', 'Focus', 'Writing', 'Rest', 'Career'].map((c, i) => `<button class="${i ? '' : 'on'}" data-c="${c}">${c}</button>`).join('');
+  const render = () => { const q = (document.getElementById('q').value || '').toLowerCase();
+    const list = POSTS.filter(p => (cat === 'All' || p[0] === cat) && (!q || (p[1] + p[2]).toLowerCase().includes(q)));
+    document.getElementById('posts-grid').innerHTML = list.slice(0, shown).map(([c, t, d, id, dt, m]) => `<a href="#" class="post"><div class="im"><img src="${U(id, 600)}" alt=""></div><div class="meta"><span class="pill">${c}</span><span>${dt}</span><span>${m} min read</span></div><h4>${t}</h4><p>${d}</p></a>`).join('') + `<div class="empty" style="display:${list.length ? 'none' : 'block'}">No essays match “${q}”. Try another word.</div>`;
+    document.getElementById('moreBtn').style.display = list.length > shown ? '' : 'none'; };
+  render();
+</script>
+<script src="../../local-business/kit/kit.js"></script>
+<script>
+  document.querySelector('.flt').addEventListener('click', e => { const b = e.target.closest('button[data-c]'); if (!b) return; document.querySelectorAll('.flt button[data-c]').forEach(x => x.classList.toggle('on', x === b)); cat = b.dataset.c; shown = 6; render(); });
+  document.getElementById('q').addEventListener('input', () => { shown = 6; render(); });
+  document.getElementById('moreBtn').addEventListener('click', () => { shown += 3; render(); });
+  // reading progress bar
+  const pg = document.getElementById('prog');
+  addEventListener('scroll', () => { const h = document.documentElement; pg.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
+</script>
+</body>
+</html>
