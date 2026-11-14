@@ -309,6 +309,20 @@ textarea.inp { height: auto; padding: 12px 14px; resize: vertical; line-height: 
 .lf-modal .inp:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,17,19,.06); }
 .lf-ex { color: var(--faint); font-size: 12.5px; margin-top: 8px; }
 .lf-ex.bad { color: var(--err); }
+#lfStep1[hidden], #lfStep2[hidden] { display: none; }
+.lf-warn { width: 40px; height: 40px; border-radius: 11px; background: #fffbeb; color: #b45309; display: grid; place-items: center; margin-bottom: 14px; }
+.lf-warn svg { width: 20px; height: 20px; }
+.lf-cmp { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; padding: 12px; border-radius: 10px; background: var(--soft); font-size: 13px; }
+.lf-cmp small { display: block; color: var(--faint); font-size: 11.5px; }
+.lf-cmp b { color: var(--ink); font-weight: 500; }
+.lf-cmp svg { color: var(--faint); }
+#life .soon { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 16px; align-items: center; margin-top: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; }
+#life .soon .pv { aspect-ratio: 16/10; border-radius: 8px; background: linear-gradient(180deg, #f3f6ef, #e6ecdf); display: grid; place-items: center; text-align: center; padding: 8px; }
+#life .soon .pv b { display: block; color: #2f3b28; font-size: 13px; font-weight: 600; }
+#life .soon .pv small { color: #5b6b4f; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+#life .soon p { margin: 0 0 8px; color: var(--mut); font-size: 13px; }
+#life .soon p b { color: var(--ink); font-weight: 500; }
+@media (max-width: 860px) { #life .soon { grid-template-columns: minmax(0, 1fr); } }
 .lf-demo { position: fixed; left: calc(260px + 24px); bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 12px; background: var(--ink); box-shadow: 0 14px 30px -12px rgba(0,0,0,.45); overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 260px - 48px); }
 .lf-demo::-webkit-scrollbar { display: none; }
 .lf-demo span { color: #a1a1aa; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px 0 6px; white-space: nowrap; }
@@ -457,11 +471,20 @@ main { padding-bottom: 110px; }
   </div>
 </div>
 <div class="lf-scrim" id="lfScrim"><div class="lf-modal" role="dialog" aria-modal="true" aria-labelledby="lfT">
-  <h3 id="lfT">Add a domain</h3>
-  <p>Use an address you already own. You'll add two records where you bought it.</p>
-  <input class="inp" id="domIn" placeholder="indoorplanthouse.com" autocomplete="off" spellcheck="false">
-  <div class="lf-ex" id="domEx">We'll set up both indoorplanthouse.com and www.indoorplanthouse.com.</div>
-  <div class="r"><button class="btn s" data-lfclose>Cancel</button><button class="btn p" id="domGo">Continue</button></div>
+  <div id="lfStep1">
+    <h3 id="lfT">Add a domain</h3>
+    <p id="lfSub">Use an address you already own. You'll add two records where you bought it.</p>
+    <input class="inp" id="domIn" placeholder="indoorplanthouse.com" autocomplete="off" spellcheck="false">
+    <div class="lf-ex" id="domEx">We'll set up both indoorplanthouse.com and www.indoorplanthouse.com.</div>
+    <div class="r"><button class="btn s" data-lfclose>Cancel</button><button class="btn p" id="domGo">Continue</button></div>
+  </div>
+  <div id="lfStep2" hidden>
+    <div class="lf-warn"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></svg></div>
+    <h3><span id="lfDom"></span> already shows a website</h3>
+    <p>If you connect it now, visitors will see a <b>Coming soon</b> page instead, until you publish. You can also wait and connect it when you publish.</p>
+    <div class="lf-cmp"><div><small>Now</small><b>Your current website</b></div><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div><small>After connecting</small><b>Coming soon page</b></div></div>
+    <div class="r"><button class="btn s" id="domLater">Connect when I publish</button><button class="btn p" id="domNow">Connect now</button></div>
+  </div>
 </div></div>
 <div class="lf-demo" role="group" aria-label="Demo state" id="lfDemo"></div>
 <div class="toast" id="toast"></div>
@@ -496,7 +519,10 @@ $('#aiGo').onclick = async () => {
 
 </script>
 <script>
-/* ---------- site lifecycle: new → draft → live → domain pending → securing → connected ---------- */
+/* ---------- site lifecycle ----------
+   Two things change on their own: the site (new → draft → live) and the domain
+   (none → pending → securing → connected, or "connect when I publish").
+   A domain can be connected before the site is published; it then shows a Coming soon page. */
 (function () {
   const q = s => document.querySelector(s);
   const ic = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
@@ -507,31 +533,40 @@ $('#aiGo').onclick = async () => {
     ext: ic('<path d="M7 17 17 7M8 7h9v9"/>'), lock: ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
     arrow: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'), warn: ic('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
     eye: ic('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
-    refresh: ic('<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>'),
+    refresh: ic('<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>'), clock: ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
   };
   const FREE = 'indoor-plant-house.localhost:3210', IP = '203.0.113.10', CNAME = 'cname.zejify.app';
-  const S = { state: 'new', domain: 'indoorplanthouse.com', checked: '2 min ago' };
-  const DEMO = [['new', '1 New'], ['draft', '2 Draft'], ['live', '3 Live'], ['pending', '4 DNS pending'], ['securing', '5 Securing'], ['connected', '6 Connected'], null, ['dnswrong', '⚠ DNS wrong'], ['issue', '⚠ Domain issue']];
-  const isLive = () => !['new', 'draft'].includes(S.state);
-  const hasDomain = () => ['pending', 'securing', 'connected', 'dnswrong', 'issue'].includes(S.state);
-  const mainAddr = () => S.state === 'connected' ? S.domain : FREE;
+  const S = { site: 'new', dom: null, domain: 'indoorplanthouse.com', checked: '2 min ago' };
+  const DEMO = [
+    ['1 New', 'new', null], ['1b New + domain', 'new', 'connected'], ['2 Draft', 'draft', null], ['2b Draft + domain', 'draft', 'connected'],
+    ['3 Live', 'live', null], ['4 DNS pending', 'live', 'pending'], ['5 Securing', 'live', 'securing'], ['6 Connected', 'live', 'connected'],
+    null, ['⚠ DNS wrong', 'live', 'dnswrong'], ['⚠ Domain issue', 'live', 'issue'],
+  ];
+  const isLive = () => S.site === 'live';
+  const working = () => ['pending', 'securing', 'dnswrong', 'issue'].includes(S.dom);
+  const domLive = () => S.dom === 'connected';
+  const mainAddr = () => isLive() && domLive() ? S.domain : FREE;
+  // demo rule: any .com address already shows a website, other endings are new
+  const inUse = d => /\.com$/.test(d);
   const mock = `<div class="mock"><i style="left:0;right:0;top:0;height:8px;background:#4d6b3c;opacity:.85"></i><i style="left:6%;top:22%;width:48%;height:9px;background:#2f3b28"></i>
     <i style="left:6%;top:34%;width:36%;height:9px;background:#2f3b28"></i><i style="left:6%;top:50%;width:40%;height:4px;background:#9aa58f"></i>
     <i style="left:6%;top:64%;width:20%;height:10px;background:#4d6b3c;border-radius:4px"></i><i style="right:5%;top:18%;width:36%;bottom:10%;background:#b9c9a8;border-radius:6px"></i></div>`;
 
   function status() {
-    return {
-      new: ['', 'Draft · No content yet'], draft: ['', 'Draft · Ready to publish'], live: ['ok', 'Live'],
-      pending: ['ok', 'Live · Domain pending'], dnswrong: ['ok', 'Live · Domain pending'], securing: ['ok', 'Live · Securing domain'],
-      connected: ['ok', `Live on ${S.domain}`], issue: ['err', 'Domain issue · Site still live'],
-    }[S.state];
+    if (isLive()) return { pending: ['ok', 'Live · Domain pending'], dnswrong: ['ok', 'Live · Domain pending'], securing: ['ok', 'Live · Securing domain'],
+      connected: ['ok', `Live on ${S.domain}`], issue: ['err', 'Domain issue · Site still live'] }[S.dom] || ['ok', 'Live'];
+    const base = S.site === 'new' ? 'No content yet' : 'Ready to publish';
+    if (domLive()) return ['', 'Draft · Domain ready'];
+    if (working()) return ['', 'Draft · Domain pending'];
+    return ['', 'Draft · ' + base];
   }
 
   function publishing() {
-    const inner = S.state === 'draft'
-      ? `<div class="pub"><div class="thumb">${mock}</div><div><h3>Ready to publish</h3><p>Your draft is private. Publish to put it on the web at ${FREE}.</p>
-         <div class="row"><button class="btn p" id="pubBtn">Publish</button><button class="btn s">${I.eye}Preview</button><button class="btn s" data-go="open">Open editor</button></div></div></div>`
-      : `<div class="pub"><div class="thumb">${mock}</div><div><h3>Live${S.state === 'connected' ? '' : ' on your free address'}</h3><p>Last published 2 min ago. No unpublished changes.</p>
+    if (S.site === 'new') return '';
+    const inner = S.site === 'draft'
+      ? `<div class="pub"><div class="thumb">${mock}</div><div><h3>Ready to publish</h3><p>Your draft is private. Publish to put it on the web at ${domLive() ? S.domain : FREE}.</p>
+         <div class="row"><button class="btn p" id="pubBtn">${domLive() ? 'Publish to ' + S.domain : 'Publish'}</button><button class="btn s">${I.eye}Preview</button><button class="btn s">Open editor</button></div></div></div>`
+      : `<div class="pub"><div class="thumb">${mock}</div><div><h3>Live${domLive() ? '' : ' on your free address'}</h3><p>Last published 2 min ago. No unpublished changes.</p>
          <div class="row"><button class="btn p" disabled>Publish changes</button><button class="btn s">${I.eye}Preview</button></div></div></div>
          <div class="hist"><h4>History</h4><ul><li><b>Published</b><span class="cur">Live now</span><time>2 min ago</time></li><li><b>Published</b><button class="btn lk" style="margin-left:6px">Restore</button><time>Yesterday</time></li></ul></div>`;
     return `<section class="card"><div class="in"><div class="ch"><h2>Publishing</h2></div>${inner}</div></section>`;
@@ -542,18 +577,23 @@ $('#aiGo').onclick = async () => {
     return `<tr><td><b style="color:var(--ink);font-weight:500">${type}</b></td><td class="v">${name}</td><td class="v"><span class="cp">${val}<button class="icon-btn" data-lfcopy="${val}" aria-label="Copy">${I.copy}</button></span>${found ? `<span class="found">We found ${found}</span>` : ''}</td><td style="text-align:right">${pill}</td></tr>`;
   }
   function domain() {
-    const d = S.domain, st = S.state;
+    const d = S.domain, st = S.dom;
     let inner;
-    if (!hasDomain()) {
-      inner = `<div class="dom-empty"><span class="gi">${I.globe}</span><div><b>Use your own domain</b><span class="muted">Like ${d}. Your free address keeps working.</span></div>
-        <button class="btn s sm ml" ${isLive() ? 'data-add' : 'disabled'}>Add domain</button></div>
-        ${isLive() ? '' : '<p class="muted" style="margin:12px 0 0">Publish your site first, then connect a domain.</p>'}`;
+    if (!st) {
+      inner = `<div class="dom-empty"><span class="gi">${I.globe}</span><div><b>Use your own domain</b><span class="muted">${isLive() ? `Like ${d}. Your free address keeps working.` : 'Already have one? Connect it now. It shows a Coming soon page until you publish.'}</span></div>
+        <button class="btn s sm ml" data-add>Add domain</button></div>`;
+    } else if (st === 'later') {
+      inner = `<div class="dname"><b>${d}</b><span class="pill gr">${I.clock}Connects when you publish</span><button class="btn lk dg ml" data-remove>Remove</button></div>
+        <p class="muted" style="margin:10px 0 0">${d} keeps showing your current website for now. Right after you publish, we'll show the two DNS records to add.</p>`;
     } else if (st === 'connected') {
-      inner = `<div class="dname"><b>${d}</b><span class="pill ok">${I.check}Connected</span><span class="pill gr">${I.lock} HTTPS on</span><button class="btn lk ml">Manage</button></div>
-        <div class="dlist" style="margin-top:12px">
-          <div>${I.lock.replace('<svg', '<svg class="lock"')}<span class="d">${d}</span><span class="pill gr">Primary</span></div>
-          <div>${I.arrow}<span class="d">www.${d}</span><span class="to">redirects to ${d}</span></div>
-          <div>${I.arrow}<span class="d">${FREE}</span><span class="to">redirects to ${d}</span></div></div>`;
+      inner = `<div class="dname"><b>${d}</b><span class="pill ok">${I.check}Connected</span><span class="pill gr">${I.lock} HTTPS on</span><button class="btn lk ml">Manage</button></div>`
+        + (isLive() ? `<div class="dlist" style="margin-top:12px">
+            <div>${I.lock.replace('<svg', '<svg class="lock"')}<span class="d">${d}</span><span class="pill gr">Primary</span></div>
+            <div>${I.arrow}<span class="d">www.${d}</span><span class="to">redirects to ${d}</span></div>
+            <div>${I.arrow}<span class="d">${FREE}</span><span class="to">redirects to ${d}</span></div></div>`
+          : `<div class="soon"><div class="pv"><div><small>Coming soon</small><b>Indoor Plant House</b></div></div><div>
+              <p>Visitors to <b>${d}</b> see this page until you publish. Then your site goes live here straight away.</p>
+              <button class="btn s sm" data-soon>Edit page text</button></div></div>`);
     } else {
       const recA = st === 'pending' ? 'wait' : ['dnswrong', 'issue'].includes(st) ? 'bad' : 'ok', recB = st === 'pending' ? 'wait' : st === 'issue' ? 'bad' : 'ok';
       const pill = st === 'pending' ? '<span class="pill wait"><span class="spin"></span>Waiting for DNS</span>' : st === 'securing' ? '<span class="pill wait"><span class="spin"></span>Setting up HTTPS</span>'
@@ -561,6 +601,7 @@ $('#aiGo').onclick = async () => {
       const s2 = st === 'pending' ? 'now' : st === 'securing' ? 'done' : 'bad', s3 = st === 'securing' ? 'now' : 'todo';
       const h2 = s2 === 'done' ? 'DNS records found' : s2 === 'bad' ? (st === 'issue' ? 'DNS records were changed' : 'A record has the wrong value') : 'Add these records where you bought the domain';
       const p2 = s2 === 'done' ? 'Both records point to your site.' : s2 === 'bad' ? (st === 'issue' ? 'Both records were changed or removed.' : 'Change the A record to the value below. The www record is fine.') : 'Log in to GoDaddy, Namecheap, Cloudflare or wherever you bought it, open DNS settings and add:';
+      const last = isLive() ? 'HTTPS turned on' : 'Coming soon page turned on';
       inner = `<div class="dname"><b>${d}</b>${pill}<button class="btn lk dg ml" data-remove>Remove</button></div>
         ${st === 'issue' ? `<div class="alert">${I.warn}<span><b>${d} stopped pointing to your site on Nov 12.</b> Visitors to ${d} can't reach it, but your site is still live at ${FREE}. Put the records below back to fix it.</span></div>` : ''}
         <div class="steps">
@@ -568,7 +609,7 @@ $('#aiGo').onclick = async () => {
           <div class="dstep ${s2}"><span class="num">${s2 === 'done' ? I.check : s2 === 'bad' ? '!' : 2}</span><div><h4>${h2}</h4><p>${p2}</p>
             ${s2 === 'done' ? '' : `<div class="recs"><table><thead><tr><th>Type</th><th>Name</th><th>Value</th><th></th></tr></thead><tbody>${recRow('A', '@', IP, recA, st === 'dnswrong' ? '198.51.100.7' : '')}${recRow('CNAME', 'www', CNAME, recB)}</tbody></table></div>
             <div class="dfoot"><span>Changes can take up to 48 hours, often just minutes. We check every few minutes.</span><span class="ml">Last checked ${S.checked}</span><button class="btn s sm" data-check>${I.refresh}Check now</button></div>`}</div></div>
-          <div class="dstep ${s3}"><span class="num">3</span><div><h4>HTTPS turned on</h4><p>${s3 === 'now' ? "DNS is correct. We're getting a security certificate, usually a few minutes." : 'Happens on its own once DNS is correct.'}</p>${s3 === 'now' ? '<div class="progress"><i></i></div>' : ''}</div></div>
+          <div class="dstep ${s3}"><span class="num">3</span><div><h4>${last}</h4><p>${s3 === 'now' ? "DNS is correct. We're getting a security certificate, usually a few minutes." : isLive() ? 'Happens on its own once DNS is correct.' : 'Visitors see a Coming soon page until you publish.'}</p>${s3 === 'now' ? '<div class="progress"><i></i></div>' : ''}</div></div>
         </div>`;
     }
     return `<section class="card"><div class="in"><div class="ch"><h2>Domain</h2></div>${inner}</div></section>`;
@@ -578,7 +619,7 @@ $('#aiGo').onclick = async () => {
     if (!isLive()) return '';
     const items = [
       ['Publish your site', "It's on the web", true],
-      ['Connect your domain', S.state === 'connected' ? `${S.domain} is connected` : hasDomain() ? 'Waiting on DNS' : `Use your own address instead of ${FREE}`, S.state === 'connected', hasDomain() ? null : 'Connect'],
+      ['Connect your domain', domLive() ? `${S.domain} is connected` : working() ? 'Waiting on DNS' : `Use your own address instead of ${FREE}`, domLive(), working() ? null : 'Connect'],
       ['Add a social image', 'Shown when someone shares your link', false, 'Add'],
       ['Add a site icon', 'Shown in browser tabs and bookmarks', false, 'Add'],
       ['Set up analytics', 'See how many people visit', false, 'Set up'],
@@ -591,67 +632,85 @@ $('#aiGo').onclick = async () => {
   }
 
   function render() {
-    const isNew = S.state === 'new';
+    const isNew = S.site === 'new';
     q('#startCard').hidden = !isNew;
-    q('#life').hidden = isNew;
     q('#goodCard').hidden = !isNew;
-    if (!isNew) q('#life').innerHTML = publishing() + domain() + checklist();
+    // the Domain card shows from the start, so a domain can be connected before building
+    q('#life').hidden = false;
+    q('#life').innerHTML = publishing() + domain() + checklist();
 
-    // header + status pills
     const [cls, txt] = status();
     ['#statusPill', '#statusPill2', '#sidePill'].forEach(s => { const el = q(s); el.className = 'pill' + (cls ? ' ' + cls : '') + (s === '#sidePill' ? ' ml' : ''); el.querySelector('span').textContent = s === '#statusPill' ? txt : (cls === 'err' ? 'Issue' : txt.split(' · ')[0].replace(/ on .*/, '')); });
-    q('#headAddr').innerHTML = isNew ? `Your site is ready at <code>${FREE}</code>. Add your content to get it online.`
-      : S.state === 'draft' ? `Not online yet. Your draft preview is at <code>preview--${FREE}</code>.`
-      : S.state === 'connected' ? `Live at <code>${S.domain}</code>. ${FREE} redirects there.`
-      : S.state === 'issue' ? `Live at <code>${FREE}</code>. ${S.domain} isn't working right now.`
-      : `Live at <code>${FREE}</code>.${hasDomain() ? ` ${S.domain} isn't connected yet.` : ''}`;
+    const d = S.domain;
+    q('#headAddr').innerHTML = !isLive()
+      ? (isNew ? `Your site is ready at <code>${FREE}</code>. Add your content to get it online.` : `Not online yet. Your draft preview is at <code>preview--${FREE}</code>.`)
+        + (domLive() ? ` <code>${d}</code> shows a Coming soon page.` : '')
+      : domLive() ? `Live at <code>${d}</code>. ${FREE} redirects there.`
+      : S.dom === 'issue' ? `Live at <code>${FREE}</code>. ${d} isn't working right now.`
+      : `Live at <code>${FREE}</code>.${working() ? ` ${d} isn't connected yet.` : ''}`;
     const ha = q('#hacts'); ha.hidden = !isLive();
     ha.innerHTML = `<a class="btn s sm" href="#">${I.ext}Visit site</a><button class="btn s sm" data-lfcopy="https://${mainAddr()}">${I.copy}Copy link</button>`;
 
-    // right column facts
     q('#prev').classList.toggle('live', !isNew);
     q('#addrVal').textContent = mainAddr();
     q('#srcVal').textContent = isNew ? 'Not set' : 'Built with AI';
-    const dv = q('#domVal'); dv.className = S.state === 'issue' ? 'bad' : '';
-    dv.textContent = !hasDomain() ? 'None' : S.state === 'connected' ? S.domain : S.state === 'issue' ? `${S.domain} · issue` : `${S.domain} · pending`;
+    const dv = q('#domVal'); dv.className = S.dom === 'issue' ? 'bad' : '';
+    dv.textContent = !S.dom ? 'None' : S.dom === 'later' ? `${d} · on publish` : domLive() ? (isLive() ? d : `${d} · coming soon`) : S.dom === 'issue' ? `${d} · issue` : `${d} · pending`;
     q('#pubVal').textContent = isLive() ? '2 min ago' : 'Never';
 
-    q('#lfDemo').innerHTML = '<span>Demo</span>' + DEMO.map(d => d ? `<button class="${d[0] === S.state ? 'on' : ''}" data-lfstate="${d[0]}">${d[1]}</button>` : '<i></i>').join('');
+    q('#lfDemo').innerHTML = '<span>Demo</span>' + DEMO.map((x, i) => x ? `<button class="${x[1] === S.site && x[2] === S.dom ? 'on' : ''}" data-lfdemo="${i}">${x[0]}</button>` : '<i></i>').join('');
   }
-  function go(st, msg) { S.state = st; render(); if (msg) toast(msg); }
+  function set(site, dom, msg) { S.site = site; S.dom = dom; render(); if (msg) toast(msg); }
   const wait = ms => new Promise(r => setTimeout(r, ms));
 
-  // "Build my site" now leads into the draft state
   q('#aiGo').onclick = async () => {
     const b = q('#aiGo'); if (!q('#aiIn').value.trim()) { q('#aiIn').focus(); return toast('Tell the AI a little about your site first'); }
     b.innerHTML = '<span class="spin"></span>Building…'; b.disabled = true; await wait(1200);
-    b.innerHTML = 'Build my site'; b.disabled = false; go('draft', 'The AI built 4 pages. Have a look, then publish.');
+    b.innerHTML = 'Build my site'; b.disabled = false; set('draft', S.dom, 'The AI built 4 pages. Have a look, then publish.');
   };
+
+  // ---- add domain popup
+  const modal = q('#lfScrim');
+  function openModal() {
+    q('#lfStep1').hidden = false; q('#lfStep2').hidden = true;
+    q('#lfSub').textContent = isLive() ? "Use an address you already own. You'll add two records where you bought it." : "Use an address you already own. Until you publish, it shows a Coming soon page.";
+    q('#domIn').value = ''; q('#domEx').classList.remove('bad'); q('#domEx').textContent = "We'll set up both indoorplanthouse.com and www.indoorplanthouse.com.";
+    modal.classList.add('on'); q('#domIn').focus();
+  }
+  function addDomain() {
+    const v = (q('#domIn').value.trim() || 'indoorplanthouse.com').toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+    if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)) { q('#domEx').textContent = "That doesn't look like a domain. Try something like indoorplanthouse.com"; q('#domEx').classList.add('bad'); return; }
+    S.domain = v; S.checked = 'just now';
+    // before publishing, warn when the domain already shows a website
+    if (!isLive() && inUse(v)) { q('#lfDom').textContent = v; q('#lfStep1').hidden = true; q('#lfStep2').hidden = false; return; }
+    modal.classList.remove('on'); set(S.site, 'pending', `${v} added. Now add the DNS records.`);
+  }
+  q('#domGo').onclick = addDomain;
+  q('#domNow').onclick = () => { modal.classList.remove('on'); set(S.site, 'pending', `${S.domain} added. Now add the DNS records.`); };
+  q('#domLater').onclick = () => { modal.classList.remove('on'); set(S.site, 'later', `${S.domain} will connect when you publish`); };
+  q('#domIn').addEventListener('keydown', e => { if (e.key === 'Enter') addDomain(); if (e.key === 'Escape') modal.classList.remove('on'); });
+  q('#domIn').addEventListener('input', () => { const v = q('#domIn').value.trim().replace(/^www\./, '') || 'indoorplanthouse.com'; q('#domEx').classList.remove('bad'); q('#domEx').textContent = `We'll set up both ${v} and www.${v}.`; });
 
   document.addEventListener('click', async e => {
     const t = e.target;
-    const st = t.closest('[data-lfstate]'); if (st) return go(st.dataset.lfstate);
-    if (t.closest('#pubBtn')) { const b = t.closest('#pubBtn'); b.disabled = true; b.innerHTML = '<span class="spin w"></span>Publishing…'; await wait(900); return go('live', 'Your site is live'); }
-    if (t.closest('[data-add]')) { q('#lfScrim').classList.add('on'); q('#domIn').value = ''; q('#domIn').focus(); return; }
-    if (t.closest('[data-lfclose]') || t.id === 'lfScrim') return q('#lfScrim').classList.remove('on');
+    const dm = t.closest('[data-lfdemo]'); if (dm) { const x = DEMO[+dm.dataset.lfdemo]; return set(x[1], x[2]); }
+    if (t.closest('#pubBtn')) {
+      const b = t.closest('#pubBtn'); b.disabled = true; b.innerHTML = '<span class="spin w"></span>Publishing…'; await wait(900);
+      if (S.dom === 'later') return set('live', 'pending', `Your site is live. Now add the DNS records for ${S.domain}.`);
+      return set('live', S.dom, domLive() ? `Your site is live on ${S.domain}` : 'Your site is live');
+    }
+    if (t.closest('[data-add]')) return openModal();
+    if (t.closest('[data-lfclose]') || t.id === 'lfScrim') return modal.classList.remove('on');
     const cp = t.closest('[data-lfcopy]'); if (cp) { navigator.clipboard?.writeText(cp.dataset.lfcopy); return toast('Copied'); }
-    if (t.closest('[data-remove]')) return go('live', `${S.domain} removed`);
+    if (t.closest('[data-soon]')) return toast('Opens a small editor for the Coming soon text');
+    if (t.closest('[data-remove]')) return set(S.site, null, `${S.domain} removed`);
     const ck = t.closest('[data-check]');
     if (ck) {
       ck.innerHTML = '<span class="spin"></span>Checking…'; ck.disabled = true; await wait(1000);
-      S.checked = 'just now'; go('securing', 'DNS records found');
-      setTimeout(() => { if (S.state === 'securing') go('connected', `${S.domain} is connected`); }, 3500);
+      S.checked = 'just now'; set(S.site, 'securing', 'DNS records found');
+      setTimeout(() => { if (S.dom === 'securing') set(S.site, 'connected', isLive() ? `${S.domain} is connected` : `${S.domain} is ready. It shows a Coming soon page until you publish.`); }, 3500);
     }
   });
-  function addDomain() {
-    const v = q('#domIn').value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
-    if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)) { q('#domEx').textContent = "That doesn't look like a domain. Try something like indoorplanthouse.com"; q('#domEx').classList.add('bad'); return; }
-    S.domain = v; S.checked = 'just now'; q('#lfScrim').classList.remove('on');
-    go('pending', `${v} added. Now add the DNS records.`);
-  }
-  q('#domGo').onclick = addDomain;
-  q('#domIn').addEventListener('keydown', e => { if (e.key === 'Enter') addDomain(); if (e.key === 'Escape') q('#lfScrim').classList.remove('on'); });
-  q('#domIn').addEventListener('input', () => { const v = q('#domIn').value.trim().replace(/^www\./, '') || 'indoorplanthouse.com'; q('#domEx').classList.remove('bad'); q('#domEx').textContent = `We'll set up both ${v} and www.${v}.`; });
   render();
 })();
 </script>
