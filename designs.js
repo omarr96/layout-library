@@ -27,6 +27,11 @@ window.DESIGNS = {
       "desc": "Dashboards, tickets and admin UI"
     },
     {
+      "id": "local-business",
+      "name": "Local business",
+      "desc": "One-page sites for local businesses"
+    },
+    {
       "id": "landing-pages",
       "name": "Landing pages",
       "desc": "Single page sites"
@@ -657,6 +662,168 @@ window.DESIGNS = {
         {
           "label": "Dashboard",
           "href": "admin-support/onesuite/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "01-restaurant",
+      "title": "Olive & Ember · Restaurant",
+      "desc": "Wood-fired restaurant: menu tabs, signature dishes carousel, gallery lightbox, reservations, jazz playlist.",
+      "tags": [
+        "Restaurant"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/01-restaurant/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "02-barber",
+      "title": "Steel & Fade · Barber shop",
+      "desc": "Dark barber shop: typed headline, price tabs, before/after, barbers, booking with time slots.",
+      "tags": [
+        "Barber"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/02-barber/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "03-spa",
+      "title": "Lumière · Beauty spa",
+      "desc": "Calm spa with a background video hero, treatment tabs, visit steps, packages slider and gift card.",
+      "tags": [
+        "Spa",
+        "Beauty"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/03-spa/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "04-gym",
+      "title": "PULSE · Gym",
+      "desc": "Neon gym: program tabs, weekly timetable, coaches carousel, monthly/yearly pricing switch.",
+      "tags": [
+        "Gym",
+        "Fitness"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/04-gym/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "05-dentist",
+      "title": "Brightside Dental · Dentist",
+      "desc": "Family dentist: emergency bar, service tabs, smile before/after, team and appointment form.",
+      "tags": [
+        "Clinic"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/05-dentist/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "06-real-estate",
+      "title": "Hearth & Key · Real estate",
+      "desc": "Property search, listings with photo sliders, mortgage calculator, area guides and valuation form.",
+      "tags": [
+        "Real estate"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/06-real-estate/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "07-law-firm",
+      "title": "Harper & Cole · Law firm",
+      "desc": "Practice-area tabs, case results carousel, attorneys, podcast player and a confidential consultation form.",
+      "tags": [
+        "Legal"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/07-law-firm/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "08-home-services",
+      "title": "FixRight · Home services",
+      "desc": "Plumbing, electrical and cleaning: instant estimate, ZIP coverage check, projects, pricing.",
+      "tags": [
+        "Services"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/08-home-services/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "09-auto-repair",
+      "title": "Torque Garage · Auto repair",
+      "desc": "Plate-based quote, live repair tracker, detailing before/after, mechanics and booking.",
+      "tags": [
+        "Auto"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/09-auto-repair/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "10-hotel",
+      "title": "Casa Marea · Boutique hotel",
+      "desc": "Booking bar, room tabs with galleries, experiences carousel, film, offer countdown and map.",
+      "tags": [
+        "Hotel"
+      ],
+      "date": "2026-11-14",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/10-hotel/index.html"
         }
       ]
     },

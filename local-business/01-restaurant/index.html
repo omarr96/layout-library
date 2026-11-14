@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olive &amp; Ember · Wood-fired kitchen</title>
+<meta name="description" content="Wood-fired Mediterranean kitchen and wine bar. Book a table, see the menu and opening hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f6efe4; --kt-ink: #1b1612; --kt-tx: #4a3f35; --kt-mut: #8a7c6c; --kt-line: rgba(27,22,18,.12); --kt-accent: #c2410c; --kt-accent-ink: #fff; --olive: #5b6b3a; --dark: #1b1612; }
+body { font: 16px/1.65 Inter, system-ui, sans-serif; }
+.serif { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; letter-spacing: -.01em; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.eyebrow { font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--kt-accent); font-weight: 600; display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+h2.title { font-size: clamp(36px, 5vw, 58px); line-height: 1.05; color: var(--kt-ink); margin: 14px 0 18px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 99px; font-weight: 600; font-size: 15px; transition: transform .2s, background .2s, color .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.fill { background: var(--kt-accent); color: #fff; }
+.btn.fill:hover { background: #a3360a; }
+.btn.line { border: 1px solid rgba(255,255,255,.5); color: #fff; }
+.btn.line:hover { background: #fff; color: var(--dark); }
+section { padding: 120px 0; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 84px; }
+.nav.scrolled { background: rgba(246,239,228,.94); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--kt-line); }
+.logo { font-size: 30px; color: #fff; display: flex; align-items: center; gap: 10px; transition: color .3s; }
+.logo i { width: 36px; height: 36px; border-radius: 50%; background: var(--kt-accent); display: grid; place-items: center; color: #fff; font-style: normal; font-size: 18px; }
+.nav.scrolled .logo, .nav.scrolled .kt-menu a, .nav.scrolled .kt-burger { color: var(--kt-ink); }
+.kt-menu { display: flex; gap: 32px; margin-left: auto; align-items: center; }
+.kt-menu a { color: #fff; font-size: 14.5px; font-weight: 500; transition: color .3s; }
+.kt-menu a:hover { color: var(--kt-accent) !important; }
+.nav .btn { height: 44px; padding: 0 20px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; color: #fff; padding: 0 0 90px; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,14,10,.35) 0%, rgba(20,14,10,.2) 40%, rgba(20,14,10,.85) 100%); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1.4fr .9fr; gap: 40px; align-items: end; }
+.hero h1 { font-size: clamp(54px, 8.5vw, 118px); line-height: .95; margin: 18px 0 24px; }
+.hero h1 em { font-style: italic; color: #f5b98f; }
+.hero p { font-size: 18px; max-width: 520px; color: rgba(255,255,255,.85); margin: 0 0 32px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hours { justify-self: end; width: 300px; padding: 24px; border-radius: 18px; background: rgba(255,255,255,.1); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.2); }
+.hours b { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.hours b i { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,.25); }
+.hours ul { list-style: none; margin: 14px 0 0; padding: 0; font-size: 14px; }
+.hours li { display: flex; justify-content: space-between; padding: 7px 0; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.85); }
+.scroll-hint { position: absolute; left: 50%; bottom: 26px; z-index: 1; width: 26px; height: 42px; border: 2px solid rgba(255,255,255,.5); border-radius: 20px; transform: translateX(-50%); }
+.scroll-hint::after { content: ""; position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; border-radius: 2px; background: #fff; transform: translateX(-50%); animation: sc 1.8s infinite; }
+@keyframes sc { 60% { transform: translate(-50%, 12px); opacity: 0; } }
+
+/* marquee */
+.band { background: var(--dark); color: #f6efe4; padding: 26px 0; }
+.band .kt-mq-track span { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-style: italic; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.band .kt-mq-track span::after { content: "✦"; font-style: normal; font-size: 18px; color: var(--kt-accent); }
+
+/* story */
+.story .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.collage { position: relative; height: 620px; }
+.collage img { position: absolute; object-fit: cover; border-radius: 18px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+.collage .a { inset: 0 22% 20% 0; width: 78%; height: 80%; }
+.collage .b { right: 0; bottom: 0; width: 48%; height: 52%; border: 8px solid var(--kt-bg); }
+.collage .kt-play { position: absolute; left: 34%; top: 34%; }
+.stamp { position: absolute; left: -18px; bottom: 40px; width: 130px; height: 130px; border-radius: 50%; background: var(--olive); color: #fff; display: grid; place-items: center; text-align: center; font-size: 13px; line-height: 1.3; animation: spin 18s linear infinite; }
+.stamp b { font-family: 'Cormorant Garamond', serif; font-size: 34px; display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 34px 0; }
+.facts b { display: block; font-family: 'Cormorant Garamond', serif; font-size: 46px; color: var(--kt-ink); line-height: 1; }
+.facts span { font-size: 13.5px; color: var(--kt-mut); }
+.story .kt-audio { --kt-audio-bg: #ebe1d1; margin-top: 10px; }
+
+/* menu */
+.menu-sec { background: #efe5d6; }
+.menu-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+.tabbar { display: flex; gap: 6px; padding: 6px; border-radius: 99px; background: #e4d8c6; flex-wrap: wrap; }
+.tabbar button { height: 44px; padding: 0 22px; border-radius: 99px; font-weight: 600; font-size: 14.5px; color: var(--kt-tx); transition: .2s; }
+.tabbar button.on { background: var(--dark); color: #fff; }
+.dishes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 60px; }
+.dish { display: grid; grid-template-columns: 84px 1fr auto; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px dashed rgba(27,22,18,.2); }
+.dish img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; }
+.dish h4 { margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 25px; color: var(--kt-ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dish p { margin: 2px 0 0; font-size: 14px; color: var(--kt-mut); }
+.dish .pr { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--kt-accent); }
+.badge { font-family: Inter, sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .05em; padding: 2px 7px; border-radius: 99px; background: var(--olive); color: #fff; }
+.badge.hot { background: var(--kt-accent); }
+.menu-foot { margin-top: 36px; display: flex; gap: 14px; align-items: center; color: var(--kt-mut); font-size: 14px; flex-wrap: wrap; }
+
+/* signature carousel */
+.sig-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
+.sig-head .arrows { display: flex; gap: 10px; }
+.sig .kt-carousel > * { width: 380px; }
+.sig-card { position: relative; height: 500px; border-radius: 22px; overflow: hidden; color: #fff; }
+.sig-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.sig-card:hover img { transform: scale(1.06); }
+.sig-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.8)); }
+.sig-card .c { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 1; }
+.sig-card h3 { margin: 0 0 4px; font-family: 'Cormorant Garamond', serif; font-size: 32px; }
+.sig-card p { margin: 0; font-size: 14px; color: rgba(255,255,255,.8); }
+.sig-card .pr { position: absolute; top: 18px; right: 18px; z-index: 1; padding: 6px 12px; border-radius: 99px; background: #fff; color: var(--dark); font-weight: 700; font-size: 14px; }
+
+/* gallery */
+.gal { background: var(--dark); color: #f6efe4; }
+.gal h2.title { color: #fff; }
+.grid-g { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 14px; margin-top: 40px; }
+.grid-g a { position: relative; overflow: hidden; border-radius: 14px; }
+.grid-g a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.grid-g a:nth-child(4) { grid-row: span 2; }
+.grid-g img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s, filter .4s; }
+.grid-g a:hover img { transform: scale(1.07); filter: brightness(.75); }
+.grid-g a::after { content: "+"; position: absolute; inset: auto 16px 14px auto; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: var(--dark); display: grid; place-items: center; font-size: 22px; opacity: 0; transform: scale(.6); transition: .3s; }
+.grid-g a:hover::after { opacity: 1; transform: none; }
+
+/* testimonials */
+.quotes { text-align: center; }
+.quotes .kt-slider { max-width: 860px; margin: 30px auto 0; }
+.quote blockquote { margin: 0; font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.3; color: var(--kt-ink); font-style: italic; }
+.quote .who { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 30px; }
+.quote .who img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; }
+.quote .who b { display: block; color: var(--kt-ink); }
+.quote .who span { font-size: 13.5px; color: var(--kt-mut); }
+.stars { color: #e3a008; letter-spacing: 3px; font-size: 18px; margin-bottom: 20px; }
+.quotes .kt-dots { color: var(--kt-accent); }
+.press { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-top: 60px; opacity: .55; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: var(--kt-ink); }
+
+/* chef */
+.chef .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+.chef img { width: 100%; height: 560px; object-fit: cover; border-radius: 300px 300px 18px 18px; }
+.chef .sign { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-style: italic; color: var(--kt-accent); margin-top: 10px; }
+
+/* reserve */
+.reserve { background: var(--olive); color: #fff; }
+.reserve .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.reserve h2.title { color: #fff; }
+.reserve .eyebrow { color: #f5d6a8; }
+.reserve form { background: #fff; color: var(--kt-ink); padding: 34px; border-radius: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.reserve label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--kt-tx); }
+.reserve label.full { grid-column: 1 / -1; }
+.reserve input, .reserve select, .reserve textarea { height: 50px; border: 1px solid #e5dccd; border-radius: 12px; padding: 0 14px; background: #fbf8f2; outline: none; font-weight: 400; }
+.reserve textarea { height: 90px; padding: 12px 14px; resize: vertical; }
+.reserve input:focus, .reserve select:focus, .reserve textarea:focus { border-color: var(--kt-accent); background: #fff; }
+.reserve form .btn { grid-column: 1 / -1; justify-content: center; border: 0; }
+.info { display: grid; gap: 22px; margin-top: 30px; }
+.info div { display: flex; gap: 16px; }
+.info .ic { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.12); display: grid; place-items: center; flex: none; }
+.info b { display: block; }
+.info span { color: rgba(255,255,255,.8); font-size: 14.5px; }
+
+/* faq */
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+
+/* footer */
+footer { background: var(--dark); color: rgba(246,239,228,.7); padding: 80px 0 30px; font-size: 14px; }
+footer .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+footer .logo { color: #fff; margin-bottom: 14px; }
+footer h5 { color: #fff; font-size: 14px; margin: 0 0 14px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer a:hover { color: #fff; }
+footer .insta { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 60px; }
+footer .insta img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; opacity: .85; transition: opacity .3s; }
+footer .insta a:hover img { opacity: 1; }
+footer .bot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); }
+
+@media (max-width: 980px) {
+  section { padding: 84px 0; }
+  .hero .wrap, .story .wrap, .chef .wrap, .reserve .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .hours { justify-self: start; }
+  .dishes { grid-template-columns: 1fr; }
+  .collage { height: 460px; }
+  .grid-g { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+  footer .top { grid-template-columns: 1fr 1fr; }
+  .chef img { height: 420px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .hero { padding-bottom: 70px; }
+  .hours { width: 100%; }
+  .facts { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .facts b { font-size: 34px; }
+  .dish { grid-template-columns: 64px 1fr; }
+  .dish img { width: 64px; height: 64px; }
+  .dish .pr { grid-column: 2; font-size: 22px; }
+  .sig .kt-carousel > * { width: 78vw; }
+  .sig-card { height: 420px; }
+  .reserve form { grid-template-columns: 1fr; padding: 22px; }
+  footer .insta { grid-template-columns: repeat(3, 1fr); }
+  .stamp { width: 100px; height: 100px; } .stamp b { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo serif"><i>✦</i>Olive &amp; Ember</a>
+    <nav class="kt-menu"><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+    <a href="#visit" class="btn fill">Book a table</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div data-heroslides>
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=75&auto=format&fit=crop" alt="Dining room with candle light">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1800&q=75&auto=format&fit=crop" alt="Wood-fired ribs">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&q=75&auto=format&fit=crop" alt="Restaurant interior">
+  </div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#f5b98f" data-reveal>Wood-fired · Since 2014</span>
+      <h1 class="serif"><span data-split>Food that is</span><br><em data-rotate="fire-kissed|slow-cooked|made to share|always seasonal"></em></h1>
+      <p data-reveal data-delay="200">A Mediterranean kitchen built around a 450°C wood oven, local farms and a wine list that changes with the seasons.</p>
+      <div class="cta" data-reveal data-delay="350"><a href="#visit" class="btn fill">Book a table</a><a href="#menu" class="btn line">See the menu</a></div>
+    </div>
+    <div class="hours" data-reveal="right" data-delay="400">
+      <b><i></i>Open now · until 11 pm</b>
+      <ul><li><span>Mon – Thu</span><span>12:00 – 22:30</span></li><li><span>Fri – Sat</span><span>12:00 – 23:30</span></li><li><span>Sunday</span><span>11:00 – 21:00</span></li></ul>
+    </div>
+  </div>
+  <span class="scroll-hint" aria-hidden="true"></span>
+</section>
+
+<div class="band kt-marquee" data-speed="36s"><div class="kt-mq-track"><span>Wood-fired</span><span>Local farms</span><span>Natural wine</span><span>Fresh pasta daily</span><span>Seasonal menu</span><span>Private dining</span></div></div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="collage" data-reveal="left">
+      <img class="a" src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1000&q=75&auto=format&fit=crop" alt="Chef cooking in the kitchen">
+      <img class="b" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=75&auto=format&fit=crop" alt="Friends sharing dinner">
+      <button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch our story"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
+      <div class="stamp"><div><b>10</b>years by<br>the fire</div></div>
+    </div>
+    <div>
+      <span class="eyebrow" data-reveal>Our story</span>
+      <h2 class="title serif" data-split>Everything starts with the fire</h2>
+      <p data-reveal>Marco and Lina opened Olive &amp; Ember with one oven, eight tables and a simple idea: cook honest food over real fire and let the ingredients speak. Ten years later the oven is still burning every night.</p>
+      <p data-reveal>Our vegetables come from three farms within 40 km, our bread is fermented for 48 hours, and our pasta is rolled by hand every morning.</p>
+      <div class="facts" data-reveal>
+        <div><b data-count="40" data-suffix=" km">0</b><span>Furthest farm we buy from</span></div>
+        <div><b data-count="48" data-suffix="h">0</b><span>Sourdough fermentation</span></div>
+        <div><b data-count="4.9">0</b><span>Average from 1,200 reviews</span></div>
+      </div>
+      <div data-audio="jazz" data-title="Hear the room" data-sub="Our Friday night jazz playlist" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="wrap" data-tabs>
+    <div class="menu-head">
+      <div><span class="eyebrow" data-reveal>The menu</span><h2 class="title serif" data-split>Made for the table</h2></div>
+      <div class="tabbar" role="tablist" data-reveal><button data-tab="start" class="on">Starters</button><button data-tab="main">From the oven</button><button data-tab="sweet">Desserts</button><button data-tab="drink">Drinks</button></div>
+    </div>
+    <div class="dishes" data-pane="start">
+      <div class="dish"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Charred garden salad <span class="badge">V</span></h4><p>Burnt lemon, whipped feta, toasted seeds</p></div><span class="pr">12</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Mezze for two</h4><p>Hummus, baba ganoush, olives, warm flatbread</p></div><span class="pr">18</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Ember eggs <span class="badge hot">Chef's pick</span></h4><p>Slow-baked eggs, smoked tomato, chilli butter</p></div><span class="pr">11</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Grilled octopus <span class="badge">GF</span></h4><p>Fava purée, capers, smoked paprika oil</p></div><span class="pr">16</span></div>
+    </div>
+    <div class="dishes" data-pane="main">
+      <div class="dish"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Wood-fired margherita <span class="badge">V</span></h4><p>San Marzano, fior di latte, basil</p></div><span class="pr">15</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Ember-roasted ribeye <span class="badge hot">Chef's pick</span></h4><p>300 g, bone marrow butter, rosemary fries</p></div><span class="pr">34</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Hand-rolled tagliatelle</h4><p>Slow-cooked beef ragù, aged parmesan</p></div><span class="pr">19</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Smoked short ribs <span class="badge">GF</span></h4><p>12-hour oak smoke, pickled shallots</p></div><span class="pr">28</span></div>
+    </div>
+    <div class="dishes" data-pane="sweet">
+      <div class="dish"><img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Burnt Basque cheesecake</h4><p>Seasonal fruit, honey from our rooftop</p></div><span class="pr">9</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Olive oil gelato <span class="badge">V</span></h4><p>Sea salt, crushed pistachio</p></div><span class="pr">7</span></div>
+    </div>
+    <div class="dishes" data-pane="drink">
+      <div class="dish"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Ember negroni</h4><p>Smoked rosemary, blood orange</p></div><span class="pr">12</span></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=70&auto=format&fit=crop" alt=""><div><h4>Single-origin espresso</h4><p>Roasted 2 streets away</p></div><span class="pr">3.5</span></div>
+    </div>
+    <div class="menu-foot"><span class="badge">V</span> Vegetarian <span class="badge">GF</span> Gluten free · Tell us about allergies when you book. <a href="#" style="color:var(--kt-accent);font-weight:600">Download full menu (PDF) →</a></div>
+  </div>
+</section>
+
+<section class="sig" data-slider-scope>
+  <div class="wrap">
+    <div class="sig-head">
+      <div><span class="eyebrow" data-reveal>Signature dishes</span><h2 class="title serif" data-split>What people come back for</h2></div>
+      <div class="arrows"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+    </div>
+    <div class="kt-carousel" data-carousel>
+      <div class="sig-card"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=75&auto=format&fit=crop" alt=""><span class="pr">€34</span><div class="c"><h3>Ember ribeye</h3><p>Dry-aged 40 days, cooked over oak</p></div></div>
+      <div class="sig-card"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=75&auto=format&fit=crop" alt=""><span class="pr">€15</span><div class="c"><h3>Margherita</h3><p>90 seconds at 450°C</p></div></div>
+      <div class="sig-card"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&q=75&auto=format&fit=crop" alt=""><span class="pr">€19</span><div class="c"><h3>Tagliatelle ragù</h3><p>Rolled by hand every morning</p></div></div>
+      <div class="sig-card"><img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=75&auto=format&fit=crop" alt=""><span class="pr">€9</span><div class="c"><h3>Basque cheesecake</h3><p>Burnt on top, soft in the middle</p></div></div>
+      <div class="sig-card"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=75&auto=format&fit=crop" alt=""><span class="pr">€28</span><div class="c"><h3>Smoked short ribs</h3><p>12 hours over oak</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gal" id="gallery">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Gallery</span>
+    <h2 class="title serif" data-split>A night at Olive &amp; Ember</h2>
+    <div class="grid-g" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80&auto=format&fit=crop" data-caption="The main dining room"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=70&auto=format&fit=crop" alt="Dining room"></a>
+      <a href="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80&auto=format&fit=crop" data-caption="From the pass"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=70&auto=format&fit=crop" alt="Plated dish"></a>
+      <a href="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1600&q=80&auto=format&fit=crop" data-caption="The wine bar"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=70&auto=format&fit=crop" alt="Bar"></a>
+      <a href="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1600&q=80&auto=format&fit=crop" data-caption="Chef Marco at work"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&q=70&auto=format&fit=crop" alt="Chef"></a>
+      <a href="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80&auto=format&fit=crop" data-caption="Friday night"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=600&q=70&auto=format&fit=crop" alt="Guests"></a>
+      <a href="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" data-caption="The terrace"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=70&auto=format&fit=crop" alt="Terrace"></a>
+      <a href="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=1600&q=80&auto=format&fit=crop" data-caption="Fresh pasta"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=70&auto=format&fit=crop" alt="Pasta"></a>
+    </div>
+  </div>
+</section>
+
+<section class="quotes" id="reviews">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Reviews</span>
+    <h2 class="title serif" data-split>Kind words from our guests</h2>
+    <div class="kt-slider" data-autoplay="6000">
+      <div class="kt-track">
+        <div class="quote"><div class="stars">★★★★★</div><blockquote>“The best ribeye I've had in years, and the staff made our anniversary feel like a family dinner.”</blockquote><div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=70&auto=format&fit=crop" alt=""><div><b>Sara Lindqvist</b><span>Google review</span></div></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><blockquote>“You can smell the wood fire from the street. The margherita alone is worth the trip.”</blockquote><div class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=70&auto=format&fit=crop" alt=""><div><b>James Porter</b><span>TripAdvisor</span></div></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><blockquote>“We booked the private room for 14 people. Every plate came out hot and perfect.”</blockquote><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=70&auto=format&fit=crop" alt=""><div><b>Amira Haddad</b><span>Private dining guest</span></div></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+    <div class="press" data-reveal><span>The Guardian</span><span>Time Out</span><span>Michelin Guide</span><span>Eater</span></div>
+  </div>
+</section>
+
+<section class="chef">
+  <div class="wrap">
+    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1000&q=75&auto=format&fit=crop" alt="Chef Marco Rossi" data-reveal="zoom">
+    <div>
+      <span class="eyebrow" data-reveal>Meet the chef</span>
+      <h2 class="title serif" data-split>“Cook less, taste more”</h2>
+      <p data-reveal>Marco trained in Naples and Lyon before coming home to cook the food he grew up with. His rule is simple: never more than four ingredients on a plate, and every one of them has to earn its place.</p>
+      <p data-reveal>Every Thursday he runs a five-course tasting menu at the kitchen counter for just eight guests.</p>
+      <div class="sign" data-reveal>Marco Rossi</div>
+    </div>
+  </div>
+</section>
+
+<section class="reserve" id="visit">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Visit us</span>
+      <h2 class="title serif" data-split>Save your seat by the fire</h2>
+      <p data-reveal style="color:rgba(255,255,255,.85)">Book online for up to 8 guests. For bigger groups and private dining, call us and we'll plan it with you.</p>
+      <div class="info" data-reveal>
+        <div><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><b>14 Harbour Street</b><span>Old Town, Lisbon · 2 min from the tram</span></div></div>
+        <div><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><div><b>+351 210 000 000</b><span>Call for groups over 8</span></div></div>
+        <div><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><b>hello@oliveandember.com</b><span>We reply within a day</span></div></div>
+      </div>
+    </div>
+    <form data-form="Table requested. We'll confirm by email within the hour." data-reveal="right">
+      <label>Date<input type="date" required></label>
+      <label>Time<select><option>18:00</option><option>18:30</option><option selected>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select></label>
+      <label>Guests<select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+      <label>Seating<select><option>No preference</option><option>Terrace</option><option>By the oven</option><option>Bar</option></select></label>
+      <label class="full">Name<input placeholder="Your name" required></label>
+      <label class="full">Email<input type="email" placeholder="you@email.com" required></label>
+      <label class="full">Anything we should know?<textarea placeholder="Allergies, a birthday, a high chair…"></textarea></label>
+      <button class="btn fill" type="submit">Request a table</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div><span class="eyebrow" data-reveal>FAQ</span><h2 class="title serif" data-split>Good to know</h2><p data-reveal>Can't find your answer? Call us, we're happy to help.</p></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Do you take walk-ins?</summary><div class="kt-faq-a"><div>Yes. We keep the bar and terrace for walk-ins every night. On Fridays and Saturdays we suggest booking a table inside.</div></div></details>
+      <details class="kt-faq"><summary>Do you have vegetarian and vegan dishes?</summary><div class="kt-faq-a"><div>About half of our menu is vegetarian, and the kitchen can make most dishes vegan. Just tell your server.</div></div></details>
+      <details class="kt-faq"><summary>Can you handle allergies?</summary><div class="kt-faq-a"><div>Yes. Add your allergies when you book and our chef will plan around them. Our kitchen does handle nuts and gluten.</div></div></details>
+      <details class="kt-faq"><summary>Do you host private events?</summary><div class="kt-faq-a"><div>Our private room seats up to 22 guests. We offer set menus from €45 per person with wine pairing.</div></div></details>
+      <details class="kt-faq"><summary>Is there parking nearby?</summary><div class="kt-faq-a"><div>The nearest car park is Praça Harbour, a 3-minute walk. Tram 28 stops right outside.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div><a href="#" class="logo serif"><i>✦</i>Olive &amp; Ember</a><p>Wood-fired Mediterranean kitchen and wine bar in the heart of the Old Town.</p></div>
+      <div><h5>Visit</h5><ul><li>14 Harbour Street</li><li>Old Town, Lisbon</li><li>+351 210 000 000</li></ul></div>
+      <div><h5>Hours</h5><ul><li>Mon – Thu 12 – 22:30</li><li>Fri – Sat 12 – 23:30</li><li>Sun 11 – 21:00</li></ul></div>
+      <div><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TripAdvisor</a></li></ul></div>
+    </div>
+    <div class="insta" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=60&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=300&q=60&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&q=60&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=60&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300&q=60&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1400&q=80&auto=format&fit=crop" data-caption="@oliveandember"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=300&q=60&auto=format&fit=crop" alt=""></a>
+    </div>
+    <div class="bot"><span>© 2026 Olive &amp; Ember</span><span>Made with fire and patience</span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+</body>
+</html>

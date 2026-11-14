@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Marea · Boutique Hotel by the Sea</title>
+<meta name="description" content="A 24-room boutique hotel on the Amalfi coast. Sea-view rooms, spa, terrace restaurant. Best price when you book direct.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f6f1e9; --kt-ink: #12333a; --kt-tx: #55666a; --kt-mut: #8f9c9e; --kt-line: rgba(18,51,58,.14); --kt-accent: #0e5c66; --kt-accent-ink: #fff; --sand: #ead9bf; --coral: #d9775a; --deep: #0b2a30; }
+body { font: 16.5px/1.75 Jost, system-ui, sans-serif; font-weight: 400; }
+.it { font-family: Italiana, Georgia, serif; font-weight: 400; letter-spacing: .01em; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 12.5px; letter-spacing: .32em; text-transform: uppercase; color: var(--coral); font-weight: 500; }
+h2.h { font-size: clamp(40px, 5.5vw, 70px); line-height: 1.05; color: var(--kt-ink); margin: 14px 0 18px; }
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 30px; font-size: 13.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; transition: .25s; }
+.btn.tl { background: var(--kt-accent); color: #fff; } .btn.tl:hover { background: #0a4850; }
+.btn.cr { background: var(--coral); color: #fff; } .btn.cr:hover { background: #c4624a; }
+.btn.ow { border: 1px solid rgba(255,255,255,.6); color: #fff; } .btn.ow:hover { background: #fff; color: var(--kt-ink); }
+.btn.ol { border: 1px solid var(--kt-ink); color: var(--kt-ink); } .btn.ol:hover { background: var(--kt-ink); color: #fff; }
+section { padding: 120px 0; }
+.center { text-align: center; } .lead { max-width: 640px; margin: 0 auto; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .35s; }
+.nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 92px; }
+.nav.scrolled { background: rgba(246,241,233,.95); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--kt-line); }
+.kt-menu { display: flex; gap: 28px; }
+.kt-menu a { color: #fff; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; transition: color .3s; }
+.logo { font-family: Italiana, serif; font-size: 34px; color: #fff; text-align: center; line-height: 1; transition: color .3s; }
+.logo small { display: block; font-family: Jost, sans-serif; font-size: 9.5px; letter-spacing: .5em; margin-top: 4px; }
+.nav .r { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+.nav .r .lang { color: #fff; font-size: 13px; letter-spacing: .15em; transition: color .3s; }
+.nav.scrolled .kt-menu a, .nav.scrolled .logo, .nav.scrolled .lang, .nav.scrolled .kt-burger { color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--coral) !important; }
+.nav .btn { height: 46px; padding: 0 22px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; height: 100vh; min-height: 680px; color: #fff; padding: 0; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,42,48,.45), rgba(11,42,48,.15) 40%, rgba(11,42,48,.65)); }
+.hero .c { position: absolute; z-index: 1; inset: 0; display: grid; place-items: center; text-align: center; padding: 0 20px 120px; }
+.hero h1 { font-size: clamp(56px, 8.6vw, 128px); line-height: .95; margin: 16px 0 18px; }
+.hero p { font-size: 19px; color: rgba(255,255,255,.9); margin: 0; font-weight: 300; }
+.hero .ey { color: #f6d9c4; }
+.bookbar { position: absolute; z-index: 2; left: 50%; bottom: 40px; transform: translateX(-50%); width: min(1000px, calc(100% - 40px)); background: #fff; color: var(--kt-ink); display: grid; grid-template-columns: repeat(3, 1fr) auto; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+.bookbar label { display: grid; padding: 16px 22px; border-right: 1px solid var(--kt-line); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--kt-mut); }
+.bookbar input, .bookbar select { border: 0; outline: none; background: none; font: 500 17px Jost, sans-serif; color: var(--kt-ink); letter-spacing: 0; text-transform: none; padding: 4px 0 0; }
+.bookbar .btn { height: auto; border: 0; justify-content: center; }
+.bookbar .best { position: absolute; top: -30px; left: 0; background: var(--coral); color: #fff; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; padding: 6px 14px; }
+
+/* marquee */
+.mq { padding: 30px 0; border-bottom: 1px solid var(--kt-line); }
+.mq .kt-mq-track span { font-family: Italiana, serif; font-size: 34px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.mq .kt-mq-track span::after { content: "~"; color: var(--coral); }
+
+/* intro */
+.intro .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+.stack { position: relative; height: 640px; }
+.stack img { position: absolute; object-fit: cover; }
+.stack .a { left: 0; top: 0; width: 70%; height: 78%; }
+.stack .b { right: 0; bottom: 0; width: 52%; height: 50%; border: 10px solid var(--kt-bg); }
+.stack .tag { position: absolute; left: 6%; bottom: 6%; background: var(--deep); color: #fff; padding: 18px 22px; }
+.stack .tag b { font-family: Italiana, serif; font-size: 40px; display: block; line-height: 1; font-weight: 400; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 30px 0; padding: 26px 0; border-top: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); }
+.feats b { font-family: Italiana, serif; font-size: 42px; color: var(--kt-ink); display: block; line-height: 1; font-weight: 400; }
+.feats span { font-size: 14px; }
+.intro .kt-audio { --kt-audio-bg: var(--sand); }
+
+/* rooms */
+.rooms { background: #fff; }
+.rtabs { display: flex; justify-content: center; gap: 34px; margin: 26px 0 50px; border-bottom: 1px solid var(--kt-line); }
+.rtabs button { padding: 0 2px 16px; font-size: 13.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--kt-mut); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.rtabs button.on { color: var(--kt-ink); border-color: var(--coral); }
+.rlist { display: grid; gap: 70px; text-align: left; }
+.room { display: grid; grid-template-columns: 1.25fr 1fr; gap: 60px; align-items: center; }
+.room:nth-child(even) { grid-template-columns: 1fr 1.25fr; }
+.room:nth-child(even) .gal { order: 2; }
+.gal { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; height: 460px; }
+.gal a { overflow: hidden; display: block; }
+.gal a:first-child { grid-row: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.gal a:hover img { transform: scale(1.06); }
+.room h3 { font-family: Italiana, serif; font-weight: 400; font-size: 46px; color: var(--kt-ink); margin: 8px 0 12px; line-height: 1.05; }
+.room .sp { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 18px 0 26px; font-size: 14.5px; }
+.room .sp span { display: flex; align-items: center; gap: 8px; }
+.room .sp span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+.room .pr { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid var(--kt-line); flex-wrap: wrap; }
+.room .pr b { font-family: Italiana, serif; font-size: 42px; color: var(--kt-ink); font-weight: 400; }
+.room .pr small { font-size: 14px; color: var(--kt-mut); }
+
+/* amenities */
+.amen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--kt-line); border: 1px solid var(--kt-line); margin-top: 50px; }
+.amen div { background: var(--kt-bg); padding: 36px 26px; text-align: center; transition: background .3s; }
+.amen div:hover { background: #fff; }
+.amen i { font-style: normal; font-size: 30px; display: block; margin-bottom: 14px; }
+.amen b { display: block; color: var(--kt-ink); font-weight: 500; letter-spacing: .04em; }
+.amen span { font-size: 14px; }
+
+/* experiences */
+.exp { background: var(--deep); color: #b8c9cb; }
+.exp h2.h { color: #fff; }
+.exp-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 44px; }
+.exp-head .ar { display: flex; gap: 10px; }
+.exp .kt-arrow { background: transparent; border-color: rgba(255,255,255,.3); color: #fff; }
+.exp .kt-carousel > .xc { width: 400px; }
+.xc .im { position: relative; height: 480px; overflow: hidden; }
+.xc img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.xc:hover img { transform: scale(1.05); }
+.xc .im span { position: absolute; top: 18px; left: 18px; background: var(--coral); color: #fff; font-size: 11.5px; letter-spacing: .15em; text-transform: uppercase; padding: 5px 10px; }
+.xc h4 { font-family: Italiana, serif; font-weight: 400; font-size: 32px; color: #fff; margin: 20px 0 6px; }
+.xc p { margin: 0; font-size: 15px; }
+
+/* film */
+.film { position: relative; padding: 0; }
+.film .f { position: relative; height: 640px; overflow: hidden; display: grid; place-items: center; color: #fff; text-align: center; }
+.film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.film .f::after { content: ""; position: absolute; inset: 0; background: rgba(11,42,48,.45); }
+.film .c { position: relative; z-index: 1; display: grid; justify-items: center; gap: 24px; padding: 0 18px; }
+.film h2.h { color: #fff; margin: 0; }
+.film .kt-play { width: 96px; height: 96px; background: transparent; border: 1px solid #fff; }
+.film .kt-play::before { border-color: #fff; }
+
+/* offer */
+.offer .box { display: grid; grid-template-columns: 1fr 1fr; background: var(--sand); }
+.offer .box img { width: 100%; height: 100%; object-fit: cover; min-height: 480px; }
+.offer .c { padding: 60px; }
+.count { display: flex; gap: 12px; margin: 24px 0 30px; }
+.count div { background: #fff; min-width: 82px; padding: 14px 10px; text-align: center; }
+.count b { font-family: Italiana, serif; font-size: 42px; color: var(--kt-ink); display: block; line-height: 1; font-weight: 400; }
+.count small { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--kt-mut); }
+
+/* reviews */
+.rev { text-align: center; }
+.rev .kt-slider { max-width: 880px; margin: 30px auto 0; }
+.rev blockquote { margin: 0; font-family: Italiana, serif; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.3; color: var(--kt-ink); }
+.rev .who { margin-top: 26px; letter-spacing: .15em; text-transform: uppercase; font-size: 13px; color: var(--kt-ink); }
+.rev .who small { display: block; letter-spacing: 0; text-transform: none; color: var(--kt-mut); font-size: 14px; }
+.rev .kt-dots { color: var(--coral); }
+.sources { display: flex; justify-content: center; gap: 46px; margin-top: 56px; flex-wrap: wrap; }
+.sources div b { font-family: Italiana, serif; font-size: 40px; color: var(--kt-ink); display: block; line-height: 1; font-weight: 400; }
+.sources div span { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+
+/* location */
+.loc { background: #fff; }
+.loc .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
+.map { position: relative; height: 480px; background: linear-gradient(135deg, #cfe3e3 0 40%, #e9dfcc 40%); overflow: hidden; }
+.map::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 60px, rgba(255,255,255,.5) 60px 62px), repeating-linear-gradient(25deg, transparent 0 80px, rgba(255,255,255,.5) 80px 82px); }
+.map .pin { position: absolute; left: 46%; top: 42%; transform: translate(-50%, -100%); background: var(--coral); color: #fff; padding: 8px 14px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.map .pin::after { content: ""; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--coral); border-bottom: 0; }
+.map .sea { position: absolute; left: 14%; top: 18%; font-family: Italiana, serif; font-size: 28px; color: #5b8d92; font-style: italic; }
+.dist { list-style: none; padding: 0; margin: 26px 0; }
+.dist li { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--kt-line); }
+.dist b { color: var(--kt-ink); font-weight: 500; }
+.faq .wrap { max-width: 880px; }
+.faq .kt-faq summary { font-family: Italiana, serif; font-weight: 400; font-size: 26px; }
+
+footer { background: var(--deep); color: #9fb3b6; padding: 80px 0 30px; font-size: 14.5px; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+footer .logo { color: #fff; text-align: left; }
+footer h5 { color: #fff; margin: 0 0 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; font-size: 13px; }
+footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+footer form { display: flex; border-bottom: 1px solid rgba(255,255,255,.3); }
+footer input { flex: 1; min-width: 0; height: 46px; border: 0; background: transparent; color: #fff; outline: none; }
+footer form button { color: #fff; letter-spacing: .15em; text-transform: uppercase; font-size: 12.5px; }
+footer .bot { margin-top: 50px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+
+@media (max-width: 1080px) {
+  .nav .wrap { grid-template-columns: auto 1fr auto; } .nav .logo { text-align: left; order: -1; } .kt-menu { justify-content: center; } .nav .r .lang { display: none; }
+}
+@media (max-width: 980px) {
+  section { padding: 84px 0; }
+  .intro .wrap, .loc .wrap { grid-template-columns: 1fr; gap: 50px; }
+  .room, .room:nth-child(even) { grid-template-columns: 1fr; gap: 26px; } .room:nth-child(even) .gal { order: 0; }
+  .amen { grid-template-columns: 1fr 1fr; }
+  .offer .box { grid-template-columns: 1fr; } .offer .box img { min-height: 260px; height: 260px; }
+  .bookbar { grid-template-columns: 1fr 1fr; } .bookbar .btn { grid-column: 1 / -1; height: 54px; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+  .stack { height: 500px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .nav .wrap { grid-template-columns: 1fr auto; }
+  .hero .c { padding-bottom: 260px; }
+  .bookbar { bottom: 18px; grid-template-columns: 1fr; } .bookbar label { border-right: 0; border-bottom: 1px solid var(--kt-line); padding: 10px 18px; }
+  .gal { height: 320px; }
+  .exp .kt-carousel > .xc { width: 80vw; } .xc .im { height: 380px; }
+  .offer .c { padding: 30px 22px; } .count div { min-width: 0; flex: 1; }
+  .feats { grid-template-columns: 1fr 1fr 1fr; gap: 10px; } .feats b { font-size: 32px; }
+  .amen div { padding: 26px 14px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <nav class="kt-menu"><a href="#rooms">Rooms</a><a href="#experiences">Experiences</a><a href="#offers">Offers</a><a href="#location">Location</a></nav>
+    <a href="#" class="logo">Casa Marea<small>POSITANO · ITALIA</small></a>
+    <div class="r"><span class="lang">EN · IT</span><a href="#rooms" class="btn cr">Book</a><button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div data-heroslides data-every="6500">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1900&q=70&auto=format&fit=crop" alt="Hotel pool facing the sea">
+    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1900&q=70&auto=format&fit=crop" alt="Resort terrace">
+    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1900&q=70&auto=format&fit=crop" alt="Resort at sunset">
+  </div>
+  <div class="c">
+    <div>
+      <span class="ey" data-reveal>Boutique hotel · 24 rooms · Since 1962</span>
+      <h1 class="it" data-split>Where the sea says good morning</h1>
+      <p data-reveal data-delay="300">Sea-view rooms, slow breakfasts and a terrace made for sunsets.</p>
+    </div>
+  </div>
+  <form class="bookbar" data-form="Checking availability… 6 rooms free for your dates. (Demo)">
+    <span class="best">Best price when you book direct</span>
+    <label>Check in<input type="date" required></label>
+    <label>Check out<input type="date" required></label>
+    <label>Guests<select><option>1 adult</option><option selected>2 adults</option><option>2 adults, 1 child</option><option>2 adults, 2 children</option></select></label>
+    <button class="btn tl" type="submit">Check availability</button>
+  </form>
+</section>
+
+<div class="mq kt-marquee" data-speed="44s"><div class="kt-mq-track"><span>Sea-view terraces</span><span>Lemon-garden breakfast</span><span>Infinity pool</span><span>Private boat trips</span><span>Spa &amp; hammam</span></div></div>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="stack" data-reveal="left">
+      <img class="a" src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1000&q=75&auto=format&fit=crop" alt="Hotel lobby">
+      <img class="b" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=75&auto=format&fit=crop" alt="Sea-view room">
+      <div class="tag"><b>1962</b>three generations, one family</div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>Benvenuti</span>
+      <h2 class="h it" data-split>A family home, open to guests</h2>
+      <p data-reveal>Nonna Lucia opened Casa Marea with six rooms and a lemon tree. Today her grandchildren welcome you to 24 rooms carved into the cliff, each one facing the sea.</p>
+      <div class="feats" data-reveal><div><b data-count="24">0</b><span>rooms &amp; suites</span></div><div><b data-count="9.6">0</b><span>guest rating</span></div><div><b data-count="80" data-suffix=" m">0</b><span>to the beach</span></div></div>
+      <div data-audio="calm" data-title="Sounds of Casa Marea" data-sub="Close your eyes, you're on the terrace" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap center" data-tabs>
+    <span class="ey" data-reveal>Stay</span>
+    <h2 class="h it" data-split>Rooms &amp; suites</h2>
+    <div class="rtabs" role="tablist" data-reveal><button data-tab="r" class="on">Rooms</button><button data-tab="s">Suites</button><button data-tab="v">Villa</button></div>
+    <div class="rlist" data-pane="r">
+      <div class="room"><div class="gal" data-lightbox><a href="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1600&q=80&auto=format&fit=crop" data-caption="Sea-view double"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&q=80&auto=format&fit=crop" data-caption="Bathroom"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80&auto=format&fit=crop" data-caption="The view"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&q=70&auto=format&fit=crop" alt=""></a></div>
+        <div><span class="ey">22 m² · Sleeps 2</span><h3>Sea-view double</h3><p>Hand-painted tiles, linen sheets and a small balcony over the bay. Wake up to fishing boats heading out.</p><div class="sp"><span>Balcony</span><span>Queen bed</span><span>Rain shower</span><span>Breakfast included</span></div><div class="pr"><div><b>€240</b> <small>/ night</small></div><a href="#" class="btn ol" data-book="Sea-view double">Book this room</a></div></div></div>
+      <div class="room"><div class="gal" data-lightbox><a href="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80&auto=format&fit=crop" data-caption="Garden room"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&q=80&auto=format&fit=crop" data-caption="Details"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1600&q=80&auto=format&fit=crop" data-caption="Lounge"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=500&q=70&auto=format&fit=crop" alt=""></a></div>
+        <div><span class="ey">26 m² · Sleeps 3</span><h3>Lemon-garden room</h3><p>A quiet ground-floor room opening onto our lemon garden, with a peek of the sea through the trees.</p><div class="sp"><span>Garden terrace</span><span>King or twin</span><span>Sofa bed</span><span>Breakfast included</span></div><div class="pr"><div><b>€210</b> <small>/ night</small></div><a href="#" class="btn ol" data-book="Lemon-garden room">Book this room</a></div></div></div>
+    </div>
+    <div class="rlist" data-pane="s">
+      <div class="room"><div class="gal" data-lightbox><a href="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&q=80&auto=format&fit=crop" data-caption="Terrace suite"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=900&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1600&q=80&auto=format&fit=crop" data-caption="Private terrace"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80&auto=format&fit=crop" data-caption="Bedroom"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=500&q=70&auto=format&fit=crop" alt=""></a></div>
+        <div><span class="ey">48 m² · Sleeps 2</span><h3>Terrace suite</h3><p>A private 30 m² terrace with sun loungers and an outdoor bath, high above the bay.</p><div class="sp"><span>Private terrace</span><span>Outdoor bath</span><span>Espresso bar</span><span>Late check-out</span></div><div class="pr"><div><b>€460</b> <small>/ night</small></div><a href="#" class="btn ol" data-book="Terrace suite">Book this suite</a></div></div></div>
+    </div>
+    <div class="rlist" data-pane="v">
+      <div class="room"><div class="gal" data-lightbox><a href="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1600&q=80&auto=format&fit=crop" data-caption="Villa Lucia"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80&auto=format&fit=crop" data-caption="Plunge pool"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&q=70&auto=format&fit=crop" alt=""></a><a href="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1600&q=80&auto=format&fit=crop" data-caption="Master bedroom"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&q=70&auto=format&fit=crop" alt=""></a></div>
+        <div><span class="ey">120 m² · Sleeps 6</span><h3>Villa Lucia</h3><p>Nonna's old house: three bedrooms, a kitchen, a plunge pool and a butler who knows every cove.</p><div class="sp"><span>Plunge pool</span><span>3 bedrooms</span><span>Butler service</span><span>Boat transfer</span></div><div class="pr"><div><b>€1,250</b> <small>/ night</small></div><a href="#" class="btn ol" data-book="Villa Lucia">Enquire</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <span class="ey" data-reveal>Included</span>
+    <h2 class="h it" data-split>Every stay comes with</h2>
+    <div class="amen" data-reveal>
+      <div><i>☕</i><b>Breakfast</b><span>In the lemon garden</span></div>
+      <div><i>🌊</i><b>Infinity pool</b><span>Heated, Apr – Nov</span></div>
+      <div><i>🛥️</i><b>Beach club</b><span>Loungers &amp; towels</span></div>
+      <div><i>🧖</i><b>Spa access</b><span>Hammam &amp; sauna</span></div>
+      <div><i>📶</i><b>Fast Wi-Fi</b><span>Everywhere</span></div>
+      <div><i>🚐</i><b>Transfers</b><span>From Naples, on request</span></div>
+      <div><i>🍋</i><b>Welcome drink</b><span>Homemade limoncello</span></div>
+      <div><i>🐾</i><b>Pets welcome</b><span>Small dogs, garden rooms</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="exp" id="experiences" data-slider-scope>
+  <div class="wrap">
+    <div class="exp-head"><div><span class="ey" data-reveal>Experiences</span><h2 class="h it" data-split>Days to remember</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel" data-carousel>
+      <div class="xc"><div class="im"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=70&auto=format&fit=crop" alt=""><span>Dining</span></div><h4>Terrazza restaurant</h4><p>Fish from this morning's boats and our own olive oil.</p></div>
+      <div class="xc"><div class="im"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=70&auto=format&fit=crop" alt=""><span>Wellness</span></div><h4>Cliff spa</h4><p>Lemon-salt scrubs and massages with a sea view.</p></div>
+      <div class="xc"><div class="im"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=70&auto=format&fit=crop" alt=""><span>Sea</span></div><h4>Private boat day</h4><p>Hidden coves, Capri and a picnic on board.</p></div>
+      <div class="xc"><div class="im"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&q=70&auto=format&fit=crop" alt=""><span>Food</span></div><h4>Pasta with Nonna</h4><p>A morning cooking class in the family kitchen.</p></div>
+      <div class="xc"><div class="im"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&q=70&auto=format&fit=crop" alt=""><span>Evening</span></div><h4>Sunset aperitivo</h4><p>Every evening at 7 on the top terrace.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="film">
+  <div class="f">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&q=70&auto=format&fit=crop"><source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4"></video>
+    <div class="c">
+      <span class="ey" style="color:#f6d9c4" data-reveal>Our film</span>
+      <h2 class="h it" data-split>A summer at Casa Marea</h2>
+      <button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch our film with sound" data-reveal="zoom"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="offers">
+  <div class="wrap">
+    <div class="box" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1000&q=75&auto=format&fit=crop" alt="">
+      <div class="c">
+        <span class="ey">Early summer offer</span>
+        <h2 class="h it">Stay 4 nights, pay for 3</h2>
+        <p>For stays in May and June when you book direct. Includes a free boat transfer from Naples.</p>
+        <div class="count" id="count" aria-live="polite"><div><b>0</b><small>days</small></div><div><b>0</b><small>hours</small></div><div><b>0</b><small>mins</small></div><div><b>0</b><small>secs</small></div></div>
+        <a href="#" class="btn tl" data-book="Early summer offer">Claim the offer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rev" style="padding-top:0">
+  <div class="wrap">
+    <span class="ey" data-reveal>Guests</span>
+    <h2 class="h it" data-split>Letters from our guests</h2>
+    <div class="kt-slider" data-autoplay="7000">
+      <div class="kt-track">
+        <div><blockquote>“We came for three nights and stayed for seven. Breakfast in the lemon garden will be the thing we miss most.”</blockquote><div class="who">Emma &amp; Lucas<small>Sea-view double · Paris</small></div></div>
+        <div><blockquote>“The boat day with Giovanni was the highlight of our honeymoon. Everyone here treats you like family.”</blockquote><div class="who">Aisha &amp; Ryan<small>Terrace suite · London</small></div></div>
+        <div><blockquote>“Nonna's cooking class, the view, the people. We've already booked next summer.”</blockquote><div class="who">The Becker family<small>Villa Lucia · Munich</small></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+    <div class="sources" data-reveal><div><b>9.6</b><span>Booking.com</span></div><div><b>5.0</b><span>Tripadvisor</span></div><div><b>4.9</b><span>Google</span></div></div>
+  </div>
+</section>
+
+<section class="loc" id="location">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Getting here</span>
+      <h2 class="h it" data-split>On the cliff, above the bay</h2>
+      <p data-reveal>Via Cristoforo Colombo 30, 84017 Positano. We'll gladly arrange a car or boat from Naples.</p>
+      <ul class="dist" data-reveal><li><span>Spiaggia Grande beach</span><b>2 min walk</b></li><li><span>Positano ferry pier</span><b>5 min walk</b></li><li><span>Naples airport</span><b>1 h 20 by car</b></li><li><span>Capri</span><b>40 min by boat</b></li></ul>
+      <a href="#" class="btn ol" data-reveal>Open in Maps</a>
+    </div>
+    <div class="map" data-reveal="right" role="img" aria-label="Map showing Casa Marea above Positano bay"><span class="sea">Tyrrhenian Sea</span><span class="pin">Casa Marea</span></div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap center">
+    <span class="ey" data-reveal>FAQ</span>
+    <h2 class="h it" data-split>Before you arrive</h2>
+    <div data-faq data-reveal style="text-align:left">
+      <details class="kt-faq" open><summary>What time is check-in and check-out?</summary><div class="kt-faq-a"><div>Check-in is from 3 pm and check-out by 11 am. Leave your bags with us and enjoy the pool before or after.</div></div></details>
+      <details class="kt-faq"><summary>Is breakfast included?</summary><div class="kt-faq-a"><div>Yes, always. It's served in the lemon garden from 7:30 to 11:00, with lots of homemade cakes.</div></div></details>
+      <details class="kt-faq"><summary>Is there parking?</summary><div class="kt-faq-a"><div>Positano is tiny, so we have a valet service with a private garage for €35 a day.</div></div></details>
+      <details class="kt-faq"><summary>Can I cancel?</summary><div class="kt-faq-a"><div>Free cancellation up to 14 days before arrival on flexible rates. Book direct for the best terms.</div></div></details>
+      <details class="kt-faq"><summary>Is the hotel suitable for children?</summary><div class="kt-faq-a"><div>Children of all ages are welcome. The garden rooms and Villa Lucia are best for families.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo">Casa Marea<small>POSITANO · ITALIA</small></a><p style="margin-top:16px">A family-run boutique hotel on the Amalfi coast since 1962.</p></div>
+      <div><h5>Contact</h5><ul><li>+39 089 000 0000</li><li>stay@casamarea.it</li><li>Via C. Colombo 30, Positano</li></ul></div>
+      <div><h5>Explore</h5><ul><li>Rooms &amp; suites</li><li>Restaurant</li><li>Spa</li><li>Weddings</li></ul></div>
+      <div><h5>Letters from the coast</h5><p style="margin:0 0 10px">Offers and stories, four times a year.</p><form data-form="Grazie! You're on the list."><input type="email" placeholder="Your email" required aria-label="Email"><button type="submit">Join</button></form></div>
+    </div>
+    <div class="bot"><span>© 2026 Casa Marea</span><span>Instagram · Pinterest · Booking.com</span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // offer countdown: ends at midnight, 18 days from today
+  const end = new Date(); end.setDate(end.getDate() + 18); end.setHours(23, 59, 59, 0);
+  const cells = document.querySelectorAll('#count b');
+  const tick = () => { let s = Math.max(0, Math.floor((end - Date.now()) / 1000)); const v = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60]; cells.forEach((c, i) => c.textContent = String(v[i]).padStart(2, '0')); };
+  tick(); setInterval(tick, 1000);
+  document.querySelectorAll('[data-book]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); ktToast(`${b.dataset.book}: choose your dates in the booking bar`); document.querySelector('.bookbar input').focus(); }));
+</script>
+</body>
+</html>

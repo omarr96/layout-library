@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torque Garage · Car Repair &amp; Servicing</title>
+<meta name="description" content="Servicing, repairs, tyres and diagnostics for every make. Fixed prices, 12-month warranty, free courtesy car.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f3f4f6; --kt-ink: #111318; --kt-tx: #4b5160; --kt-mut: #8b91a0; --kt-line: #dfe2e8; --kt-accent: #ff5a1f; --kt-accent-ink: #fff; --gr: #16181d; --gr2: #1f2229; }
+body { font: 16.5px/1.6 Barlow, system-ui, sans-serif; }
+.bc { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; line-height: .95; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.kk { display: inline-flex; align-items: center; gap: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-accent); }
+.kk::before { content: ""; width: 26px; height: 4px; background: repeating-linear-gradient(90deg, currentColor 0 6px, transparent 6px 9px); }
+h2.h { font-size: clamp(44px, 6vw, 80px); color: var(--kt-ink); margin: 12px 0 18px; }
+h2.h span.a { color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .06em; text-transform: uppercase; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); transition: .2s; }
+.btn.or { background: var(--kt-accent); color: #fff; } .btn.or:hover { background: #e64a12; }
+.btn.dk { background: var(--kt-ink); color: #fff; } .btn.dk:hover { background: #2a2e37; }
+.btn.wt { background: #fff; color: var(--kt-ink); }
+section { padding: 110px 0; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 86px; }
+.nav.scrolled { background: rgba(22,24,29,.95); backdrop-filter: blur(10px); }
+.logo { display: flex; align-items: center; gap: 10px; color: #fff; }
+.logo i { width: 42px; height: 42px; background: var(--kt-accent); display: grid; place-items: center; font-style: normal; font-size: 20px; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+.logo b { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 28px; text-transform: uppercase; letter-spacing: .02em; }
+.kt-menu { display: flex; gap: 28px; margin-left: auto; }
+.kt-menu a { color: #e5e7eb; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 46px; padding: 0 22px; font-size: 17px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; color: #e5e7eb; padding: 130px 0 90px; overflow: hidden; background: var(--gr); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,24,29,.96) 30%, rgba(22,24,29,.55) 70%, rgba(22,24,29,.3)); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
+.hero h1 { font-size: clamp(64px, 9vw, 140px); color: #fff; margin: 16px 0 20px; }
+.hero h1 [data-type] { color: var(--kt-accent); }
+.hero p { font-size: 19px; max-width: 520px; margin: 0 0 32px; color: #c7cbd4; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero .perks { display: flex; gap: 26px; margin-top: 40px; flex-wrap: wrap; font-weight: 600; }
+.hero .perks span { display: flex; align-items: center; gap: 8px; }
+.hero .perks span::before { content: "✓"; color: var(--kt-accent); font-weight: 800; }
+.qb { background: #fff; color: var(--kt-ink); padding: 30px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%); }
+.qb h3 { margin: 0 0 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 32px; text-transform: uppercase; }
+.qb p { margin: 0 0 18px; color: var(--kt-tx); font-size: 15px; }
+.qb .reg { display: flex; align-items: stretch; height: 58px; border: 2px solid var(--kt-ink); margin-bottom: 12px; }
+.qb .reg span { background: #1d4ed8; color: #fff; display: grid; place-items: center; padding: 0 10px; font-weight: 700; font-size: 12px; }
+.qb .reg input { flex: 1; min-width: 0; border: 0; background: #fde047; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 28px; text-align: center; letter-spacing: .1em; text-transform: uppercase; outline: none; }
+.qb select { width: 100%; height: 52px; border: 1px solid var(--kt-line); padding: 0 12px; margin-bottom: 12px; background: #fff; outline: none; }
+.qb .tot { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px dashed var(--kt-line); margin-top: 4px; }
+.qb .tot b { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 40px; color: var(--kt-accent); }
+.qb .btn { width: 100%; justify-content: center; border: 0; }
+
+/* brands marquee */
+.brands { background: var(--kt-accent); color: #fff; padding: 20px 0; }
+.brands .kt-mq-track span { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 34px; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.brands .kt-mq-track span::after { content: "◆"; font-size: 14px; color: rgba(255,255,255,.6); }
+
+/* services */
+.sv-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.svt { display: flex; gap: 0; border: 2px solid var(--kt-ink); }
+.svt button { height: 50px; padding: 0 22px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .05em; text-transform: uppercase; color: var(--kt-ink); border-right: 2px solid var(--kt-ink); }
+.svt button:last-child { border-right: 0; }
+.svt button.on { background: var(--kt-ink); color: #fff; }
+.svg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.sc { background: #fff; padding: 30px 26px; position: relative; transition: transform .25s, box-shadow .25s; border-bottom: 4px solid transparent; }
+.sc:hover { transform: translateY(-6px); box-shadow: 0 24px 40px -24px rgba(0,0,0,.35); border-bottom-color: var(--kt-accent); }
+.sc .ic { font-size: 34px; }
+.sc h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 28px; text-transform: uppercase; margin: 14px 0 8px; color: var(--kt-ink); }
+.sc p { font-size: 15px; margin: 0 0 18px; }
+.sc .pr { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; color: var(--kt-accent); }
+.sc .pr small { font-family: Barlow, sans-serif; font-size: 13px; color: var(--kt-mut); font-weight: 500; }
+
+/* tracker */
+.trk { background: var(--gr); color: #c7cbd4; }
+.trk .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
+.trk h2.h { color: #fff; }
+.trk form { display: flex; gap: 8px; margin-top: 24px; max-width: 460px; }
+.trk input { flex: 1; min-width: 0; height: 56px; background: var(--gr2); border: 1px solid #333844; color: #fff; padding: 0 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .08em; text-transform: uppercase; outline: none; }
+.trk input:focus { border-color: var(--kt-accent); }
+.trk .hint { font-size: 13.5px; color: #8b91a0; margin-top: 8px; }
+.board { background: var(--gr2); padding: 34px; border: 1px solid #2c3039; }
+.board .car { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #2c3039; margin-bottom: 26px; }
+.board .car b { color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; text-transform: uppercase; display: block; }
+.board .plate { background: #fde047; color: #111; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; padding: 4px 12px; letter-spacing: .1em; }
+.tsteps { display: grid; gap: 0; }
+.ts { display: grid; grid-template-columns: 36px 1fr auto; gap: 16px; align-items: flex-start; position: relative; padding-bottom: 24px; }
+.ts:last-child { padding-bottom: 0; }
+.ts::after { content: ""; position: absolute; left: 17px; top: 36px; bottom: 0; width: 2px; background: #2c3039; }
+.ts:last-child::after { display: none; }
+.ts.done::after { background: var(--kt-accent); }
+.ts .d { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #3a3f4b; display: grid; place-items: center; color: #555b68; font-weight: 800; background: var(--gr2); position: relative; z-index: 1; }
+.ts.done .d { background: var(--kt-accent); border-color: var(--kt-accent); color: #fff; }
+.ts.now .d { border-color: var(--kt-accent); color: var(--kt-accent); box-shadow: 0 0 0 6px rgba(255,90,31,.15); animation: kt-blink 1.6s infinite; }
+.ts b { color: #fff; display: block; }
+.ts.todo b { color: #6b7180; }
+.ts small { font-size: 14px; }
+.ts time { font-size: 13px; color: #8b91a0; }
+
+/* detailing + team */
+.dt .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
+.dt .kt-compare { aspect-ratio: 16/10; border-radius: 0; }
+.dt .kt-before { filter: grayscale(.6) brightness(.7) contrast(.85) sepia(.3); }
+.dt .kt-compare .kt-tag:first-of-type { left: 14px; border-radius: 0; } .dt .kt-compare .kt-tag.r { right: 14px; background: var(--kt-accent); border-radius: 0; }
+.team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 46px; }
+.mc { background: #fff; }
+.mc img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1); transition: filter .4s; }
+.mc:hover img { filter: none; }
+.mc .b { padding: 18px 20px; border-top: 4px solid var(--kt-accent); }
+.mc h4 { margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: var(--kt-ink); }
+.mc span { font-size: 14px; }
+
+/* workshop */
+.ws { position: relative; padding: 0; }
+.ws .f { position: relative; height: 600px; display: grid; place-items: center; overflow: hidden; }
+.ws .f > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.38); }
+.ws .c { position: relative; z-index: 1; text-align: center; display: grid; justify-items: center; gap: 22px; color: #fff; padding: 0 18px; }
+.ws h2.h { color: #fff; margin: 0; }
+.ws .kt-play { border-radius: 0; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); width: 100px; height: 100px; }
+.ws .kt-play::before { display: none; }
+.ws .kt-audio { --kt-audio-bg: rgba(255,255,255,.1); --kt-audio-ink: #fff; backdrop-filter: blur(10px); border-radius: 0; }
+.ws .kt-audio .kt-a-btn { border-radius: 0; }
+
+/* reviews */
+.rv .wrap { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; align-items: center; }
+.rv .big { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 140px; color: var(--kt-ink); line-height: .85; }
+.rv .st { color: var(--kt-accent); font-size: 24px; letter-spacing: 4px; }
+.rq { background: #fff; padding: 40px; border-left: 6px solid var(--kt-accent); }
+.rq p { font-size: 22px; line-height: 1.5; color: var(--kt-ink); margin: 0 0 22px; }
+.rq b { color: var(--kt-ink); font-family: 'Barlow Condensed', sans-serif; font-size: 22px; text-transform: uppercase; }
+.rv .ctrl { display: flex; gap: 10px; align-items: center; margin-top: 18px; }
+.rv .kt-arrow { border-radius: 0; }
+.rv .kt-dots { margin: 0 0 0 8px; color: var(--kt-accent); }
+.rv .kt-dots button { border-radius: 0; }
+
+/* contact */
+.cc { background: var(--gr); color: #c7cbd4; }
+.cc .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.cc h2.h { color: #fff; }
+.hours { margin-top: 26px; }
+.hours div { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #2c3039; }
+.hours b { color: #fff; }
+.cc form { background: var(--gr2); padding: 34px; display: grid; gap: 12px; border: 1px solid #2c3039; }
+.cc input, .cc select, .cc textarea { height: 54px; background: var(--gr); border: 1px solid #333844; color: #fff; padding: 0 14px; outline: none; }
+.cc textarea { height: 100px; padding-top: 12px; resize: vertical; }
+.cc input:focus, .cc select:focus, .cc textarea:focus { border-color: var(--kt-accent); }
+.cc .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cc form .btn { justify-content: center; border: 0; }
+.cc .ck { display: flex; align-items: center; gap: 10px; font-size: 14.5px; }
+.cc .ck input { height: 18px; width: 18px; accent-color: var(--kt-accent); }
+.faq .wrap { max-width: 900px; }
+.faq .kt-faq summary { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; text-transform: uppercase; }
+
+footer { background: #0e0f12; color: #8b91a0; padding: 50px 0; font-size: 14.5px; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+footer nav { display: flex; gap: 20px; }
+footer nav a:hover { color: var(--kt-accent); }
+
+@media (max-width: 1080px) { .svg { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .trk .wrap, .dt .wrap, .rv .wrap, .cc .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .team { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .svg { grid-template-columns: 1fr; }
+  .svt { width: 100%; } .svt button { flex: 1; padding: 0 6px; font-size: 15px; }
+  .board { padding: 22px; } .ts { grid-template-columns: 36px 1fr; } .ts time { grid-column: 2; }
+  .rq { padding: 26px; } .rq p { font-size: 18px; } .rv .big { font-size: 100px; }
+  .cc form { padding: 22px; } .cc .two { grid-template-columns: 1fr; }
+  .trk form { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><i>⚙</i><b>Torque Garage</b></a>
+    <nav class="kt-menu"><a href="#services">Services</a><a href="#track">Track my car</a><a href="#team">Mechanics</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></nav>
+    <a href="#contact" class="btn or">Book in</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div data-heroslides>
+    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1900&q=70&auto=format&fit=crop" alt="Mechanic working on an engine">
+    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1900&q=70&auto=format&fit=crop" alt="Workshop">
+    <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1900&q=70&auto=format&fit=crop" alt="Mechanic">
+  </div>
+  <div class="wrap">
+    <div>
+      <span class="kk" data-reveal>Every make · Every model</span>
+      <h1 class="bc"><span data-split>Car trouble?</span><br><span data-type="We'll fix it.|Same day.|Fixed price.|Done right."></span></h1>
+      <p data-reveal data-delay="200">Servicing, repairs, tyres and diagnostics by ASE-certified mechanics. Free courtesy car, and a 12-month warranty on every repair.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#contact" class="btn or">Book a service</a><a href="#track" class="btn wt">Track my car</a></div>
+      <div class="perks" data-reveal data-delay="400"><span>12-month warranty</span><span>Free courtesy car</span><span>No fix, no fee</span></div>
+    </div>
+    <div class="qb" data-reveal="right">
+      <h3>Instant quote</h3><p>Enter your plate and pick a service.</p>
+      <div class="reg"><span>USA</span><input value="7XKD 482" aria-label="Licence plate"></div>
+      <select id="qSvc"><option value="149">Full service · oil, filters, 50-point check</option><option value="89">Oil &amp; filter change</option><option value="219">Brake pads (front)</option><option value="99">Diagnostics &amp; warning lights</option><option value="129">A/C regas</option></select>
+      <div class="tot"><span>Fixed price, parts &amp; labour</span><b id="qTot">$149</b></div>
+      <a href="#contact" class="btn or">Book this service</a>
+    </div>
+  </div>
+</section>
+
+<div class="brands kt-marquee" data-speed="34s"><div class="kt-mq-track"><span>Toyota</span><span>Ford</span><span>Honda</span><span>BMW</span><span>Tesla</span><span>Volkswagen</span><span>Chevrolet</span><span>Audi</span><span>Hyundai</span></div></div>
+
+<section id="services">
+  <div class="wrap" data-tabs>
+    <div class="sv-head"><div><span class="kk" data-reveal>Services</span><h2 class="h bc" data-split>What we <span class="a">fix</span></h2></div>
+      <div class="svt" role="tablist" data-reveal><button data-tab="m" class="on">Maintenance</button><button data-tab="r">Repairs</button><button data-tab="t">Tyres</button><button data-tab="d">Diagnostics</button></div></div>
+    <div class="svg" data-pane="m">
+      <div class="sc"><div class="ic">🛢️</div><h3>Oil change</h3><p>Synthetic oil, new filter and a quick safety check.</p><div class="pr">$89 <small>· 30 min</small></div></div>
+      <div class="sc"><div class="ic">🔧</div><h3>Full service</h3><p>Fluids, filters, plugs and our 50-point inspection.</p><div class="pr">$149 <small>· 2 hrs</small></div></div>
+      <div class="sc"><div class="ic">❄️</div><h3>A/C service</h3><p>Regas, leak test and a cabin filter change.</p><div class="pr">$129 <small>· 1 hr</small></div></div>
+      <div class="sc"><div class="ic">🔋</div><h3>Battery</h3><p>Free test. Replacement with a 3-year warranty.</p><div class="pr">$149 <small>· 20 min</small></div></div>
+    </div>
+    <div class="svg" data-pane="r">
+      <div class="sc"><div class="ic">🛑</div><h3>Brakes</h3><p>Pads, discs and fluid. Squeal-free guaranteed.</p><div class="pr">$219 <small>· front axle</small></div></div>
+      <div class="sc"><div class="ic">⚙️</div><h3>Clutch</h3><p>Replacement with OEM-quality parts.</p><div class="pr">from $690</div></div>
+      <div class="sc"><div class="ic">🔩</div><h3>Suspension</h3><p>Shocks, springs and alignment.</p><div class="pr">from $320</div></div>
+      <div class="sc"><div class="ic">💨</div><h3>Exhaust</h3><p>Repairs, catalytic converters and DPF cleaning.</p><div class="pr">from $180</div></div>
+    </div>
+    <div class="svg" data-pane="t">
+      <div class="sc"><div class="ic">🛞</div><h3>New tyres</h3><p>All major brands, fitted and balanced.</p><div class="pr">from $95 <small>/ tyre</small></div></div>
+      <div class="sc"><div class="ic">📐</div><h3>Alignment</h3><p>4-wheel laser alignment.</p><div class="pr">$79</div></div>
+      <div class="sc"><div class="ic">🔁</div><h3>Rotation</h3><p>Even wear for longer life.</p><div class="pr">$35</div></div>
+      <div class="sc"><div class="ic">🧷</div><h3>Puncture repair</h3><p>While you wait.</p><div class="pr">$25</div></div>
+    </div>
+    <div class="svg" data-pane="d">
+      <div class="sc"><div class="ic">⚠️</div><h3>Warning lights</h3><p>Computer scan and a plain-English report.</p><div class="pr">$99</div></div>
+      <div class="sc"><div class="ic">🔌</div><h3>Electrical</h3><p>Starting, charging and wiring faults.</p><div class="pr">from $120</div></div>
+      <div class="sc"><div class="ic">📋</div><h3>Pre-purchase check</h3><p>Before you buy a used car.</p><div class="pr">$129</div></div>
+      <div class="sc"><div class="ic">⚡</div><h3>EV &amp; hybrid</h3><p>Battery health and high-voltage checks.</p><div class="pr">from $149</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="trk" id="track">
+  <div class="wrap">
+    <div>
+      <span class="kk" data-reveal>Live tracking</span>
+      <h2 class="h bc" data-split>Where's my <span class="a">car?</span></h2>
+      <p data-reveal>Follow your repair step by step. We'll also text you photos and approve any extra work with you first.</p>
+      <form id="trkForm" data-reveal><input id="trkIn" value="7XKD 482" aria-label="Licence plate or booking number"><button class="btn or" type="submit">Track</button></form>
+      <p class="hint" data-reveal>Try any plate, it's a demo.</p>
+    </div>
+    <div class="board" data-reveal="right">
+      <div class="car"><div><b id="trkCar">2019 Toyota RAV4</b><small>Full service + front brakes</small></div><span class="plate" id="trkPlate">7XKD 482</span></div>
+      <div class="tsteps" id="trkSteps"></div>
+    </div>
+  </div>
+</section>
+
+<section class="dt">
+  <div class="wrap">
+    <div class="kt-compare" data-reveal="left"><img class="kt-before" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=75&auto=format&fit=crop" alt="Before detailing"><img class="kt-after" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=75&auto=format&fit=crop" alt="After detailing"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after detailing"></div>
+    <div>
+      <span class="kk" data-reveal>Detailing</span>
+      <h2 class="h bc" data-split>Leaves like <span class="a">new</span></h2>
+      <p data-reveal>Add a full valet to any service: hand wash, clay bar, machine polish and ceramic wax. Drag the slider to see the difference.</p>
+      <a href="#contact" class="btn dk" data-reveal>Add detailing · $149</a>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="padding-top:0">
+  <div class="wrap">
+    <span class="kk" data-reveal>The crew</span>
+    <h2 class="h bc" data-split>Your <span class="a">mechanics</span></h2>
+    <div class="team">
+      <div class="mc" data-reveal><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&q=70&auto=format&fit=crop" alt=""><div class="b"><h4>Ray Morales</h4><span>Owner · Master tech · 22 yrs</span></div></div>
+      <div class="mc" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=70&auto=format&fit=crop" alt=""><div class="b"><h4>Kev Turner</h4><span>Diagnostics · EV certified</span></div></div>
+      <div class="mc" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=70&auto=format&fit=crop" alt=""><div class="b"><h4>Andre Lewis</h4><span>Brakes &amp; suspension</span></div></div>
+      <div class="mc" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=70&auto=format&fit=crop" alt=""><div class="b"><h4>Josh Kim</h4><span>Tyres &amp; detailing</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ws">
+  <div class="f">
+    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1900&q=70&auto=format&fit=crop" alt="">
+    <div class="c">
+      <span class="kk" data-reveal>Inside the workshop</span>
+      <h2 class="h bc" data-split>6 bays. Zero shortcuts.</h2>
+      <button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch the workshop video" data-reveal="zoom"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
+      <div data-audio="drive" data-title="Garage radio" data-sub="What's playing in the bays" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section class="rv" id="reviews">
+  <div class="wrap">
+    <div data-reveal><span class="kk">Reviews</span><div class="big" data-count="4.8">0</div><div class="st">★★★★★</div><p>From 1,650 Google reviews</p></div>
+    <div data-slider-scope>
+      <div class="kt-slider" data-autoplay="6000">
+        <div class="kt-track">
+          <div class="rq"><p>“Dealer quoted $1,400 for my brakes. Torque did it for $480 and sent photos of the old parts. Honest people.”</p><b>Mike S.</b> · <small>2017 Ford F-150</small></div>
+          <div class="rq"><p>“Love the tracking page. I knew exactly when my car would be ready, and the courtesy car was spotless.”</p><b>Laura P.</b> · <small>2020 Honda Civic</small></div>
+          <div class="rq"><p>“They found a problem two other garages missed. Fixed it the same day for a fair price.”</p><b>Daniel O.</b> · <small>2018 BMW 3 Series</small></div>
+        </div>
+      </div>
+      <div class="ctrl"><button class="kt-arrow" data-prev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-next aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><div class="kt-dots"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cc" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="kk" data-reveal>Book in</span>
+      <h2 class="h bc" data-split>Drop it <span class="a">off</span></h2>
+      <p data-reveal>Book online and we'll confirm by text. Need it collected? We pick up within 5 miles for free.</p>
+      <div class="hours" data-reveal>
+        <div><span>Mon – Fri</span><b>7:30 – 18:00</b></div><div><span>Saturday</span><b>8:00 – 14:00</b></div><div><span>Sunday</span><b>Closed</b></div>
+        <div><span>Address</span><b>48 Industrial Way, Denver, CO</b></div><div><span>Phone</span><b>(303) 000-0000</b></div>
+      </div>
+    </div>
+    <form data-form="Booked! We'll text you to confirm the drop-off time." data-reveal="right">
+      <div class="two"><input placeholder="Licence plate" required><input placeholder="Make &amp; model"></div>
+      <select><option>Full service</option><option>Oil change</option><option>Brakes</option><option>Tyres</option><option>Diagnostics</option><option>Something else</option></select>
+      <div class="two"><input type="date" required><select><option>Drop off 7:30–9:00</option><option>Drop off 9:00–11:00</option><option>Wait while we work</option></select></div>
+      <div class="two"><input placeholder="Your name" required><input type="tel" placeholder="Mobile" required></div>
+      <textarea placeholder="Any noises, lights or problems we should know about?"></textarea>
+      <label class="ck"><input type="checkbox" checked> I'd like a free courtesy car</label>
+      <button class="btn or" type="submit">Book my car in</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="kk" data-reveal>FAQ</span>
+    <h2 class="h bc" data-split>Good to know</h2>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Will servicing here affect my warranty?</summary><div class="kt-faq-a"><div>No. By law, independent garages can service your car without affecting the manufacturer's warranty, as long as approved parts are used. We always use them.</div></div></details>
+      <details class="kt-faq"><summary>What if you find something else wrong?</summary><div class="kt-faq-a"><div>We'll call or text you with photos and a price. Nothing extra is done without your OK.</div></div></details>
+      <details class="kt-faq"><summary>How long will my car take?</summary><div class="kt-faq-a"><div>Most services and repairs are done the same day. You can follow every step on our tracking page.</div></div></details>
+      <details class="kt-faq"><summary>Do you work on electric cars?</summary><div class="kt-faq-a"><div>Yes. Kev is EV certified, and we service Teslas, hybrids and most other electric cars.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a href="#" class="logo"><i>⚙</i><b>Torque Garage</b></a><nav><a href="#">Instagram</a><a href="#">Google</a><a href="#">Warranty</a><a href="#">Privacy</a></nav><span>© 2026 Torque Garage · ASE certified</span></div></footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // quote price
+  const qs = document.getElementById('qSvc'); qs.addEventListener('change', () => document.getElementById('qTot').textContent = '$' + qs.value);
+  // repair tracker
+  const STEPS = [['Checked in', 'Keys received, car parked in bay 3', '8:12 am'], ['Inspection', '50-point check done · 2 photos sent', '9:05 am'], ['Waiting for approval', 'Front brake pads at 2 mm. Approved by you', '9:40 am'], ['Repair in progress', 'Service and new brake pads being fitted', 'now'], ['Road test & wash', 'Test drive and a quick wash', '—'], ['Ready to collect', 'We\'ll text you', 'about 2:30 pm']];
+  function track(plate, at) {
+    document.getElementById('trkPlate').textContent = plate.toUpperCase();
+    document.getElementById('trkSteps').innerHTML = STEPS.map(([t, d, tm], i) => `<div class="ts ${i < at ? 'done' : i === at ? 'now' : 'todo'}"><span class="d">${i < at ? '✓' : i + 1}</span><span><b>${t}</b><small>${d}</small></span><time>${tm}</time></div>`).join('');
+  }
+  document.getElementById('trkForm').addEventListener('submit', e => { e.preventDefault(); const p = document.getElementById('trkIn').value.trim() || '7XKD 482'; track(p, 2 + (p.length % 3)); ktToast(`Showing status for ${p.toUpperCase()}`); });
+  track('7XKD 482', 3);
+</script>
+</body>
+</html>

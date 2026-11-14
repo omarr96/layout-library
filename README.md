@@ -11,6 +11,7 @@ HTML design mockups, one folder per design. Open `index.html` to browse them all
 | `woocommerce/` | DiviMerc shop, product grids and carousels |
 | `checkout-account/` | Checkout, thank-you and customer account |
 | `admin-support/` | Dashboards, tickets and admin UI |
+| `local-business/` | One-page sites for local businesses (they share `local-business/kit/`) |
 | `landing-pages/` | Single page sites |
 | `mobile/` | Android themes and app mockups |
 | `docs/` | Changelogs and documentation pages |

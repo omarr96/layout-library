@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearth &amp; Key · Real Estate</title>
+<meta name="description" content="Buy, sell and rent homes with a local agent who knows every street. Free home valuation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f7f5f0; --kt-ink: #14251f; --kt-tx: #4f5d57; --kt-mut: #8a948f; --kt-line: rgba(20,37,31,.12); --kt-accent: #1f4d3f; --kt-accent-ink: #fff; --gold: #c09a5b; --deep: #14251f; }
+body { font: 16px/1.65 Manrope, system-ui, sans-serif; }
+.fr { font-family: Fraunces, Georgia, serif; font-weight: 400; letter-spacing: -.02em; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.ey { font-size: 12.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+h2.h { font-size: clamp(36px, 5vw, 60px); line-height: 1.08; color: var(--kt-ink); margin: 12px 0 16px; }
+h2.h em { font-style: italic; color: var(--gold); }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 10px; font-weight: 700; font-size: 15px; transition: .2s; }
+.btn.dk { background: var(--kt-accent); color: #fff; } .btn.dk:hover { background: #163a2f; }
+.btn.gd { background: var(--gold); color: #14251f; } .btn.gd:hover { background: #d1ad6f; }
+.btn.ol { border: 1px solid var(--kt-line); color: var(--kt-ink); } .btn.ol:hover { border-color: var(--kt-ink); }
+section { padding: 110px 0; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 86px; }
+.nav.scrolled { background: rgba(247,245,240,.94); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--kt-line); }
+.logo { font-family: Fraunces, serif; font-size: 27px; color: #fff; display: flex; align-items: center; gap: 10px; transition: color .3s; }
+.logo i { width: 34px; height: 34px; border: 1.5px solid currentColor; border-radius: 50% 50% 4px 4px; display: grid; place-items: center; font-style: normal; font-size: 15px; }
+.kt-menu { display: flex; gap: 30px; margin-left: auto; }
+.kt-menu a { color: #fff; font-weight: 600; font-size: 15px; transition: color .3s; }
+.nav.scrolled .logo, .nav.scrolled .kt-menu a, .nav.scrolled .kt-burger { color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--gold) !important; }
+.nav .btn { height: 44px; padding: 0 18px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; color: #fff; padding: 140px 0 100px; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,37,31,.55), rgba(20,37,31,.35) 50%, rgba(20,37,31,.75)); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; }
+.hero h1 { font-size: clamp(48px, 7.5vw, 104px); line-height: 1; margin: 16px 0 20px; max-width: 900px; }
+.hero h1 em { font-style: italic; color: #e9cf9f; }
+.hero p { font-size: 19px; max-width: 540px; color: rgba(255,255,255,.88); margin: 0 0 40px; }
+.search { background: #fff; color: var(--kt-ink); border-radius: 20px; padding: 10px; max-width: 920px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+.search .mode { display: flex; gap: 4px; padding: 4px 4px 10px; }
+.search .mode button { height: 38px; padding: 0 18px; border-radius: 9px; font-weight: 700; font-size: 14px; color: var(--kt-tx); }
+.search .mode button.on { background: var(--kt-accent); color: #fff; }
+.search form { display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; gap: 8px; }
+.search label { display: grid; gap: 2px; padding: 10px 16px; border-radius: 12px; background: #f4f2ec; font-size: 12px; font-weight: 700; color: var(--kt-mut); text-transform: uppercase; letter-spacing: .06em; }
+.search input, .search select { border: 0; background: none; outline: none; font-size: 15.5px; font-weight: 600; color: var(--kt-ink); text-transform: none; letter-spacing: 0; padding: 0; }
+.search .btn { height: auto; border: 0; }
+.hero .meta { display: flex; gap: 36px; margin-top: 40px; flex-wrap: wrap; }
+.hero .meta b { font-family: Fraunces, serif; font-size: 40px; display: block; line-height: 1; }
+.hero .meta span { font-size: 14px; color: rgba(255,255,255,.75); }
+
+/* sold marquee */
+.sold { background: var(--deep); color: #d9e2dd; padding: 18px 0; }
+.sold .kt-mq-track span { white-space: nowrap; display: flex; align-items: center; gap: 12px; font-size: 15px; }
+.sold .kt-mq-track b { color: #e9cf9f; font-weight: 700; }
+.sold .kt-mq-track span::before { content: "SOLD"; font-size: 11px; font-weight: 800; letter-spacing: .1em; background: var(--gold); color: #14251f; padding: 3px 7px; border-radius: 4px; }
+
+/* listings */
+.lhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.ltabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.ltabs button { height: 42px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--kt-line); font-weight: 700; font-size: 14px; color: var(--kt-ink); }
+.ltabs button.on { background: var(--kt-ink); color: #fff; border-color: var(--kt-ink); }
+.lgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.home { background: #fff; border-radius: 22px; overflow: hidden; transition: box-shadow .3s, transform .3s; }
+.home:hover { box-shadow: 0 30px 50px -30px rgba(20,37,31,.45); transform: translateY(-4px); }
+.home .ph { position: relative; height: 250px; }
+.home .ph .kt-slider, .home .ph .kt-track, .home .ph .kt-track a { height: 100%; }
+.home .ph img { width: 100%; height: 100%; object-fit: cover; }
+.home .ph .st { position: absolute; z-index: 2; left: 14px; top: 14px; background: #fff; color: var(--kt-ink); padding: 5px 11px; border-radius: 99px; font-size: 12px; font-weight: 800; }
+.home .ph .st.new { background: var(--gold); }
+.home .ph .nv { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; opacity: 0; transition: opacity .2s; }
+.home:hover .ph .nv { opacity: 1; }
+.home .ph .nv.p { left: 10px; } .home .ph .nv.n { right: 10px; }
+.home .ph .kt-dots { position: absolute; z-index: 2; left: 0; right: 0; bottom: 12px; margin: 0; color: #fff; }
+.home .ph .kt-dots button { width: 6px; height: 6px; } .home .ph .kt-dots button.on { width: 16px; }
+.home .b { padding: 20px 22px 22px; }
+.home .pr { font-family: Fraunces, serif; font-size: 28px; color: var(--kt-ink); }
+.home h3 { margin: 2px 0 2px; font-size: 17px; color: var(--kt-ink); }
+.home .ad { font-size: 14px; color: var(--kt-mut); }
+.home .ft { display: flex; gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--kt-line); font-size: 14px; font-weight: 600; color: var(--kt-ink); }
+
+/* agent */
+.agent .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+.agent .ph { position: relative; }
+.agent .ph img { width: 100%; height: 620px; object-fit: cover; border-radius: 24px; }
+.agent .ph .kt-play { position: absolute; right: 26px; bottom: 26px; }
+.agent .ph .cred { position: absolute; left: -24px; top: 40px; background: #fff; border-radius: 16px; padding: 16px 18px; box-shadow: 0 20px 40px -20px rgba(20,37,31,.4); font-size: 13.5px; }
+.agent .ph .cred b { font-family: Fraunces, serif; font-size: 30px; color: var(--kt-ink); display: block; line-height: 1; }
+.sign { font-family: Fraunces, serif; font-style: italic; font-size: 34px; color: var(--kt-ink); margin: 18px 0; }
+.agent .kt-audio { --kt-audio-bg: #ece7dc; }
+
+/* calculator */
+.calc { background: var(--deep); color: #c9d4cf; }
+.calc .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.calc h2.h { color: #fff; }
+.calc .box { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: 34px; }
+.rng { margin-bottom: 22px; }
+.rng .t { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
+.rng .t b { color: #fff; }
+.rng input { width: 100%; accent-color: var(--gold); }
+.out { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); flex-wrap: wrap; }
+.out b { font-family: Fraunces, serif; font-size: 54px; color: #e9cf9f; line-height: 1; }
+.out small { display: block; font-size: 13px; }
+
+/* areas */
+.areas { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 18px; margin-top: 44px; }
+.area { position: relative; border-radius: 22px; overflow: hidden; color: #fff; }
+.area:first-child { grid-row: span 2; }
+.area img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+.area:hover img { transform: scale(1.06); }
+.area::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.75)); }
+.area .c { position: absolute; z-index: 1; left: 22px; bottom: 20px; }
+.area h4 { margin: 0; font-family: Fraunces, serif; font-weight: 400; font-size: 30px; }
+.area span { font-size: 14px; color: rgba(255,255,255,.8); }
+
+/* testimonials */
+.tes { text-align: center; }
+.tes .kt-slider { max-width: 840px; margin: 30px auto 0; }
+.tes blockquote { margin: 0; font-family: Fraunces, serif; font-size: clamp(24px, 3vw, 34px); line-height: 1.35; color: var(--kt-ink); }
+.tes .who { margin-top: 24px; font-weight: 700; color: var(--kt-ink); }
+.tes .who small { display: block; font-weight: 500; color: var(--kt-mut); }
+.tes .kt-dots { color: var(--gold); }
+
+/* valuation */
+.val .box { display: grid; grid-template-columns: 1fr 1fr; border-radius: 28px; overflow: hidden; background: #fff; }
+.val .box > img { width: 100%; height: 100%; object-fit: cover; min-height: 520px; }
+.val .c { padding: 52px; }
+.val form { display: grid; gap: 12px; margin-top: 24px; }
+.val .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.val input, .val select { height: 52px; border-radius: 12px; border: 1px solid var(--kt-line); background: #faf9f5; padding: 0 14px; outline: none; }
+.val input:focus, .val select:focus { border-color: var(--gold); }
+.val form .btn { justify-content: center; border: 0; }
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+
+footer { background: var(--deep); color: #a9b7b1; padding: 70px 0 30px; font-size: 14.5px; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+footer .logo { color: #fff; }
+footer h5 { color: #fff; margin: 0 0 12px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer .bot { margin-top: 50px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .search form { grid-template-columns: 1fr 1fr; } .search .btn { grid-column: 1 / -1; height: 52px; justify-content: center; }
+  .lgrid { grid-template-columns: 1fr 1fr; }
+  .agent .wrap, .calc .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .areas { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 220px); } .area:first-child { grid-row: auto; grid-column: span 2; }
+  .val .box { grid-template-columns: 1fr; } .val .box > img { min-height: 260px; height: 260px; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+  .agent .ph .cred { left: 12px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .search form { grid-template-columns: 1fr; }
+  .lgrid { grid-template-columns: 1fr; }
+  .agent .ph img { height: 440px; }
+  .areas { grid-template-columns: 1fr; grid-template-rows: repeat(4, 200px); } .area:first-child { grid-column: auto; }
+  .val .c { padding: 26px; } .val .row { grid-template-columns: 1fr; }
+  .out b { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><i>⌂</i>Hearth &amp; Key</a>
+    <nav class="kt-menu"><a href="#homes">Homes</a><a href="#about">About</a><a href="#areas">Areas</a><a href="#calc">Mortgage</a><a href="#value">Sell</a></nav>
+    <a href="#value" class="btn gd">Free valuation</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div data-heroslides>
+    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1900&q=70&auto=format&fit=crop" alt="Modern family home">
+    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1900&q=70&auto=format&fit=crop" alt="Villa with pool">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1900&q=70&auto=format&fit=crop" alt="House at dusk">
+  </div>
+  <div class="wrap">
+    <span class="ey" data-reveal>Austin · Round Rock · Cedar Park</span>
+    <h1 class="fr"><span data-split>Find the home that</span> <em data-rotate="fits your life|grows with you|feels like yours"></em></h1>
+    <p data-reveal data-delay="200">Local agents who know every street, school and coffee shop. We'll help you buy, sell or rent without the stress.</p>
+    <div class="search" data-reveal data-delay="300">
+      <div class="mode" role="tablist"><button class="on" data-mode="Buy">Buy</button><button data-mode="Rent">Rent</button><button data-mode="Sell">Sell</button></div>
+      <form data-form="Showing 48 homes that match. (Demo)">
+        <label>Location<input placeholder="Neighbourhood, city or ZIP" value="Austin, TX"></label>
+        <label>Type<select><option>Any type</option><option>House</option><option>Apartment</option><option>Townhouse</option></select></label>
+        <label>Price<select><option>Any price</option><option>Up to $400k</option><option>$400k – $700k</option><option>$700k+</option></select></label>
+        <button class="btn dk" type="submit">Search homes</button>
+      </form>
+    </div>
+    <div class="meta" data-reveal data-delay="450"><div><b data-count="640" data-suffix="+">0</b><span>homes sold</span></div><div><b data-count="12">0</b><span>days on market, avg</span></div><div><b data-count="101" data-suffix="%">0</b><span>of asking price, avg</span></div></div>
+  </div>
+</section>
+
+<div class="sold kt-marquee" data-speed="45s"><div class="kt-mq-track"><span><b>$812,000</b> · 4 bed in Zilker</span><span><b>$545,000</b> · 3 bed in Mueller</span><span><b>$1.2M</b> · Lake-view villa</span><span><b>$399,000</b> · 2 bed condo downtown</span><span><b>$689,000</b> · Craftsman in Hyde Park</span></div></div>
+
+<section id="homes">
+  <div class="wrap" data-tabs>
+    <div class="lhead"><div><span class="ey" data-reveal>Featured listings</span><h2 class="h fr" data-split>Homes we <em>love</em> right now</h2></div>
+      <div class="ltabs" role="tablist" data-reveal><button data-tab="all" class="on">All</button><button data-tab="house">Houses</button><button data-tab="apt">Apartments</button></div></div>
+    <div class="lgrid" data-pane="all"></div>
+    <div class="lgrid" data-pane="house"></div>
+    <div class="lgrid" data-pane="apt"></div>
+    <div style="text-align:center;margin-top:40px"><a href="#" class="btn ol">View all 48 listings →</a></div>
+  </div>
+</section>
+
+<section class="agent" id="about">
+  <div class="wrap">
+    <div class="ph" data-reveal="left">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=1000&q=75&auto=format&fit=crop" alt="Agent Olivia Bennett">
+      <div class="cred"><b data-count="14">0</b>years selling homes<br>in Austin</div>
+      <button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch Olivia's intro"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
+    </div>
+    <div>
+      <span class="ey" data-reveal>Meet your agent</span>
+      <h2 class="h fr" data-split>Hi, I'm Olivia. I'll treat your move like <em>my own</em></h2>
+      <p data-reveal>I grew up in Austin and have helped over 600 families buy and sell here. I'll tell you honestly what a home is worth, which streets flood and where the best tacos are.</p>
+      <p data-reveal>Whether it's your first condo or your forever home, you'll have my mobile number and a straight answer, every time.</p>
+      <div class="sign" data-reveal>Olivia Bennett</div>
+      <div data-audio="jazz" data-title="The Market Minute" data-sub="My weekly 3-minute Austin market update" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section class="calc" id="calc">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Mortgage calculator</span>
+      <h2 class="h fr" data-split>What would it cost <em>each month?</em></h2>
+      <p data-reveal>A quick estimate of principal and interest. For a real number, our partner lender can pre-approve you in a day.</p>
+      <a href="#value" class="btn gd" data-reveal>Get pre-approved</a>
+    </div>
+    <div class="box" data-reveal="right">
+      <div class="rng"><div class="t"><span>Home price</span><b id="vP">$550,000</b></div><input type="range" id="iP" min="150000" max="2000000" step="5000" value="550000"></div>
+      <div class="rng"><div class="t"><span>Down payment</span><b id="vD">20%</b></div><input type="range" id="iD" min="3" max="50" value="20"></div>
+      <div class="rng"><div class="t"><span>Interest rate</span><b id="vR">6.4%</b></div><input type="range" id="iR" min="3" max="9" step=".1" value="6.4"></div>
+      <div class="rng"><div class="t"><span>Loan term</span><b id="vT">30 years</b></div><input type="range" id="iT" min="10" max="30" step="5" value="30"></div>
+      <div class="out"><div><small>Estimated monthly payment</small><b id="vM">$2,752</b></div><div style="text-align:right"><small>Loan amount</small><span id="vL" style="color:#fff;font-weight:700">$440,000</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="areas">
+  <div class="wrap">
+    <span class="ey" data-reveal>Neighbourhood guides</span>
+    <h2 class="h fr" data-split>Where will you <em>live?</em></h2>
+    <div class="areas" data-reveal>
+      <a href="#" class="area"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1000&q=70&auto=format&fit=crop" alt=""><div class="c"><h4>Zilker</h4><span>Parks, trails &amp; Barton Springs · from $780k</span></div></a>
+      <a href="#" class="area"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=70&auto=format&fit=crop" alt=""><div class="c"><h4>Mueller</h4><span>Family friendly · from $520k</span></div></a>
+      <a href="#" class="area"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=70&auto=format&fit=crop" alt=""><div class="c"><h4>Downtown</h4><span>Condos &amp; nightlife · from $380k</span></div></a>
+      <a href="#" class="area"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=70&auto=format&fit=crop" alt=""><div class="c"><h4>Hyde Park</h4><span>Historic homes · from $650k</span></div></a>
+      <a href="#" class="area"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=70&auto=format&fit=crop" alt=""><div class="c"><h4>Lake Travis</h4><span>Water views · from $950k</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="tes" style="padding-top:0">
+  <div class="wrap">
+    <span class="ey" data-reveal>Clients</span>
+    <h2 class="h fr" data-split>Keys handed over with a <em>smile</em></h2>
+    <div class="kt-slider" data-autoplay="6500">
+      <div class="kt-track">
+        <div><blockquote>“Olivia found us a house before it even hit the market and negotiated $30k off. We still can't believe it.”</blockquote><div class="who">The Nguyen family<small>Bought in Mueller</small></div></div>
+        <div><blockquote>“Sold in 5 days, $40k over asking. The photos, the staging advice, all of it was perfect.”</blockquote><div class="who">Mark &amp; Elise R.<small>Sold in Hyde Park</small></div></div>
+        <div><blockquote>“As first-time buyers we had a hundred questions. Olivia answered every single one, even at 10 pm.”</blockquote><div class="who">Jasmine T.<small>First home, downtown</small></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="val" id="value" style="padding-top:0">
+  <div class="wrap">
+    <div class="box" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1000&q=75&auto=format&fit=crop" alt="Bright living room">
+      <div class="c">
+        <span class="ey">Thinking of selling?</span>
+        <h2 class="h fr">What's your home <em>worth?</em></h2>
+        <p>Get a free, no-pressure valuation based on real sales on your street. We'll reply within 24 hours.</p>
+        <form data-form="Thanks! Olivia will send your valuation within 24 hours.">
+          <input placeholder="Home address" required>
+          <div class="row"><select><option>Bedrooms</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select><select><option>When are you moving?</option><option>As soon as possible</option><option>In 3–6 months</option><option>Just curious</option></select></div>
+          <div class="row"><input placeholder="Your name" required><input type="email" placeholder="Email" required></div>
+          <button class="btn dk" type="submit">Get my free valuation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="ey" data-reveal>FAQ</span><h2 class="h fr" data-split>Buying &amp; selling, <em>explained</em></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>How much does it cost to sell with you?</summary><div class="kt-faq-a"><div>Our fee is a percentage of the sale price, paid only when your home sells. It includes photos, a video tour, staging advice and all the paperwork.</div></div></details>
+      <details class="kt-faq"><summary>Do I pay anything as a buyer?</summary><div class="kt-faq-a"><div>In most cases the seller pays the buyer's agent fee. We'll explain exactly how it works for each home before you make an offer.</div></div></details>
+      <details class="kt-faq"><summary>How long does buying a home take?</summary><div class="kt-faq-a"><div>From accepted offer to keys usually takes 30–45 days. Finding the right home can be days or months, and we'll go at your pace.</div></div></details>
+      <details class="kt-faq"><summary>Can you help me rent instead?</summary><div class="kt-faq-a"><div>Yes. We list rentals too and can help with applications, viewings and the lease.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo"><i>⌂</i>Hearth &amp; Key</a><p>Local real estate in Austin, TX. Licensed brokerage #000000.</p></div>
+      <div><h5>Explore</h5><ul><li>Homes for sale</li><li>Rentals</li><li>Neighbourhoods</li><li>Sell your home</li></ul></div>
+      <div><h5>Office</h5><ul><li>1100 S Lamar Blvd</li><li>Austin, TX 78704</li><li>(512) 000-0000</li></ul></div>
+      <div><h5>Follow</h5><ul><li>Instagram</li><li>YouTube</li><li>Zillow reviews</li></ul></div>
+    </div>
+    <div class="bot"><span>© 2026 Hearth &amp; Key Realty</span><span>Equal housing opportunity</span></div>
+  </div>
+</footer>
+
+<script>
+  // listings: built here so each card gets its own small photo slider
+  const H = [
+    { t: 'house', st: 'New', pr: '$725,000', name: 'Modern farmhouse', ad: '2210 Elm Ridge, Mueller', bd: 4, ba: 3, sq: '2,640', im: ['1600596542815-ffad4c1539a9', '1600607687939-ce8a6c25118c', '1502672260266-1c1ef2d93688'] },
+    { t: 'apt', st: 'For rent', pr: '$2,850 / mo', name: 'Downtown loft', ad: '501 Congress Ave #1204', bd: 2, ba: 2, sq: '1,180', im: ['1560448204-e02f11c3d0e2', '1502672260266-1c1ef2d93688', '1600585152220-90363fe7e115'] },
+    { t: 'house', st: 'Open house Sat', pr: '$1,190,000', name: 'Lake-view villa', ad: '18 Cove Point, Lake Travis', bd: 5, ba: 4, sq: '4,100', im: ['1512917774080-9991f1c4c750', '1600585154340-be6161a56a0c', '1600607687939-ce8a6c25118c'] },
+    { t: 'house', st: 'New', pr: '$589,000', name: 'Craftsman bungalow', ad: '4410 Avenue B, Hyde Park', bd: 3, ba: 2, sq: '1,720', im: ['1568605114967-8130f3a36994', '1600585152220-90363fe7e115', '1502672260266-1c1ef2d93688'] },
+    { t: 'apt', st: 'Reduced', pr: '$415,000', name: 'Garden condo', ad: '900 Barton Hills #3', bd: 2, ba: 1, sq: '980', im: ['1600585152220-90363fe7e115', '1560448204-e02f11c3d0e2', '1600607687939-ce8a6c25118c'] },
+    { t: 'house', st: 'New', pr: '$842,000', name: 'Hill Country home', ad: '7 Ridge Oak, Cedar Park', bd: 4, ba: 3, sq: '3,050', im: ['1564013799919-ab600027ffc6', '1600607687939-ce8a6c25118c', '1502672260266-1c1ef2d93688'] },
+  ];
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=70&auto=format&fit=crop`;
+  const arrow = d => `<svg class="kt-svg" viewBox="0 0 24 24"><path d="${d === 'p' ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'}"/></svg>`;
+  const card = h => `<article class="home" data-reveal><div class="ph" data-slider-scope><span class="st ${h.st === 'New' ? 'new' : ''}">${h.st}</span>
+    <div class="kt-slider" data-lightbox><div class="kt-track">${h.im.map((id, i) => `<a href="${U(id, 1600)}" data-caption="${h.name} · photo ${i + 1}"><img src="${U(id, 700)}" alt="${h.name}"></a>`).join('')}</div><div class="kt-dots"></div></div>
+    <button class="nv p" data-prev aria-label="Previous photo">${arrow('p')}</button><button class="nv n" data-next aria-label="Next photo">${arrow('n')}</button></div>
+    <div class="b"><div class="pr">${h.pr}</div><h3>${h.name}</h3><div class="ad">${h.ad}</div><div class="ft"><span>🛏 ${h.bd} bd</span><span>🛁 ${h.ba} ba</span><span>⬚ ${h.sq} sqft</span></div></div></article>`;
+  document.querySelector('[data-pane=all]').innerHTML = H.map(card).join('');
+  document.querySelector('[data-pane=house]').innerHTML = H.filter(h => h.t === 'house').map(card).join('');
+  document.querySelector('[data-pane=apt]').innerHTML = H.filter(h => h.t === 'apt').map(card).join('');
+</script>
+<script src="../kit/kit.js"></script>
+<script>
+  // buy / rent / sell switch in the search box
+  document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-mode]').forEach(x => x.classList.toggle('on', x === b));
+    if (b.dataset.mode === 'Sell') location.hash = '#value';
+    document.querySelector('.search .btn').textContent = b.dataset.mode === 'Rent' ? 'Search rentals' : 'Search homes';
+  }));
+  // mortgage calculator
+  const $ = id => document.getElementById(id), fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+  function calc() {
+    const P = +$('iP').value, d = +$('iD').value, r = +$('iR').value / 1200, n = +$('iT').value * 12, L = P * (1 - d / 100);
+    const m = L * r / (1 - Math.pow(1 + r, -n));
+    $('vP').textContent = fmt(P); $('vD').textContent = d + '%'; $('vR').textContent = (+$('iR').value).toFixed(1) + '%'; $('vT').textContent = $('iT').value + ' years';
+    $('vM').textContent = fmt(m); $('vL').textContent = fmt(L);
+  }
+  ['iP', 'iD', 'iR', 'iT'].forEach(id => $(id).addEventListener('input', calc)); calc();
+</script>
+</body>
+</html>

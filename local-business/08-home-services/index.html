@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FixRight · Plumbing, Electrical &amp; Cleaning</title>
+<meta name="description" content="Licensed plumbers, electricians and cleaners. Upfront prices, same-day service, 1-year guarantee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #fff; --kt-ink: #0f172a; --kt-tx: #475569; --kt-mut: #94a3b8; --kt-line: #e2e8f0; --kt-accent: #1d4ed8; --kt-accent-ink: #fff; --yel: #facc15; --sky: #eff4ff; }
+body { font: 16.5px/1.6 Outfit, system-ui, sans-serif; }
+.wrap { max-width: 1220px; margin: 0 auto; padding: 0 28px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px; background: var(--sky); color: var(--kt-accent); font-weight: 700; font-size: 13.5px; }
+h2.h { font-size: clamp(34px, 4.8vw, 56px); line-height: 1.08; color: var(--kt-ink); margin: 16px 0; font-weight: 800; letter-spacing: -.03em; }
+h2.h mark { background: linear-gradient(transparent 60%, var(--yel) 60%); color: inherit; padding: 0 4px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 26px; border-radius: 14px; font-weight: 700; font-size: 16px; transition: .2s; }
+.btn.bl { background: var(--kt-accent); color: #fff; } .btn.bl:hover { background: #1e40af; transform: translateY(-2px); }
+.btn.yl { background: var(--yel); color: var(--kt-ink); } .btn.yl:hover { background: #fde047; transform: translateY(-2px); }
+.btn.wh { background: #fff; color: var(--kt-ink); border: 1px solid var(--kt-line); }
+section { padding: 110px 0; }
+.center { text-align: center; } .lead { max-width: 620px; margin: 0 auto; }
+
+.alert { background: var(--yel); color: var(--kt-ink); font-weight: 600; font-size: 14.5px; }
+.alert .wrap { display: flex; justify-content: center; align-items: center; gap: 10px; height: 44px; }
+.alert a { text-decoration: underline; font-weight: 800; }
+.nav { position: sticky; top: 0; z-index: 50; background: #fff; transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 8px 30px -14px rgba(15,23,42,.25); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 80px; }
+.logo { font-weight: 800; font-size: 25px; color: var(--kt-ink); display: flex; align-items: center; gap: 10px; letter-spacing: -.02em; }
+.logo i { width: 40px; height: 40px; border-radius: 12px; background: var(--kt-accent); color: var(--yel); display: grid; place-items: center; font-style: normal; font-size: 20px; }
+.kt-menu { display: flex; gap: 28px; margin-left: auto; }
+.kt-menu a { font-weight: 600; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.callbtn { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--kt-ink); }
+.callbtn i { width: 42px; height: 42px; border-radius: 50%; background: var(--sky); color: var(--kt-accent); display: grid; place-items: center; font-style: normal; }
+.callbtn small { display: block; font-size: 12px; font-weight: 500; color: var(--kt-mut); }
+
+/* hero */
+.hero { background: linear-gradient(160deg, var(--sky), #fff 60%); padding: 60px 0 100px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+.hero h1 { font-size: clamp(42px, 6vw, 74px); line-height: 1.02; font-weight: 800; letter-spacing: -.035em; color: var(--kt-ink); margin: 18px 0; }
+.hero h1 [data-rotate] { color: var(--kt-accent); }
+.hero p { font-size: 19px; max-width: 520px; margin: 0 0 26px; }
+.badges { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+.badges div { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--kt-ink); font-size: 14.5px; }
+.badges i { width: 34px; height: 34px; border-radius: 50%; background: #dcfce7; color: #16a34a; display: grid; place-items: center; font-style: normal; font-weight: 800; }
+.quote { background: #fff; border-radius: 26px; padding: 30px; box-shadow: 0 40px 80px -40px rgba(29,78,216,.45); border: 1px solid var(--kt-line); position: relative; }
+.quote::before { content: "⚡ Instant estimate"; position: absolute; top: -14px; left: 26px; background: var(--yel); color: var(--kt-ink); font-weight: 800; font-size: 13px; padding: 5px 12px; border-radius: 99px; }
+.quote h3 { margin: 6px 0 18px; font-size: 22px; color: var(--kt-ink); }
+.qopts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.qopts button { padding: 14px 8px; border-radius: 14px; border: 1.5px solid var(--kt-line); display: grid; justify-items: center; gap: 4px; font-weight: 600; font-size: 13.5px; color: var(--kt-ink); transition: .15s; }
+.qopts button span { font-size: 24px; }
+.qopts button.on { border-color: var(--kt-accent); background: var(--sky); color: var(--kt-accent); }
+.quote select, .quote input { width: 100%; height: 52px; border-radius: 12px; border: 1.5px solid var(--kt-line); padding: 0 14px; outline: none; margin-bottom: 10px; background: #fff; }
+.quote select:focus, .quote input:focus { border-color: var(--kt-accent); }
+.est { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-radius: 14px; background: var(--sky); margin: 4px 0 14px; }
+.est b { font-size: 30px; color: var(--kt-accent); font-weight: 800; letter-spacing: -.02em; }
+.est small { font-size: 13px; }
+.quote .btn { width: 100%; justify-content: center; border: 0; }
+
+/* marquee */
+.mq { background: var(--kt-ink); color: #fff; padding: 20px 0; }
+.mq .kt-mq-track span { font-weight: 700; font-size: 22px; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.mq .kt-mq-track span::after { content: "✦"; color: var(--yel); }
+
+/* services */
+.stabs { display: inline-flex; gap: 6px; padding: 6px; border-radius: 16px; background: var(--sky); margin: 26px 0 40px; flex-wrap: wrap; justify-content: center; }
+.stabs button { height: 46px; padding: 0 20px; border-radius: 12px; font-weight: 700; color: var(--kt-tx); display: flex; align-items: center; gap: 8px; }
+.stabs button.on { background: var(--kt-accent); color: #fff; }
+.sg { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; text-align: left; align-items: center; }
+.sg img { width: 100%; height: 420px; object-fit: cover; border-radius: 26px; }
+.sg ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.sg li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 16px; border: 1px solid var(--kt-line); }
+.sg li b { color: var(--kt-ink); display: block; }
+.sg li small { color: var(--kt-mut); }
+.sg li .pr { font-weight: 800; color: var(--kt-accent); white-space: nowrap; }
+
+/* steps */
+.how { background: var(--kt-ink); color: #cbd5e1; }
+.how h2.h { color: #fff; }
+.how .g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; text-align: left; }
+.how .s { padding: 34px; border-radius: 24px; background: #1e293b; position: relative; overflow: hidden; }
+.how .s b.n { position: absolute; right: 18px; top: -6px; font-size: 110px; font-weight: 800; color: rgba(255,255,255,.05); line-height: 1; }
+.how .s .ic { width: 56px; height: 56px; border-radius: 16px; background: var(--yel); color: var(--kt-ink); display: grid; place-items: center; font-size: 26px; margin-bottom: 22px; }
+.how .s h4 { color: #fff; font-size: 21px; margin: 0 0 8px; }
+.how .s p { margin: 0; }
+
+/* area + compare */
+.area .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.zip { display: flex; gap: 8px; margin-top: 24px; max-width: 460px; }
+.zip input { flex: 1; min-width: 0; height: 56px; border-radius: 14px; border: 1.5px solid var(--kt-line); padding: 0 16px; outline: none; font-size: 17px; }
+.zip input:focus { border-color: var(--kt-accent); }
+.zres { margin-top: 14px; font-weight: 600; min-height: 26px; }
+.zres.ok { color: #16a34a; } .zres.no { color: #dc2626; }
+.towns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.towns span { padding: 6px 12px; border-radius: 99px; background: var(--sky); color: var(--kt-ink); font-size: 14px; font-weight: 500; }
+.area .kt-compare { aspect-ratio: 5/4; border-radius: 26px; }
+.area .kt-before { filter: grayscale(.9) brightness(.8) contrast(.9); }
+.area .kt-compare .kt-tag:first-of-type { left: 14px; } .area .kt-compare .kt-tag.r { right: 14px; background: var(--kt-accent); }
+
+/* projects carousel */
+.ph-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.ph-head .ar { display: flex; gap: 10px; }
+.projects > a { width: 360px; border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid var(--kt-line); }
+.projects img { width: 100%; height: 240px; object-fit: cover; }
+.projects .b { padding: 18px 20px; }
+.projects .b b { color: var(--kt-ink); display: block; }
+.projects .b small { color: var(--kt-mut); }
+
+/* video + reviews */
+.rev { background: var(--sky); }
+.rev .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.vid { position: relative; border-radius: 26px; overflow: hidden; }
+.vid img { width: 100%; height: 440px; object-fit: cover; }
+.vid::after { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,.3); }
+.vid .kt-play { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.vid .cap { position: absolute; z-index: 1; left: 20px; bottom: 20px; color: #fff; font-weight: 700; }
+.gscore { display: flex; align-items: center; gap: 16px; margin: 10px 0 24px; }
+.gscore b { font-size: 48px; font-weight: 800; color: var(--kt-ink); line-height: 1; }
+.gscore .st { color: #f59e0b; font-size: 20px; }
+.rc { background: #fff; border-radius: 22px; padding: 28px; }
+.rc p { font-size: 18px; color: var(--kt-ink); margin: 10px 0 18px; }
+.rc .who { display: flex; gap: 12px; align-items: center; }
+.rc .who img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.rc .who b { display: block; color: var(--kt-ink); }
+.rev .ctrl { display: flex; gap: 10px; align-items: center; margin-top: 16px; }
+.rev .kt-dots { margin: 0 0 0 8px; color: var(--kt-accent); }
+.rev .kt-audio { margin-top: 26px; --kt-audio-bg: #fff; }
+
+/* pricing */
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 46px; text-align: left; }
+.pc { border: 1px solid var(--kt-line); border-radius: 24px; padding: 32px; }
+.pc.hl { border: 2px solid var(--kt-accent); box-shadow: 0 30px 60px -36px rgba(29,78,216,.5); }
+.pc h4 { margin: 0; color: var(--kt-ink); font-size: 20px; }
+.pc .p { font-size: 46px; font-weight: 800; color: var(--kt-ink); letter-spacing: -.03em; margin: 12px 0 2px; }
+.pc ul { padding-left: 18px; margin: 18px 0 0; display: grid; gap: 8px; }
+.pc li::marker { color: var(--kt-accent); }
+
+/* contact */
+.ct .box { border-radius: 30px; background: var(--kt-accent); color: #dbe5ff; padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.ct h2.h { color: #fff; }
+.ct form { background: #fff; border-radius: 22px; padding: 28px; display: grid; gap: 12px; }
+.ct input, .ct select, .ct textarea { height: 52px; border-radius: 12px; border: 1.5px solid var(--kt-line); padding: 0 14px; outline: none; }
+.ct textarea { height: 100px; padding-top: 12px; resize: vertical; }
+.ct input:focus, .ct select:focus, .ct textarea:focus { border-color: var(--kt-accent); }
+.urg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.urg input { display: none; }
+.urg span { display: grid; place-items: center; height: 46px; border-radius: 12px; border: 1.5px solid var(--kt-line); font-weight: 700; font-size: 14px; color: var(--kt-ink); cursor: pointer; }
+.urg input:checked + span { border-color: var(--kt-accent); background: var(--sky); color: var(--kt-accent); }
+.ct form .btn { justify-content: center; border: 0; }
+.faq .wrap { max-width: 860px; }
+
+footer { background: var(--kt-ink); color: #94a3b8; padding: 60px 0 30px; font-size: 14.5px; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+footer .logo { color: #fff; }
+footer h5 { color: #fff; margin: 0 0 12px; font-size: 15px; }
+footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+footer .bot { margin-top: 44px; padding-top: 22px; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+.fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: none; }
+
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .area .wrap, .rev .wrap, .ct .box { grid-template-columns: 1fr; gap: 40px; }
+  .sg { grid-template-columns: 1fr; } .sg img { height: 300px; }
+  .how .g, .prices { grid-template-columns: 1fr; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+  .callbtn { display: none; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .alert .wrap { font-size: 13px; height: auto; padding: 10px 18px; text-align: center; }
+  .quote { padding: 22px; }
+  .projects > a { width: 80vw; }
+  .ct .box { padding: 26px 18px; } .ct form { padding: 20px; }
+  .fab { display: inline-flex; box-shadow: 0 10px 30px rgba(29,78,216,.45); }
+  .zip { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="alert"><div class="wrap">🚨 Burst pipe or power out? 24/7 emergency line: <a href="tel:+16170000000">(617) 000-0000</a></div></div>
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><i>⚒</i>FixRight</a>
+    <nav class="kt-menu"><a href="#services">Services</a><a href="#how">How it works</a><a href="#area">Service area</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
+    <a href="tel:+16170000000" class="callbtn"><i>☎</i><span><small>Call us 24/7</small>(617) 000-0000</span></a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="chip" data-reveal>★ 4.9 · 2,300 Google reviews</span>
+      <h1><span data-split>Your home, fixed</span><br><span data-rotate="today.|right.|for good.|at a fair price."></span></h1>
+      <p data-reveal data-delay="200">Licensed plumbers, electricians and cleaners across Greater Boston. Upfront prices, on-time arrival and a 1-year guarantee on every job.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#contact" class="btn bl">Book a visit</a><a href="tel:+16170000000" class="btn wh">☎ Call now</a></div>
+      <div class="badges" data-reveal data-delay="400"><div><i>✓</i>Licensed &amp; insured</div><div><i>✓</i>Same-day service</div><div><i>✓</i>No call-out fee</div></div>
+    </div>
+    <div class="quote" data-reveal="right">
+      <h3>What do you need help with?</h3>
+      <div class="qopts" role="group" aria-label="Service type"><button class="on" data-q="plumb"><span>🚰</span>Plumbing</button><button data-q="elec"><span>💡</span>Electrical</button><button data-q="clean"><span>🧽</span>Cleaning</button></div>
+      <select id="qJob"></select>
+      <div class="est"><div><small>Typical price</small><br><b id="qPrice">$120 – $180</b></div><small style="text-align:right">Fixed before we start.<br>No surprises.</small></div>
+      <a href="#contact" class="btn yl">Book this job →</a>
+    </div>
+  </div>
+</section>
+
+<div class="mq kt-marquee" data-speed="32s"><div class="kt-mq-track"><span>Leak repairs</span><span>Water heaters</span><span>Rewiring</span><span>EV chargers</span><span>Deep cleaning</span><span>Move-out cleans</span><span>Drain unblocking</span></div></div>
+
+<section id="services">
+  <div class="wrap center" data-tabs>
+    <span class="chip" data-reveal>Services</span>
+    <h2 class="h" data-split>One call for <mark>every fix</mark></h2>
+    <div class="stabs" role="tablist" data-reveal><button data-tab="p" class="on">🚰 Plumbing</button><button data-tab="e">💡 Electrical</button><button data-tab="c">🧽 Cleaning</button><button data-tab="h">🔨 Handyman</button></div>
+    <div class="sg" data-pane="p"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1100&q=70&auto=format&fit=crop" alt="Plumber at work"><ul><li><div><b>Leak &amp; pipe repair</b><small>Most fixed in one visit</small></div><span class="pr">from $120</span></li><li><div><b>Drain unblocking</b><small>Camera inspection included</small></div><span class="pr">from $99</span></li><li><div><b>Water heater install</b><small>Same-day replacement</small></div><span class="pr">from $1,150</span></li><li><div><b>Bathroom fitting</b><small>Free in-home quote</small></div><span class="pr">quote</span></li></ul></div>
+    <div class="sg" data-pane="e"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1100&q=70&auto=format&fit=crop" alt="Electrician at work"><ul><li><div><b>Fault finding</b><small>Tripping breakers, dead outlets</small></div><span class="pr">from $110</span></li><li><div><b>EV charger install</b><small>Level 2, permit included</small></div><span class="pr">from $890</span></li><li><div><b>Lighting &amp; fans</b><small>Install or replace</small></div><span class="pr">from $95</span></li><li><div><b>Panel upgrade</b><small>Free assessment</small></div><span class="pr">quote</span></li></ul></div>
+    <div class="sg" data-pane="c"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1100&q=70&auto=format&fit=crop" alt="Cleaner at work"><ul><li><div><b>Regular clean</b><small>Weekly or every two weeks</small></div><span class="pr">from $110</span></li><li><div><b>Deep clean</b><small>Inside appliances included</small></div><span class="pr">from $240</span></li><li><div><b>Move-out clean</b><small>Deposit-back guarantee</small></div><span class="pr">from $290</span></li></ul></div>
+    <div class="sg" data-pane="h"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1100&q=70&auto=format&fit=crop" alt="Tools"><ul><li><div><b>Furniture assembly</b><small>Any brand</small></div><span class="pr">from $70</span></li><li><div><b>Painting</b><small>Rooms, doors &amp; trim</small></div><span class="pr">from $350</span></li><li><div><b>TV mounting</b><small>Cables hidden</small></div><span class="pr">from $120</span></li></ul></div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap center">
+    <span class="chip" style="background:#1e293b;color:var(--yel)" data-reveal>How it works</span>
+    <h2 class="h" data-split>Fixed in 3 simple steps</h2>
+    <div class="g">
+      <div class="s" data-reveal><b class="n">1</b><div class="ic">📅</div><h4>Book online or call</h4><p>Pick a 2-hour window today or any day that suits you.</p></div>
+      <div class="s" data-reveal data-delay="120"><b class="n">2</b><div class="ic">🚐</div><h4>We text when we're near</h4><p>See your technician's name, photo and arrival time.</p></div>
+      <div class="s" data-reveal data-delay="240"><b class="n">3</b><div class="ic">✅</div><h4>Fixed, with a guarantee</h4><p>Pay only when you're happy. Every job has a 1-year guarantee.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="wrap">
+    <div>
+      <span class="chip" data-reveal>Service area</span>
+      <h2 class="h" data-split>Do we cover <mark>your street?</mark></h2>
+      <p data-reveal>We work across Greater Boston, usually within 90 minutes for emergencies.</p>
+      <form class="zip" id="zipForm" data-reveal><input id="zipIn" placeholder="Enter your ZIP code" inputmode="numeric" maxlength="5" aria-label="ZIP code"><button class="btn bl" type="submit">Check</button></form>
+      <div class="zres" id="zipRes" aria-live="polite"></div>
+      <div class="towns" data-reveal><span>Boston</span><span>Cambridge</span><span>Somerville</span><span>Brookline</span><span>Newton</span><span>Quincy</span><span>Medford</span></div>
+    </div>
+    <div class="kt-compare" data-reveal="right"><img class="kt-before" src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1000&q=75&auto=format&fit=crop" alt="Before repainting"><img class="kt-after" src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1000&q=75&auto=format&fit=crop" alt="After repainting"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"></div>
+  </div>
+</section>
+
+<section data-slider-scope style="padding-top:0">
+  <div class="wrap">
+    <div class="ph-head"><div><span class="chip" data-reveal>Recent jobs</span><h2 class="h" data-split>Work we're proud of</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel projects" data-carousel data-lightbox>
+      <a href="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1600&q=80&auto=format&fit=crop" data-caption="Kitchen refresh · Brookline"><img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=700&q=70&auto=format&fit=crop" alt=""><div class="b"><b>Kitchen refresh</b><small>Brookline · 3 days</small></div></a>
+      <a href="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80&auto=format&fit=crop" data-caption="Full rewire · Somerville"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=70&auto=format&fit=crop" alt=""><div class="b"><b>Full rewire</b><small>Somerville · 5 days</small></div></a>
+      <a href="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1600&q=80&auto=format&fit=crop" data-caption="Living room repaint · Newton"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&q=70&auto=format&fit=crop" alt=""><div class="b"><b>Living room repaint</b><small>Newton · 2 days</small></div></a>
+      <a href="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80&auto=format&fit=crop" data-caption="Move-out deep clean · Cambridge"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=70&auto=format&fit=crop" alt=""><div class="b"><b>Move-out deep clean</b><small>Cambridge · 6 hours</small></div></a>
+      <a href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80&auto=format&fit=crop" data-caption="Bathroom fitting · Boston"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=70&auto=format&fit=crop" alt=""><div class="b"><b>Bathroom fitting</b><small>Boston · 4 days</small></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="rev">
+  <div class="wrap">
+    <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=1000&q=75&auto=format&fit=crop" alt=""><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch a job from start to finish"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button><span class="cap">Watch a job, start to finish · 1:40</span></div>
+    <div data-slider-scope>
+      <span class="chip" data-reveal>Reviews</span>
+      <div class="gscore" data-reveal><b data-count="4.9">0</b><div><div class="st">★★★★★</div><small>2,300 reviews on Google</small></div></div>
+      <div class="kt-slider" data-autoplay="6000">
+        <div class="kt-track">
+          <div class="rc"><p>“Burst pipe at 11 pm. Mike was here in 50 minutes and fixed it in an hour. Price was exactly what they said.”</p><div class="who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=60&auto=format&fit=crop" alt=""><div><b>Rachel D.</b><small>Emergency plumbing · Cambridge</small></div></div></div>
+          <div class="rc"><p>“They installed our EV charger and handled the permit. Clean, quick and friendly.”</p><div class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=60&auto=format&fit=crop" alt=""><div><b>Ben A.</b><small>EV charger · Newton</small></div></div></div>
+          <div class="rc"><p>“Move-out clean was spotless and we got our full deposit back. Booking again for the new place.”</p><div class="who"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=60&auto=format&fit=crop" alt=""><div><b>Sam &amp; Joe</b><small>Move-out clean · Boston</small></div></div></div>
+        </div>
+      </div>
+      <div class="ctrl"><button class="kt-arrow" data-prev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-next aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><div class="kt-dots"></div></div>
+      <div data-audio="lofi" data-title="Our on-hold playlist" data-sub="Yes, we made it ourselves" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap center">
+    <span class="chip" data-reveal>Pricing</span>
+    <h2 class="h" data-split>Honest prices, <mark>upfront</mark></h2>
+    <p class="lead" data-reveal>You'll get a fixed price before any work starts. If it costs us more, that's on us.</p>
+    <div class="prices">
+      <div class="pc" data-reveal><h4>Standard visit</h4><div class="p">$0</div><small>call-out fee</small><ul><li>Arrival within your 2-hour window</li><li>Fixed quote on the spot</li><li>Pay only for the job</li></ul></div>
+      <div class="pc hl" data-reveal data-delay="100"><h4>Emergency</h4><div class="p">$95</div><small>after hours &amp; weekends</small><ul><li>24/7, typically within 90 min</li><li>Fee waived if you book the fix</li><li>Licensed technicians only</li></ul></div>
+      <div class="pc" data-reveal data-delay="200"><h4>Home care plan</h4><div class="p">$19<small style="font-size:16px">/mo</small></div><small>cancel any time</small><ul><li>Yearly plumbing &amp; electrical check</li><li>15% off every job</li><li>Priority booking</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="ct" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="box" data-reveal="zoom">
+      <div><h2 class="h">Book a technician</h2><p>Tell us what's wrong and when suits you. We'll text to confirm in minutes.</p><p style="margin-top:26px;color:#fff;font-weight:700">☎ (617) 000-0000<br><span style="font-weight:400;color:#dbe5ff">Mon – Sat 7 am – 8 pm · Emergencies 24/7</span></p></div>
+      <form data-form="Booked! We'll text you to confirm your time.">
+        <div class="urg" role="group" aria-label="How urgent"><label><input type="radio" name="u" checked><span>Today</span></label><label><input type="radio" name="u"><span>This week</span></label><label><input type="radio" name="u"><span>Flexible</span></label></div>
+        <select><option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Handyman</option></select>
+        <input placeholder="Your name" required><input type="tel" placeholder="Mobile number" required>
+        <textarea placeholder="What's the problem? Photos help, we'll text you a link."></textarea>
+        <button class="btn yl" type="submit">Book my visit</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap center">
+    <span class="chip" data-reveal>FAQ</span>
+    <h2 class="h" data-split>Questions? Answered.</h2>
+    <div data-faq data-reveal style="text-align:left">
+      <details class="kt-faq" open><summary>Are your technicians licensed?</summary><div class="kt-faq-a"><div>Yes. Every plumber and electrician is licensed in Massachusetts, background-checked and fully insured.</div></div></details>
+      <details class="kt-faq"><summary>How does the guarantee work?</summary><div class="kt-faq-a"><div>If the same problem comes back within 12 months, we fix it free. Parts carry the manufacturer's warranty too.</div></div></details>
+      <details class="kt-faq"><summary>Do I need to be home?</summary><div class="kt-faq-a"><div>For most repairs, yes. For cleaning, you can leave a key or code. We'll send photos when we're done.</div></div></details>
+      <details class="kt-faq"><summary>How do I pay?</summary><div class="kt-faq-a"><div>Card, Apple Pay or bank transfer, once the job is done and you're happy with it.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo"><i>⚒</i>FixRight</a><p>Plumbing, electrical and cleaning across Greater Boston since 2012. Lic. #00000.</p></div>
+      <div><h5>Services</h5><ul><li>Plumbing</li><li>Electrical</li><li>Cleaning</li><li>Handyman</li></ul></div>
+      <div><h5>Company</h5><ul><li>About</li><li>Careers</li><li>Reviews</li><li>Guarantee</li></ul></div>
+      <div><h5>Contact</h5><ul><li>(617) 000-0000</li><li>hello@fixright.co</li><li>Boston, MA</li></ul></div>
+    </div>
+    <div class="bot"><span>© 2026 FixRight Home Services</span><span>Licensed · Insured · Guaranteed</span></div>
+  </div>
+</footer>
+<a href="tel:+16170000000" class="btn bl fab">☎ Call now</a>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // instant estimate
+  const JOBS = {
+    plumb: [['Leaking tap or pipe', '$120 – $180'], ['Blocked drain', '$99 – $160'], ['Toilet repair', '$110 – $170'], ['Water heater replacement', '$1,150 – $1,900']],
+    elec: [['Outlet or switch not working', '$110 – $160'], ['New light fitting', '$95 – $150'], ['EV charger install', '$890 – $1,400'], ['Breaker keeps tripping', '$120 – $220']],
+    clean: [['Regular clean (2 bed)', '$110 – $140'], ['Deep clean (2 bed)', '$240 – $320'], ['Move-out clean', '$290 – $380'], ['Oven clean', '$80 – $110']],
+  };
+  const sel = document.getElementById('qJob'), price = document.getElementById('qPrice');
+  const fill = k => { sel.innerHTML = JOBS[k].map(([n, p]) => `<option value="${p}">${n}</option>`).join(''); price.textContent = JOBS[k][0][1]; };
+  document.querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('[data-q]').forEach(x => x.classList.toggle('on', x === b)); fill(b.dataset.q); }));
+  sel.addEventListener('change', () => price.textContent = sel.value); fill('plumb');
+  // ZIP check (Boston-area ZIPs start with 021)
+  document.getElementById('zipForm').addEventListener('submit', e => {
+    e.preventDefault(); const z = document.getElementById('zipIn').value.trim(), r = document.getElementById('zipRes');
+    if (!/^\d{5}$/.test(z)) { r.className = 'zres no'; r.textContent = 'Please enter a 5-digit ZIP code.'; return; }
+    const ok = /^02[0-4]/.test(z); r.className = 'zres ' + (ok ? 'ok' : 'no');
+    r.textContent = ok ? `✓ Yes! We cover ${z}. Next free slot: today, 2–4 pm.` : `✗ Sorry, ${z} is outside our area for now. Call us and we'll suggest someone we trust.`;
+  });
+</script>
+</body>
+</html>

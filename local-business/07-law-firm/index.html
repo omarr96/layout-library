@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harper &amp; Cole · Attorneys at Law</title>
+<meta name="description" content="Family, business, property and estate law in Chicago. Free first consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f8f6f1; --kt-ink: #101a2e; --kt-tx: #4a5263; --kt-mut: #8a90a0; --kt-line: rgba(16,26,46,.12); --kt-accent: #a8803e; --kt-accent-ink: #fff; --navy: #101a2e; --navy2: #17233d; }
+body { font: 16.5px/1.7 'Inter Tight', system-ui, sans-serif; }
+.nw { font-family: Newsreader, Georgia, serif; font-weight: 400; letter-spacing: -.015em; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.ey { display: inline-flex; align-items: center; gap: 12px; font-size: 12.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--kt-accent); }
+.ey::before { content: "§"; font-family: Newsreader, serif; font-size: 18px; letter-spacing: 0; }
+h2.h { font-size: clamp(36px, 4.8vw, 58px); line-height: 1.1; color: var(--kt-ink); margin: 14px 0 18px; }
+h2.h em { font-style: italic; color: var(--kt-accent); }
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 28px; font-weight: 600; font-size: 15px; letter-spacing: .02em; transition: .2s; border-radius: 2px; }
+.btn.br { background: var(--kt-accent); color: #fff; } .btn.br:hover { background: #8f6c33; }
+.btn.nv { background: var(--navy); color: #fff; } .btn.nv:hover { background: #1f2d4c; }
+.btn.ln { border: 1px solid rgba(255,255,255,.35); color: #fff; } .btn.ln:hover { background: #fff; color: var(--navy); }
+section { padding: 120px 0; }
+
+.top { background: var(--navy); color: #aab3c5; font-size: 13.5px; }
+.top .wrap { display: flex; justify-content: space-between; height: 42px; align-items: center; gap: 16px; }
+.top b { color: #fff; font-weight: 600; }
+.nav { position: sticky; top: 0; z-index: 50; background: var(--navy); transition: box-shadow .3s; border-top: 1px solid rgba(255,255,255,.08); }
+.nav.scrolled { box-shadow: 0 10px 30px -10px rgba(0,0,0,.4); }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 84px; }
+.logo { color: #fff; font-family: Newsreader, serif; font-size: 26px; line-height: 1; }
+.logo small { display: block; font-family: 'Inter Tight', sans-serif; font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--kt-accent); margin-top: 4px; }
+.kt-menu { display: flex; gap: 32px; margin-left: auto; }
+.kt-menu a { color: #d6dbe6; font-weight: 500; font-size: 15px; }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 46px; padding: 0 20px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { background: var(--navy); color: #c6cddb; padding: 90px 0 0; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: end; }
+.hero h1 { font-size: clamp(46px, 6.5vw, 86px); line-height: 1.02; color: #fff; margin: 20px 0 24px; }
+.hero h1 em { font-style: italic; color: #d9b36f; }
+.hero .typed { color: #fff; font-size: 20px; margin: 0 0 30px; }
+.hero .typed span { color: #d9b36f; font-weight: 600; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; padding-bottom: 90px; }
+.hero .ph { position: relative; align-self: stretch; }
+.hero .ph img { width: 100%; height: 100%; min-height: 560px; object-fit: cover; object-position: top; filter: grayscale(.2); }
+.hero .ph .q { position: absolute; left: -50px; bottom: 60px; width: 300px; background: #fff; color: var(--navy); padding: 24px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
+.hero .ph .q p { font-family: Newsreader, serif; font-style: italic; font-size: 19px; line-height: 1.4; margin: 0 0 10px; }
+.hero .ph .q small { color: var(--kt-accent); font-weight: 600; }
+
+/* stats */
+.stats { background: #fff; border-bottom: 1px solid var(--kt-line); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stats div { padding: 46px 30px; border-right: 1px solid var(--kt-line); }
+.stats div:last-child { border-right: 0; }
+.stats b { font-family: Newsreader, serif; font-size: 54px; color: var(--kt-ink); display: block; line-height: 1; font-weight: 400; }
+.stats span { font-size: 14.5px; }
+
+/* press marquee */
+.press { padding: 30px 0; border-bottom: 1px solid var(--kt-line); }
+.press .kt-mq-track span { font-family: Newsreader, serif; font-style: italic; font-size: 24px; color: #9aa0ad; white-space: nowrap; }
+
+/* practice areas */
+.pa .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; }
+.pa .tabs { display: grid; gap: 2px; margin-top: 30px; }
+.pa .tabs button { text-align: left; padding: 20px 0; border-bottom: 1px solid var(--kt-line); display: flex; align-items: center; gap: 16px; font-family: Newsreader, serif; font-size: 27px; color: var(--kt-mut); transition: color .2s, padding .3s; }
+.pa .tabs button .n { font-family: 'Inter Tight', sans-serif; font-size: 13px; color: var(--kt-accent); width: 26px; }
+.pa .tabs button.on { color: var(--kt-ink); padding-left: 12px; }
+.pa .tabs button::after { content: "→"; margin-left: auto; font-size: 20px; opacity: 0; transition: opacity .2s; }
+.pa .tabs button.on::after { opacity: 1; color: var(--kt-accent); }
+.pane img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 26px; }
+.pane h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 34px; color: var(--kt-ink); margin: 0 0 10px; }
+.pane ul { columns: 2; padding-left: 18px; margin: 16px 0 26px; }
+.pane li { margin-bottom: 6px; break-inside: avoid; }
+.pane li::marker { color: var(--kt-accent); }
+
+/* results */
+.res { background: var(--navy); color: #b5bdcd; }
+.res h2.h { color: #fff; }
+.res-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.res-head .ar { display: flex; gap: 10px; }
+.res .kt-arrow { background: transparent; color: #fff; border-color: rgba(255,255,255,.25); }
+.res .kt-carousel > div { width: 340px; padding: 34px; border: 1px solid rgba(255,255,255,.12); background: var(--navy2); }
+.res .amt { font-family: Newsreader, serif; font-size: 52px; color: #d9b36f; line-height: 1; }
+.res h4 { color: #fff; font-size: 18px; margin: 14px 0 8px; font-weight: 600; }
+.res p { margin: 0; font-size: 15px; }
+.res .tg { display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8d97ab; }
+.res .note { font-size: 12.5px; color: #77819a; margin-top: 26px; }
+
+/* attorneys */
+.att { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 50px; }
+.at img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1); transition: filter .5s; }
+.at:hover img { filter: none; }
+.at h4 { font-family: Newsreader, serif; font-weight: 400; font-size: 24px; color: var(--kt-ink); margin: 16px 0 2px; }
+.at span { font-size: 14px; color: var(--kt-accent); font-weight: 600; }
+.at p { font-size: 14px; margin: 8px 0 0; }
+
+/* approach */
+.ap { background: #fff; }
+.ap .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.vid { position: relative; }
+.vid img { width: 100%; height: 520px; object-fit: cover; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 0; }
+.vid .kt-play::before { border-radius: 0; }
+.steps { counter-reset: s; display: grid; gap: 22px; margin: 30px 0; }
+.steps div { display: grid; grid-template-columns: 54px 1fr; gap: 16px; }
+.steps div::before { counter-increment: s; content: "0" counter(s); font-family: Newsreader, serif; font-size: 34px; color: var(--kt-accent); line-height: 1; }
+.steps b { color: var(--kt-ink); display: block; font-size: 17px; }
+.steps span { font-size: 15px; }
+.ap .kt-audio { --kt-audio-bg: #f1ede4; }
+
+/* testimonials */
+.tes { text-align: center; }
+.tes .kt-slider { max-width: 860px; margin: 30px auto 0; }
+.tes blockquote { margin: 0; font-family: Newsreader, serif; font-size: clamp(24px, 3vw, 36px); line-height: 1.35; color: var(--kt-ink); font-style: italic; }
+.tes .who { margin-top: 26px; font-weight: 600; color: var(--kt-ink); }
+.tes .who small { display: block; color: var(--kt-mut); font-weight: 400; }
+.tes .kt-dots { color: var(--kt-accent); }
+
+/* consultation */
+.cons { background: var(--navy); color: #b5bdcd; }
+.cons .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+.cons h2.h { color: #fff; }
+.cons form { background: #fff; padding: 40px; display: grid; gap: 14px; color: var(--kt-ink); }
+.cons .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cons input, .cons select, .cons textarea { height: 52px; border: 0; border-bottom: 1px solid #d8dbe2; padding: 0 2px; outline: none; background: transparent; border-radius: 0; }
+.cons textarea { height: 100px; padding-top: 12px; resize: vertical; }
+.cons input:focus, .cons select:focus, .cons textarea:focus { border-color: var(--kt-accent); }
+.cons form .btn { justify-content: center; border: 0; margin-top: 8px; }
+.cons small.priv { font-size: 12.5px; color: var(--kt-mut); }
+.cons .contact { display: grid; gap: 20px; margin-top: 30px; }
+.cons .contact b { color: #fff; display: block; font-weight: 600; }
+.faq .wrap { max-width: 880px; }
+.faq .kt-faq summary { font-family: Newsreader, serif; font-weight: 400; font-size: 24px; }
+
+footer { background: #0b1222; color: #8790a5; padding: 70px 0 30px; font-size: 14.5px; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+footer h5 { color: #fff; margin: 0 0 12px; font-weight: 600; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer .disc { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12.5px; line-height: 1.6; }
+
+@media (max-width: 980px) {
+  section { padding: 84px 0; }
+  .hero .wrap, .pa .wrap, .ap .wrap, .cons .wrap { grid-template-columns: 1fr; gap: 44px; }
+  .hero .cta { padding-bottom: 0; }
+  .hero .ph img { min-height: 420px; } .hero .ph .q { left: 16px; }
+  .stats .wrap { grid-template-columns: 1fr 1fr; } .stats div:nth-child(2) { border-right: 0; } .stats div { border-bottom: 1px solid var(--kt-line); }
+  .att { grid-template-columns: 1fr 1fr; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .top .wrap { justify-content: center; } .top .hide { display: none; }
+  .nav .btn { display: none; }
+  .stats div { padding: 28px 18px; } .stats b { font-size: 40px; }
+  .pa .tabs button { font-size: 22px; }
+  .pane ul { columns: 1; }
+  .res .kt-carousel > div { width: 82vw; }
+  .cons form { padding: 26px; } .cons .r2 { grid-template-columns: 1fr; }
+  .hero .ph .q { width: auto; right: 16px; }
+  .vid img { height: 360px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap"><span class="hide">Mon – Fri 8:30 – 18:00 · Evening appointments on request</span><span>Free consultation: <b>(312) 000-0000</b></span></div></div>
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Harper &amp; Cole<small>Attorneys at Law</small></a>
+    <nav class="kt-menu"><a href="#practice">Practice areas</a><a href="#results">Results</a><a href="#team">Attorneys</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav>
+    <a href="#contact" class="btn br">Free consultation</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Chicago · Since 1998</span>
+      <h1 class="nw" data-split>Clear advice when it <em>matters most</em></h1>
+      <p class="typed" data-reveal data-delay="200">We help with <span data-type="family matters.|business disputes.|buying property.|wills and estates."></span></p>
+      <p data-reveal data-delay="250" style="max-width:520px">Plain answers, honest fees and attorneys who return your calls. Your first 30-minute consultation is free.</p>
+      <div class="cta" data-reveal data-delay="350"><a href="#contact" class="btn br">Book a free consultation</a><a href="#practice" class="btn ln">How we can help</a></div>
+    </div>
+    <div class="ph" data-reveal="right">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1000&q=75&auto=format&fit=crop" alt="Founding partner Daniel Harper">
+      <div class="q"><p>“You'll always know where your case stands and what it will cost.”</p><small>Daniel Harper, founding partner</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats"><div class="wrap">
+  <div data-reveal><b data-count="27">0</b><span>years in practice</span></div>
+  <div data-reveal data-delay="100"><b data-count="3800" data-suffix="+">0</b><span>clients helped</span></div>
+  <div data-reveal data-delay="200"><b data-count="96" data-suffix="%">0</b><span>cases settled or won</span></div>
+  <div data-reveal data-delay="300"><b data-count="12">0</b><span>attorneys &amp; paralegals</span></div>
+</div></div>
+
+<div class="press"><div class="kt-marquee" data-speed="40s"><div class="kt-mq-track"><span>Super Lawyers 2025</span><span>Chicago Tribune</span><span>Best Lawyers in America</span><span>Avvo 10.0 rating</span><span>Crain's Chicago Business</span></div></div></div>
+
+<section class="pa" id="practice">
+  <div class="wrap" data-tabs>
+    <div>
+      <span class="ey" data-reveal>Practice areas</span>
+      <h2 class="h nw" data-split>How we can <em>help you</em></h2>
+      <div class="tabs" role="tablist" data-reveal>
+        <button data-tab="fam" class="on"><span class="n">01</span>Family law</button>
+        <button data-tab="biz"><span class="n">02</span>Business law</button>
+        <button data-tab="prop"><span class="n">03</span>Real estate</button>
+        <button data-tab="est"><span class="n">04</span>Wills &amp; estates</button>
+      </div>
+    </div>
+    <div data-reveal="right">
+      <div class="pane" data-pane="fam"><img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1100&q=70&auto=format&fit=crop" alt=""><h3>Family law</h3><p>Divorce and separation are hard enough. We aim for fair agreements out of court, and fight hard in court when we need to.</p><ul><li>Divorce &amp; separation</li><li>Child custody</li><li>Child &amp; spousal support</li><li>Prenuptial agreements</li><li>Adoption</li><li>Mediation</li></ul><a href="#contact" class="btn nv">Talk to a family lawyer</a></div>
+      <div class="pane" data-pane="biz"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1100&q=70&auto=format&fit=crop" alt=""><h3>Business law</h3><p>From starting a company to settling a dispute, we help small and mid-sized businesses grow without legal surprises.</p><ul><li>Company formation</li><li>Contracts</li><li>Partner disputes</li><li>Employment law</li><li>Debt collection</li><li>Buying a business</li></ul><a href="#contact" class="btn nv">Talk to a business lawyer</a></div>
+      <div class="pane" data-pane="prop"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1100&q=70&auto=format&fit=crop" alt=""><h3>Real estate</h3><p>Closings, leases and disputes for home buyers, landlords and developers across Cook County.</p><ul><li>Residential closings</li><li>Commercial leases</li><li>Landlord &amp; tenant</li><li>Zoning</li><li>Title issues</li><li>HOA disputes</li></ul><a href="#contact" class="btn nv">Talk to a property lawyer</a></div>
+      <div class="pane" data-pane="est"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1100&q=70&auto=format&fit=crop" alt=""><h3>Wills &amp; estates</h3><p>Protect your family with a clear plan. Flat fees for most wills and trusts, so you know the cost upfront.</p><ul><li>Wills</li><li>Living trusts</li><li>Power of attorney</li><li>Probate</li><li>Guardianship</li><li>Estate disputes</li></ul><a href="#contact" class="btn nv">Plan your estate</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="res" id="results" data-slider-scope>
+  <div class="wrap">
+    <div class="res-head"><div><span class="ey" data-reveal>Results</span><h2 class="h nw" data-split>Recent <em>outcomes</em></h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel" data-carousel>
+      <div><div class="amt">$2.4M</div><h4>Business partnership dispute</h4><p>Settled in mediation, with our client keeping full control of the company.</p><span class="tg">Business law</span></div>
+      <div><div class="amt">Full custody</div><h4>Relocation case</h4><p>Our client was allowed to move out of state with her two children.</p><span class="tg">Family law</span></div>
+      <div><div class="amt">$680K</div><h4>Construction defect claim</h4><p>Recovered repair costs and legal fees for 14 condo owners.</p><span class="tg">Real estate</span></div>
+      <div><div class="amt">11 days</div><h4>Probate, start to finish</h4><p>An uncontested estate settled in under two weeks.</p><span class="tg">Estates</span></div>
+      <div><div class="amt">$0</div><h4>Wrongful lien removed</h4><p>A contractor's lien cleared before closing, at no cost to the buyer.</p><span class="tg">Real estate</span></div>
+    </div>
+    <p class="note">Past results don't guarantee a similar outcome. Every case is different.</p>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <span class="ey" data-reveal>Attorneys</span>
+    <h2 class="h nw" data-split>The people <em>on your side</em></h2>
+    <div class="att">
+      <div class="at" data-reveal><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop" alt=""><h4>Daniel Harper</h4><span>Founding partner · Business</span><p>Northwestern Law. 27 years advising Chicago businesses.</p></div>
+      <div class="at" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=70&auto=format&fit=crop" alt=""><h4>Rebecca Cole</h4><span>Partner · Family law</span><p>Certified mediator. Known for calm, fair settlements.</p></div>
+      <div class="at" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=70&auto=format&fit=crop" alt=""><h4>Marcus Webb</h4><span>Associate · Real estate</span><p>Has closed over 1,000 property transactions.</p></div>
+      <div class="at" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=70&auto=format&fit=crop" alt=""><h4>Elena Park</h4><span>Associate · Estates</span><p>Makes wills and trusts simple, with flat fees.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ap" id="approach">
+  <div class="wrap">
+    <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=75&auto=format&fit=crop" alt="Our office"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch: meet the firm"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+    <div>
+      <span class="ey" data-reveal>Our approach</span>
+      <h2 class="h nw" data-split>No jargon. <em>No surprises.</em></h2>
+      <div class="steps" data-reveal>
+        <div><span><b>Free consultation</b><span>30 minutes to understand your situation and options.</span></span></div>
+        <div><span><b>A clear plan and fee</b><span>In writing, before any work starts.</span></span></div>
+        <div><span><b>Regular updates</b><span>We call you, not the other way round.</span></span></div>
+      </div>
+      <div data-audio="jazz" data-title="Law in Plain English" data-sub="Our podcast · Episode 42: Wills 101" data-reveal></div>
+    </div>
+  </div>
+</section>
+
+<section class="tes">
+  <div class="wrap">
+    <span class="ey" data-reveal>Client stories</span>
+    <h2 class="h nw" data-split>In our clients' <em>words</em></h2>
+    <div class="kt-slider" data-autoplay="7000">
+      <div class="kt-track">
+        <div><blockquote>“Rebecca guided me through my divorce with real kindness. I always knew what was happening and why.”</blockquote><div class="who">Jennifer M.<small>Family law client</small></div></div>
+        <div><blockquote>“Daniel saved our company. Straight talk, fair fees and a result we didn't think was possible.”</blockquote><div class="who">Robert &amp; Lisa K.<small>Business owners</small></div></div>
+        <div><blockquote>“Our wills and trust were done in two weeks, for exactly the price we were quoted.”</blockquote><div class="who">The Alvarez family<small>Estate planning</small></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cons" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>Free consultation</span>
+      <h2 class="h nw" data-split>Tell us what's <em>happening</em></h2>
+      <p data-reveal>Everything you share is confidential. An attorney will call you within one business day.</p>
+      <div class="contact" data-reveal>
+        <div><b>Office</b>200 W Madison St, Suite 1800, Chicago, IL 60606</div>
+        <div><b>Phone</b>(312) 000-0000</div>
+        <div><b>Email</b>help@harpercole.law</div>
+      </div>
+    </div>
+    <form data-form="Thank you. An attorney will call you within one business day." data-reveal="right">
+      <div class="r2"><input placeholder="Full name" required><input type="tel" placeholder="Phone" required></div>
+      <input type="email" placeholder="Email" required>
+      <select><option>What do you need help with?</option><option>Family law</option><option>Business law</option><option>Real estate</option><option>Wills &amp; estates</option><option>Something else</option></select>
+      <textarea placeholder="Briefly, what's happening? (optional)"></textarea>
+      <small class="priv">🔒 Confidential. Sending this form doesn't create an attorney-client relationship.</small>
+      <button class="btn br" type="submit">Request my free consultation</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="ey" data-reveal>FAQ</span>
+    <h2 class="h nw" data-split>Questions we <em>hear often</em></h2>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Is the first consultation really free?</summary><div class="kt-faq-a"><div>Yes. Your first 30 minutes with an attorney is free, with no obligation to hire us.</div></div></details>
+      <details class="kt-faq"><summary>How do you charge?</summary><div class="kt-faq-a"><div>Flat fees for wills, closings and company formation. Hourly or contingency for disputes. You'll get the fee in writing before we start.</div></div></details>
+      <details class="kt-faq"><summary>Can we meet by video?</summary><div class="kt-faq-a"><div>Of course. Most of our clients meet us by video at least once, and we can sign most documents electronically.</div></div></details>
+      <details class="kt-faq"><summary>Do you only work in Chicago?</summary><div class="kt-faq-a"><div>We're licensed throughout Illinois and work with partner firms in neighbouring states.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo">Harper &amp; Cole<small>Attorneys at Law</small></a></div>
+      <div><h5>Practice areas</h5><ul><li>Family law</li><li>Business law</li><li>Real estate</li><li>Wills &amp; estates</li></ul></div>
+      <div><h5>Office</h5><ul><li>200 W Madison St</li><li>Chicago, IL 60606</li><li>(312) 000-0000</li></ul></div>
+      <div><h5>Firm</h5><ul><li>Attorneys</li><li>Careers</li><li>Podcast</li><li>Privacy</li></ul></div>
+    </div>
+    <p class="disc">Attorney advertising. The information on this website is for general information only and isn't legal advice. Contacting us doesn't create an attorney-client relationship. © 2026 Harper &amp; Cole LLP.</p>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+</body>
+</html>
