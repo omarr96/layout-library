@@ -153,6 +153,22 @@ mark { background: #fef08a; color: inherit; border-radius: 3px; padding: 0 1px; 
 const TAGS = { Editor: '#6d5dfc', AI: '#db2777', Publishing: '#0e7490', Media: '#7c3aed', Design: '#ca8a04', Forms: '#16a34a', Tests: '#475569', Fixes: '#dc2626', Maintenance: '#a1a1aa' };
 const WAITING = { note: 'Nothing yet.', items: [] };
 const PUSHES = [
+  { date: "2026-11-15", time: "14:25", hash: "8b4a030", title: "Dark and light mode, Replace audio/video, import fixes", tags: ["Design", "Editor", "Media", "Fixes"], items: [
+    "**Sites with a dark and light look keep both.** When a design comes with a dark mode, it's kept as the designer made it, the site's own mode button keeps working, and the checks look at both looks. Tested on the gaming lounge and Lumen: about 99.5% the same as the original in both looks.",
+    "**The editor has a Light / Dark switch** for those sites. The page, the design system colours and the colour swatches show the look you pick.",
+    "**Colours stay in the look you set them in.** A text or background colour picked in Dark changes Dark only, and one picked in Light changes Light only. Text, sizes, spacing, fonts and images are the same in both.",
+    "**Play icons offer Replace audio or Replace video**, also on music players whose sound is made in code. Other Replace buttons now say what they replace (image, icon, video, audio).",
+    "**Fixes from the creative and small-shop test designs:** tab panes that should be hidden stay hidden, image and file links are kept, a cut-off download says so and is tried once more, and hard-to-read colour warnings are grouped per look.",
+    "**Smooth size changes are allowed.** Animating width, height, margin, padding or font size is now a warning, not an error, so things like growing slider dots keep working."] },
+  { date: "2026-11-14", time: "19:01", hash: "b68c3af", title: "Imported designs at 99%, keep designer colours, Replace file", tags: ["Publishing", "Design", "Editor", "Media"], items: [
+    "**Imported designs now come out about 99% the same as the original.** The 10 test designs match 99.3% on desktop and 96.7% on phone (99.4% without one quirk of the comparison). Before, they were at 87.9% and 81.1%.",
+    "**Designers' colours are kept.** When the AI converts a finished design someone brought, colours that are hard to read become warnings that name the texts and the colours that would work. They no longer stop the save, and the AI is told never to darken a design itself.",
+    "**Fewer wrong \"hard to read\" refusals.** Transparent headers, screen-reader-only text, outlined text, gradient text, icons beside words, and slideshows were all measured wrongly before.",
+    "**Better advice.** White text on a photo now gets \"darken the photo\", not a light overlay. Every refusal names the colours that pass.",
+    "**Every problem is listed.** The list used to stop at 40. Two false warnings are fixed: transitions with `cubic-bezier(…)`, and animations whose duration is a variable.",
+    "**Hidden tabs stay hidden.** Imported pages showed all of their tabs at once; the server now fixes this.",
+    "**Replace file in Media.** Upload a new menu PDF and every page that linked the old one uses the new one. File links in the editor get a **Change file** button.",
+    "**The Code button is gone from the editor**; code is edited from the Files panel. The \"Save your changes?\" and \"Restore your unsaved changes?\" cards have a new design."] },
   { date: '2026-11-14', time: '17:40', hash: 'a388bcd', title: 'More icons, Create icon with AI, new save popup', tags: ['Editor', 'AI'], items: [
     '**About 2,100 more icons in Change icon.** You can search by name or meaning ("phone", "tooth", "delivery"); 60 common business icons show before you type.',
     '**Create icon with AI.** Describe the icon and the AI draws three versions to choose from. Only safe drawing shapes are kept.',
@@ -282,7 +298,7 @@ function chips() {
   const count = t => PUSHES.filter(p => p.tags.includes(t)).length + WAITING.items.filter(i => i.tags.includes(t)).length;
   $('#chips').innerHTML = ['All', ...Object.keys(TAGS)].map(t => `<button class="chip ${state.tag === t ? 'on' : ''}" data-tag="${t}">${t === 'All' ? '' : `<i style="background:${TAGS[t]}"></i>`}${t}${t === 'All' ? '' : ` <span style="opacity:.6">${count(t)}</span>`}</button>`).join('');
 }
-$('#stats').innerHTML = `<div><b>${PUSHES.length}</b>Pushes</div><div><b>${WAITING.items.length}</b>Waiting to push</div><div><b>${PUSHES.reduce((a, p) => a + p.items.length, 0)}</b>Changes</div><div><b>${new Set(PUSHES.map(p => p.date)).size} days</b>Nov 11 to Nov 14</div>`;
+$('#stats').innerHTML = `<div><b>${PUSHES.length}</b>Pushes</div><div><b>${WAITING.items.length}</b>Waiting to push</div><div><b>${PUSHES.reduce((a, p) => a + p.items.length, 0)}</b>Changes</div><div><b>${new Set(PUSHES.map(p => p.date)).size} days</b>${(() => { const ds = PUSHES.map(p => p.date).sort(), f = d => new Date(d + 'T12:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); return f(ds[0]) + ' to ' + f(ds[ds.length - 1]); })()}</div>`;
 
 /* highlight the current day in the jump-to menu */
 let io;
