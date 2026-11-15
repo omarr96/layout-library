@@ -198,6 +198,24 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "site-builder",
+      "slug": "ai-journey-v2",
+      "title": "Build to publish · AI journey v2",
+      "desc": "Restyled flow: richer start page with typing placeholder and idea cards, matching questions, plan and build steps, builder-style review, simpler home base, and a new domain page (find or connect, auto-connect first, live record checks).",
+      "tags": [
+        "AI builder",
+        "Flow",
+        "v2"
+      ],
+      "date": "2026-11-15",
+      "pages": [
+        {
+          "label": "Prototype",
+          "href": "site-builder/ai-journey-v2/index.html"
+        }
+      ]
+    },
+    {
       "cat": "site-dashboard",
       "slug": "sites-list",
       "title": "Sites List · Agency",
