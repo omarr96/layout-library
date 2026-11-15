@@ -216,6 +216,24 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "site-builder",
+      "slug": "seo-system",
+      "title": "SEO system · Builder editor",
+      "desc": "SEO redesigned in the AI builder look: page score card, fix-first list and compact section rows that open in a wide flyout beside the panel, with live Google preview, social cards, structured data, whole-site view and agent.",
+      "tags": [
+        "SEO",
+        "Editor",
+        "Builder"
+      ],
+      "date": "2026-11-15",
+      "pages": [
+        {
+          "label": "Editor",
+          "href": "site-builder/seo-system/index.html"
+        }
+      ]
+    },
+    {
       "cat": "site-dashboard",
       "slug": "sites-list",
       "title": "Sites List · Agency",

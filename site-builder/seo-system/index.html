@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO · Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Tokens copied from apps/web/src/styles/editor-v2.css (.ab-shell.fb-shell.is-v2). Same names, same values. */
+:root{color-scheme:light}
+.app{
+  --v2-desk:#f4f4f6;--v2-pool-a:transparent;--v2-pool-b:transparent;--v2-pool-c:transparent;
+  --v2-glass:#ffffff;--v2-glass-hi:none;--v2-pop:#ffffff;
+  --v2-hair:#ececef;--v2-hair-2:#f2f2f5;--v2-field:#ffffff;--v2-field-hover:#f7f7fa;
+  --v2-chip:#fff;--v2-text:#16151d;--v2-label:#5b5a66;--v2-faint:#8d8c97;--v2-accent:#7c4dff;--v2-accent-ink:#6a3cf0;
+  --v2-accent-tint:#f1ebff;--v2-shadow:0 22px 50px -18px rgb(20 15 50/.35);
+  --ed-field-line:#e6e5ec;--ed-tray:#f1f0f5;--ed-dashed:#cfcdd9;--ed-up:#b45309;
+  --good:#12b76a;--good-ink:#079455;--warn:#f59e0b;--warn-ink:#dc6803;--bad:#f04438;--bad-ink:#d92d20;
+  --good-tint:rgb(18 183 106/.12);--warn-tint:rgb(245 158 11/.14);--bad-tint:rgb(240 68 56/.11);
+  --ai:#7c4dff;--ai-tint:#f4efff;--ai-line:#dccfff;
+  --k-h:34px;--k-r:9px;--k-med:160ms;--k-ease:cubic-bezier(.2,.7,.3,1);
+}
+.app[data-theme=dark]{
+  color-scheme:dark;
+  --v2-desk:#0e0e12;--v2-glass:#16161b;--v2-pop:#1b1b21;
+  --v2-hair:rgb(255 255 255/.08);--v2-hair-2:rgb(255 255 255/.05);--v2-field:rgb(255 255 255/.04);--v2-field-hover:rgb(255 255 255/.08);
+  --v2-chip:rgb(255 255 255/.1);--v2-text:#ececf1;--v2-label:#a1a1ad;--v2-faint:#6e6e79;--v2-accent:#a78bfa;--v2-accent-ink:#c4b5fd;
+  --v2-accent-tint:rgb(167 139 250/.16);--v2-shadow:0 20px 50px -12px rgb(0 0 0/.75);
+  --ed-field-line:rgb(255 255 255/.1);--ed-tray:rgb(255 255 255/.07);--ed-dashed:rgb(255 255 255/.22);
+  --good-ink:#34d399;--warn-ink:#fbbf24;--bad-ink:#ff8a80;--ai:#b69cff;--ai-tint:rgb(182 156 255/.13);--ai-line:rgb(182 156 255/.3);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:'Inter',system-ui,sans-serif;font-size:13.5px;background:#f4f4f6;color:#16151d;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+input,textarea,select{font:inherit;color:inherit}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+
+/* ---- prototype bar (not part of the product) ---- */
+.proto{flex:none;display:flex;gap:6px;align-items:center;padding:8px 14px;background:#fff;color:#6b6b73;font-size:12.5px;flex-wrap:wrap;border-bottom:1px solid #ececef}
+.proto b{color:#16151d;font-weight:600;margin-right:6px}
+.proto button{border:1px solid #e6e5ec;background:#fff;color:#3a3946;border-radius:8px;padding:5px 10px;font-size:12px}
+.proto button:hover{border-color:#7c4dff;color:#7c4dff}
+.proto .sp{flex:1}
+
+/* ---- shell: same frame as the AI builder ---- */
+.app{flex:1;min-height:0;display:grid;grid-template-rows:64px minmax(0,1fr);position:relative;overflow:hidden;color:var(--v2-text);background:var(--v2-desk)}
+.glass{position:relative;background:var(--v2-glass)}
+.top{display:flex;align-items:center;gap:12px;padding:0 14px;border-bottom:1px solid var(--v2-hair);background:var(--v2-glass);min-width:0}
+.appi{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;display:grid;place-items:center;flex:none}
+.sitebtn{display:flex;align-items:center;gap:6px;border:0;background:transparent;padding:6px 8px;border-radius:8px;white-space:nowrap;font-size:14.5px}
+.sitebtn:hover{background:var(--v2-field-hover)}
+.sitebtn b{font-weight:600}.sitebtn small{color:var(--v2-faint);font-size:13px}
+.mode{display:flex;padding:3px;border-radius:11px;border:1px solid var(--v2-hair);background:var(--v2-glass);flex:none}
+.mode button{height:34px;padding:0 13px;border:0;border-radius:8px;background:transparent;display:flex;gap:7px;align-items:center;font-weight:500;color:var(--v2-label);font-size:14px}
+.mode button.on{background:var(--v2-accent);color:#fff}
+.app[data-theme=dark] .mode button.on{color:#0e0e12}
+.urlb{display:flex;align-items:center;gap:10px;height:42px;padding:0 12px;border:1px solid var(--v2-hair);border-radius:11px;margin:0 auto;min-width:0;color:var(--v2-text);font-size:14px}
+.urlb .u{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.urlb svg{color:var(--v2-faint)}
+#pagebtn{display:flex;align-items:center;gap:6px;border:0;background:transparent;font-weight:600;padding:4px 6px;border-radius:7px;white-space:nowrap}
+#pagebtn:hover{background:var(--v2-field-hover)}
+.dev{display:flex;padding:3px;border-radius:11px;border:1px solid var(--v2-hair);flex:none}
+.dev button{width:38px;height:34px;border:0;border-radius:8px;background:transparent;color:var(--v2-faint);display:grid;place-items:center}
+.dev button.on{background:var(--v2-accent-tint);color:var(--v2-accent)}
+.ib{width:36px;height:36px;border:0;border-radius:9px;background:transparent;color:var(--v2-faint);display:grid;place-items:center;flex:none}
+.ib:hover{background:var(--v2-field-hover);color:var(--v2-text)}.ib.ok{color:var(--good)}
+.btn-pub{height:42px;padding:0 18px;border:0;border-radius:11px;background:var(--v2-accent);color:#fff;font-weight:600;font-size:15px;flex:none}
+.btn-pub:hover{filter:brightness(1.06)}
+.app[data-theme=dark] .btn-pub{color:#0e0e12}
+.mid{display:flex;min-height:0;position:relative}
+.rail{flex:none;width:64px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 0;border-right:1px solid var(--v2-hair);background:var(--v2-glass)}
+.rbtn{position:relative;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--v2-label);display:grid;place-items:center}
+.rbtn svg.i.lg{width:20px;height:20px}
+.rbtn:hover{background:var(--v2-field-hover);color:var(--v2-text)}
+.rbtn.on{background:var(--v2-accent-tint);color:var(--v2-accent)}
+.rbtn.ai.on{background:var(--v2-accent);color:#fff;box-shadow:0 6px 14px -6px rgb(124 77 255/.8)}
+.rbtn.av{width:40px;height:40px;border-radius:50%;background:#16151d;color:#fff;font-weight:600;font-size:16px}
+.app[data-theme=dark] .rbtn.av{background:#ececf1;color:#16151d}
+.rbadge{position:absolute;top:4px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;font-size:10px;font-weight:600;display:grid;place-items:center;color:#fff;border:2px solid var(--v2-glass)}
+.rbadge.warn{background:var(--warn)}.rbadge.bad{background:var(--bad)}.rbadge.good{background:var(--good)}
+.rail .sp{flex:1}
+.panel{flex:none;width:384px;display:flex;flex-direction:column;border-right:1px solid var(--v2-hair);min-height:0;background:var(--v2-glass)}
+.phead{display:flex;align-items:center;gap:10px;height:58px;padding:0 12px 0 20px;border-bottom:1px solid var(--v2-hair);flex:none}
+.phead h2{margin:0;font-size:16.5px;font-weight:600}
+.phead .sub{font-size:13px;color:var(--good-ink);display:flex;align-items:center;gap:6px}
+.phead .sub::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--good)}
+.phead .sp{flex:1}
+.pscroll{flex:1;min-height:0;overflow:auto;padding:14px 16px 22px;display:grid;gap:12px;align-content:start;grid-auto-rows:max-content}
+.stage{flex:1;min-width:0;padding:16px;display:grid;place-items:start center;overflow:auto}
+.status{display:none}
+
+/* ---- primitives ---- */
+.card{display:grid;gap:10px;padding:16px;border-radius:14px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line)}
+.title{font-size:11px;color:var(--v2-faint);margin:0;display:flex;align-items:center;gap:6px}
+.note{margin:0;color:var(--v2-faint);font-size:11px;line-height:1.45}
+.fname{color:var(--v2-label);font-size:11.5px;font-weight:500}
+.field{display:grid;gap:5px;min-width:0}
+.flabel{display:flex;align-items:center;gap:4px;min-height:18px}
+.flabel .sp{flex:1}
+.vin{width:100%;height:var(--k-h);padding:0 11px;border:0;border-radius:var(--k-r);background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line);color:var(--v2-text);outline:none;font-size:13.5px}
+textarea.vin{height:auto;padding:7px 9px;resize:vertical;line-height:1.45}
+.vin:focus{box-shadow:inset 0 0 0 1.5px var(--v2-accent)}
+.vin::placeholder{color:var(--v2-faint)}
+select.vin{appearance:none;padding-right:24px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23858ca0' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+.count{font:10.5px 'Geist Mono',monospace;color:var(--v2-faint)}.count.ok{color:var(--good-ink)}.count.over{color:var(--ed-up)}
+.meter{height:3px;border-radius:2px;background:var(--ed-tray);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--good);transition:width var(--k-med) var(--k-ease)}.meter i.over{background:var(--warn)}.meter i.short{background:var(--warn)}
+.small{height:32px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:var(--k-r);background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line);font-size:13px;font-weight:500;white-space:nowrap}
+.small:hover{background:var(--v2-field-hover)}
+.small.primary{background:var(--v2-accent);color:#fff;box-shadow:none}
+.app[data-theme=dark] .small.primary{color:#0a0b0e}
+.small.ai{background:var(--ai-tint);color:var(--ai);box-shadow:inset 0 0 0 1px var(--ai-line)}
+.small.ai:hover{background:var(--ai-tint);filter:brightness(1.05)}
+.small.wide{width:100%}
+.small.sm{height:28px;padding:0 10px;font-size:12.5px}
+.textbtn{border:0;background:transparent;color:var(--v2-accent-ink);font-size:11.5px;padding:2px 4px;border-radius:4px}
+.textbtn:hover{background:var(--v2-accent-tint)}
+.textbtn.ai{color:var(--ai)}.textbtn.ai:hover{background:var(--ai-tint)}
+.textbtn.mute{color:var(--v2-label)}
+.iconbtn{width:24px;height:24px;display:grid;place-items:center;border:0;border-radius:5px;background:transparent;color:var(--v2-label)}
+.iconbtn:hover{background:var(--ed-tray);color:var(--v2-text)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:3px;padding:4px;border-radius:11px;background:var(--ed-tray)}
+.seg button{height:34px;border:0;border-radius:8px;background:transparent;color:var(--v2-label);font-size:13.5px;font-weight:500;display:flex;gap:5px;align-items:center;justify-content:center;white-space:nowrap}
+.seg button:hover{color:var(--v2-text)}
+.seg button.on{background:var(--v2-chip);color:var(--v2-text);box-shadow:0 1px 3px rgb(20 15 50/.12)}
+.switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px}
+.switchrow small{display:block;margin-top:2px;color:var(--v2-faint);font-size:11px;line-height:1.4}
+.sw{position:relative;flex:none;width:34px;height:20px;border:0;border-radius:10px;background:var(--ed-dashed)}
+.sw::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.3);transition:transform var(--k-med) var(--k-ease)}
+.sw.on{background:var(--v2-accent)}.sw.on::after{transform:translateX(14px)}
+.tag{display:inline-flex;align-items:center;gap:4px;height:18px;padding:0 6px;border-radius:3px;font-size:10.5px;font-weight:500;background:var(--ed-tray);color:var(--v2-label);white-space:nowrap}
+.tag.good{background:var(--good-tint);color:var(--good-ink)}.tag.warn{background:var(--warn-tint);color:var(--warn-ink)}.tag.bad{background:var(--bad-tint);color:var(--bad-ink)}.tag.ai{background:var(--ai-tint);color:var(--ai)}.tag.auto{background:var(--v2-accent-tint);color:var(--v2-accent-ink)}
+.dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--v2-faint)}.dot.good{background:var(--good)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+svg.i{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+svg.i.lg{width:18px;height:18px}
+code,.code{font:11.5px/1.6 'Geist Mono',monospace}
+pre.codeblock{margin:0;padding:10px 12px;border-radius:8px;background:#141a2e;color:#e8e6f5;overflow:auto;font:11.5px/1.7 'Geist Mono',monospace;max-height:260px;white-space:pre}
+.app[data-theme=dark] pre.codeblock{background:#050507}
+pre.codeblock .c{color:#8b93b3}.pre .k{color:#9fb2ff}
+.row{display:flex;align-items:center;gap:8px}.row .sp{flex:1}
+.gap{display:grid;gap:12px}
+
+/* ---- ring ---- */
+.ring{position:relative;display:grid;place-items:center;flex:none;--ring:var(--v2-label)}
+.ring.good{--ring:var(--good)}.ring.warn{--ring:var(--warn)}.ring.bad{--ring:var(--bad)}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:3.2}.ring .tr{stroke:var(--ed-field-line)}.ring .fl{stroke:var(--ring);stroke-linecap:round;transition:stroke-dashoffset .5s ease}
+.ring b{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.lvl-good{color:var(--good-ink)}.lvl-warn{color:var(--warn-ink)}.lvl-bad{color:var(--bad-ink)}
+
+/* ---- panel pieces ---- */
+.scorecard{display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:center}
+.scorecard .sum{display:grid;gap:2px}.scorecard .sum b{font-size:13px;font-weight:600}.scorecard .sum em{font-style:normal;font-weight:600;font-size:12px}.scorecard .sum small{color:var(--v2-label);font-size:11.5px}
+.cats{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.cat{display:grid;gap:4px;border:0;background:transparent;padding:0;text-align:left}
+.cat span{font-size:10px;color:var(--v2-faint);white-space:nowrap}
+.cat .meter{height:4px}.cat .meter i.warn{background:var(--warn)}.cat .meter i.bad{background:var(--bad)}.cat .meter i.good{background:var(--good)}
+.cat b{font-size:11px;font-weight:600}
+.legend{grid-column:1/-1;display:flex;gap:6px;align-items:center;color:var(--v2-faint);font-size:11px}
+.actions{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.act{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;padding:9px 0;border-top:1px solid var(--v2-hair-2)}
+.act:first-child{border-top:0;padding-top:2px}
+.act .dot{margin-top:5px}
+.act p{margin:0;font-size:12px;line-height:1.4}
+.act .meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:5px}
+.act .pri{font-size:10px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.acc{border-radius:14px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line);overflow:hidden}
+.acc>button.head{width:100%;display:flex;align-items:center;gap:10px;padding:14px 16px;border:0;background:transparent;font-weight:600;font-size:14px;text-align:left}
+.acc>button.head:hover{background:var(--v2-field-hover)}
+.acc .chev{margin-left:auto;color:var(--v2-faint);transition:transform var(--k-med)}
+.acc.open .chev{transform:rotate(90deg)}
+.acc .body{display:none;padding:2px 16px 18px;gap:14px}
+.acc.open .body{display:grid;animation:fade .18s ease-out}
+.acc .ico{color:var(--v2-label)}
+@keyframes fade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.checks{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.checks li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:start;font-size:12px;line-height:1.4}
+.checks li .dot{margin-top:5px}
+.checks .t{display:block}.checks .t small{display:block;color:var(--v2-faint);font-size:10.5px}
+
+/* ---- SERP & social previews ---- */
+.serp{display:grid;gap:3px;padding:11px 13px;border-radius:8px;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.12);font-family:Arial,Helvetica,sans-serif;color:#202124}
+.serp .site{display:flex;align-items:center;gap:8px;font-size:12px}
+.serp .fav{width:22px;height:22px;border-radius:50%;background:#f1f3f4;display:grid;place-items:center;font-size:10px;font-weight:700;color:#5f6368;flex:none}
+.serp .sn{font-size:13px;line-height:1.2}.serp .su{font-size:11px;color:#4d5156;line-height:1.2}
+.serp .st{color:#1a0dab;font-size:17px;line-height:1.3;margin-top:3px}
+.serp .sd{color:#4d5156;font-size:12.5px;line-height:1.5}
+.serp .sd b{font-weight:700;color:#3c4043}
+.serp.mobile{max-width:300px}.serp.mobile .st{font-size:16px}
+.share{display:grid;overflow:hidden;border-radius:8px;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.12);color:#1c1e21;font-family:Arial,Helvetica,sans-serif}
+.share .img{height:122px;display:grid;place-items:center;background:#e4e6eb;color:#65676b;font-size:12px;background-size:cover;background-position:center}
+.share .tx{display:grid;gap:2px;padding:8px 11px 10px;background:#f2f3f5}
+.share .tx small{color:#65676b;text-transform:uppercase;font-size:10.5px}.share .tx b{font-size:13.5px;line-height:1.3}.share .tx span{color:#65676b;font-size:12px;line-height:1.35}
+.share.x{border-radius:14px;position:relative;border:1px solid #cfd9de;box-shadow:none}.share.x .tx{position:absolute;left:8px;bottom:8px;background:rgb(0 0 0/.62);color:#fff;border-radius:6px;padding:3px 8px}.share.x .tx b,.share.x .tx span{display:none}.share.x .tx small{color:#fff;text-transform:none}
+.share.x .img{height:150px}
+.share.li .tx{background:#fff;border-top:1px solid #e0e0e0}.share.li .tx small{text-transform:none}
+.img-art{background-image:linear-gradient(135deg,#e8c9a0,#b9794a 45%,#6b3f22)!important;color:#fff!important;text-shadow:0 1px 2px rgb(0 0 0/.35)}
+
+/* ---- AI tray ---- */
+.tray{display:grid;gap:6px;padding:9px;border-radius:9px;background:var(--ai-tint);box-shadow:inset 0 0 0 1px var(--ai-line);animation:fade .18s ease-out}
+.tray .th{display:flex;align-items:center;gap:6px;color:var(--ai);font-size:11.5px;font-weight:600}
+.tray .th .sp{flex:1}
+.opt{display:grid;gap:5px;padding:8px 9px;border-radius:7px;background:var(--v2-pop);box-shadow:inset 0 0 0 1px var(--v2-hair)}
+.opt:hover{box-shadow:inset 0 0 0 1px var(--ai-line)}
+.opt p{margin:0;font-size:12.5px;line-height:1.45}
+.opt .meta{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.opt .meta .sp{flex:1}
+.cmp{display:grid;gap:2px;font-size:11px;color:var(--v2-faint);line-height:1.4}
+.cmp s{color:var(--bad-ink);text-decoration-color:var(--bad-ink)}
+.skel{height:44px;border-radius:7px;background:linear-gradient(90deg,var(--v2-pop),var(--ed-tray),var(--v2-pop));background-size:200% 100%;animation:sh 1.1s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.menu{position:absolute;z-index:30;min-width:200px;padding:5px;border-radius:10px;background:var(--v2-pop);box-shadow:var(--v2-shadow),inset 0 0 0 1px var(--v2-hair);display:grid;gap:1px;animation:fade .14s ease-out}
+.menu button{display:flex;align-items:center;gap:8px;padding:7px 9px;border:0;border-radius:6px;background:transparent;text-align:left;font-size:12px}
+.menu button:hover{background:var(--v2-accent-tint)}
+.menu .sep{height:1px;background:var(--v2-hair);margin:3px 2px}
+.menu .mt{padding:5px 9px 3px;font-size:10.5px;color:var(--v2-faint)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:12px;border:0;background:var(--v2-chip);box-shadow:inset 0 0 0 1px var(--ed-field-line);font-size:11.5px}
+.chip.sel{background:var(--v2-accent-tint);color:var(--v2-accent-ink);box-shadow:inset 0 0 0 1px var(--v2-accent)}
+.chip.sug{background:transparent;border:0;box-shadow:inset 0 0 0 1px var(--ai-line);color:var(--ai);border-style:dashed}
+.chip small{color:var(--v2-faint);font-size:10px}
+.chip .x{opacity:.6;display:grid}.chip .x:hover{opacity:1}
+
+/* ---- images list ---- */
+.imgrow{display:grid;grid-template-columns:40px 1fr;gap:4px 9px;align-items:start;padding:8px;border-radius:8px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line)}
+.imgrow .th{width:40px;height:40px;border-radius:6px;grid-row:span 2}
+.imgrow .fn{font:11px 'Geist Mono',monospace;color:var(--v2-faint);display:flex;align-items:center;gap:6px;min-width:0}
+.imgrow .fn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ---- canvas mock ---- */
+.site-mock{width:100%;max-width:100%;background:#fffdf8;color:#2a1d12;border-radius:16px;box-shadow:0 0 0 1px var(--v2-hair);transition:max-width .3s ease;overflow:hidden;font-family:Georgia,serif}
+.site-mock nav{display:flex;gap:18px;align-items:center;padding:16px 28px;border-bottom:1px solid #eee3d3;font-family:'Inter',sans-serif;font-size:13px}
+.site-mock nav b{font-family:Georgia,serif;font-size:18px;margin-right:auto}
+.hero{padding:44px 28px 26px;display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:center}
+.hero h1{font-size:40px;line-height:1.08;margin:0 0 12px}.hero p{font-family:'Inter',sans-serif;line-height:1.6;color:#5c4632;margin:0 0 16px}
+.hero .cta{display:inline-block;background:#2a1d12;color:#fff;padding:10px 18px;border-radius:999px;font:500 13px 'Inter',sans-serif}
+.mock-img{position:relative;border-radius:12px;min-height:200px;outline-offset:3px}
+.mock-img.hl{outline:2px solid var(--warn);animation:pulse 1.2s ease-in-out 3}
+.mock-img .flag{position:absolute;left:8px;top:8px;background:var(--warn);color:#fff;font:600 10.5px 'Inter',sans-serif;padding:2px 7px;border-radius:4px}
+@keyframes pulse{50%{outline-color:transparent}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:6px 28px 30px}
+.grid3 .mock-img{min-height:110px}
+.sel-h1{outline:2px solid #3b5bff;outline-offset:4px}
+
+/* ---- SEO center ---- */
+.center{position:absolute;left:64px;right:0;top:0;bottom:0;z-index:20;display:none;flex-direction:column;background:var(--v2-glass);animation:fade .18s ease-out}
+.center.open{display:flex}
+.chead{display:flex;align-items:center;gap:10px;padding:0 16px 0 22px;height:58px;border-bottom:1px solid var(--v2-hair);flex:none}
+.chead h2{margin:0;font-size:16.5px;font-weight:600}
+.chead .sp{flex:1}
+.cbody{flex:1;display:flex;min-height:0}
+.cnav{flex:none;width:240px;padding:10px;border-right:1px solid var(--v2-hair);display:grid;gap:2px;align-content:start;overflow:auto}
+.cnav .grp{padding:10px 8px 4px;font-size:10.5px;color:var(--v2-faint);text-transform:uppercase;letter-spacing:.05em}
+.cnav button{display:flex;align-items:center;gap:10px;padding:9px 11px;border:0;border-radius:10px;background:transparent;text-align:left;font-size:14px;color:var(--v2-label)}
+.cnav button:hover{background:var(--v2-field-hover);color:var(--v2-text)}
+.cnav button.on{background:var(--v2-accent-tint);color:var(--v2-accent-ink);font-weight:600}
+.cnav .nb{margin-left:auto}
+.cmain{flex:1;min-width:0;overflow:auto;padding:22px 26px 40px}
+.cin{max-width:860px;margin:0 auto;display:grid;gap:16px}
+.cin h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.cin .lead{margin:-8px 0 0;color:var(--v2-label);font-size:13px;line-height:1.5;max-width:640px}
+.sect{display:grid;gap:14px;padding:20px;border-radius:16px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line)}
+.sect h4{margin:0;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+.sect .hint{margin:-6px 0 0;color:var(--v2-label);font-size:12px;line-height:1.5}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{padding:12px 14px;border-radius:10px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line);display:grid;gap:2px;border:0;text-align:left}
+button.stat:hover{background:var(--v2-field-hover)}
+.stat b{font-size:24px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.stat span{color:var(--v2-label);font-size:11.5px}
+.hero-score{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center}
+.bars{display:grid;gap:9px}
+.barrow{display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;font-size:12px;border:0;background:transparent;text-align:left;padding:0}
+.barrow .meter{height:6px}
+.barrow .meter i.warn{background:var(--warn)}.barrow .meter i.bad{background:var(--bad)}
+.table{width:100%;border-collapse:collapse;font-size:12px}
+.table th{text-align:left;font-weight:500;color:var(--v2-faint);font-size:11px;padding:6px 8px;border-bottom:1px solid var(--v2-hair)}
+.table td{padding:9px 8px;border-bottom:1px solid var(--v2-hair-2);vertical-align:middle}
+.table tr.click{cursor:pointer}.table tr.click:hover td{background:var(--v2-field-hover)}
+.pn b{display:block;font-weight:600}.pn small{color:var(--v2-faint);font:11px 'Geist Mono',monospace}
+.issue{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;border-radius:9px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line);width:100%;text-align:left;border:0}
+.issue:hover{background:var(--v2-field-hover)}
+.issue b{font-weight:600;font-size:12.5px;display:block}.issue small{color:var(--v2-label);font-size:11.5px}
+.group-h{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;margin:4px 0 -4px}
+.notice{display:flex;gap:10px;padding:10px 12px;border-radius:9px;font-size:12px;line-height:1.5;background:var(--warn-tint);color:var(--v2-text)}
+.notice.info{background:var(--v2-accent-tint)}.notice.bad{background:var(--bad-tint)}.notice svg{margin-top:2px}
+.notice.dash{background:transparent;box-shadow:inset 0 0 0 1px var(--ed-dashed);border-radius:9px}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.autos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.autos div{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.4}.autos svg{color:var(--good-ink);margin-top:2px}
+.tpl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tok{display:inline-flex;height:22px;align-items:center;padding:0 8px;border-radius:5px;background:var(--v2-accent-tint);color:var(--v2-accent-ink);font:11.5px 'Geist Mono',monospace;border:0}
+.tok:hover{background:var(--v2-accent);color:#fff}
+.list-edit{display:grid;gap:6px}
+.rrow{display:grid;grid-template-columns:1fr auto 1fr auto auto;gap:8px;align-items:center}
+
+/* ---- modal ---- */
+.scrim{position:absolute;inset:0;z-index:50;background:rgb(10 15 40/.35);display:none;place-items:center;padding:20px}
+.scrim.open{display:grid;animation:fade .15s}
+.modal{width:min(640px,100%);max-height:100%;display:flex;flex-direction:column;border-radius:14px;background:var(--v2-pop);box-shadow:var(--v2-shadow),inset 0 0 0 1px var(--v2-hair);overflow:hidden}
+.modal header{padding:14px 16px;border-bottom:1px solid var(--v2-hair);display:flex;gap:8px;align-items:center}
+.modal header h3{margin:0;font-size:14px;font-weight:600}.modal header .sp{flex:1}
+.modal .mb{overflow:auto;padding:12px 16px;display:grid;gap:8px}
+.modal footer{padding:12px 16px;border-top:1px solid var(--v2-hair);display:flex;gap:8px;align-items:center;background:var(--v2-field)}
+.modal footer .sp{flex:1}
+.chg{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:10px;border-radius:9px;background:var(--v2-field);box-shadow:inset 0 0 0 1px var(--ed-field-line)}
+.chg input{margin-top:3px;accent-color:var(--v2-accent)}
+.chg .new{font-size:12.5px;line-height:1.45}.chg .old{font-size:11.5px;color:var(--v2-faint)}.chg .old s{color:var(--bad-ink)}
+.toast{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);z-index:80;display:none;align-items:center;gap:12px;padding:9px 12px;border-radius:10px;background:#141a2e;color:#fff;box-shadow:var(--v2-shadow)}
+.toast.open{display:flex;animation:fade .15s}
+.toast button{border:0;background:transparent;color:#9fb2ff;font-weight:600}
+.pop{position:absolute;z-index:60;width:300px;padding:12px;border-radius:12px;background:var(--v2-pop);box-shadow:var(--v2-shadow),inset 0 0 0 1px var(--v2-hair);display:grid;gap:8px;font-size:12px;line-height:1.5;animation:fade .14s}
+.pop h5{margin:0;font-size:12.5px}.pop p{margin:0;color:var(--v2-label)}
+.pop ul{margin:0;padding-left:16px;color:var(--v2-label)}
+
+/* ---- responsive ---- */
+@media (max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)}.hero-score{grid-template-columns:auto 1fr}.hero-score>:last-child{grid-column:1/-1}}
+@media (max-width:900px){
+  .stage{display:none}.panel{width:auto;flex:1;border-right:0}
+  .mid{flex-direction:column-reverse}
+  .rail{width:auto;height:58px;flex-direction:row;justify-content:space-around;border-right:0;border-top:1px solid var(--v2-hair);padding:0 6px}
+  .rail .av,.rail .moon{display:none}
+  .rail .sp{display:none}
+  .center{left:0;bottom:58px}
+  .cbody{flex-direction:column}
+  .cnav{width:auto;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--v2-hair);padding:8px;gap:4px}
+  .cnav .grp{display:none}.cnav button{white-space:nowrap;flex:none}.cnav .nb{display:none}
+  .cmain{padding:16px 14px 40px;width:100%}
+  .cin{grid-template-columns:minmax(0,1fr)}
+  .hero-score{grid-template-columns:1fr}.bars{min-width:0!important}
+  .two,.kv,.autos{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .rrow{grid-template-columns:1fr 1fr}
+  .urlb,.dev,.top .hist,.mode .t,.sitebtn small{display:none}.btn-pub{margin-left:auto;padding:0 14px}.top{gap:8px;padding:0 10px}
+  .status>span:last-child{display:none}.status{white-space:nowrap;overflow:hidden}
+  .barrow{grid-template-columns:90px 1fr 32px}
+  .table .hide-sm{display:none}
+}
+/* ---- agent panel (same as the builder's Agent) ---- */
+.agent{flex:1;display:flex;flex-direction:column;min-height:0}
+.agent .msgs{flex:1;overflow:auto;padding:18px 18px 10px;display:grid;gap:14px;align-content:start}
+.amsg{display:grid;grid-template-columns:30px 1fr;gap:12px;font-size:14.5px;line-height:1.6}
+.amsg .av{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#a78bfa,#7c4dff);color:#fff;display:grid;place-items:center}
+.amsg.me{grid-template-columns:1fr}.amsg.me p{justify-self:end;background:var(--v2-accent);color:#fff;padding:10px 14px;border-radius:14px 14px 4px 14px;margin:0;max-width:85%}
+.amsg p{margin:0}
+.amsg .sc{display:inline-flex;align-items:center;gap:6px;margin-top:8px}
+.achips{display:flex;gap:8px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none}
+.achips button{flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:12px;border:1px solid var(--v2-hair);background:var(--v2-glass);font-size:13.5px;color:var(--v2-text)}
+.achips button svg{color:var(--v2-accent)}
+.achips button:hover{border-color:var(--v2-accent)}
+.abox{margin:0 16px 16px;border:1px solid var(--ed-field-line);border-radius:16px;padding:12px 12px 10px;background:var(--v2-glass)}
+.abox:focus-within{border-color:var(--v2-accent)}
+.abox textarea{width:100%;border:0;outline:none;resize:none;min-height:46px;background:transparent;font-size:14px;color:var(--v2-text)}
+.abox .row{gap:6px}
+.abox .send{width:36px;height:36px;border-radius:10px;border:0;background:var(--ed-tray);color:var(--v2-label);display:grid;place-items:center;margin-left:auto}
+.abox .send.ready{background:var(--v2-accent);color:#fff}
+/* panel tabs like the History panel */
+.ptabs{padding:14px 16px 0}
+/* preview mode + device sizes */
+.app.preview .panel,.app.preview .center{display:none!important}
+.app.preview .mock-img .flag{display:none}
+.stage .site-mock.tab{max-width:768px}.stage .site-mock.mob{max-width:390px}
+.stage .site-mock.mob .hero,.stage .site-mock.tab .hero{grid-template-columns:1fr}
+.stage .site-mock.mob .grid3{grid-template-columns:1fr 1fr}
+.stage .site-mock.mob nav span{display:none}
+
+/* ================= section flyout =================
+   The SEO panel is a short list; a section opens in a wider panel beside it. */
+.fly{position:absolute;top:0;bottom:0;left:448px;width:min(560px,calc(100% - 460px));z-index:15;display:flex;flex-direction:column;background:var(--v2-glass);border-right:1px solid var(--v2-hair);box-shadow:28px 0 60px -36px rgb(20 15 50/.45)}
+.fly.in{animation:flyin .24s cubic-bezier(.2,.8,.2,1)}
+@keyframes flyin{from{opacity:0;transform:translateX(-16px)}}
+.fhead{display:flex;align-items:center;gap:12px;height:64px;padding:0 12px 0 18px;border-bottom:1px solid var(--v2-hair);flex:none}
+.fhead .ico{width:38px;height:38px;border-radius:11px;background:var(--v2-accent-tint);color:var(--v2-accent);display:grid;place-items:center;flex:none}
+.fhead .ft{min-width:0}
+.fhead h3{margin:0;font-size:16.5px;font-weight:600;letter-spacing:-.01em}
+.fhead small{display:block;color:var(--v2-faint);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fhead .sp{flex:1}
+.fhead .fnav{display:flex;gap:2px;padding:2px;border-radius:10px;background:var(--ed-tray)}
+.fhead .iconbtn{width:34px;height:34px}
+.fhead .iconbtn:disabled{opacity:.35;cursor:default}
+.fbody{flex:1;min-height:0;overflow:auto;padding:22px 24px 36px;display:grid;gap:18px;align-content:start;grid-auto-rows:max-content}
+.fbody .serp{padding:16px 18px}
+.fbody .share .img{height:180px}.fbody .share.x .img{height:220px}
+/* the open row in the list */
+.acc.on{background:var(--v2-accent-tint)}
+.acc.on .head{color:var(--v2-accent-ink);font-weight:600}
+.acc.on .ico{background:var(--v2-accent);color:#fff}
+.acc.on .chev{color:var(--v2-accent)}
+.app.preview .fly{display:none}
+@media (max-width:900px){.fly{left:0;right:0;width:auto;bottom:58px;z-index:25}.fbody{padding:18px 16px 30px}}
+
+/* ================= weight & spacing pass =================
+   Type scale: 11.5 · 12.5 · 13.5 · 14.5 · 16.5 · 24
+   Weights:    400 body · 500 UI / labels · 600 titles & numbers */
+.pscroll{padding:16px 16px 28px;gap:12px}
+.note{font-size:12.5px;line-height:1.55;color:var(--v2-faint)}
+.title{font-size:12.5px;font-weight:600;color:var(--v2-text);gap:8px}
+.fname{font-size:13px;font-weight:500;color:var(--v2-text)}
+.field{gap:8px}
+.flabel{min-height:20px}
+.count{font-size:11.5px}
+.meter{height:4px;border-radius:99px}
+.tag{height:22px;padding:0 8px;border-radius:6px;font-size:11.5px;font-weight:600;letter-spacing:.01em}
+.textbtn{font-size:12.5px;font-weight:500;padding:3px 6px;border-radius:6px}
+.small{font-weight:500}.small.primary{font-weight:600}
+.iconbtn{border-radius:8px}
+.phead h2{font-weight:600;letter-spacing:-.01em}
+.phead .tag{height:24px}
+
+/* score card */
+.scorecard{gap:14px 16px}
+.scorecard .sum{gap:3px}
+.scorecard .sum b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.scorecard .sum em{font-size:13px;font-weight:600}
+.scorecard .sum small{font-size:12.5px;color:var(--v2-label)}
+.ring b{font-weight:600;letter-spacing:-.02em}
+.cats{gap:10px;padding-top:4px}
+.cat{gap:6px}
+.cat span{font-size:11.5px;font-weight:500;color:var(--v2-label)}
+.cat .meter{height:5px}
+.legend{font-size:12px;padding-top:12px;border-top:1px solid var(--v2-hair-2);gap:8px}
+
+/* fix-first list */
+#nextacts{gap:4px}
+#nextacts .row:first-child{padding-bottom:6px}
+.act{gap:6px 12px;padding:14px 0}
+.act:first-child{padding-top:6px}
+.act .dot{margin-top:7px}
+.act p{font-size:13.5px;line-height:1.5;color:var(--v2-text)}
+.act .meta{gap:8px;margin-top:8px}
+.act .pri{height:20px;padding:0 7px;border-radius:5px;display:inline-flex;align-items:center;font-size:10.5px;font-weight:600;letter-spacing:.06em}
+.act .pri.lvl-bad{background:var(--bad-tint)}.act .pri.lvl-warn{background:var(--warn-tint)}.act .pri.lvl-good{background:var(--good-tint)}
+
+/* accordions read as one grouped list with hairline dividers */
+.acc{border-radius:0;box-shadow:inset 1px 0 0 var(--ed-field-line),inset -1px 0 0 var(--ed-field-line),inset 0 -1px 0 var(--ed-field-line)}
+.acc+.acc{margin-top:-12px}
+.card+.acc{border-radius:14px 14px 0 0;box-shadow:inset 0 0 0 1px var(--ed-field-line)}
+.acc:last-child{border-radius:0 0 14px 14px}
+.acc>button.head{gap:12px;padding:12px 14px;font-size:14px;font-weight:500;color:var(--v2-text)}
+.acc .ico{width:30px;height:30px;border-radius:9px;background:var(--ed-tray);display:grid;place-items:center;color:var(--v2-label);flex:none}
+.acc.open .ico{background:var(--v2-accent-tint);color:var(--v2-accent)}
+.acc .head .dot{margin-left:auto}
+.acc .head .dot~.chev{margin-left:10px}
+.acc .head .count{font-size:11.5px;padding:1px 7px;border-radius:99px;background:var(--ed-tray);color:var(--v2-label)}
+.acc .body{padding:4px 14px 18px;gap:16px}
+.acc.open{background:var(--v2-glass)}
+.checks{gap:10px}.checks li{font-size:13px;gap:10px;line-height:1.5}.checks .t small{font-size:12px;margin-top:2px}
+
+/* previews and AI tray */
+.serp{padding:14px 16px;border-radius:12px;gap:4px}
+.share{border-radius:12px}
+.tray{gap:8px;padding:12px;border-radius:12px}
+.tray .th{font-size:12.5px;font-weight:600;gap:8px}
+.opt{gap:8px;padding:12px;border-radius:10px}
+.opt p{font-size:13.5px;line-height:1.5}
+.cmp{font-size:12px}
+.chip{height:28px;padding:0 11px;border-radius:99px;font-size:12.5px;font-weight:500;gap:6px}
+.imgrow{gap:6px 12px;padding:10px;border-radius:12px;grid-template-columns:44px 1fr}
+.imgrow .th{width:44px;height:44px;border-radius:8px}
+.switchrow{font-size:13.5px;font-weight:500;gap:16px}
+.switchrow small{font-size:12.5px;font-weight:400;line-height:1.5;margin-top:3px}
+.issue{padding:12px 14px;border-radius:12px;gap:12px}
+.issue b{font-size:13.5px;font-weight:600}.issue small{font-size:12.5px}
+
+/* Site SEO center */
+.chead{gap:12px}
+.cnav{padding:14px 12px;gap:2px}
+.cnav .grp{padding:16px 11px 6px;font-size:11px;font-weight:600;letter-spacing:.08em}
+.cnav button{font-weight:500}
+.cnav button.on{font-weight:600}
+.cmain{padding:32px 36px 60px}
+.cin{gap:20px;max-width:900px}
+.cin h3{font-weight:600;letter-spacing:-.025em;line-height:1.2}
+.cin .lead{margin:-10px 0 4px;font-size:14.5px;line-height:1.6;color:var(--v2-label);max-width:680px}
+.sect h4{font-size:15px;font-weight:600;gap:10px;letter-spacing:-.01em}
+.sect .hint{font-size:13px;line-height:1.55;margin:-8px 0 2px}
+.two{gap:16px}
+.stats{gap:12px}
+.stat{padding:16px 18px;border-radius:14px;gap:4px}
+.stat b{font-size:28px;font-weight:600;letter-spacing:-.03em}.stat span{font-size:12.5px;font-weight:500}
+.barrow{font-size:13px;font-weight:500;gap:12px}
+.table{font-size:13.5px}.table th{font-size:12px;font-weight:500;padding:8px 10px}.table td{padding:12px 10px}
+.pn b{font-weight:600}
+.notice{padding:12px 14px;border-radius:12px;font-size:13px;gap:12px;line-height:1.55}
+.group-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--v2-faint);margin:8px 0 -2px}
+.autos{gap:10px 16px}.autos div{font-size:13px}
+.modal header h3{font-size:16px;font-weight:600}
+.chg{padding:12px 14px;border-radius:12px;gap:6px 12px}.chg .new{font-size:13.5px;line-height:1.5}.chg .old{font-size:12.5px}
+.menu{padding:6px;border-radius:12px}.menu button{padding:9px 10px;font-size:13.5px;font-weight:500;border-radius:8px}.menu .mt{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.pop{padding:16px;border-radius:14px;gap:10px;font-size:13px}.pop h5{font-size:13.5px;font-weight:600}
+.toast{padding:11px 16px;border-radius:12px;font-size:13.5px}
+@media (max-width:900px){.cmain{padding:20px 16px 50px}}
+</style>
+</head>
+<body>
+<div class="proto">
+  <b>SEO · in the AI builder</b>
+  <span style="color:#8d95b5">Sample data only. Nothing here is saved or sent anywhere.</span>
+  <span class="sp"></span>
+  <button data-go="page">Page SEO</button>
+  <button data-go="site">Site list</button>
+  <button data-go="overview">SEO center · Overview</button>
+  <button data-go="fixall">AI batch review</button>
+  <button data-go="robots">Robots.txt</button>
+  <button data-go="schema">Structured data</button>
+  <button data-go="agent">Agent</button><button data-act="theme">◐ Theme</button>
+</div>
+
+<div class="app" id="app" data-theme="light">
+  <header class="top">
+    <span class="appi"><svg class="i lg" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/></svg></span>
+    <button class="sitebtn" data-act="sitemenu"><b>Alder &amp; Oak</b><small>· Draft</small><svg class="i" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div class="mode"><button class="on" data-act="mode" data-v="edit"><svg class="i" viewBox="0 0 24 24"><path d="M4 4l7 16 2-7 7-2z"/></svg><span class="t">Edit</span></button><button data-act="mode" data-v="preview"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span class="t">Preview</span></button></div>
+    <div class="urlb"><svg class="i" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg><span class="u">alder-oak.zejify.app/</span><button id="pagebtn" data-act="pagemenu"></button><svg class="i" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M18 14v6H4V6h6"/></svg></div>
+    <div class="dev"><button class="on" data-act="dev" data-v="" title="Desktop"><svg class="i lg" viewBox="0 0 24 24"><path d="M3 5h18v12H3zM8 21h8M12 17v4"/></svg></button><button data-act="dev" data-v="tab" title="Tablet"><svg class="i lg" viewBox="0 0 24 24"><path d="M6 3h12v18H6zM11 18h2"/></svg></button><button data-act="dev" data-v="mob" title="Phone"><svg class="i lg" viewBox="0 0 24 24"><path d="M8 3h8v18H8zM11 18h2"/></svg></button></div>
+    <button class="ib hist" data-act="tb" data-v="Undone" title="Undo"><svg class="i lg" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+    <button class="ib hist" data-act="tb" data-v="Redone" title="Redo"><svg class="i lg" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
+    <button class="ib ok hist" data-act="tb" data-v="All changes saved" title="Saved"><svg class="i lg" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></button>
+    <button class="btn-pub" data-act="publish">Publish</button>
+  </header>
+  <div class="mid">
+    <nav class="rail" id="rail"></nav>
+    <aside class="panel" id="panel"></aside>
+    <main class="stage" id="stage"></main>
+    <section class="center" id="center"></section>
+  </div>
+  <span id="statusl" hidden></span>
+  <div class="scrim" id="scrim"></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+/* ============================== data ============================== */
+const SITE={name:'Alder & Oak Bakery',origin:'alderandoak.com'};
+const IMGS={
+  home:[{id:'h1',file:'hero-sourdough.jpg',alt:'Golden sourdough loaves cooling on a wire rack',sug:'Three sourdough loaves on a wooden board'},
+        {id:'h2',file:'IMG_4821.jpg',alt:'',sug:'Baker shaping dough at the marble counter'},
+        {id:'h3',file:'croissants.jpg',alt:'Tray of butter croissants',sug:'Tray of butter croissants'},
+        {id:'h4',file:'shop-front.jpg',alt:'',sug:'Alder & Oak storefront on SE Division Street'}],
+  about:[{id:'a1',file:'team.jpg',alt:'The Alder & Oak team in the bakery',sug:''},{id:'a2',file:'oven.jpg',alt:'Stone deck oven',sug:''}],
+  menu:[{id:'m1',file:'bread.jpg',alt:'Country loaf',sug:''},{id:'m2',file:'pastry.jpg',alt:'Almond croissant',sug:''},{id:'m3',file:'coffee.jpg',alt:'',sug:'Flat white with latte art'}],
+  catering:[{id:'c1',file:'platter.jpg',alt:'',sug:'Pastry platter set up for an office breakfast'}],
+  contact:[{id:'k1',file:'map.png',alt:'Map to the bakery',sug:''}],
+  gift:[]
+};
+let P={
+ home:{label:'Home',path:'/',title:'Alder & Oak Bakery | Sourdough & Pastries in Portland',desc:'Fresh bread daily.',h1:'Sourdough baked at dawn, in Portland',focus:['sourdough bakery portland'],words:412,headSkip:false,noindex:false,canonical:'',ogTitle:'',ogDesc:'',ogImage:false,lang:'en',schema:['WebSite'],brokenLinks:0,linkedFrom:true,h1count:1,analyzed:'2 min ago'},
+ about:{label:'About',path:'/about',title:'About',desc:'',h1:'Our story',focus:[],words:260,headSkip:false,noindex:false,canonical:'',ogTitle:'',ogDesc:'',ogImage:false,lang:'en',schema:[],brokenLinks:0,linkedFrom:true,h1count:1,analyzed:'2 min ago'},
+ menu:{label:'Menu',path:'/menu',title:'Menu: Sourdough, Pastries & Coffee | Alder & Oak',desc:'Browse our daily menu of country sourdough, laminated pastries and single-origin coffee, baked fresh every morning in SE Portland.',h1:'Our daily menu',focus:['bakery menu portland'],words:520,headSkip:true,noindex:false,canonical:'',ogTitle:'',ogDesc:'',ogImage:true,lang:'en',schema:['WebSite','BreadcrumbList'],brokenLinks:0,linkedFrom:true,h1count:1,analyzed:'1 hr ago'},
+ catering:{label:'Catering',path:'/catering',title:'Alder & Oak Bakery | Sourdough & Pastries in Portland',desc:'',h1:'',focus:[],words:90,headSkip:false,noindex:false,canonical:'',ogTitle:'',ogDesc:'',ogImage:false,lang:'en',schema:[],brokenLinks:1,linkedFrom:true,h1count:0,analyzed:'1 hr ago'},
+ contact:{label:'Contact',path:'/contact',title:'Contact & Hours | Alder & Oak Bakery',desc:'Find us at 2210 SE Division St, Portland. Open daily 7am to 3pm. Call, email or stop by for fresh bread and coffee.',h1:'Visit us',focus:[],words:120,headSkip:false,noindex:false,canonical:'',ogTitle:'',ogDesc:'',ogImage:true,lang:'en',schema:['LocalBusiness'],brokenLinks:0,linkedFrom:true,h1count:1,analyzed:'Yesterday'},
+ gift:{label:'Gift cards',path:'/gift-cards',title:'Gift cards | Alder & Oak Bakery',desc:'Give the gift of fresh bread. Digital and printed gift cards available in any amount, redeemable in store.',h1:'Gift cards',focus:[],words:310,headSkip:false,noindex:true,canonical:'',ogTitle:'',ogDesc:'',ogImage:false,lang:'en',schema:[],brokenLinks:0,linkedFrom:true,h1count:1,analyzed:'Yesterday'}
+};
+let S={ // site-wide settings
+ tagline:'Sourdough & pastries baked at dawn in SE Portland',lang:'en',region:'US',
+ template:'%page% | %site%',sep:'|',descFallback:'ai',
+ ogImage:'Default share image (storefront)',card:'summary_large_image',twitter:'@alderandoak',
+ sitemapAuto:true,sitemapExcl:{},
+ robotsMode:'auto',blockAI:true,blockSearchAI:false,robotsCustom:'User-agent: *\nAllow: /\n\nSitemap: https://alderandoak.com/sitemap.xml',
+ org:{type:'LocalBusiness',name:'Alder & Oak Bakery',phone:'017 00000000',email:'example@gmail.com',street:'2210 SE Division St',city:'Portland',region:'OR',zip:'97202',social:['https://instagram.com/alderandoak']},
+ breadcrumbs:true,
+ redirects:[{from:'/old-menu',to:'/menu',code:301},{from:'/catering-info',to:'/catering',code:301}],
+ verify:{google:'',bing:''},siteNoindex:false,trailing:'none',host:'apex',llms:false
+};
+const SUG={
+ title:{
+  home:[['Sourdough Bakery in Portland, OR | Alder & Oak',['topic','short']],['Fresh Sourdough & Pastries, Baked Daily | Alder & Oak Portland',['friendly']],['Alder & Oak: Portland Sourdough Bakery on SE Division',['topic']]],
+  about:[['Our Story: A Neighborhood Sourdough Bakery | Alder & Oak',['friendly']],['About Alder & Oak Bakery | Portland Bakers Since 2016',['short']],['Meet the Bakers Behind Alder & Oak in Portland',['friendly','topic']]],
+  catering:[['Bakery Catering in Portland: Pastry & Bread Platters | Alder & Oak',['topic']],['Office & Event Catering | Alder & Oak Bakery Portland',['short']],['Order Pastry Platters for Your Next Event | Alder & Oak',['friendly']]]
+ },
+ desc:{
+  home:[['Alder & Oak is a neighborhood sourdough bakery on SE Division in Portland. Naturally leavened bread and pastries, baked fresh every morning.',['topic']],['Hand-shaped sourdough, buttery croissants and strong coffee, fresh from the oven daily. Stop by our Portland bakery or order ahead online.',['friendly']],['Portland sourdough bakery serving fresh bread and pastries daily from 7am. Order ahead or visit us on SE Division.',['short','topic']]],
+  about:[['Meet the bakers behind Alder & Oak. We have been baking naturally leavened bread in Portland since 2016, using local flour and a very old starter.',['friendly']],['Our story: a small team, a stone deck oven and a 10-year-old sourdough starter. Learn how Alder & Oak bakes bread in Portland.',['short']],['Alder & Oak started as a weekend market stall and grew into a Portland neighborhood bakery. Read how we bake and who we are.',['friendly']]],
+  catering:[['Order bread and pastry platters for offices, weddings and events in Portland. Custom menus, delivery available. Request a quote from Alder & Oak.',['topic']],['Feed your team with fresh pastries and sourdough. Alder & Oak catering covers breakfasts, meetings and parties across Portland.',['friendly']],['Bakery catering in Portland: pastry platters, bread baskets and custom orders. Get a quote today.',['short','topic']]]
+ },
+ kw:{home:[['sourdough bakery portland','Local'],['fresh bread near me','Local'],['naturally leavened bread','Product'],['bakery SE division','Local'],['how long does sourdough last','Info']],
+     about:[['neighborhood bakery portland','Local'],['sourdough starter story','Info'],['family owned bakery','Brand']],
+     catering:[['bakery catering portland','Local'],['office pastry platter','Product'],['breakfast catering portland','Local']]}
+};
+const REC={ // check id -> quick action and explanation
+ title:{ai:'Write with AI',why:'The SEO title is the blue headline in Google results and the strongest on-page signal. Each page needs its own, about 30–60 characters, so it is not cut off.',how:'Measured: character length and duplicates across your pages. Not measured: whether Google rewrites it.'},
+ description:{ai:'Write with AI',why:'The description is the text under the headline. It does not change rankings directly, but a clear one earns more clicks. Google may show different text if it fits the search better.',how:'Measured: length (70–160) and duplicates. Not measured: click-through rate.'},
+ h1:{act:'Select on page',why:'The H1 is the main heading. It tells visitors and search engines what the page is about. One per page is the clean pattern.',how:'Measured: number of H1 elements in the page HTML.'},
+ headings:{act:'Select on page',why:'Skipping heading levels (H2 to H4) confuses screen readers and makes the outline harder to read for crawlers.',how:'Measured: order of H1–H6 in the HTML.'},
+ words:{ai:'Draft with assistant',why:'Very short pages give search engines little to work with. There is no magic word count, but pages under about 100 words rarely have enough to answer a search.',how:'Heuristic: visible word count. Treat it as a prompt, not a rule.'},
+ focus:{ai:'Suggest topics',why:'A focus topic is the phrase you want this page to be found for. Setting one lets the editor check it appears in your title, heading and description.',how:'Heuristic: checks your own text only. We have no search-volume data.'},
+ alt:{ai:'Generate alt text',why:'Alt text describes an image for screen readers and for search engines. It is also an accessibility requirement.',how:'Measured: images with empty or missing alt attributes.'},
+ links:{act:'Open page links',why:'A link to a page that does not exist is a dead end for visitors and for crawlers.',how:'Measured: internal links checked against your site files.'},
+ schema:{ai:'Generate with AI',why:'Structured data (JSON-LD) labels facts like your business address or page hierarchy so search engines read them exactly. It can unlock richer results, but is never a guarantee.',how:'Measured: JSON-LD blocks present in the page.'},
+ share:{act:'Choose image',why:'When someone shares the link, this is the picture that shows. Pages with an image are far more likely to be clicked.',how:'Measured: og:image present.'},
+ canonical:{act:'Review',why:'A canonical address tells Google which URL is the main copy. Pointing it to another page asks Google not to list this one.',how:'Measured: canonical tag value.'},
+ lang:{act:'Set language',why:'The page language helps search engines and browsers serve the right audience.',how:'Measured: lang attribute on <html>.'}
+};
+const CATS=[['metadata','Metadata'],['content','Content'],['images','Images'],['technical','Technical'],['social','Social']];
+
+/* ============================== scoring (mirrors v2/seoScore.ts, extended) ============================== */
+const W={title:15,description:15,h1:10,headings:5,words:5,focus:5,alt:15,links:5,canonical:5,lang:5,schema:5,share:10};
+const CATOF={title:'metadata',description:'metadata',canonical:'technical',h1:'content',headings:'content',words:'content',focus:'content',alt:'images',links:'technical',lang:'technical',schema:'technical',share:'social'};
+const V={good:1,warn:.5,bad:0};
+const altMissing=id=>(IMGS[id]||[]).filter(i=>!i.alt.trim()).length;
+function checks(id){
+  const p=P[id],o=Object.keys(P).filter(k=>k!==id),out=[];
+  const add=(cid,level,text,sub)=>out.push({id:cid,level,text,sub:sub||'',weight:W[cid],cat:CATOF[cid],page:id});
+  const t=p.title.trim().length,dupT=t&&o.find(k=>P[k].title.trim().toLowerCase()===p.title.trim().toLowerCase());
+  t===0?add('title','bad','No SEO title'):dupT?add('title','warn','Same title as '+P[dupT].label+'. Each page needs its own.'):t<30?add('title','warn','Title is short ('+t+' characters). 30–60 reads best.'):t>60?add('title','warn','Title is long ('+t+'); results cut it near 60.'):add('title','good','Title length is good ('+t+' characters).');
+  const d=p.desc.trim().length,dupD=d&&o.find(k=>P[k].desc.trim().toLowerCase()===p.desc.trim().toLowerCase());
+  d===0?add('description','bad','No meta description'):dupD?add('description','warn','Same description as '+P[dupD].label+'.'):d<70?add('description','warn','Description is short ('+d+' characters). 70–160 works best.'):d>160?add('description','warn','Description is long ('+d+'); results cut it near 160.'):add('description','good','Description length is good ('+d+' characters).');
+  p.h1count===1?add('h1','good','One main heading (H1).'):p.h1count===0?add('h1','bad','No main heading (H1).'):add('h1','warn',p.h1count+' main headings; one is best.');
+  p.headSkip?add('headings','warn','A heading skips a level (H2 then H4).'):add('headings','good','Headings go in order.');
+  p.words>=300?add('words','good','Enough text ('+p.words+' words).'):add('words',p.words>=100?'warn':'bad','Little text ('+p.words+' words).');
+  if(!p.focus.length)add('focus','warn','No focus topic set.','Optional, but lets us check your title, heading and description.');
+  else{const f=p.focus[0].toLowerCase(),w=f.split(/\s+/),has=s=>w.every(x=>s.toLowerCase().includes(x));const miss=[['title',p.title],['heading',p.h1],['description',p.desc]].filter(x=>!has(x[1])).map(x=>x[0]);
+    miss.length?add('focus','warn','“'+p.focus[0]+'” is missing from the '+miss.join(' and ')+'.','Heuristic: checks your own text only.'):add('focus','good','Focus topic appears in title, heading and description.','Heuristic: checks your own text only.');}
+  const im=IMGS[id]||[],na=altMissing(id);
+  if(im.length)na===0?add('alt','good','Every image has alt text.'):add('alt',na===im.length?'bad':'warn',na+' of '+im.length+' images have no alt text.');
+  p.brokenLinks?add('links','bad',p.brokenLinks+' link goes to a page that does not exist (/wholesale).'):!p.linkedFrom?add('links','warn','No other page links here.'):add('links','good','Internal links work.');
+  p.canonical&&p.canonical!==SITE.origin+p.path?add('canonical','warn','Canonical points to another page, so this one will not be listed.'):add('canonical','good','Canonical address set automatically.');
+  add('lang',p.lang?'good':'warn',p.lang?'Language is set ('+p.lang+').':'No page language.');
+  p.schema.length?add('schema','good','Structured data: '+p.schema.join(', ')+'.'):add('schema','warn','No structured data.','Recommended, not required.');
+  p.ogImage?add('share','good','Share image set.'):add('share','warn','No share image: links show no picture.');
+  return out;
+}
+const rank={bad:0,warn:1,good:2};
+function sc(cs){const t=cs.reduce((s,c)=>s+c.weight,0);return t?Math.round(cs.reduce((s,c)=>s+c.weight*V[c.level],0)/t*100):100}
+const lvl=n=>n>=75?'good':n>=50?'warn':'bad';
+const WORD={good:'Good',warn:'Needs work',bad:'Poor'};
+function lost(c){return c.weight*(1-V[c.level])}
+function prio(c){const l=lost(c);return l>=7?'high':l>=3?'medium':'low'}
+function report(id){const cs=checks(id);const cats={};CATS.forEach(([k])=>{const x=cs.filter(c=>c.cat===k);cats[k]=x.length?sc(x):null});
+  return{id,cs,score:sc(cs),cats,top:cs.filter(c=>c.level!=='good').sort((a,b)=>lost(b)-lost(a))}}
+function siteRep(){const ids=Object.keys(P),reps=ids.map(report).sort((a,b)=>a.score-b.score);
+  const listed=reps.filter(r=>!P[r.id].noindex);const score=listed.length?Math.round(listed.reduce((s,r)=>s+r.score,0)/listed.length):null;
+  const cats={};CATS.forEach(([k])=>{const v=listed.map(r=>r.cats[k]).filter(x=>x!==null);cats[k]=v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null});
+  const issues=[];reps.forEach(r=>r.cs.filter(c=>c.level!=='good').forEach(c=>issues.push(c)));
+  issues.sort((a,b)=>lost(b)-lost(a));
+  return{reps,score,cats,counted:listed.length,issues,optimized:listed.filter(r=>r.score>=75).length,attention:listed.filter(r=>r.score<75).length,critical:issues.filter(c=>c.level==='bad').length}}
+/* site-wide checks (cannot be page checks) */
+function siteChecks(){const out=[];
+  out.push(S.sitemapAuto?{level:'good',text:'sitemap.xml is generated on every publish.',go:'sitemap'}:{level:'bad',text:'sitemap.xml is off.',go:'sitemap'});
+  out.push(S.siteNoindex?{level:'bad',text:'The whole site is hidden from search engines.',go:'advanced'}:{level:'good',text:'Site is open to search engines.',go:'general'});
+  out.push(S.robotsMode==='custom'&&/Disallow:\s*\/\s*$/m.test(S.robotsCustom)?{level:'bad',text:'robots.txt blocks every crawler.',go:'robots'}:{level:'good',text:'robots.txt allows crawling.',go:'robots'});
+  out.push(!S.org.name?{level:'warn',text:'No business name for structured data.',go:'schema'}:/0000/.test(S.org.phone)||/^example@/.test(S.org.email)?{level:'warn',text:'Business phone and email are placeholders. Search engines would show them.',go:'schema'}:{level:'good',text:'Business details complete.',go:'schema'});
+  out.push(!S.verify.google?{level:'warn',text:'Google Search Console not verified. You cannot see real search data yet.',go:'advanced'}:{level:'good',text:'Google Search Console verified.',go:'advanced'});
+  out.push({level:'good',text:'HTTPS, mobile viewport and canonical tags are added automatically.',go:'general'});
+  return out}
+
+/* ============================== ui state ============================== */
+const ui={panel:'seo',fly:'search',chat:[],tab:'page',cur:'home',open:{search:true,focus:false,images:false,url:false,social:false,schema:false,adv:false,checks:false},
+ serp:'desktop',share:'facebook',tray:null,center:false,section:'overview',menu:null,pop:null,lastSnap:null,sentRobots:false};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const IC={
+ layers:'M12 3 3 7.5 12 12l9-4.5L12 3zM3 12l9 4.5 9-4.5M3 16.5 12 21l9-4.5',pages:'M8 3h7l4 4v10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM15 3v4h4M4 7v13a1 1 0 0 0 1 1h10',
+ vars:'M12 3a9 9 0 1 0 0 18c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.1-4-7.8-9-7.8zM7.5 12h.01M9.5 7.5h.01M14.5 7.5h.01',
+ seo:'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-5-5M8 13l2-2 2 2 2.5-3',history:'M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2',ai:'M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8zM19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z',
+ search:'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-5-5',chev:'M9 6l6 6-6 6',down:'M6 9l6 6 6-6',back:'M15 6l-6 6 6 6',x:'M6 6l12 12M18 6 6 18',check:'M5 12l5 5 9-10',info:'M12 8h.01M11 12h1v5h1M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z',
+ alert:'M12 9v4M12 17h.01M10.3 4l-8 14a2 2 0 0 0 1.7 3h16a2 2 0 0 0 1.7-3l-8-14a2 2 0 0 0-3.4 0z',img:'M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M8.5 9h.01',
+ globe:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18',link:'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1',
+ code:'M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16',shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',bot:'M5 8h14v10H5zM12 4v4M9 13h.01M15 13h.01M3 13h2M19 13h2',
+ map:'M4 5l5-2 6 2 5-2v16l-5 2-6-2-5 2zM9 3v16M15 5v16',share:'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8.6 13.5l6.8 4M15.4 6.5l-6.8 4',
+ route:'M5 7h10a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h10M17 4l3 3-3 3M7 16l-3 3 3 3',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z',
+ grid:'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',monitor:'M3 5h18v12H3zM8 21h8M12 17v4',phone:'M7 3h10v18H7zM11 18h2',tag:'M3 12V4h8l10 10-8 8zM7.5 8.5h.01',
+ undo:'M9 14 4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3',plus:'M12 5v14M5 12h14',trash:'M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3',copy:'M9 9h11v11H9zM5 15H4V4h11v1',ext:'M14 4h6v6M20 4 10 14M18 14v6H4V6h6',eyeoff:'M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4 9.5 6a14 14 0 0 1-3 3.8M6.5 7.5A14 14 0 0 0 2.5 12C3.5 14 7 18 12 18c1.5 0 2.8-.4 4-.9',
+ refresh:'M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5',list:'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',lock:'M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4',moon:'M20 15A8 8 0 1 1 9 4a7 7 0 0 0 11 11z',send:'M12 19V5M5 12l7-7 7 7',cursor:'M4 4l7 16 2-7 7-2z',mic:'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5 11a7 7 0 0 0 14 0M12 18v3'
+};
+const ic=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
+const ring=(score,size)=>{const r=15.5,len=2*Math.PI*r,l=score==null?'':lvl(score);return `<span class="ring ${l}" style="width:${size}px;height:${size}px"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="${r}" class="tr"/><circle cx="18" cy="18" r="${r}" class="fl" stroke-dasharray="${len}" stroke-dashoffset="${len*(1-(score||0)/100)}"/></svg><b style="font-size:${size>50?17:13}px">${score==null?'–':score}</b></span>`};
+const metric=(n,k,id)=>`<span class="count ${k}">${n}</span>`;
+
+/* ============================== head output (settings -> HTML) ============================== */
+function fullTitle(p){return p.title}
+function headHTML(id){const p=P[id],o=SITE.origin,url='https://'+o+(p.path==='/'?'/':p.path);const L=[];
+  L.push(`<title>${esc(p.title||'(untitled)')}</title>`);if(p.desc)L.push(`<meta name="description" content="${esc(p.desc)}">`);
+  L.push(`<link rel="canonical" href="${esc(p.canonical||url)}">`);
+  if(p.noindex||S.siteNoindex)L.push(`<meta name="robots" content="noindex, follow">`);
+  L.push(`<meta property="og:type" content="website">`,`<meta property="og:site_name" content="${esc(SITE.name)}">`,`<meta property="og:url" content="${url}">`,`<meta property="og:title" content="${esc(p.ogTitle||p.title)}">`);
+  if(p.ogDesc||p.desc)L.push(`<meta property="og:description" content="${esc(p.ogDesc||p.desc)}">`);
+  if(p.ogImage)L.push(`<meta property="og:image" content="https://${o}/_assets/share-${id}.jpg">`);
+  L.push(`<meta name="twitter:card" content="${S.card}">`);if(S.twitter)L.push(`<meta name="twitter:site" content="${esc(S.twitter)}">`);
+  if(p.schema.length)L.push(`<scr`+`ipt type="application/ld+json">…${p.schema.length} block${p.schema.length>1?'s':''}…</scr`+`ipt>`);
+  return L.join('\n')}
+function sitemapXML(){const rows=Object.keys(P).filter(k=>!P[k].noindex&&!S.sitemapExcl[k]);
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`+rows.map(k=>`  <url>\n    <loc>https://${SITE.origin}${P[k].path==='/'?'/':P[k].path}</loc>\n    <lastmod>2026-11-12</lastmod>\n  </url>`).join('\n')+`\n</urlset>`}
+function robotsTXT(){if(S.robotsMode==='custom')return S.robotsCustom;
+  let t='# Generated by Zejify on publish\nUser-agent: *\nAllow: /\n';
+  if(S.blockAI)t+='\n# AI training crawlers\n'+['GPTBot','CCBot','Google-Extended','ClaudeBot','Bytespider'].map(b=>`User-agent: ${b}\nDisallow: /\n`).join('\n');
+  if(S.siteNoindex)t='User-agent: *\nDisallow: /\n';
+  return t+`\nSitemap: https://${SITE.origin}/sitemap.xml`}
+function jsonld(){const o=S.org;return JSON.stringify({'@context':'https://schema.org','@type':o.type,name:o.name,url:'https://'+SITE.origin,telephone:o.phone,email:o.email,address:{'@type':'PostalAddress',streetAddress:o.street,addressLocality:o.city,addressRegion:o.region,postalCode:o.zip,addressCountry:S.region},sameAs:o.social},null,2)}
+const colorize=t=>esc(t).replace(/(#[^\n]*)/g,'<span class="c">$1</span>');
+
+/* ============================== render: rail / top / status ============================== */
+function renderChrome(){
+  const sr=siteRep(),n=sr.attention+0,bad=sr.critical;
+  const R=[['agent','ai','AI agent'],['layers','layers','Layers'],['vars','vars','Design system'],['seo','seo','SEO'],['history','history','History']];
+  $('#rail').innerHTML=R.map(([k,icn,l])=>`<button class="rbtn ${k==='agent'?'ai':''} ${ui.panel===k?'on':''}" data-act="rail" data-v="${k}" title="${l}${k==='seo'?` · Site score ${sr.score}`:''}" aria-label="${l}">${ic(icn,'lg')}${k==='seo'?`<span class="rbadge ${bad?'bad':n?'warn':'good'}">${bad||n||'✓'}</span>`:''}</button>`).join('')
+    +`<span class="sp"></span><button class="rbtn moon" data-act="theme-app" title="Light / dark" aria-label="Light / dark">${ic('moon','lg')}</button><button class="rbtn av" data-act="tb" data-v="Account menu (demo)" aria-label="Account">A</button>`;
+  const r=report(ui.cur),l=lvl(r.score);
+  $('#pagebtn').innerHTML=`${esc(P[ui.cur].label)}<span class="dot ${l}" title="SEO ${r.score}"></span>${ic('down')}`;
+  $('#statusl').textContent=`SEO · ${P[ui.cur].label} ${r.score}/100 · Site ${sr.score}/100 · ${sr.critical} critical`;
+}
+
+/* ============================== render: panel ============================== */
+function renderPanel(){
+  const sr=siteRep();
+  if(ui.panel==='agent'){$('#panel').innerHTML=agentPanel(sr);const m=$('#amsgs');if(m)m.scrollTop=m.scrollHeight;renderFly();return}
+  let h=`<div class="phead"><h2>SEO</h2><span class="tag ${lvl(sr.score)}" title="Whole site">Site ${sr.score}</span><span class="sp"></span><button class="iconbtn" style="width:34px;height:34px" data-act="center" data-v="overview" title="Open Site SEO">${ic('grid')}</button><button class="iconbtn" style="width:34px;height:34px" data-act="rail" data-v="agent" title="Close">${ic('x')}</button></div>`;
+  h+=`<div class="ptabs"><div class="seg"><button class="${ui.tab==='page'?'on':''}" data-act="tab" data-v="page">This page</button><button class="${ui.tab==='site'?'on':''}" data-act="tab" data-v="site">Whole site · ${sr.attention}</button></div></div>`;
+  h+=`<div class="pscroll" id="pscroll">`+(ui.tab==='page'?pagePanel():sitePanel(sr))+`</div>`;
+  const ps=$('#pscroll'),keep=ps?ps.scrollTop:0;
+  $('#panel').innerHTML=h;$('#pscroll').scrollTop=keep;renderFly();
+}
+function agentPanel(sr){
+  const b=batch().length;
+  const msgs=(ui.chat||[]).map(m=>m.me?`<div class="amsg me"><p>${esc(m.t)}</p></div>`:`<div class="amsg"><span class="av">${ic('ai')}</span><div><p>${m.t}</p></div></div>`).join('');
+  return `<div class="phead"><h2>Agent</h2><span class="sub">Ready</span><span class="sp"></span><button class="iconbtn" style="width:34px;height:34px" data-act="rail" data-v="seo" title="SEO panel">${ic('seo')}</button></div>
+  <div class="agent"><div class="msgs" id="amsgs"><div class="amsg"><span class="av">${ic('ai')}</span><div><p>Hi! Tell me what to change on this page, ask for a new section, or let me fix SEO for you.</p>
+   <p class="sc"><span class="tag ${lvl(sr.score)}">Site SEO ${sr.score}/100</span><span class="tag ai">${b} fixes ready</span></p></div></div>${msgs}</div>
+  <div class="achips"><button data-act="agentdo" data-v="fix">${ic('ai')} Fix SEO issues</button><button data-act="agentdo" data-v="alt">${ic('ai')} Add alt text</button><button data-act="agentdo" data-v="desc">${ic('ai')} Write descriptions</button></div>
+  <div class="abox"><textarea id="ain" placeholder="Ask for changes, new sections or pages…" aria-label="Ask the agent"></textarea><div class="row"><button class="small sm" style="box-shadow:none" data-act="tb" data-v="Attach an image (demo)">${ic('img')}</button><button class="small sm" style="box-shadow:none" data-act="tb" data-v="Click anything on the page to select it">${ic('cursor')} Select</button><button class="iconbtn" style="width:34px;height:34px;margin-left:auto" data-act="tb" data-v="Voice input (demo)">${ic('mic')}</button><button class="send" id="asend" data-act="agentsend" aria-label="Send">${ic('send')}</button></div></div></div>`}
+function sitePanel(sr){
+  let h=`<section class="card scorecard"><div class="row" style="gap:14px">${ring(sr.score,64)}<span class="sum"><b>Site SEO</b><em class="lvl-${lvl(sr.score)}">${WORD[lvl(sr.score)]}</em><small>Average of ${sr.counted} listed pages · ${Object.keys(P).length-sr.counted} hidden</small></span></div></section>`;
+  h+=`<button class="small ai wide" data-act="fixall">${ic('ai')} Review ${batch().length} AI fixes across the site</button>`;
+  h+=`<p class="title">Pages, worst first</p><ul class="actions" style="gap:6px">`+sr.reps.map(r=>{const p=P[r.id],l=lvl(r.score),t=r.top[0];return `<li><button class="issue" style="grid-template-columns:1fr auto;gap:4px 10px" data-act="openpage" data-v="${r.id}"><span><b>${esc(p.label)}</b><small class="mono">${p.path}</small></span><b class="lvl-${l}" style="font-size:15px">${r.score}</b><span class="meter" style="grid-column:1/-1"><i class="${l==='good'?'':l}" style="width:${r.score}%;background:var(--${l==='good'?'good':l==='warn'?'warn':'bad'})"></i></span><span class="row" style="grid-column:1/-1;gap:4px;flex-wrap:wrap">${p.noindex?'<span class="tag">Hidden</span>':''}${t?`<span class="tag ${t.level}">${esc(shortName(t))}</span>`:'<span class="tag good">All checks pass</span>'}</span></button></li>`}).join('')+`</ul>`;
+  h+=`<p class="note">Scores come from automated checks on each page. They do not predict rankings. <button class="textbtn" data-act="pop" data-v="scoring">How scoring works</button></p>`;
+  return h}
+const shortName=c=>({title:c.level==='bad'?'No title':'Title needs work',description:c.level==='bad'?'No description':'Description needs work',h1:'H1',headings:'Heading order',words:'Little text',focus:'No focus topic',alt:'Missing alt text',links:'Broken link',canonical:'Canonical',lang:'No language',schema:'No structured data',share:'No share image'})[c.id];
+
+function pagePanel(){
+  const id=ui.cur,p=P[id],r=report(id),l=lvl(r.score),good=r.cs.filter(c=>c.level==='good').length;
+  const top=r.top.slice(0,3);
+  let h=`<section class="card scorecard" id="scorecard">${scoreCard(r)}</section>`;
+  h+=`<section class="card" id="nextacts">${nextActs(r)}</section>`;
+  h+=acc('search','search','Search appearance',searchBody(),statusDot(r,['title','description']));
+  h+=acc('focus','tag','Focus topic',focusBody(),statusDot(r,['focus']));
+  h+=acc('images','img','Images & alt text',imagesBody(),statusDot(r,['alt']),IMGS[id].length?`${IMGS[id].length}`:'');
+  h+=acc('url','link','URL & indexing',urlBody(),statusDot(r,['canonical','links']));
+  h+=acc('social','share','Social sharing',socialBody(),statusDot(r,['share']));
+  h+=acc('schema','code','Structured data',schemaBody(),statusDot(r,['schema']));
+  h+=acc('adv','gear','Advanced',advBody(),'');
+  h+=acc('checks','list','All checks',`<div id="allchecks">${checkList(r)}</div><p class="note">Measured on your page HTML. We can't see rankings, backlinks or visitor data yet. <button class="textbtn" data-act="pop" data-v="scoring">What's not measured</button></p>`,'',`${good}/${r.cs.length}`);
+  return h}
+function scoreCard(r){const l=lvl(r.score),good=r.cs.filter(c=>c.level==='good').length;
+  return `${ring(r.score,64)}<span class="sum"><b>${esc(P[ui.cur].label)}</b><em class="lvl-${l}">${WORD[l]}</em><small>${good} of ${r.cs.length} checks pass</small></span>
+  <div class="cats">${CATS.map(([k,n])=>{const v=r.cats[k];return `<button class="cat" data-act="openacc" data-v="${{metadata:'search',content:'focus',images:'images',technical:'url',social:'social'}[k]}" title="${n}: ${v==null?'n/a':v}"><span>${n}</span><span class="meter"><i class="${v==null?'':lvl(v)}" style="width:${v||0}%"></i></span></button>`}).join('')}</div>
+  <div class="legend">${ic('info')}<span>${r.cs.length} automated checks. <button class="textbtn" data-act="pop" data-v="scoring" style="padding:0">What this is</button></span></div>`}
+const statusDot=(r,ids)=>{const cs=r.cs.filter(c=>ids.includes(c.id));if(!cs.length)return'';const w=cs.sort((a,b)=>rank[a.level]-rank[b.level])[0].level;return `<span class="dot ${w}"></span>`};
+function acc(key,icon,title,body,dot,extra){return `<section class="acc ${ui.fly===key?'on':''}" data-acc="${key}"><button class="head" data-act="acc" data-v="${key}" aria-expanded="${ui.fly===key}" aria-controls="fly"><span class="ico">${ic(icon)}</span>${title}${extra?`<span class="count">${extra}</span>`:''}${dot||''}<span class="chev">${ic('chev')}</span></button></section>`}
+/* ---- flyout: a section opens in a wider panel to the right of the SEO panel ---- */
+const FLY={
+ search:['search','Search appearance',()=>searchBody(),['title','description']],
+ focus:['tag','Focus topic',()=>focusBody(),['focus']],
+ images:['img','Images & alt text',()=>imagesBody(),['alt']],
+ url:['link','URL & indexing',()=>urlBody(),['canonical','links']],
+ social:['share','Social sharing',()=>socialBody(),['share']],
+ schema:['code','Structured data',()=>schemaBody(),['schema']],
+ adv:['gear','Advanced',()=>advBody(),null],
+ checks:['list','All checks',()=>`<div id="allchecks">${checkList(report(ui.cur))}</div><p class="note">Measured on your page HTML. We can't see rankings, backlinks or visitor data yet. <button class="textbtn" data-act="pop" data-v="scoring">What's not measured</button></p>`,null]
+};
+function renderFly(){
+  let f=$('#fly');const on=ui.fly&&FLY[ui.fly]&&ui.panel==='seo'&&ui.tab==='page';
+  if(!on){if(f)f.remove();return}
+  const fresh=!f,same=f&&f.dataset.k===ui.fly,keep=same?f.querySelector('.fbody').scrollTop:0;
+  if(fresh){f=document.createElement('aside');f.id='fly';f.className='fly in';f.setAttribute('role','dialog');f.setAttribute('aria-label','Section details');$('.mid').appendChild(f)}
+  const K=Object.keys(FLY),i=K.indexOf(ui.fly),[icn,title,body,ids]=FLY[ui.fly],r=report(ui.cur);
+  const st=ids?r.cs.filter(c=>ids.includes(c.id)).sort((a,b)=>rank[a.level]-rank[b.level])[0]:null;
+  f.dataset.k=ui.fly;
+  f.innerHTML=`<div class="fhead"><span class="ico">${ic(icn,'lg')}</span><div class="ft"><h3>${title}</h3><small>${esc(P[ui.cur].label)} · <span class="mono">${P[ui.cur].path}</span></small></div>${st?`<span class="tag ${st.level}">${({good:'All good',warn:'Needs work',bad:'Fix this'})[st.level]}</span>`:''}<span class="sp"></span><span class="fnav"><button class="iconbtn" data-act="flystep" data-v="-1" ${i?'':'disabled'} title="Previous section" aria-label="Previous section">${ic('back')}</button><button class="iconbtn" data-act="flystep" data-v="1" ${i<K.length-1?'':'disabled'} title="Next section" aria-label="Next section">${ic('chev')}</button></span><button class="iconbtn" data-act="flyclose" title="Close (Esc)" aria-label="Close">${ic('x')}</button></div><div class="fbody">${body()}</div>`;
+  f.querySelector('.fbody').scrollTop=keep;
+}
+function nextActs(r){
+  const t=r.top.slice(0,3);
+  if(!t.length)return `<div class="row"><span class="tag good">${ic('check')}All checks pass</span><span class="note">Nothing to fix on this page.</span></div>`;
+  return `<div class="row"><p class="title" style="flex:1">Fix first</p><button class="small ai sm" data-act="fixall" data-v="page">${ic('ai')} Fix all with AI</button></div><ul class="actions">`+t.map(c=>{const R=REC[c.id],pr=prio(c);return `<li class="act"><span class="dot ${c.level}"></span><div><p>${esc(c.text)}</p><div class="meta"><span class="pri lvl-${c.level}">${pr}</span>`+(R.ai?`<button class="small ai sm" data-act="quick" data-v="${c.id}">${ic('ai')}${R.ai}</button>`:`<button class="small sm" data-act="quick" data-v="${c.id}">${R.act}</button>`)+`<button class="textbtn mute" data-act="explain" data-v="${c.id}">Why?</button></div></div></li>`}).join('')+`</ul>`}
+function checkList(r){const cs=[...r.cs].sort((a,b)=>rank[a.level]-rank[b.level]);
+  return `<ul class="checks">`+cs.map(c=>`<li><span class="dot ${c.level}"></span><span class="t">${esc(c.text)}${c.sub?`<small>${esc(c.sub)}</small>`:''}</span>${c.level!=='good'?`<button class="textbtn" data-act="quick" data-v="${c.id}">Fix</button>`:''}</li>`).join('')+`</ul>`}
+
+function aiBtns(field){return `<div class="row" style="gap:6px"><button class="small ai sm" data-act="ai" data-v="${field}">${ic('ai')}${P[ui.cur][field]?'Improve with AI':'Write with AI'}</button>${P[ui.cur][field]?`<button class="textbtn ai" data-act="aimenu" data-v="${field}">Options ${ic('down')}</button>`:''}</div>`}
+function fieldBlock(field,label,max,min,rows,ph){const p=P[ui.cur],v=p[field],n=v.trim().length;
+  return `<div class="field" data-f="${field}"><div class="flabel"><span class="fname">${label}</span><span class="sp"></span><span class="count ${n>max?'over':n>=min?'ok':''}" id="cnt-${field}">${n}/${max}</span></div>
+  ${rows?`<textarea class="vin" rows="${rows}" data-in="${field}" placeholder="${esc(ph)}">${esc(v)}</textarea>`:`<input class="vin" data-in="${field}" value="${esc(v)}" placeholder="${esc(ph)}">`}
+  <div class="meter"><i id="mt-${field}" class="${n>max?'over':n<min?'short':''}" style="width:${Math.min(100,n/max*100)}%"></i></div>
+  <div class="row" style="position:relative">${aiBtns(field)}</div>
+  <div id="tray-${field}">${ui.tray&&ui.tray.field===field?trayHTML():''}</div></div>`}
+function searchBody(){const p=P[ui.cur];
+  return `<div class="row"><span class="fname" style="flex:1">Google preview</span><div class="seg" style="width:130px"><button class="${ui.serp==='desktop'?'on':''}" data-act="serp" data-v="desktop">${ic('monitor')}</button><button class="${ui.serp==='mobile'?'on':''}" data-act="serp" data-v="mobile">${ic('phone')}</button></div></div>
+  <div id="serp">${serpHTML()}</div>
+  ${fieldBlock('title','SEO title',60,30,0,'What the page is, and who it is for')}
+  ${fieldBlock('desc','Meta description',160,70,3,'One or two sentences that make people click')}
+  <p class="note">Your site template adds nothing here: this title is used as written. Defaults live in <button class="textbtn" data-act="center" data-v="appearance" style="padding:0">Site SEO › Search appearance</button>.</p>`}
+function serpHTML(){const p=P[ui.cur],m=ui.serp==='mobile',tl=m?58:60,dl=m?120:160;
+  const t=p.title||'Untitled page',d=p.desc||'No description yet. Google will pick some text from the page instead.';
+  let dd=d.length>dl?d.slice(0,dl-1)+'…':d;const kw=(p.focus[0]||'').split(/\s+/)[0];if(kw&&p.desc)dd=esc(dd).replace(new RegExp('('+kw.replace(/[^a-z0-9]/gi,'')+')','ig'),'<b>$1</b>');else dd=esc(dd);
+  return `<div class="serp ${m?'mobile':''}"><div class="site"><span class="fav">A</span><div><div class="sn">${esc(SITE.name)}</div><div class="su">https://${SITE.origin}${p.path==='/'?'':' › '+p.path.slice(1)}</div></div></div><div class="st">${esc(t.length>tl?t.slice(0,tl-1)+'…':t)}</div><div class="sd">${dd}</div></div>`}
+function focusBody(){const p=P[ui.cur],kws=SUG.kw[ui.cur]||[['sourdough','Product'],['bakery portland','Local']];
+  return `<p class="note" style="margin-top:6px">The phrase you want this page found for. We check it shows up in your title, heading and description. We don't have search-volume data, so suggestions are based on your page content only.</p>
+  <div class="chips" id="focuschips">${focusChips()}</div>
+  <div class="row"><input class="vin" id="kwin" placeholder="Add a topic and press Enter" data-act-enter="addkw"></div>
+  <div class="row"><button class="small ai sm" data-act="kwsug">${ic('ai')} Suggest topics</button></div>
+  <div id="kwsug">${ui.kw?`<div class="tray"><div class="th">${ic('ai')} From your page content<span class="sp"></span><button class="iconbtn" data-act="kwclose">${ic('x')}</button></div><div class="chips">${kws.filter(k=>!p.focus.includes(k[0])).map(k=>`<button class="chip sug" data-act="addkw" data-v="${esc(k[0])}">+ ${esc(k[0])} <small>${k[1]}</small></button>`).join('')}</div><p class="note">Review and add the ones that fit. Nothing is added automatically.</p></div>`:''}</div>`}
+const focusChips=()=>{const p=P[ui.cur];return p.focus.length?p.focus.map((k,i)=>`<span class="chip sel">${esc(k)}${i===0?'<small>main</small>':''}<button class="x" data-act="rmkw" data-v="${i}" style="border:0;background:none;padding:0">${ic('x')}</button></span>`).join(''):'<span class="note">No topic set.</span>'};
+function imagesBody(){const im=IMGS[ui.cur];if(!im.length)return `<p class="note" style="margin-top:6px">This page has no images.</p>`;
+  const miss=im.filter(i=>!i.alt.trim()).length;
+  return `<div class="row" style="margin-top:4px"><span class="note" style="flex:1">${miss?`${miss} of ${im.length} need alt text`:'All images have alt text'}</span>${miss?`<button class="small ai sm" data-act="altall">${ic('ai')} Suggest for all</button>`:''}</div>`+im.map(i=>`<div class="imgrow" data-img="${i.id}" onmouseenter="hlImg('${i.id}',1)" onmouseleave="hlImg('${i.id}',0)"><span class="th img-art" style="background:linear-gradient(135deg,hsl(${i.id.charCodeAt(1)*37%360} 40% 70%),hsl(${i.id.charCodeAt(1)*37%360+30} 40% 40%))"></span>
+   <div class="fn"><span>${i.file}</span>${i.alt.trim()?'<span class="tag good" style="height:16px">alt</span>':'<span class="tag warn" style="height:16px">missing</span>'}</div>
+   <div class="field"><input class="vin" style="height:26px;font-size:12px" data-alt="${i.id}" value="${esc(i.alt)}" placeholder="Describe what's in the image">
+   ${i.sug&&!i.alt.trim()?`<div class="cmp"><span>${ic('ai')} <i>${esc(i.sug)}</i></span><span class="row" style="gap:4px"><button class="textbtn ai" data-act="useAlt" data-v="${i.id}">Use this</button></span></div>`:''}</div></div>`).join('')+`<p class="note">Good alt text describes the image in a few words. Leave it empty only for purely decorative images.</p>`}
+function urlBody(){const p=P[ui.cur];
+  return `<div class="field" style="margin-top:4px"><span class="fname">Page URL</span><div class="row"><span class="mono" style="color:var(--v2-faint);font-size:11.5px">https://${SITE.origin}</span><input class="vin mono" style="font-size:11.5px" value="${esc(p.path)}" ${p.path==='/'?'disabled':''} data-in="path"></div><span class="note">${p.path==='/'?'The home page address cannot change.':'Short, lowercase, with hyphens. If you change it, we add a 301 redirect from the old address.'}</span></div>
+  <label class="switchrow"><span>Show in search results<small>Turn off to add <span class="mono">noindex</span>. The page stays on your site, but Google won't list it.</small></span><button class="sw ${p.noindex?'':'on'}" data-act="toggle" data-v="noindex"></button></label>
+  <label class="switchrow"><span>Include in sitemap.xml<small>${p.noindex?'Hidden pages are never in the sitemap.':'Added automatically on publish.'}</small></span><button class="sw ${!p.noindex&&!S.sitemapExcl[ui.cur]?'on':''}" ${p.noindex?'disabled':''} data-act="toggle" data-v="sitemap"></button></label>
+  <div class="field"><div class="flabel"><span class="fname">Canonical address</span><span class="sp"></span><span class="tag auto">Auto</span></div><input class="vin mono" style="font-size:11.5px" data-in="canonical" value="${esc(p.canonical)}" placeholder="https://${SITE.origin}${p.path}"><span class="note">Leave empty. We point it at this page. Only change it if this page copies another.</span></div>`}
+function socialBody(){const p=P[ui.cur];
+  return `<div class="seg" style="margin-top:4px">${[['facebook','Facebook'],['x','X'],['li','LinkedIn']].map(([k,n])=>`<button class="${ui.share===k?'on':''}" data-act="sharetab" data-v="${k}">${n}</button>`).join('')}</div>
+  <div id="sharecard">${shareHTML()}</div>
+  <div class="field"><span class="fname">Share image</span><div class="row"><button class="small wide" data-act="pickimg">${ic('img')} ${p.ogImage?'Change image':'Choose from Media'}</button>${p.ogImage?`<button class="textbtn" data-act="rmog">Remove</button>`:`<button class="small ai" data-act="aiog">${ic('ai')} Pick</button>`}</div><span class="note">${p.ogImage?'1200 × 630 shows best.':'No image set: shares fall back to the site default only if one is set in Site SEO › Social sharing.'}</span></div>
+  <div class="field"><span class="fname">Share title</span><input class="vin" data-in="ogTitle" value="${esc(p.ogTitle)}" placeholder="${esc(p.title||'Uses the SEO title')}"></div>
+  <div class="field"><span class="fname">Share description</span><textarea class="vin" rows="2" data-in="ogDesc" placeholder="${esc(p.desc||'Uses the meta description')}">${esc(p.ogDesc)}</textarea></div>`}
+function shareHTML(){const p=P[ui.cur];const t=p.ogTitle||p.title||'Untitled page',d=p.ogDesc||p.desc;
+  return `<div class="share ${ui.share==='facebook'?'':ui.share}"><div class="img ${p.ogImage?'img-art':''}">${p.ogImage?'':'No image'}</div><div class="tx"><small>${SITE.origin}</small><b>${esc(t)}</b><span>${esc(d.slice(0,110))}</span></div></div>`}
+function schemaBody(){const p=P[ui.cur];const all=['WebSite','BreadcrumbList','LocalBusiness','Organization'];
+  return `<p class="note" style="margin-top:6px">Structured data is invisible code that labels facts about the page. Some is added automatically.</p>`+
+  all.map(s=>{const on=p.schema.includes(s),auto=s==='WebSite'||(s==='BreadcrumbList'&&S.breadcrumbs&&p.path!=='/');return `<div class="switchrow"><span>${s}${auto?' <span class="tag auto">Auto</span>':''}<small>${({WebSite:'Site name and search action.',BreadcrumbList:'The page trail shown in results.',LocalBusiness:'Address, hours, phone. From Site SEO.',Organization:'Name, logo and social profiles.'})[s]}</small></span><button class="sw ${on?'on':''}" data-act="schematoggle" data-v="${s}"></button></div>`}).join('')+
+  (!p.schema.includes('BreadcrumbList')&&p.path!=='/'?`<div class="notice info">${ic('ai')}<span>Suggested: <b>BreadcrumbList</b> for this page.<br><button class="textbtn ai" data-act="schematoggle" data-v="BreadcrumbList" style="padding:0">Add it</button> <button class="textbtn mute" data-act="pop" data-v="faq">Why not FAQ?</button></span></div>`:'')+
+  `<button class="small wide" data-act="center" data-v="schema">${ic('code')} Edit business details in Site SEO</button>`}
+function advBody(){return `<div class="field" style="margin-top:4px"><span class="fname">Robots directives</span><div class="chips">${['noarchive','nosnippet','notranslate'].map(x=>`<button class="chip" data-act="chiptog">${x}</button>`).join('')}<button class="chip" data-act="chiptog">max-image-preview: large</button></div><span class="note">Only add these if you know you need them. Defaults are best for most pages.</span></div>
+  <div class="field"><span class="fname">Custom meta tags</span><textarea class="vin mono" style="font-size:11.5px" rows="2" placeholder='<meta name="author" content="…">'></textarea></div>
+  <div class="field"><div class="flabel"><span class="fname">Generated &lt;head&gt;</span><span class="sp"></span><button class="textbtn" data-act="copyhead">${ic('copy')} Copy</button></div><pre class="codeblock" id="headout">${colorize(headHTML(ui.cur))}</pre><span class="note">This is exactly what is written into the page when you publish.</span></div>`}
+
+/* ============================== AI tray ============================== */
+function trayHTML(){const t=ui.tray,p=P[ui.cur];if(t.loading)return `<div class="tray"><div class="th">${ic('ai')} Reading your page…</div><div class="skel"></div><div class="skel"></div></div>`;
+  const cur=p[t.field];
+  return `<div class="tray"><div class="th">${ic('ai')} ${t.opts.length} suggestions${t.mode?' · '+t.mode:''}<span class="sp"></span><button class="textbtn ai" data-act="ai" data-v="${t.field}">${ic('refresh')} Again</button><button class="iconbtn" data-act="trayclose">${ic('x')}</button></div>`+
+  t.opts.map((o,i)=>{const n=o[0].length,max=t.field==='title'?60:160,min=t.field==='title'?30:70,ok=n<=max&&n>=min;return `<div class="opt"><p>${esc(o[0])}</p>${cur?`<div class="cmp"><span>Replaces: <s>${esc(cur.slice(0,80))}${cur.length>80?'…':''}</s></span></div>`:''}<div class="meta"><span class="tag ${ok?'good':'warn'}">${n} chars</span>${o[1].includes('topic')?'<span class="tag">has topic</span>':''}<span class="sp"></span><button class="small sm primary" data-act="useopt" data-v="${i}">${cur?'Replace':'Use'}</button></div></div>`}).join('')+`<p class="note">Based on this page's text. Review before using; nothing changes until you click.</p></div>`}
+function startAI(field,mode){
+  const key=field==='title'?'title':'desc',set=SUG[key][ui.cur]||genericSug(key);
+  ui.tray={field,loading:true,opts:[],mode};ui.menu=null;refreshTray(field);
+  setTimeout(()=>{let o=[...set];if(mode==='Shorter')o.sort((a,b)=>a[0].length-b[0].length);if(mode==='Friendlier')o=o.filter(x=>x[1].includes('friendly')).concat(o.filter(x=>!x[1].includes('friendly')));if(mode==='Add focus topic')o=o.filter(x=>x[1].includes('topic')).concat(o.filter(x=>!x[1].includes('topic')));
+    ui.tray={field,loading:false,opts:o.slice(0,3),mode};refreshTray(field)},750)}
+function genericSug(k){const p=P[ui.cur];return k==='title'?[[p.label+' | '+SITE.name,['short']],[p.label+': '+S.tagline.split(' in ')[0]+' | '+SITE.name,['friendly']],[p.label+' at '+SITE.name+' in Portland, OR',['topic']]]:[[`${p.label} at ${SITE.name}. ${S.tagline}. Visit us or order ahead online.`,['friendly']],[`${S.tagline}. Find out more about ${p.label.toLowerCase()} at ${SITE.name}.`,['short']],[`Learn about ${p.label.toLowerCase()} at ${SITE.name}, a neighborhood bakery in SE Portland serving fresh bread daily.`,['topic']]]}
+function refreshTray(field){const el=$('#tray-'+field);if(el)el.innerHTML=ui.tray&&ui.tray.field===field?trayHTML():''}
+
+/* ============================== batch review ============================== */
+function batch(){const out=[];
+  Object.keys(P).forEach(id=>{const p=P[id];
+    if(p.noindex)return;
+    if(!p.desc.trim()||p.desc.trim().length<70){const s=(SUG.desc[id]||genericSugFor(id,'desc'))[0][0];out.push({id:'d'+id,page:id,kind:'desc',label:'Meta description',old:p.desc,new:s})}
+    if(!p.title.trim()||p.title.trim().length<30||checks(id).find(c=>c.id==='title'&&/Same title/.test(c.text))){const s=(SUG.title[id]||genericSugFor(id,'title'))[0][0];out.push({id:'t'+id,page:id,kind:'title',label:'SEO title',old:p.title,new:s})}
+    (IMGS[id]||[]).filter(i=>!i.alt.trim()&&i.sug).forEach(i=>out.push({id:'a'+i.id,page:id,kind:'alt',img:i.id,label:'Alt text · '+i.file,old:'',new:i.sug}));
+  });return out}
+function genericSugFor(id,k){const keep=ui.cur;ui.cur=id;const r=genericSug(k);ui.cur=keep;return r}
+let batchSel={};
+function openBatch(scope){const list=batch().filter(c=>scope!=='page'||c.page===ui.cur);batchSel={};list.forEach(c=>batchSel[c.id]=true);
+  $('#scrim').innerHTML=`<div class="modal"><header>${ic('ai','lg')}<h3>Review AI fixes</h3><span class="tag ai">${list.length} changes</span><span class="sp"></span><button class="iconbtn" data-act="closemodal">${ic('x')}</button></header>
+  <div class="mb"><p class="note" style="margin:0">Nothing has been changed yet. Untick what you don't want. You can undo everything after applying.</p>`+
+  (list.length?list.map(c=>`<label class="chg"><input type="checkbox" checked data-chg="${c.id}"><div><div class="row" style="gap:6px"><span class="tag">${esc(P[c.page].label)}</span><span class="fname">${c.label}</span></div><div class="new">${esc(c.new)}</div><div class="old">${c.old?`Was: <s>${esc(c.old)}</s>`:'Was: empty'}</div></div></label>`).join(''):`<div class="notice info">${ic('check')}<span>Nothing to fix with AI right now.</span></div>`)+`</div>
+  <footer><span class="note">Written from each page's own content. Facts you gave are never changed.</span><span class="sp"></span><button class="small" data-act="closemodal">Cancel</button><button class="small primary" data-act="applybatch" data-v="${scope||''}">Apply selected</button></footer></div>`;
+  $('#scrim').classList.add('open');window._batch=list}
+function applyBatch(){const snap=JSON.stringify([P,IMGS]);const list=window._batch.filter(c=>batchSel[c.id]);
+  list.forEach(c=>{if(c.kind==='alt'){const i=IMGS[c.page].find(x=>x.id===c.img);i.alt=c.new}else P[c.page][c.kind]=c.new});
+  ui.lastSnap=snap;closeModal();toast(`${list.length} change${list.length===1?'':'s'} applied`,true);renderAll()}
+
+/* ============================== SEO center ============================== */
+const NAV=[['overview','Overview','grid'],['__Settings'],['general','General SEO','gear'],['appearance','Search appearance','search'],['social','Social sharing','share'],['__Crawling'],['sitemap','Sitemap','map'],['robots','Robots.txt','bot'],['redirects','Redirects','route'],['__Markup'],['schema','Structured data','code'],['advanced','Advanced','shield']];
+function renderCenter(){
+  const sr=siteRep();
+  let nav=NAV.map(n=>n[0].startsWith('__')?`<div class="grp">${n[0].slice(2)}</div>`:`<button class="${ui.section===n[0]?'on':''}" data-act="section" data-v="${n[0]}">${ic(n[2])}${n[1]}${n[0]==='overview'&&sr.attention?`<span class="tag warn nb">${sr.attention}</span>`:''}${n[0]==='schema'&&siteChecks().find(c=>c.go==='schema'&&c.level!=='good')?'<span class="dot warn nb"></span>':''}${n[0]==='advanced'&&!S.verify.google?'<span class="dot warn nb"></span>':''}</button>`).join('');
+  $('#center').innerHTML=`<div class="chead"><span class="ico">${ic('seo','lg')}</span><h2>Site SEO</h2><span class="tag ${lvl(sr.score)}">${sr.score}/100</span><span class="sp"></span><button class="small" data-act="centerclose">${ic('x')} Close</button></div>
+  <div class="cbody"><nav class="cnav">${nav}</nav><div class="cmain" id="cmain"><div class="cin">${SECTIONS[ui.section]()}</div></div></div>`;
+  $('#center').classList.toggle('open',ui.center)}
+const field=(label,input,note,right)=>`<div class="field"><div class="flabel"><span class="fname">${label}</span><span class="sp"></span>${right||''}</div>${input}${note?`<span class="note">${note}</span>`:''}</div>`;
+const sw=(label,sub,key,on,extra)=>`<label class="switchrow"><span>${label}${extra||''}<small>${sub}</small></span><button class="sw ${on?'on':''}" data-act="stoggle" data-v="${key}"></button></label>`;
+const SECTIONS={
+ overview(){const sr=siteRep(),sc2=siteChecks();
+  const sIss=sc2.filter(c=>c.level!=='good');
+  const rows=sr.issues.slice(0,6);
+  return `<h3>SEO overview</h3><p class="lead">How well your site is set up for search engines, from automated checks of your pages and site settings.</p>
+  <div class="sect"><div class="hero-score">${ring(sr.score,92)}<div class="gap" style="gap:6px"><div class="row"><b style="font-size:16px">${WORD[lvl(sr.score)]}</b><span class="tag">Measured · ${sr.reps.length*12} checks</span></div><span class="note" style="font-size:12px">Average of ${sr.counted} listed pages. ${Object.keys(P).length-sr.counted} hidden page${Object.keys(P).length-sr.counted===1?'':'s'} not counted.</span><div class="row"><button class="small ai" data-act="fixall">${ic('ai')} Review ${batch().length} AI fixes</button><button class="small" data-act="rescan">${ic('refresh')} Re-analyze</button></div></div>
+  <div class="bars" style="min-width:260px">${CATS.map(([k,n])=>{const v=sr.cats[k];return `<div class="barrow"><span>${n}</span><span class="meter"><i class="${lvl(v)}" style="width:${v}%;background:var(--${lvl(v)==='good'?'good':lvl(v)==='warn'?'warn':'bad'})"></i></span><b class="lvl-${lvl(v)}">${v}</b></div>`}).join('')}</div></div></div>
+  <div class="stats"><button class="stat" data-act="jump" data-v="pages"><b>${sr.optimized}<span style="font-size:14px;color:var(--v2-faint)">/${sr.counted}</span></b><span>Optimized pages</span></button><button class="stat" data-act="jump" data-v="pages"><b class="lvl-warn">${sr.attention}</b><span>Need attention</span></button><button class="stat" data-act="jump" data-v="issues"><b class="lvl-bad">${sr.critical}</b><span>Critical issues</span></button><button class="stat" data-act="jump" data-v="issues"><b>${sr.issues.filter(c=>c.level==='warn').length}</b><span>Improvements</span></button></div>
+  <div class="sect" id="issues"><h4>Top issues <span class="count">by impact</span></h4>${rows.map(c=>`<button class="issue" data-act="gotoissue" data-page="${c.page}" data-v="${c.id}"><span class="dot ${c.level}"></span><span><b>${esc(c.text)}</b><small>${esc(P[c.page].label)} · ${prio(c)} priority</small></span><span class="small sm">${REC[c.id].ai?ic('ai')+REC[c.id].ai:REC[c.id].act}</span></button>`).join('')}
+  ${sIss.length?`<div class="group-h">Site-wide</div>`+sIss.map(c=>`<button class="issue" data-act="section" data-v="${c.go}"><span class="dot ${c.level}"></span><span><b>${esc(c.text)}</b><small>Site settings</small></span><span class="small sm">Open</span></button>`).join(''):''}</div>
+  <div class="sect" id="pages"><h4>Pages <span class="count">${sr.reps.length}</span></h4><table class="table"><thead><tr><th>Page</th><th>Score</th><th class="hide-sm">Main issue</th><th class="hide-sm">Analyzed</th></tr></thead><tbody>${sr.reps.map(r=>{const p=P[r.id],l=lvl(r.score),t=r.top[0];return `<tr class="click" data-act="openpage" data-v="${r.id}"><td class="pn"><b>${esc(p.label)}</b><small>${p.path}</small></td><td><span class="tag ${l}">${r.score}</span> ${p.noindex?'<span class="tag">Hidden</span>':''}</td><td class="hide-sm">${t?esc(shortName(t)):'<span style="color:var(--good-ink)">All pass</span>'}</td><td class="hide-sm" style="color:var(--v2-faint)">${p.analyzed}</td></tr>`}).join('')}</tbody></table></div>
+  <div class="sect"><h4>What we can't measure yet</h4><div class="notice dash">${ic('info')}<span>Rankings, clicks, impressions, backlinks, indexing status and real-user page speed come from Google, not your site files. They are not part of this score. Connecting Google Search Console would add them.<br><button class="small" style="margin-top:8px" data-act="section" data-v="advanced">Connect Search Console</button></span></div></div>`},
+ general(){return `<h3>General SEO</h3><p class="lead">Basics that apply to every page unless a page overrides them.</p>
+  <div class="sect"><h4>Site identity</h4><div class="two">${field('Site name',`<input class="vin" value="${esc(SITE.name)}">`,'Shown in Google next to your link.')}${field('Tagline',`<input class="vin" value="${esc(S.tagline)}">`,'Used when a page has no description.')}</div>
+  <div class="two">${field('Language',`<select class="vin"><option>English</option><option>Español</option><option>Deutsch</option></select>`,'Written into every page as <html lang>.')}${field('Region',`<select class="vin"><option>United States</option><option>United Kingdom</option><option>Canada</option></select>`)}</div>
+  ${field('Favicon',`<div class="row"><span class="fav" style="width:32px;height:32px;border-radius:8px;background:var(--v2-text);color:var(--v2-desk);display:grid;place-items:center;font-weight:600">A</span><button class="small">${ic('img')} Change from Media</button><span class="note">Square, at least 48 × 48 px. Google shows it in mobile results.</span></div>`)}</div>
+  <div class="sect"><h4>Indexing & canonical</h4>${sw('Let search engines list this site','Turn off while the site is private. Adds noindex to every page and blocks crawlers.','siteNoindexInv',!S.siteNoindex)}
+  <div class="two">${field('Preferred address',`<select class="vin" data-sel="host"><option value="apex" ${S.host==='apex'?'selected':''}>alderandoak.com</option><option value="www" ${S.host==='www'?'selected':''}>www.alderandoak.com</option></select>`,'Canonical tags and the sitemap use this one.')}${field('Trailing slash',`<select class="vin" data-sel="trailing"><option value="none">/about</option><option value="slash" ${S.trailing==='slash'?'selected':''}>/about/</option></select>`,'Pick one. We redirect the other.')}</div></div>
+  <div class="sect"><h4>${ic('check')} Handled for you</h4><p class="hint">These need no setup. Zejify adds them every time you publish.</p><div class="autos">${['HTTPS on every page','Self-referencing canonical tags','Mobile viewport tag','sitemap.xml with last-modified dates','Language attribute on every page','Open Graph URL and site name','Image width and height (stops layout shift)','Clean, lowercase page URLs'].map(x=>`<div>${ic('check')}<span>${x}</span></div>`).join('')}</div></div>`},
+ appearance(){const ex=['home','about','menu'];
+  return `<h3>Search appearance</h3><p class="lead">Default titles and descriptions. A page's own SEO title always wins over these.</p>
+  <div class="sect"><h4>Title template</h4><p class="hint">Used for any page that has no SEO title of its own, and by AI when it writes new ones.</p>
+  <div class="tpl"><input class="vin mono" id="tpl" style="max-width:300px;font-size:12px" value="${esc(S.template)}"><span class="note">Insert:</span><button class="tok" data-act="tok" data-v="%page%">%page%</button><button class="tok" data-act="tok" data-v="%site%">%site%</button><button class="tok" data-act="tok" data-v="%tagline%">%tagline%</button></div>
+  ${field('Separator',`<div class="seg" style="max-width:220px">${['|','–','·','•'].map(x=>`<button class="${S.sep===x?'on':''}" data-act="sep" data-v="${x}">${x}</button>`).join('')}</div>`)}
+  <div id="tplprev" class="gap" style="gap:8px">${tplPreview(ex)}</div></div>
+  <div class="sect"><h4>When a page has no description</h4>${field('Fallback',`<div class="seg" style="max-width:400px"><button class="${S.descFallback==='ai'?'on':''}" data-act="dfb" data-v="ai">${ic('ai')} Suggest with AI</button><button class="${S.descFallback==='tag'?'on':''}" data-act="dfb" data-v="tag">Use tagline</button><button class="${S.descFallback==='none'?'on':''}" data-act="dfb" data-v="none">Leave empty</button></div>`,S.descFallback==='ai'?'AI suggestions always wait for your review. Nothing is published without you.':S.descFallback==='tag'?'Same text on many pages counts as duplicate. Use only as a stopgap.':'Google will pick text from the page. Often fine, rarely best.')}</div>
+  <div class="sect"><h4>Home page</h4>${field('Home page title',`<input class="vin" value="${esc(P.home.title)}">`,'The home page ignores the template, so you can write it freely.')}</div>`},
+ social(){return `<h3>Social sharing</h3><p class="lead">How your links look when shared on Facebook, X, LinkedIn, WhatsApp and Slack.</p>
+  <div class="two"><div class="sect"><h4>Defaults</h4>${field('Default share image',`<button class="small wide">${ic('img')} ${esc(S.ogImage)}</button>`,'Used by pages with no image of their own. 1200 × 630 px.')}${field('X card size',`<div class="seg"><button class="${S.card==='summary'?'on':''}" data-act="card" data-v="summary">Small</button><button class="${S.card==='summary_large_image'?'on':''}" data-act="card" data-v="summary_large_image">Large image</button></div>`)}${field('X / Twitter handle',`<input class="vin" data-in-s="twitter" value="${esc(S.twitter)}">`)}</div>
+  <div class="sect"><h4>Preview · Home</h4><div class="seg">${[['facebook','Facebook'],['x','X'],['li','LinkedIn']].map(([k,n])=>`<button class="${ui.share===k?'on':''}" data-act="sharetab" data-v="${k}">${n}</button>`).join('')}</div>${(()=>{const k=ui.cur;ui.cur='home';const x=shareHTML();ui.cur=k;return x})()}<p class="note">Pages without a share image: <b>${Object.keys(P).filter(k=>!P[k].ogImage).map(k=>P[k].label).join(', ')||'none'}</b>.</p></div></div>`},
+ sitemap(){const rows=Object.keys(P);
+  return `<h3>Sitemap</h3><p class="lead">A list of your pages for search engines. Zejify rebuilds it every time you publish, so it is never out of date.</p>
+  <div class="sect">${sw('Generate sitemap.xml automatically','Recommended. Lives at '+SITE.origin+'/sitemap.xml.','sitemapAuto',S.sitemapAuto,' <span class="tag good">Recommended</span>')}</div>
+  <div class="two"><div class="sect"><h4>Pages in the sitemap</h4><table class="table"><tbody>${rows.map(k=>{const p=P[k],hid=p.noindex,on=!hid&&!S.sitemapExcl[k];return `<tr><td class="pn"><b>${esc(p.label)}</b><small>${p.path}</small></td><td style="text-align:right">${hid?'<span class="tag">Hidden · never listed</span>':`<button class="sw ${on?'on':''}" data-act="sm" data-v="${k}" ${S.sitemapAuto?'':'disabled'}></button>`}</td></tr>`}).join('')}</tbody></table><p class="note">Pages set to “hide from search engines” are left out on purpose: listing them would send mixed signals.</p></div>
+  <div class="sect"><div class="row"><h4 style="flex:1">Preview</h4><button class="textbtn" data-act="copy">${ic('copy')} Copy URL</button></div><pre class="codeblock">${colorize(sitemapXML())}</pre><p class="note">We omit priority and change-frequency: Google ignores them.</p></div></div>
+  <div class="notice info">${ic('info')}<span><b>Next step:</b> submit <span class="mono">https://${SITE.origin}/sitemap.xml</span> in Google Search Console and Bing Webmaster Tools. We can't do that for you without connecting your account.</span></div>`},
+ robots(){const bad=S.robotsMode==='custom'&&/Disallow:\s*\/\s*$/m.test(S.robotsCustom);
+  return `<h3>Robots.txt</h3><p class="lead">Tells crawlers what they may visit. The automatic version is right for almost every site.</p>
+  <div class="sect"><div class="seg" style="max-width:360px"><button class="${S.robotsMode==='auto'?'on':''}" data-act="rmode" data-v="auto">Automatic (recommended)</button><button class="${S.robotsMode==='custom'?'on':''}" data-act="rmode" data-v="custom">Custom</button></div>
+  ${S.robotsMode==='auto'?`${sw('Block AI training crawlers','Asks GPTBot, CCBot, Google-Extended, ClaudeBot and others not to use your content for model training. Does not affect Google Search.','blockAI',S.blockAI)}<div class="notice info">${ic('info')}<span>Robots.txt is a request, not a lock. Well-behaved crawlers follow it. It does not remove a page from Google: use “hide from search engines” on the page for that.</span></div>`:`<textarea class="vin mono" id="robotsin" rows="8" style="font-size:12px">${esc(S.robotsCustom)}</textarea>${bad?`<div class="notice bad">${ic('alert')}<span><b>This blocks every crawler.</b> Your whole site would disappear from search results. Change <span class="mono">Disallow: /</span> unless that's what you want.</span></div>`:`<span class="note">Checked for errors as you type. ${ic('check')} Valid.</span>`}<button class="small" data-act="rmode" data-v="auto">${ic('undo')} Back to automatic</button>`}</div>
+  <div class="sect"><h4>Output</h4><pre class="codeblock" id="robotsout">${colorize(robotsTXT())}</pre></div>`},
+ redirects(){return `<h3>Redirects</h3><p class="lead">Send old addresses to new ones so visitors and search engines don't hit dead ends. Changing a page's URL adds one for you.</p>
+  <div class="sect"><h4>Active redirects <span class="count">${S.redirects.length}</span></h4><div class="list-edit">${S.redirects.map((r,i)=>`<div class="rrow"><input class="vin mono" style="font-size:12px" value="${esc(r.from)}"><span style="color:var(--v2-faint)">→</span><input class="vin mono" style="font-size:12px" value="${esc(r.to)}"><select class="vin" style="width:80px"><option ${r.code===301?'selected':''}>301</option><option ${r.code===302?'selected':''}>302</option></select><button class="iconbtn" data-act="rmredir" data-v="${i}">${ic('trash')}</button></div>`).join('')}</div><button class="small" data-act="addredir" style="justify-self:start">${ic('plus')} Add redirect</button><p class="note">301 = permanent (use this almost always). 302 = temporary.</p></div>
+  <div class="sect"><h4>Broken links found</h4><button class="issue" data-act="gotoissue" data-page="catering" data-v="links"><span class="dot bad"></span><span><b>/wholesale</b><small>Linked from Catering · page does not exist</small></span><span class="small sm">Fix</span></button><div class="row"><button class="small ai">${ic('ai')} Suggest a redirect</button><span class="note">Closest match: /catering</span></div></div>`},
+ schema(){const warnC=/0000/.test(S.org.phone)||/^example@/.test(S.org.email);
+  return `<h3>Structured data</h3><p class="lead">Invisible labels (JSON-LD) that tell search engines exact facts about your business and pages.</p>
+  <div class="sect"><h4>Business details <span class="tag">LocalBusiness</span></h4>${warnC?`<div class="notice">${ic('alert')}<span>Your phone and email are still placeholders. Add real ones before publishing: they are shown to search engines as facts.</span></div>`:''}
+  <div class="two">${field('Business name',`<input class="vin" data-org="name" value="${esc(S.org.name)}">`)}${field('Type',`<select class="vin" data-org="type"><option>LocalBusiness</option><option>Bakery</option><option>Restaurant</option><option>Organization</option></select>`)}${field('Phone',`<input class="vin" data-org="phone" value="${esc(S.org.phone)}">`)}${field('Email',`<input class="vin" data-org="email" value="${esc(S.org.email)}">`)}${field('Street address',`<input class="vin" data-org="street" value="${esc(S.org.street)}">`)}${field('City',`<input class="vin" data-org="city" value="${esc(S.org.city)}">`)}</div>
+  ${field('Social profiles',`<div class="chips">${S.org.social.map(s=>`<span class="chip sel">${esc(s.replace('https://',''))}</span>`).join('')}<button class="chip">+ Add profile</button></div>`,'Becomes sameAs links so Google can connect your profiles.')}
+  <button class="small ai" style="justify-self:start" data-act="schemaai">${ic('ai')} Fill from my site content</button></div>
+  <div class="two"><div class="sect"><h4>Added automatically</h4>${sw('WebSite','Site name and search box info on every page.','x',true,' <span class="tag auto">Auto</span>')}${sw('BreadcrumbList','The page trail in results, on inner pages.','breadcrumbs',S.breadcrumbs)}<div class="notice dash">${ic('info')}<span><b>FAQ and How-to markup:</b> Google no longer shows FAQ rich results (May 2026) and dropped How-to in 2023. We don't suggest them for search. They're still allowed if you want them for other reasons.</span></div></div>
+  <div class="sect"><div class="row"><h4 style="flex:1">JSON-LD preview</h4><span class="tag good">${ic('check')} Valid JSON</span></div><pre class="codeblock" id="jsonout">${esc(jsonld())}</pre><p class="note">Validity of the syntax is checked here. Whether Google shows a rich result is up to Google. Test with Google's Rich Results Test after publishing.</p></div></div>`},
+ advanced(){return `<h3>Advanced SEO</h3><p class="lead">For people who know what they need. You can ignore this page.</p>
+  <div class="sect"><h4>Search engine verification</h4><p class="hint">Proves you own the site so you can see real search data (rankings, clicks, indexing problems).</p><div class="two">${field('Google Search Console',`<input class="vin mono" style="font-size:12px" data-v-in="google" placeholder="google-site-verification content">`,'')}${field('Bing Webmaster Tools',`<input class="vin mono" style="font-size:12px" placeholder="msvalidate.01 content">`)}</div><div class="notice info">${ic('info')}<span>Once verified, a future update can show clicks and indexing status inside this panel.</span></div></div>
+  <div class="sect"><h4>Site-wide custom tags</h4>${field('Extra <head> tags',`<textarea class="vin mono" rows="3" style="font-size:12px" placeholder='<meta name="theme-color" content="#2a1d12">'></textarea>`,'Added to every page. Scripts are not allowed here: use Site code for those.')}</div>
+  <div class="sect"><h4>AI & new crawlers <span class="tag warn">Experimental</span></h4>${sw('Publish an llms.txt file','A plain-text summary of your site for AI assistants. No major search engine has confirmed it affects ranking, so treat it as optional.','llms',S.llms)}</div>`}
+};
+function tplPreview(ex){return ex.map(k=>{const p=P[k];const t=S.template.replace('%page%',p.label).replace('%site%',SITE.name).replace('%tagline%',S.tagline).replace(/\|/g,S.sep);return `<div class="row"><span class="tag" style="min-width:56px;justify-content:center">${p.label}</span><span class="serp" style="flex:1;padding:6px 10px"><span class="st" style="font-size:14px;margin:0">${esc(t.length>60?t.slice(0,59)+'…':t)}</span></span><span class="count ${t.length>60?'over':'ok'}">${t.length}</span></div>`}).join('')}
+
+/* ============================== stage (canvas mock) ============================== */
+function renderStage(){const p=P[ui.cur],im=IMGS.home;const flag=id=>{const i=im.find(x=>x.id===id);return i&&!i.alt.trim()?'<span class="flag">No alt text</span>':''};
+  const dv=($('.dev .on')||{dataset:{v:''}}).dataset.v;$('#stage').innerHTML=`<div class="site-mock ${dv}"><nav><b>Alder &amp; Oak</b><span>Menu</span><span>Catering</span><span>About</span><span>Contact</span></nav>
+  <section class="hero"><div><h1 id="mock-h1">${esc(P.home.h1)}</h1><p>Naturally leavened bread, laminated pastries and strong coffee from our stone deck oven on SE Division. Open daily from 7am.</p><span class="cta">Order ahead</span></div><div class="mock-img img-art" id="mi-h1" style="background:linear-gradient(135deg,#e8c9a0,#b9794a 45%,#6b3f22)">${flag('h1')}</div></section>
+  <div class="grid3"><div class="mock-img" id="mi-h2" style="background:linear-gradient(135deg,#d9c4a6,#8b6a45)">${flag('h2')}</div><div class="mock-img" id="mi-h3" style="background:linear-gradient(135deg,#f0d8a8,#c9894a)">${flag('h3')}</div><div class="mock-img" id="mi-h4" style="background:linear-gradient(135deg,#b8c2b0,#5f6f58)">${flag('h4')}</div></div></div>`}
+function hlImg(id,on){const e=$('#mi-'+id);if(e&&ui.cur==='home')e.classList.toggle('hl',!!on)}
+
+/* ============================== menus, popovers, toast ============================== */
+function closeFloating(){$$('.menu,.pop').forEach(e=>e.remove())}
+function place(el,anchor,w){const a=anchor.getBoundingClientRect(),app=$('#app').getBoundingClientRect();el.style.left=Math.max(8,Math.min(a.left-app.left,app.width-(w||240)-8))+'px';el.style.top=(a.bottom-app.top+6)+'px';$('#app').appendChild(el)}
+function openMenu(anchor,html){closeFloating();const m=document.createElement('div');m.className='menu';m.innerHTML=html;place(m,anchor,220)}
+function openPop(anchor,html){closeFloating();const m=document.createElement('div');m.className='pop';m.innerHTML=html;place(m,anchor,300)}
+function toast(msg,undo){const t=$('#toast');t.innerHTML=`<span>${msg}</span>${undo?'<button data-act="undo">Undo</button>':''}`;t.classList.add('open');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('open'),6000)}
+function closeModal(){$('#scrim').classList.remove('open')}
+const POPS={
+ scoring:`<h5>How the score works</h5><p>The score comes from automated checks of your page HTML and site settings. Each check has a weight: pass counts in full, a warning half, a failure nothing.</p><h5>Not in the score</h5><ul><li>Rankings and traffic</li><li>Backlinks and authority</li><li>Real-user page speed (Core Web Vitals)</li><li>Whether Google has indexed the page</li></ul><p>A high score means the basics are right. It does not promise higher rankings.</p>`,
+ faq:`<h5>Why not FAQ markup?</h5><p>Google stopped showing FAQ rich results in May 2026, so adding it would not change how your page appears. Breadcrumbs and business details still do.</p>`
+};
+
+/* ============================== actions ============================== */
+function renderAll(){renderChrome();renderPanel();renderStage();renderCenter()}
+function liveUpdate(){ // derived bits only; keeps focus in the field being typed in
+  const r=report(ui.cur);$('#scorecard').innerHTML=scoreCard(r);$('#nextacts').innerHTML=nextActs(r);
+  const ac=$('#allchecks');if(ac)ac.innerHTML=checkList(r);
+  const s=$('#serp');if(s)s.innerHTML=serpHTML();const sh=$('#sharecard');if(sh)sh.innerHTML=shareHTML();const ho=$('#headout');if(ho)ho.innerHTML=colorize(headHTML(ui.cur));
+  ['title','desc'].forEach(f=>{const n=P[ui.cur][f].trim().length,max=f==='title'?60:160,min=f==='title'?30:70;const c=$('#cnt-'+f),m=$('#mt-'+f);if(c){c.textContent=n+'/'+max;c.className='count '+(n>max?'over':n>=min?'ok':'')}if(m){m.style.width=Math.min(100,n/max*100)+'%';m.className=n>max?'over':n<min?'short':''}});
+  $$('.acc[data-acc]').forEach(a=>{});renderChrome();
+  // dots on accordion heads
+  const dots={search:['title','description'],focus:['focus'],images:['alt'],url:['canonical','links'],social:['share'],schema:['schema']};
+  Object.entries(dots).forEach(([k,ids])=>{const h=document.querySelector(`.acc[data-acc=${k}] .head .dot`);if(h)h.className='dot '+(r.cs.filter(c=>ids.includes(c.id)).sort((a,b)=>rank[a.level]-rank[b.level])[0]||{level:'good'}).level});
+}
+function openAcc(k,focus){ui.fly=k;ui.tab='page';ui.panel='seo';renderPanel();if(focus){const i=$('#fly '+focus);i&&setTimeout(()=>{i.focus({preventScroll:true});i.scrollIntoView({block:'center',behavior:'smooth'})},200)}}
+function quick(id){const c=id;
+  const map={title:()=>{openAcc('search','[data-in=title]');setTimeout(()=>startAI('title'),300)},description:()=>{openAcc('search','[data-in=desc]');setTimeout(()=>startAI('desc'),300)},
+   focus:()=>{openAcc('focus');ui.kw=true;renderPanel()},alt:()=>{openAcc('images')},share:()=>openAcc('social'),canonical:()=>openAcc('url','[data-in=canonical]'),schema:()=>openAcc('schema'),
+   h1:()=>{const h=$('#mock-h1');h&&(h.classList.add('sel-h1'),setTimeout(()=>h.classList.remove('sel-h1'),2200));toast('H1 selected on the page: edit it there.')},headings:()=>toast('Heading selected on the page: change its level in the Style panel.'),
+   words:()=>{ui.panel='agent';ui.chat.push({me:1,t:'Expand the '+P[ui.cur].label+' page with more helpful text'});ui.chat.push({t:'I drafted 2 new paragraphs from your menu and story. Want me to add them below the hero?'});renderChrome();renderPanel()},links:()=>toast('Opening the broken link in the page editor…'),lang:()=>openAcc('adv')};
+  (map[c]||(()=>{}))()}
+function gotoIssue(page,id){ui.cur=page;ui.center=false;ui.tab='page';renderAll();$('#center').classList.remove('open');setTimeout(()=>quick(id),60)}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act]');
+  if(!e.target.closest('.menu,.pop')&&!(t&&['aimenu','pagemenu','pop'].includes(t.dataset.act)))closeFloating();
+  if(!t)return;const a=t.dataset.act,v=t.dataset.v,p=P[ui.cur];
+  switch(a){
+   case'tab':ui.tab=v;renderPanel();break;
+   case'rail':if(v==='agent'||v==='seo'){ui.panel=v;ui.center=false;$('#center').classList.remove('open');renderChrome();renderPanel()}else toast(({layers:'Layers',vars:'Design system',history:'History'})[v]+' panel (demo)');break;
+   case'mode':{$$('.mode button').forEach(b=>b.classList.toggle('on',b===t));$('#app').classList.toggle('preview',v==='preview');break}
+   case'dev':{$$('.dev button').forEach(b=>b.classList.toggle('on',b===t));const m=$('.site-mock');if(m)m.className='site-mock '+v;break}
+   case'tb':toast(v);break;
+   case'sitemenu':toast('Site menu: rename, settings, all sites (demo)');break;
+   case'agentdo':{const L={fix:'Fix the SEO issues on my site',alt:'Add alt text to every image',desc:'Write meta descriptions for pages that need them'};ui.chat.push({me:1,t:L[v]});ui.chat.push({t:`Done reading your pages. I prepared <b>${batch().length} changes</b>. Nothing is applied until you review them.`});renderPanel();setTimeout(()=>openBatch(),500);break}
+   case'agentsend':{const i=$('#ain');if(!i.value.trim())return;ui.chat.push({me:1,t:i.value.trim()});ui.chat.push({t:'On it. For SEO changes I always show you a review first.'});renderPanel();break}
+   case'acc':ui.fly=ui.fly===v?null:v;renderPanel();break;
+   case'openacc':openAcc(v);break;
+   case'flyclose':ui.fly=null;renderPanel();break;
+   case'flystep':{const K=Object.keys(FLY);ui.fly=K[K.indexOf(ui.fly)+(+v)]||ui.fly;renderPanel();break}
+   case'center':ui.center=true;ui.section=v;renderCenter();break;
+   case'centerclose':ui.center=false;$('#center').classList.remove('open');break;
+   case'section':ui.section=v;ui.center=true;renderCenter();document.querySelector('#cmain').scrollTop=0;break;
+   case'jump':document.getElementById(v).scrollIntoView({behavior:'smooth'});break;
+   case'openpage':ui.cur=v;ui.tab='page';ui.center=false;ui.tray=null;ui.kw=false;renderAll();break;
+   case'pagemenu':{ui.menu='page';openMenu(t,`<div class="mt">Pages</div>`+Object.keys(P).map(k=>{const r=report(k);return `<button data-act="openpage" data-v="${k}"><span class="dot ${lvl(r.score)}"></span>${esc(P[k].label)}<span class="count" style="margin-left:auto">${r.score}</span></button>`}).join(''));break}
+   case'quick':quick(v);break;
+   case'explain':{const R=REC[v];openPop(t,`<h5>Why this matters</h5><p>${R.why}</p><h5>How we check</h5><p>${R.how}</p>`);break}
+   case'pop':openPop(t,POPS[v]);break;
+   case'ai':startAI(v);break;
+   case'aimenu':openMenu(t,`<div class="mt">Improve with AI</div>`+['Shorter','Friendlier','Add focus topic','Fix length'].map(m=>`<button data-act="aimode" data-f="${v}" data-v="${m}">${ic('ai')}${m}</button>`).join('')+`<div class="sep"></div><button data-act="explain" data-v="${v==='desc'?'description':'title'}">${ic('info')}Explain this check</button>`);break;
+   case'aimode':startAI(t.dataset.f,v);closeFloating();break;
+   case'trayclose':ui.tray=null;renderPanel();break;
+   case'useopt':{const o=ui.tray.opts[v],f=ui.tray.field;ui.lastSnap=JSON.stringify([P,IMGS]);p[f]=o[0];ui.tray=null;renderPanel();toast(`${f==='title'?'SEO title':'Meta description'} updated`,true);renderChrome();break}
+   case'serp':ui.serp=v;$('#serp').innerHTML=serpHTML();$$('[data-act=serp]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));break;
+   case'sharetab':ui.share=v;ui.center?renderCenter():renderPanel();break;
+   case'toggle':if(v==='noindex')p.noindex=!p.noindex;if(v==='sitemap')S.sitemapExcl[ui.cur]=!S.sitemapExcl[ui.cur];renderAll();break;
+   case'rmkw':p.focus.splice(+v,1);renderPanel();renderChrome();break;
+   case'addkw':if(v&&!p.focus.includes(v))p.focus.push(v);renderPanel();break;
+   case'kwsug':ui.kw=true;renderPanel();break;case'kwclose':ui.kw=false;renderPanel();break;
+   case'useAlt':{const i=IMGS[ui.cur].find(x=>x.id===v);ui.lastSnap=JSON.stringify([P,IMGS]);i.alt=i.sug;renderAll();toast('Alt text added',true);break}
+   case'altall':{ui.lastSnap=JSON.stringify([P,IMGS]);IMGS[ui.cur].forEach(i=>{if(!i.alt.trim()&&i.sug)i.alt=i.sug});renderAll();toast('Alt text added to all images',true);break}
+   case'pickimg':case'aiog':p.ogImage=true;renderAll();toast(a==='aiog'?'Chose the best image from this page: hero-sourdough.jpg':'Image set');break;
+   case'rmog':p.ogImage=false;renderAll();break;
+   case'schematoggle':{const i=p.schema.indexOf(v);i>=0?p.schema.splice(i,1):p.schema.push(v);renderAll();break}
+   case'chiptog':t.classList.toggle('sel');break;
+   case'copyhead':toast('Copied the generated <head>');break;case'copy':toast('Copied');break;
+   case'fixall':openBatch(v);break;
+   case'closemodal':closeModal();break;
+   case'applybatch':applyBatch();break;
+   case'undo':{if(ui.lastSnap){const [a2,b2]=JSON.parse(ui.lastSnap);P=a2;Object.keys(b2).forEach(k=>IMGS[k]=b2[k]);ui.lastSnap=null;renderAll();$('#toast').classList.remove('open')}break}
+   case'rescan':toast('Re-analyzed 6 pages');break;
+   case'gotoissue':gotoIssue(t.dataset.page,v);break;
+   case'stoggle':{if(v==='siteNoindexInv')S.siteNoindex=!S.siteNoindex;else if(v==='x'){}else S[v]=!S[v];renderCenter();break}
+   case'sm':S.sitemapExcl[v]=!S.sitemapExcl[v];renderCenter();break;
+   case'rmode':S.robotsMode=v;renderCenter();break;
+   case'tok':{const i=$('#tpl');i.value+=(i.value&&!i.value.endsWith(' ')?' ':'')+v;S.template=i.value;$('#tplprev').innerHTML=tplPreview(['home','about','menu']);break}
+   case'sep':S.sep=v;renderCenter();break;case'dfb':S.descFallback=v;renderCenter();break;case'card':S.card=v;renderCenter();break;
+   case'rmredir':S.redirects.splice(+v,1);renderCenter();break;
+   case'addredir':S.redirects.push({from:'/new-old-path',to:'/',code:301});renderCenter();break;
+   case'schemaai':S.org.phone='(503) 555-0142';toast('AI filled what it found in your pages. Phone left as placeholder for you to confirm.');renderCenter();break;
+   case'publish':toast('Prototype only: nothing is published');break;
+   case'theme':case'theme-app':{const a2=$('#app');a2.dataset.theme=a2.dataset.theme==='dark'?'light':'dark';break}
+  }
+});
+document.addEventListener('input',e=>{const t=e.target,p=P[ui.cur];if(t.id==='ain'){$('#asend').classList.toggle('ready',!!t.value.trim());return}
+  if(t.dataset.in){const f=t.dataset.in;p[f]=t.value;f==='ogTitle'||f==='ogDesc'?0:0;if(f==='path'||f==='canonical'||f==='ogTitle'||f==='ogDesc'||f==='title'||f==='desc')liveUpdate()}
+  if(t.dataset.alt){IMGS[ui.cur].find(i=>i.id===t.dataset.alt).alt=t.value;liveUpdate()}
+  if(t.id==='tpl'){S.template=t.value;$('#tplprev').innerHTML=tplPreview(['home','about','menu'])}
+  if(t.id==='robotsin'){S.robotsCustom=t.value;$('#robotsout').innerHTML=colorize(robotsTXT())}
+  if(t.dataset.org){S.org[t.dataset.org]=t.value;const j=$('#jsonout');if(j)j.textContent=jsonld()}
+  if(t.dataset.vIn){S.verify[t.dataset.vIn]=t.value}
+});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.sel){S[t.dataset.sel]=t.value}if(t.dataset.chg)batchSel[t.dataset.chg]=t.checked;if(t.id==='robotsin')renderCenter()});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&e.target.id==='ain'){e.preventDefault();$('#asend').click();return}if(e.key==='Enter'&&e.target.id==='kwin'&&e.target.value.trim()){const p=P[ui.cur];p.focus.push(e.target.value.trim());renderPanel();renderChrome()}if(e.key==='Escape'){const hadFloat=!!$('.menu,.pop');closeFloating();if($('#scrim').classList.contains('open'))closeModal();else if(!hadFloat&&ui.fly&&!ui.center){ui.fly=null;renderPanel()}}});
+document.querySelectorAll('.proto [data-go]').forEach(b=>b.addEventListener('click',()=>{const g=b.dataset.go;closeModal();
+  ui.panel='seo';
+  if(g==='page'){ui.center=false;ui.tab='page';ui.cur='home'}
+  if(g==='site'){ui.center=false;ui.tab='site'}
+  if(g==='overview'){ui.center=true;ui.section='overview'}
+  if(g==='robots'){ui.center=true;ui.section='robots'}
+  if(g==='schema'){ui.center=true;ui.section='schema'}
+  if(g==='agent'){ui.center=false;ui.panel='agent'}
+  renderAll();if(g==='fixall')openBatch()}));
+$('.proto [data-act=theme]').addEventListener('click',()=>{const a=$('#app');a.dataset.theme=a.dataset.theme==='dark'?'light':'dark'});
+$('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim')closeModal()});
+renderAll();
+</script>
+</body>
+</html>
