@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velvet Hour · Cocktails, vinyl &amp; live jazz · Shoreditch</title>
+<meta name="description" content="A late-night cocktail bar with live jazz six nights a week. Signature cocktails, zero-proof drinks and small plates. Book a table.">
+<script>
+  // dark (neon) by default; a saved choice wins
+  (function () { var t; try { t = localStorage.getItem('vh-theme'); } catch (e) {} if (t !== 'light' && t !== 'dark') t = 'dark'; document.documentElement.setAttribute('data-theme', t); })();
+</script>
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Tilt+Neon&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+/* ---------- theme tokens ---------- */
+:root, [data-theme="light"] {
+  --kt-bg: #faf5ef; --kt-ink: #2a1020; --kt-tx: #5e4652; --kt-mut: #9a8590; --kt-line: rgba(42,16,32,.12);
+  --kt-accent: #7a1f55; --kt-accent-ink: #fff;
+  --c1: #7a1f55; --c2: #b45309; --c3: #6d28d9; --card: #fffaf4; --card2: #f3e9df;
+  --tglow: none; --glow: none; --ring: 0 18px 40px -26px rgba(42,16,32,.4); --hero-ov: linear-gradient(90deg, rgba(250,245,239,.97) 35%, rgba(250,245,239,.55) 70%, rgba(250,245,239,.2));
+  --img-filter: none; --nav-bg: rgba(250,245,239,.88); --sign: #7a1f55;
+}
+[data-theme="dark"] {
+  --kt-bg: #0a0610; --kt-ink: #fbefff; --kt-tx: #c3b0cc; --kt-mut: #7d6a88; --kt-line: rgba(255,255,255,.09);
+  --kt-accent: #ff3ea5; --kt-accent-ink: #0a0610;
+  --c1: #ff3ea5; --c2: #ffb547; --c3: #b26bff; --card: #140c1d; --card2: #1b1027;
+  --tglow: 0 0 6px currentColor, 0 0 20px currentColor, 0 0 42px currentColor; --glow: 0 0 0 1px rgba(255,62,165,.45), 0 0 26px rgba(255,62,165,.45);
+  --ring: 0 0 0 1px rgba(255,255,255,.05), 0 22px 50px -24px rgba(0,0,0,.9); --hero-ov: linear-gradient(90deg, rgba(10,6,16,.94) 30%, rgba(10,6,16,.6) 65%, rgba(10,6,16,.25));
+  --img-filter: saturate(1.2) contrast(1.05); --nav-bg: rgba(10,6,16,.8); --sign: #ff3ea5;
+}
+html { color-scheme: dark; } [data-theme="light"] { color-scheme: light; }
+body { font: 16px/1.65 Inter, system-ui, sans-serif; transition: background-color .4s, color .4s; }
+img { filter: var(--img-filter); }
+.pf { font-family: 'Playfair Display', serif; } .tn { font-family: 'Tilt Neon', sans-serif; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.ey { font-family: 'Tilt Neon', sans-serif; font-size: 18px; color: var(--c2); text-shadow: var(--tglow); letter-spacing: .04em; }
+h2.h { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; color: var(--kt-ink); margin: 8px 0 18px; }
+h2.h em { font-family: 'Tilt Neon', sans-serif; font-style: normal; font-weight: 400; color: var(--c1); text-shadow: var(--tglow); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 99px; font-weight: 600; letter-spacing: .02em; transition: transform .2s, box-shadow .2s, background .2s, color .2s; }
+.btn.fl { background: var(--kt-accent); color: var(--kt-accent-ink); box-shadow: var(--glow); } .btn.fl:hover { transform: translateY(-2px); }
+.btn.ol { border: 1.5px solid var(--kt-line); color: var(--kt-ink); } .btn.ol:hover { border-color: var(--c2); color: var(--c2); }
+[data-theme="dark"] .btn.ol { border-color: rgba(255,181,71,.55); box-shadow: inset 0 0 14px rgba(255,181,71,.15); }
+section { padding: 110px 0; position: relative; }
+.card { background: var(--card); border: 1px solid var(--kt-line); border-radius: 20px; box-shadow: var(--ring); transition: background .4s, border-color .4s; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--kt-line); transition: background .4s; }
+.nav .wrap { display: flex; align-items: center; gap: 24px; height: 76px; }
+.logo { font-family: 'Tilt Neon', sans-serif; font-size: 28px; color: var(--sign); text-shadow: var(--tglow); white-space: nowrap; }
+.kt-menu { display: flex; gap: 26px; margin-left: auto; font-weight: 500; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--c1); }
+.tsw { position: relative; display: flex; align-items: center; width: 74px; height: 38px; padding: 3px; border-radius: 99px; background: var(--card2); border: 1px solid var(--kt-line); flex: none; cursor: pointer; }
+.tsw .knob { position: absolute; top: 3px; left: 3px; width: 30px; height: 30px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.2); transition: transform .35s cubic-bezier(.5,1.6,.4,1), background .35s; }
+.tsw svg { position: relative; z-index: 1; width: 16px; height: 16px; margin: 0 7px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.tsw .sun { color: #d97706; } .tsw .moon { color: var(--kt-mut); margin-left: auto; }
+[data-theme="dark"] .tsw { border-color: rgba(255,62,165,.4); box-shadow: 0 0 14px rgba(255,62,165,.25); }
+[data-theme="dark"] .tsw .knob { transform: translateX(36px); background: #ff3ea5; box-shadow: 0 0 12px #ff3ea5; }
+[data-theme="dark"] .tsw .sun { color: var(--kt-mut); } [data-theme="dark"] .tsw .moon { color: #0a0610; }
+.tsw:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; }
+.nav .btn { height: 42px; padding: 0 20px; }
+
+/* hero */
+.hero { min-height: 88vh; display: flex; align-items: center; padding: 60px 0; overflow: hidden; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--hero-ov); transition: background .4s; }
+.hero .wrap { position: relative; z-index: 2; width: 100%; }
+.sign { display: inline-block; font-family: 'Tilt Neon', sans-serif; font-size: clamp(30px, 4vw, 46px); color: var(--sign); text-shadow: var(--tglow); padding: 6px 20px; border: 2px solid currentColor; border-radius: 16px; transform: rotate(-3deg); }
+[data-theme="dark"] .sign { box-shadow: 0 0 20px rgba(255,62,165,.6), inset 0 0 20px rgba(255,62,165,.35); animation: flicker 6s infinite; }
+@keyframes flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: .35; } }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(46px, 7vw, 100px); line-height: .98; color: var(--kt-ink); margin: 26px 0 18px; max-width: 760px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--c2); text-shadow: var(--tglow); }
+.hero p { font-size: 19px; max-width: 520px; margin: 0 0 28px; }
+.tonight { display: flex; gap: 14px; align-items: center; margin-top: 34px; padding: 14px 18px; border-radius: 18px; background: var(--card); border: 1px solid var(--kt-line); max-width: 520px; box-shadow: var(--ring); }
+.tonight img { width: 54px; height: 54px; border-radius: 12px; object-fit: cover; flex: none; }
+.tonight b { display: block; color: var(--kt-ink); }
+.tonight small { color: var(--kt-mut); }
+.open { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; color: var(--kt-ink); margin-left: auto; white-space: nowrap; }
+.open i { width: 9px; height: 9px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.22); }
+.open.closed i { background: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,.22); }
+
+.mq { padding: 22px 0; border-top: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); background: var(--card); transition: background .4s; }
+.mq .kt-mq-track span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 30px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 44px; }
+.mq .kt-mq-track span::after { content: "✦"; font-style: normal; font-size: 16px; color: var(--c1); text-shadow: var(--tglow); }
+
+/* menu */
+.mtabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 34px; }
+.mtabs button { height: 44px; padding: 0 20px; border-radius: 99px; border: 1px solid var(--kt-line); background: var(--card); font-weight: 600; color: var(--kt-tx); transition: .2s; }
+.mtabs button.on { background: var(--kt-accent); color: var(--kt-accent-ink); border-color: var(--kt-accent); box-shadow: var(--glow); }
+.mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 50px; }
+.mi { padding: 18px 0; border-bottom: 1px dashed var(--kt-line); }
+.mi .t { display: flex; align-items: baseline; gap: 10px; }
+.mi b { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--kt-ink); }
+.mi .dots { flex: 1; border-bottom: 2px dotted var(--kt-line); transform: translateY(-5px); }
+.mi .p { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--c1); text-shadow: var(--tglow); }
+.mi p { margin: 4px 0 0; font-size: 14.5px; }
+.mi .tg { display: inline-flex; gap: 6px; margin-left: 4px; font-size: 13px; }
+.mfeat { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; margin-top: 70px; }
+.mfeat .im { border-radius: 24px; overflow: hidden; position: relative; }
+.mfeat img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.mfeat .ribbon { position: absolute; top: 18px; left: 18px; font-family: 'Tilt Neon'; padding: 6px 14px; border-radius: 99px; background: rgba(10,6,16,.7); color: #ffb547; text-shadow: 0 0 10px #ffb547; backdrop-filter: blur(6px); }
+
+/* music */
+.music { background: var(--card2); transition: background .4s; }
+.mus { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+.week { display: grid; gap: 10px; }
+.gig { display: grid; grid-template-columns: 74px 1fr auto; gap: 16px; align-items: center; padding: 14px 16px; }
+.gig .d { text-align: center; line-height: 1.1; color: var(--kt-ink); font-family: 'Playfair Display', serif; font-size: 24px; }
+.gig .d small { display: block; font-family: Inter; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c2); font-weight: 600; }
+.gig b { display: block; color: var(--kt-ink); }
+.gig .gen { font-size: 13px; color: var(--kt-mut); }
+.gig.now { border-color: var(--c1); box-shadow: var(--glow), var(--ring); }
+.gig.now .d small { color: var(--c1); }
+.gig.off { opacity: .5; }
+.gig .bt { font-weight: 600; color: var(--c1); font-size: 14px; white-space: nowrap; }
+.feat2 { padding: 26px; }
+.feat2 .im { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+.feat2 .im img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.feat2 .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: var(--glow); }
+.feat2 h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--kt-ink); margin: 0 0 6px; }
+.cd { display: flex; gap: 8px; margin: 16px 0 20px; flex-wrap: wrap; }
+.cd div { min-width: 70px; padding: 10px; border-radius: 12px; background: var(--kt-bg); border: 1px solid var(--kt-line); text-align: center; }
+.cd b { display: block; font-family: 'Tilt Neon'; font-size: 28px; color: var(--c1); text-shadow: var(--tglow); line-height: 1.1; }
+.cd small { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--kt-mut); }
+.feat2 .kt-audio { --kt-audio-bg: var(--card2); }
+
+/* reserve */
+.res .wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 50px; align-items: start; }
+.rf { padding: 28px; }
+.rf .l { display: block; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-mut); margin: 18px 0 8px; }
+.rf .l:first-child { margin-top: 0; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips button { height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); font-size: 14px; transition: .15s; }
+.chips button.on { border-color: var(--c1); color: var(--c1); box-shadow: inset 0 0 0 1px var(--c1); }
+[data-theme="dark"] .chips button.on { box-shadow: inset 0 0 0 1px var(--c1), 0 0 14px rgba(255,62,165,.4); }
+.chips button:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.days button { display: flex; flex-direction: column; justify-content: center; line-height: 1.15; height: 56px; min-width: 62px; }
+.days button small { font-size: 11px; color: var(--kt-mut); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.step { display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 0 6px 0 14px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); }
+.step div { display: flex; align-items: center; gap: 10px; }
+.step button { width: 34px; height: 34px; border-radius: 9px; background: var(--card2); color: var(--kt-ink); font-size: 18px; font-weight: 700; }
+.rf input, .rf select { width: 100%; height: 46px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); padding: 0 14px; font: inherit; outline: none; }
+.rf input:focus, .rf select:focus { border-color: var(--c1); }
+.sum { margin: 22px 0 14px; padding: 14px 16px; border-radius: 14px; background: var(--card2); font-size: 14px; color: var(--kt-ink); }
+.sum .dep { display: block; margin-top: 4px; color: var(--c2); font-weight: 600; }
+.rf .btn { width: 100%; }
+.why { display: grid; gap: 14px; margin-top: 24px; }
+.why div { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: center; }
+.why i { font-style: normal; width: 46px; height: 46px; border-radius: 14px; background: var(--card); border: 1px solid var(--kt-line); display: grid; place-items: center; font-size: 20px; }
+.why b { display: block; color: var(--kt-ink); }
+
+/* gallery, reviews, faq */
+.gal { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 12px; }
+.gal a { border-radius: 18px; overflow: hidden; } .gal a:nth-child(1) { grid-column: span 2; grid-row: span 2; } .gal a:nth-child(4) { grid-column: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; } .gal a:hover img { transform: scale(1.06); }
+.rvf .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rq p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; line-height: 1.35; color: var(--kt-ink); margin: 0 0 16px; }
+.rq .st { color: var(--c2); text-shadow: var(--tglow); letter-spacing: 3px; }
+.rvf .kt-dots { justify-content: flex-start; color: var(--c1); margin-top: 22px; }
+footer { border-top: 1px solid var(--kt-line); padding: 60px 0 30px; background: var(--card); transition: background .4s; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; }
+footer h4 { margin: 0 0 12px; color: var(--kt-ink); font-family: 'Playfair Display', serif; font-size: 20px; }
+footer .hrs { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14.5px; }
+footer .cp { margin-top: 40px; font-size: 13px; color: var(--kt-mut); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) {
+  section { padding: 80px 0; }
+  .mgrid { grid-template-columns: 1fr; } .mfeat, .mus, .res .wrap, .rvf .wrap { grid-template-columns: 1fr; gap: 40px; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+  .gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; } .gal a:nth-child(4) { grid-column: auto; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .bk-btn { display: none; } .logo { font-size: 24px; }
+  .tonight { flex-wrap: wrap; } .open { margin-left: 0; }
+  .mfeat img { height: 280px; } .feat2 .im img { height: 220px; }
+  .gig { grid-template-columns: 58px 1fr; } .gig .bt { grid-column: 2; }
+  .row2 { grid-template-columns: 1fr; }
+  .gal { grid-auto-rows: 140px; } .gal a:nth-child(1) { grid-column: span 2; grid-row: auto; }
+  footer .g { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { [data-theme="dark"] .sign { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Velvet Hour</a>
+    <nav class="kt-menu"><a href="#menu">Drinks</a><a href="#music">Live music</a><a href="#reserve">Reserve</a><a href="#faq">Visit</a></nav>
+    <button class="tsw" id="themeBtn" role="switch" aria-label="Night mode" aria-checked="true" title="Switch light / night mode"><span class="knob"></span><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 15A8 8 0 1 1 9 4a7 7 0 0 0 11 11z"/></svg></button>
+    <a href="#reserve" class="btn fl bk-btn">Book a table</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1900&q=72&auto=format&fit=crop" alt="Inside Velvet Hour">
+  <div class="wrap">
+    <span class="sign" data-reveal>open late</span>
+    <h1><span data-split>Cocktails, vinyl &amp;</span> <span data-rotate="live jazz.|good company.|one more round."></span></h1>
+    <p data-reveal data-delay="200">A small, candle-lit bar in Shoreditch. Bartenders who remember your name, a wall of records and a live band six nights a week.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#reserve" class="btn fl">Book a table</a><a href="#menu" class="btn ol">See the drinks</a></div>
+    <div class="tonight" data-reveal data-delay="400"><img src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=200&q=60&auto=format&fit=crop" alt=""><div><small>Tonight on stage</small><b id="tonightAct">The Midnight Trio · 9:30 pm</b></div><span class="open" id="openNow"><i></i><span>Open now</span></span></div>
+  </div>
+</section>
+
+<div class="mq kt-marquee" data-speed="38s"><div class="kt-mq-track"><span>Smoked Old Fashioned</span><span>Velvet Negroni</span><span>Yuzu Highball</span><span>Midnight Espresso Martini</span><span>Zero-proof Garden Spritz</span></div></div>
+
+<section id="menu">
+  <div class="wrap" data-tabs>
+    <span class="ey" data-reveal>the menu</span>
+    <h2 class="h" data-split>Made slowly, <em>served cold</em></h2>
+    <div class="mtabs" role="tablist" data-reveal><button data-tab="sig" class="on">Signatures</button><button data-tab="cls">Classics</button><button data-tab="zero">Zero-proof</button><button data-tab="bites">Bites</button></div>
+    <div class="mgrid" data-pane="sig" id="m-sig"></div>
+    <div class="mgrid" data-pane="cls" id="m-cls"></div>
+    <div class="mgrid" data-pane="zero" id="m-zero"></div>
+    <div class="mgrid" data-pane="bites" id="m-bites"></div>
+    <div class="mfeat">
+      <div class="im" data-reveal="left"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1000&q=72&auto=format&fit=crop" alt="Smoked Old Fashioned"><span class="ribbon">house favourite</span></div>
+      <div data-reveal><span class="ey">drink of the month</span><h2 class="h" style="font-size:clamp(30px,3.6vw,46px)">Smoked <em>Old Fashioned</em></h2><p>Bourbon, maple and walnut bitters, smoked at your table under a glass cloche with cherry wood. It's a show, and it tastes even better than it looks.</p><p style="margin:0"><b style="color:var(--kt-ink)">£14</b> · ask for the zero-proof version with smoked tea</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="music" id="music">
+  <div class="wrap">
+    <span class="ey" data-reveal>live music</span>
+    <h2 class="h" data-split>Six nights, <em>no cover</em></h2>
+    <div class="mus">
+      <div class="week" id="week" data-reveal></div>
+      <div class="card feat2" data-reveal="right">
+        <div class="im"><img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=1000&q=72&auto=format&fit=crop" alt="The band on stage"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch a clip from last week"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+        <span class="ey" id="nextLbl">next set starts in</span>
+        <h3 id="nextAct">The Midnight Trio</h3>
+        <div class="cd" id="cd"><div><b>0</b><small>Hours</small></div><div><b>0</b><small>Mins</small></div><div><b>0</b><small>Secs</small></div></div>
+        <div data-audio="jazz" data-title="Velvet Hour · Live tapes" data-sub="Recorded at the bar, last Friday"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="res" id="reserve">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>reservations</span>
+      <h2 class="h" data-split>Save us <em>a seat</em></h2>
+      <p data-reveal>We keep half the bar for walk-ins, but the best tables go fast on Thursday to Saturday.</p>
+      <div class="why" data-reveal>
+        <div><i>🕯</i><span><b>Tables held for 15 minutes</b>Running late? Just send us a message.</span></div>
+        <div><i>🎂</i><span><b>Celebrating?</b>Tell us and we'll have something waiting.</span></div>
+        <div><i>🛋</i><span><b>Booths for 6 to 10</b>A small deposit secures the booth.</span></div>
+      </div>
+    </div>
+    <form class="card rf" id="rf" data-reveal="right" novalidate>
+      <label class="l">Day</label><div class="chips days" id="rDay"></div>
+      <label class="l">Time</label><div class="chips" id="rTime"></div>
+      <div class="row2"><div><label class="l">Guests</label><div class="step"><span id="rGl">2 guests</span><div><button type="button" data-g="-1" aria-label="Fewer guests">−</button><button type="button" data-g="1" aria-label="More guests">+</button></div></div></div>
+        <div><label class="l" for="rOcc">Occasion</label><select id="rOcc"><option>Just drinks</option><option>Date night</option><option>Birthday</option><option>Work drinks</option></select></div></div>
+      <div class="row2"><div><label class="l" for="rName">Name</label><input id="rName" autocomplete="name" required></div><div><label class="l" for="rPhone">Phone</label><input id="rPhone" inputmode="tel" autocomplete="tel" required placeholder="07XXX XXXXXX"></div></div>
+      <div class="sum" id="rSum"></div>
+      <button class="btn fl" type="submit">Book my table</button>
+    </form>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="ey" data-reveal>inside</span>
+    <h2 class="h" data-split>Come in, <em>stay late</em></h2>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1600&q=80&auto=format&fit=crop" data-caption="The bar"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1600&q=80&auto=format&fit=crop" data-caption="Velvet Negroni"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=1600&q=80&auto=format&fit=crop" data-caption="Yuzu Highball"><img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600&q=80&auto=format&fit=crop" data-caption="Friday night"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80&auto=format&fit=crop" data-caption="The back room"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=1600&q=80&auto=format&fit=crop" data-caption="Last orders"><img src="https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=500&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section class="rvf" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>kind words</span>
+      <div class="kt-slider rq" data-autoplay="6500" style="margin-top:16px">
+        <div class="kt-track">
+          <div><span class="st">★★★★★</span><p>"The best Negroni in London, and a trio that made the whole room go quiet."</p><b style="color:var(--kt-ink)">Time Out</b></div>
+          <div><span class="st">★★★★★</span><p>"Came for one drink, stayed until they turned the lights up. Perfect date spot."</p><b style="color:var(--kt-ink)">Priya · Google review</b></div>
+          <div><span class="st">★★★★★</span><p>"Finally, a bar that takes zero-proof seriously. The Garden Spritz is wonderful."</p><b style="color:var(--kt-ink)">Tom · Google review</b></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>good to know</span>
+      <h2 class="h" data-split style="font-size:clamp(30px,3.6vw,46px)">Before you visit</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Do you take walk-ins?</summary><div class="kt-faq-a"><div>Always. Half the bar is kept for walk-ins every night.</div></div></details>
+        <details class="kt-faq"><summary>Is there a dress code?</summary><div class="kt-faq-a"><div>No dress code. Come as you are.</div></div></details>
+        <details class="kt-faq"><summary>Is it 18+?</summary><div class="kt-faq-a"><div>Yes, we're over-18s only and may ask for ID.</div></div></details>
+        <details class="kt-faq"><summary>Can I book the whole bar?</summary><div class="kt-faq-a"><div>On Mondays, yes. Private hire for up to 60 guests, with your own playlist or band.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo">Velvet Hour</a><p style="margin:12px 0 0">14 Rivington Street, Shoreditch, London EC2A 3DU<br>020 7946 0000 · hello@velvethour.bar</p></div>
+      <div><h4>Hours</h4><div class="hrs"><span>Tue – Thu</span><span>6 pm – 1 am</span><span>Fri – Sat</span><span>6 pm – 2 am</span><span>Sun</span><span>5 pm – 12 am</span><span>Mon</span><span>Private hire</span></div></div>
+      <div><h4>Follow</h4><p style="margin:0">Instagram · Spotify playlists<br>Please drink responsibly.</p></div>
+    </div>
+    <div class="cp"><span>© 2026 Velvet Hour</span><span>Theme: <button id="themeTxt" style="color:var(--c1);font-weight:600"></button></span></div>
+  </div>
+</footer>
+
+<script>
+  const MENU = {
+    sig: [['Smoked Old Fashioned', 'Bourbon, maple, walnut bitters, cherry-wood smoke', 14, '🔥'], ['Velvet Negroni', 'Gin, Campari, cacao-washed vermouth', 13, ''], ['Yuzu Highball', 'Japanese whisky, yuzu, soda, shiso', 12, ''], ['Midnight Espresso Martini', 'Vodka, cold brew, salted caramel', 13, ''], ['Rose & Pepper Sour', 'Pisco, rose, pink pepper, egg white', 13, '🌶'], ['Smoke Signal', 'Mezcal, pineapple, chilli, lime', 13, '🌶']],
+    cls: [['Martini', 'Gin or vodka, dry vermouth, olive or twist', 12, ''], ['Margarita', 'Tequila, Cointreau, lime, salt', 12, ''], ['Manhattan', 'Rye, sweet vermouth, Angostura', 13, ''], ['Daiquiri', 'Rum, lime, sugar', 11, ''], ['Paloma', 'Tequila, grapefruit soda, lime', 11, ''], ['French 75', 'Gin, lemon, champagne', 13, '']],
+    zero: [['Garden Spritz', 'Seedlip Garden, elderflower, cucumber, soda', 9, '🌿'], ['Smoked Tea Old Fashioned', 'Lapsang tea, maple, bitters (0%)', 9, '🌿'], ['Virgin Paloma', 'Grapefruit, lime, agave, soda', 8, '🌿'], ['Ginger Fizz', 'Fresh ginger, honey, lemon, soda', 8, '🌿']],
+    bites: [['Truffle fries', 'Parmesan, chives', 7, ''], ['Burrata', 'Heritage tomatoes, basil oil, sourdough', 11, ''], ['Crispy squid', 'Chilli, lime mayo', 10, '🌶'], ['Chocolate & sea salt pot', 'With a shot of espresso', 7, '']]
+  };
+  Object.entries(MENU).forEach(([k, list]) => document.getElementById('m-' + k).innerHTML = list.map(([n, d, p, t]) => `<div class="mi"><div class="t"><b>${n}</b>${t ? `<span class="tg">${t}</span>` : ''}<span class="dots"></span><span class="p">£${p}</span></div><p>${d}</p></div>`).join(''));
+</script>
+<script src="../kit/kit.js"></script>
+<script>
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  /* theme switch */
+  const root = document.documentElement, tBtn = $('#themeBtn'), tTxt = $('#themeTxt');
+  const paint = () => { const d = root.getAttribute('data-theme') === 'dark'; tBtn.setAttribute('aria-checked', d); tTxt.textContent = d ? 'Night ☾' : 'Light ☀'; };
+  const toggle = () => { const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', t); try { localStorage.setItem('vh-theme', t); } catch (e) {} paint(); };
+  tBtn.addEventListener('click', toggle); tTxt.addEventListener('click', toggle); paint();
+
+  /* opening hours: 0 Sun .. 6 Sat → [open, close] in hours (close may pass midnight) */
+  const HRS = { 0: [17, 24], 1: null, 2: [18, 25], 3: [18, 25], 4: [18, 25], 5: [18, 26], 6: [18, 26] };
+  const now = new Date(), hNow = now.getHours() + now.getMinutes() / 60;
+  const isOpen = (() => { const t = HRS[now.getDay()], y = HRS[(now.getDay() + 6) % 7];
+    return (t && hNow >= t[0] && hNow < t[1]) || (y && y[1] > 24 && hNow < y[1] - 24); })();
+  $('#openNow').classList.toggle('closed', !isOpen); $('#openNow span').textContent = isOpen ? 'Open now' : 'Closed now';
+
+  /* this week's music */
+  const ACTS = { 0: ['Sunday Soul Session', 'Soul & R&B'], 1: null, 2: ['Ella Moreno Quartet', 'Latin jazz'], 3: ['Vinyl Night with DJ Kofi', 'Rare grooves'], 4: ['The Midnight Trio', 'Piano jazz'], 5: ['Brass & Bourbon', 'New Orleans jazz'], 6: ['Late Night Swing', 'Swing & blues'] };
+  const week = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return d; });
+  $('#week').innerHTML = week.map((d, i) => { const a = ACTS[d.getDay()];
+    return `<div class="card gig ${i === 0 && a ? 'now' : ''} ${a ? '' : 'off'}"><div class="d">${d.getDate()}<small>${i === 0 ? 'Tonight' : d.toLocaleDateString('en-GB', { weekday: 'short' })}</small></div><div>${a ? `<b>${a[0]}</b><span class="gen">${a[1]} · 9:30 pm · free entry</span>` : '<b>Closed for private hire</b><span class="gen">Book the whole bar</span>'}</div>${a ? `<a href="#reserve" class="bt" data-day-pick="${i}">Book →</a>` : ''}</div>`; }).join('');
+  // next set countdown (today 21:30, or the next night with music)
+  let nxt = week.findIndex((d, i) => ACTS[d.getDay()] && (i > 0 || hNow < 21.5)); if (nxt < 0) nxt = 1;
+  const nd = new Date(week[nxt]); nd.setHours(21, 30, 0, 0);
+  $('#nextAct').textContent = ACTS[week[nxt].getDay()][0];
+  $('#tonightAct').textContent = ACTS[now.getDay()] ? `${ACTS[now.getDay()][0]} · 9:30 pm` : 'No band tonight · private hire';
+  if (nxt > 0) $('#nextLbl').textContent = `next set: ${week[nxt].toLocaleDateString('en-GB', { weekday: 'long' })}, starts in`;
+  const cdB = $$('#cd b'); const tick = () => { let s = Math.max(0, Math.floor((nd - Date.now()) / 1000)); [3600, 60, 1].forEach((u, i) => { cdB[i].textContent = String(Math.floor(s / u)).padStart(2, '0'); s %= u; }); };
+  tick(); setInterval(tick, 1000);
+
+  /* reservations */
+  const R = { day: week.findIndex(d => HRS[d.getDay()]), time: null, g: 2 };
+  $('#rDay').innerHTML = week.map((d, i) => `<button type="button" data-day="${i}" ${HRS[d.getDay()] ? '' : 'disabled title="Private hire only"'} class="${i === R.day ? 'on' : ''}">${i === 0 ? 'Today' : d.toLocaleDateString('en-GB', { weekday: 'short' })}<small>${d.getDate()} ${d.toLocaleDateString('en-GB', { month: 'short' })}</small></button>`).join('');
+  const paintTimes = () => { const h = HRS[week[R.day].getDay()]; const slots = []; for (let x = h[0]; x <= Math.min(h[1] - 1.5, 23); x += 1) slots.push(x);
+    const full = R.day === 0 ? [20, 21] : week[R.day].getDay() >= 5 ? [21] : [];
+    if (!slots.includes(R.time) || full.includes(R.time)) R.time = null;
+    $('#rTime').innerHTML = slots.map(x => `<button type="button" data-t="${x}" ${full.includes(x) ? 'disabled title="Fully booked"' : ''} class="${R.time === x ? 'on' : ''}">${x > 12 ? x - 12 : x}:00 pm</button>`).join(''); };
+  const paintSum = () => { $('#rGl').textContent = R.g + (R.g === 1 ? ' guest' : ' guests');
+    const d = week[R.day]; $('#rSum').innerHTML = `<b>${R.g} ${R.g === 1 ? 'guest' : 'guests'}</b> · ${R.day === 0 ? 'Today' : d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' })}${R.time ? ` at ${R.time - 12}:00 pm` : ' · pick a time'}${ACTS[d.getDay()] ? `<br><small style="color:var(--kt-mut)">On stage: ${ACTS[d.getDay()][0]} from 9:30 pm</small>` : ''}${R.g >= 6 ? `<span class="dep">🛋 Booth booking · £${R.g * 10} deposit, taken off your bill</span>` : ''}`; };
+  $('#rDay').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (!b || b.disabled) return; $$('#rDay button').forEach(x => x.classList.toggle('on', x === b)); R.day = +b.dataset.day; paintTimes(); paintSum(); });
+  $('#rTime').addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b || b.disabled) return; R.time = +b.dataset.t; paintTimes(); paintSum(); });
+  $('#rf').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (!b) return; R.g = Math.max(1, Math.min(10, R.g + +b.dataset.g)); paintSum(); });
+  $('#rf').addEventListener('submit', e => { e.preventDefault(); if (!R.time) return ktToast('Pick a time first');
+    if (!$('#rName').value.trim() || $('#rPhone').value.replace(/\D/g, '').length < 10) return ktToast('Add your name and phone number');
+    ktToast(`Table booked for ${R.g}. We'll text you a confirmation 🍸`); });
+  document.addEventListener('click', e => { const p = e.target.closest('[data-day-pick]'); if (!p) return; const b = $(`#rDay [data-day="${p.dataset.dayPick}"]`); if (b && !b.disabled) b.click(); });
+  paintTimes(); paintSum();
+</script>
+</body>
+</html>

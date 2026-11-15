@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PIXEL DEN · Gaming &amp; Esports Lounge · Banani, Dhaka</title>
+<meta name="description" content="40 high-end PCs, PS5 lounges, VR pods and private rooms. Book a station, join weekly tournaments. Open till 2 am.">
+<script>
+  // pick the theme before first paint: saved choice, else dark (the neon look) by default
+  (function () { var t; try { t = localStorage.getItem('pd-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = 'dark';
+    document.documentElement.setAttribute('data-theme', t); })();
+</script>
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+/* ---------- theme tokens ---------- */
+:root, [data-theme="light"] {
+  --kt-bg: #f6f6fb; --kt-ink: #0d0d1c; --kt-tx: #4a4a60; --kt-mut: #8a8aa2; --kt-line: rgba(13,13,28,.1);
+  --kt-accent: #6d28d9; --kt-accent-ink: #fff;
+  --c1: #6d28d9; --c2: #0e7490; --c3: #db2777; --c4: #4d7c0f;
+  --card: #ffffff; --card2: #eeeef7; --hero-from: #efeaff; --hero-to: #f6f6fb;
+  --grid: rgba(109,40,217,.12); --glow: none; --tglow: none; --ring: 0 18px 40px -24px rgba(13,13,28,.35);
+  --img-filter: none; --logo-bg: #0d0d1c; --nav-bg: rgba(246,246,251,.85);
+}
+[data-theme="dark"] {
+  --kt-bg: #05050b; --kt-ink: #f3f3ff; --kt-tx: #a9a9cc; --kt-mut: #6b6b90; --kt-line: rgba(255,255,255,.09);
+  --kt-accent: #00f0ff; --kt-accent-ink: #05050b;
+  --c1: #00f0ff; --c2: #ff2bd6; --c3: #b6ff3b; --c4: #8b5cff;
+  --card: #0c0c18; --card2: #12122a; --hero-from: #0b0420; --hero-to: #05050b;
+  --grid: rgba(255,43,214,.35); --glow: 0 0 0 1px rgba(0,240,255,.35), 0 0 22px rgba(0,240,255,.35), 0 0 60px rgba(255,43,214,.15);
+  --tglow: 0 0 6px currentColor, 0 0 22px currentColor; --ring: 0 0 0 1px rgba(255,255,255,.06), 0 20px 50px -24px rgba(0,0,0,.9);
+  --img-filter: saturate(1.25) contrast(1.05); --logo-bg: #00f0ff; --nav-bg: rgba(5,5,11,.78);
+}
+html { color-scheme: light; } [data-theme="dark"] { color-scheme: dark; }
+body { font: 16px/1.6 Inter, system-ui, sans-serif; transition: background-color .4s, color .4s; }
+.or { font-family: Orbitron, sans-serif; } .rj { font-family: Rajdhani, sans-serif; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.neon { color: var(--c1); text-shadow: var(--tglow); } .neon2 { color: var(--c2); text-shadow: var(--tglow); } .neon3 { color: var(--c3); text-shadow: var(--tglow); }
+.ey { font-family: Rajdhani, sans-serif; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; font-size: 14px; color: var(--c2); }
+h2.h { font-family: Orbitron, sans-serif; font-weight: 800; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.05; color: var(--kt-ink); margin: 10px 0 18px; letter-spacing: -.01em; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 24px; border-radius: 12px; font-family: Rajdhani, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .06em; text-transform: uppercase; transition: transform .2s, box-shadow .2s, background .2s; }
+.btn.fl { background: var(--kt-accent); color: var(--kt-accent-ink); box-shadow: var(--glow); }
+.btn.fl:hover { transform: translateY(-2px); }
+.btn.ol { border: 1.5px solid var(--kt-line); color: var(--kt-ink); }
+.btn.ol:hover { border-color: var(--c2); color: var(--c2); }
+[data-theme="dark"] .btn.ol { border-color: rgba(255,43,214,.5); box-shadow: inset 0 0 14px rgba(255,43,214,.15); }
+section { padding: 110px 0; position: relative; }
+.card { background: var(--card); border: 1px solid var(--kt-line); border-radius: 18px; box-shadow: var(--ring); transition: background .4s, border-color .4s; }
+img { filter: var(--img-filter); }
+
+/* ---------- nav ---------- */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--kt-line); transition: background .4s; }
+.nav .wrap { display: flex; align-items: center; gap: 26px; height: 74px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: Orbitron, sans-serif; font-weight: 900; font-size: 20px; color: var(--kt-ink); letter-spacing: .04em; }
+.logo i { width: 34px; height: 34px; border-radius: 9px; background: var(--logo-bg); display: grid; place-items: center; color: var(--kt-bg); font-style: normal; font-size: 15px; box-shadow: var(--glow); }
+.logo b { color: var(--c2); text-shadow: var(--tglow); }
+.kt-menu { display: flex; gap: 26px; margin-left: auto; font-family: Rajdhani, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--c1); }
+/* theme switch */
+.tsw { position: relative; display: flex; align-items: center; width: 74px; height: 38px; padding: 3px; border-radius: 99px; background: var(--card2); border: 1px solid var(--kt-line); flex: none; cursor: pointer; }
+.tsw .knob { position: absolute; top: 3px; left: 3px; width: 30px; height: 30px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.2); transition: transform .35s cubic-bezier(.5,1.6,.4,1), background .35s; }
+.tsw svg { position: relative; z-index: 1; width: 16px; height: 16px; margin: 0 7px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; transition: color .3s; }
+.tsw .sun { color: #f59e0b; } .tsw .moon { color: var(--kt-mut); margin-left: auto; }
+[data-theme="dark"] .tsw { background: #10102a; border-color: rgba(0,240,255,.35); box-shadow: 0 0 14px rgba(0,240,255,.25); }
+[data-theme="dark"] .tsw .knob { transform: translateX(36px); background: #00f0ff; box-shadow: 0 0 12px #00f0ff; }
+[data-theme="dark"] .tsw .sun { color: var(--kt-mut); } [data-theme="dark"] .tsw .moon { color: #05050b; }
+.tsw:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; }
+.nav .btn { height: 42px; padding: 0 18px; font-size: 15px; }
+
+/* ---------- hero ---------- */
+.hero { padding: 70px 0 120px; overflow: hidden; background: linear-gradient(180deg, var(--hero-from), var(--hero-to)); transition: background .4s; }
+.floor { position: absolute; left: -20%; right: -20%; bottom: -10px; height: 46%; background-image: linear-gradient(var(--grid) 2px, transparent 2px), linear-gradient(90deg, var(--grid) 2px, transparent 2px); background-size: 60px 60px; transform: perspective(500px) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(transparent, #000 60%); animation: floor 3s linear infinite; pointer-events: none; }
+@keyframes floor { to { background-position: 0 60px; } }
+.sun-glow { position: absolute; left: 50%; top: 30%; width: 520px; height: 520px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,43,214,.35), rgba(0,240,255,.12) 50%, transparent 70%); filter: blur(20px); opacity: 0; transition: opacity .4s; pointer-events: none; }
+[data-theme="dark"] .sun-glow { opacity: 1; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 50px; align-items: center; }
+.live { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 14px; border-radius: 99px; background: var(--card); border: 1px solid var(--kt-line); font-family: Rajdhani, sans-serif; font-weight: 700; letter-spacing: .06em; font-size: 14px; color: var(--kt-ink); }
+.live i { width: 9px; height: 9px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.25); animation: blink 1.4s infinite; }
+@keyframes blink { 50% { opacity: .35; } }
+.hero h1 { font-family: Orbitron, sans-serif; font-weight: 900; font-size: clamp(42px, 6.6vw, 92px); line-height: .98; color: var(--kt-ink); margin: 20px 0; letter-spacing: -.01em; }
+.hero h1 [data-rotate] { color: var(--c2); text-shadow: var(--tglow); }
+.hero p { font-size: 18px; max-width: 500px; margin: 0 0 30px; }
+.stats { display: flex; gap: 34px; margin-top: 38px; flex-wrap: wrap; }
+.stats b { display: block; font-family: Orbitron, sans-serif; font-size: 34px; color: var(--c1); text-shadow: var(--tglow); line-height: 1; }
+.stats span { font-family: Rajdhani, sans-serif; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: var(--kt-mut); }
+.hframe { position: relative; border-radius: 22px; padding: 6px; background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); box-shadow: var(--glow); }
+.hframe img { width: 100%; height: 480px; object-fit: cover; border-radius: 17px; display: block; }
+.hframe .tag { position: absolute; left: -20px; bottom: 36px; padding: 14px 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--kt-line); box-shadow: var(--ring); display: flex; gap: 12px; align-items: center; animation: bob 5s ease-in-out infinite; }
+.hframe .tag b { display: block; font-family: Orbitron, sans-serif; color: var(--kt-ink); font-size: 15px; }
+.hframe .tag small { color: var(--kt-mut); font-size: 13px; }
+.hframe .tag .e { font-size: 26px; }
+.hframe .tag2 { left: auto; right: -16px; top: 30px; bottom: auto; animation-delay: -2.5s; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+
+/* marquee */
+.mq { padding: 22px 0; border-top: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); background: var(--card); transition: background .4s; }
+.mq .kt-mq-track span { font-family: Orbitron, sans-serif; font-weight: 800; font-size: 28px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 46px; letter-spacing: .02em; }
+.mq .kt-mq-track span::after { content: "◆"; color: var(--c2); font-size: 14px; text-shadow: var(--tglow); }
+.mq .kt-mq-track span:nth-child(3n) { color: var(--c1); text-shadow: var(--tglow); }
+
+/* zones */
+.ztabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+.ztabs button { height: 46px; padding: 0 20px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--card); font-family: Rajdhani, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-tx); transition: .2s; }
+.ztabs button.on { color: var(--kt-accent-ink); background: var(--kt-accent); border-color: var(--kt-accent); box-shadow: var(--glow); }
+.zone { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+.zone .im { position: relative; border-radius: 20px; overflow: hidden; }
+.zone .im img { width: 100%; height: 420px; object-fit: cover; display: block; }
+.zone .im .px { position: absolute; top: 16px; left: 16px; padding: 6px 12px; border-radius: 10px; background: rgba(5,5,11,.75); color: #fff; font-family: Rajdhani, sans-serif; font-weight: 700; letter-spacing: .06em; backdrop-filter: blur(6px); }
+.zone h3 { font-family: Orbitron, sans-serif; font-size: 30px; color: var(--kt-ink); margin: 0 0 10px; }
+.specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0 26px; }
+.specs div { padding: 12px 14px; border-radius: 12px; background: var(--card); border: 1px solid var(--kt-line); }
+.specs small { display: block; color: var(--kt-mut); font-size: 12px; font-family: Rajdhani, sans-serif; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.specs b { color: var(--kt-ink); font-weight: 600; }
+.zprice { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; }
+.zprice b { font-family: Orbitron, sans-serif; font-size: 34px; color: var(--c1); text-shadow: var(--tglow); }
+
+/* pricing */
+.pricing { background: var(--card2); transition: background .4s; }
+.ph { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.seg { display: flex; padding: 5px; border-radius: 14px; background: var(--card); border: 1px solid var(--kt-line); }
+.seg button { height: 40px; padding: 0 18px; border-radius: 10px; font-family: Rajdhani, sans-serif; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-mut); }
+.seg button.on { background: var(--kt-ink); color: var(--kt-bg); }
+[data-theme="dark"] .seg button.on { background: var(--c2); color: #05050b; box-shadow: 0 0 16px rgba(255,43,214,.6); }
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.plan { padding: 26px; display: flex; flex-direction: column; position: relative; }
+.plan.hot { border-color: var(--c1); box-shadow: var(--glow), var(--ring); }
+.plan .rib { position: absolute; top: -12px; left: 24px; padding: 3px 10px; border-radius: 99px; background: var(--c1); color: var(--kt-accent-ink); font-family: Rajdhani, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; box-shadow: var(--glow); }
+.plan .e { font-size: 28px; }
+.plan h4 { font-family: Orbitron, sans-serif; font-size: 18px; color: var(--kt-ink); margin: 10px 0 2px; }
+.plan .pr { font-family: Orbitron, sans-serif; font-size: 36px; color: var(--kt-ink); margin: 14px 0 0; line-height: 1; }
+.plan .pr small { font-family: Inter; font-size: 14px; color: var(--kt-mut); }
+.plan ul { list-style: none; padding: 0; margin: 18px 0 22px; display: grid; gap: 8px; flex: 1; font-size: 14.5px; }
+.plan li::before { content: "▸ "; color: var(--c2); text-shadow: var(--tglow); }
+.plan .btn { height: 46px; font-size: 15px; }
+
+/* booking */
+.book .wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 50px; align-items: start; }
+.bk { padding: 26px; }
+.bk label.l { display: block; font-family: Rajdhani, sans-serif; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 13px; color: var(--kt-mut); margin: 18px 0 8px; }
+.bk label.l:first-child { margin-top: 0; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips button { height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); font-weight: 500; font-size: 14px; transition: .15s; }
+.chips button.on { border-color: var(--c1); color: var(--c1); box-shadow: inset 0 0 0 1px var(--c1); }
+[data-theme="dark"] .chips button.on { box-shadow: inset 0 0 0 1px var(--c1), 0 0 14px rgba(0,240,255,.35); }
+.chips button:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.days button { display: flex; flex-direction: column; justify-content: center; line-height: 1.15; height: 54px; min-width: 62px; }
+.days button small { font-size: 11px; color: var(--kt-mut); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.step { display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 0 6px 0 14px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); }
+.step div { display: flex; align-items: center; gap: 10px; }
+.step button { width: 34px; height: 34px; border-radius: 9px; background: var(--card2); color: var(--kt-ink); font-size: 18px; font-weight: 700; }
+.step b { min-width: 18px; text-align: center; color: var(--kt-ink); }
+.bk input { width: 100%; height: 46px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); padding: 0 14px; font: inherit; outline: none; }
+.bk input:focus { border-color: var(--c1); }
+.tot { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 14px; padding: 16px 18px; border-radius: 14px; background: var(--card2); }
+.tot b { font-family: Orbitron, sans-serif; font-size: 28px; color: var(--c1); text-shadow: var(--tglow); }
+.tot small { display: block; color: var(--kt-mut); font-size: 13px; }
+.bk .btn { width: 100%; }
+.perks { display: grid; gap: 14px; margin-top: 26px; }
+.perks div { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: center; }
+.perks i { font-style: normal; width: 46px; height: 46px; border-radius: 12px; background: var(--card); border: 1px solid var(--kt-line); display: grid; place-items: center; font-size: 20px; }
+.perks b { display: block; color: var(--kt-ink); }
+
+/* tournaments */
+.tour { background: var(--card2); transition: background .4s; }
+.tgrid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.next { padding: 30px; position: relative; overflow: hidden; }
+.next::before { content: ""; position: absolute; inset: 0; background: url("https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1000&q=60&auto=format&fit=crop") center/cover; opacity: .14; }
+.next > * { position: relative; }
+.next h3 { font-family: Orbitron, sans-serif; font-size: 30px; color: var(--kt-ink); margin: 10px 0 6px; }
+.cd { display: flex; gap: 10px; margin: 22px 0; flex-wrap: wrap; }
+.cd div { min-width: 78px; padding: 12px; border-radius: 12px; background: var(--kt-bg); border: 1px solid var(--kt-line); text-align: center; }
+.cd b { display: block; font-family: Orbitron, sans-serif; font-size: 30px; color: var(--c2); text-shadow: var(--tglow); line-height: 1.1; }
+.cd small { font-family: Rajdhani; font-weight: 700; letter-spacing: .1em; font-size: 12px; color: var(--kt-mut); text-transform: uppercase; }
+.prize { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 22px; }
+.prize span { font-family: Rajdhani; font-weight: 700; letter-spacing: .06em; color: var(--kt-ink); }
+.prize em { font-style: normal; color: var(--c3); text-shadow: var(--tglow); }
+.tlist { display: grid; gap: 10px; }
+.ti { display: grid; grid-template-columns: 70px 1fr auto; gap: 14px; align-items: center; padding: 14px 16px; }
+.ti .d { text-align: center; font-family: Orbitron; line-height: 1.1; color: var(--kt-ink); }
+.ti .d small { display: block; font-family: Rajdhani; font-weight: 700; letter-spacing: .1em; color: var(--c2); font-size: 12px; }
+.ti b { display: block; color: var(--kt-ink); }
+.ti .reg { font-family: Rajdhani; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c1); }
+.ti .reg.on { color: var(--c3); }
+
+/* gallery + media */
+.gal { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 12px; }
+.gal a { border-radius: 16px; overflow: hidden; position: relative; } .gal a:first-child { grid-row: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; } .gal a:hover img { transform: scale(1.06); }
+.media { display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px; align-items: center; margin-top: 70px; }
+.vid { position: relative; border-radius: 20px; overflow: hidden; }
+.vid img { width: 100%; height: 380px; object-fit: cover; display: block; }
+.vid .kt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: var(--glow); }
+.media .kt-audio { --kt-audio-bg: var(--card2); margin-top: 20px; }
+
+/* reviews + faq */
+.rf .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.rq p { font-family: Rajdhani, sans-serif; font-weight: 600; font-size: 28px; line-height: 1.25; color: var(--kt-ink); margin: 0 0 18px; }
+.rq .who { display: flex; gap: 12px; align-items: center; } .rq img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.rq .st { color: var(--c3); text-shadow: var(--tglow); letter-spacing: 3px; }
+.rf .kt-dots { justify-content: flex-start; color: var(--c1); margin-top: 22px; }
+
+footer { border-top: 1px solid var(--kt-line); padding: 60px 0 30px; background: var(--card); transition: background .4s; }
+footer .g { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; }
+footer h4 { font-family: Rajdhani; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--kt-ink); margin: 0 0 12px; }
+footer .hrs { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14.5px; }
+footer form { display: flex; gap: 8px; margin-top: 14px; }
+footer input { flex: 1; min-width: 0; height: 46px; border-radius: 12px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); padding: 0 14px; font: inherit; outline: none; }
+footer .btn { height: 46px; font-size: 15px; }
+footer .cp { margin-top: 40px; font-size: 13px; color: var(--kt-mut); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .zone, .book .wrap, .tgrid, .media, .rf .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .hframe img { height: 380px; } .hframe .tag { left: 10px; } .hframe .tag2 { right: 10px; }
+  .plans { grid-template-columns: 1fr 1fr; }
+  footer .g { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .book-btn { display: none; }
+  .hframe img { height: 300px; } .hframe .tag2 { display: none; }
+  .stats { gap: 22px; } .stats b { font-size: 26px; }
+  .plans, .specs, .row2 { grid-template-columns: 1fr; }
+  .zone .im img { height: 260px; }
+  .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; } .gal a:first-child { grid-column: span 2; grid-row: auto; }
+  .vid img { height: 240px; }
+  .ti { grid-template-columns: 56px 1fr; } .ti .reg { grid-column: 2; }
+  footer .g { grid-template-columns: 1fr; } footer form { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { .floor { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><i>▶</i>PIXEL<b>DEN</b></a>
+    <nav class="kt-menu"><a href="#zones">Zones</a><a href="#pricing">Pricing</a><a href="#tournaments">Tournaments</a><a href="#book">Book</a></nav>
+    <button class="tsw" id="themeBtn" role="switch" aria-label="Night mode" aria-checked="false" title="Switch light / night mode">
+      <span class="knob"></span>
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24"><path d="M20 15A8 8 0 1 1 9 4a7 7 0 0 0 11 11z"/></svg>
+    </button>
+    <a href="#book" class="btn fl book-btn">Book a station</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="sun-glow"></span><span class="floor"></span>
+  <div class="wrap">
+    <div>
+      <span class="live" data-reveal><i></i><span id="freeNow">7 of 40 PCs free right now</span></span>
+      <h1><span data-split>Level up your</span> <span data-rotate="night.|squad.|aim.|weekend."></span></h1>
+      <p data-reveal data-delay="200">40 high-end PCs, PS5 lounges, VR pods and private rooms in Banani. Snacks, cold drinks and the fastest internet in Dhaka. Open till 2 am.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap" data-reveal data-delay="300"><a href="#book" class="btn fl">Book a station</a><a href="#tournaments" class="btn ol">This week's tournament</a></div>
+      <div class="stats" data-reveal data-delay="400"><div><b data-count="240" data-suffix="Hz">0</b><span>Monitors</span></div><div><b data-count="1" data-suffix=" Gbps">0</b><span>Fibre internet</span></div><div><b data-count="4.9">0</b><span>Google rating</span></div></div>
+    </div>
+    <div class="hframe" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1100&q=72&auto=format&fit=crop" alt="Neon-lit gaming stations at PIXEL DEN">
+      <div class="tag"><span class="e">🏆</span><span><b>৳50,000 prize pool</b><small>Valorant cup · Friday 8 pm</small></span></div>
+      <div class="tag tag2"><span class="e">🎧</span><span><b>RTX 4080 rigs</b><small>Every PC, every seat</small></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="mq kt-marquee" data-speed="34s"><div class="kt-mq-track"><span>Valorant</span><span>EA FC 26</span><span>Counter-Strike 2</span><span>Tekken 8</span><span>Fortnite</span><span>League of Legends</span><span>Beat Saber VR</span><span>Mortal Kombat 1</span></div></div>
+
+<section id="zones">
+  <div class="wrap" data-tabs>
+    <span class="ey" data-reveal>// Choose your zone</span>
+    <h2 class="h" data-split>Four ways to <span class="neon">play</span></h2>
+    <div class="ztabs" role="tablist" data-reveal><button data-tab="pc" class="on">🖥 PC Arena</button><button data-tab="ps">🎮 Console Lounge</button><button data-tab="vr">🥽 VR Pods</button><button data-tab="room">🚪 Private Rooms</button></div>
+    <div class="zone" data-pane="pc"><div class="im"><img src="https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=1000&q=72&auto=format&fit=crop" alt="PC Arena"><span class="px">40 STATIONS</span></div>
+      <div><h3>PC Arena</h3><p>Tournament-grade rigs with every popular game installed and your Steam, Epic and Riot accounts ready to log in.</p>
+        <div class="specs"><div><small>Graphics</small><b>RTX 4080</b></div><div><small>Monitor</small><b>27" 240 Hz</b></div><div><small>Gear</small><b>Logitech G Pro</b></div><div><small>Chair</small><b>Secretlab Titan</b></div></div>
+        <div class="zprice"><b data-rate="pc">৳150</b><span>per hour</span></div><a href="#book" class="btn fl" data-pick="pc">Book a PC</a></div></div>
+    <div class="zone" data-pane="ps"><div class="im"><img src="https://images.unsplash.com/photo-1586182987320-4f376d39d787?w=1000&q=72&auto=format&fit=crop" alt="Console Lounge"><span class="px">12 SOFAS · 4 PLAYERS</span></div>
+      <div><h3>Console Lounge</h3><p>PS5 and Xbox Series X on 65" 4K TVs with big sofas. Perfect for FIFA nights and fighting-game rivalries.</p>
+        <div class="specs"><div><small>Consoles</small><b>PS5 · Xbox X</b></div><div><small>Screen</small><b>65" 4K OLED</b></div><div><small>Players</small><b>Up to 4</b></div><div><small>Extras</small><b>DualSense Edge</b></div></div>
+        <div class="zprice"><b data-rate="ps">৳200</b><span>per hour, per sofa</span></div><a href="#book" class="btn fl" data-pick="ps">Book a sofa</a></div></div>
+    <div class="zone" data-pane="vr"><div class="im"><img src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=1000&q=72&auto=format&fit=crop" alt="VR Pods"><span class="px">6 PODS</span></div>
+      <div><h3>VR Pods</h3><p>Free-roam pods with Meta Quest 3 and a host to set you up. Beat Saber, Half-Life Alyx and multiplayer escape rooms.</p>
+        <div class="specs"><div><small>Headset</small><b>Meta Quest 3</b></div><div><small>Space</small><b>3 × 3 m pod</b></div><div><small>Host</small><b>Always there</b></div><div><small>Age</small><b>10+</b></div></div>
+        <div class="zprice"><b data-rate="vr">৳400</b><span>per hour</span></div><a href="#book" class="btn fl" data-pick="vr">Book a pod</a></div></div>
+    <div class="zone" data-pane="room"><div class="im"><img src="https://images.unsplash.com/photo-1622297845775-5ff3fef71d13?w=1000&q=72&auto=format&fit=crop" alt="Private rooms"><span class="px">FOR 6 TO 10</span></div>
+      <div><h3>Private Rooms</h3><p>Your own room with 6 PCs or a console wall, your playlist on the speakers and food delivered to the door. Birthdays and team nights.</p>
+        <div class="specs"><div><small>Setup</small><b>6 PCs or 2 consoles</b></div><div><small>Guests</small><b>6 to 10</b></div><div><small>Sound</small><b>Your playlist</b></div><div><small>Food</small><b>Pizza packages</b></div></div>
+        <div class="zprice"><b data-rate="room">৳1,200</b><span>per hour, whole room</span></div><a href="#book" class="btn fl" data-pick="room">Book a room</a></div></div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="ph"><div><span class="ey" data-reveal>// Pricing</span><h2 class="h" data-split style="margin-bottom:0">Pay to <span class="neon2">play</span>, not to wait</h2></div>
+      <div class="seg" id="dayType" role="tablist" data-reveal><button class="on" data-dt="wk">Sun – Thu</button><button data-dt="we">Fri – Sat</button></div></div>
+    <div class="plans" data-reveal>
+      <div class="card plan"><span class="e">⏱</span><h4>Pay as you go</h4><small style="color:var(--kt-mut)">Any PC, any time</small><div class="pr"><span data-rate="pc">৳150</span><small>/hour</small></div><ul><li>All games installed</li><li>Your own accounts</li><li>Free cold water</li></ul><a href="#book" class="btn ol">Book</a></div>
+      <div class="card plan hot"><span class="rib">Best value</span><span class="e">🌙</span><h4>Night owl</h4><small style="color:var(--kt-mut)">10 pm – 2 am</small><div class="pr" id="nightPr">৳450<small>/4 hours</small></div><ul><li>4 hours for the price of 3</li><li>A free soft drink</li><li>Any PC or sofa</li></ul><a href="#book" class="btn fl">Book</a></div>
+      <div class="card plan"><span class="e">👥</span><h4>Squad of 5</h4><small style="color:var(--kt-mut)">5 PCs side by side</small><div class="pr" id="squadPr">৳650<small>/hour</small></div><ul><li>Seats together, always</li><li>Team voice room</li><li>Pizza deal at ৳999</li></ul><a href="#book" class="btn ol">Book</a></div>
+      <div class="card plan"><span class="e">💎</span><h4>Monthly pass</h4><small style="color:var(--kt-mut)">For the regulars</small><div class="pr">৳4,999<small>/month</small></div><ul><li>40 hours included</li><li>Priority booking</li><li>Free tournament entry</li></ul><a href="#book" class="btn ol">Join</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>// Book a station</span>
+      <h2 class="h" data-split>Your seat, <span class="neon3">ready</span> when you arrive</h2>
+      <p data-reveal>Book in 30 seconds, pay at the counter. We hold your station for 15 minutes after your start time.</p>
+      <div class="perks" data-reveal>
+        <div><i>⚡</i><span><b>Logged in and warmed up</b>Tell us your game and we launch it before you arrive.</span></div>
+        <div><i>🍕</i><span><b>Food to your seat</b>Order from the station screen, we bring it over.</span></div>
+        <div><i>🔁</i><span><b>Free changes</b>Move or cancel up to 1 hour before.</span></div>
+      </div>
+    </div>
+    <form class="card bk" id="bk" data-reveal="right" novalidate>
+      <label class="l">Zone</label><div class="chips" id="bZone"><button type="button" data-z="pc" class="on">🖥 PC</button><button type="button" data-z="ps">🎮 Console</button><button type="button" data-z="vr">🥽 VR</button><button type="button" data-z="room">🚪 Room</button></div>
+      <label class="l">Day</label><div class="chips days" id="bDay"></div>
+      <label class="l">Start time</label><div class="chips" id="bTime"></div>
+      <div class="row2"><div><label class="l">Hours</label><div class="step"><span>Hours</span><div><button type="button" data-st="h" data-d="-1" aria-label="Fewer hours">−</button><b id="bH">2</b><button type="button" data-st="h" data-d="1" aria-label="More hours">+</button></div></div></div>
+        <div><label class="l" id="bQl">Stations</label><div class="step"><span id="bQs">PCs</span><div><button type="button" data-st="q" data-d="-1" aria-label="Fewer">−</button><b id="bQ">1</b><button type="button" data-st="q" data-d="1" aria-label="More">+</button></div></div></div></div>
+      <div class="row2"><div><label class="l" for="bName">Name</label><input id="bName" required autocomplete="name"></div><div><label class="l" for="bPhone">Phone</label><input id="bPhone" required inputmode="tel" autocomplete="tel" placeholder="01XXX XXXXXX"></div></div>
+      <div class="tot"><span>Total<small id="bSum">PC · 2 h · today</small></span><b id="bTot">৳300</b></div>
+      <button class="btn fl" type="submit">Book now · pay at counter</button>
+    </form>
+  </div>
+</section>
+
+<section class="tour" id="tournaments">
+  <div class="wrap">
+    <span class="ey" data-reveal>// Tournaments</span>
+    <h2 class="h" data-split>Every Friday, <span class="neon2">someone</span> becomes a legend</h2>
+    <div class="tgrid">
+      <div class="card next" data-reveal="left">
+        <span class="live"><i></i>Registration open</span>
+        <h3>Valorant 5v5 Cup</h3><p style="margin:0">Teams of 5, single elimination, streamed live on our Facebook page.</p>
+        <div class="cd" id="cd"><div><b>0</b><small>Days</small></div><div><b>0</b><small>Hours</small></div><div><b>0</b><small>Mins</small></div><div><b>0</b><small>Secs</small></div></div>
+        <div class="prize"><span>🥇 <em>৳30,000</em></span><span>🥈 <em>৳15,000</em></span><span>🥉 <em>৳5,000</em></span></div>
+        <button class="btn fl" data-reg="Valorant 5v5 Cup">Register your team · ৳1,000</button>
+      </div>
+      <div class="tlist" data-reveal>
+        <div class="card ti"><div class="d">28<small>NOV</small></div><div><b>EA FC 26 · 1v1 Knockout</b>32 players · ৳10,000 pool</div><button class="reg" data-reg="EA FC 26 Knockout">Register</button></div>
+        <div class="card ti"><div class="d">05<small>DEC</small></div><div><b>Tekken 8 · Fight Night</b>Double elimination · ৳8,000 pool</div><button class="reg" data-reg="Tekken 8 Fight Night">Register</button></div>
+        <div class="card ti"><div class="d">12<small>DEC</small></div><div><b>CS2 · Wingman 2v2</b>16 teams · ৳12,000 pool</div><button class="reg" data-reg="CS2 Wingman">Register</button></div>
+        <div class="card ti"><div class="d">19<small>DEC</small></div><div><b>Beat Saber · High Score</b>Open to all · Free entry</div><button class="reg" data-reg="Beat Saber High Score">Register</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey" data-reveal>// Inside the den</span>
+    <h2 class="h" data-split>Take a <span class="neon">look</span> around</h2>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1558742569-fe6d39d05837?w=1600&q=80&auto=format&fit=crop" data-caption="The main arena"><img src="https://images.unsplash.com/photo-1558742569-fe6d39d05837?w=900&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1600&q=80&auto=format&fit=crop" data-caption="RTX 4080 rigs"><img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1600&q=80&auto=format&fit=crop" data-caption="Console lounge"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=1600&q=80&auto=format&fit=crop" data-caption="VR pods"><img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=500&q=70&auto=format&fit=crop" alt=""></a>
+      <a href="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80&auto=format&fit=crop" data-caption="The retro corner"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=70&auto=format&fit=crop" alt=""></a>
+    </div>
+    <div class="media">
+      <div class="vid" data-reveal="left"><img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=1100&q=72&auto=format&fit=crop" alt="Tournament night"><button class="kt-play" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Watch last Friday's tournament"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button></div>
+      <div><span class="ey" data-reveal>// Vibes</span><h3 class="or" style="font-size:28px;color:var(--kt-ink);margin:10px 0" data-reveal>Last Friday in 60 seconds</h3><p data-reveal>Clutch plays, loud crowds and a final that went to overtime. Or press play on the den playlist.</p><div data-audio="drive" data-title="PIXEL DEN Radio" data-sub="Synthwave for late-night ranked" data-reveal></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rf" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="ey" data-reveal>// Players say</span>
+      <div class="kt-slider rq" data-autoplay="6000" style="margin-top:18px">
+        <div class="kt-track">
+          <div><span class="st">★★★★★</span><p>"Best setup in Dhaka. 240 Hz, zero lag, and they had my Valorant ready when I walked in."</p><div class="who"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Rafi</b> · Immortal 2</span></div></div>
+          <div><span class="st">★★★★★</span><p>"Booked a private room for my son's birthday. Ten kids, pizza, Fortnite. He still talks about it."</p><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Nadia</b> · Parent</span></div></div>
+          <div><span class="st">★★★★★</span><p>"Our office does team night here every month. The squad deal and the voice room are perfect."</p><div class="who"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=60&auto=format&fit=crop" alt=""><span><b style="color:var(--kt-ink)">Imran</b> · Team lead</span></div></div>
+        </div>
+        <div class="kt-dots"></div>
+      </div>
+    </div>
+    <div>
+      <span class="ey" data-reveal>// FAQ</span>
+      <h2 class="h" data-split style="font-size:clamp(28px,3.4vw,42px)">Before you come</h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>Do I need to book?</summary><div class="kt-faq-a"><div>Walk-ins are welcome when stations are free. On Thursday and Friday nights we're usually full, so booking is safer.</div></div></details>
+        <details class="kt-faq"><summary>Can I bring my own mouse or keyboard?</summary><div class="kt-faq-a"><div>Of course. Plug it in, we'll help with drivers.</div></div></details>
+        <details class="kt-faq"><summary>Is there an age limit?</summary><div class="kt-faq-a"><div>Under 13s need an adult with them after 8 pm. VR is for ages 10 and up.</div></div></details>
+        <details class="kt-faq"><summary>How do I pay?</summary><div class="kt-faq-a"><div>bKash, Nagad, card or cash at the counter. Monthly passes can be paid online.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><a href="#" class="logo"><i>▶</i>PIXEL<b>DEN</b></a><p style="margin:12px 0 0">House 42, Road 11, Banani, Dhaka 1213<br>01700 000000 · hello@pixelden.gg</p>
+        <form data-form="You're in! Tournament news is on its way."><input type="email" placeholder="Get tournament news" required aria-label="Email"><button class="btn fl" type="submit">Join</button></form></div>
+      <div><h4>Hours</h4><div class="hrs"><span>Sun – Thu</span><span>12 pm – 2 am</span><span>Fri – Sat</span><span>10 am – 3 am</span></div></div>
+      <div><h4>Follow</h4><p style="margin:0">Facebook · Instagram<br>Discord · YouTube · Twitch</p></div>
+    </div>
+    <div class="cp"><span>© 2026 PIXEL DEN Gaming Lounge</span><span>Theme: <button id="themeTxt" style="color:var(--c1);font-weight:600"></button></span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  /* ---------- theme switch ---------- */
+  const root = document.documentElement, tBtn = $('#themeBtn'), tTxt = $('#themeTxt');
+  const paintTheme = () => { const dark = root.getAttribute('data-theme') === 'dark'; tBtn.setAttribute('aria-checked', dark); tTxt.textContent = dark ? 'Night ☾' : 'Light ☀'; };
+  const setTheme = t => { root.setAttribute('data-theme', t); try { localStorage.setItem('pd-theme', t); } catch (e) {} paintTheme(); };
+  const toggle = () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  tBtn.addEventListener('click', toggle); tTxt.addEventListener('click', toggle);
+  paintTheme();
+
+  /* ---------- live "free now" ---------- */
+  let freeN = 7; setInterval(() => { freeN = Math.max(2, Math.min(12, freeN + (Math.random() < .5 ? -1 : 1))); $('#freeNow').textContent = `${freeN} of 40 PCs free right now`; }, 8000);
+
+  /* ---------- prices ---------- */
+  const RATE = { pc: [150, 180], ps: [200, 250], vr: [400, 450], room: [1200, 1500] }, NAME = { pc: 'PC', ps: 'Console sofa', vr: 'VR pod', room: 'Private room' };
+  const tk = n => '৳' + n.toLocaleString('en-IN');
+  let dt = 0;
+  const paintRates = () => { $$('[data-rate]').forEach(el => el.textContent = tk(RATE[el.dataset.rate][dt])); $('#nightPr').firstChild.nodeValue = tk(RATE.pc[dt] * 3); $('#squadPr').firstChild.nodeValue = tk(Math.round(RATE.pc[dt] * 5 * .87 / 10) * 10); };
+  $('#dayType').addEventListener('click', e => { const b = e.target.closest('[data-dt]'); if (!b) return; $$('#dayType button').forEach(x => x.classList.toggle('on', x === b)); dt = b.dataset.dt === 'we' ? 1 : 0; paintRates(); });
+
+  /* ---------- booking ---------- */
+  const B = { z: 'pc', day: 0, time: null, h: 2, q: 1 };
+  const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return d; });
+  $('#bDay').innerHTML = days.map((d, i) => `<button type="button" data-day="${i}" class="${i ? '' : 'on'}">${i === 0 ? 'Today' : i === 1 ? 'Tmrw' : d.toLocaleDateString('en-GB', { weekday: 'short' })}<small>${d.getDate()} ${d.toLocaleDateString('en-GB', { month: 'short' })}</small></button>`).join('');
+  const TIMES = ['12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00'];
+  const paintTimes = () => { const full = B.day === 0 ? ['18:00', '20:00'] : B.day % 3 === 1 ? ['20:00'] : [];
+    if (full.includes(B.time)) B.time = null;
+    $('#bTime').innerHTML = TIMES.map(t => `<button type="button" data-time="${t}" ${full.includes(t) ? 'disabled title="Fully booked"' : ''} class="${B.time === t ? 'on' : ''}">${t}</button>`).join(''); };
+  const weekend = () => [5, 6].includes(days[B.day].getDay());
+  const paintBook = () => { const max = { pc: 10, ps: 4, vr: 6, room: 2 }[B.z]; B.q = Math.min(B.q, max);
+    $('#bH').textContent = B.h; $('#bQ').textContent = B.q; $('#bQs').textContent = { pc: B.q > 1 ? 'PCs' : 'PC', ps: B.q > 1 ? 'Sofas' : 'Sofa', vr: B.q > 1 ? 'Pods' : 'Pod', room: B.q > 1 ? 'Rooms' : 'Room' }[B.z];
+    const rate = RATE[B.z][weekend() ? 1 : 0], tot = rate * B.h * B.q;
+    $('#bTot').textContent = tk(tot);
+    $('#bSum').textContent = `${B.q} × ${NAME[B.z]} · ${B.h} h · ${$('#bDay .on').firstChild.nodeValue}${B.time ? ' at ' + B.time : ''}${weekend() ? ' · weekend rate' : ''}`; };
+  $('#bZone').addEventListener('click', e => { const b = e.target.closest('[data-z]'); if (!b) return; $$('#bZone button').forEach(x => x.classList.toggle('on', x === b)); B.z = b.dataset.z; paintBook(); });
+  $('#bDay').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (!b) return; $$('#bDay button').forEach(x => x.classList.toggle('on', x === b)); B.day = +b.dataset.day; paintTimes(); paintBook(); });
+  $('#bTime').addEventListener('click', e => { const b = e.target.closest('[data-time]'); if (!b || b.disabled) return; B.time = b.dataset.time; paintTimes(); paintBook(); });
+  $('#bk').addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; const k = b.dataset.st, d = +b.dataset.d;
+    if (k === 'h') B.h = Math.max(1, Math.min(8, B.h + d)); else B.q = Math.max(1, B.q + d); paintBook(); });
+  $('#bk').addEventListener('submit', e => { e.preventDefault();
+    if (!B.time) return ktToast('Pick a start time first');
+    if (!$('#bName').value.trim() || $('#bPhone').value.replace(/\D/g, '').length < 10) return ktToast('Add your name and phone number');
+    ktToast(`Booked! ${$('#bSum').textContent}. See you soon 🎮`); });
+  // "Book a PC" buttons in the zones preselect the zone
+  $$('[data-pick]').forEach(a => a.addEventListener('click', () => { $(`#bZone [data-z="${a.dataset.pick}"]`).click(); }));
+  paintTimes(); paintBook(); paintRates();
+
+  /* ---------- tournaments ---------- */
+  const nextFri = (() => { const d = new Date(); d.setHours(20, 0, 0, 0); const add = (5 - d.getDay() + 7) % 7; d.setDate(d.getDate() + (add === 0 && new Date() > d ? 7 : add)); return d; })();
+  const cd = $$('#cd b'); const tick = () => { let s = Math.max(0, Math.floor((nextFri - Date.now()) / 1000)); [86400, 3600, 60, 1].forEach((u, i) => { cd[i].textContent = String(Math.floor(s / u)).padStart(2, '0'); s %= u; }); };
+  tick(); setInterval(tick, 1000);
+  document.addEventListener('click', e => { const r = e.target.closest('[data-reg]'); if (!r) return; if (r.classList.contains('reg')) { r.classList.toggle('on'); r.textContent = r.classList.contains('on') ? '✓ Registered' : 'Register'; if (!r.classList.contains('on')) return; } ktToast(`You're registered for ${r.dataset.reg}. Check-in opens 30 min before.`); });
+</script>
+</body>
+</html>

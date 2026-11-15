@@ -879,6 +879,40 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "local-business",
+      "slug": "11-gaming-lounge",
+      "title": "PIXEL DEN · Gaming lounge (light / neon dark)",
+      "desc": "Esports lounge with a theme switch: neon cyan/magenta night mode by default, clean light mode. Zones, weekday/weekend pricing, live booking, tournaments.",
+      "tags": [
+        "Gaming",
+        "Dark mode"
+      ],
+      "date": "2026-11-15",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/11-gaming-lounge/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "local-business",
+      "slug": "12-cocktail-bar",
+      "title": "Velvet Hour · Cocktail bar (light / neon dark)",
+      "desc": "Cocktail bar with flickering neon sign at night and a warm cream light mode. Menu tabs, live music this week with countdown, table booking with booth deposit.",
+      "tags": [
+        "Bar",
+        "Dark mode"
+      ],
+      "date": "2026-11-15",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "local-business/12-cocktail-bar/index.html"
+        }
+      ]
+    },
+    {
       "cat": "personal-creative",
       "slug": "11-portfolio",
       "title": "Inès Moreau · Architect portfolio",
@@ -1163,6 +1197,23 @@ window.DESIGNS = {
         {
           "label": "Page",
           "href": "landing-pages/kumo/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "landing-pages",
+      "slug": "lumen-app",
+      "title": "Lumen · AI app landing (light / neon dark)",
+      "desc": "SaaS landing page with neon green/cyan dark mode and indigo light mode: live transcript app mock, bento features, how-it-works tabs, monthly/yearly pricing.",
+      "tags": [
+        "SaaS",
+        "Dark mode"
+      ],
+      "date": "2026-11-15",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "landing-pages/lumen-app/index.html"
         }
       ]
     },
