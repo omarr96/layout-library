@@ -235,6 +235,28 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "sites-page",
+      "title": "Sites page · Grid & list",
+      "desc": "Sites home redesigned: build with AI (typing prompts, start from a Facebook, Google or old-site link) or over MCP first, then sites in grid or list with search, filters, domain and SSL problems shown on the card, dismissible notices and move to draft. Plus a 1–3 site version for normal users.",
+      "tags": [
+        "Dashboard",
+        "Sites",
+        "AI build"
+      ],
+      "date": "2026-11-16",
+      "pages": [
+        {
+          "label": "Agency (28 sites)",
+          "href": "site-dashboard/sites-page/index.html"
+        },
+        {
+          "label": "1–3 sites",
+          "href": "site-dashboard/sites-page/few-sites.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "sites-list",
       "title": "Sites List · Agency",
       "desc": "All sites for an agency: clients, status tiles, pinned sites, search, list and grid views, bulk actions.",
