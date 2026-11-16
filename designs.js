@@ -235,6 +235,36 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "site-settings",
+      "title": "Site settings · Popups",
+      "desc": "Site settings redesigned with a left section menu. Popups first: New popup menu, one row per popup with type preview, trigger and pages, on/off switch, views and click rate with trend, expandable details, a compact stats strip with 7/30/90 days, and an empty state with starters. Also General with search preview, Header & footer page by page, and Cookies with live banner preview.",
+      "tags": [
+        "Dashboard",
+        "Settings",
+        "Popups"
+      ],
+      "date": "2026-11-16",
+      "pages": [
+        {
+          "label": "Popups",
+          "href": "site-dashboard/site-settings/index.html#popups"
+        },
+        {
+          "label": "General",
+          "href": "site-dashboard/site-settings/index.html#general"
+        },
+        {
+          "label": "Header & footer",
+          "href": "site-dashboard/site-settings/index.html#layout"
+        },
+        {
+          "label": "Cookies",
+          "href": "site-dashboard/site-settings/index.html#cookies"
+        }
+      ]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "sites-page",
       "title": "Sites page · Grid & list",
       "desc": "Sites home redesigned: build with AI (typing prompts, start from a Facebook, Google or old-site link) or over MCP first, then sites in grid or list with search, filters, domain and SSL problems shown on the card, dismissible notices and move to draft. Plus a 1–3 site version for normal users.",
