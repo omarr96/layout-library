@@ -2,6 +2,11 @@
 window.DESIGNS = {
   "cats": [
     {
+      "id": "tools",
+      "name": "Tools",
+      "desc": "Working pages kept up to date with real data"
+    },
+    {
       "id": "site-builder",
       "name": "Site builder",
       "desc": "Editor, AI builder and builder panels"
@@ -63,6 +68,24 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "tools",
+      "slug": "ai-run-log",
+      "title": "AI run log",
+      "desc": "Every AI command from the dev server: filters, cost, tokens and credits, cost per day, by agent and by model, sortable command list, sheet and Markdown downloads. Updated from Markdown exports.",
+      "tags": [
+        "Tool",
+        "AI",
+        "Data"
+      ],
+      "date": "2026-11-17",
+      "pages": [
+        {
+          "label": "Run log",
+          "href": "tools/ai-run-log/index.html"
+        }
+      ]
+    },
     {
       "cat": "site-builder",
       "slug": "ai-builder",

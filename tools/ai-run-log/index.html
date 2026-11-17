@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI run log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--card:#fff;--soft:#f7f7f8;--hover:#f4f4f5;
+  --ink:#111113;--tx:#3f3f46;--mut:#71717a;--faint:#a1a1aa;
+  --line:#ececef;--line2:#e2e2e6;
+  --ok:#15803d;--ok-bg:#ecfdf3;--err:#b91c1c;--err-bg:#fef2f2;
+  --ac:#7c4dff;--ac-bg:#f4f0ff;--bar:#7c4dff;--bar2:#d9ccff;
+  --sh:0 1px 2px rgb(16 16 20/.04);--sh2:0 10px 30px -12px rgb(16 16 20/.25);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c0c0e;--card:#141417;--soft:#18181b;--hover:#1f1f23;
+  --ink:#f4f4f5;--tx:#d4d4d8;--mut:#a1a1aa;--faint:#71717a;
+  --line:#232327;--line2:#2c2c31;
+  --ok:#6ee7b7;--ok-bg:#062a1f;--err:#fca5a5;--err-bg:#2a0f0f;
+  --ac:#a78bfa;--ac-bg:#1e1838;--bar:#a78bfa;--bar2:#3b2f66;
+  --sh:none;--sh2:0 10px 30px -12px rgb(0 0 0/.6);
+}}
+:root[data-theme="dark"]{
+  --bg:#0c0c0e;--card:#141417;--soft:#18181b;--hover:#1f1f23;
+  --ink:#f4f4f5;--tx:#d4d4d8;--mut:#a1a1aa;--faint:#71717a;
+  --line:#232327;--line2:#2c2c31;
+  --ok:#6ee7b7;--ok-bg:#062a1f;--err:#fca5a5;--err-bg:#2a0f0f;
+  --ac:#a78bfa;--ac-bg:#1e1838;--bar:#a78bfa;--bar2:#3b2f66;
+  --sh:none;--sh2:0 10px 30px -12px rgb(0 0 0/.6);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.5 Inter,system-ui,sans-serif;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.num,td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 28px 80px}
+
+/* header */
+.hd{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.hd .logo{width:36px;height:36px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.hd .logo svg{width:18px;height:18px}
+.hd .tt{display:flex;gap:12px;align-items:center}
+.hd h1{margin:0;color:var(--ink);font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.hd p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.hd .sp{flex:1}
+.btn{height:34px;padding:0 12px;border-radius:9px;display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:13px;white-space:nowrap;background:var(--card);box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink)}
+.btn:hover{background:var(--hover)}
+.btn.pri{background:var(--ink);color:var(--bg);box-shadow:none}
+.btn.pri:hover{opacity:.88;background:var(--ink)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+
+/* filters */
+.fb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px solid var(--line2);border-radius:14px;background:var(--card);box-shadow:var(--sh);margin-bottom:16px}
+.seg{display:inline-flex;background:var(--hover);border-radius:9px;padding:3px}
+.seg button{height:28px;padding:0 10px;border-radius:7px;font-size:12.5px;font-weight:500;color:var(--mut);white-space:nowrap}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgb(0 0 0/.08),0 0 0 1px var(--line2)}
+.inp{height:34px;border:1px solid var(--line2);border-radius:9px;padding:0 10px;background:var(--card);outline:none;font-size:13px;min-width:0}
+.inp:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ac-bg)}
+select.inp{appearance:none;padding-right:28px;background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center/13px;max-width:190px}
+select.inp.set{border-color:var(--ac);background-color:var(--ac-bg);color:var(--ink)}
+input[type=date].inp{width:140px}
+.srch{position:relative;flex:1;min-width:180px}
+.srch svg{position:absolute;left:10px;top:9px;color:var(--faint)}
+.srch .inp{width:100%;padding-left:32px}
+.fb .dash{color:var(--faint)}
+.fb .brk{flex-basis:100%;height:0}
+.fb .clr{font-size:12.5px;color:var(--ac);font-weight:500;padding:0 6px}
+.fb .clr[hidden]{display:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--line2);border-radius:14px;background:var(--card);box-shadow:var(--sh);margin-bottom:16px;overflow:hidden}
+.stats>div{padding:14px 16px;min-width:0}
+.stats>div+div{border-left:1px solid var(--line)}
+.stats small{display:block;color:var(--mut);font-size:12px}
+.stats b{display:block;color:var(--ink);font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.3;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats i{font-style:normal;font-size:12px;color:var(--mut);white-space:nowrap}
+.stats i.bad{color:var(--err)}
+
+/* charts */
+.charts{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:16px}
+.card{border:1px solid var(--line2);border-radius:14px;background:var(--card);box-shadow:var(--sh);padding:14px 16px;min-width:0}
+.card h2{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px}
+.card h2 small{margin-left:auto;font-weight:400;color:var(--mut);font-size:12px}
+.days{display:flex;align-items:flex-end;gap:4px;height:130px}
+.day{flex:1 1 0;min-width:4px;max-width:44px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;position:relative;cursor:default}
+.day i{display:block;width:100%;background:var(--bar);border-radius:4px 4px 1px 1px;min-height:2px;transition:opacity .15s}
+.day span{font-size:10.5px;color:var(--faint);white-space:nowrap}
+.days:hover .day i{opacity:.45}.days .day:hover i{opacity:1}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:7px;white-space:nowrap;opacity:0;transition:opacity .1s}
+.tip.on{opacity:1}
+.bars{display:flex;flex-direction:column;gap:9px}
+.br{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:12.5px;cursor:pointer;border-radius:6px}
+.br .nm{color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br .v{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:500}
+.br .tr{grid-column:1/-1;height:6px;border-radius:3px;background:var(--hover);overflow:hidden}
+.br .tr i{display:block;height:100%;background:var(--bar);border-radius:3px}
+.br .sub{grid-column:1/-1;color:var(--mut);font-size:11.5px}
+.br:hover .nm{color:var(--ac)}
+.br.on .nm{color:var(--ac)}
+.none{color:var(--mut);font-size:13px;padding:8px 0}
+
+/* table */
+.tw{border:1px solid var(--line2);border-radius:14px;background:var(--card);box-shadow:var(--sh);overflow:hidden}
+.th{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.th h2{margin:0;font-size:14px;font-weight:600;color:var(--ink)}
+.th small{color:var(--mut);font-size:12.5px}
+.scroll{overflow-x:auto}
+table.runs{width:100%;border-collapse:collapse;font-size:13px}
+.runs th{position:sticky;top:0;background:var(--soft);text-align:left;font-weight:500;font-size:12px;color:var(--mut);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+.runs th[data-sort]{cursor:pointer}
+.runs th[data-sort]:hover{color:var(--ink)}
+.runs th .ar{display:inline-block;width:10px;color:var(--ac)}
+.runs td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.runs tr.r:hover td{background:var(--soft)}
+.runs tr:last-child td{border-bottom:0}
+.runs .when{white-space:nowrap;color:var(--tx)}
+.runs .when small{display:block;color:var(--faint);font-size:11.5px}
+.lk{color:var(--tx);border-radius:5px;padding:1px 6px;margin-left:-6px;white-space:nowrap}
+.lk:hover{background:var(--ac-bg);color:var(--ac)}
+.lk.ag{font-weight:500;color:var(--ink)}
+.site{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.cmd{min-width:280px;max-width:520px}
+.cmd button{display:flex;gap:6px;text-align:left;color:var(--ink);width:100%}
+.cmd button svg{margin-top:2px;width:14px;height:14px;color:var(--faint);transition:transform .15s}
+.cmd button[aria-expanded="true"] svg{transform:rotate(90deg)}
+.cmd .tx{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cmd button[aria-expanded="true"] .tx{display:block;white-space:pre-wrap;word-break:break-word}
+.more{margin:8px 0 2px 20px;display:flex;flex-wrap:wrap;gap:6px}
+.more span{font-size:11.5px;background:var(--hover);border-radius:6px;padding:1px 7px;color:var(--tx)}
+.more span b{font-weight:500;color:var(--mut)}
+.mdl{font-size:12px;color:var(--mut);white-space:nowrap}
+.pill{font-size:12px;font-weight:500;border-radius:999px;padding:1px 9px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.error{background:var(--err-bg);color:var(--err)}
+.pill.other{background:var(--hover);color:var(--tx)}
+tr.err td{background:color-mix(in srgb,var(--err-bg) 50%,transparent)}
+.empty{padding:48px 20px;text-align:center;color:var(--mut)}
+.empty b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.foot{padding:10px 16px;border-top:1px solid var(--line);color:var(--mut);font-size:12.5px;display:flex;gap:10px;align-items:center}
+.foot .btn{margin-left:auto}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:9px;font-size:13px;transition:.2s;z-index:90}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1100px){
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stats>div:nth-child(4){border-left:0}
+  .stats>div:nth-child(n+4){border-top:1px solid var(--line)}
+  .charts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .charts .card:first-child{grid-column:1/-1}
+}
+@media (max-width:720px){
+  .wrap{padding:20px 16px 60px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats>div:nth-child(n){border-left:0;border-top:1px solid var(--line)}
+  .stats>div:nth-child(even){border-left:1px solid var(--line)}
+  .stats>div:nth-child(-n+2){border-top:0}
+  .charts{grid-template-columns:minmax(0,1fr)}
+  .fb .seg{width:100%}.fb .seg button{flex:1}
+  input[type=date].inp{flex:1;width:auto}
+  select.inp{flex:1 1 40%;max-width:none}
+  .hd .acts{width:100%}.hd .acts .btn{flex:1;justify-content:center}
+  /* table becomes cards */
+  table.runs thead{display:none}
+  table.runs,table.runs tbody,table.runs tr,table.runs td{display:block}
+  .runs tr.r{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .runs td{padding:0;border:0}
+  .runs td.c-cmd{grid-column:1/-1;order:-1}
+  .cmd{min-width:0;max-width:none}
+  .runs td.c-when{grid-column:1}.runs td.c-res{grid-column:2;grid-row:2;justify-self:end}
+  .runs td.c-agent,.runs td.c-site{display:inline-block}
+  .runs td.c-meta{grid-column:1/-1}
+  .runs td.num{display:none}
+  .runs tr.r:hover td{background:none}
+  .runs .m-only{display:flex!important}
+}
+.m-only{display:none!important;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.m-only b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hd">
+    <div class="tt"><span class="logo"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+      <div><h1>AI run log</h1><p id="sub"></p></div></div>
+    <span class="sp"></span>
+    <div class="acts">
+      <button class="btn" id="dl-md"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Markdown</button>
+      <button class="btn pri" id="dl-csv"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download sheet</button>
+    </div>
+  </header>
+
+  <div class="fb" id="fb">
+    <div class="seg" id="quick"><button data-days="0">Today</button><button data-days="7">7 days</button><button data-days="30">30 days</button><button data-days="">All time</button></div>
+    <input type="date" class="inp" id="f-from" aria-label="From"><span class="dash">–</span><input type="date" class="inp" id="f-to" aria-label="To">
+    <label class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg><input type="search" class="inp" id="f-q" placeholder="Search commands"></label>
+    <span class="brk"></span>
+    <select class="inp" id="f-site" aria-label="Site"></select>
+    <select class="inp" id="f-agent" aria-label="Agent"></select>
+    <select class="inp" id="f-step" aria-label="Step"></select>
+    <select class="inp" id="f-model" aria-label="Model"></select>
+    <select class="inp" id="f-result" aria-label="Result"></select>
+    <button class="clr" id="reset" hidden>Clear filters</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="charts">
+    <div class="card"><h2>Cost per day<small id="days-sub"></small></h2><div class="days" id="days"></div></div>
+    <div class="card"><h2>By agent<small>cost</small></h2><div class="bars" id="by-agent"></div></div>
+    <div class="card"><h2>By model<small>cost</small></h2><div class="bars" id="by-model"></div></div>
+  </div>
+
+  <div class="tw">
+    <div class="th"><h2>Commands</h2><small id="count"></small></div>
+    <div class="scroll" id="table"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const LOG = window.RUN_LOG || { updated: '', runs: [] };
+  const RUNS = LOG.runs;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const n = (v) => Number(v || 0).toLocaleString('en-US');
+  const usd = (v) => v === null || v === undefined ? '—' : '$' + (v > 0 && v < 0.01 ? v.toFixed(5) : v.toFixed(v >= 100 ? 2 : 4));
+  const usdS = (v) => '$' + (v >= 100 ? v.toFixed(0) : v >= 1 ? v.toFixed(2) : v.toFixed(3));
+  const secs = (ms) => ms >= 60000 ? (ms / 60000).toFixed(1) + ' min' : (ms / 1000).toFixed(1) + ' s';
+  const uniq = (xs) => [...new Set(xs.filter(Boolean))].sort();
+  const dayOf = (at) => at.slice(0, 10);
+  const pad = (x) => String(x).padStart(2, '0');
+  const today = () => { const d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+  const minus = (days) => { const d = new Date(); d.setDate(d.getDate() - days); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const nice = (day) => { const [y, m, d] = day.split('-'); return +d + ' ' + MON[+m - 1] + (y !== today().slice(0, 4) ? ' ' + y : ''); };
+  const toast = (m) => { const t = $('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 2000); };
+
+  $('sub').textContent = RUNS.length
+    ? `${n(RUNS.length)} commands from the dev server · updated ${nice(dayOf(LOG.updated))}, ${LOG.updated.slice(11, 16)}`
+    : 'No data yet';
+
+  /* filter options */
+  const OPTS = {
+    site: ['All sites', uniq(RUNS.map((r) => r.site))],
+    agent: ['All agents', uniq(RUNS.map((r) => r.agent))],
+    step: ['All steps', uniq(RUNS.flatMap((r) => r.steps))],
+    model: ['All models', uniq(RUNS.flatMap((r) => r.models))],
+    result: ['Any result', uniq(RUNS.map((r) => r.result))],
+  };
+  for (const [k, [all, list]] of Object.entries(OPTS))
+    $('f-' + k).innerHTML = `<option value="">${all}</option>` + list.map((v) => `<option>${esc(v)}</option>`).join('');
+
+  const KEYS = ['from', 'to', 'site', 'agent', 'step', 'model', 'result', 'q'];
+  let sort = { key: 'at', dir: -1 };
+  const open = new Set();
+  const PAGE = 200; let limit = PAGE;
+
+  function readHash() { const p = new URLSearchParams(location.hash.slice(1)); for (const k of KEYS) $('f-' + k).value = p.get(k) ?? ''; }
+  function writeHash() {
+    const p = new URLSearchParams(); for (const k of KEYS) { const v = $('f-' + k).value; if (v) p.set(k, v); }
+    history.replaceState(null, '', location.pathname + location.search + (p.toString() ? '#' + p : ''));
+  }
+  const f = () => Object.fromEntries(KEYS.map((k) => [k, $('f-' + k).value.trim()]));
+
+  function filtered() {
+    const v = f(), q = v.q.toLowerCase();
+    const out = RUNS.filter((r) => {
+      const d = dayOf(r.at);
+      if (v.from && d < v.from) return false;
+      if (v.to && d > v.to) return false;
+      if (v.site && r.site !== v.site) return false;
+      if (v.agent && r.agent !== v.agent) return false;
+      if (v.step && !r.steps.includes(v.step)) return false;
+      if (v.model && !r.models.includes(v.model)) return false;
+      if (v.result && r.result !== v.result) return false;
+      if (q && !(r.command + ' ' + r.site + ' ' + r.agent).toLowerCase().includes(q)) return false;
+      return true;
+    });
+    const k = sort.key, val = (r) => k === 'models' ? r.models.join(',') : r[k] ?? -1;
+    return out.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : 0) * sort.dir; });
+  }
+
+  /* group: a command that used several models splits its numbers evenly */
+  function group(list, keys) {
+    const g = new Map();
+    for (const r of list) {
+      const ks = keys(r); if (!ks.length) continue;
+      for (const k of ks) {
+        const t = g.get(k) ?? { cmds: 0, tokens: 0, cost: 0, priced: false };
+        t.cmds++; t.tokens += r.tokens / ks.length;
+        if (r.cost !== null) { t.cost += r.cost / ks.length; t.priced = true; }
+        g.set(k, t);
+      }
+    }
+    return [...g].sort((a, b) => b[1].cost - a[1].cost || b[1].tokens - a[1].tokens);
+  }
+  function bars(rows, filterKey) {
+    if (!rows.length) return '<div class="none">Nothing in this view.</div>';
+    const max = Math.max(...rows.map(([, t]) => t.cost), 0), tot = rows.reduce((s, [, t]) => s + t.cost, 0);
+    const cur = $('f-' + filterKey).value;
+    return rows.slice(0, 6).map(([k, t]) => `<div class="br ${cur === k ? 'on' : ''}" data-set="${filterKey}" data-val="${esc(k)}" title="Show only ${esc(k)}">
+      <span class="nm">${esc(k)}</span><span class="v">${t.priced ? usd(t.cost) : '—'}</span>
+      <span class="tr"><i style="width:${max ? Math.max(2, t.cost / max * 100) : 2}%"></i></span>
+      <span class="sub">${n(t.cmds)} command${t.cmds === 1 ? '' : 's'} · ${n(Math.round(t.tokens))} tokens${tot ? ' · ' + Math.round(t.cost / tot * 100) + '%' : ''}</span></div>`).join('')
+      + (rows.length > 6 ? `<div class="none">+ ${rows.length - 6} more</div>` : '');
+  }
+
+  const HEAD = [['at', 'Time'], ['agent', 'Agent'], ['site', 'Site'], ['command', 'Command'], ['models', 'Model'], ['ms', 'Took', 1], ['tokens', 'Tokens', 1], ['cost', 'Cost', 1], ['credits', 'Credits', 1], ['result', 'Result']];
+
+  function render() {
+    writeHash();
+    const v = f();
+    for (const k of ['site', 'agent', 'step', 'model', 'result']) $('f-' + k).classList.toggle('set', !!v[k]);
+    $('reset').hidden = !KEYS.some((k) => v[k]);
+    const qd = v.to ? null : v.from === today() ? '0' : v.from === minus(7) ? '7' : v.from === minus(30) ? '30' : v.from ? null : '';
+    document.querySelectorAll('#quick button').forEach((b) => b.classList.toggle('on', b.dataset.days === qd));
+
+    const list = filtered();
+    const T = list.reduce((t, r) => ({ tokens: t.tokens + r.tokens, cost: t.cost + (r.cost || 0), credits: t.credits + (r.credits || 0), ms: t.ms + r.ms, err: t.err + (r.result === 'error' ? 1 : 0) }), { tokens: 0, cost: 0, credits: 0, ms: 0, err: 0 });
+    const unpriced = list.some((r) => r.cost === null);
+    const avgCost = list.length ? T.cost / list.length : 0;
+    const st = (l, b, i, cls) => `<div><small>${l}</small><b>${b}</b><i class="${cls || ''}">${i || '&nbsp;'}</i></div>`;
+    $('stats').innerHTML = [
+      st('Commands', n(list.length), T.err ? `${n(T.err)} failed` : 'none failed', T.err ? 'bad' : ''),
+      st('Cost', usd(T.cost), unpriced ? 'some have no price' : list.length ? usd(avgCost) + ' each on average' : ''),
+      st('Tokens', n(T.tokens), list.length ? n(Math.round(T.tokens / list.length)) + ' per command' : ''),
+      st('Credits', n(T.credits), 'from the AI limit'),
+      st('Time', secs(T.ms), list.length ? 'avg ' + secs(T.ms / list.length) : ''),
+      st('Sites', n(uniq(list.map((r) => r.site)).length), n(uniq(list.map((r) => r.agent)).length) + ' agents'),
+    ].join('');
+
+    /* cost per day: every day in range, last 30 */
+    const per = new Map(); for (const r of list) { const d = dayOf(r.at); const t = per.get(d) || { c: 0, k: 0 }; t.c += r.cost || 0; t.k++; per.set(d, t); }
+    let days = [...per.keys()].sort();
+    if (days.length) { const all = []; const d = new Date(days[0] + 'T12:00'), end = new Date(days[days.length - 1] + 'T12:00');
+      while (d <= end) { all.push(d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())); d.setDate(d.getDate() + 1); } days = all.slice(-30); }
+    const max = Math.max(0, ...days.map((d) => (per.get(d) || { c: 0 }).c));
+    const lab = (i) => days.length <= 10 || i % Math.ceil(days.length / 8) === 0 || i === days.length - 1;
+    $('days').innerHTML = days.length ? days.map((d, i) => { const t = per.get(d) || { c: 0, k: 0 };
+      return `<div class="day" data-tip="${nice(d)} · ${usd(t.c)} · ${t.k} command${t.k === 1 ? '' : 's'}" data-day="${d}"><i style="height:${max ? Math.max(1.5, t.c / max * 82) : 1.5}%"></i><span>${lab(i) ? nice(d).replace(/ \d{4}$/, '') : '&nbsp;'}</span></div>`; }).join('')
+      : '<div class="none">Nothing in this view.</div>';
+    $('days-sub').textContent = days.length ? (days.length === 1 ? nice(days[0]) : nice(days[0]) + ' – ' + nice(days[days.length - 1])) : '';
+    $('by-agent').innerHTML = bars(group(list, (r) => [r.agent]), 'agent');
+    $('by-model').innerHTML = bars(group(list, (r) => r.models), 'model');
+
+    /* table */
+    const shown = list.slice(0, limit);
+    const ar = (k) => `<span class="ar">${sort.key === k ? (sort.dir > 0 ? '↑' : '↓') : ''}</span>`;
+    $('count').textContent = list.length === RUNS.length ? `${n(list.length)} in total` : `${n(list.length)} of ${n(RUNS.length)}`;
+    $('table').innerHTML = list.length ? `<table class="runs"><thead><tr>${HEAD.map(([k, l, num]) => `<th data-sort="${k}" class="${num ? 'num' : ''}">${num ? ar(k) + l : l + ar(k)}</th>`).join('')}</tr></thead><tbody>` +
+      shown.map((r, i) => { const id = r.at + '|' + r.command, o = open.has(id);
+        return `<tr class="r ${r.result === 'error' ? 'err' : ''}">
+          <td class="when c-when">${esc(r.at.slice(11, 16))}<small>${nice(dayOf(r.at))}</small></td>
+          <td class="c-agent"><button class="lk ag" data-set="agent" data-val="${esc(r.agent)}">${esc(r.agent)}</button></td>
+          <td class="c-site">${r.site ? `<button class="lk site" data-set="site" data-val="${esc(r.site)}">${esc(r.site)}</button>` : '—'}</td>
+          <td class="cmd c-cmd"><button data-open="${esc(id)}" aria-expanded="${o}"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg><span class="tx">${esc(r.command)}</span></button>
+            ${o ? `<div class="more">${r.steps.map((s) => `<span><b>step</b> ${esc(s)}</span>`).join('')}${r.models.map((s) => `<span><b>model</b> ${esc(s)}</span>`).join('')}<span><b>at</b> ${esc(r.at)}</span></div>` : ''}</td>
+          <td class="mdl c-meta-h">${esc(r.models.join(', ') || '—')}</td>
+          <td class="num">${secs(r.ms)}</td><td class="num">${n(r.tokens)}</td><td class="num">${usd(r.cost)}</td><td class="num">${r.credits ?? '—'}</td>
+          <td class="c-res"><span class="pill ${r.result === 'ok' || r.result === 'error' ? r.result : 'other'}">${esc(r.result)}</span></td>
+          <td class="c-meta m-only"><span><b>${usd(r.cost)}</b></span><span>${n(r.tokens)} tokens</span><span>${secs(r.ms)}</span><span>${r.credits ?? '—'} credit${r.credits === 1 ? '' : 's'}</span></td>
+        </tr>`; }).join('') + '</tbody></table>'
+      : `<div class="empty"><b>${RUNS.length ? 'No commands match these filters' : 'No commands yet'}</b>${RUNS.length ? '<button class="btn" data-reset style="margin-top:10px">Clear filters</button>' : 'Send a Markdown export to update this page.'}</div>`;
+    $('foot').innerHTML = list.length > shown.length ? `Showing ${n(shown.length)} of ${n(list.length)}<button class="btn" id="morebtn">Show ${n(Math.min(PAGE, list.length - shown.length))} more</button>` : (list.length ? `Sheet and Markdown downloads use the ${n(list.length)} commands in this view.` : '');
+    $('foot').style.display = list.length ? '' : 'none';
+  }
+  /* mobile column for meta shows only in card layout; desktop hides it */
+  const css = document.createElement('style'); css.textContent = '@media (max-width:720px){.runs td.c-meta-h{display:none}}@media (min-width:721px){.runs td.c-meta{display:none!important}}'; document.head.appendChild(css);
+
+  /* downloads */
+  const save = (text, name, type) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
+  function csv() {
+    const cell = (v) => { let s = v === null || v === undefined ? '' : String(v); if (/^[=+\-@]/.test(s) && !/^-?\d/.test(s)) s = "'" + s; return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const head = ['Time', 'Site', 'Agent', 'Steps', 'Models', 'Command', 'Seconds', 'Tokens', 'Cost (USD)', 'Credits', 'Result'];
+    const rows = filtered().map((r) => [r.at, r.site, r.agent, r.steps.join(', '), r.models.join(', '), r.command, (r.ms / 1000).toFixed(1), r.tokens, r.cost === null ? '' : r.cost, r.credits ?? '', r.result]);
+    return '﻿' + [head, ...rows].map((r) => r.map(cell).join(',')).join('\r\n') + '\r\n';
+  }
+  function md() {
+    const list = filtered(), v = f();
+    const cell = (x) => String(x ?? '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\r\n|\r|\n/g, '<br>').trim() || '—';
+    const line = (c) => '| ' + c.map(cell).join(' | ') + ' |';
+    const used = KEYS.filter((k) => v[k]).map((k) => k + ' = ' + v[k]);
+    const T = list.reduce((t, r) => ({ tokens: t.tokens + r.tokens, cost: t.cost + (r.cost || 0), credits: t.credits + (r.credits || 0), ms: t.ms + r.ms }), { tokens: 0, cost: 0, credits: 0, ms: 0 });
+    return ['# AI run log', '', '- **Filters:** ' + (used.length ? used.join(' · ') : 'none (every command)'), '- **Data updated:** ' + LOG.updated, '',
+      '## Totals', '', line(['What', 'Total']), '| --- | ---: |', line(['Commands', n(list.length)]), line(['Total tokens', n(T.tokens)]), line(['Cost (USD)', usd(T.cost)]), line(['Credits', n(T.credits)]), line(['Time', secs(T.ms)]), '',
+      '## Commands', '', line(['Date', 'Site', 'Agent', 'Step', 'Model', 'Command', 'Time', 'Tokens', 'Cost (USD)', 'Credits', 'Result']), '| --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- |',
+      ...list.map((r) => line([r.at, r.site, r.agent, r.steps.join(', '), r.models.join(', '), r.command, (r.ms / 1000).toFixed(1) + ' s', n(r.tokens), usd(r.cost), r.credits ?? '—', r.result])), ''].join('\n');
+  }
+  $('dl-csv').onclick = () => { save(csv(), 'ai-run-log-' + today() + '.csv', 'text/csv;charset=utf-8'); toast('Sheet downloaded'); };
+  $('dl-md').onclick = () => { save(md(), 'ai-run-log-' + today() + '.md', 'text/markdown;charset=utf-8'); toast('Markdown downloaded'); };
+
+  /* events */
+  for (const k of KEYS) $('f-' + k).addEventListener(k === 'q' ? 'input' : 'change', () => { limit = PAGE; render(); });
+  const clear = () => { for (const k of KEYS) $('f-' + k).value = ''; limit = PAGE; render(); };
+  $('reset').onclick = clear;
+  $('quick').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; $('f-to').value = ''; $('f-from').value = b.dataset.days === '' ? '' : b.dataset.days === '0' ? today() : minus(+b.dataset.days); render(); });
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-reset]')) return clear();
+    if (e.target.id === 'morebtn') { limit += PAGE; return render(); }
+    const s = e.target.closest('[data-set]'); if (s) { const el = $('f-' + s.dataset.set); el.value = el.value === s.dataset.val ? '' : s.dataset.val; limit = PAGE; return render(); }
+    const o = e.target.closest('[data-open]'); if (o) { const id = o.dataset.open; open.has(id) ? open.delete(id) : open.add(id); return render(); }
+    const h = e.target.closest('th[data-sort]'); if (h) { const k = h.dataset.sort; sort = sort.key === k ? { key: k, dir: -sort.dir } : { key: k, dir: ['at', 'ms', 'tokens', 'cost', 'credits'].includes(k) ? -1 : 1 }; return render(); }
+    const d = e.target.closest('.day[data-day]'); if (d) { $('f-from').value = $('f-to').value = d.dataset.day; return render(); }
+  });
+  const tip = $('tip');
+  $('days').addEventListener('mousemove', (e) => { const d = e.target.closest('.day'); if (!d) return tip.classList.remove('on');
+    tip.textContent = d.dataset.tip; tip.classList.add('on'); const r = d.getBoundingClientRect();
+    tip.style.left = Math.max(8, Math.min(innerWidth - tip.offsetWidth - 8, r.left + r.width / 2 - tip.offsetWidth / 2)) + 'px'; tip.style.top = (r.top - tip.offsetHeight - 6) + 'px'; });
+  $('days').addEventListener('mouseleave', () => tip.classList.remove('on'));
+  addEventListener('hashchange', () => { readHash(); render(); });
+
+  readHash(); render();
+})();
+</script>
+</body>
+</html>
