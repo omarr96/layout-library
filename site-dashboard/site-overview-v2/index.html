@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torque Garage · Local</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111113;--tx:#3f3f46;--mut:#71717a;--faint:#a1a1aa;
+  --line:#ececef;--line2:#e2e2e6;--soft:#f7f7f8;--hover:#f4f4f5;--side:#fafafa;
+  --ok:#16a34a;--ok-bg:#ecfdf3;--warn:#ca8a04;--warn-bg:#fefce8;--err:#dc2626;--err-bg:#fef2f2;
+  --ac:#7c4dff;--ac-bg:#f4f0ff;
+  --sh:0 1px 2px rgb(16 16 20/.04);--sh2:0 10px 30px -12px rgb(16 16 20/.22);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.5 Inter,system-ui,sans-serif;color:var(--tx);background:#fff;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+a{color:inherit;text-decoration:none}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- shell ---------- */
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+.side{background:var(--side);border-right:1px solid var(--line);padding:14px 12px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;gap:10px;align-items:center;padding:2px 4px 18px}
+.logo{width:32px;height:32px;border-radius:9px;background:var(--ink);color:#fff;display:grid;place-items:center}
+.brand b{display:block;color:var(--ink);font-weight:600;font-size:14px;line-height:1.2}
+.brand small{color:var(--mut);font-size:12px}
+.sec{font-size:11.5px;color:var(--faint);font-weight:500;padding:6px 8px}
+.nav a{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:8px;color:var(--tx);font-weight:500;font-size:13.5px}
+.nav a:hover{background:var(--hover)}
+.nav a.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line2),var(--sh)}
+.nav .site{color:var(--ink);font-weight:600}
+.nav .site .lv{margin-left:auto;font-size:11.5px;font-weight:500;color:#15803d;display:flex;align-items:center;gap:5px}
+.nav .site .lv:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.nav .sub{margin-left:15px;padding-left:8px;border-left:1px solid var(--line2)}
+.nav .sub a{font-size:13px;padding:6px 8px}
+.me{margin-top:auto;display:flex;gap:10px;align-items:center;padding:12px 6px 2px;border-top:1px solid var(--line)}
+.av{width:30px;height:30px;border-radius:50%;background:#e9e3ff;color:#5b34d6;display:grid;place-items:center;font-weight:600;font-size:12.5px;flex:none}
+.me b{display:block;color:var(--ink);font-size:13px;font-weight:500;line-height:1.2}
+.me small{color:var(--mut);font-size:12px}
+
+.main{min-width:0}
+.sscrim{display:none}
+.top{height:52px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 20px;position:sticky;top:0;background:rgb(255 255 255/.92);backdrop-filter:blur(8px);z-index:20}
+.top .cr{display:flex;align-items:center;gap:6px;color:var(--mut);font-size:13.5px;min-width:0;white-space:nowrap}
+.top .cr svg{width:13px;height:13px;color:var(--faint)}
+.top .cr b{color:var(--ink);font-weight:500}
+.top .sp{flex:1}
+.top .burger{display:none}
+.wrap{max-width:1180px;margin:0 auto;padding:30px 32px 120px}
+
+.iconbtn{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--mut)}
+.iconbtn:hover{background:var(--hover);color:var(--ink)}
+.btn{height:36px;padding:0 14px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:500;font-size:13.5px;white-space:nowrap}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.pri:hover{background:#2a2a2e}
+.btn.sec{background:#fff;box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink)}
+.btn.sec:hover{background:var(--soft)}
+.btn.sm{height:30px;padding:0 11px;font-size:13px;border-radius:8px}
+.btn.ghost{color:var(--tx)}
+.btn.ghost:hover{background:var(--hover)}
+.btn:disabled{opacity:.45;cursor:default}
+
+.nav .site .lv.dr{color:#a16207}.nav .site .lv.dr:before{background:var(--warn)}
+.scrim{position:fixed;inset:0;background:rgb(17 17 19/.35);display:none;align-items:center;justify-content:center;padding:16px;z-index:60}
+.scrim.on{display:flex}
+.modal{background:#fff;border-radius:16px;width:440px;max-width:100%;padding:22px;box-shadow:0 30px 60px -20px rgb(0 0 0/.35);animation:pop .15s;max-height:calc(100vh - 32px);overflow:auto}
+.modal h3{margin:0 0 4px;color:var(--ink);font-size:17px;font-weight:600}
+.modal p{margin:0 0 14px;color:var(--mut);font-size:13.5px}
+.modal .r{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+@keyframes pop{from{opacity:0;transform:translateY(-4px)}}
+.toast{position:fixed;left:50%;bottom:76px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:9px 14px;border-radius:9px;font-size:13px;transition:.2s;z-index:90}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:fixed;left:0;top:0;bottom:0;width:260px;z-index:50;transform:translateX(-100%);transition:transform .2s}
+  .app.nav-on .side{transform:none}
+  .app.nav-on .sscrim{display:block;position:fixed;inset:0;background:rgb(17 17 19/.3);z-index:49}
+  .top .burger{display:grid}
+}
+/* ---------- overview ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:26px 32px 120px}
+.top .acts{display:flex;gap:8px}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.st:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.live{background:var(--ok-bg);color:#15803d}
+.st.draft{background:var(--warn-bg);color:#a16207}
+.st.chg{background:var(--ac-bg);color:#5b34d6}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;border:1px solid var(--line2);border-radius:16px;padding:18px;box-shadow:var(--sh);margin-bottom:16px}
+.shot{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px rgb(0 0 0/.06);container-type:inline-size;aspect-ratio:16/10;background:#16181b}
+.shot .chrome{height:7cqw;max-height:30px;background:#f1f1f3;display:flex;align-items:center;gap:1.2cqw;padding:0 2.4cqw}
+.shot .chrome i{width:1.6cqw;height:1.6cqw;border-radius:50%;background:#d4d4d8}
+.shot .chrome span{flex:1;margin-left:2cqw;height:3.6cqw;border-radius:2cqw;background:#fff;font:500 2.1cqw/3.6cqw Inter;color:var(--mut);padding:0 2cqw;white-space:nowrap;overflow:hidden}
+.gs{position:absolute;inset:7cqw 0 0;background:radial-gradient(circle at 75% 40%,#2a2f36,transparent 55%),linear-gradient(160deg,#1b1e22,#0f1113);color:#fff;padding:3cqw 5cqw}
+.gs .nav{display:flex;align-items:center;gap:2.2cqw;font:700 1.5cqw Inter;letter-spacing:.06em}
+.gs .nav b{font:700 2.2cqw Inter;display:flex;align-items:center;gap:1cqw;margin-right:auto}
+.gs .nav b i{width:2.6cqw;height:2.6cqw;border-radius:50%;background:#f97316}
+.gs .nav span{opacity:.7}.gs .nav em{font-style:normal;background:#f97316;padding:.6cqw 1.4cqw;border-radius:.6cqw}
+.gs h4{margin:6cqw 0 0;font:400 8.2cqw/0.95 'Bebas Neue',Impact,sans-serif;letter-spacing:.01em;width:52%}
+.gs h4 span{color:#f97316}
+.gs p{font-size:1.6cqw;opacity:.65;width:42%;margin:2.4cqw 0}
+.gs .b{display:flex;gap:1.4cqw}.gs .b span{font:700 1.5cqw Inter;padding:1.2cqw 2cqw;border-radius:.6cqw;background:#f97316}.gs .b span+span{background:#fff;color:#111}
+.gs .q{position:absolute;right:6cqw;top:16cqw;width:30%;background:#fff;color:#111;border-radius:1cqw;padding:2.4cqw;box-shadow:0 2cqw 4cqw rgb(0 0 0/.4)}
+.gs .q b{font:400 3cqw 'Bebas Neue',Impact,sans-serif;display:block}
+.gs .q .pl{margin:1.6cqw 0;height:4.2cqw;border-radius:.6cqw;background:#fde047;border:.3cqw solid #111;font:700 2cqw/3.6cqw Inter;text-align:center}
+.gs .q .pr{display:flex;justify-content:space-between;font-size:1.4cqw;color:#666;align-items:center}.gs .q .pr b{font:700 2.6cqw Inter;color:#ea580c;display:inline}
+.gs .q .go{margin-top:1.6cqw;background:#f97316;color:#fff;font:700 1.4cqw/3.6cqw Inter;text-align:center;border-radius:.6cqw}
+.shot .ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;background:rgb(17 17 19/.45);opacity:0;transition:opacity .15s}
+.shot:hover .ov,.shot:focus-within .ov{opacity:1}
+.shot .ov .btn{background:#fff;color:var(--ink)}
+.shot .tagd{position:absolute;left:10px;bottom:10px;background:rgb(17 17 19/.75);color:#fff;font-size:11.5px;border-radius:6px;padding:2px 8px;backdrop-filter:blur(4px)}
+
+.info{display:flex;flex-direction:column;min-width:0;padding:4px 4px 0}
+.info .nm{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.info h1{margin:0;color:var(--ink);font-size:24px;font-weight:600;letter-spacing:-.02em}
+.info .lead{margin:6px 0 0;color:var(--mut);font-size:13.5px}
+.addr{margin-top:18px;border:1px solid var(--line2);border-radius:12px}
+.addr .ar{display:flex;align-items:center;gap:10px;padding:11px 12px}
+.addr .ar+.ar{border-top:1px solid var(--line)}
+.addr .ar .ico{width:30px;height:30px;border-radius:8px;background:var(--hover);display:grid;place-items:center;color:var(--mut);flex:none}
+.addr .ar .t{flex:1;min-width:0}
+.addr .ar b{display:block;color:var(--ink);font-weight:500;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.addr .ar small{display:block;color:var(--mut);font-size:12px}
+.addr .ar .pill{font-size:11.5px;font-weight:500;border-radius:6px;padding:1px 7px;background:var(--hover);color:var(--mut);white-space:nowrap}
+.addr .ar .pill.ok{background:var(--ok-bg);color:#15803d}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.facts div small{display:block;color:var(--mut);font-size:12px}
+.facts div b{display:block;color:var(--ink);font-weight:500;font-size:13.5px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* change strip */
+.chg{border-top:1px solid var(--line);margin:18px -18px -18px;grid-column:1/-1;padding:14px 18px;display:flex;align-items:center;gap:14px;background:var(--soft);border-radius:0 0 16px 16px}
+.chg .t{flex:1;min-width:0}
+.chg b{color:var(--ink);font-weight:500}
+.chg small{display:block;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chg .dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+.chg.c-draft .dot{background:var(--warn-bg);color:#a16207}
+.chg.c-chg .dot{background:var(--ac-bg);color:#5b34d6}
+.chg.c-live .dot{background:var(--ok-bg);color:#15803d}
+
+/* grid of cards */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.card{border:1px solid var(--line2);border-radius:16px;box-shadow:var(--sh);background:#fff;min-width:0;display:flex;flex-direction:column}
+.card .ch{display:flex;align-items:center;gap:10px;padding:16px 18px 6px}
+.card .ch h2{margin:0;font-size:15px;font-weight:600;color:var(--ink)}
+.card .ch .sp{flex:1}
+.card .ch .more{font-size:12.5px;color:var(--mut);display:flex;align-items:center;gap:4px}
+.card .ch .more:hover{color:var(--ink)}
+.card .ch .more svg{width:13px;height:13px}
+.card .cb{padding:6px 18px 16px;flex:1}
+.wide{grid-column:1/-1}
+
+/* checklist */
+.prog{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
+.prog .tr{flex:1;height:6px;border-radius:3px;background:var(--hover);overflow:hidden}
+.prog .tr i{display:block;height:100%;background:var(--ok);border-radius:3px;transition:width .3s}
+.prog span{font-size:12.5px;color:var(--mut);white-space:nowrap}
+.ck{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.ck:first-of-type{border-top:0}
+.ck .bx{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;flex:none;color:#fff}
+.ck .bx svg{width:13px;height:13px;stroke-width:2.4}
+.ck.done .bx{background:var(--ok);border-color:var(--ok)}
+.ck .t{flex:1;min-width:0}
+.ck .t b{display:block;color:var(--ink);font-weight:500;font-size:13.5px}
+.ck .t small{display:block;color:var(--mut);font-size:12.5px}
+.ck.done .t b{color:var(--mut);text-decoration:line-through;text-decoration-color:var(--faint)}
+.ck.done .t small{display:none}
+.ck .btn{flex:none}
+.ck.done .btn{display:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--soft);border-radius:12px;padding:12px 14px;min-width:0}
+.stat small{display:block;color:var(--mut);font-size:12px}
+.stat b{display:block;color:var(--ink);font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.stat i{font-style:normal;font-size:12px;color:var(--mut)}
+.stat i.up{color:#15803d}
+.stat svg.sp{width:100%;height:26px;margin-top:6px;color:var(--ac);stroke-width:1.6}
+.top3{margin-top:12px}
+.top3 .r{display:flex;align-items:center;gap:10px;font-size:13px;padding:6px 0}
+.top3 .r .n{flex:1;color:var(--ink);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top3 .r .b{flex:0 0 38%;height:6px;border-radius:3px;background:var(--hover);overflow:hidden}.top3 .r .b i{display:block;height:100%;background:var(--ac);border-radius:3px}
+.top3 .r .v{width:44px;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:22px 12px;color:var(--mut);font-size:13px}
+.empty .ei{width:40px;height:40px;border-radius:12px;background:var(--hover);display:grid;place-items:center;color:var(--mut)}
+.empty b{color:var(--ink);font-weight:500;font-size:14px}
+
+/* health */
+.hl{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.hl:first-child{border-top:0}
+.hl .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+.hl.ok .ic{background:var(--ok-bg);color:#15803d}.hl.warn .ic{background:var(--warn-bg);color:#a16207}.hl.off .ic{background:var(--hover);color:var(--mut)}
+.hl .t{flex:1;min-width:0}
+.hl .t b{display:block;color:var(--ink);font-weight:500;font-size:13.5px}
+.hl .t small{display:block;color:var(--mut);font-size:12.5px}
+.hl .lnk{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;padding:5px 8px;border-radius:7px}
+.hl .lnk:hover{background:var(--hover)}
+
+/* messages */
+.msg{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.msg:first-child{border-top:0}
+.msg .av{width:32px;height:32px;font-size:12px}
+.msg .t{flex:1;min-width:0}
+.msg .t b{color:var(--ink);font-weight:500;font-size:13.5px}
+.msg .t b em{font-style:normal;font-size:11.5px;font-weight:500;color:#5b34d6;background:var(--ac-bg);border-radius:5px;padding:0 6px;margin-left:6px}
+.msg .t small{display:block;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg time{font-size:12px;color:var(--faint);white-space:nowrap}
+
+/* history */
+.hi{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:12px;padding:10px 0;position:relative}
+.hi .d{width:10px;height:10px;border-radius:50%;background:var(--line2);margin:5px 4px 0;position:relative;z-index:1}
+.hi.cur .d{background:var(--ok);box-shadow:0 0 0 4px var(--ok-bg)}
+.hi.pend .d{background:#fff;border:2px dashed #a78bfa;width:12px;height:12px;margin:4px 3px 0}
+.hi:not(:last-child):after{content:"";position:absolute;left:8.5px;top:20px;bottom:-6px;width:1px;background:var(--line2)}
+.hi .t b{color:var(--ink);font-weight:500;font-size:13.5px}
+.hi .t b .cur{font-size:11.5px;font-weight:500;color:#15803d;background:var(--ok-bg);border-radius:5px;padding:0 6px;margin-left:6px}
+.hi .t small{display:block;color:var(--mut);font-size:12.5px}
+.hi .t ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px}
+.hi .t li{font-size:12px;background:var(--hover);border-radius:6px;padding:0 7px;color:var(--tx)}
+.hi .a{display:flex;gap:4px;align-items:flex-start}
+
+/* publish modal */
+.pm .where{display:flex;gap:10px;align-items:center;border:1px solid var(--line2);border-radius:11px;padding:10px 12px;margin-bottom:12px}
+.pm .where b{color:var(--ink);font-weight:500}
+.pm .where small{display:block;color:var(--mut);font-size:12px}
+.pm ul{margin:0 0 12px;padding:0;list-style:none;border:1px solid var(--line2);border-radius:11px}
+.pm li{display:flex;gap:10px;align-items:center;padding:9px 12px;font-size:13px;color:var(--ink)}
+.pm li+li{border-top:1px solid var(--line)}
+.pm li svg{color:var(--mut)}
+.pm li small{margin-left:auto;color:var(--mut);font-size:12px}
+.pm .warn{display:flex;gap:8px;font-size:12.5px;color:#854d0e;background:var(--warn-bg);border-radius:10px;padding:9px 12px;margin-bottom:4px}
+.pm .warn svg{color:var(--warn);margin-top:1px}
+.modal.wide{width:min(520px,100%)}
+
+/* demo */
+.demo{position:fixed;right:20px;bottom:16px;z-index:40;display:flex;align-items:center;gap:4px;padding:5px;border-radius:12px;background:var(--ink);box-shadow:0 14px 30px -12px rgb(0 0 0/.45)}
+.demo span{color:#a1a1aa;font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:0 6px}
+.demo button{height:28px;padding:0 10px;border-radius:8px;color:#d4d4d8;font-size:12.5px;font-weight:500;white-space:nowrap}
+.demo button.on{background:#fff;color:var(--ink)}
+
+@media (max-width:1100px){.hero{grid-template-columns:minmax(0,1fr)}.shot{max-width:640px}}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.wrap{padding:20px 16px 120px}.top .acts .btn .tx{display:none}.top .acts .btn{padding:0 10px}}
+@media (max-width:560px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.stats .stat:last-child{grid-column:1/-1}
+  .chg{flex-wrap:wrap}.chg .btn{flex:1;justify-content:center}.ck{flex-wrap:wrap}.ck .btn{margin-left:34px}.demo{left:16px;right:16px;overflow-x:auto}.hi{grid-template-columns:18px minmax(0,1fr)}.hi .a{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="side">
+    <div class="brand"><span class="logo"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg></span><div><b>Local</b><small>Site builder</small></div></div>
+    <div class="sec">Workspace</div>
+    <nav class="nav">
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>Sites</a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>Members</a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg>Billing</a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></svg>Connect your model</a>
+    </nav>
+    <div class="sec" style="margin-top:18px">Site</div>
+    <nav class="nav">
+      <a href="#" class="site"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Torque Garage<span class="lv dr" id="sitepill">Draft</span></a>
+      <div class="sub">
+        <a href="#" class="on"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Overview</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Pages</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Files</a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Media</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/><path d="M12 21a2 2 0 0 1 0-4h2a3 3 0 0 0 3-3"/></svg>Design</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Domains</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>SEO</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/></svg>Analytics</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Site settings</a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Messages</a>
+      </div>
+    </nav>
+    <div class="me"><span class="av">Y</span><div><b>you@localhost</b><small>Owner</small></div></div>
+  </aside>
+  <div class="sscrim" id="sscrim"></div>
+  <div class="main">
+    <header class="top">
+      <button class="iconbtn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="cr"><span>Sites</span><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg><b>Torque Garage</b></div>
+      <span class="sp"></span>
+      <div class="acts" id="topacts"></div>
+    </header>
+    <main class="wrap" id="out"></main>
+  </div>
+</div>
+<div class="scrim" id="scrim"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast"></div>
+<div class="demo" id="demo"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ic=p=>`<svg viewBox="0 0 24 24">${p}</svg>`;
+const I={
+  edit:ic('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),ext:ic('<path d="M7 17 17 7M8 7h9v9"/>'),
+  copy:ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>'),
+  globe:ic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+  eye:ic('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+  share:ic('<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/>'),
+  check:ic('<path d="m5 12 4.5 4.5L19 7"/>'),chev:ic('<path d="m9 6 6 6-6 6"/>'),
+  rocket:ic('<path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 12l3 3M14.5 4.5c3-1 5-1 5-1s0 2-1 5L12 15l-3-3z"/><circle cx="15" cy="9" r="1.5"/>'),
+  lock:ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+  search:ic('<circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/>'),bolt:ic('<path d="M13 3 4 14h7l-1 7 9-11h-7z"/>'),
+  img:ic('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>'),
+  store:ic('<path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/>'),chart:ic('<path d="M4 20V10M10 20V4M16 20v-8M3 20h18"/>'),
+  mail:ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),undo:ic('<path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>'),
+  dot:ic('<circle cx="12" cy="12" r="3"/>'),warn:ic('<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>'),
+  page:ic('<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/>'),clock:ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+};
+function toast(m){const t=$('#toast');t.innerHTML=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2400)}
+function modal(h,w){$('#modal').innerHTML=h;$('#modal').classList.toggle('wide',!!w);$('#scrim').classList.add('on')}
+function closeModal(){$('#scrim').classList.remove('on')}
+$('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('#burger').onclick=()=>$('#app').classList.add('nav-on');$('#sscrim').onclick=()=>$('#app').classList.remove('nav-on');
+
+/* ---------- state ---------- */
+const FREE='torque-garage.local.site',OWN='torquegarage.com';
+const CHANGES=[['Home','Hero text and quote form'],['Reviews','New page'],['Header','Added “Track my car”']];
+const DEMO={
+  draft:{label:'Draft',live:false,domain:false,changes:CHANGES.length,done:{icon:true}},
+  live:{label:'Live',live:true,domain:true,changes:0,done:{publish:true,domain:true,icon:true,biz:true,stats:true}},
+  chg:{label:'Live · 3 changes',live:true,domain:true,changes:3,done:{publish:true,domain:true,icon:true,biz:true,stats:true}},
+};
+let key='draft',S;
+function load(k){key=k;S=JSON.parse(JSON.stringify(DEMO[k]));render()}
+const addr=()=>S.domain?OWN:FREE;
+
+/* ---------- pieces ---------- */
+function topActs(){
+  $('#topacts').innerHTML=(S.live?`<a class="btn sec sm" href="#" data-act="visit">${I.ext}<span class="tx">Visit site</span></a>`:'')
+   +`<a class="btn sec sm" href="#" data-act="editor">${I.edit}<span class="tx">Open editor</span></a>`
+   +(S.changes||!S.live?`<button class="btn pri sm" data-act="publish">${I.rocket}<span class="tx">${S.live?`Publish ${S.changes} change${S.changes>1?'s':''}`:'Publish'}</span></button>`:'');
+}
+function hero(){
+  const status=!S.live?'<span class="st draft">Draft</span>':S.changes?'<span class="st chg">Live · changes not published</span>':'<span class="st live">Live</span>';
+  const lead=!S.live?'Only you and your team can see it. Publish when you’re ready to share it.':S.changes?'Your visitors see the last published version.':'Everything you see in the editor is on the web.';
+  const rows=S.live
+    ?`<div class="ar"><span class="ico">${I.globe}</span><div class="t"><b>${addr()}</b><small>Your address · secure</small></div><span class="pill ok">Connected</span><button class="iconbtn" data-act="copy" data-v="https://${addr()}" aria-label="Copy address">${I.copy}</button></div>`
+    :`<div class="ar"><span class="ico">${I.globe}</span><div class="t"><b>${FREE}</b><small>Free address — goes live when you publish</small></div><button class="btn sec sm" data-act="domain">Use your own</button></div>`;
+  const prev=`<div class="ar"><span class="ico">${I.eye}</span><div class="t"><b>Preview link</b><small>Share the ${S.live&&S.changes?'unpublished changes':'draft'} with a client — no login needed</small></div><button class="btn sec sm" data-act="share">${I.share}Share</button></div>`;
+  const facts=`<div class="facts"><div><small>Last published</small><b>${S.live?(key==='chg'?'3 days ago':'2 hours ago'):'Never'}</b></div><div><small>Last edited</small><b>${S.live&&!S.changes?'2 hours ago':'1 day ago'} · you</b></div><div><small>Pages</small><b>${key==='draft'?2:3}</b></div></div>`;
+  const strip=!S.live
+    ?`<div class="chg c-draft"><span class="dot">${I.lock}</span><div class="t"><b>Not published yet</b><small>Publishing puts it on ${FREE}. You can unpublish any time.</small></div><button class="btn pri sm" data-act="publish">${I.rocket}Publish</button></div>`
+    :S.changes?`<div class="chg c-chg"><span class="dot">${I.edit}</span><div class="t"><b>${S.changes} changes waiting</b><small>${CHANGES.slice(0,S.changes).map(c=>c[0]+': '+c[1]).join(' · ')}</small></div><button class="btn sec sm" data-act="preview">${I.eye}Preview</button><button class="btn pri sm" data-act="publish">Publish</button></div>`
+    :`<div class="chg c-live"><span class="dot">${I.check}</span><div class="t"><b>Up to date</b><small>Edit in the editor, then publish to update the live site.</small></div></div>`;
+  return `<section class="hero">
+    <div class="shot"><div class="chrome"><i></i><i></i><i></i><span>${S.live?addr():'Preview · '+FREE}</span></div>
+      <div class="gs"><div class="nav"><b><i></i>TORQUE GARAGE</b><span>SERVICES</span><span>TRACK MY CAR</span><span>REVIEWS</span><em>BOOK IN</em></div>
+        <h4>CAR TROUBLE?<br><span>DONE RIGHT.</span></h4><p>Servicing, repairs, tyres and diagnostics by certified mechanics. 12-month warranty on every repair.</p>
+        <div class="b"><span>BOOK A SERVICE</span><span>TRACK MY CAR</span></div>
+        <div class="q"><b>INSTANT QUOTE</b><div class="pl">7XKD 482</div><div class="pr">Full service <b>$149</b></div><div class="go">BOOK THIS SERVICE</div></div></div>
+      <div class="ov"><button class="btn sm" data-act="preview">${I.eye}Preview</button><button class="btn sm" data-act="editor">${I.edit}Edit</button></div>
+      <span class="tagd">${S.live&&!S.changes?'Live version':'Latest saved version'}</span></div>
+    <div class="info"><div class="nm"><h1>Torque Garage</h1>${status}</div><p class="lead">${lead}</p>
+      <div class="addr">${rows}${prev}</div>${facts}</div>
+    ${strip}</section>`;
+}
+const STEPS=[
+  ['domain','Connect your own domain','torquegarage.com looks more trustworthy than a free address.','Add domain','domain',I.globe],
+  ['icon','Add a site icon','The little picture in browser tabs and bookmarks.','Add icon','go',I.img],
+  ['biz','Add phone, address and hours','Google shows them next to your site, and customers can call straight from search.','Add details','go',I.store],
+  ['stats','Turn on visit counting','See how many people visit and which pages they read.','Turn on','stats',I.chart],
+];
+function checklist(){
+  const n=STEPS.filter(s=>S.done[s[0]]).length;
+  if(n===STEPS.length)return '';
+  return `<div class="card wide"><div class="ch"><h2>${S.live?'Finish setting up':'Get ready to launch'}</h2><span class="sp"></span><span class="more">${n} of ${STEPS.length} done</span></div><div class="cb">
+    <div class="prog"><span class="tr"><i style="width:${n/STEPS.length*100}%"></i></span></div>
+    ${STEPS.map(([k,t,d,b,act,i])=>`<div class="ck ${S.done[k]?'done':''}"><span class="bx">${S.done[k]?I.check:''}</span><div class="t"><b>${t}</b><small>${d}</small></div><button class="btn sec sm" data-act="${act}" data-step="${k}">${b}</button></div>`).join('')}</div></div>`;
+}
+function spark(a){const w=200,h=26,m=Math.max(...a),n=a.length;return `<svg class="sp" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline points="${a.map((y,i)=>`${(i/(n-1)*w).toFixed(1)},${(h-2-y/m*(h-4)).toFixed(1)}`).join(' ')}"/></svg>`}
+function traffic(){
+  const head=`<div class="ch"><h2>Visitors</h2><span class="sp"></span><a class="more" href="#" data-act="go">Last 7 days ${I.chev}</a></div>`;
+  if(!S.live||!S.done.stats)return `<div class="card">${head}<div class="cb"><div class="empty"><span class="ei">${I.chart}</span><b>${S.live?'Visit counting is off':'Numbers start after you publish'}</b>${S.live?'Turn it on to see visitors and top pages. No cookies needed.':'You’ll see visitors, top pages and where people come from.'}${S.live?`<button class="btn sec sm" data-act="stats" style="margin-top:6px">Turn on</button>`:''}</div></div></div>`;
+  return `<div class="card">${head}<div class="cb"><div class="stats">
+    <div class="stat"><small>Visitors</small><b>1,284</b><i class="up">↑ 22% vs last week</i>${spark([8,12,10,15,14,19,23])}</div>
+    <div class="stat"><small>Bookings</small><b>37</b><i>2.9% of visitors</i>${spark([3,4,5,4,6,7,8])}</div>
+    <div class="stat"><small>Calls from site</small><b>52</b><i>tapped the phone number</i>${spark([5,6,9,7,8,8,9])}</div></div>
+    <div class="top3">${[['Home',1020],['Book a service',418],['Reviews',209]].map(([n,v])=>`<div class="r"><span class="n">${n}</span><span class="b"><i style="width:${v/1020*100}%"></i></span><span class="v">${v.toLocaleString()}</span></div>`).join('')}</div></div></div>`;
+}
+function messages(){
+  const head=`<div class="ch"><h2>Latest messages</h2><span class="sp"></span><a class="more" href="#" data-act="go">All messages ${I.chev}</a></div>`;
+  if(!S.live)return `<div class="card">${head}<div class="cb"><div class="empty"><span class="ei">${I.mail}</span><b>No messages yet</b>Bookings and contact forms land here once the site is live.</div></div></div>`;
+  const M=[['DK','Dana Kirby','Book a service','Full service for a 2016 Golf — Friday morning if possible?','12 min',true],['RM','Raj Mehta','Contact','Do you do MOT on the same day as the service?','2 h',true],['LS','Lena Santos','Book a service','Brake check, squeaking from the front left.','Yesterday',false]];
+  return `<div class="card">${head}<div class="cb">${M.map(([a,n,f,t,w,nw])=>`<div class="msg"><span class="av">${a}</span><div class="t"><b>${n}${nw?'<em>New</em>':''}</b><small>${f} · ${t}</small></div><time>${w}</time></div>`).join('')}</div></div>`;
+}
+function health(){
+  const H=S.live?[
+    ['ok',I.globe,'Domain','torquegarage.com · renews 14 Mar 2027','Manage'],
+    ['ok',I.lock,'Secure connection','HTTPS is on for every page',''],
+    ['warn',I.search,'Search','2 pages have no description','Fix'],
+    ['ok',I.bolt,'Speed on phones','Fast · loads in 1.4 s','']]
+   :[['off',I.globe,'Domain','Free address until you add your own','Add'],
+    ['off',I.lock,'Secure connection','Turns on automatically when you publish',''],
+    ['warn',I.search,'Search','2 pages have no description','Fix'],
+    ['ok',I.bolt,'Speed on phones','Fast · loads in 1.4 s','']];
+  return `<div class="card"><div class="ch"><h2>Site health</h2><span class="sp"></span><span class="more">${H.filter(h=>h[0]==='warn').length?'1 thing to fix':'All good'}</span></div><div class="cb">
+    ${H.map(([c,i,t,d,a])=>`<div class="hl ${c}"><span class="ic">${i}</span><div class="t"><b>${t}</b><small>${d}</small></div>${a?`<button class="lnk" data-act="go">${a}</button>`:''}</div>`).join('')}</div></div>`;
+}
+function history(){
+  const head=`<div class="ch"><h2>Publish history</h2><span class="sp"></span>${S.live?`<a class="more" href="#" data-act="go">See all ${I.chev}</a>`:''}</div>`;
+  if(!S.live)return `<div class="card">${head}<div class="cb"><div class="empty"><span class="ei">${I.clock}</span><b>Nothing published yet</b>Each publish is saved here, so you can go back to it.</div></div></div>`;
+  const pend=S.changes?`<div class="hi pend"><span class="d"></span><div class="t"><b>Not published yet</b><small>Edited 1 day ago · you</small><ul>${CHANGES.slice(0,S.changes).map(c=>`<li>${c[0]}</li>`).join('')}</ul></div><div class="a"><button class="btn ghost sm" data-act="preview">Preview</button></div></div>`:'';
+  const V=[[key==='chg'?'3 days ago':'2 hours ago','you',['Home','Services']],['9 days ago','Sam',['Prices']],['2 weeks ago','you',['First publish']]];
+  return `<div class="card">${head}<div class="cb">${pend}${V.map(([w,by,ch],i)=>`<div class="hi ${i===0?'cur':''}"><span class="d"></span><div class="t"><b>${w}${i===0?'<span class="cur">Live now</span>':''}</b><small>Published by ${by}</small><ul>${ch.map(c=>`<li>${c}</li>`).join('')}</ul></div><div class="a">${i?`<button class="btn ghost sm" data-act="restore" data-w="${w}">${I.undo}Restore</button>`:''}</div></div>`).join('')}</div></div>`;
+}
+function render(){
+  topActs();
+  $('#out').innerHTML=hero()+`<div class="grid">${checklist()}${traffic()}${messages()}${health()}${history()}</div>`;
+  $('#sitepill').outerHTML=`<span class="lv ${S.live?'':'dr'}" id="sitepill">${S.live?'Live':'Draft'}</span>`;
+  $$('#demo button').forEach(b=>b.classList.toggle('on',b.dataset.demo===key));
+}
+
+/* ---------- actions ---------- */
+function publishModal(){
+  const first=!S.live,miss=STEPS.filter(s=>s[0]!=='stats'&&!S.done[s[0]]);
+  modal(`<div class="pm"><h3>${first?'Publish Torque Garage?':'Publish '+S.changes+' changes?'}</h3><p>${first?'Anyone with the address can see it.':'Visitors see the new version straight away.'}</p>
+    <div class="where">${I.globe}<div><b>${addr()}</b><small>${first?'Free address — add your own domain any time':'Your live address'}</small></div></div>
+    ${first?`<ul>${[['Home','Hero, quote form, services'],['Book a service','Form sends to Messages']].map(([p,d])=>`<li>${I.page}${p}<small>${d}</small></li>`).join('')}</ul>`
+      :`<ul>${CHANGES.slice(0,S.changes).map(([p,d])=>`<li>${I.edit}${p}<small>${d}</small></li>`).join('')}</ul>`}
+    ${first&&miss.length?`<div class="warn">${I.warn}<span>Not done yet: ${miss.map(m=>m[1].toLowerCase()).join(', ')}. You can publish now and do these later.</span></div>`:''}
+    <div class="r"><button class="btn sec" data-act="cancel">Cancel</button><button class="btn pri" data-act="dopublish">${I.rocket}Publish now</button></div></div>`,1);
+}
+document.addEventListener('click',e=>{
+  const d=e.target.closest('[data-demo]');if(d){load(d.dataset.demo);return}
+  const a=e.target.closest('[data-act]');if(!a)return;e.preventDefault();
+  switch(a.dataset.act){
+    case'publish':publishModal();break;
+    case'dopublish':{const first=!S.live;S.live=true;S.changes=0;S.done.publish=true;if(first)key='live';closeModal();render();toast(first?`Torque Garage is live at ${addr()}`:'Published — the live site is up to date');break}
+    case'cancel':closeModal();break;
+    case'copy':try{navigator.clipboard.writeText(a.dataset.v)}catch(_){}toast('Address copied');break;
+    case'share':modal(`<h3>Share a preview</h3><p>Anyone with this link can look — they can’t edit. It shows the latest saved version, even before you publish.</p><div class="pm"><div class="where">${I.eye}<div style="min-width:0;flex:1"><b style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">preview.local.site/torque-garage-8f3k</b><small>Works for 7 days</small></div><button class="btn sec sm" data-act="copy" data-v="https://preview.local.site/torque-garage-8f3k">${I.copy}Copy</button></div></div><div class="r"><button class="btn sec" data-act="cancel">Done</button></div>`);break;
+    case'domain':S.done.domain=true;S.domain=true;render();toast('Domain connected (demo)');break;
+    case'stats':S.done.stats=true;render();toast('Visit counting is on');break;
+    case'go':if(a.dataset.step){S.done[a.dataset.step]=true;render();toast('Done (demo)')}else toast('Opening…');break;
+    case'restore':modal(`<h3>Restore the version from ${esc(a.dataset.w)}?</h3><p>It opens in the editor as unpublished changes. The live site doesn’t change until you publish.</p><div class="r"><button class="btn sec" data-act="cancel">Cancel</button><button class="btn pri" data-act="cancel">Restore</button></div>`);break;
+    case'preview':toast('Opening the preview in a new tab…');break;
+    case'visit':toast(`Opening ${addr()}…`);break;
+    case'editor':toast('Opening the editor…');break;
+  }
+});
+$('#demo').innerHTML='<span>Demo</span>'+Object.entries(DEMO).map(([k,d])=>`<button data-demo="${k}">${d.label}</button>`).join('');
+load('draft');
+</script>
+</body>
+</html>

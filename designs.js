@@ -258,6 +258,24 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "site-overview-v2",
+      "title": "Site overview · Draft & live",
+      "desc": "Site home redesigned: preview card with status, address and shareable preview link; clear draft / live / unpublished-changes strip with one Publish; launch checklist; visitors, bookings and calls; latest messages; site health; publish history with restore. Demo switch for Draft, Live and Live with changes.",
+      "tags": [
+        "Dashboard",
+        "Overview",
+        "Publish"
+      ],
+      "date": "2026-11-17",
+      "pages": [
+        {
+          "label": "Overview",
+          "href": "site-dashboard/site-overview-v2/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "site-settings",
       "title": "Site settings · Popups",
       "desc": "Site settings redesigned with a left section menu. Popups first: New popup menu, one row per popup with type preview, trigger and pages, on/off switch, views and click rate with trend, expandable details, a compact stats strip with 7/30/90 days, and an empty state with starters. Also General with search preview, Header & footer page by page, and Cookies with live banner preview.",
