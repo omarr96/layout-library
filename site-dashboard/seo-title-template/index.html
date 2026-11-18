@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Title template · SEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111113;--tx:#3f3f46;--mut:#71717a;--faint:#a1a1aa;
+  --line:#ececef;--line2:#e2e2e6;--soft:#f7f7f8;--hover:#f4f4f5;
+  --ok:#16a34a;--ok-bg:#ecfdf3;--warn:#ca8a04;--warn-bg:#fefce8;--err:#dc2626;--err-bg:#fef2f2;
+  --ac:#7c4dff;--ac-bg:#f4f0ff;--sh:0 1px 2px rgb(16 16 20/.04);--sh2:0 10px 30px -12px rgb(16 16 20/.22);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.5 Inter,system-ui,sans-serif;color:var(--tx);background:var(--soft);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:40px 24px 80px}
+.btn{height:34px;padding:0 13px;border-radius:9px;display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:13.5px;white-space:nowrap}
+.btn.pri{background:var(--ink);color:#fff}.btn.pri:hover{background:#2a2a2e}
+.btn.sec{background:#fff;box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink)}.btn.sec:hover{background:var(--soft)}
+.btn:disabled{opacity:.4;cursor:default}
+
+.card{background:#fff;border:1px solid var(--line2);border-radius:16px;box-shadow:var(--sh)}
+.hd{padding:20px 22px 0}
+.hd h2{margin:0;font-size:17px;color:var(--ink);font-weight:600}
+.hd p{margin:3px 0 0;color:var(--mut);font-size:13.5px}
+.sec{padding:18px 22px}
+.sec+.sec{border-top:1px solid var(--line)}
+.lab{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px}
+.lab small{font-weight:400;color:var(--mut)}
+
+/* presets */
+.presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pre{border:1px solid var(--line2);border-radius:12px;padding:11px 12px;text-align:left;display:flex;flex-direction:column;gap:4px;min-width:0;background:#fff}
+.pre:hover{border-color:#d4d4d8}
+.pre.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pre b{font-size:13px;font-weight:500;color:var(--ink)}
+.pre span{font-size:12.5px;color:#1a0dab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pre.custom span{color:var(--mut)}
+
+/* builder */
+.builder{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border:1px solid var(--line2);border-radius:11px;padding:6px;min-height:46px;margin-top:12px;background:#fff}
+.builder:focus-within{border-color:#c9b8ff;box-shadow:0 0 0 4px #f1ecff}
+.tok{display:inline-flex;align-items:center;gap:4px;height:30px;border-radius:8px;padding:0 4px 0 10px;font-size:13px;font-weight:500;background:var(--ac-bg);color:#5b34d6;cursor:grab;user-select:none}
+.tok.sep{background:var(--hover);color:var(--ink);font-size:15px;padding:0 4px 0 9px}
+.tok.txt{background:#fff;box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink);font-weight:400}
+.tok button{width:20px;height:20px;border-radius:5px;display:grid;place-items:center;color:inherit;opacity:.55}
+.tok button:hover{opacity:1;background:rgb(0 0 0/.06)}
+.tok button svg{width:12px;height:12px}
+.tok.drag{opacity:.4}
+.add{position:relative}
+.add>button{height:30px;padding:0 10px;border-radius:8px;color:var(--mut);font-size:13px;display:flex;align-items:center;gap:5px}
+.add>button:hover{background:var(--hover);color:var(--ink)}
+.menu{position:absolute;z-index:20;top:36px;left:0;background:#fff;border:1px solid var(--line2);border-radius:12px;box-shadow:var(--sh2);padding:5px;min-width:220px;display:none}
+.menu.on{display:block}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 10px;border-radius:8px;font-size:13.5px;color:var(--ink)}
+.menu button:hover{background:var(--hover)}
+.menu button small{margin-left:auto;color:var(--mut);font-size:12px;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis}
+.menu .txtin{display:flex;gap:6px;padding:6px 6px 4px;border-top:1px solid var(--line);margin-top:4px}
+.menu .txtin input{flex:1;min-width:0;height:30px;border:1px solid var(--line2);border-radius:7px;padding:0 8px;font-size:13px;outline:none}
+
+/* separator */
+.seps{display:flex;gap:6px;flex-wrap:wrap}
+.sp{width:44px;height:40px;border-radius:10px;border:1px solid var(--line2);font-size:18px;color:var(--ink);display:grid;place-items:center;background:#fff;line-height:1}
+.sp:hover{border-color:#d4d4d8}
+.sp.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.row2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:start}
+
+/* google preview */
+.g{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;max-width:600px}
+.g .u{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#202124}
+.g .u .fv{width:26px;height:26px;border-radius:50%;background:#f1f3f4;display:grid;place-items:center;font-size:11px;font-weight:700;color:#3c4043}
+.g .u small{display:block;color:#4d5156;font-size:12px}
+.g .t{color:#1a0dab;font-size:19px;line-height:1.3;margin:8px 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:Arial,sans-serif}
+.g .d{color:#4d5156;font-size:13.5px;line-height:1.5;font-family:Arial,sans-serif}
+.gh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.gh select{min-width:0;flex:0 1 240px;height:30px;border:1px solid var(--line2);border-radius:8px;padding:0 28px 0 10px;font-size:13px;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center/13px}
+
+/* pages list */
+.pl{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pr{display:grid;grid-template-columns:130px minmax(0,1fr) 120px;gap:14px;align-items:center;padding:10px 14px}
+.pr+.pr{border-top:1px solid var(--line)}
+.pr .pn{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr .pn small{display:block;font-weight:400;color:var(--faint);font-size:11.5px}
+.pr .tt{font-size:13.5px;color:#1a0dab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:Arial,sans-serif}
+.pr.own .tt{color:var(--mut);font-family:inherit}
+.len{display:flex;align-items:center;gap:8px;justify-content:flex-end;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.len i{width:48px;height:5px;border-radius:3px;background:var(--hover);overflow:hidden;position:relative}
+.len i b{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.len.ok b{background:var(--ok)}.len.warn b{background:var(--warn)}.len.bad b{background:var(--err)}
+.len.warn{color:#a16207}.len.bad{color:var(--err)}
+.own-tag{font-size:11.5px;color:var(--mut);background:var(--hover);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.own-tag a{color:var(--ink);margin-left:4px}
+.pf{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line);background:var(--soft);font-size:12.5px;color:var(--mut)}
+.pf button{color:var(--ink);font-weight:500;margin-left:auto}
+.pf button:hover{text-decoration:underline}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--mut);margin-top:10px}
+.note svg{width:14px;height:14px;margin-top:2px;color:var(--faint)}
+
+.ft{display:flex;align-items:center;gap:8px;padding:14px 22px;border-top:1px solid var(--line)}
+.ft .msg{margin-right:auto;font-size:13px;color:var(--mut);display:flex;align-items:center;gap:6px}
+.ft .msg.dirty{color:#a16207}.ft .msg.dirty:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:9px 14px;border-radius:9px;font-size:13px;transition:.2s;z-index:90}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:720px){
+  .wrap{padding:16px 12px 60px}
+  .presets{grid-template-columns:minmax(0,1fr)}
+  .row2{grid-template-columns:minmax(0,1fr);gap:18px}
+  .pr{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .pr .pn{grid-column:1}.pr .len{grid-column:2;grid-row:1}
+  .pr .tt{grid-column:1/-1}
+  .hd,.sec{padding-left:16px;padding-right:16px}.ft{padding:12px 16px;flex-wrap:wrap}.ft .msg{width:100%}.ft .btn{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="card"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ic=p=>`<svg viewBox="0 0 24 24">${p}</svg>`;
+const X=ic('<path d="M18 6 6 18M6 6l12 12"/>'),PLUS=ic('<path d="M12 5v14M5 12h14"/>'),INFO=ic('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>');
+
+const SITE='Stonebridge Builders',TAG='Extensions & renovations in Bath';
+const PAGES=[
+  {n:'Home',path:'/',own:'Stonebridge Builders — Extensions & renovations in Bath'},
+  {n:'About',path:'/about'},{n:'How we work',path:'/how-we-work'},{n:'Projects',path:'/projects',own:'Our projects — kitchens, lofts & extensions in Bath'},
+  {n:'Reviews',path:'/reviews'},{n:'Contact',path:'/contact'},{n:'Kitchen extensions with planning permission',path:'/kitchen-extensions',isNew:true},
+];
+const LABEL={page:'Page name',site:'Site name',tag:'Tagline',sep:'Separator'};
+const SAMPLE={page:'About',site:SITE,tag:TAG};
+const SEPS=[['|','Vertical bar'],['—','Long dash'],['–','Dash'],['·','Middle dot'],['•','Bullet'],['/','Slash']];
+const PRESETS=[
+  ['ps','Page, then site',[{k:'page'},{k:'sep'},{k:'site'}]],
+  ['sp','Site, then page',[{k:'site'},{k:'sep'},{k:'page'}]],
+  ['p','Page name only',[{k:'page'}]],
+];
+let saved={parts:PRESETS[0][2],sep:'|'},parts=JSON.parse(JSON.stringify(saved.parts)),sep=saved.sep,showOwn=false,prevPage='About',menuOpen=false;
+
+const render1=(pp,page)=>pp.map(p=>p.k==='page'?page:p.k==='site'?SITE:p.k==='tag'?TAG:p.k==='sep'?sep:p.v).join(' ').replace(/\s+/g,' ').trim();
+const titleFor=pg=>pg.own||render1(parts,pg.n);
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const presetKey=()=>(PRESETS.find(p=>same(p[2],parts))||['custom'])[0];
+const lenCls=n=>n<=60?'ok':n<=70?'warn':'bad';
+const lenTxt=n=>n<=60?`${n}`:n<=70?`${n} · may be cut`:`${n} · too long`;
+const dirty=()=>!same(parts,saved.parts)||sep!==saved.sep;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2000)}
+
+function tokHtml(p,i){
+  const cls=p.k==='sep'?'sep':p.k==='txt'?'txt':'';
+  const label=p.k==='sep'?sep:p.k==='txt'?esc(p.v):LABEL[p.k];
+  return `<span class="tok ${cls}" draggable="true" data-i="${i}" title="${p.k==='sep'?'Separator — change it on the right':'Drag to move'}">${label}<button data-rm="${i}" aria-label="Remove ${p.k==='txt'?esc(p.v):LABEL[p.k]}">${X}</button></span>`;
+}
+function render(){
+  const pk=presetKey(),list=PAGES.filter(p=>showOwn||!p.own),ownN=PAGES.filter(p=>p.own).length;
+  const pg=PAGES.find(p=>p.n===prevPage),gt=titleFor(pg);
+  const long=PAGES.filter(p=>!p.own&&render1(parts,p.n).length>60).length;
+  $('#card').innerHTML=`
+  <div class="hd"><h2>Page titles on Google</h2><p>The blue link in search results. Pages without their own title use this pattern.</p></div>
+  <div class="sec">
+    <div class="lab">Pattern</div>
+    <div class="presets">${PRESETS.map(([k,l,pp])=>`<button class="pre ${pk===k?'on':''}" data-pre="${k}"><b>${l}</b><span>${esc(render1(pp,'About'))}</span></button>`).join('')}</div>
+    <div class="builder" id="builder" aria-label="Title pattern">${parts.map(tokHtml).join('')}
+      <div class="add"><button id="addbtn" aria-expanded="${menuOpen}">${PLUS}Add</button>
+        <div class="menu ${menuOpen?'on':''}" id="menu">${['page','site','tag','sep'].map(k=>`<button data-add="${k}">${LABEL[k]}<small>${k==='sep'?sep:esc(SAMPLE[k])}</small></button>`).join('')}
+          <div class="txtin"><input id="txtv" placeholder="Your own text, e.g. Bath" maxlength="40"><button class="btn sec" style="height:30px" data-add="txt">Add</button></div></div></div>
+    </div>
+    <p class="note">${INFO}<span>${pk==='custom'?'Custom pattern. ':''}Drag pieces to reorder. The tagline comes from Site settings.</span></p>
+  </div>
+  <div class="sec row2">
+    <div><div class="lab">Separator</div><div class="seps">${SEPS.map(([c,n])=>`<button class="sp ${sep===c?'on':''}" data-sep="${c}" title="${n}" aria-label="${n}">${c}</button>`).join('')}</div></div>
+    <div style="min-width:0"><div class="gh"><span class="lab" style="margin:0">On Google</span><select id="pv" aria-label="Preview page">${PAGES.map(p=>`<option ${p.n===prevPage?'selected':''}>${esc(p.n)}</option>`).join('')}</select></div>
+      <div class="g"><div class="u"><span class="fv">SB</span><div>${SITE}<small>stonebridgebuilders.co.uk${pg.path==='/'?'':' › '+pg.path.slice(1)}</small></div></div>
+        <div class="t" title="${esc(gt)}">${esc(gt.length>62?gt.slice(0,60).trim()+' …':gt)}</div>
+        <div class="d">Family-run builders in Bath. Extensions, loft conversions and full renovations, with a fixed price before we start.</div></div>
+      ${pg.own?`<p class="note">${INFO}<span>${esc(pg.n)} has its own title, so the pattern isn’t used. <a href="#" style="color:var(--ink)">Edit page SEO</a></span></p>`:''}</div>
+  </div>
+  <div class="sec">
+    <div class="lab">Every page <small>· ${PAGES.length-ownN} use the pattern${long?` · <span style="color:#a16207">${long} may be cut short</span>`:''}</small></div>
+    <div class="pl">${list.map(p=>{const t=titleFor(p),n=t.length;return `<div class="pr ${p.own?'own':''}"><div class="pn">${esc(p.n)}${p.isNew?'<small>New page</small>':''}</div><div class="tt" title="${esc(t)}">${esc(t)}</div>
+       ${p.own?`<div class="len"><span class="own-tag">Own title<a href="#">Edit</a></span></div>`:`<div class="len ${lenCls(n)}"><i><b style="width:${Math.min(100,n/70*100)}%"></b></i>${lenTxt(n)}</div>`}</div>`}).join('')}
+      <div class="pf">${ownN} page${ownN>1?'s have':' has'} ${ownN>1?'their':'its'} own title${showOwn?'':' and are hidden'}.<button data-act="own">${showOwn?'Hide them':'Show them'}</button></div></div>
+    <p class="note">${INFO}<span>Google shows about 60 characters. Longer titles get cut with “…”.</span></p>
+  </div>
+  <div class="ft"><span class="msg ${dirty()?'dirty':''}">${dirty()?'Unsaved changes':'All changes saved'}</span><button class="btn sec" data-act="discard" ${dirty()?'':'disabled'}>Discard</button><button class="btn pri" data-act="save" ${dirty()?'':'disabled'}>Save changes</button></div>`;
+}
+function rerender(keepMenu){const f=document.activeElement?.id;menuOpen=!!keepMenu;render();if(f&&$('#'+f))$('#'+f).focus()}
+
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.closest('#addbtn')){menuOpen=!menuOpen;render();if(menuOpen)$('#menu button').focus();return}
+  if(!t.closest('.add')&&menuOpen){menuOpen=false;render()}
+  const pr=t.closest('[data-pre]');if(pr){parts=JSON.parse(JSON.stringify(PRESETS.find(p=>p[0]===pr.dataset.pre)[2]));render();return}
+  const rm=t.closest('[data-rm]');if(rm){parts.splice(+rm.dataset.rm,1);render();return}
+  const ad=t.closest('[data-add]');if(ad){const k=ad.dataset.add;
+    const needSep=k!=='sep'&&parts.length&&parts[parts.length-1].k!=='sep';
+    if(k==='txt'){const v=$('#txtv').value.trim();if(!v){$('#txtv').focus();return}if(needSep)parts.push({k:'sep'});parts.push({k:'txt',v})}
+    else{if(k!=='sep'&&parts.some(p=>p.k===k)){toast(`${LABEL[k]} is already in the pattern`);return}if(needSep)parts.push({k:'sep'});parts.push({k})}
+    menuOpen=false;render();return}
+  const sp=t.closest('[data-sep]');if(sp){sep=sp.dataset.sep;render();return}
+  const a=t.closest('[data-act]');if(!a)return;
+  if(a.dataset.act==='own'){showOwn=!showOwn;render()}
+  if(a.dataset.act==='discard'){parts=JSON.parse(JSON.stringify(saved.parts));sep=saved.sep;render()}
+  if(a.dataset.act==='save'){if(!parts.some(p=>p.k==='page')){toast('Add the page name — otherwise every page gets the same title');return}saved={parts:JSON.parse(JSON.stringify(parts)),sep};render();toast('Saved — titles update when you publish')}
+});
+document.addEventListener('change',e=>{if(e.target.id==='pv'){prevPage=e.target.value;render()}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='txtv'){e.preventDefault();$('[data-add="txt"]').click()}if(e.key==='Escape'&&menuOpen){menuOpen=false;render();$('#addbtn').focus()}});
+/* drag to reorder pieces */
+let dragI=null;
+document.addEventListener('dragstart',e=>{const k=e.target.closest?.('.tok');if(!k)return;dragI=+k.dataset.i;k.classList.add('drag');e.dataTransfer.effectAllowed='move'});
+document.addEventListener('dragover',e=>{if(dragI!==null&&e.target.closest('#builder'))e.preventDefault()});
+document.addEventListener('drop',e=>{if(dragI===null)return;const k=e.target.closest('.tok');e.preventDefault();
+  let to=k?+k.dataset.i:parts.length-1;const [m]=parts.splice(dragI,1);parts.splice(to,0,m);dragI=null;render()});
+document.addEventListener('dragend',()=>{dragI=null;document.querySelectorAll('.tok.drag').forEach(t=>t.classList.remove('drag'))});
+render();
+</script>
+</body>
+</html>

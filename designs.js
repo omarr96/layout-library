@@ -258,6 +258,24 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "design-system",
+      "title": "Design system · Site design",
+      "desc": "The Design page as a design system: live site preview with brand colour, accent, fonts, corners and spacing controls; colours grouped by job with a readability check; type specimen and scale; spacing bars, corners, shadows, layout width; live CSS with copy; undo and save to draft.",
+      "tags": ["Dashboard","Design system","Tokens"],
+      "date": "2026-11-18",
+      "pages": [{"label": "Design system","href": "site-dashboard/design-system/index.html"}]
+    },
+    {
+      "cat": "site-dashboard",
+      "slug": "seo-title-template",
+      "title": "SEO title template",
+      "desc": "Page titles on Google: preset patterns, a tag-based pattern builder with drag to reorder, separator picker, Google preview per page, and every page's title with a length check.",
+      "tags": ["SEO","Settings"],
+      "date": "2026-11-18",
+      "pages": [{"label": "Title template","href": "site-dashboard/seo-title-template/index.html"}]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "site-overview-v2",
       "title": "Site overview · Draft & live",
       "desc": "Site home redesigned: preview card with status, address and shareable preview link; clear draft / live / unpublished-changes strip with one Publish; launch checklist; visitors, bookings and calls; latest messages; site health; publish history with restore. Demo switch for Draft, Live and Live with changes.",
