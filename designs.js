@@ -1446,7 +1446,7 @@ window.DESIGNS = {
       "tags": [
         "Changelog"
       ],
-      "date": "2026-11-14",
+      "date": "2026-11-18",
       "pages": [
         {
           "label": "Changelog",
