@@ -276,6 +276,15 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
+      "slug": "zejify-overview",
+      "title": "Overview · live dashboard snapshot",
+      "desc": "A saved snapshot of the built Overview screen (Mira Okafor demo site, draft): site preview, status, launch checklist, visitors, messages, site health and publish history.",
+      "tags": ["Dashboard", "Overview", "Snapshot"],
+      "date": "2026-11-19",
+      "pages": [{"label": "Overview", "href": "site-dashboard/zejify-overview/index.html"}]
+    },
+    {
+      "cat": "site-dashboard",
       "slug": "design-system",
       "title": "Design system · Site design",
       "desc": "The Design page as a design system: live site preview with brand colour, accent, fonts, corners and spacing controls; colours grouped by job with a readability check; type specimen and scale; spacing bars, corners, shadows, layout width; live CSS with copy; undo and save to draft.",
