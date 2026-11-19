@@ -278,7 +278,7 @@ window.DESIGNS = {
       "cat": "site-dashboard",
       "slug": "zejify-dashboard",
       "title": "Dashboard snapshot · every screen",
-      "desc": "Saved snapshots of the built dashboard for the Mira Okafor demo site (draft): Sites, Overview, Pages, Files, Media, Design, Domains, all SEO sections, Analytics, every Site settings tab and Messages. The menus link between them.",
+      "desc": "Saved snapshots of the built dashboard for the Mira Okafor demo site (draft): Overview, Pages, Files, Media, Design, Domains, all SEO sections, Analytics, every Site settings tab and Messages. The menus link between them.",
       "tags": [
         "Dashboard",
         "Snapshot",
@@ -286,10 +286,6 @@ window.DESIGNS = {
       ],
       "date": "2026-11-19",
       "pages": [
-        {
-          "label": "Sites",
-          "href": "site-dashboard/zejify-dashboard/index.html"
-        },
         {
           "label": "Overview",
           "href": "site-dashboard/zejify-dashboard/overview.html"
