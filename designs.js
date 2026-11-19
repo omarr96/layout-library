@@ -276,12 +276,109 @@ window.DESIGNS = {
     },
     {
       "cat": "site-dashboard",
-      "slug": "zejify-overview",
-      "title": "Overview · live dashboard snapshot",
-      "desc": "A saved snapshot of the built Overview screen (Mira Okafor demo site, draft): site preview, status, launch checklist, visitors, messages, site health and publish history.",
-      "tags": ["Dashboard", "Overview", "Snapshot"],
+      "slug": "zejify-dashboard",
+      "title": "Dashboard snapshot · every screen",
+      "desc": "Saved snapshots of the built dashboard for the Mira Okafor demo site (draft): Sites, Overview, Pages, Files, Media, Design, Domains, all SEO sections, Analytics, every Site settings tab and Messages. The menus link between them.",
+      "tags": [
+        "Dashboard",
+        "Snapshot",
+        "Live build"
+      ],
       "date": "2026-11-19",
-      "pages": [{"label": "Overview", "href": "site-dashboard/zejify-overview/index.html"}]
+      "pages": [
+        {
+          "label": "Sites",
+          "href": "site-dashboard/zejify-dashboard/index.html"
+        },
+        {
+          "label": "Overview",
+          "href": "site-dashboard/zejify-dashboard/overview.html"
+        },
+        {
+          "label": "Pages",
+          "href": "site-dashboard/zejify-dashboard/pages.html"
+        },
+        {
+          "label": "Files",
+          "href": "site-dashboard/zejify-dashboard/files.html"
+        },
+        {
+          "label": "Media",
+          "href": "site-dashboard/zejify-dashboard/media.html"
+        },
+        {
+          "label": "Design",
+          "href": "site-dashboard/zejify-dashboard/design.html"
+        },
+        {
+          "label": "Domains",
+          "href": "site-dashboard/zejify-dashboard/domains.html"
+        },
+        {
+          "label": "SEO · Overview",
+          "href": "site-dashboard/zejify-dashboard/seo.html"
+        },
+        {
+          "label": "SEO · All pages",
+          "href": "site-dashboard/zejify-dashboard/seo-pages.html"
+        },
+        {
+          "label": "SEO · Search appearance",
+          "href": "site-dashboard/zejify-dashboard/seo-appearance.html"
+        },
+        {
+          "label": "SEO · Business details",
+          "href": "site-dashboard/zejify-dashboard/seo-business.html"
+        },
+        {
+          "label": "SEO · Social sharing",
+          "href": "site-dashboard/zejify-dashboard/seo-social.html"
+        },
+        {
+          "label": "SEO · Robots.txt",
+          "href": "site-dashboard/zejify-dashboard/seo-robots.html"
+        },
+        {
+          "label": "SEO · Page redirects",
+          "href": "site-dashboard/zejify-dashboard/seo-redirects.html"
+        },
+        {
+          "label": "SEO · Structured data",
+          "href": "site-dashboard/zejify-dashboard/seo-schema.html"
+        },
+        {
+          "label": "SEO · Advanced",
+          "href": "site-dashboard/zejify-dashboard/seo-advanced.html"
+        },
+        {
+          "label": "Analytics",
+          "href": "site-dashboard/zejify-dashboard/analytics.html"
+        },
+        {
+          "label": "Settings · General",
+          "href": "site-dashboard/zejify-dashboard/settings-general.html"
+        },
+        {
+          "label": "Settings · Popups",
+          "href": "site-dashboard/zejify-dashboard/settings-popups.html"
+        },
+        {
+          "label": "Settings · Header & footer",
+          "href": "site-dashboard/zejify-dashboard/settings-parts.html"
+        },
+        {
+          "label": "Settings · Maintenance",
+          "href": "site-dashboard/zejify-dashboard/settings-maintenance.html"
+        },
+        {
+          "label": "Settings · Custom code",
+          "href": "site-dashboard/zejify-dashboard/settings-code.html"
+        },
+        {
+          "label": "Messages",
+          "href": "site-dashboard/zejify-dashboard/messages.html"
+        }
+      ]
     },
     {
       "cat": "site-dashboard",
