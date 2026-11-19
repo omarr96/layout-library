@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homestead Pros · Plumbing, Electrical, HVAC &amp; Handyman</title>
+<meta name="description" content="Licensed plumbers, electricians, HVAC techs and handymen across Columbus, Ohio. Flat-rate prices, 24/7 emergency line, on-time guarantee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #fbf5ea; --kt-ink: #2b1d14; --kt-tx: #5a4a3e; --kt-mut: #8f7f72; --kt-line: rgba(43,29,20,.14); --kt-accent: #c2412d; --kt-accent-ink: #fff; --kt-radius: 14px; --denim: #2c4a6b; --paper: #fffdf8; --sand: #f1e6d3; }
+body { font: 16.5px/1.6 'Work Sans', system-ui, sans-serif; }
+.sl { font-family: Bitter, Georgia, serif; font-weight: 800; letter-spacing: -.015em; line-height: 1.05; }
+.wrap { max-width: 1220px; margin: 0 auto; padding: 0 28px; }
+.kick { display: inline-block; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-accent); }
+h2.h { font-size: clamp(34px, 4.8vw, 60px); color: var(--kt-ink); margin: 12px 0 18px; }
+h2.h u { text-decoration: none; background: linear-gradient(transparent 62%, #f2c9a8 62%); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 24px; border-radius: 12px; font-weight: 700; font-size: 15.5px; border: 2px solid var(--kt-ink); transition: transform .15s, box-shadow .15s; }
+.btn.red { background: var(--kt-accent); color: #fff; box-shadow: 4px 4px 0 var(--kt-ink); }
+.btn.wh { background: var(--paper); color: var(--kt-ink); box-shadow: 4px 4px 0 var(--kt-ink); }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--kt-ink); }
+.box { background: var(--paper); border: 2px solid var(--kt-ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--kt-ink); }
+section { padding: 100px 0; }
+
+/* header */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; background: var(--kt-bg); transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 2px 0 var(--kt-ink); }
+.em { background: var(--kt-ink); color: #f6e9d8; font-size: 14px; }
+.em .wrap { display: flex; align-items: center; justify-content: center; gap: 14px; height: 42px; text-align: center; }
+.em b { color: #fff; }
+.em a { color: #ffb59f; font-weight: 700; white-space: nowrap; }
+.pulse { width: 9px; height: 9px; border-radius: 50%; background: #ff6b4a; flex: none; animation: kt-ring 1.6s ease-out infinite; box-shadow: 0 0 0 0 #ff6b4a; }
+.nav .bar { display: flex; align-items: center; gap: 26px; height: 74px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: Bitter, serif; font-weight: 900; font-size: 22px; color: var(--kt-ink); margin-right: auto; }
+.logo svg { width: 36px; height: 36px; }
+.kt-menu { display: flex; gap: 26px; }
+.kt-menu a { font-weight: 600; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 46px; padding: 0 18px; font-size: 14.5px; box-shadow: 3px 3px 0 var(--kt-ink); }
+.kt-burger { color: var(--kt-ink); }
+
+/* hero */
+.hero { padding: 170px 0 80px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 60px; align-items: center; }
+.hero h1 { font-size: clamp(42px, 5.6vw, 76px); color: var(--kt-ink); margin: 14px 0 20px; }
+.hero h1 [data-rotate] { color: var(--kt-accent); }
+.hero p { font-size: 18.5px; max-width: 520px; margin: 0 0 28px; }
+.zip { padding: 22px; max-width: 520px; }
+.zip label { display: block; font-weight: 700; color: var(--kt-ink); margin-bottom: 10px; }
+.zip .row { display: flex; gap: 10px; }
+.zip input { flex: 1; min-width: 0; height: 54px; border-radius: 12px; border: 2px solid var(--kt-ink); background: #fff; padding: 0 16px; font-size: 18px; font-weight: 600; letter-spacing: .08em; outline: none; }
+.zip input:focus { border-color: var(--kt-accent); }
+.zip .btn { flex: none; }
+.zres { margin: 12px 0 0; font-size: 15px; min-height: 24px; }
+.zres.ok { color: #1f6b3a; } .zres.near { color: #8a5a00; } .zres.no { color: var(--kt-accent); }
+.zres b { color: inherit; }
+.trust { display: flex; gap: 10px 22px; flex-wrap: wrap; margin-top: 22px; font-size: 14px; font-weight: 600; color: var(--kt-ink); }
+.trust span::before { content: "✔ "; color: var(--kt-accent); }
+.collage { position: relative; aspect-ratio: 1 / 1.05; }
+.collage .a { position: absolute; inset: 0 12% 14% 0; border-radius: 22px; overflow: hidden; border: 2px solid var(--kt-ink); box-shadow: 8px 8px 0 var(--kt-ink); }
+.collage .b { position: absolute; right: 0; bottom: 0; width: 46%; aspect-ratio: 1; border-radius: 22px; overflow: hidden; border: 2px solid var(--kt-ink); box-shadow: 6px 6px 0 var(--kt-ink); }
+.collage img { width: 100%; height: 100%; object-fit: cover; }
+.stamp { position: absolute; left: -14px; bottom: 22%; width: 130px; height: 130px; border-radius: 50%; background: #f2c14e; border: 2px solid var(--kt-ink); display: grid; place-items: center; text-align: center; font-family: Bitter, serif; font-weight: 900; color: var(--kt-ink); line-height: 1.05; transform: rotate(-10deg); font-size: 15px; box-shadow: 4px 4px 0 var(--kt-ink); }
+.stamp b { font-size: 34px; display: block; }
+
+.tick { background: var(--kt-accent); color: #fff; border-block: 2px solid var(--kt-ink); padding: 16px 0; }
+.tick .kt-mq-track { --mq-gap: 34px; }
+.tick span { font-family: Bitter, serif; font-weight: 800; font-size: 24px; white-space: nowrap; display: flex; align-items: center; gap: 34px; }
+.tick span::after { content: "✦"; font-size: 16px; color: #f2c14e; }
+
+/* services */
+.svc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 44px; }
+.card { overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--kt-ink); }
+.card img { width: 100%; height: 180px; object-fit: cover; border-bottom: 2px solid var(--kt-ink); }
+.card .c { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+.card h3 { font-family: Bitter, serif; font-size: 24px; color: var(--kt-ink); margin: 0 0 6px; }
+.card p { margin: 0 0 14px; font-size: 15px; }
+.card ul { margin: 0 0 18px; padding-left: 18px; font-size: 14.5px; display: grid; gap: 4px; }
+.card .from { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 2px dashed var(--kt-line); font-size: 14px; }
+.card .from b { font-family: Bitter, serif; font-size: 22px; color: var(--kt-ink); }
+.card .from a { font-weight: 700; color: var(--kt-accent); }
+
+/* prices */
+.prices { background: var(--sand); border-block: 2px solid var(--kt-ink); }
+.ph { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+.board { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 40px; }
+.board .box { padding: 28px 30px; }
+.board h3 { font-family: Bitter, serif; font-size: 22px; color: var(--kt-ink); margin: 0 0 14px; display: flex; align-items: center; gap: 10px; }
+.board h3 i { font-style: normal; width: 34px; height: 34px; border-radius: 10px; background: var(--kt-accent); color: #fff; display: grid; place-items: center; font-size: 17px; border: 2px solid var(--kt-ink); }
+.li { display: flex; align-items: baseline; gap: 8px; padding: 8px 0; color: var(--kt-ink); font-size: 15.5px; }
+.li::after { content: ""; order: 1; flex: 1; border-bottom: 2px dotted rgba(43,29,20,.3); min-width: 20px; }
+.li b { order: 2; font-family: Bitter, serif; font-size: 18px; white-space: nowrap; }
+.pnote { margin-top: 26px; font-size: 14.5px; max-width: 760px; }
+
+/* guarantees */
+.gs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 44px; }
+.g { padding: 28px 24px; }
+.g .ic { width: 58px; height: 58px; border-radius: 14px; background: var(--denim); color: #fff; display: grid; place-items: center; border: 2px solid var(--kt-ink); margin-bottom: 18px; }
+.g .ic svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.g h3 { font-family: Bitter, serif; font-size: 21px; color: var(--kt-ink); margin: 0 0 8px; }
+.g p { margin: 0; font-size: 15px; }
+
+/* projects */
+.proj { background: var(--denim); color: #d5deea; border-block: 2px solid var(--kt-ink); }
+.proj h2.h { color: #fff; } .proj .kick { color: #f2c14e; }
+.proj h2.h u { background: linear-gradient(transparent 62%, rgba(242,193,78,.45) 62%); }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 40px; }
+.ba figure { margin: 0; }
+.ba .kt-compare { border: 2px solid var(--kt-ink); border-radius: 18px; box-shadow: 6px 6px 0 #16273a; aspect-ratio: 4/3; }
+.ba .kt-before { filter: sepia(.55) saturate(.5) brightness(.72) contrast(.9); }
+.ba .kt-tag { left: 14px; } .ba .kt-tag.r { left: auto; right: 14px; background: #f2c14e; color: var(--kt-ink); }
+.ba figcaption { margin-top: 16px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 14.5px; }
+.ba figcaption b { color: #fff; font-family: Bitter, serif; font-size: 19px; display: block; }
+.ba figcaption span.p { color: #f2c14e; font-weight: 700; white-space: nowrap; }
+.strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+.strip a { display: block; border-radius: 14px; overflow: hidden; border: 2px solid var(--kt-ink); aspect-ratio: 4/3; }
+.strip img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.strip a:hover img { transform: scale(1.06); }
+
+/* team */
+.crew { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 44px; }
+.mate { text-align: center; padding: 26px 20px; }
+.mate img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--kt-ink); margin: 0 auto 14px; }
+.mate b { font-family: Bitter, serif; font-size: 19px; color: var(--kt-ink); display: block; }
+.mate span { font-size: 14px; color: var(--kt-accent); font-weight: 700; }
+.mate p { margin: 8px 0 0; font-size: 14px; }
+
+/* reviews */
+.rhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.rhead .ar { display: flex; gap: 10px; }
+.kt-arrow { border: 2px solid var(--kt-ink); background: var(--paper); }
+.revs > .box { width: 370px; padding: 28px; display: flex; flex-direction: column; }
+.revs { padding: 4px 10px 12px 4px; }
+.stars { color: #e0a100; letter-spacing: 2px; font-size: 18px; }
+.revs p { color: var(--kt-ink); font-size: 16.5px; margin: 12px 0 20px; }
+.who { margin-top: auto; display: flex; gap: 12px; align-items: center; font-size: 14px; }
+.who i { width: 44px; height: 44px; border-radius: 50%; background: var(--sand); border: 2px solid var(--kt-ink); display: grid; place-items: center; font-style: normal; font-weight: 800; color: var(--kt-ink); flex: none; }
+.who b { display: block; color: var(--kt-ink); }
+
+/* book */
+.book .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; }
+.book form { padding: 32px; display: grid; gap: 16px; }
+.f { display: grid; gap: 6px; font-weight: 700; font-size: 14px; color: var(--kt-ink); }
+.f input, .f select, .f textarea { height: 52px; border-radius: 12px; border: 2px solid var(--kt-ink); background: #fff; padding: 0 14px; font-weight: 500; font-size: 15.5px; outline: none; width: 100%; }
+.f textarea { height: 100px; padding: 12px 14px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--kt-accent); box-shadow: 0 0 0 3px rgba(194,65,45,.18); }
+.c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.win { border: 0; padding: 0; margin: 0; }
+.win legend { font-weight: 700; font-size: 14px; color: var(--kt-ink); margin-bottom: 8px; }
+.wins { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.wins label { position: relative; }
+.wins input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.wins span { display: grid; place-items: center; height: 50px; border-radius: 10px; border: 2px solid var(--kt-ink); background: #fff; font-weight: 700; font-size: 13.5px; color: var(--kt-ink); text-align: center; line-height: 1.15; }
+.wins input:checked + span { background: var(--kt-ink); color: #fff; }
+.wins input:focus-visible + span { outline: 3px solid var(--kt-accent); outline-offset: 2px; }
+.call { margin-top: 26px; padding: 24px; background: var(--kt-ink); color: #f6e9d8; border-radius: 18px; border: 2px solid var(--kt-ink); }
+.call b { font-family: Bitter, serif; font-size: 30px; color: #fff; display: block; }
+.call a { color: #fff; }
+.hours { margin-top: 22px; display: grid; gap: 6px; font-size: 15px; }
+.hours div { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--kt-line); padding-bottom: 6px; color: var(--kt-ink); }
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+footer { background: var(--kt-ink); color: #cbbcae; padding: 50px 0; font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+footer .logo { color: #fff; margin: 0; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer nav a:hover { color: #fff; }
+
+@media (max-width: 1080px) { .svc, .gs, .crew { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 980px) {
+  section { padding: 76px 0; }
+  .hero .wrap, .book .wrap, .faq .wrap, .board, .ba { grid-template-columns: 1fr; gap: 40px; }
+  .collage { max-width: 520px; width: 100%; }
+  .strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .em { font-size: 12.5px; } .em .t { display: none; }
+  .nav .btn { display: none; }
+  .hero { padding: 150px 0 60px; }
+  .zip .row { flex-direction: column; } .zip input { flex: none; }
+  .svc, .gs, .crew, .c2 { grid-template-columns: 1fr; }
+  .board .box, .book form { padding: 22px 18px; }
+  .li { font-size: 14.5px; }
+  .wins { grid-template-columns: repeat(3, 1fr); }
+  .revs > .box { width: 80vw; }
+  .stamp { width: 104px; height: 104px; font-size: 13px; left: -6px; } .stamp b { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="em"><div class="wrap"><span class="pulse" aria-hidden="true"></span><span><b>24/7 emergencies</b><span class="t"> · burst pipe, no heat, sparking outlet</span></span><a href="tel:+16145550142">(614) 555-0142</a></div></div>
+  <div class="wrap bar">
+    <a href="#" class="logo" aria-label="Homestead Pros home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 19 20 5l16 14v16H4z" fill="#c2412d" stroke="#2b1d14" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 35V24h10v11" fill="#fbf5ea" stroke="#2b1d14" stroke-width="2.5"/></svg>Homestead Pros</a>
+    <nav class="kt-menu"><a href="#services">Services</a><a href="#prices">Prices</a><a href="#projects">Projects</a><a href="#reviews">Reviews</a><a href="#book">Book</a></nav>
+    <a href="#book" class="btn red">Book a pro</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal>Columbus, Ohio · since 2009</span>
+      <h1 class="sl"><span data-split>Your home's</span><br><span data-rotate="plumber,|electrician,|HVAC tech,|handyman,"></span><br><span data-split>on call.</span></h1>
+      <p data-reveal data-delay="200">Licensed pros for the leaks, outages and to-do lists. Flat-rate prices before we start, and a 2-hour arrival window we actually keep.</p>
+      <form class="zip box" id="zipf" data-reveal data-delay="300">
+        <label for="zipin">Do we cover your street?</label>
+        <div class="row"><input id="zipin" inputmode="numeric" maxlength="5" placeholder="ZIP code, e.g. 43215" autocomplete="postal-code" required><button class="btn red" type="submit">Check ZIP</button></div>
+        <p class="zres" id="zres" aria-live="polite">We serve 48 ZIP codes across Franklin and Delaware County.</p>
+      </form>
+      <div class="trust" data-reveal data-delay="400"><span>Licensed &amp; insured</span><span>On time or $50 off</span><span>1-year workmanship guarantee</span></div>
+    </div>
+    <div class="collage" data-reveal="right">
+      <div class="a"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1100&q=70&auto=format&fit=crop" alt="White two-storey family home with a green lawn"></div>
+      <div class="b"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=70&auto=format&fit=crop" alt="Homestead electrician testing a wall panel"></div>
+      <div class="stamp"><span><b>4.9★</b>2,800+ reviews</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="tick kt-marquee" data-speed="30s"><div class="kt-mq-track"><span>Leaky faucets</span><span>Water heaters</span><span>Panel upgrades</span><span>Furnace tune-ups</span><span>AC repair</span><span>Ceiling fans</span><span>Drywall patches</span><span>EV chargers</span><span>Sump pumps</span></div></div>
+
+<section id="services">
+  <div class="wrap">
+    <span class="kick" data-reveal>What we fix</span>
+    <h2 class="h sl" data-split>Four trades, <u>one call</u></h2>
+    <div class="svc">
+      <article class="card box" data-reveal><img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=700&q=70&auto=format&fit=crop" alt="Plumber's hands fitting a chrome kitchen faucet"><div class="c"><h3>Plumbing</h3><p>From dripping taps to whole-house repipes.</p><ul><li>Leaks and clogs</li><li>Water heaters and tankless</li><li>Sump pumps</li><li>Toilet and fixture installs</li></ul><div class="from"><span>from <b>$129</b></span><a href="#book">Book →</a></div></div></article>
+      <article class="card box" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=70&auto=format&fit=crop" alt="Electrician in a hard hat working on a wall panel"><div class="c"><h3>Electrical</h3><p>Master electricians, every job permitted.</p><ul><li>Outlets, switches, lighting</li><li>Panel upgrades</li><li>EV charger installs</li><li>Whole-home surge protection</li></ul><div class="from"><span>from <b>$149</b></span><a href="#book">Book →</a></div></div></article>
+      <article class="card box" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=700&q=70&auto=format&fit=crop" alt="Copper heating pipes and valves in a basement"><div class="c"><h3>Heating &amp; cooling</h3><p>NATE-certified techs for every brand.</p><ul><li>Furnace and AC repair</li><li>Seasonal tune-ups</li><li>Heat pump installs</li><li>Duct cleaning</li></ul><div class="from"><span>from <b>$99</b></span><a href="#book">Book →</a></div></div></article>
+      <article class="card box" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=700&q=70&auto=format&fit=crop" alt="Cordless drill resting on a workbench"><div class="c"><h3>Handyman</h3><p>Book an hour or a day. Bring your list.</p><ul><li>TV and shelf mounting</li><li>Drywall and paint touch-ups</li><li>Door and window fixes</li><li>Furniture assembly</li></ul><div class="from"><span>from <b>$95/hr</b></span><a href="#book">Book →</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="prices">
+  <div class="wrap">
+    <div class="ph"><div><span class="kick" data-reveal>Flat-rate pricing</span><h2 class="h sl" data-split>The price is <u>the price</u></h2></div><p data-reveal style="max-width:440px;margin:0">Parts and labor included. Your tech confirms the price on site before starting, and it doesn't change if the job runs long.</p></div>
+    <div class="board">
+      <div class="box" data-reveal><h3><i aria-hidden="true">💧</i>Plumbing</h3><div class="li">Clear a sink or tub drain<b>$149</b></div><div class="li">Replace a kitchen faucet<b>$229</b></div><div class="li">Rebuild a running toilet<b>$169</b></div><div class="li">50-gal water heater, installed<b>$1,690</b></div><div class="li">Sump pump replacement<b>$595</b></div></div>
+      <div class="box" data-reveal data-delay="100"><h3><i aria-hidden="true">⚡</i>Electrical</h3><div class="li">Add or move an outlet<b>$189</b></div><div class="li">Install a ceiling fan<b>$239</b></div><div class="li">Level 2 EV charger, installed<b>$899</b></div><div class="li">200-amp panel upgrade<b>$2,950</b></div><div class="li">Whole-home surge protector<b>$385</b></div></div>
+      <div class="box" data-reveal><h3><i aria-hidden="true">🔥</i>Heating &amp; cooling</h3><div class="li">Furnace or AC tune-up<b>$99</b></div><div class="li">Diagnostic visit (waived with repair)<b>$89</b></div><div class="li">Capacitor replacement<b>$219</b></div><div class="li">Smart thermostat, installed<b>$249</b></div><div class="li">Full duct cleaning<b>$449</b></div></div>
+      <div class="box" data-reveal data-delay="100"><h3><i aria-hidden="true">🔨</i>Handyman</h3><div class="li">First hour (then $85/hr)<b>$95</b></div><div class="li">Mount a TV up to 75"<b>$149</b></div><div class="li">Drywall patch, up to 1 sq ft<b>$175</b></div><div class="li">Hang an interior door<b>$279</b></div><div class="li">Half-day list (4 hours)<b>$349</b></div></div>
+    </div>
+    <p class="pnote" data-reveal>No trip charge inside our service area. Nights, weekends and holidays add $79 for emergency calls. Homestead Club members ($14.99/mo) get 15% off everything and two free tune-ups a year.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kick" data-reveal>Our promises</span>
+    <h2 class="h sl" data-split>Guarantees, <u>in writing</u></h2>
+    <div class="gs">
+      <div class="g box" data-reveal><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>On time or $50 off</h3><p>We text when your tech is 20 minutes out. Late for the window? $50 comes off, automatically.</p></div>
+      <div class="g box" data-reveal data-delay="100"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>1-year workmanship</h3><p>If our repair fails within 12 months, we come back and fix it free. Parts carry the maker's warranty too.</p></div>
+      <div class="g box" data-reveal data-delay="200"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m15 17 2 2 4-4"/></svg></div><h3>Price before work</h3><p>You approve a flat price on the tablet before a single tool comes out. No surprise line items.</p></div>
+      <div class="g box" data-reveal data-delay="300"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg></div><h3>Clean-home promise</h3><p>Boot covers, drop cloths, and we vacuum before we leave. Every visit, every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj" id="projects">
+  <div class="wrap">
+    <span class="kick" data-reveal>Recent projects</span>
+    <h2 class="h sl" data-split>Drag to see <u>the difference</u></h2>
+    <div class="ba">
+      <figure data-reveal>
+        <div class="kt-compare"><img class="kt-before" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1100&q=75&auto=format&fit=crop" alt="Kitchen before the update, dated and dim"><img class="kt-after" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1100&q=75&auto=format&fit=crop" alt="Kitchen after new lighting, faucet and fixtures"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare kitchen before and after"></div>
+        <figcaption><span><b>Kitchen refresh, Clintonville</b>New lighting circuit, pendants, faucet and disposal</span><span class="p">3 days · $4,850</span></figcaption>
+      </figure>
+      <figure data-reveal data-delay="150">
+        <div class="kt-compare"><img class="kt-before" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1100&q=75&auto=format&fit=crop" alt="Bathroom before the remodel, worn fixtures"><img class="kt-after" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1100&q=75&auto=format&fit=crop" alt="Bathroom after a new vanity, shower valve and fan"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare bathroom before and after"></div>
+        <figcaption><span><b>Bathroom update, German Village</b>Shower valve, vanity, exhaust fan and GFCI outlets</span><span class="p">4 days · $6,200</span></figcaption>
+      </figure>
+    </div>
+    <div class="strip" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1600&q=70&auto=format&fit=crop" data-caption="Under-cabinet lighting and new outlets, Upper Arlington"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500&q=70&auto=format&fit=crop" alt="Bright white kitchen with under-cabinet lighting"></a>
+      <a href="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=70&auto=format&fit=crop" data-caption="Recessed lighting and smart switches, Bexley"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500&q=70&auto=format&fit=crop" alt="Living room with new recessed lighting"></a>
+      <a href="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=70&auto=format&fit=crop" data-caption="Toilet, vanity and supply lines replaced, Westerville"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&q=70&auto=format&fit=crop" alt="Clean white bathroom after new fixtures"></a>
+      <a href="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1600&q=70&auto=format&fit=crop" data-caption="Custom built-in shelving, Worthington"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&q=70&auto=format&fit=crop" alt="Carpenter cutting boards for built-in shelving"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kick" data-reveal>Meet the crew</span>
+    <h2 class="h sl" data-split>Background-checked, <u>badge-wearing</u></h2>
+    <div class="crew">
+      <div class="mate box" data-reveal><img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=300&q=70&auto=format&fit=crop" alt="Portrait of Marcus Bell in a hard hat"><b>Marcus Bell</b><span>Master electrician</span><p>Ohio license EL.47812. 19 years wiring Columbus homes.</p></div>
+      <div class="mate box" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=70&auto=format&fit=crop" alt="Portrait of Dana Ruiz"><b>Dana Ruiz</b><span>Lead plumber</span><p>Water heaters, repipes, and the calm voice on emergency calls.</p></div>
+      <div class="mate box" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&q=70&auto=format&fit=crop" alt="Portrait of Tyler Hughes"><b>Tyler Hughes</b><span>HVAC technician</span><p>NATE-certified. Can hear a bad blower motor from the driveway.</p></div>
+      <div class="mate box" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=70&auto=format&fit=crop" alt="Portrait of Abby Klein"><b>Abby Klein</b><span>Handyman lead</span><p>Former set carpenter. Shelves, doors, and the jobs nobody else wants.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" data-slider-scope style="padding-top:0">
+  <div class="wrap">
+    <div class="rhead"><div><span class="kick" data-reveal>4.9 from 2,800+ neighbors</span><h2 class="h sl" data-split>Heard <u>next door</u></h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel revs" data-carousel>
+      <div class="box"><span class="stars" aria-label="5 stars">★★★★★</span><p>Water heater died on a Sunday night. Dana was here by 9:40 and we had hot water by lunch Monday. Price matched the quote to the dollar.</p><div class="who"><i>JM</i><span><b>Jenna M.</b>Clintonville · Water heater</span></div></div>
+      <div class="box"><span class="stars" aria-label="5 stars">★★★★★</span><p>Marcus installed our EV charger and pulled the permit himself. Clean work, labeled the panel, and explained the load calculation.</p><div class="who"><i>RP</i><span><b>Raj P.</b>Dublin · EV charger</span></div></div>
+      <div class="box"><span class="stars" aria-label="5 stars">★★★★★</span><p>Booked Abby for a half day with a list of 11 things. She finished all of them and patched a hole I'd forgotten to mention.</p><div class="who"><i>SL</i><span><b>Sarah L.</b>Bexley · Handyman</span></div></div>
+      <div class="box"><span class="stars" aria-label="5 stars">★★★★★</span><p>Tyler found a cracked heat exchanger another company missed. Honest, unhurried, and showed me photos of everything.</p><div class="who"><i>DW</i><span><b>Don W.</b>Westerville · Furnace</span></div></div>
+      <div class="box"><span class="stars" aria-label="4 stars">★★★★☆</span><p>Arrived 25 minutes late, but the $50 came off without me asking. Faucet install was perfect. I'll book again.</p><div class="who"><i>KO</i><span><b>Kim O.</b>Hilliard · Plumbing</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal>Book online</span>
+      <h2 class="h sl" data-split>Pick a <u>2-hour window</u></h2>
+      <p data-reveal>Tell us what's wrong and when suits you. We'll confirm by text within 15 minutes during business hours.</p>
+      <div class="call" data-reveal><span>Water coming through the ceiling? Don't book, call:</span><b><a href="tel:+16145550142">(614) 555-0142</a></b><span>Answered by a real person 24/7 · average arrival 52 minutes</span></div>
+      <div class="hours" data-reveal><div><span>Mon–Fri</span><span>7am – 7pm</span></div><div><span>Saturday</span><span>8am – 4pm</span></div><div><span>Emergencies</span><span>24/7/365</span></div></div>
+    </div>
+    <form class="box" data-form="You're booked! We'll text to confirm your window shortly." data-reveal="right">
+      <div class="c2"><label class="f">Service<select name="service" required><option>Plumbing</option><option>Electrical</option><option>Heating &amp; cooling</option><option>Handyman</option><option>Not sure</option></select></label><label class="f">ZIP code<input id="bzip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" required></label></div>
+      <label class="f">Preferred date<input type="date" name="date" required></label>
+      <fieldset class="win"><legend>Arrival window</legend><div class="wins">
+        <label><input type="radio" name="window" value="8-10" checked><span>8–10<br>am</span></label>
+        <label><input type="radio" name="window" value="10-12"><span>10–12<br>pm</span></label>
+        <label><input type="radio" name="window" value="12-2"><span>12–2<br>pm</span></label>
+        <label><input type="radio" name="window" value="2-4"><span>2–4<br>pm</span></label>
+        <label><input type="radio" name="window" value="4-6"><span>4–6<br>pm</span></label>
+      </div></fieldset>
+      <div class="c2"><label class="f">Name<input name="name" autocomplete="name" required></label><label class="f">Mobile<input name="phone" type="tel" autocomplete="tel" required></label></div>
+      <label class="f">What's going on?<textarea name="details" placeholder="e.g. Kitchen sink draining slowly, garbage disposal hums but won't spin"></textarea></label>
+      <button class="btn red" type="submit">Request this window</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="kick" data-reveal>FAQ</span><h2 class="h sl" data-split>Good to <u>know</u></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Do you charge to come out?</summary><div class="kt-faq-a"><div>No trip fee inside our service area. HVAC diagnostics are $89, and that's waived if you go ahead with the repair. Emergency calls at night, on weekends or holidays add $79.</div></div></details>
+      <details class="kt-faq"><summary>Are your technicians licensed?</summary><div class="kt-faq-a"><div>Yes. Our electricians and HVAC techs hold Ohio contractor licenses, plumbers are licensed through the City of Columbus, and every tech is background-checked and drug-tested. We carry $2M general liability insurance.</div></div></details>
+      <details class="kt-faq"><summary>What if the job costs more than the flat rate?</summary><div class="kt-faq-a"><div>It can't. The flat rate is agreed before work starts. If we find a second problem, we quote it separately and you decide whether to go ahead.</div></div></details>
+      <details class="kt-faq"><summary>Do you offer financing?</summary><div class="kt-faq-a"><div>For jobs over $1,000 we offer 12 months same-as-cash financing, subject to approval. Ask your tech for the QR code, it takes about two minutes.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a href="#" class="logo" aria-label="Homestead Pros home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 19 20 5l16 14v16H4z" fill="#c2412d" stroke="#fbf5ea" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 35V24h10v11" fill="#2b1d14" stroke="#fbf5ea" stroke-width="2.5"/></svg>Homestead Pros</a><nav><a href="#services">Services</a><a href="#prices">Prices</a><a href="#book">Book</a><a href="#">Careers</a><a href="#">Privacy</a></nav><span>1180 Kinnear Rd, Columbus, OH 43212 · © 2026</span></div></footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // ZIP coverage check: served ZIPs, a nearby ring with a small trip fee, everything else outside
+  (function () {
+    const served = new Set('43016 43017 43026 43035 43054 43065 43068 43081 43082 43085 43110 43119 43123 43125 43147 43201 43202 43203 43204 43205 43206 43207 43209 43210 43211 43212 43213 43214 43215 43219 43220 43221 43222 43223 43224 43227 43228 43229 43230 43231 43232 43235'.split(' '));
+    const near = new Set('43002 43004 43015 43021 43040 43062 43064 43074 43105 43137 43140 43146'.split(' '));
+    const f = document.getElementById('zipf'), inp = document.getElementById('zipin'), out = document.getElementById('zres');
+    inp.addEventListener('input', () => { inp.value = inp.value.replace(/\D/g, '').slice(0, 5); });
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      const z = inp.value;
+      if (!/^\d{5}$/.test(z)) { out.className = 'zres no'; out.textContent = 'Please enter a 5-digit ZIP code.'; return; }
+      if (served.has(z)) { out.className = 'zres ok'; out.innerHTML = `<b>Yes, we cover ${z}!</b> Next arrival window: today 2–4pm. No trip fee.`; }
+      else if (near.has(z)) { out.className = 'zres near'; out.innerHTML = `<b>We can reach ${z}.</b> It's just outside our core area, so there's a $39 trip fee.`; }
+      else { out.className = 'zres no'; out.innerHTML = `<b>Not yet in ${z}.</b> Call us and we'll recommend a trusted local pro.`; return; }
+      document.getElementById('bzip').value = z;
+    });
+    // booking date: earliest is today
+    const d = document.querySelector('input[type=date]'), t = new Date();
+    d.min = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  })();
+</script>
+</body>
+</html>

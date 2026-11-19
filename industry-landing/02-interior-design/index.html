@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Verde · Interior Design Studio</title>
+<meta name="description" content="Atelier Verde is a Brooklyn interior design studio creating warm, layered homes. Full-service design, e-design and one-off consultations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f3ede3; --kt-ink: #1f2a22; --kt-tx: #555a50; --kt-mut: #8a8a7e; --kt-line: rgba(31,42,34,.14); --kt-accent: #3f5d45; --kt-accent-ink: #fff; --kt-radius: 4px; --terra: #b8683f; --sand: #e6dccb; --paper: #faf6ef; }
+body { font: 16px/1.7 Manrope, system-ui, sans-serif; }
+.fr { font-family: Fraunces, Georgia, serif; font-weight: 300; letter-spacing: -.02em; line-height: 1.02; color: var(--kt-ink); font-variation-settings: "SOFT" 50; }
+.fr em { font-style: italic; color: var(--kt-accent); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--terra); }
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+h2.h { font-size: clamp(40px, 5.6vw, 80px); margin: 18px 0 22px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 99px; font-weight: 700; font-size: 14.5px; transition: .25s; }
+.btn.solid { background: var(--kt-accent); color: #fff; }
+.btn.solid:hover { background: var(--kt-ink); }
+.btn.line { border: 1px solid var(--kt-ink); color: var(--kt-ink); }
+.btn.line:hover { background: var(--kt-ink); color: var(--kt-bg); }
+.link { font-weight: 700; color: var(--kt-ink); border-bottom: 1px solid var(--terra); padding-bottom: 2px; }
+section { padding: 130px 0; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 36px; height: 86px; }
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; transition: .3s; border-bottom: 1px solid transparent; }
+.nav.scrolled::before { background: rgba(243,237,227,.92); backdrop-filter: blur(12px); border-color: var(--kt-line); }
+.logo { font-family: Fraunces, serif; font-size: 26px; color: var(--kt-ink); display: flex; align-items: center; gap: 10px; letter-spacing: -.01em; }
+.logo em { font-style: italic; color: var(--kt-accent); }
+.logo svg { width: 28px; height: 28px; color: var(--kt-accent); }
+.kt-menu { display: flex; gap: 32px; margin-left: auto; }
+.kt-menu a { font-size: 14.5px; font-weight: 600; color: var(--kt-ink); position: relative; }
+.kt-menu a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1px; background: var(--terra); transition: right .3s; }
+.kt-menu a:hover::after { right: 0; }
+.nav .btn { height: 44px; padding: 0 20px; }
+.kt-burger { color: var(--kt-ink); margin-left: auto; }
+
+/* hero: editorial split with arch */
+.hero { padding: 150px 0 90px; position: relative; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
+.issue { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--kt-mut); border-bottom: 1px solid var(--kt-line); padding-bottom: 14px; margin-bottom: 40px; font-weight: 600; }
+.hero h1 { font-size: clamp(52px, 7.6vw, 118px); margin: 0 0 28px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--kt-accent); }
+.hero p { font-size: 18.5px; max-width: 480px; margin: 0 0 36px; }
+.hero .cta { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.arch { position: relative; }
+.arch .img { border-radius: 400px 400px 4px 4px; overflow: hidden; aspect-ratio: 4/5; }
+.arch .img img { width: 100%; height: 100%; object-fit: cover; }
+.arch .note { position: absolute; left: -46px; bottom: 50px; background: var(--paper); padding: 20px 22px; border-radius: 4px; box-shadow: 0 24px 60px rgba(31,42,34,.14); max-width: 250px; }
+.arch .note b { font-family: Fraunces, serif; font-weight: 400; font-size: 20px; color: var(--kt-ink); display: block; line-height: 1.2; }
+.arch .note small { color: var(--kt-mut); font-size: 13px; }
+.arch .seal { position: absolute; top: 30px; right: -24px; width: 120px; height: 120px; animation: spin 26s linear infinite; }
+.arch .seal text { font: 700 10.5px Manrope, sans-serif; letter-spacing: .24em; fill: var(--kt-ink); text-transform: uppercase; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* press */
+.press { border-block: 1px solid var(--kt-line); padding: 28px 0; --mq-gap: 70px; background: var(--paper); }
+.press span { font-family: Fraunces, serif; font-size: 26px; color: #7b7a6f; white-space: nowrap; }
+.press span:nth-child(even) { font-style: italic; }
+.press span.k { font-family: Manrope, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--terra); padding-top: 10px; }
+
+/* philosophy */
+.philo .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: start; }
+.philo .lead { font-family: Fraunces, serif; font-size: clamp(24px, 2.6vw, 34px); font-weight: 300; line-height: 1.35; color: var(--kt-ink); margin: 0 0 26px; }
+.philo .lead::first-letter { float: left; font-size: 4.2em; line-height: .82; margin: 6px 14px 0 0; color: var(--terra); font-style: italic; }
+.cols { columns: 2; column-gap: 40px; font-size: 15.5px; }
+.cols p { margin: 0 0 16px; }
+.vals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--kt-line); margin-top: 40px; border: 1px solid var(--kt-line); }
+.vals div { background: var(--kt-bg); padding: 22px; }
+.vals b { font-family: Fraunces, serif; font-weight: 400; font-size: 44px; color: var(--kt-ink); display: block; line-height: 1; }
+.vals span { font-size: 13px; }
+
+/* compare */
+.reveal { background: var(--kt-ink); color: #c9c7bb; }
+.reveal .fr, .reveal h2 { color: #f3ede3; }
+.reveal .fr em { color: #d79a72; }
+.reveal .wrap { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: center; }
+.reveal .kt-compare { aspect-ratio: 3/2; border-radius: 4px; }
+.reveal .kt-before { filter: grayscale(1) contrast(1.7) brightness(1.25); }
+.reveal .kt-tag { background: rgba(250,246,239,.92); color: var(--kt-ink); border-radius: 2px; letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
+.reveal .kt-tag.l { left: 14px; } .reveal .kt-tag.r { right: 14px; background: var(--terra); color: #fff; }
+.facts { list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 0; }
+.facts li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(243,237,227,.14); font-size: 14.5px; }
+.facts li b { color: #f3ede3; font-weight: 600; text-align: right; }
+
+/* projects */
+.proj-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.rooms { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 30px; }
+.rooms button { padding: 10px 18px; border-radius: 99px; font-weight: 600; font-size: 14px; color: var(--kt-tx); border: 1px solid transparent; transition: .2s; }
+.rooms button:hover { border-color: var(--kt-line); }
+.rooms button.on { background: var(--kt-ink); color: var(--kt-bg); }
+.gal { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 300px 300px; gap: 16px; }
+.gal a { position: relative; overflow: hidden; border-radius: 4px; display: block; }
+.gal a:first-child { grid-row: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.gal a:hover img { transform: scale(1.04); }
+.gal figcaption { position: absolute; left: 14px; bottom: 14px; background: var(--paper); color: var(--kt-ink); padding: 8px 14px; border-radius: 2px; font-size: 13px; font-weight: 600; }
+.gal figcaption i { font-family: Fraunces, serif; color: var(--terra); margin-right: 6px; }
+.gal figure { margin: 0; height: 100%; }
+.gal.few { grid-template-rows: 480px; } .gal.few a:first-child { grid-row: auto; }
+.gal.two { grid-template-columns: 1.4fr 1fr; }
+
+/* services */
+.svc { background: var(--paper); }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+.card { border: 1px solid var(--kt-line); border-radius: 4px; padding: 38px 32px; display: flex; flex-direction: column; background: var(--kt-bg); transition: transform .4s, box-shadow .4s; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(31,42,34,.1); }
+.card .n { font-family: Fraunces, serif; font-style: italic; font-size: 18px; color: var(--terra); }
+.card h3 { font-family: Fraunces, serif; font-weight: 400; font-size: 32px; color: var(--kt-ink); margin: 18px 0 10px; line-height: 1.1; }
+.card .pr { font-size: 14px; font-weight: 700; color: var(--kt-accent); letter-spacing: .04em; margin-bottom: 14px; }
+.card ul { padding: 0; list-style: none; margin: 18px 0 30px; display: grid; gap: 9px; font-size: 15px; border-top: 1px solid var(--kt-line); padding-top: 18px; }
+.card li { display: flex; gap: 10px; }
+.card li::before { content: "—"; color: var(--terra); }
+.card .btn { margin-top: auto; }
+.card.feat { background: var(--kt-accent); color: #dfe6dc; border-color: var(--kt-accent); }
+.card.feat h3, .card.feat .pr { color: #fff; } .card.feat .n, .card.feat li::before { color: #f0c3a5; } .card.feat ul { border-color: rgba(255,255,255,.2); }
+.card.feat .btn { background: var(--kt-bg); color: var(--kt-ink); }
+
+/* process */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 60px; border-top: 1px solid var(--kt-ink); }
+.st { padding: 30px 28px 0 0; position: relative; }
+.st .num { font-family: Fraunces, serif; font-weight: 300; font-size: 96px; line-height: .9; color: transparent; -webkit-text-stroke: 1px var(--terra); display: block; }
+.st h3 { font-family: Fraunces, serif; font-weight: 400; font-size: 26px; color: var(--kt-ink); margin: 18px 0 8px; }
+.st p { margin: 0 0 8px; font-size: 15px; }
+.st small { font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-accent); }
+
+/* team */
+.team { background: var(--sand); }
+.team-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.team-head .ar { display: flex; gap: 10px; }
+.team .kt-arrow { background: transparent; border-color: rgba(31,42,34,.3); }
+.ppl > .p { width: 300px; }
+.p img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 200px 200px 4px 4px; }
+.p h3 { font-family: Fraunces, serif; font-weight: 400; font-size: 24px; color: var(--kt-ink); margin: 16px 0 0; }
+.p span { font-size: 13.5px; color: var(--terra); font-weight: 600; }
+.p p { font-size: 14.5px; margin: 8px 0 0; }
+
+/* testimonials */
+.tst .kt-slider { max-width: 1040px; margin: 0 auto; }
+.tq { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+.tq img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+.tq blockquote { margin: 0; font-family: Fraunces, serif; font-weight: 300; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.3; color: var(--kt-ink); }
+.tq blockquote::before { content: "“"; display: block; font-size: 90px; line-height: .6; color: var(--terra); font-style: italic; }
+.tq cite { display: block; margin-top: 22px; font-style: normal; font-weight: 700; font-size: 14px; color: var(--kt-ink); }
+.tq cite span { color: var(--kt-mut); font-weight: 500; }
+.tst .kt-dots { color: var(--kt-accent); justify-content: flex-start; }
+.tst .kt-track > * { padding-right: 28px; }
+
+/* enquiry */
+.enq { background: var(--paper); border-top: 1px solid var(--kt-line); }
+.enq .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; }
+.enq .info p { font-size: 17px; }
+.contact { margin-top: 34px; display: grid; gap: 14px; font-size: 15px; }
+.contact div { display: flex; gap: 14px; align-items: baseline; }
+.contact b { font-family: Fraunces, serif; font-style: italic; font-weight: 400; color: var(--terra); min-width: 70px; }
+form.f { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 24px; }
+.f label { display: grid; gap: 8px; font-size: 13px; font-weight: 700; color: var(--kt-ink); }
+.f .full { grid-column: 1 / -1; }
+.f input, .f select, .f textarea { height: 54px; border: 1px solid var(--kt-line); border-radius: 4px; background: #fff; padding: 0 16px; outline: none; font-size: 15.5px; font-weight: 400; color: var(--kt-ink); }
+.f textarea { height: 120px; padding-top: 14px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--kt-accent); box-shadow: 0 0 0 3px rgba(63,93,69,.14); }
+.f fieldset { border: 0; margin: 0; padding: 0; grid-column: 1 / -1; }
+.f legend { font-size: 13px; font-weight: 700; color: var(--kt-ink); margin-bottom: 10px; }
+.budget { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.budget label { display: block; }
+.budget input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.budget span { display: grid; place-items: center; text-align: center; height: 64px; border: 1px solid var(--kt-line); border-radius: 4px; background: #fff; font-weight: 600; font-size: 14px; cursor: pointer; transition: .2s; line-height: 1.25; padding: 0 6px; }
+.budget span small { display: block; font-weight: 500; color: var(--kt-mut); font-size: 11.5px; }
+.budget input:checked + span { background: var(--kt-accent); border-color: var(--kt-accent); color: #fff; }
+.budget input:checked + span small { color: #d6e0d4; }
+.budget input:focus-visible + span { outline: 2px solid var(--terra); outline-offset: 2px; }
+.f .btn { grid-column: 1 / -1; justify-self: start; border: 0; padding: 0 36px; }
+.f .hint { grid-column: 1 / -1; font-size: 13px; color: var(--kt-mut); margin: -8px 0 0; }
+
+.faq .wrap { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
+.kt-faq summary { font-family: Fraunces, serif; font-weight: 400; font-size: 21px; }
+footer { background: var(--kt-ink); color: #a9ab9f; padding: 70px 0 40px; }
+footer .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid rgba(243,237,227,.14); }
+footer .big { font-family: Fraunces, serif; font-weight: 300; font-size: clamp(36px, 5vw, 64px); color: #f3ede3; line-height: 1; }
+footer .big em { color: #d79a72; }
+footer .bot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 26px; font-size: 13.5px; }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer a:hover { color: #fff; }
+
+@media (max-width: 1000px) {
+  section { padding: 90px 0; }
+  .hero .wrap, .philo .wrap, .reveal .wrap, .enq .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 50px; }
+  .arch { max-width: 520px; margin: 0 auto; width: 100%; }
+  .arch .note { left: 0; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; gap: 20px; border-top: 0; }
+  .st { border-top: 1px solid var(--kt-ink); }
+  .gal { grid-template-columns: 1fr 1fr; grid-template-rows: 340px 220px 220px; }
+  .gal a:first-child { grid-row: auto; grid-column: span 2; }
+  .gal.few { grid-template-rows: none; grid-auto-rows: 300px; }
+  .gal.two a:first-child { grid-column: auto; }
+  .tq { grid-template-columns: 1fr; gap: 30px; } .tq img { max-width: 260px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .hero { padding-top: 120px; }
+  .issue span:last-child { display: none; }
+  .arch .seal { right: -6px; width: 96px; height: 96px; }
+  .arch .note { position: relative; left: auto; bottom: auto; margin: -40px 16px 0; }
+  .cols { columns: 1; }
+  .vals b { font-size: 32px; } .vals div { padding: 14px; }
+  .steps { grid-template-columns: 1fr; }
+  .st .num { font-size: 70px; }
+  .gal { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: 240px; }
+  .gal a:first-child, .gal.few a:first-child { grid-column: auto; }
+  .gal.few, .gal.two { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+  .ppl > .p { width: 78vw; }
+  form.f { grid-template-columns: 1fr; }
+  .budget { grid-template-columns: 1fr 1fr; }
+  .card { padding: 30px 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 21V10a7 7 0 0 1 14 0v11"/><path d="M12 21V11M12 15c-2.5 0-4-1.6-4-4 2.4 0 4 1.5 4 4Zm0-2c2.2 0 3.5-1.4 3.5-3.5-2.1 0-3.5 1.3-3.5 3.5Z"/></svg>Atelier <em>Verde</em></a>
+    <nav class="kt-menu"><a href="#studio">Studio</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#enquire">Contact</a></nav>
+    <a href="#enquire" class="btn solid">Start a project</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="issue" data-reveal><span>Interior design · Brooklyn, NY</span><span>Est. 2012</span></div>
+      <h1 class="fr"><span data-split>Homes that feel</span> <span data-rotate="lived-in|unhurried|layered|like you" data-every="2600"></span></h1>
+      <p data-reveal data-delay="200">We design warm, characterful rooms for real life: natural materials, collected pieces and light that changes through the day. Full renovations, single rooms and everything between.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#enquire" class="btn solid">Book a discovery call</a><a href="#projects" class="link">See our projects →</a></div>
+    </div>
+    <div class="arch" data-reveal="zoom">
+      <div class="img"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=70&auto=format&fit=crop" alt="Warm living room with a low sofa, wood accents and soft daylight"></div>
+      <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="c" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><circle cx="60" cy="60" r="58" fill="#faf6ef"/><text><textPath href="#c">Atelier Verde · Slow interiors · Brooklyn ·</textPath></text><circle cx="60" cy="60" r="6" fill="#b8683f"/></svg>
+      <div class="note"><b>Carroll Gardens brownstone</b><small>Full renovation · completed spring 2026</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="press kt-marquee" data-speed="40s" aria-label="Press features"><div class="kt-mq-track"><span class="k">As featured in</span><span>Habitat Quarterly</span><span>The Interior Review</span><span>Maison Journal</span><span>Brownstoner Homes</span><span>Slow Living Annual</span><span>Room &amp; Board Notes</span></div></div>
+
+<section class="philo" id="studio">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>The studio</span>
+      <h2 class="h fr" data-split>Less showroom, <em>more home</em></h2>
+      <div class="vals" data-reveal>
+        <div><b data-count="186">0</b><span>homes completed</span></div>
+        <div><b data-count="14">0</b><span>years in practice</span></div>
+        <div><b data-count="62" data-suffix="%">0</b><span>vintage &amp; local makers</span></div>
+      </div>
+    </div>
+    <div data-reveal="right">
+      <p class="lead">We think the best rooms look like they took years to gather, even when they took twelve weeks. That means fewer, better things, honest materials, and space left for your own story.</p>
+      <div class="cols">
+        <p>Atelier Verde was founded by Elena Moreau after a decade at architecture firms in Paris and New York. Today we're a team of six designers and a project manager working from a former print shop on Union Street.</p>
+        <p>We source from small workshops, estate sales and trade-only suppliers, and we track every purchase in a shared budget so there are no surprises. Around 60% of what we specify is vintage, reclaimed or made within 200 miles of the studio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Concept to completion</span>
+      <h2 class="h fr" data-split>From sketch <em>to sanctuary</em></h2>
+      <p data-reveal>Every project starts as a hand-drawn concept so you can see the bones before a single thing is ordered. Drag across to see the Park Slope living room as concept and as finished.</p>
+      <ul class="facts" data-reveal>
+        <li><span>Project</span><b>Park Slope duplex</b></li>
+        <li><span>Scope</span><b>Living, dining, 2 bedrooms</b></li>
+        <li><span>Timeline</span><b>14 weeks</b></li>
+        <li><span>Budget</span><b>$68,000 incl. furniture</b></li>
+      </ul>
+    </div>
+    <div class="kt-compare" data-reveal="right">
+      <img class="kt-before" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&q=70&auto=format&fit=crop" alt="Concept sketch version of the living room">
+      <img class="kt-after" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&q=70&auto=format&fit=crop" alt="Finished living room with neutral sofa and artwork">
+      <span class="kt-handle"></span><span class="kt-tag l">Concept</span><span class="kt-tag r">Finished</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare concept and finished room">
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap" data-tabs>
+    <div class="proj-head">
+      <div><span class="eyebrow" data-reveal>Portfolio</span><h2 class="h fr" data-split>Recent <em>rooms</em></h2></div>
+      <div class="rooms" role="tablist" data-reveal><button data-tab="liv" class="on">Living</button><button data-tab="kit">Kitchen &amp; dining</button><button data-tab="bed">Bedroom</button><button data-tab="bath">Bath</button><button data-tab="work">Workspace</button></div>
+    </div>
+    <div class="gal" data-pane="liv" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=70&auto=format&fit=crop" data-caption="Red Hook · living and dining"><figure><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1100&q=70&auto=format&fit=crop" alt="Living and dining space with leather chairs" loading="lazy"><figcaption><i>01</i>Red Hook home</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1600&q=70&auto=format&fit=crop" data-caption="Fort Greene loft · lounge"><figure><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=700&q=70&auto=format&fit=crop" alt="Light living room with rattan mirrors" loading="lazy"><figcaption><i>02</i>Fort Greene loft</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600&q=70&auto=format&fit=crop" data-caption="Hudson Valley farmhouse · sitting room"><figure><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=700&q=70&auto=format&fit=crop" alt="Sitting room with plants and wooden sideboard" loading="lazy"><figcaption><i>03</i>Hudson farmhouse</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1600&q=70&auto=format&fit=crop" data-caption="Prospect Heights · sage living room"><figure><img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=700&q=70&auto=format&fit=crop" alt="Living room with sage walls and round mirror" loading="lazy"><figcaption><i>04</i>Prospect Heights</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1600&q=70&auto=format&fit=crop" data-caption="Williamsburg condo · living"><figure><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=700&q=70&auto=format&fit=crop" alt="Living room with woven pendant lights" loading="lazy"><figcaption><i>05</i>Williamsburg condo</figcaption></figure></a>
+    </div>
+    <div class="gal" data-pane="kit" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=1600&q=70&auto=format&fit=crop" data-caption="Clinton Hill · dining room"><figure><img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=1100&q=70&auto=format&fit=crop" alt="Dining room with green chairs and round table" loading="lazy"><figcaption><i>01</i>Clinton Hill dining</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1600&q=70&auto=format&fit=crop" data-caption="Montclair · family kitchen"><figure><img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=700&q=70&auto=format&fit=crop" alt="Bright white kitchen with open shelving" loading="lazy"><figcaption><i>02</i>Montclair kitchen</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=70&auto=format&fit=crop" data-caption="Tribeca loft · kitchen island"><figure><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&q=70&auto=format&fit=crop" alt="Modern kitchen with marble island" loading="lazy"><figcaption><i>03</i>Tribeca loft</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1600&q=70&auto=format&fit=crop" data-caption="Dumbo · open-plan living and dining"><figure><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=70&auto=format&fit=crop" alt="Open-plan room with wood shelving" loading="lazy"><figcaption><i>04</i>Dumbo open plan</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=70&auto=format&fit=crop" data-caption="Ridgewood · everyday kitchen"><figure><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=70&auto=format&fit=crop" alt="Couple cooking together in a bright kitchen" loading="lazy"><figcaption><i>05</i>Ridgewood kitchen</figcaption></figure></a>
+    </div>
+    <div class="gal" data-pane="bed" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1600&q=70&auto=format&fit=crop" data-caption="Carroll Gardens · primary suite"><figure><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1100&q=70&auto=format&fit=crop" alt="Primary bedroom with upholstered headboard" loading="lazy"><figcaption><i>01</i>Carroll Gardens suite</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1600&q=70&auto=format&fit=crop" data-caption="Greenpoint · guest room"><figure><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=70&auto=format&fit=crop" alt="Calm guest bedroom with navy pillows" loading="lazy"><figcaption><i>02</i>Greenpoint guest room</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1617104678098-de229db51175?w=1600&q=70&auto=format&fit=crop" data-caption="Upper West Side · moody bedroom"><figure><img src="https://images.unsplash.com/photo-1617104678098-de229db51175?w=700&q=70&auto=format&fit=crop" alt="Dark bedroom with black accent wall" loading="lazy"><figcaption><i>03</i>UWS moody bedroom</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=70&auto=format&fit=crop" data-caption="Bed-Stuy · reading corner"><figure><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=70&auto=format&fit=crop" alt="Reading corner with a mustard armchair" loading="lazy"><figcaption><i>04</i>Reading corner</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1600&q=70&auto=format&fit=crop" data-caption="Cobble Hill townhouse · bedroom"><figure><img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=700&q=70&auto=format&fit=crop" alt="Bedroom with gallery wall, plants and rattan pendant" loading="lazy"><figcaption><i>05</i>Cobble Hill townhouse</figcaption></figure></a>
+    </div>
+    <div class="gal few two" data-pane="bath" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=70&auto=format&fit=crop" data-caption="Brooklyn Heights · primary bath"><figure><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1100&q=70&auto=format&fit=crop" alt="White bathroom with freestanding tub" loading="lazy"><figcaption><i>01</i>Brooklyn Heights bath</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1600&q=70&auto=format&fit=crop" data-caption="Park Slope · shower room"><figure><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=700&q=70&auto=format&fit=crop" alt="Bathroom with glass shower and plants" loading="lazy"><figcaption><i>02</i>Park Slope shower room</figcaption></figure></a>
+    </div>
+    <div class="gal few three" data-pane="work" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=1600&q=70&auto=format&fit=crop" data-caption="Windsor Terrace · home office"><figure><img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=1100&q=70&auto=format&fit=crop" alt="Home office with dark green walls and wooden desk" loading="lazy"><figcaption><i>01</i>Windsor Terrace office</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=70&auto=format&fit=crop" data-caption="Ditmas Park · studio nook"><figure><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=700&q=70&auto=format&fit=crop" alt="Bright room with a navy sofa and dresser" loading="lazy"><figcaption><i>02</i>Ditmas Park nook</figcaption></figure></a>
+      <a href="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=1600&q=70&auto=format&fit=crop" data-caption="Gowanus · creative studio"><figure><img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=700&q=70&auto=format&fit=crop" alt="Living space with light grey sofa and artwork" loading="lazy"><figcaption><i>03</i>Gowanus studio</figcaption></figure></a>
+    </div>
+  </div>
+</section>
+
+<section class="svc" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Services</span>
+    <h2 class="h fr" data-split>Three ways <em>to work with us</em></h2>
+    <div class="svc-grid">
+      <div class="card" data-reveal><span class="n">i.</span><h3>Design consult</h3><p class="pr">$295 · 2 hours</p><p>An in-home or video session for a single room or a stubborn problem. Bring your questions; leave with a plan.</p><ul><li>Layout &amp; furniture placement</li><li>Paint and material picks</li><li>Written follow-up notes</li></ul><a href="#enquire" class="btn line">Book a consult</a></div>
+      <div class="card" data-reveal data-delay="100"><span class="n">ii.</span><h3>E-design</h3><p class="pr">$1,450 per room</p><p>A complete room design delivered online, for clients who'd like to do the installing themselves.</p><ul><li>Concept board &amp; 3D render</li><li>Scaled floor plan</li><li>Shoppable list with trade pricing</li><li>Two rounds of revisions</li></ul><a href="#enquire" class="btn line">Start e-design</a></div>
+      <div class="card feat" data-reveal data-delay="200"><span class="n">iii.</span><h3>Full-service design</h3><p class="pr">From $25k design fee</p><p>We take it from first sketch to the final cushion: design, renovation drawings, procurement and installation day.</p><ul><li>Architectural &amp; lighting plans</li><li>Contractor coordination</li><li>Custom joinery &amp; upholstery</li><li>White-glove install &amp; styling</li></ul><a href="#enquire" class="btn">Discuss a project</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>How it works</span>
+    <h2 class="h fr" data-split>Four steps, <em>no surprises</em></h2>
+    <div class="steps">
+      <div class="st" data-reveal><span class="num">01</span><h3>Discover</h3><p>A walkthrough and long conversation about how you live, what you love and what drives you mad.</p><small>Week 1</small></div>
+      <div class="st" data-reveal data-delay="100"><span class="num">02</span><h3>Design</h3><p>Concept sketches, material boards and a full budget, refined together over two presentations.</p><small>Weeks 2–6</small></div>
+      <div class="st" data-reveal data-delay="200"><span class="num">03</span><h3>Source &amp; build</h3><p>We order, track and inspect every item, and manage trades on site so you don't have to.</p><small>Weeks 6–14</small></div>
+      <div class="st" data-reveal data-delay="300"><span class="num">04</span><h3>Install &amp; style</h3><p>One big reveal day: furniture placed, art hung, beds made, flowers on the table.</p><small>Reveal day</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="team" data-slider-scope>
+  <div class="wrap">
+    <div class="team-head"><div><span class="eyebrow" data-reveal>The team</span><h2 class="h fr" data-split style="margin-bottom:0">People <em>behind the rooms</em></h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel ppl" data-carousel>
+      <div class="p"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=70&auto=format&fit=crop" alt="Portrait of Elena Moreau" loading="lazy"><h3>Elena Moreau</h3><span>Founder · Principal designer</span><p>Trained in architecture, obsessed with lime plaster and old French linen.</p></div>
+      <div class="p"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=70&auto=format&fit=crop" alt="Portrait of Daniel Okafor" loading="lazy"><h3>Daniel Okafor</h3><span>Senior designer</span><p>Leads our kitchen and bath projects. Can talk about drawer runners for hours.</p></div>
+      <div class="p"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=70&auto=format&fit=crop" alt="Portrait of Hana Ito" loading="lazy"><h3>Hana Ito</h3><span>Designer · E-design lead</span><p>Runs our online studio and the best vintage-sourcing spreadsheet in Brooklyn.</p></div>
+      <div class="p"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=70&auto=format&fit=crop" alt="Portrait of Clara Brennan" loading="lazy"><h3>Clara Brennan</h3><span>Project manager</span><p>Keeps contractors, deliveries and budgets on schedule, calmly.</p></div>
+      <div class="p"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=70&auto=format&fit=crop" alt="Portrait of Sam Whitaker" loading="lazy"><h3>Sam Whitaker</h3><span>Stylist · Art sourcing</span><p>Finds the lamp, the rug and the painting that make a room feel finished.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tst">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Client notes</span>
+    <div class="kt-slider" data-autoplay="7500" style="margin-top:40px">
+      <div class="kt-track">
+        <div class="tq"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=70&auto=format&fit=crop" alt="Finished bedroom from the Carroll Gardens project" loading="lazy"><div><blockquote>Elena saw what our brownstone could be before we did. It still feels like an old house, just calmer, brighter and completely ours.</blockquote><cite>Rachel &amp; Omar Haddad <span>· Carroll Gardens, full renovation</span></cite></div></div>
+        <div class="tq"><img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=700&q=70&auto=format&fit=crop" alt="Finished family kitchen" loading="lazy"><div><blockquote>The budget tracker alone was worth it. We came in $1,800 under, and the kitchen is the room everyone ends up in.</blockquote><cite>Megan Lowe <span>· Montclair, kitchen &amp; dining</span></cite></div></div>
+        <div class="tq"><img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=700&q=70&auto=format&fit=crop" alt="Finished sage-green living room" loading="lazy"><div><blockquote>We did e-design for our living room and installed it over two weekends. Hana's shopping list was so clear it felt like cheating.</blockquote><cite>Jordan Pierce <span>· Prospect Heights, e-design</span></cite></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="enq" id="enquire">
+  <div class="wrap">
+    <div class="info">
+      <span class="eyebrow" data-reveal>Start a project</span>
+      <h2 class="h fr" data-split>Let's talk <em>about home</em></h2>
+      <p data-reveal>Tell us a little about your space and we'll set up a free 20-minute discovery call. We're currently booking full-service projects for spring 2027 and e-design within three weeks.</p>
+      <div class="contact" data-reveal>
+        <div><b>Studio</b><span>412 Union St, Brooklyn NY 11231</span></div>
+        <div><b>Email</b><span>studio@atelierverde.co</span></div>
+        <div><b>Phone</b><span>(718) 555-0142</span></div>
+        <div><b>Hours</b><span>Tue–Sat, 10am–6pm · by appointment</span></div>
+      </div>
+    </div>
+    <form class="f" data-form="Thank you! Elena's team will email you within two working days to book your discovery call." data-reveal="right">
+      <label>Full name<input name="name" autocomplete="name" required></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      <label>Service<select name="service" required><option value="">Choose a service</option><option>Full-service design</option><option>E-design</option><option>Design consult</option><option>Not sure yet</option></select></label>
+      <label>Property location<input name="where" placeholder="e.g. Park Slope, Brooklyn"></label>
+      <fieldset><legend>Investment range (design + furnishings)</legend>
+        <div class="budget">
+          <label><input type="radio" name="budget" value="15-30"><span>$15–30k<small>One or two rooms</small></span></label>
+          <label><input type="radio" name="budget" value="30-75" checked><span>$30–75k<small>Several rooms</small></span></label>
+          <label><input type="radio" name="budget" value="75-150"><span>$75–150k<small>Whole home</small></span></label>
+          <label><input type="radio" name="budget" value="150+"><span>$150k+<small>Renovation</small></span></label>
+        </div>
+      </fieldset>
+      <label>Ideal start<select name="start"><option>Within a month</option><option selected>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select></label>
+      <label>Rooms involved<input name="rooms" placeholder="Living, kitchen, primary bedroom…"></label>
+      <label class="full">Tell us about the space<textarea name="msg" placeholder="What's working, what isn't, and how you'd like it to feel."></textarea></label>
+      <p class="hint">No obligation. We'll never share your details.</p>
+      <button class="btn solid" type="submit">Request a discovery call</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div><span class="eyebrow" data-reveal>Questions</span><h2 class="h fr" data-split>Before <em>we begin</em></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>How is the design fee calculated?</summary><div class="kt-faq-a"><div>Full-service projects have a flat design fee based on scope, agreed before we start. Furniture and finishes are billed at our trade price plus a 15% procurement fee, usually less than retail.</div></div></details>
+      <details class="kt-faq"><summary>Do you work outside New York City?</summary><div class="kt-faq-a"><div>Full-service projects are within about two hours of Brooklyn, including the Hudson Valley, Connecticut and northern New Jersey. E-design and video consults are available anywhere in the US.</div></div></details>
+      <details class="kt-faq"><summary>Can you work with furniture we already own?</summary><div class="kt-faq-a"><div>Absolutely, and we encourage it. We'll photograph and measure what you have and design around the pieces you love, reupholstering or refinishing where it helps.</div></div></details>
+      <details class="kt-faq"><summary>Do you manage contractors?</summary><div class="kt-faq-a"><div>Yes. We can bring our trusted builders or coordinate with yours, and we attend site meetings weekly during construction.</div></div></details>
+      <details class="kt-faq"><summary>How long does a typical project take?</summary><div class="kt-faq-a"><div>A single room usually takes 8–12 weeks from first meeting to install. Whole-home renovations run 6–12 months depending on permits and custom pieces.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top"><p class="big">Slow interiors,<br><em>made to last.</em></p><a href="#enquire" class="btn solid">Start a project</a></div>
+    <div class="bot"><span>© 2026 Atelier Verde Interiors LLC</span><nav><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Journal</a><a href="#">Trade program</a><a href="#">Privacy</a></nav></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+</body>
+</html>

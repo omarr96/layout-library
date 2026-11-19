@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apex Auto Care · Servicing, Tyres, MOT &amp; Detailing</title>
+<meta name="description" content="Fixed-price servicing, tyres, MOT and detailing in Bristol. Free courtesy car, 12-month parts and labour warranty, instant online quotes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #0e1116; --kt-ink: #f1f4f8; --kt-tx: #a9b2bf; --kt-mut: #6c7684; --kt-line: rgba(255,255,255,.09); --kt-accent: #3fd0ff; --kt-accent-ink: #061018; --kt-radius: 6px; --panel: #161a21; --panel2: #1d222b; --chrome: #c9d1dc; --amber: #ffb547; }
+body { font: 16px/1.6 Archivo, system-ui, sans-serif; font-stretch: 100%; }
+.wx { font-stretch: 125%; font-weight: 800; letter-spacing: -.02em; line-height: .98; text-transform: uppercase; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--kt-accent); display: inline-flex; gap: 10px; align-items: center; }
+.tag::before { content: "//"; color: var(--kt-mut); }
+h2.h { font-size: clamp(34px, 5vw, 64px); color: var(--kt-ink); margin: 14px 0 18px; }
+h2.h em { font-style: normal; color: var(--kt-accent); }
+.lead { max-width: 560px; font-size: 17.5px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 4px; font-weight: 700; font-size: 14.5px; letter-spacing: .04em; text-transform: uppercase; font-stretch: 110%; transition: .2s; }
+.btn.cy { background: var(--kt-accent); color: var(--kt-accent-ink); }
+.btn.cy:hover { background: #8ae3ff; transform: translateY(-2px); }
+.btn.gh { border: 1px solid rgba(255,255,255,.22); color: var(--kt-ink); }
+.btn.gh:hover { border-color: var(--kt-accent); color: var(--kt-accent); }
+section { padding: 110px 0; }
+.kt-svg { width: 20px; height: 20px; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 78px; }
+.nav.scrolled { background: rgba(14,17,22,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--kt-line); }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--kt-ink); font-weight: 800; font-stretch: 125%; font-size: 20px; letter-spacing: -.01em; text-transform: uppercase; }
+.logo svg { width: 30px; height: 30px; }
+.logo small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 400; letter-spacing: .25em; color: var(--kt-mut); font-stretch: 100%; }
+.kt-menu { display: flex; gap: 28px; }
+.nav .logo { margin-right: auto; }
+.kt-menu a { font-size: 14px; font-weight: 600; color: #cfd6df; }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .ph { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: var(--kt-ink); white-space: nowrap; }
+.nav .btn { height: 44px; padding: 0 18px; font-size: 13px; }
+.kt-burger { color: var(--kt-ink); }
+
+/* hero */
+.hero { padding: 150px 0 90px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--kt-line) 1px, transparent 1px), linear-gradient(90deg, var(--kt-line) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask: radial-gradient(ellipse at 70% 30%, #000, transparent 70%); mask: radial-gradient(ellipse at 70% 30%, #000, transparent 70%); }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 5vw, 70px); color: var(--kt-ink); margin: 18px 0 24px; }
+.hero h1 .rw { color: var(--kt-accent); font-stretch: 100%; }
+.hero p { font-size: 18px; max-width: 500px; margin: 0 0 32px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero .checks { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 34px; font-size: 14px; color: var(--chrome); }
+.hero .checks span::before { content: "✓ "; color: var(--kt-accent); font-weight: 800; }
+.shot { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/5; border: 1px solid var(--kt-line); }
+.shot > img { width: 100%; height: 100%; object-fit: cover; }
+.shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(14,17,22,.92)); }
+.bays { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; display: grid; gap: 8px; }
+.bay { display: grid; grid-template-columns: 62px 1fr auto; gap: 12px; align-items: center; padding: 11px 14px; border-radius: 6px; background: rgba(22,26,33,.85); backdrop-filter: blur(8px); border: 1px solid var(--kt-line); font-size: 13.5px; color: var(--kt-ink); }
+.bay .mono { font-size: 11.5px; color: var(--kt-mut); }
+.bay i { font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 99px; background: rgba(63,208,255,.14); color: var(--kt-accent); white-space: nowrap; }
+.bay i.am { background: rgba(255,181,71,.14); color: var(--amber); }
+.bay i.ok { background: rgba(110,231,160,.14); color: #6ee7a0; }
+.live { position: absolute; top: 18px; left: 18px; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 6px 10px; border-radius: 4px; background: rgba(14,17,22,.8); color: var(--kt-ink); display: flex; gap: 8px; align-items: center; }
+.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #ff4d4d; animation: kt-blink 1.2s steps(1) infinite; }
+
+/* strip */
+.strip { border-block: 1px solid var(--kt-line); padding: 22px 0; background: var(--panel); }
+.strip .kt-mq-track span { font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 22px; color: var(--chrome); white-space: nowrap; opacity: .75; }
+.badges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--kt-line); border: 1px solid var(--kt-line); border-radius: 8px; overflow: hidden; margin-top: 60px; }
+.badge { background: var(--kt-bg); padding: 26px; display: flex; gap: 16px; align-items: flex-start; }
+.badge svg { width: 30px; height: 30px; color: var(--kt-accent); flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.badge b { display: block; color: var(--kt-ink); font-size: 16px; }
+.badge span { font-size: 14px; }
+
+/* menu */
+.mhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+.mtabs { display: flex; gap: 4px; padding: 4px; border-radius: 6px; background: var(--panel); border: 1px solid var(--kt-line); flex-wrap: wrap; }
+.mtabs button { height: 42px; padding: 0 18px; border-radius: 4px; font-weight: 700; font-size: 13.5px; letter-spacing: .04em; text-transform: uppercase; color: #cfd6df; }
+.mtabs button.on { background: var(--kt-accent); color: var(--kt-accent-ink); }
+.menu-grid { display: grid; grid-template-columns: 1fr 380px; gap: 30px; margin-top: 40px; }
+.rows { border: 1px solid var(--kt-line); border-radius: 8px; overflow: hidden; }
+.row { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 22px 26px; border-bottom: 1px solid var(--kt-line); background: var(--panel); transition: background .2s; }
+.row:last-child { border-bottom: 0; }
+.row:hover { background: var(--panel2); }
+.row b { color: var(--kt-ink); font-size: 17px; }
+.row .pr { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--kt-accent); font-size: 20px; text-align: right; white-space: nowrap; }
+.row small { grid-column: 1 / -1; font-size: 14px; color: var(--kt-tx); }
+.row .pr s { color: var(--kt-mut); font-size: 13px; font-weight: 400; margin-right: 6px; }
+.side { border-radius: 8px; overflow: hidden; position: relative; min-height: 360px; }
+.side img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.side::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(14,17,22,.95)); }
+.side .c { position: absolute; z-index: 1; left: 24px; right: 24px; bottom: 22px; }
+.side h3 { margin: 0 0 6px; color: var(--kt-ink); font-size: 22px; font-stretch: 120%; text-transform: uppercase; }
+.side p { margin: 0; font-size: 14.5px; color: #cfd6df; }
+
+/* quote */
+.qt { background: var(--panel); border-block: 1px solid var(--kt-line); }
+.qt .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.qform { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; }
+.qform .full { grid-column: 1 / -1; }
+.fl { display: grid; gap: 6px; font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--kt-mut); }
+.fl input, .fl select, .fl textarea { height: 52px; border-radius: 4px; border: 1px solid var(--kt-line); background: var(--kt-bg); color: var(--kt-ink); padding: 0 14px; font-family: Archivo, sans-serif; font-size: 15px; letter-spacing: 0; text-transform: none; outline: none; width: 100%; }
+.fl textarea { height: 96px; padding: 12px 14px; resize: vertical; }
+.fl input:focus, .fl select:focus, .fl textarea:focus { border-color: var(--kt-accent); }
+.sizes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; border: 0; padding: 0; margin: 0; }
+.sizes legend { font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--kt-mut); margin-bottom: 6px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: grid; place-items: center; text-align: center; min-height: 52px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--kt-line); background: var(--kt-bg); font-size: 13.5px; font-weight: 600; color: #cfd6df; transition: .2s; line-height: 1.25; }
+.chip input:checked + span { border-color: var(--kt-accent); color: var(--kt-accent); background: rgba(63,208,255,.08); }
+.chip input:focus-visible + span { outline: 2px solid var(--kt-accent); outline-offset: 2px; }
+.ticket { background: var(--kt-bg); border: 1px solid var(--kt-line); border-radius: 8px; padding: 34px; position: sticky; top: 100px; }
+.ticket .tt { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--kt-mut); letter-spacing: .08em; text-transform: uppercase; border-bottom: 1px dashed rgba(255,255,255,.15); padding-bottom: 16px; }
+.ticket .car { color: var(--kt-ink); font-size: 22px; font-weight: 800; font-stretch: 115%; margin: 22px 0 4px; }
+.ticket ul { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 10px; font-size: 14.5px; }
+.ticket li { display: flex; justify-content: space-between; gap: 16px; }
+.ticket li span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--kt-ink); white-space: nowrap; }
+.ticket .tot { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px dashed rgba(255,255,255,.15); padding-top: 18px; gap: 12px; }
+.ticket .tot b { font-family: 'JetBrains Mono', monospace; font-size: 46px; color: var(--kt-accent); line-height: 1; }
+.ticket .note { font-size: 13px; margin: 14px 0 22px; }
+.ticket .btn { width: 100%; }
+
+/* detailing */
+.det .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
+.det .kt-compare { aspect-ratio: 16/11; border-radius: 8px; }
+.det .kt-before { filter: grayscale(.7) sepia(.35) brightness(.62) contrast(.85) blur(.6px); }
+.det .kt-tag { left: 14px; } .det .kt-tag.r { left: auto; right: 14px; background: var(--kt-accent); color: var(--kt-accent-ink); }
+.pk { display: grid; gap: 10px; margin-top: 28px; }
+.pk div { display: grid; grid-template-columns: 1fr auto; gap: 2px 20px; padding: 16px 18px; border-radius: 6px; border: 1px solid var(--kt-line); }
+.pk b { color: var(--kt-ink); }
+.pk .mono { color: var(--kt-accent); font-weight: 700; }
+.pk small { grid-column: 1 / -1; font-size: 13.5px; }
+
+/* work */
+.work { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 10px; margin-top: 40px; }
+.work a { position: relative; border-radius: 6px; overflow: hidden; display: block; }
+.work a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+.work img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.work a:hover img { transform: scale(1.06); }
+.work a span { position: absolute; left: 12px; bottom: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 5px 9px; border-radius: 4px; background: rgba(14,17,22,.82); color: var(--kt-ink); }
+
+/* team */
+.thead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.thead .ar { display: flex; gap: 8px; }
+.kt-arrow { border-radius: 4px; }
+.techs > div { width: 280px; }
+.tech { border: 1px solid var(--kt-line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.tech img { width: 100%; height: 300px; object-fit: cover; filter: grayscale(1); transition: filter .4s; }
+.tech:hover img { filter: none; }
+.tech .c { padding: 18px 20px; }
+.tech b { color: var(--kt-ink); font-size: 18px; display: block; }
+.tech .mono { font-size: 12px; color: var(--kt-accent); }
+.tech p { margin: 8px 0 0; font-size: 14px; }
+
+/* reviews */
+.rv { background: var(--panel); border-block: 1px solid var(--kt-line); }
+.rv .wrap { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+.score b { font-family: 'JetBrains Mono', monospace; font-size: 88px; color: var(--kt-ink); line-height: 1; display: block; }
+.stars { color: var(--amber); letter-spacing: 3px; font-size: 20px; }
+.rq p { font-size: clamp(20px, 2.4vw, 28px); line-height: 1.45; color: var(--kt-ink); margin: 0 0 22px; font-weight: 500; }
+.rq .who { display: flex; gap: 14px; align-items: center; }
+.rq .who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+.rq .who b { color: var(--kt-ink); display: block; }
+.rq .who small { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.rv .kt-dots { justify-content: flex-start; color: var(--kt-accent); }
+
+/* book */
+.book .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; }
+.book form { background: var(--panel); border: 1px solid var(--kt-line); border-radius: 8px; padding: 34px; display: grid; gap: 14px; }
+.days { display: flex; gap: 6px; flex-wrap: wrap; }
+.days button { flex: 1; min-width: 64px; padding: 10px 6px; border-radius: 4px; border: 1px solid var(--kt-line); text-align: center; line-height: 1.2; color: #cfd6df; }
+.days button b { display: block; font-size: 18px; color: inherit; }
+.days button small { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; }
+.days button.on { border-color: var(--kt-accent); background: rgba(63,208,255,.08); color: var(--kt-accent); }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.slots .chip span { min-height: 46px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; }
+.slots .chip input:disabled + span { opacity: .35; text-decoration: line-through; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ck { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.ck input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--kt-accent); flex: none; }
+.info { display: grid; gap: 18px; margin-top: 30px; }
+.info div { display: flex; gap: 14px; }
+.info b { color: var(--kt-ink); display: block; }
+.info svg { width: 22px; height: 22px; color: var(--kt-accent); fill: none; stroke: currentColor; stroke-width: 1.8; flex: none; margin-top: 3px; }
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+footer { border-top: 1px solid var(--kt-line); padding: 46px 0; font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer nav a:hover { color: var(--kt-accent); }
+
+@media (max-width: 900px) { .nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: #0e1116; } }
+@media (max-width: 1080px) { .nav .ph { display: none; } .menu-grid { grid-template-columns: 1fr; } .side { min-height: 280px; } }
+@media (max-width: 980px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .qt .wrap, .det .wrap, .rv .wrap, .book .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .shot { aspect-ratio: 4/3; }
+  .badges { grid-template-columns: 1fr 1fr; }
+  .ticket { position: static; }
+  .work { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .hero { padding: 120px 0 60px; } .hero h1 { font-size: 34px; }
+  .shot { aspect-ratio: 4/5; }
+  .bay { grid-template-columns: 1fr auto; } .bay .mono { display: none; }
+  .badges { grid-template-columns: 1fr; }
+  .qform, .two { grid-template-columns: 1fr; }
+  .sizes { grid-template-columns: 1fr 1fr; }
+  .slots { grid-template-columns: repeat(3, 1fr); }
+  .row { padding: 18px; } .row .pr { font-size: 17px; }
+  .ticket, .book form { padding: 22px; }
+  .ticket .tot b { font-size: 36px; }
+  .techs > div { width: 76vw; }
+  .score b { font-size: 64px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Apex Auto Care home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 3 29h7l6-13 6 13h7z" fill="#3fd0ff"/><path d="M12 24h8" stroke="#0e1116" stroke-width="2.5"/></svg><span>Apex<small>AUTO CARE</small></span></a>
+    <nav class="kt-menu"><a href="#services">Prices</a><a href="#quote">Quote</a><a href="#detailing">Detailing</a><a href="#team">Team</a><a href="#book">Book</a></nav>
+    <a href="tel:01174960321" class="ph">0117 496 0321</a>
+    <a href="#book" class="btn cy">Book a slot</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal>Bristol · Mon–Sat 07:30–18:00</span>
+      <h1 class="wx"><span data-split>Car care with</span><br><span class="rw" data-rotate="fixed prices|no surprises|free loan cars|real warranty"></span></h1>
+      <p data-reveal data-delay="200">Servicing, tyres, MOTs and detailing for every make. You get a price before we pick up a spanner, a video health check on your phone, and a courtesy car while you wait.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#quote" class="btn cy">Get an instant quote</a><a href="#services" class="btn gh">See price list</a></div>
+      <div class="checks" data-reveal data-delay="400"><span>Free courtesy car</span><span>12-month warranty</span><span>DVSA approved MOT</span><span>4.9 on 1,240 reviews</span></div>
+    </div>
+    <div class="shot" data-reveal="right">
+      <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1200&q=70&auto=format&fit=crop" alt="Technician working under the bonnet of a car in the Apex workshop">
+      <span class="live">Workshop live · 10:42</span>
+      <div class="bays">
+        <div class="bay"><span class="mono">BAY 01</span><span>VW Golf · Full service</span><i>In progress</i></div>
+        <div class="bay"><span class="mono">BAY 02</span><span>Tesla Model 3 · Tyres ×4</span><i class="ok">Ready 11:15</i></div>
+        <div class="bay"><span class="mono">BAY 03</span><span>Ford Kuga · MOT</span><i class="am">Awaiting parts</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip kt-marquee" data-speed="34s"><div class="kt-mq-track"><span>Volkswagen</span><span>BMW</span><span>Ford</span><span>Audi</span><span>Toyota</span><span>Tesla</span><span>Kia</span><span>Volvo</span><span>Mercedes-Benz</span><span>Nissan</span><span>Hyundai</span><span>Skoda</span></div></div>
+
+<section id="services">
+  <div class="wrap" data-tabs>
+    <div class="mhead">
+      <div><span class="tag" data-reveal>Fixed price menu</span><h2 class="h wx" data-split>Prices on the <em>wall</em></h2><p class="lead" data-reveal>Every price includes parts, labour and VAT. If we find something else, we send you a video and a price, and nothing happens until you say yes.</p></div>
+      <div class="mtabs" role="tablist" data-reveal><button data-tab="svc" class="on">Servicing</button><button data-tab="tyr">Tyres</button><button data-tab="mot">MOT &amp; repairs</button><button data-tab="ev">EV &amp; hybrid</button></div>
+    </div>
+    <div class="menu-grid">
+      <div data-reveal>
+        <div class="rows" data-pane="svc">
+          <div class="row"><b>Interim service</b><span class="pr">£129</span><small>Every 6,000 miles. Oil and filter, 40-point check, fluids topped up, tyre pressures.</small></div>
+          <div class="row"><b>Full service</b><span class="pr"><s>£249</s>£219</span><small>Every 12,000 miles. Everything in interim plus air and cabin filters, brakes measured, 70-point check.</small></div>
+          <div class="row"><b>Major service</b><span class="pr">£339</span><small>Every 24,000 miles. Full service plus spark plugs, fuel filter (diesel) and brake fluid change.</small></div>
+          <div class="row"><b>Service + MOT combo</b><span class="pr">£259</span><small>Full service and MOT in one visit. Saves you £15 and a second trip.</small></div>
+        </div>
+        <div class="rows" data-pane="tyr">
+          <div class="row"><b>Budget tyre, fitted</b><span class="pr">from £62</span><small>Per tyre, 16" and under. Valve, balance and old tyre disposal included.</small></div>
+          <div class="row"><b>Premium tyre, fitted</b><span class="pr">from £118</span><small>Michelin, Continental or Pirelli. Same-day fitting on most sizes.</small></div>
+          <div class="row"><b>Four-wheel alignment</b><span class="pr">£69</span><small>Laser alignment with a before-and-after printout.</small></div>
+          <div class="row"><b>Puncture repair</b><span class="pr">£25</span><small>To British Standard where the damage is in the repairable zone. Free if we fit a new tyre.</small></div>
+        </div>
+        <div class="rows" data-pane="mot">
+          <div class="row"><b>MOT test</b><span class="pr">£45</span><small>DVSA approved test bay. Free retest within 10 working days.</small></div>
+          <div class="row"><b>Front pads and discs</b><span class="pr">from £245</span><small>OE-quality parts, fitted and road tested, with a brake fluid check.</small></div>
+          <div class="row"><b>Air-con regas</b><span class="pr">£79</span><small>Leak test, recharge and antibacterial clean of the vents.</small></div>
+          <div class="row"><b>Diagnostic scan</b><span class="pr">£49</span><small>Warning light read and explained. Taken off the bill if we do the repair.</small></div>
+        </div>
+        <div class="rows" data-pane="ev">
+          <div class="row"><b>EV annual health check</b><span class="pr">£149</span><small>Battery state of health report, cooling system, brakes, suspension and cabin filter.</small></div>
+          <div class="row"><b>Hybrid service</b><span class="pr">£239</span><small>Engine and high-voltage system checks by IMI Level 3 qualified technicians.</small></div>
+          <div class="row"><b>EV tyres ×4</b><span class="pr">from £520</span><small>Low-noise, high-load EV tyres. Balanced for the extra weight.</small></div>
+          <div class="row"><b>Brake caliper service</b><span class="pr">£119</span><small>EVs barely use their brakes, so calipers seize. We clean and grease all four.</small></div>
+        </div>
+      </div>
+      <div class="side" data-reveal="right"><img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=900&q=70&auto=format&fit=crop" alt="Technician tightening a part in a car engine bay"><div class="c"><h3>Video health check</h3><p>Every car gets a 3-minute video from your technician, sent by text, showing exactly what we found.</p></div></div>
+    </div>
+    <div class="badges" data-reveal>
+      <div class="badge"><svg viewBox="0 0 24 24"><path d="M5 17h14M6 17l1.5-6h9L18 17M8 17v2M16 17v2M7.5 11 9 7h6l1.5 4"/></svg><div><b>Free courtesy car</b><span>Book it with any job over £150.</span></div></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><b>12-month warranty</b><span>12 months or 12,000 miles, parts and labour.</span></div></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Same-day on most jobs</b><span>Drop off by 08:30, collect by 17:30.</span></div></div>
+      <div class="badge"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M4 11h16"/></svg><div><b>Keeps your warranty</b><span>OE-quality parts and a stamped service book.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="qt" id="quote">
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal>Instant quote</span>
+      <h2 class="h wx" data-split>Your price in <em>ten seconds</em></h2>
+      <p class="lead" data-reveal>Tell us the car and the job. The price you see is the price you pay, as long as nothing extra turns up. If it does, you decide.</p>
+      <form class="qform" id="qform" data-reveal>
+        <label class="fl">Make<input id="q-make" list="makes" value="Volkswagen" autocomplete="off"></label>
+        <label class="fl">Model<input id="q-model" value="Golf" autocomplete="off"></label>
+        <datalist id="makes"><option value="Audi"><option value="BMW"><option value="Ford"><option value="Hyundai"><option value="Kia"><option value="Mercedes-Benz"><option value="Nissan"><option value="Skoda"><option value="Tesla"><option value="Toyota"><option value="Volkswagen"><option value="Volvo"></datalist>
+        <fieldset class="sizes full"><legend>Vehicle type</legend>
+          <label class="chip"><input type="radio" name="size" value="1" checked><span>Small hatch</span></label>
+          <label class="chip"><input type="radio" name="size" value="1.12"><span>Family / estate</span></label>
+          <label class="chip"><input type="radio" name="size" value="1.28"><span>SUV / 4×4</span></label>
+          <label class="chip"><input type="radio" name="size" value="ev"><span>EV / hybrid</span></label>
+        </fieldset>
+        <label class="fl full">Service
+          <select id="q-svc">
+            <option value="219|Full service" data-job="Full service">Full service</option>
+            <option value="129|Interim service" data-job="Interim service">Interim service</option>
+            <option value="339|Major service" data-job="Major service">Major service</option>
+            <option value="45|MOT test" data-job="MOT test">MOT test</option>
+            <option value="380|Four mid-range tyres" data-job="Tyres">Four mid-range tyres</option>
+            <option value="245|Front pads and discs" data-job="Brakes">Front pads and discs</option>
+            <option value="189|Full valet and machine polish" data-job="Detailing">Full valet and machine polish</option>
+          </select>
+        </label>
+        <label class="ck full"><input type="checkbox" id="q-mot"> Add an MOT for £30 (save £15)</label>
+        <label class="ck full"><input type="checkbox" id="q-col"> Collect and deliver my car (£15, within 5 miles of BS3)</label>
+      </form>
+    </div>
+    <div class="ticket" data-reveal="right" aria-live="polite">
+      <div class="tt"><span>Quote #AP-<span id="q-no">2471</span></span><span>Valid 14 days</span></div>
+      <div class="car" id="q-car">Volkswagen Golf</div>
+      <span class="mono" style="font-size:12.5px" id="q-type">Small hatch</span>
+      <ul id="q-lines"></ul>
+      <div class="tot"><span>Total incl. VAT</span><b id="q-total">£219</b></div>
+      <p class="note">Includes parts, labour, video health check and a wash. Courtesy car free on jobs over £150.</p>
+      <a href="#book" class="btn cy" id="q-lock">Lock this price and book</a>
+    </div>
+  </div>
+</section>
+
+<section class="det" id="detailing">
+  <div class="wrap">
+    <div class="kt-compare" data-reveal="left">
+      <img class="kt-before" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1200&q=75&auto=format&fit=crop" alt="Car before detailing, dull paint">
+      <img class="kt-after" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1200&q=75&auto=format&fit=crop" alt="Same car after detailing, glossy paint">
+      <span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after detailing">
+    </div>
+    <div>
+      <span class="tag" data-reveal>Detailing studio</span>
+      <h2 class="h wx" data-split>Showroom, <em>again</em></h2>
+      <p data-reveal>Our detailing bay has its own lighting rig, de-ionised water and two full-time detailers. Drag the slider to see a three-year-old Golf after one day with Kasia.</p>
+      <div class="pk" data-reveal>
+        <div><b>Maintenance valet</b><span class="mono">£79</span><small>Snow foam, hand wash, wheels, glass and a full interior vacuum. 2 hours.</small></div>
+        <div><b>Enhancement detail</b><span class="mono">£189</span><small>Single-stage machine polish removes light swirls. Sealant lasts 6 months.</small></div>
+        <div><b>Ceramic protection</b><span class="mono">£549</span><small>Two-stage correction and a 3-year ceramic coating. 2 days.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="tag" data-reveal>Out of the workshop</span>
+    <h2 class="h wx" data-split>Recent <em>work</em></h2>
+    <div class="work" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=70&auto=format&fit=crop" data-caption="Timing belt and water pump, Audi A4 2.0 TDI"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=900&q=70&auto=format&fit=crop" alt="Engine bay during a timing belt job"><span>Timing belt · A4</span></a>
+      <a href="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=1600&q=70&auto=format&fit=crop" data-caption="Tyre wall: 400+ sizes in stock for same-day fitting"><img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=600&q=70&auto=format&fit=crop" alt="Stack of new tyres in stock"><span>Tyres in stock</span></a>
+      <a href="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=1600&q=70&auto=format&fit=crop" data-caption="Snow foam pre-wash before an enhancement detail"><img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=600&q=70&auto=format&fit=crop" alt="Car covered in snow foam during a wash"><span>Snow foam</span></a>
+      <a href="https://images.unsplash.com/photo-1606577924006-27d39b132ae2?w=1600&q=70&auto=format&fit=crop" data-caption="Headlight restoration and ceramic coat"><img src="https://images.unsplash.com/photo-1606577924006-27d39b132ae2?w=600&q=70&auto=format&fit=crop" alt="Close-up of a restored red car headlight"><span>Headlight restore</span></a>
+      <a href="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1600&q=70&auto=format&fit=crop" data-caption="Clutch replacement, Ford Focus"><img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=70&auto=format&fit=crop" alt="Mechanic's hands working on a clutch"><span>Clutch · Focus</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="team" data-slider-scope style="padding-top:0">
+  <div class="wrap">
+    <div class="thead"><div><span class="tag" data-reveal>The crew</span><h2 class="h wx" data-split>Who's under <em>your</em> car</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous technician"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next technician"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel techs" data-carousel>
+      <div class="tech"><img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=600&q=70&auto=format&fit=crop" alt="Portrait of Dan Mercer"><div class="c"><b>Dan Mercer</b><span class="mono">Founder · Master technician</span><p>22 years on the tools, 9 of them at a BMW main dealer.</p></div></div>
+      <div class="tech"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop" alt="Portrait of Ravi Patel"><div class="c"><b>Ravi Patel</b><span class="mono">EV &amp; hybrid lead</span><p>IMI Level 4 high-voltage certified. Talks batteries for fun.</p></div></div>
+      <div class="tech"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=70&auto=format&fit=crop" alt="Portrait of Kasia Nowak"><div class="c"><b>Kasia Nowak</b><span class="mono">Head detailer</span><p>Paint correction and ceramic coatings. Notices every swirl.</p></div></div>
+      <div class="tech"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=70&auto=format&fit=crop" alt="Portrait of Tom Ashby"><div class="c"><b>Tom Ashby</b><span class="mono">MOT tester · Diagnostics</span><p>DVSA nominated tester. Finds the fault, not just the code.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rv" id="reviews">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="tag">Reviews</span>
+      <div class="score" style="margin-top:18px"><b>4.9</b><span class="stars" aria-label="4.9 out of 5 stars">★★★★★</span><p style="margin:8px 0 0;font-size:14px">1,240 Google reviews · 98% would recommend</p></div>
+    </div>
+    <div class="kt-slider" data-autoplay="7000" data-reveal>
+      <div class="kt-track">
+        <div class="rq"><p>“Quoted £219 online, paid £219. The video of my worn brake discs was the first time a garage has actually shown me the problem.”</p><div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=70&auto=format&fit=crop" alt=""><div><b>Hannah Price</b><small>Skoda Octavia · Full service</small></div></div></div>
+        <div class="rq"><p>“Took my Model 3 in for a health check. Ravi walked me through the battery report and greased seized calipers the dealer never mentioned.”</p><div class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=70&auto=format&fit=crop" alt=""><div><b>Marcus Owusu</b><small>Tesla Model 3 · EV check</small></div></div></div>
+        <div class="rq"><p>“Ceramic coat on a black Golf. Six months on, it still beads like day one. Kasia is properly obsessive, in the best way.”</p><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=70&auto=format&fit=crop" alt=""><div><b>Sophie Lang</b><small>VW Golf R · Ceramic</small></div></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal>Book online</span>
+      <h2 class="h wx" data-split>Pick a <em>drop-off</em></h2>
+      <p data-reveal>Choose a morning slot, leave the keys, and we'll text you a video and a collection time. Need it sooner? Call and we'll squeeze you in.</p>
+      <div class="info" data-reveal>
+        <div><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Unit 4, Fenwick Road</b>Bedminster, Bristol BS3 4EP · Free parking</span></div>
+        <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Mon–Fri 07:30–18:00 · Sat 08:00–14:00</b>Key drop box for early birds</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><b><a href="tel:01174960321">0117 496 0321</a></b>hello@apexautocare.co.uk</span></div>
+      </div>
+    </div>
+    <form data-form="Booked! We'll text your confirmation and drop-off instructions." data-reveal="right" data-tabs>
+      <span class="fl">Drop-off day</span>
+      <div class="days" role="tablist"><button type="button" data-tab="d1" class="on"><small>Fri</small><b>20</b></button><button type="button" data-tab="d2"><small>Sat</small><b>21</b></button><button type="button" data-tab="d3"><small>Mon</small><b>23</b></button><button type="button" data-tab="d4"><small>Tue</small><b>24</b></button></div>
+      <div class="slots" data-pane="d1"><label class="chip"><input type="radio" name="slot" value="Fri 20 07:30" disabled><span>07:30</span></label><label class="chip"><input type="radio" name="slot" value="Fri 20 08:00" disabled><span>08:00</span></label><label class="chip"><input type="radio" name="slot" value="Fri 20 08:30"><span>08:30</span></label><label class="chip"><input type="radio" name="slot" value="Fri 20 09:00"><span>09:00</span></label></div>
+      <div class="slots" data-pane="d2"><label class="chip"><input type="radio" name="slot" value="Sat 21 08:00"><span>08:00</span></label><label class="chip"><input type="radio" name="slot" value="Sat 21 08:30" disabled><span>08:30</span></label><label class="chip"><input type="radio" name="slot" value="Sat 21 09:00"><span>09:00</span></label></div>
+      <div class="slots" data-pane="d3"><label class="chip"><input type="radio" name="slot" value="Mon 23 07:30"><span>07:30</span></label><label class="chip"><input type="radio" name="slot" value="Mon 23 08:00"><span>08:00</span></label><label class="chip"><input type="radio" name="slot" value="Mon 23 08:30"><span>08:30</span></label><label class="chip"><input type="radio" name="slot" value="Mon 23 09:00"><span>09:00</span></label></div>
+      <div class="slots" data-pane="d4"><label class="chip"><input type="radio" name="slot" value="Tue 24 07:30"><span>07:30</span></label><label class="chip"><input type="radio" name="slot" value="Tue 24 08:00" disabled><span>08:00</span></label><label class="chip"><input type="radio" name="slot" value="Tue 24 08:30"><span>08:30</span></label><label class="chip"><input type="radio" name="slot" value="Tue 24 09:00"><span>09:00</span></label></div>
+      <div class="two"><label class="fl">Name<input name="name" autocomplete="name" required></label><label class="fl">Mobile<input name="phone" type="tel" autocomplete="tel" required></label></div>
+      <div class="two"><label class="fl">Registration<input name="reg" placeholder="e.g. WR19 KXT" style="text-transform:uppercase" required></label><label class="fl">Job<select name="job" id="b-job"><option>Full service</option><option>Interim service</option><option>Major service</option><option>MOT test</option><option>Tyres</option><option>Brakes</option><option>Detailing</option><option>Something else</option></select></label></div>
+      <label class="fl">Anything we should know?<textarea name="notes" placeholder="Noises, warning lights, when you need it back…"></textarea></label>
+      <label class="ck"><input type="checkbox" name="loan"> I'd like a free courtesy car (jobs over £150)</label>
+      <button class="btn cy" type="submit">Confirm booking</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="tag" data-reveal>FAQ</span><h2 class="h wx" data-split>Straight <em>answers</em></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Will servicing here affect my manufacturer warranty?</summary><div class="kt-faq-a"><div>No. Under UK block exemption rules, any VAT-registered garage can service your car during the warranty, as long as they follow the manufacturer schedule and use OE-quality parts. We do both and stamp your book or update the digital record.</div></div></details>
+      <details class="kt-faq"><summary>What if you find extra work?</summary><div class="kt-faq-a"><div>You get a video and a written price by text. Nothing is done until you reply yes. Advisory items go on a free reminder so you can budget for them.</div></div></details>
+      <details class="kt-faq"><summary>How does the courtesy car work?</summary><div class="kt-faq-a"><div>Any job over £150 includes a free loan car (a 2023 Toyota Yaris Hybrid). You need a full UK licence held for 2+ years. Fuel back at the same level, please.</div></div></details>
+      <details class="kt-faq"><summary>Do you work on electric cars?</summary><div class="kt-faq-a"><div>Yes. Ravi and Tom hold IMI high-voltage qualifications, and we have a dedicated insulated EV bay. We service Tesla, Kia, Hyundai, VW ID, Polestar and more.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a href="#" class="logo" aria-label="Apex Auto Care home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 3 29h7l6-13 6 13h7z" fill="#3fd0ff"/><path d="M12 24h8" stroke="#0e1116" stroke-width="2.5"/></svg><span>Apex<small>AUTO CARE</small></span></a><nav><a href="#services">Prices</a><a href="#quote">Quote</a><a href="#book">Book</a><a href="#">Privacy</a></nav><span>Unit 4, Fenwick Road, Bristol BS3 · © 2026 Apex Auto Care Ltd</span></div></footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // instant quote: price by service, scaled by vehicle type, plus add-ons
+  (function () {
+    const f = document.getElementById('qform'), $ = id => document.getElementById(id);
+    const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
+    const evRate = { 'MOT test': 1, 'Four mid-range tyres': 1.35, 'Front pads and discs': 0.9, 'Full valet and machine polish': 1.12 };
+    const calc = () => {
+      const [base, name] = $('q-svc').value.split('|');
+      const sizeIn = f.querySelector('input[name=size]:checked');
+      const isEv = sizeIn.value === 'ev';
+      let mult = isEv ? (evRate[name] || 0.85) : parseFloat(sizeIn.value);
+      if (name === 'MOT test') mult = 1;
+      const job = +base * mult, lines = [[name, job]];
+      const motBox = $('q-mot');
+      motBox.disabled = name === 'MOT test';
+      if (motBox.checked && !motBox.disabled) lines.push(['MOT test (combo)', 30]);
+      if ($('q-col').checked) lines.push(['Collection and delivery', 15]);
+      lines.push(['Video health check', 0], [job >= 150 ? 'Courtesy car' : 'Wash and vacuum', 0]);
+      const total = lines.reduce((s, l) => s + l[1], 0);
+      const make = $('q-make').value.trim() || 'Your', model = $('q-model').value.trim() || 'car';
+      $('q-car').textContent = make + ' ' + model;
+      $('q-type').textContent = sizeIn.nextElementSibling.textContent;
+      $('q-lines').innerHTML = lines.map(l => `<li><span>${l[0]}</span><span>${l[1] ? gbp(l[1]) : 'Free'}</span></li>`).join('');
+      $('q-total').textContent = gbp(total);
+    };
+    f.addEventListener('input', calc); f.addEventListener('change', calc);
+    f.addEventListener('submit', e => e.preventDefault());
+    $('q-lock').addEventListener('click', () => {
+      const opt = $('q-svc').selectedOptions[0];
+      $('b-job').value = opt.dataset.job;
+      ktToast('Price locked: ' + $('q-total').textContent + ' for ' + $('q-car').textContent);
+    });
+    calc();
+  })();
+</script>
+</body>
+</html>

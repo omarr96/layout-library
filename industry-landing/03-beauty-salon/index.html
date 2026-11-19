@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosé &amp; Co · Hair, Nails &amp; Beauty</title>
+<meta name="description" content="Rosé &amp; Co is a hair, nails, brows and makeup salon in Austin, Texas. Book online in under a minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #fff6f4; --kt-ink: #2d1b2b; --kt-tx: #6b5867; --kt-mut: #9c8a97; --kt-line: rgba(45,27,43,.1); --kt-accent: #d94f78; --kt-accent-ink: #fff; --kt-radius: 28px; --blush: #fbe1e6; --lilac: #ebe3fb; --butter: #fff0c7; --white: #fff; }
+body { font: 16px/1.6 Outfit, system-ui, sans-serif; }
+.is { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -.01em; line-height: 1; color: var(--kt-ink); }
+.is em { font-style: italic; color: var(--kt-accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 99px; background: var(--white); border: 1px solid var(--kt-line); font-size: 13px; font-weight: 600; color: var(--kt-ink); }
+.pill i { font-style: normal; color: var(--kt-accent); }
+h2.h { font-size: clamp(44px, 6vw, 84px); margin: 16px 0 18px; }
+.sub { font-size: 18px; max-width: 560px; margin: 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 99px; font-weight: 600; font-size: 15.5px; transition: .25s; }
+.btn.pink { background: var(--kt-accent); color: #fff; box-shadow: 0 10px 24px rgba(217,79,120,.28); }
+.btn.pink:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(217,79,120,.36); }
+.btn.soft { background: var(--white); color: var(--kt-ink); border: 1px solid var(--kt-line); }
+.btn.soft:hover { border-color: var(--kt-ink); }
+.btn.dark { background: var(--kt-ink); color: #fff; }
+section { padding: 120px 0; }
+.center { text-align: center; } .center .sub { margin: 0 auto; }
+
+/* nav */
+.nav { position: fixed; inset: 14px 0 auto; z-index: 50; }
+.nav .wrap { position: relative; display: flex; align-items: center; gap: 30px; height: 68px; border-radius: 99px; padding: 0 10px 0 26px; max-width: 1180px; }
+.nav .wrap::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: rgba(255,255,255,.7); backdrop-filter: blur(14px); border: 1px solid var(--kt-line); transition: box-shadow .3s, background .3s; }
+.nav.scrolled .wrap::before { box-shadow: 0 12px 40px rgba(45,27,43,.1); background: rgba(255,255,255,.92); }
+.logo { font-family: 'Instrument Serif', serif; font-size: 30px; color: var(--kt-ink); line-height: 1; white-space: nowrap; }
+.logo em { color: var(--kt-accent); }
+.kt-menu { display: flex; gap: 28px; margin-left: auto; }
+.kt-menu a { font-weight: 500; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 48px; padding: 0 22px; }
+.kt-burger { color: var(--kt-ink); margin-left: auto; }
+
+/* hero bento */
+.hero { padding: 140px 0 70px; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 50px; align-items: center; }
+.hero h1 { font-size: clamp(58px, 8.4vw, 124px); margin: 22px 0 24px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--kt-accent); }
+.hero .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+.proof { display: flex; align-items: center; gap: 14px; margin-top: 34px; font-size: 14px; }
+.faces { display: flex; }
+.faces img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 3px solid var(--kt-bg); margin-left: -10px; }
+.faces img:first-child { margin-left: 0; }
+.proof b { color: var(--kt-ink); }
+.bento { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 250px 250px; gap: 14px; position: relative; }
+.bento .b { border-radius: var(--kt-radius); overflow: hidden; position: relative; }
+.bento .b img { width: 100%; height: 100%; object-fit: cover; }
+.bento .b:first-child { grid-row: span 2; }
+.bento .float { position: absolute; background: var(--white); border-radius: 20px; padding: 12px 16px; box-shadow: 0 20px 40px rgba(45,27,43,.14); font-size: 13.5px; display: flex; align-items: center; gap: 10px; }
+.bento .float b { color: var(--kt-ink); display: block; font-size: 14.5px; }
+.bento .f1 { left: -26px; bottom: 40px; animation: bob 5s ease-in-out infinite; }
+.bento .f2 { right: -12px; top: -18px; background: var(--butter); animation: bob 6s ease-in-out -2s infinite; }
+.bento .ic { width: 38px; height: 38px; border-radius: 50%; background: var(--blush); display: grid; place-items: center; color: var(--kt-accent); flex: none; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* marquee */
+.mq { padding: 22px 0; background: var(--kt-ink); --mq-gap: 40px; transform: rotate(-1.2deg); margin: 10px -20px 0; }
+.mq span { font-family: 'Instrument Serif', serif; font-size: 34px; color: #fff; white-space: nowrap; display: inline-flex; align-items: center; gap: 40px; }
+.mq span::after { content: "✦"; color: var(--kt-accent); font-size: 20px; }
+.mq span:nth-child(even) { font-style: italic; color: #f7b7c8; }
+
+/* menu */
+.menu-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.cats { display: flex; gap: 8px; flex-wrap: wrap; padding: 6px; background: var(--white); border-radius: 99px; border: 1px solid var(--kt-line); margin: 34px 0 30px; width: fit-content; max-width: 100%; }
+.cats button { height: 46px; padding: 0 20px; border-radius: 99px; font-weight: 600; font-size: 15px; color: var(--kt-tx); display: inline-flex; align-items: center; gap: 8px; transition: .2s; }
+.cats button.on { background: var(--kt-accent); color: #fff; }
+.menu-pane { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+.list { background: var(--white); border-radius: var(--kt-radius); padding: 10px 34px; border: 1px solid var(--kt-line); }
+.row { display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center; padding: 20px 0; border-bottom: 1px dashed rgba(45,27,43,.16); }
+.row:last-child { border-bottom: 0; }
+.row b { color: var(--kt-ink); font-weight: 600; font-size: 17px; display: block; }
+.row small { color: var(--kt-mut); font-size: 14px; }
+.row .d { font-size: 13px; color: var(--kt-tx); background: var(--lilac); border-radius: 99px; padding: 4px 10px; white-space: nowrap; }
+.row .p { font-family: 'Instrument Serif', serif; font-size: 28px; color: var(--kt-ink); min-width: 70px; text-align: right; }
+.row .new { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-accent); background: var(--blush); padding: 2px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
+.side { border-radius: var(--kt-radius); overflow: hidden; position: relative; min-height: 420px; }
+.side img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.side .c { position: absolute; left: 16px; right: 16px; bottom: 16px; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-radius: 20px; padding: 18px 20px; font-size: 14px; }
+.side .c b { display: block; color: var(--kt-ink); font-size: 16px; }
+
+/* booking */
+.book { background: var(--blush); border-radius: 48px; margin: 0 14px; }
+.book .wrap { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
+.bk { background: var(--white); border-radius: var(--kt-radius); padding: 34px; display: grid; gap: 26px; }
+.bk .stp { display: grid; gap: 12px; }
+.bk .stp > span, .bk legend { font-weight: 600; color: var(--kt-ink); font-size: 15px; display: flex; align-items: center; gap: 10px; padding: 0; }
+.bk .stp > span i, .bk legend i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--kt-ink); color: #fff; display: grid; place-items: center; font-size: 12.5px; }
+.bk fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 12px; min-width: 0; }
+.bk select, .bk input[type=text], .bk input[type=tel], .bk input[type=email] { height: 52px; border-radius: 16px; border: 1px solid var(--kt-line); background: var(--kt-bg); padding: 0 16px; outline: none; font-size: 15.5px; width: 100%; color: var(--kt-ink); }
+.bk select:focus, .bk input:focus { border-color: var(--kt-accent); }
+.opts { display: flex; gap: 8px; flex-wrap: wrap; }
+.opts label { display: block; }
+.opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opts span { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 16px; border-radius: 99px; border: 1px solid var(--kt-line); font-size: 14.5px; font-weight: 500; color: var(--kt-ink); cursor: pointer; transition: .2s; background: var(--white); }
+.opts span img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; margin-left: -8px; }
+.opts input:checked + span { background: var(--kt-ink); color: #fff; border-color: var(--kt-ink); }
+.opts input:focus-visible + span { outline: 2px solid var(--kt-accent); outline-offset: 2px; }
+.opts input:disabled + span { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.days { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.days::-webkit-scrollbar { display: none; }
+.days label { flex: none; }
+.days span { flex-direction: column; justify-content: center; gap: 0; height: 70px; width: 62px; padding: 0; border-radius: 18px; line-height: 1.15; }
+.days span small { font-size: 11.5px; opacity: .7; text-transform: uppercase; letter-spacing: .06em; }
+.days span b { font-size: 20px; font-weight: 600; }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 8px; }
+.slots span { justify-content: center; width: 100%; padding: 0 8px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sum { position: sticky; top: 110px; background: var(--kt-ink); color: #d7c9d4; border-radius: var(--kt-radius); padding: 30px; }
+.sum h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; color: #fff; margin: 0 0 18px; }
+.sum dl { display: grid; grid-template-columns: auto 1fr; gap: 12px 16px; margin: 0 0 22px; font-size: 14.5px; }
+.sum dt { color: #a8949f; }
+.sum dd { margin: 0; color: #fff; text-align: right; font-weight: 500; }
+.sum .tot { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px; margin-bottom: 22px; }
+.sum .tot b { font-family: 'Instrument Serif', serif; font-size: 44px; color: #fff; font-weight: 400; }
+.sum .btn { width: 100%; border: 0; }
+.sum small { display: block; margin-top: 14px; font-size: 12.5px; color: #a8949f; text-align: center; }
+
+/* stylists */
+.st-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.st-head .ar { display: flex; gap: 10px; }
+.kt-arrow { background: var(--white); }
+.team > .s { width: 280px; }
+.s { background: var(--white); border-radius: var(--kt-radius); padding: 10px 10px 22px; border: 1px solid var(--kt-line); }
+.s img { width: 100%; aspect-ratio: 1/1.1; object-fit: cover; border-radius: 22px; }
+.s h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 30px; margin: 16px 12px 0; color: var(--kt-ink); }
+.s .r { margin: 0 12px; font-size: 14px; color: var(--kt-accent); font-weight: 600; }
+.s .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 12px 0; }
+.s .tags span { font-size: 12.5px; padding: 4px 10px; border-radius: 99px; background: var(--kt-bg); }
+.s .tags span:nth-child(2) { background: var(--lilac); } .s .tags span:nth-child(3) { background: var(--butter); }
+
+/* gift */
+.gift .box { background: var(--lilac); border-radius: 48px; padding: 70px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.card { aspect-ratio: 1.6; border-radius: 26px; background: linear-gradient(135deg, #f7b7c8, #d94f78 55%, #8b3a7a); color: #fff; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 30px 60px rgba(139,58,122,.35); transform: rotate(-4deg); position: relative; overflow: hidden; max-width: 460px; width: 100%; justify-self: center; transition: transform .5s; }
+.card:hover { transform: rotate(0); }
+.card::after { content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; border: 40px solid rgba(255,255,255,.1); right: -90px; top: -90px; }
+.card .t { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.card .t span { font-family: 'Instrument Serif', serif; font-size: 30px; }
+.card .t small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.card .amt { font-family: 'Instrument Serif', serif; font-size: clamp(56px, 7vw, 80px); line-height: 1; position: relative; z-index: 1; }
+.card .to { font-size: 14px; opacity: .9; position: relative; z-index: 1; }
+.gift form { display: grid; gap: 16px; margin-top: 26px; }
+.gift form .two input { height: 52px; border-radius: 16px; border: 1px solid rgba(45,27,43,.12); background: var(--white); padding: 0 16px; outline: none; font-size: 15.5px; width: 100%; }
+.gift form .two input:focus { border-color: var(--kt-accent); }
+.gift form .btn { justify-self: start; border: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* insta */
+.ig-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 34px; }
+.ig { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.ig a { position: relative; aspect-ratio: 1; border-radius: 22px; overflow: hidden; display: block; }
+.ig img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.ig a::after { content: attr(data-likes); position: absolute; inset: 0; display: grid; place-items: center; background: rgba(45,27,43,.45); color: #fff; font-weight: 600; font-size: 17px; opacity: 0; transition: opacity .3s; }
+.ig a:hover::after { opacity: 1; }
+.ig a:hover img { transform: scale(1.06); }
+
+/* reviews */
+.rv-top { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; margin-bottom: 44px; }
+.score { background: var(--white); border-radius: var(--kt-radius); padding: 22px 28px; border: 1px solid var(--kt-line); display: flex; gap: 18px; align-items: center; }
+.score b { font-family: 'Instrument Serif', serif; font-size: 64px; color: var(--kt-ink); line-height: 1; font-weight: 400; }
+.score .stars { color: #f2a93b; letter-spacing: 2px; }
+.score small { display: block; font-size: 13.5px; }
+.rv { columns: 3; column-gap: 18px; }
+.rc { break-inside: avoid; background: var(--white); border-radius: 24px; padding: 26px; margin-bottom: 18px; border: 1px solid var(--kt-line); }
+.rc:nth-child(3n+2) { background: var(--butter); border-color: transparent; }
+.rc:nth-child(4n) { background: var(--lilac); border-color: transparent; }
+.rc .stars { color: #f2a93b; letter-spacing: 2px; font-size: 15px; }
+.rc p { color: var(--kt-ink); font-size: 16.5px; margin: 10px 0 16px; }
+.rc .who { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.rc .who img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.rc .who b { display: block; color: var(--kt-ink); }
+.rc .who span { color: var(--kt-mut); font-size: 13px; }
+
+/* visit + faq */
+.visit .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.hours { background: var(--white); border-radius: var(--kt-radius); padding: 34px; border: 1px solid var(--kt-line); }
+.hours h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 34px; margin: 0 0 14px; color: var(--kt-ink); }
+.hours table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.hours td { padding: 11px 0; border-bottom: 1px dashed rgba(45,27,43,.14); }
+.hours td:last-child { text-align: right; color: var(--kt-ink); font-weight: 500; }
+.hours tr.today td { color: var(--kt-accent); font-weight: 600; }
+.hours .addr { margin-top: 22px; display: grid; gap: 4px; font-size: 15px; }
+.hours .addr b { color: var(--kt-ink); }
+.kt-faq summary { font-weight: 600; }
+
+footer { padding: 60px 0 40px; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; font-size: 14px; border-top: 1px solid var(--kt-line); padding-top: 40px; }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer a:hover { color: var(--kt-accent); }
+
+@media (max-width: 1000px) {
+  section { padding: 90px 0; }
+  .hero .wrap, .menu-pane, .book .wrap, .gift .box, .visit .wrap { grid-template-columns: 1fr; }
+  .side { min-height: 320px; }
+  .sum { position: static; }
+  .rv { columns: 2; }
+  .gift .box { padding: 50px 36px; }
+  .bento .f1 { left: 10px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .nav { inset: 10px 0 auto; } .nav .wrap { margin: 0 10px; padding: 0 6px 0 18px; height: 60px; }
+  .nav .btn { display: none; }
+  .logo { font-size: 26px; }
+  .hero { padding-top: 110px; }
+  .bento { grid-template-rows: 180px 180px; gap: 10px; }
+  .bento .f2 { right: 6px; top: -14px; } .bento .f1 { left: 8px; bottom: 14px; padding: 10px 12px; }
+  .mq span { font-size: 26px; }
+  .list { padding: 4px 18px; }
+  .row { grid-template-columns: 1fr auto; gap: 6px 12px; } .row .d { grid-row: 2; justify-self: start; } .row .p { grid-row: 1 / 3; grid-column: 2; font-size: 24px; min-width: 0; }
+  .book { margin: 0 6px; border-radius: 32px; }
+  .bk { padding: 22px 16px; }
+  .two { grid-template-columns: 1fr; }
+  .team > .s { width: 76vw; }
+  .gift .box { padding: 34px 20px; border-radius: 32px; gap: 40px; }
+  .card { padding: 22px; transform: rotate(-2deg); }
+  .ig { grid-template-columns: repeat(2, 1fr); }
+  .rv-top { grid-template-columns: 1fr; }
+  .rv { columns: 1; }
+  .hours { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Rosé <em>&amp;</em> Co</a>
+    <nav class="kt-menu"><a href="#menu">Services</a><a href="#stylists">Stylists</a><a href="#gift">Gift cards</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+    <a href="#book" class="btn pink">Book now</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal><i>✦</i> Hair · Nails · Brows &amp; lashes · Makeup</span>
+      <h1 class="is"><span data-split>Feel like you,</span><br><span data-rotate="only shinier|freshly glossed|totally polished|softly glowing" data-every="2400"></span></h1>
+      <p class="sub" data-reveal data-delay="200">A bright, friendly salon on South Congress where colour experts, nail artists and lash pros work side by side. Book in under a minute, leave feeling brand new.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#book" class="btn pink">Book an appointment</a><a href="#menu" class="btn soft">View menu &amp; prices</a></div>
+      <div class="proof" data-reveal data-delay="400">
+        <div class="faces"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&q=70&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&q=70&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=120&q=70&auto=format&fit=crop" alt=""></div>
+        <span><b>4.9 ★ from 1,240 reviews</b><br>Austin's Best Salon 2025, readers' pick</span>
+      </div>
+    </div>
+    <div class="bento" data-reveal="zoom">
+      <div class="b"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=70&auto=format&fit=crop" alt="Salon interior with pink styling chairs and mirrors"></div>
+      <div class="b"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=700&q=70&auto=format&fit=crop" alt="Close-up of a dark glossy manicure"></div>
+      <div class="b"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=70&auto=format&fit=crop" alt="Woman with soft wavy hair against a pink wall"></div>
+      <div class="float f1"><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Next free slot</b>Today · 3:30 pm</span></div>
+      <div class="float f2"><span>💅 <b style="display:inline">Gel mani</b> from $45</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="mq kt-marquee" data-speed="34s"><div class="kt-mq-track"><span>Balayage</span><span>Gel manicures</span><span>Lash lifts</span><span>Silk press</span><span>Brow lamination</span><span>Bridal makeup</span><span>Blowouts</span></div></div>
+
+<section id="menu">
+  <div class="wrap" data-tabs>
+    <div class="menu-top"><div><span class="pill" data-reveal><i>01</i> The menu</span><h2 class="h is" data-split>Services <em>&amp; prices</em></h2></div><p class="sub" data-reveal style="max-width:420px">Prices are starting rates and include a consultation. Senior stylists are +$15.</p></div>
+    <div class="cats" role="tablist" data-reveal><button data-tab="hair" class="on">Hair</button><button data-tab="nails">Nails</button><button data-tab="brows">Brows &amp; lashes</button><button data-tab="mu">Makeup</button></div>
+    <div class="menu-pane" data-pane="hair">
+      <div class="list">
+        <div class="row"><div><b>Cut &amp; blow-dry</b><small>Consult, wash, precision cut and style</small></div><span class="d">60 min</span><span class="p">$75</span></div>
+        <div class="row"><div><b>Signature balayage</b><small>Hand-painted lightening, toner and gloss</small></div><span class="d">3 hrs</span><span class="p">$220</span></div>
+        <div class="row"><div><b>Root touch-up</b><small>Single-process colour on regrowth</small></div><span class="d">90 min</span><span class="p">$95</span></div>
+        <div class="row"><div><b>Silk press</b><small>Wash, deep condition and press for natural hair</small></div><span class="d">2 hrs</span><span class="p">$110</span></div>
+        <div class="row"><div><b>Blowout</b><small>Wash and bouncy blow-dry</small></div><span class="d">45 min</span><span class="p">$48</span></div>
+        <div class="row"><div><b>Glaze &amp; gloss<span class="new">New</span></b><small>Shine treatment to refresh colour</small></div><span class="d">40 min</span><span class="p">$55</span></div>
+      </div>
+      <div class="side"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=900&q=70&auto=format&fit=crop" alt="Stylist colouring a client's hair" loading="lazy"><div class="c"><b>First colour visit?</b>Book a free 15-minute consult and patch test 48 hours before.</div></div>
+    </div>
+    <div class="menu-pane" data-pane="nails">
+      <div class="list">
+        <div class="row"><div><b>Classic manicure</b><small>Shape, cuticle care, polish</small></div><span class="d">30 min</span><span class="p">$32</span></div>
+        <div class="row"><div><b>Gel manicure</b><small>Long-wear gel colour, up to 3 weeks</small></div><span class="d">45 min</span><span class="p">$45</span></div>
+        <div class="row"><div><b>BIAB overlay</b><small>Builder gel to strengthen natural nails</small></div><span class="d">60 min</span><span class="p">$60</span></div>
+        <div class="row"><div><b>Nail art add-on</b><small>Chrome, French, florals, per set</small></div><span class="d">+15 min</span><span class="p">$15</span></div>
+        <div class="row"><div><b>Spa pedicure</b><small>Soak, scrub, massage and polish</small></div><span class="d">50 min</span><span class="p">$55</span></div>
+      </div>
+      <div class="side"><img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=900&q=70&auto=format&fit=crop" alt="Soft pink manicured nails" loading="lazy"><div class="c"><b>Nail art Thursdays</b>Free art add-on with any gel set booked on Thursdays.</div></div>
+    </div>
+    <div class="menu-pane" data-pane="brows">
+      <div class="list">
+        <div class="row"><div><b>Brow shape &amp; tint</b><small>Wax, tweeze and tint to suit your face</small></div><span class="d">30 min</span><span class="p">$38</span></div>
+        <div class="row"><div><b>Brow lamination</b><small>Fluffy, brushed-up brows for 6 weeks</small></div><span class="d">45 min</span><span class="p">$65</span></div>
+        <div class="row"><div><b>Lash lift &amp; tint</b><small>Natural curl, no extensions</small></div><span class="d">60 min</span><span class="p">$75</span></div>
+        <div class="row"><div><b>Classic lash extensions</b><small>One extension per natural lash</small></div><span class="d">2 hrs</span><span class="p">$140</span></div>
+        <div class="row"><div><b>Lash infill</b><small>Within 3 weeks of your full set</small></div><span class="d">60 min</span><span class="p">$65</span></div>
+      </div>
+      <div class="side"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&q=70&auto=format&fit=crop" alt="Close-up of eye makeup and defined lashes" loading="lazy"><div class="c"><b>Lash patch test</b>Required 24 hours before your first lash service. It's free.</div></div>
+    </div>
+    <div class="menu-pane" data-pane="mu">
+      <div class="list">
+        <div class="row"><div><b>Event makeup</b><small>Full face, lashes included</small></div><span class="d">60 min</span><span class="p">$95</span></div>
+        <div class="row"><div><b>Bridal trial</b><small>Plan your wedding-day look</small></div><span class="d">90 min</span><span class="p">$120</span></div>
+        <div class="row"><div><b>Bridal day</b><small>In-salon or on location, touch-up kit</small></div><span class="d">2 hrs</span><span class="p">$260</span></div>
+        <div class="row"><div><b>Makeup lesson</b><small>One-to-one, learn your everyday routine</small></div><span class="d">75 min</span><span class="p">$85</span></div>
+      </div>
+      <div class="side"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=900&q=70&auto=format&fit=crop" alt="Makeup palettes and brushes laid out" loading="lazy"><div class="c"><b>Bridal parties</b>Groups of 4+ get 10% off and a dedicated artist team.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <form class="bk" id="bk" data-form="You're booked! A confirmation text is on its way. 💕" data-reveal>
+      <div><span class="pill"><i>02</i> Book online</span><h2 class="h is" style="margin-bottom:0">Pick your <em>moment</em></h2></div>
+      <label class="stp"><span><i>1</i> Choose a service</span>
+        <select name="service" id="svc" required>
+          <optgroup label="Hair"><option value="Cut &amp; blow-dry|75|60 min">Cut &amp; blow-dry · $75</option><option value="Signature balayage|220|3 hrs">Signature balayage · $220</option><option value="Silk press|110|2 hrs">Silk press · $110</option><option value="Blowout|48|45 min">Blowout · $48</option></optgroup>
+          <optgroup label="Nails"><option value="Gel manicure|45|45 min" selected>Gel manicure · $45</option><option value="BIAB overlay|60|60 min">BIAB overlay · $60</option><option value="Spa pedicure|55|50 min">Spa pedicure · $55</option></optgroup>
+          <optgroup label="Brows &amp; lashes"><option value="Brow lamination|65|45 min">Brow lamination · $65</option><option value="Lash lift &amp; tint|75|60 min">Lash lift &amp; tint · $75</option></optgroup>
+          <optgroup label="Makeup"><option value="Event makeup|95|60 min">Event makeup · $95</option></optgroup>
+        </select>
+      </label>
+      <fieldset><legend><i>2</i> Who would you like?</legend>
+        <div class="opts" id="who">
+          <label><input type="radio" name="stylist" value="First available" checked><span>Anyone ✨</span></label>
+          <label><input type="radio" name="stylist" value="Maya"><span><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=70&auto=format&fit=crop" alt="">Maya</span></label>
+          <label><input type="radio" name="stylist" value="Jess"><span><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=70&auto=format&fit=crop" alt="">Jess</span></label>
+          <label><input type="radio" name="stylist" value="Priya"><span><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=80&q=70&auto=format&fit=crop" alt="">Priya</span></label>
+          <label><input type="radio" name="stylist" value="Lena"><span><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=80&q=70&auto=format&fit=crop" alt="">Lena</span></label>
+        </div>
+      </fieldset>
+      <fieldset><legend><i>3</i> Pick a day</legend><div class="opts days" id="days"></div></fieldset>
+      <fieldset><legend><i>4</i> Pick a time</legend><div class="opts slots" id="slots"></div></fieldset>
+      <fieldset><legend><i>5</i> Your details</legend>
+        <div class="two"><label><span class="sr">Name</span><input type="text" name="name" placeholder="Your name" autocomplete="name" required></label><label><span class="sr">Mobile</span><input type="tel" name="phone" placeholder="Mobile number" autocomplete="tel" required></label></div>
+        <label><span class="sr">Email</span><input type="email" name="email" placeholder="Email (for your receipt)" autocomplete="email"></label>
+      </fieldset>
+      <button type="submit" class="sr" tabindex="-1">Confirm booking</button>
+    </form>
+    <aside class="sum" aria-live="polite" data-reveal="right">
+      <h3>Your booking</h3>
+      <dl><dt>Service</dt><dd id="s-svc">Gel manicure</dd><dt>With</dt><dd id="s-who">First available</dd><dt>When</dt><dd id="s-when">Choose a time</dd><dt>Takes</dt><dd id="s-dur">45 min</dd></dl>
+      <div class="tot"><span>Total</span><b id="s-tot">$45</b></div>
+      <button class="btn pink" type="submit" form="bk">Confirm booking</button>
+      <small>Free cancellation up to 24 hours before. Pay in salon.</small>
+    </aside>
+  </div>
+</section>
+
+<section id="stylists" data-slider-scope>
+  <div class="wrap">
+    <div class="st-head"><div><span class="pill" data-reveal><i>03</i> The team</span><h2 class="h is" data-split style="margin-bottom:0">Meet your <em>stylists</em></h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous stylist"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next stylist"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel team" data-carousel>
+      <div class="s"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=70&auto=format&fit=crop" alt="Portrait of Maya Torres" loading="lazy"><h3>Maya Torres</h3><p class="r">Founder · Colour director</p><div class="tags"><span>Balayage</span><span>Lived-in blonde</span><span>12 yrs</span></div></div>
+      <div class="s"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=70&auto=format&fit=crop" alt="Portrait of Jess Kim" loading="lazy"><h3>Jess Kim</h3><p class="r">Senior stylist</p><div class="tags"><span>Precision cuts</span><span>Curtain bangs</span><span>8 yrs</span></div></div>
+      <div class="s"><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=600&q=70&auto=format&fit=crop" alt="Portrait of Priya Shah" loading="lazy"><h3>Priya Shah</h3><p class="r">Brow &amp; lash artist</p><div class="tags"><span>Lamination</span><span>Lash lifts</span><span>6 yrs</span></div></div>
+      <div class="s"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=70&auto=format&fit=crop" alt="Portrait of Lena Fischer" loading="lazy"><h3>Lena Fischer</h3><p class="r">Lead nail artist</p><div class="tags"><span>BIAB</span><span>Chrome art</span><span>7 yrs</span></div></div>
+      <div class="s"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=70&auto=format&fit=crop" alt="Portrait of Tasha Green" loading="lazy"><h3>Tasha Green</h3><p class="r">Makeup artist · Bridal</p><div class="tags"><span>Bridal</span><span>Soft glam</span><span>10 yrs</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gift" id="gift">
+  <div class="wrap">
+    <div class="box">
+      <div class="card" data-reveal="zoom" aria-hidden="true"><div class="t"><span>Rosé &amp; Co</span><small>Gift card</small></div><div class="amt" id="g-amt">$100</div><div class="to" id="g-to">For someone lovely</div></div>
+      <div>
+        <span class="pill" data-reveal><i>04</i> Gift cards</span>
+        <h2 class="h is" data-split>Give the <em>glow</em></h2>
+        <p data-reveal>Digital gift cards, emailed instantly and valid for 12 months on any service or product.</p>
+        <form id="gf" data-form="Gift card sent! It's on its way to their inbox. 🎁" data-reveal>
+          <fieldset style="border:0;padding:0;margin:0"><legend class="sr">Amount</legend><div class="opts" id="amts">
+            <label><input type="radio" name="amt" value="50"><span>$50</span></label><label><input type="radio" name="amt" value="100" checked><span>$100</span></label><label><input type="radio" name="amt" value="150"><span>$150</span></label><label><input type="radio" name="amt" value="250"><span>$250</span></label>
+          </div></fieldset>
+          <div class="two"><label><span class="sr">Recipient's name</span><input name="to" id="g-name" placeholder="Recipient's name" required></label><label><span class="sr">Recipient's email</span><input type="email" name="email" placeholder="Recipient's email" required></label></div>
+          <button class="btn dark" type="submit">Send gift card</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="ig-top"><div><span class="pill" data-reveal><i>05</i> @roseandco.atx</span><h2 class="h is" data-split style="margin-bottom:0">Fresh <em>from the chair</em></h2></div><a href="#" class="btn soft" data-reveal>Follow on Instagram</a></div>
+    <div class="ig" data-lightbox>
+      <a href="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1400&q=70&auto=format&fit=crop" data-caption="Lilac melt by Maya" data-likes="♥ 1,204"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500&q=70&auto=format&fit=crop" alt="Long lilac hair colour" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=1400&q=70&auto=format&fit=crop" data-caption="Milky nude BIAB by Lena" data-likes="♥ 862"><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=500&q=70&auto=format&fit=crop" alt="Milky nude manicure" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1400&q=70&auto=format&fit=crop" data-caption="Blowout in progress" data-likes="♥ 540"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&q=70&auto=format&fit=crop" alt="Stylist blow-drying a client's hair" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1400&q=70&auto=format&fit=crop" data-caption="Tasha's bridal kit" data-likes="♥ 391"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=70&auto=format&fit=crop" alt="Makeup products on a beige surface" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=1400&q=70&auto=format&fit=crop" data-caption="Cherry red with a twist" data-likes="♥ 978"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=500&q=70&auto=format&fit=crop" alt="Red manicure with nail art" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1470259078422-826894b933aa?w=1400&q=70&auto=format&fit=crop" data-caption="Pink flip by Jess" data-likes="♥ 1,530"><img src="https://images.unsplash.com/photo-1470259078422-826894b933aa?w=500&q=70&auto=format&fit=crop" alt="Woman flipping bright pink hair" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=1400&q=70&auto=format&fit=crop" data-caption="Scalp ritual at the wash bar" data-likes="♥ 447"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=500&q=70&auto=format&fit=crop" alt="Client relaxing at the hair wash basin" loading="lazy"></a>
+      <a href="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=1400&q=70&auto=format&fit=crop" data-caption="Soft waves, Saturday edition" data-likes="♥ 702"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=500&q=70&auto=format&fit=crop" alt="Stylist finishing soft waves" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="rv-top"><div><span class="pill" data-reveal><i>06</i> Reviews</span><h2 class="h is" data-split style="margin-bottom:0">Kind <em>words</em></h2></div>
+      <div class="score" data-reveal><b data-count="4.9">0</b><div><span class="stars">★★★★★</span><small>1,240 reviews on Google &amp; Fresha</small></div></div></div>
+    <div class="rv">
+      <div class="rc" data-reveal><span class="stars">★★★★★</span><p>Maya fixed a box-dye disaster I'd been hiding for a year. Took two sessions and the colour is unreal. I've had strangers ask who did my hair.</p><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Alexis R.</b><span>Colour correction</span></span></div></div>
+      <div class="rc" data-reveal data-delay="80"><span class="stars">★★★★★</span><p>Best BIAB in Austin, full stop. Four weeks and not a single chip.</p><div class="who"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Nadia K.</b><span>Nails with Lena</span></span></div></div>
+      <div class="rc" data-reveal data-delay="160"><span class="stars">★★★★★</span><p>Tasha did makeup for me and six bridesmaids. Everyone looked like themselves, just glowier, and it lasted through a very sweaty Texas June.</p><div class="who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Camille D.</b><span>Bridal party</span></span></div></div>
+      <div class="rc" data-reveal><span class="stars">★★★★★</span><p>Booking online took 40 seconds and they texted me a reminder. Priya's lash lift is magic.</p><div class="who"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Sofia M.</b><span>Lash lift &amp; tint</span></span></div></div>
+      <div class="rc" data-reveal data-delay="80"><span class="stars">★★★★★</span><p>I came in with a Pinterest photo and Jess said "let's make it work with your curls". Best cut I've had in years.</p><div class="who"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Hannah P.</b><span>Cut &amp; style</span></span></div></div>
+      <div class="rc" data-reveal data-delay="160"><span class="stars">★★★★☆</span><p>Lovely space and staff. It was busy on a Saturday so I waited ten minutes, but the silk press was worth it.</p><div class="who"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=70&auto=format&fit=crop" alt=""><span><b>Jordan T.</b><span>Silk press</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="hours" data-reveal>
+      <h3>Opening hours</h3>
+      <table id="hrs"><tbody>
+        <tr data-d="1"><td>Monday</td><td>Closed</td></tr><tr data-d="2"><td>Tuesday</td><td>9am – 7pm</td></tr><tr data-d="3"><td>Wednesday</td><td>9am – 7pm</td></tr><tr data-d="4"><td>Thursday</td><td>9am – 8pm</td></tr><tr data-d="5"><td>Friday</td><td>9am – 8pm</td></tr><tr data-d="6"><td>Saturday</td><td>8am – 6pm</td></tr><tr data-d="0"><td>Sunday</td><td>10am – 4pm</td></tr>
+      </tbody></table>
+      <div class="addr"><b>1416 South Congress Ave, Austin TX 78704</b><span>(512) 555-0163 · hello@roseandco.salon</span><span>Free parking behind the building · Step-free entrance</span></div>
+    </div>
+    <div>
+      <span class="pill" data-reveal><i>07</i> Good to know</span>
+      <h2 class="h is" data-split>Questions <em>answered</em></h2>
+      <div data-faq data-reveal>
+        <details class="kt-faq" open><summary>What's your cancellation policy?</summary><div class="kt-faq-a"><div>Free cancellation or rescheduling up to 24 hours before. Later than that, or no-shows, are charged 50% of the service.</div></div></details>
+        <details class="kt-faq"><summary>Do I need a patch test?</summary><div class="kt-faq-a"><div>Yes for first-time colour (48 hours before) and lash or brow tints (24 hours before). It takes five minutes and is free.</div></div></details>
+        <details class="kt-faq"><summary>Do you work with curly and textured hair?</summary><div class="kt-faq-a"><div>Absolutely. Jess and Maya are trained in curl cutting and silk presses, and we stock products for every texture.</div></div></details>
+        <details class="kt-faq"><summary>Can I bring my kids?</summary><div class="kt-faq-a"><div>Kids' cuts (under 12) are $35 with Jess on weekday afternoons. For longer services we suggest coming solo so you can relax.</div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a href="#" class="logo">Rosé <em>&amp;</em> Co</a><nav><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Careers</a><a href="#">Privacy</a></nav><span>© 2026 Rosé &amp; Co Salon</span></div></footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // booking widget: next 10 open days, time slots, live summary
+  const $ = s => document.querySelector(s);
+  const form = $('#bk'), daysEl = $('#days'), slotsEl = $('#slots');
+  const DN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], MN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const TIMES = ['9:00', '9:45', '10:30', '11:15', '12:00', '1:00', '1:45', '2:30', '3:30', '4:15', '5:00', '6:00'];
+  const days = [];
+  for (let d = new Date(), k = 0; days.length < 10 && k < 20; k++) {
+    const x = new Date(d.getFullYear(), d.getMonth(), d.getDate() + k);
+    if (x.getDay() !== 1) days.push(x); // closed Mondays
+  }
+  daysEl.innerHTML = days.map((x, i) => `<label><input type="radio" name="day" value="${i}"${i ? '' : ' checked'}><span><small>${i ? DN[x.getDay()] : 'Today'}</small><b>${x.getDate()}</b><small>${MN[x.getMonth()]}</small></span></label>`).join('');
+  const taken = (di, ti) => ((di + 3) * 7 + ti * 5) % 4 === 0 || (di === 0 && ti < 6);
+  const drawSlots = () => {
+    const di = +(form.day.value || 0);
+    slotsEl.innerHTML = TIMES.map((t, ti) => { const pm = ti >= 5 || t.startsWith('12'); return `<label><input type="radio" name="time" value="${t} ${pm ? 'pm' : 'am'}"${taken(di, ti) ? ' disabled' : ''} required><span>${t} ${pm ? 'pm' : 'am'}</span></label>`; }).join('');
+  };
+  const update = () => {
+    const [name, price, dur] = form.service.value.split('|');
+    const day = days[+(form.day.value || 0)], time = form.time.value;
+    $('#s-svc').textContent = name; $('#s-tot').textContent = '$' + price; $('#s-dur').textContent = dur;
+    $('#s-who').textContent = form.stylist.value;
+    $('#s-when').textContent = time ? `${DN[day.getDay()]} ${day.getDate()} ${MN[day.getMonth()]} · ${time}` : 'Choose a time';
+  };
+  drawSlots(); update();
+  form.addEventListener('change', e => { if (e.target.name === 'day') drawSlots(); update(); });
+  form.addEventListener('reset', () => setTimeout(() => { drawSlots(); update(); }));
+
+  // gift card preview
+  const gf = $('#gf');
+  const gUpd = () => { $('#g-amt').textContent = '$' + gf.amt.value; $('#g-to').textContent = gf.to.value.trim() ? 'For ' + gf.to.value.trim() : 'For someone lovely'; };
+  gf.addEventListener('input', gUpd); gf.addEventListener('change', gUpd);
+  gf.addEventListener('reset', () => setTimeout(gUpd));
+
+  // highlight today's opening hours
+  document.querySelector(`#hrs tr[data-d="${new Date().getDay()}"]`)?.classList.add('today');
+</script>
+</body>
+</html>

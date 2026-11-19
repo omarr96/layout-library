@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gather &amp; Glow · Event &amp; Wedding Planning</title>
+<meta name="description" content="Wedding, corporate and private event planning across the Hudson Valley and New York City. Day-of coordination to full planning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f7f1e8; --kt-ink: #2a1822; --kt-tx: #5c4a52; --kt-mut: #76636a; --kt-line: rgba(42,24,34,.13); --kt-accent: #7d2e45; --kt-accent-ink: #fff; --kt-radius: 4px; --gold: #b8935a; --plum: #2a1822; --cream: #efe5d6; }
+body { font: 16px/1.7 Manrope, system-ui, sans-serif; }
+.bd { font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; letter-spacing: -.01em; line-height: 1.05; }
+.bd em, h2 em { font-style: italic; color: var(--kt-accent); }
+.wrap { max-width: 1220px; margin: 0 auto; padding: 0 32px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #7f5f2f; }
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+h2.h { font-size: clamp(38px, 5.2vw, 68px); color: var(--kt-ink); margin: 18px 0 20px; }
+.lead { font-size: 18px; max-width: 560px; }
+section { padding: 120px 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 30px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: .25s; border: 1px solid transparent; }
+.btn.fill { background: var(--kt-accent); color: #fff; }
+.btn.fill:hover { background: var(--plum); }
+.btn.line { border-color: var(--kt-ink); color: var(--kt-ink); }
+.btn.line:hover { background: var(--kt-ink); color: var(--kt-bg); }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 34px; height: 88px; transition: height .3s; }
+.nav.scrolled { background: rgba(247,241,232,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--kt-line); }
+.nav.scrolled .wrap { height: 70px; }
+.logo { font-family: 'Bodoni Moda', serif; font-size: 25px; color: var(--kt-ink); white-space: nowrap; }
+.logo i { color: var(--gold); }
+.kt-menu { display: flex; gap: 30px; margin-left: auto; }
+.kt-menu a { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 44px; padding: 0 22px; font-size: 12px; }
+.kt-burger { color: var(--kt-ink); margin-left: auto; }
+
+/* hero */
+.hero { padding: 150px 0 90px; position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
+.hero h1 { font-size: clamp(50px, 7.4vw, 104px); color: var(--kt-ink); margin: 26px 0 28px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--kt-accent); }
+.hero .lead { margin: 0 0 38px; }
+.hero .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .meta { display: flex; gap: 44px; margin-top: 56px; padding-top: 30px; border-top: 1px solid var(--kt-line); flex-wrap: wrap; }
+.hero .meta b { display: block; font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 400; color: var(--kt-ink); line-height: 1; }
+.hero .meta span { font-size: 13px; color: var(--kt-mut); }
+.arch { position: relative; }
+.arch .frame { border-radius: 400px 400px 6px 6px; overflow: hidden; aspect-ratio: 4/5; position: relative; box-shadow: 0 40px 80px -30px rgba(42,24,34,.45); }
+.arch::before { content: ""; position: absolute; inset: -18px -18px 30px 18px; border: 1px solid var(--gold); border-radius: 400px 400px 6px 6px; }
+.arch .card { position: absolute; left: -40px; bottom: 50px; background: #fff; padding: 20px 24px; box-shadow: 0 20px 50px rgba(42,24,34,.18); max-width: 250px; }
+.arch .card small { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #7f5f2f; font-weight: 700; }
+.arch .card b { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 22px; color: var(--kt-ink); display: block; margin: 4px 0 2px; }
+.arch .card span { font-size: 13px; }
+
+/* venues */
+.venues { border-block: 1px solid var(--kt-line); padding: 30px 0; }
+.venues .kt-mq-track span { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 26px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.venues .kt-mq-track span::after { content: "✦"; font-size: 13px; color: var(--gold); font-style: normal; }
+
+/* event types */
+.types-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+.tbtns { display: flex; border: 1px solid var(--kt-ink); }
+.tbtns button { padding: 14px 26px; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--kt-ink); transition: .25s; }
+.tbtns button + button { border-left: 1px solid var(--kt-ink); }
+.tbtns button.on { background: var(--kt-ink); color: var(--kt-bg); }
+.tpane { display: grid; grid-template-columns: 1.1fr .9fr; gap: 0; margin-top: 50px; background: #fff; box-shadow: 0 30px 70px -40px rgba(42,24,34,.35); }
+.tpane img { width: 100%; height: 100%; min-height: 460px; object-fit: cover; }
+.tpane .c { padding: 56px 52px; }
+.tpane h3 { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 40px; color: var(--kt-ink); margin: 0 0 14px; line-height: 1.1; }
+.tpane ul { list-style: none; padding: 0; margin: 26px 0 30px; display: grid; gap: 12px; }
+.tpane li { display: flex; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--kt-line); }
+.tpane li::before { content: "✦"; color: var(--gold); font-size: 12px; margin-top: 4px; }
+.tpane .stat { display: flex; gap: 30px; font-size: 13px; color: var(--kt-mut); }
+.tpane .stat b { display: block; font-family: 'Bodoni Moda', serif; font-size: 30px; font-weight: 400; color: var(--kt-accent); }
+
+/* timeline */
+.tl { background: var(--plum); color: #d9cbc9; }
+.tl h2.h { color: #fff; }
+.tl .eyebrow, .enq .eyebrow { color: var(--gold); }
+.tl h2 em { color: var(--gold); }
+.tl .wrap > .top { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 70px; position: relative; }
+.steps::before { content: ""; position: absolute; top: 31px; left: 0; right: 0; height: 1px; background: rgba(184,147,90,.45); }
+.step { position: relative; padding-right: 26px; }
+.step .dot { width: 62px; height: 62px; border-radius: 50%; border: 1px solid var(--gold); background: var(--plum); display: grid; place-items: center; font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 20px; color: var(--gold); position: relative; transition: .3s; }
+.step:hover .dot { background: var(--gold); color: var(--plum); }
+.step small { display: block; margin: 26px 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+.step h4 { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 24px; color: #fff; margin: 0 0 10px; line-height: 1.2; }
+.step p { font-size: 14.5px; margin: 0; }
+
+/* packages */
+.pk-head { text-align: center; max-width: 680px; margin: 0 auto 60px; }
+.pk-head .eyebrow::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.pkgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: stretch; }
+.pkg { background: #fff; padding: 44px 38px; display: flex; flex-direction: column; border-top: 3px solid var(--cream); transition: transform .35s, box-shadow .35s; }
+.pkg:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(42,24,34,.35); }
+.pkg.feat { background: var(--kt-accent); color: #f1dde2; border-top-color: var(--gold); }
+.pkg .tag { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #7f5f2f; }
+.pkg.feat .tag { color: #f3d9a4; }
+.pkg h3 { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 32px; color: var(--kt-ink); margin: 10px 0 8px; }
+.pkg.feat h3, .pkg.feat .pr { color: #fff; }
+.pkg .pr { font-family: 'Bodoni Moda', serif; font-size: 46px; color: var(--kt-ink); margin: 18px 0 4px; line-height: 1; }
+.pkg .pr small { font-family: Manrope, sans-serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.pkg ul { list-style: none; padding: 0; margin: 26px 0 34px; display: grid; gap: 11px; font-size: 15px; }
+.pkg li { display: flex; gap: 12px; }
+.pkg li::before { content: "—"; color: var(--gold); }
+.pkg .btn { margin-top: auto; }
+.pkg.feat .btn { background: #fff; color: var(--kt-accent); }
+.pkg.feat .btn:hover { background: var(--gold); color: #fff; }
+.pk-note { text-align: center; margin-top: 30px; font-size: 14px; color: var(--kt-mut); }
+
+/* gallery */
+.gal-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 44px; }
+.gal { columns: 3; column-gap: 18px; }
+.gal a { display: block; margin-bottom: 18px; position: relative; overflow: hidden; break-inside: avoid; }
+.gal img { width: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.gal a:hover img { transform: scale(1.05); }
+.gal a span { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px; background: linear-gradient(transparent, rgba(42,24,34,.8)); color: #fff; font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 18px; opacity: 0; transform: translateY(10px); transition: .35s; }
+.gal a:hover span, .gal a:focus-visible span { opacity: 1; transform: none; }
+
+/* team */
+.team { background: var(--cream); }
+.team .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+.mem img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: sepia(.15); }
+.mem h4 { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 26px; color: var(--kt-ink); margin: 20px 0 2px; }
+.mem small { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--kt-accent); }
+.mem p { font-size: 15px; margin: 10px 0 0; }
+
+/* testimonials */
+.tst { text-align: center; }
+.tst .kt-slider { max-width: 900px; margin: 30px auto 0; }
+.tq q { display: block; font-family: 'Bodoni Moda', serif; font-size: clamp(24px, 3vw, 36px); line-height: 1.35; color: var(--kt-ink); quotes: "“" "”"; }
+.tq .who { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 34px; }
+.tq img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.tq .who b { display: block; color: var(--kt-ink); text-align: left; }
+.tq .who span { font-size: 13.5px; color: var(--kt-mut); display: block; text-align: left; }
+.tst .kt-dots { color: var(--kt-accent); }
+.tst .stars { color: var(--gold); letter-spacing: 6px; font-size: 18px; }
+
+/* enquiry */
+.enq { background: var(--plum); color: #d9cbc9; position: relative; overflow: hidden; }
+.enq .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; position: relative; }
+.enq h2.h { color: #fff; }
+.enq h2 em { color: var(--gold); }
+.enq .info { display: grid; gap: 18px; margin-top: 34px; font-size: 15px; }
+.enq .info b { display: block; color: #fff; font-weight: 600; }
+.enq form { background: var(--kt-bg); color: var(--kt-tx); padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+.enq form .full { grid-column: 1 / -1; }
+.fld label, .fld legend { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--kt-ink); margin-bottom: 8px; padding: 0; }
+.fld input, .fld select, .fld textarea { width: 100%; height: 50px; border: 0; border-bottom: 1px solid rgba(42,24,34,.3); background: transparent; padding: 0 2px; outline: none; color: var(--kt-ink); border-radius: 0; }
+.fld textarea { height: 96px; padding-top: 10px; resize: vertical; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { border-bottom-color: var(--kt-accent); }
+fieldset.fld { border: 0; margin: 0; padding: 0; min-width: 0; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips label { margin: 0; letter-spacing: 0; text-transform: none; font-weight: 600; font-size: 14px; }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chips span { display: inline-block; padding: 9px 16px; border: 1px solid rgba(42,24,34,.25); cursor: pointer; transition: .2s; }
+.chips input:checked + span { background: var(--kt-ink); color: var(--kt-bg); border-color: var(--kt-ink); }
+.chips input:focus-visible + span { outline: 2px solid var(--kt-accent); outline-offset: 2px; }
+.enq form .btn { grid-column: 1 / -1; border: 0; }
+
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+.faq .kt-faq summary { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 22px; }
+footer { padding: 70px 0 40px; border-top: 1px solid var(--kt-line); }
+footer .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+footer h5 { font-size: 11.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--kt-ink); margin: 0 0 16px; }
+footer .top a, footer .top p { display: block; font-size: 14.5px; margin: 0 0 8px; }
+footer .top a:hover { color: var(--kt-accent); }
+footer .bot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--kt-mut); border-top: 1px solid var(--kt-line); padding-top: 26px; }
+
+@media (max-width: 1000px) {
+  section { padding: 86px 0; }
+  .hero .wrap, .tpane, .tl .wrap > .top, .enq .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 44px; }
+  .arch { max-width: 460px; margin: 0 auto; width: 100%; }
+  .tpane img { min-height: 300px; max-height: 380px; }
+  .steps { grid-template-columns: 1fr; gap: 34px; }
+  .steps::before { top: 0; bottom: 0; left: 31px; right: auto; width: 1px; height: auto; }
+  .step { display: grid; grid-template-columns: 62px 1fr; column-gap: 24px; padding: 0; }
+  .step .dot { grid-row: span 3; }
+  .step small { margin: 6px 0 4px; }
+  .pkgs, .team .grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+  .gal { columns: 2; }
+  footer .top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .hero { padding-top: 120px; }
+  .nav .btn { display: none; }
+  .arch .card { left: 10px; bottom: 20px; max-width: 210px; padding: 14px 16px; }
+  .arch::before { inset: -10px -10px 20px 10px; }
+  .hero .meta { gap: 26px; }
+  .hero .meta b { font-size: 32px; }
+  .tbtns { width: 100%; }
+  .tbtns button { flex: 1; padding: 13px 6px; font-size: 11.5px; letter-spacing: .06em; }
+  .tpane .c { padding: 32px 24px; }
+  .tpane h3 { font-size: 30px; }
+  .pkg { padding: 34px 26px; }
+  .gal { columns: 1; }
+  .enq form { grid-template-columns: 1fr; padding: 28px 22px; }
+  footer .top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo">Gather <i>&amp;</i> Glow</a>
+    <nav class="kt-menu"><a href="#events">Events</a><a href="#process">Process</a><a href="#packages">Packages</a><a href="#gallery">Gallery</a><a href="#enquire">Enquire</a></nav>
+    <a href="#enquire" class="btn fill">Check your date</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Event &amp; wedding planning · Hudson Valley &amp; NYC</span>
+      <h1 class="bd"><span data-split>Beautifully planned</span><br><span data-rotate="weddings|galas|launches|birthdays|reunions" data-every="2600"></span></h1>
+      <p class="lead" data-reveal data-delay="200">For twelve years we have planned the days people talk about for decades: barn weddings in Rhinebeck, rooftop launches in Tribeca, sixtieth birthdays on the river. You enjoy it. We hold the clipboard.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#enquire" class="btn fill">Start planning</a><a href="#packages" class="btn line">View packages</a></div>
+      <div class="meta" data-reveal data-delay="400">
+        <div><b data-count="640" data-suffix="+">0</b><span>events delivered</span></div>
+        <div><b data-count="4.9">0</b><span>average review</span></div>
+        <div><b data-count="38">0</b><span>partner venues</span></div>
+      </div>
+    </div>
+    <div class="arch" data-reveal="zoom">
+      <div class="frame"><div data-heroslides data-every="5000">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1100&q=70&auto=format&fit=crop" alt="Long reception table set with white flowers and candles">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1100&q=70&auto=format&fit=crop" alt="Outdoor ceremony aisle lined with pink and white flowers">
+        <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=1100&q=70&auto=format&fit=crop" alt="Barn reception hall with draped ceiling and warm lights">
+      </div></div>
+      <div class="card"><small>Now booking</small><b>Summer &amp; fall 2027</b><span>11 Saturdays left between June and October.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="venues kt-marquee" data-speed="40s"><div class="kt-mq-track"><span>The Orchard House, Rhinebeck</span><span>Pier Sixty-One Loft</span><span>Wildflower Barn, Kinderhook</span><span>The Gilded Conservatory</span><span>Hudson River Boathouse</span><span>Mill &amp; Maple, Beacon</span><span>Astor Hall Rooftop</span></div></div>
+
+<section id="events">
+  <div class="wrap" data-tabs>
+    <div class="types-head">
+      <div><span class="eyebrow" data-reveal>What we plan</span><h2 class="h bd" data-split>One team, <em>every</em> kind of occasion</h2></div>
+      <div class="tbtns" role="tablist" data-reveal><button data-tab="wed" class="on">Weddings</button><button data-tab="corp">Corporate</button><button data-tab="priv">Private</button></div>
+    </div>
+    <div data-reveal>
+      <div class="tpane" data-pane="wed"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=70&auto=format&fit=crop" alt="Couple at an outdoor ceremony with balloons and flowers"><div class="c"><h3>Weddings, from vows to the last dance</h3><p>Ceremony design, vendor shortlists, guest logistics and a minute-by-minute run sheet, so the only thing you carry on the day is your bouquet.</p><ul><li>Venue scouting and contract review</li><li>Design boards, florals and tablescapes</li><li>RSVP tracking, seating plan and welcome bags</li><li>Rehearsal run-through and two planners on the day</li></ul><div class="stat"><div><b>420+</b>weddings</div><div><b>40–300</b>guests</div></div></div></div>
+      <div class="tpane" data-pane="corp"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1200&q=70&auto=format&fit=crop" alt="Audience seated in a grand hall for a corporate presentation"><div class="c"><h3>Corporate events that feel human</h3><p>Product launches, offsites, galas and holiday parties, delivered on budget with production, catering and AV under one point of contact.</p><ul><li>Run of show, stage and AV management</li><li>Speaker and VIP hospitality</li><li>Branded décor that is not a banner on a pipe</li><li>Post-event report with spend breakdown</li></ul><div class="stat"><div><b>150+</b>corporate clients</div><div><b>98%</b>rebook rate</div></div></div></div>
+      <div class="tpane" data-pane="priv"><img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200&q=70&auto=format&fit=crop" alt="Friends toasting at a candlelit private party under string lights"><div class="c"><h3>Private parties worth dressing up for</h3><p>Milestone birthdays, anniversaries, engagement dinners and family reunions, at home, on a boat or somewhere we have quietly reserved.</p><ul><li>Private chefs, sommeliers and bartending</li><li>Tent, lighting and rentals for home events</li><li>Entertainment from string trio to DJ</li><li>Surprise logistics kept genuinely secret</li></ul><div class="stat"><div><b>12–150</b>guests</div><div><b>6 wks</b>minimum lead time</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tl" id="process">
+  <div class="wrap">
+    <div class="top">
+      <div><span class="eyebrow" data-reveal>How full planning works</span><h2 class="h bd" data-split>Twelve months, <em>calmly</em> paced</h2></div>
+      <p data-reveal>Every couple gets a shared planning portal, a fixed meeting schedule and one lead planner from first call to farewell brunch. Here is what the year looks like.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal><span class="dot">i</span><small>12 months out</small><h4>Vision &amp; budget</h4><p>A two-hour design session, a realistic budget split and a guest-count range.</p></div>
+      <div class="step" data-reveal data-delay="100"><span class="dot">ii</span><small>10 months out</small><h4>Venue &amp; vendors</h4><p>Three venue tours, then a shortlist of photographers, caterers and florists we trust.</p></div>
+      <div class="step" data-reveal data-delay="200"><span class="dot">iii</span><small>6 months out</small><h4>Design &amp; details</h4><p>Mood board, tastings, stationery and rentals locked in. Invitations go out.</p></div>
+      <div class="step" data-reveal data-delay="300"><span class="dot">iv</span><small>6 weeks out</small><h4>Run sheet</h4><p>Final numbers, seating, a timed run sheet shared with every vendor.</p></div>
+      <div class="step" data-reveal data-delay="400"><span class="dot">v</span><small>The day</small><h4>You just arrive</h4><p>Two planners on site from load-in to the last car home. You never see a problem.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="wrap">
+    <div class="pk-head"><span class="eyebrow" data-reveal>Packages</span><h2 class="h bd" data-split>Choose how much we <em>carry</em></h2><p data-reveal>Clear flat fees, never a percentage of your vendor spend. All packages include our vendor discounts.</p></div>
+    <div class="pkgs">
+      <div class="pkg" data-reveal><span class="tag">Final 8 weeks</span><h3>Day-of coordination</h3><p>You planned it. We make sure it runs like you imagined.</p><div class="pr">$2,400<small> flat</small></div><ul><li>Two planning meetings + venue walkthrough</li><li>Vendor confirmations and timed run sheet</li><li>Rehearsal coordination</li><li>Lead planner + assistant, up to 12 hours</li></ul><a href="#enquire" class="btn line">Enquire</a></div>
+      <div class="pkg feat" data-reveal data-delay="120"><span class="tag">Most booked · from 6 months</span><h3>Partial planning</h3><p>You have the venue. We fill in everything else with you.</p><div class="pr">$6,800<small> flat</small></div><ul><li>Everything in Day-of coordination</li><li>Vendor shortlists and contract review</li><li>Design board, florals and tablescape plan</li><li>Budget tracker and monthly check-ins</li><li>Guest RSVP and seating management</li></ul><a href="#enquire" class="btn">Enquire</a></div>
+      <div class="pkg" data-reveal data-delay="240"><span class="tag">From 12 months</span><h3>Full planning</h3><p>From blank page to farewell brunch, handled end to end.</p><div class="pr">$14,500<small> from</small></div><ul><li>Everything in Partial planning</li><li>Venue search and three guided tours</li><li>Full event design and custom details</li><li>Guest travel, hotel blocks and transport</li><li>Rehearsal dinner and after-party planning</li></ul><a href="#enquire" class="btn line">Enquire</a></div>
+    </div>
+    <p class="pk-note" data-reveal>Corporate and private events are quoted per brief, usually within two working days.</p>
+  </div>
+</section>
+
+<section id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="gal-head"><div><span class="eyebrow" data-reveal>Recent work</span><h2 class="h bd" data-split>From our <em>2026</em> season</h2></div><p data-reveal style="max-width:380px">Tap any photo to see it full size. Photography by our partner studios, shared with our clients' blessing.</p></div>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=70&auto=format&fit=crop" data-caption="Hannah &amp; Theo · Wildflower Barn"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=70&auto=format&fit=crop" alt="Bride holding a bouquet beside the groom" loading="lazy"><span>Hannah &amp; Theo</span></a>
+      <a href="https://images.unsplash.com/photo-1522413452208-996ff3f3e740?w=1600&q=70&auto=format&fit=crop" data-caption="Greenery tablescape · The Orchard House"><img src="https://images.unsplash.com/photo-1522413452208-996ff3f3e740?w=700&q=70&auto=format&fit=crop" alt="Table set with plates, cutlery and a eucalyptus runner" loading="lazy"><span>Orchard House supper</span></a>
+      <a href="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1600&q=70&auto=format&fit=crop" data-caption="Garden pavilion ceremony · Kinderhook"><img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=700&q=70&auto=format&fit=crop" alt="Garden pavilion with columns decorated in roses" loading="lazy"><span>Garden pavilion</span></a>
+      <a href="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=1600&q=70&auto=format&fit=crop" data-caption="Priya &amp; Arjun · Sangeet night"><img src="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=700&q=70&auto=format&fit=crop" alt="Ballroom with chandeliers and a decorated stage" loading="lazy"><span>Priya &amp; Arjun's sangeet</span></a>
+      <a href="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=1600&q=70&auto=format&fit=crop" data-caption="Peach rose bouquet"><img src="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=700&q=70&auto=format&fit=crop" alt="Bouquet of peach and white roses" loading="lazy"><span>Peach roses</span></a>
+      <a href="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600&q=70&auto=format&fit=crop" data-caption="Winter gala · Astor Hall"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&q=70&auto=format&fit=crop" alt="Banquet hall with round tables and gold chairs" loading="lazy"><span>Winter gala</span></a>
+      <a href="https://images.unsplash.com/photo-1546032996-6dfacbacbf3f?w=1600&q=70&auto=format&fit=crop" data-caption="Mara &amp; Josh · Golden hour portraits"><img src="https://images.unsplash.com/photo-1546032996-6dfacbacbf3f?w=700&q=70&auto=format&fit=crop" alt="Couple embracing under a veil at sunset" loading="lazy"><span>Mara &amp; Josh</span></a>
+      <a href="https://images.unsplash.com/photo-1561912774-79769a0a0a7a?w=1600&q=70&auto=format&fit=crop" data-caption="Reception detail · Mill &amp; Maple"><img src="https://images.unsplash.com/photo-1561912774-79769a0a0a7a?w=700&q=70&auto=format&fit=crop" alt="Elegant reception tables with white linen" loading="lazy"><span>Mill &amp; Maple</span></a>
+      <a href="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1600&q=70&auto=format&fit=crop" data-caption="Elopement on the coast"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=700&q=70&auto=format&fit=crop" alt="Couple walking on a black sand beach" loading="lazy"><span>Coastal elopement</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>The planners</span><h2 class="h bd" data-split>Calm people for <em>big</em> days</h2>
+    <div class="grid">
+      <div class="mem" data-reveal><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&q=70&auto=format&fit=crop" alt="Portrait of Claire Whitfield" loading="lazy"><h4>Claire Whitfield</h4><small>Founder · Lead planner</small><p>Former hotel events director. Has seen every possible rain plan and written most of them.</p></div>
+      <div class="mem" data-reveal data-delay="120"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=70&auto=format&fit=crop" alt="Portrait of Daniel Okafor" loading="lazy"><h4>Daniel Okafor</h4><small>Corporate &amp; production</small><p>Runs our launches and galas. Speaks fluent AV and calmly fixes a dead microphone in 40 seconds.</p></div>
+      <div class="mem" data-reveal data-delay="240"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=70&auto=format&fit=crop" alt="Portrait of Sofia Marchetti" loading="lazy"><h4>Sofia Marchetti</h4><small>Design director</small><p>Trained florist turned designer. The reason our tables photograph the way they do.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tst">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Kind words</span>
+    <div class="kt-slider" data-autoplay="7000" data-reveal>
+      <div class="kt-track">
+        <div class="tq"><div class="stars" aria-label="5 stars">★★★★★</div><q>It poured an hour before the ceremony. Claire had the tent sides down, umbrellas at the door and a new photo spot lit before we even knew. Our guests still say it was the best wedding they have been to.</q><div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=70&auto=format&fit=crop" alt="Hannah Lee"><div><b>Hannah &amp; Theo</b><span>Full planning · Wildflower Barn, Sept 2026</span></div></div></div>
+        <div class="tq"><div class="stars" aria-label="5 stars">★★★★★</div><q>We moved our product launch forward three weeks and Daniel did not blink. 400 guests, a live stream and zero awkward silences. We have booked them for the next two years.</q><div class="who"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=70&auto=format&fit=crop" alt="Mark Ellison"><div><b>Mark Ellison</b><span>VP Marketing, Northpine Software</span></div></div></div>
+        <div class="tq"><div class="stars" aria-label="5 stars">★★★★★</div><q>My mother's 70th on a river boat, with her sisters flown in from Lagos as a surprise. She cried twice and she never cries. Worth every penny.</q><div class="who"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=70&auto=format&fit=crop" alt="Adaeze Nwosu"><div><b>Adaeze Nwosu</b><span>Private party · Hudson River cruise</span></div></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="enq" id="enquire">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Enquire</span>
+      <h2 class="h bd" data-split>Tell us about your <em>day</em></h2>
+      <p data-reveal>Share a few details and Claire or Daniel will reply within one working day with availability and a tailored quote. The first call is always free.</p>
+      <div class="info" data-reveal>
+        <div><b>Studio</b>14 Market Street, Rhinebeck, NY 12572</div>
+        <div><b>Call or text</b>(845) 555-0142 · Mon–Fri, 9am–6pm</div>
+        <div><b>Email</b>hello@gatherandglow.com</div>
+      </div>
+    </div>
+    <form data-form="Thank you! We'll reply within one working day with availability for your date." data-reveal="right">
+      <div class="fld"><label for="e-name">Your names</label><input id="e-name" required autocomplete="name" placeholder="Hannah & Theo"></div>
+      <div class="fld"><label for="e-mail">Email</label><input id="e-mail" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+      <fieldset class="fld full"><legend>Type of event</legend><div class="chips"><label><input type="radio" name="etype" value="wedding" checked><span>Wedding</span></label><label><input type="radio" name="etype" value="corporate"><span>Corporate</span></label><label><input type="radio" name="etype" value="private"><span>Private party</span></label><label><input type="radio" name="etype" value="other"><span>Something else</span></label></div></fieldset>
+      <div class="fld"><label for="e-date">Event date</label><input id="e-date" type="date" required></div>
+      <div class="fld"><label for="e-guests">Guest count</label><input id="e-guests" type="number" min="2" max="1000" placeholder="e.g. 120" required></div>
+      <div class="fld"><label for="e-budget">Total budget</label><select id="e-budget" required><option value="">Choose a range</option><option>Under $25,000</option><option>$25,000 – $50,000</option><option>$50,000 – $100,000</option><option>$100,000 +</option><option>Not sure yet</option></select></div>
+      <div class="fld"><label for="e-pkg">Package interest</label><select id="e-pkg"><option>Not sure yet</option><option>Day-of coordination</option><option>Partial planning</option><option>Full planning</option><option>Custom quote</option></select></div>
+      <div class="fld full"><label for="e-msg">Anything else?</label><textarea id="e-msg" placeholder="Venue ideas, must-haves, the vibe you're after..."></textarea></div>
+      <button class="btn fill" type="submit">Check availability</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div><span class="eyebrow" data-reveal>Questions</span><h2 class="h bd" data-split>Good to <em>know</em></h2><p data-reveal>Still wondering? Call the studio on (845) 555-0142.</p></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>How far ahead should we book?</summary><div class="kt-faq-a"><div>Full planning works best with 12 months, partial with 6–9, and day-of coordination with at least 8 weeks. Peak Saturdays from June to October usually go 14 months ahead.</div></div></details>
+      <details class="kt-faq"><summary>Do you travel outside the Hudson Valley?</summary><div class="kt-faq-a"><div>Yes. We plan regularly in New York City, the Berkshires and Connecticut. Destination events are quoted with travel at cost and no extra markup.</div></div></details>
+      <details class="kt-faq"><summary>How does payment work?</summary><div class="kt-faq-a"><div>A 30% retainer secures your date, then the balance is split into monthly instalments ending four weeks before the event. You pay vendors directly, so you always see exactly what things cost.</div></div></details>
+      <details class="kt-faq"><summary>Can we use our own vendors?</summary><div class="kt-faq-a"><div>Of course. We will happily work with anyone you love, and we will flag it kindly if a contract needs a closer look.</div></div></details>
+      <details class="kt-faq"><summary>What happens if it rains?</summary><div class="kt-faq-a"><div>Every outdoor event gets a written wet-weather plan, priced and on hold, agreed with you at the 6-week meeting. We make the call 48 hours out so you don't have to.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div><a href="#" class="logo">Gather <i>&amp;</i> Glow</a><p style="margin-top:14px;max-width:300px">Event and wedding planning for the Hudson Valley and New York City since 2014.</p></div>
+      <div><h5>Plan</h5><a href="#events">Weddings</a><a href="#events">Corporate</a><a href="#events">Private parties</a><a href="#packages">Packages</a></div>
+      <div><h5>Studio</h5><p>14 Market Street<br>Rhinebeck, NY 12572</p><p>(845) 555-0142</p></div>
+      <div><h5>Follow</h5><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">The Knot</a></div>
+    </div>
+    <div class="bot"><span>© 2026 Gather &amp; Glow Events LLC</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+</body>
+</html>

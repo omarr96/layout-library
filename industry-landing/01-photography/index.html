@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northlight Studio · Photography &amp; Film</title>
+<meta name="description" content="Northlight is a photo and film studio in Portland, Oregon. Weddings, portraits, brand campaigns and short films, shot and graded in-house.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #0c0d10; --kt-ink: #f2efe8; --kt-tx: #a6a39b; --kt-mut: #75736d; --kt-line: rgba(242,239,232,.12); --kt-accent: #e4412f; --kt-accent-ink: #fff; --card: #15171b; --amber: #f0b45a; }
+body { font: 16px/1.65 Archivo, system-ui, sans-serif; }
+.bs { font-family: 'Big Shoulders Display', Impact, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: .005em; line-height: .9; color: var(--kt-ink); }
+.mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+.lab { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-mut); display: inline-flex; gap: 12px; align-items: center; }
+.lab b { color: var(--kt-accent); font-weight: 500; }
+h2.h { font-size: clamp(46px, 7vw, 104px); margin: 16px 0 22px; }
+h2.h em { font-style: normal; color: transparent; -webkit-text-stroke: 1.4px var(--kt-ink); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 26px; font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; border-radius: 2px; transition: .25s; }
+.btn.rec { background: var(--kt-accent); color: #fff; }
+.btn.rec:hover { background: #fff; color: #0c0d10; }
+.btn.ghost { border: 1px solid rgba(242,239,232,.35); color: var(--kt-ink); }
+.btn.ghost:hover { border-color: var(--kt-ink); background: rgba(255,255,255,.06); }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--kt-accent); display: inline-block; animation: blink 1.2s steps(1) infinite; }
+@keyframes blink { 50% { opacity: .15; } }
+section { padding: 130px 0; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 34px; height: 80px; }
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; transition: .3s; border-bottom: 1px solid transparent; }
+.nav.scrolled::before { background: rgba(12,13,16,.88); backdrop-filter: blur(14px); border-color: var(--kt-line); }
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 26px; letter-spacing: .06em; color: var(--kt-ink); text-transform: uppercase; }
+.logo svg { width: 26px; height: 26px; }
+.kt-menu { display: flex; gap: 30px; margin-left: auto; }
+.kt-menu a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #cfccc4; }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 44px; padding: 0 18px; }
+.kt-burger { color: var(--kt-ink); margin-left: auto; }
+.hero .lab { color: #e6e2da; }
+
+/* hero: letterboxed viewfinder */
+.hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; padding: 0; display: flex; align-items: flex-end; }
+.hero [data-heroslides] img { filter: saturate(.9) contrast(1.05); }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(12,13,16,.35), rgba(12,13,16,.15) 40%, rgba(12,13,16,.92)); }
+.bars { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.bars::before, .bars::after { content: ""; position: absolute; left: 0; right: 0; height: 7vh; background: #000; }
+.bars::before { top: 0; } .bars::after { bottom: 0; }
+.vf { position: absolute; inset: calc(7vh + 90px) 40px calc(7vh + 30px); z-index: 2; pointer-events: none; }
+.vf i { position: absolute; width: 34px; height: 34px; border: 0 solid rgba(255,255,255,.75); }
+.vf i:nth-child(1) { top: 0; left: 0; border-width: 2px 0 0 2px; } .vf i:nth-child(2) { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.vf i:nth-child(3) { bottom: 0; left: 0; border-width: 0 0 2px 2px; } .vf i:nth-child(4) { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+.osd { position: absolute; z-index: 3; top: calc(7vh + 96px); left: 60px; right: 60px; display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #fff; letter-spacing: .08em; }
+.osd span { display: inline-flex; align-items: center; gap: 8px; }
+.hero .wrap { position: relative; z-index: 3; width: 100%; padding-bottom: calc(7vh + 60px); }
+.hero h1 { font-size: clamp(58px, 11vw, 176px); margin: 14px 0 22px; }
+.hero h1 [data-rotate] { color: var(--kt-accent); }
+.hero .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+.hero p { max-width: 470px; font-size: 18px; color: #d9d6cf; margin: 0; }
+.hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* clients */
+.clients { border-block: 1px solid var(--kt-line); padding: 26px 0; --mq-gap: 64px; }
+.clients span { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #6c6a64; white-space: nowrap; }
+.clients span:nth-child(odd) { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 500; letter-spacing: .02em; text-transform: none; padding-top: 6px; }
+
+/* intro + stats */
+.intro .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; align-items: end; }
+.intro p.big { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.4; color: var(--kt-ink); margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--kt-line); border: 1px solid var(--kt-line); }
+.stats div { background: var(--kt-bg); padding: 26px; }
+.stats b { font-family: 'Big Shoulders Display', sans-serif; font-size: 58px; font-weight: 900; color: var(--kt-ink); display: block; line-height: 1; }
+.stats span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* portfolio */
+.work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 30px; }
+.filters button { height: 42px; padding: 0 16px; border: 1px solid var(--kt-line); color: #cfccc4; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; border-radius: 2px; transition: .2s; }
+.filters button sup { color: var(--kt-mut); margin-left: 4px; }
+.filters button.on, .filters button:hover { background: var(--kt-ink); color: #0c0d10; border-color: var(--kt-ink); }
+.filters button.on sup { color: var(--kt-accent); }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 120px; gap: 14px; grid-auto-flow: dense; }
+.grid a { position: relative; overflow: hidden; grid-column: span 4; grid-row: span 3; background: var(--card); }
+.grid a.w { grid-column: span 8; } .grid a.t { grid-row: span 4; }
+.grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .5s; filter: saturate(.85); }
+.grid a:hover img { transform: scale(1.05); filter: saturate(1.05); }
+.grid a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.8)); opacity: .9; }
+.grid .cap { position: absolute; left: 18px; right: 18px; bottom: 14px; z-index: 1; display: flex; justify-content: space-between; gap: 12px; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.grid .cap b { font-family: 'Big Shoulders Display', sans-serif; font-size: 22px; letter-spacing: .03em; font-weight: 700; }
+.grid a.pop { animation: kt-fade .5s ease; }
+.stash { display: none; }
+
+/* grade compare */
+.grade { background: #08090b; }
+.grade .wrap { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: center; }
+.grade .kt-compare { aspect-ratio: 2.39/1; border-radius: 0; }
+.grade .kt-before { filter: saturate(.3) contrast(.72) brightness(1.12); }
+.grade .kt-after { filter: saturate(1.15) contrast(1.08); }
+.grade .kt-tag { font-family: 'IBM Plex Mono', monospace; border-radius: 2px; letter-spacing: .1em; }
+.grade .kt-tag.l { left: 14px; } .grade .kt-tag.r { right: 14px; background: var(--kt-accent); }
+.specs { list-style: none; padding: 0; margin: 28px 0 0; border-top: 1px solid var(--kt-line); }
+.specs li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--kt-line); font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+.specs li span:last-child { color: var(--kt-ink); text-align: right; }
+
+/* reel strip */
+.reel { padding: 0 0 130px; background: #08090b; }
+.reel .kt-slider { max-width: 1320px; margin: 0 auto; }
+.frame { position: relative; aspect-ratio: 2.39/1; overflow: hidden; }
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.75), transparent 60%); }
+.frame .c { position: absolute; z-index: 1; left: 40px; bottom: 34px; max-width: 520px; }
+.frame .c small { font-family: 'IBM Plex Mono', monospace; color: var(--amber); letter-spacing: .1em; font-size: 12.5px; }
+.frame .c h3 { font-size: clamp(30px, 4vw, 56px); margin: 6px 0 8px; }
+.frame .c p { color: #d4d1ca; margin: 0; }
+.strip-ctl { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 22px; }
+.strip-ctl .kt-dots { margin: 0; color: var(--kt-accent); }
+.strip-ctl .ar { display: flex; gap: 8px; }
+.kt-arrow { border-radius: 2px; }
+
+/* packages */
+.tabbar { display: inline-flex; border: 1px solid var(--kt-line); margin: 10px 0 40px; flex-wrap: wrap; }
+.tabbar button { height: 48px; padding: 0 22px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #cfccc4; }
+.tabbar button.on { background: var(--kt-accent); color: #fff; }
+.pk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--kt-line); }
+.pkg { padding: 38px 34px; border-right: 1px solid var(--kt-line); display: flex; flex-direction: column; position: relative; }
+.pkg:last-child { border-right: 0; }
+.pkg.best { background: var(--card); }
+.pkg .tag { position: absolute; top: -1px; right: 24px; background: var(--kt-accent); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em; padding: 5px 10px; text-transform: uppercase; }
+.pkg small { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--kt-mut); }
+.pkg h3 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 40px; text-transform: uppercase; color: var(--kt-ink); margin: 6px 0 4px; line-height: 1; }
+.pkg .pr { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 30px; color: var(--amber); margin: 14px 0 0; }
+.pkg .pr span { font-family: Archivo, sans-serif; font-size: 14px; color: var(--kt-mut); font-weight: 400; }
+.pkg ul { list-style: none; padding: 0; margin: 22px 0 30px; display: grid; gap: 10px; font-size: 15px; }
+.pkg li { padding-left: 22px; position: relative; }
+.pkg li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 2px; background: var(--kt-accent); }
+.pkg .btn { margin-top: auto; }
+
+/* process */
+.proc { background: var(--card); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; counter-reset: s; }
+.step { border-top: 1px solid rgba(242,239,232,.25); padding-top: 22px; position: relative; }
+.step::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; background: var(--kt-accent); border-radius: 50%; }
+.step .tc { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--amber); letter-spacing: .06em; }
+.step h3 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 30px; text-transform: uppercase; color: var(--kt-ink); margin: 10px 0 8px; line-height: 1; }
+.step p { margin: 0; font-size: 15px; }
+
+/* crew */
+.crew { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 40px; }
+.cm img { aspect-ratio: 3/4; width: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); transition: filter .5s; }
+.cm:hover img { filter: none; }
+.cm h3 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 26px; text-transform: uppercase; color: var(--kt-ink); margin: 14px 0 0; }
+.cm span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--kt-mut); }
+
+/* testimonials */
+.tst { border-top: 1px solid var(--kt-line); }
+.tst .kt-slider { max-width: 1000px; margin: 30px auto 0; }
+.q { text-align: center; padding: 0 10px; }
+.q p { font-family: 'Big Shoulders Display', sans-serif; font-weight: 500; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.12; color: var(--kt-ink); text-transform: none; margin: 0 0 26px; }
+.q cite { font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.q cite b { color: var(--kt-accent); font-weight: 500; }
+.tst .kt-dots { color: var(--kt-ink); }
+
+/* faq + enquiry */
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+.kt-faq summary { font-family: Archivo, sans-serif; }
+.enq { background: #08090b; position: relative; overflow: hidden; }
+.enq .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; position: relative; }
+.enq .info p { font-size: 17px; max-width: 440px; }
+.enq .info dl { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; margin: 34px 0 0; }
+.enq .info dt { color: var(--kt-mut); text-transform: uppercase; letter-spacing: .08em; }
+.enq .info dd { margin: 0; color: var(--kt-ink); }
+form.f { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 36px; border: 1px solid var(--kt-line); background: var(--card); }
+.f label { display: grid; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--kt-mut); }
+.f .full { grid-column: 1 / -1; }
+.f input, .f select, .f textarea { height: 50px; border: 0; border-bottom: 1px solid rgba(242,239,232,.25); background: transparent; color: var(--kt-ink); padding: 0 2px; outline: none; font-family: Archivo, sans-serif; font-size: 16px; text-transform: none; letter-spacing: 0; border-radius: 0; color-scheme: dark; }
+.f select option { background: #15171b; }
+.f textarea { height: 96px; padding-top: 10px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--kt-accent); }
+.f fieldset { border: 0; padding: 0; margin: 0; grid-column: 1 / -1; }
+.f legend { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--kt-mut); margin-bottom: 10px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips label { display: block; }
+.chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chips span { display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border: 1px solid var(--kt-line); color: #cfccc4; cursor: pointer; transition: .2s; font-size: 12.5px; }
+.chips input:checked + span { background: var(--kt-ink); color: #0c0d10; border-color: var(--kt-ink); }
+.chips input:focus-visible + span { outline: 2px solid var(--kt-accent); outline-offset: 2px; }
+.f .btn { grid-column: 1 / -1; border: 0; height: 58px; }
+
+footer { border-top: 1px solid var(--kt-line); padding: 46px 0; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .06em; }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer a:hover { color: var(--kt-accent); }
+
+@media (max-width: 1000px) {
+  section { padding: 90px 0; }
+  .intro .wrap, .grade .wrap, .faq .wrap, .enq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .pk { grid-template-columns: 1fr; } .pkg { border-right: 0; border-bottom: 1px solid var(--kt-line); } .pkg:last-child { border-bottom: 0; }
+  .steps, .crew { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-auto-rows: 90px; }
+  .grid a, .grid a.w { grid-column: span 6; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .osd { left: 24px; right: 24px; font-size: 11.5px; } .osd .hide-s { display: none; }
+  .vf { inset: calc(7vh + 86px) 14px calc(7vh + 20px); }
+  .hero .wrap { padding-bottom: calc(7vh + 40px); }
+  .hero p { font-size: 16px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 110px; gap: 8px; }
+  .grid a, .grid a.w { grid-column: span 1; grid-row: span 2; } .grid a.w { grid-column: span 2; } .grid a.t { grid-row: span 3; }
+  .grid .cap { left: 10px; right: 10px; bottom: 8px; font-size: 10px; } .grid .cap b { font-size: 17px; } .grid .cap span { display: none; }
+  .grade .kt-compare { aspect-ratio: 4/3; }
+  .frame { aspect-ratio: 4/5; } .frame::after { background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.85)); } .frame .c { left: 20px; right: 20px; bottom: 22px; }
+  .reel .strip-ctl { padding: 0 18px; }
+  .steps, .crew { grid-template-columns: 1fr; }
+  .crew { grid-template-columns: 1fr 1fr; gap: 12px; } .cm h3 { font-size: 20px; }
+  form.f { grid-template-columns: 1fr; padding: 22px; }
+  .pkg { padding: 30px 22px; }
+  .tabbar button { padding: 0 14px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5" fill="#e4412f" stroke="none"/><path d="M12 3v3M21 12h-3M12 21v-3M3 12h3"/></svg>Northlight</a>
+    <nav class="kt-menu"><a href="#work">Work</a><a href="#grade">Film</a><a href="#packages">Packages</a><a href="#process">Process</a><a href="#enquire">Enquire</a></nav>
+    <a href="#enquire" class="btn rec">Check your date</a>
+    <button class="kt-burger" aria-label="Menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div data-heroslides data-every="6000">
+    <img src="https://images.unsplash.com/photo-1601506521793-dc748fc80b67?w=1800&q=70&auto=format&fit=crop" alt="Videographer filming with a cinema camera rig">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=70&auto=format&fit=crop" alt="Bride holding a bouquet in warm evening light">
+    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1800&q=70&auto=format&fit=crop" alt="Film projector beam in a dark room">
+  </div>
+  <div class="bars" aria-hidden="true"></div>
+  <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="osd" aria-hidden="true"><span><i class="dot"></i>REC <span id="tc">00:00:00:00</span></span><span class="hide-s">4K · 24 FPS · ISO 800</span><span>F/1.8</span></div>
+  <div class="wrap">
+    <span class="lab" data-reveal><b>●</b> Photo + film studio · Portland, OR</span>
+    <h1 class="bs"><span data-split>We shoot</span><br><span data-rotate="weddings|portraits|brands|short films" data-every="2200"></span></h1>
+    <div class="row" data-reveal data-delay="250">
+      <p>Stills and motion from one crew, graded in-house. Honest moments, cinematic light, and files you'll still love in twenty years.</p>
+      <div class="cta"><a href="#enquire" class="btn rec">Check your date →</a><a href="#work" class="btn ghost">View work</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="clients kt-marquee" data-speed="38s" aria-label="Selected clients"><div class="kt-mq-track"><span>Halden &amp; Co.</span><span>Mira Coffee</span><span>Cascade Run Club</span><span>Willow Hotel</span><span>Fern Ceramics</span><span>Ridgeline Outdoor</span><span>Oak &amp; Ember</span><span>Pacific Opera</span></div></div>
+
+<section class="intro">
+  <div class="wrap">
+    <div>
+      <span class="lab" data-reveal>01 / The studio</span>
+      <h2 class="h bs" data-split>Two mediums. <em>One eye.</em></h2>
+      <p class="big" data-reveal>Northlight is Theo and June Hart plus a tight crew of shooters and editors. Since 2014 we've filmed and photographed 300+ weddings and campaigns across the Pacific Northwest and beyond, always with the same rule: light first, then story.</p>
+    </div>
+    <div class="stats" data-reveal="right">
+      <div><b data-count="312">0</b><span>weddings filmed</span></div>
+      <div><b data-count="140" data-suffix="+">0</b><span>brand campaigns</span></div>
+      <div><b data-count="11">0</b><span>festival selections</span></div>
+      <div><b data-count="4.9">0</b><span>avg. rating · 186 reviews</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:0">
+  <div class="wrap">
+    <div class="work-head">
+      <div><span class="lab" data-reveal>02 / Selected work</span><h2 class="h bs" data-split>The archive</h2></div>
+      <div class="filters" role="group" aria-label="Filter work" data-reveal>
+        <button class="on" data-f="all" aria-pressed="true">All<sup>12</sup></button><button data-f="wed" aria-pressed="false">Weddings<sup>4</sup></button><button data-f="por" aria-pressed="false">Portraits<sup>3</sup></button><button data-f="brand" aria-pressed="false">Brands<sup>3</sup></button><button data-f="film" aria-pressed="false">Film<sup>2</sup></button>
+      </div>
+    </div>
+    <div class="grid" id="grid" data-lightbox>
+      <a class="w" data-c="wed" href="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=70&auto=format&fit=crop" data-caption="Ama &amp; Kofi · Hood River, 2026"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1100&q=70&auto=format&fit=crop" alt="Couple walking together on their wedding day" loading="lazy"><span class="cap"><b>Ama &amp; Kofi</b><span>Wedding · Hood River</span></span></a>
+      <a class="t" data-c="por" href="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1600&q=70&auto=format&fit=crop" data-caption="Leila · Studio portrait"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=70&auto=format&fit=crop" alt="Close studio portrait of a woman" loading="lazy"><span class="cap"><b>Leila</b><span>Portrait</span></span></a>
+      <a data-c="brand" href="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1600&q=70&auto=format&fit=crop" data-caption="Halden &amp; Co. · Watch campaign"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=70&auto=format&fit=crop" alt="Minimal white watch product shot" loading="lazy"><span class="cap"><b>Halden &amp; Co.</b><span>Brand</span></span></a>
+      <a class="t" data-c="film" href="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1600&q=70&auto=format&fit=crop" data-caption="“Low Tide” · short film, behind the scenes"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=700&q=70&auto=format&fit=crop" alt="Clapperboard held up on a film set" loading="lazy"><span class="cap"><b>Low Tide</b><span>Short film</span></span></a>
+      <a data-c="wed" href="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1600&q=70&auto=format&fit=crop" data-caption="Hannah &amp; Ben · Cannon Beach"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=70&auto=format&fit=crop" alt="Bride and groom on a windy beach" loading="lazy"><span class="cap"><b>Hannah &amp; Ben</b><span>Wedding</span></span></a>
+      <a data-c="por" href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=70&auto=format&fit=crop" data-caption="Marco · Headshot session"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=70&auto=format&fit=crop" alt="Smiling man in a headshot portrait" loading="lazy"><span class="cap"><b>Marco</b><span>Headshot</span></span></a>
+      <a class="w" data-c="brand" href="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&q=70&auto=format&fit=crop" data-caption="Ridgeline Outdoor · Trail runner launch"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1100&q=70&auto=format&fit=crop" alt="Red running shoe on a red background" loading="lazy"><span class="cap"><b>Ridgeline</b><span>Brand · Launch film + stills</span></span></a>
+      <a data-c="wed" href="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=70&auto=format&fit=crop" data-caption="Priya &amp; James · Confetti exit"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=70&auto=format&fit=crop" alt="Couple kissing as guests throw petals" loading="lazy"><span class="cap"><b>Priya &amp; James</b><span>Wedding</span></span></a>
+      <a class="t" data-c="por" href="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=1600&q=70&auto=format&fit=crop" data-caption="Adaeze · Editorial for Fern Ceramics"><img src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=700&q=70&auto=format&fit=crop" alt="Woman wearing a flower crown against a yellow wall" loading="lazy"><span class="cap"><b>Adaeze</b><span>Editorial</span></span></a>
+      <a data-c="film" href="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1600&q=70&auto=format&fit=crop" data-caption="In the edit suite · colour pass"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=700&q=70&auto=format&fit=crop" alt="Video editing timeline on a monitor" loading="lazy"><span class="cap"><b>The edit</b><span>Post-production</span></span></a>
+      <a data-c="brand" href="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=1600&q=70&auto=format&fit=crop" data-caption="Perfume still life · studio"><img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=700&q=70&auto=format&fit=crop" alt="Black perfume bottle on a pink backdrop" loading="lazy"><span class="cap"><b>Still life</b><span>Product</span></span></a>
+      <a data-c="wed" href="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?w=1600&q=70&auto=format&fit=crop" data-caption="Sara &amp; Tom · Columbia Gorge elopement"><img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?w=700&q=70&auto=format&fit=crop" alt="Couple embracing in a golden field at sunset" loading="lazy"><span class="cap"><b>Sara &amp; Tom</b><span>Elopement</span></span></a>
+    </div>
+    <div class="stash" id="stash" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="grade" id="grade">
+  <div class="wrap">
+    <div class="kt-compare" data-reveal="left">
+      <img class="kt-before" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=70&auto=format&fit=crop" alt="Ungraded log footage frame of a bride">
+      <img class="kt-after" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=70&auto=format&fit=crop" alt="The same frame after colour grading">
+      <span class="kt-handle"></span><span class="kt-tag l">LOG</span><span class="kt-tag r">Graded</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare log footage with the graded frame">
+    </div>
+    <div>
+      <span class="lab" data-reveal>03 / Film</span>
+      <h2 class="h bs" data-split>Graded, <em>not filtered</em></h2>
+      <p data-reveal>Everything is shot in log on cinema cameras, then hand-graded by June in DaVinci Resolve. Drag the slider to see a raw frame become the final look.</p>
+      <ul class="specs" data-reveal>
+        <li><span>Cameras</span><span>Sony FX6 · FX3 · Leica Q3</span></li>
+        <li><span>Audio</span><span>Lav + room recorders</span></li>
+        <li><span>Delivery</span><span>4K master + socials cut</span></li>
+        <li><span>Turnaround</span><span>Teaser in 7 days</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="reel" data-slider-scope aria-label="Frames from the reel">
+  <div class="kt-slider" data-autoplay="5500">
+    <div class="kt-track">
+      <div class="frame"><img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=1800&q=70&auto=format&fit=crop" alt="Clapperboard on a film set" loading="lazy"><div class="c"><small>REEL 01 · 00:00:12:04</small><h3 class="bs">Low Tide</h3><p>A 9-minute coastal short. Official selection, Portland Film Festival 2025.</p></div></div>
+      <div class="frame"><img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=1800&q=70&auto=format&fit=crop" alt="White photo studio with softboxes" loading="lazy"><div class="c"><small>REEL 02 · 00:01:03:18</small><h3 class="bs">Studio North</h3><p>Our 1,800 sq ft cyc-wall studio on SE Water Ave, open for brand days.</p></div></div>
+      <div class="frame"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1800&q=70&auto=format&fit=crop" alt="Couple holding hands at a wedding" loading="lazy"><div class="c"><small>REEL 03 · 00:02:41:09</small><h3 class="bs">Vows, unscripted</h3><p>Wedding films cut like features: real audio, no slow-mo montages.</p></div></div>
+    </div>
+  </div>
+  <div class="wrap strip-ctl"><div class="kt-dots"></div><div class="ar"><button class="kt-arrow" data-prev aria-label="Previous frame"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-next aria-label="Next frame"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+</section>
+
+<section id="packages">
+  <div class="wrap" data-tabs>
+    <span class="lab" data-reveal>04 / Packages</span>
+    <h2 class="h bs" data-split>Pick your <em>coverage</em></h2>
+    <div class="tabbar" role="tablist" data-reveal><button data-tab="wed" class="on">Weddings</button><button data-tab="biz">Brands &amp; business</button></div>
+    <div class="pk" data-pane="wed">
+      <div class="pkg"><small>Photo</small><h3>Stills</h3><p class="pr">$4,200 <span>/ 8 hours</span></p><ul><li>Lead + second photographer</li><li>600+ edited images</li><li>Online gallery for 2 years</li><li>Engagement session included</li></ul><a href="#enquire" class="btn ghost">Enquire</a></div>
+      <div class="pkg"><small>Film</small><h3>Motion</h3><p class="pr">$5,400 <span>/ 8 hours</span></p><ul><li>Two cinema cameras + drone</li><li>6–8 min feature film</li><li>Full ceremony &amp; speeches edit</li><li>60-sec teaser for socials</li></ul><a href="#enquire" class="btn ghost">Enquire</a></div>
+      <div class="pkg best"><span class="tag">Most booked</span><small>Photo + film</small><h3>Northlight</h3><p class="pr">$8,900 <span>/ 10 hours</span></p><ul><li>Everything in Stills + Motion</li><li>One crew, one timeline, less fuss</li><li>Hand-bound linen album</li><li>Same-week sneak peeks</li></ul><a href="#enquire" class="btn rec">Book a call</a></div>
+    </div>
+    <div class="pk" data-pane="biz">
+      <div class="pkg"><small>Photo</small><h3>Brand day</h3><p class="pr">$2,800 <span>/ full day</span></p><ul><li>Studio or on-location</li><li>Product, team &amp; lifestyle</li><li>80 retouched images</li><li>Usage rights for 2 years</li></ul><a href="#enquire" class="btn ghost">Enquire</a></div>
+      <div class="pkg"><small>Film</small><h3>Story film</h3><p class="pr">$6,500 <span>/ from</span></p><ul><li>Script, storyboard &amp; casting</li><li>1 shoot day, 3-person crew</li><li>90-sec hero film + 3 cutdowns</li><li>Licensed music &amp; colour grade</li></ul><a href="#enquire" class="btn ghost">Enquire</a></div>
+      <div class="pkg best"><span class="tag">Best value</span><small>Photo + film</small><h3>Campaign</h3><p class="pr">$11,000 <span>/ from</span></p><ul><li>2 shoot days, stills + motion</li><li>Hero film, 6 social edits</li><li>150 retouched images</li><li>Dedicated producer</li></ul><a href="#enquire" class="btn rec">Plan a campaign</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="proc" id="process">
+  <div class="wrap">
+    <span class="lab" data-reveal>05 / Process</span>
+    <h2 class="h bs" data-split>From call to <em>final cut</em></h2>
+    <div class="steps">
+      <div class="step" data-reveal><span class="tc">00:00 · Week 0</span><h3>Discovery call</h3><p>30 minutes on video. We learn the story, the people and the places that matter.</p></div>
+      <div class="step" data-reveal data-delay="100"><span class="tc">00:30 · Week 2</span><h3>Shot list &amp; scout</h3><p>We walk the venue, map the light by hour and build a shared shot list.</p></div>
+      <div class="step" data-reveal data-delay="200"><span class="tc">01:00 · The day</span><h3>Shoot</h3><p>Quiet, unobtrusive coverage. We direct only when it helps, never to pose a moment.</p></div>
+      <div class="step" data-reveal data-delay="300"><span class="tc">02:00 · 6–8 weeks</span><h3>Edit &amp; deliver</h3><p>Sneak peeks in 7 days, full gallery and film in 6–8 weeks, album soon after.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="lab" data-reveal>06 / Crew</span>
+    <h2 class="h bs" data-split>Behind the lens</h2>
+    <div class="crew">
+      <div class="cm" data-reveal><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=70&auto=format&fit=crop" alt="Portrait of Theo Hart" loading="lazy"><h3>Theo Hart</h3><span>Director · DP</span></div>
+      <div class="cm" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=70&auto=format&fit=crop" alt="Portrait of June Hart" loading="lazy"><h3>June Hart</h3><span>Lead photographer · Colourist</span></div>
+      <div class="cm" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=600&q=70&auto=format&fit=crop" alt="Portrait of Malik Osei" loading="lazy"><h3>Malik Osei</h3><span>Second shooter · Drone</span></div>
+      <div class="cm" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=70&auto=format&fit=crop" alt="Portrait of Rafa Lind" loading="lazy"><h3>Rafa Lind</h3><span>Editor · Sound</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tst">
+  <div class="wrap">
+    <div style="text-align:center"><span class="lab" data-reveal>07 / Kind words</span></div>
+    <div class="kt-slider" data-autoplay="7000">
+      <div class="kt-track">
+        <div class="q"><p>“We've watched our wedding film maybe forty times. It sounds like us, looks like a movie, and somehow caught my grandad's speech perfectly.”</p><cite><b>Priya &amp; James</b> · Photo + film, 2025</cite></div>
+        <div class="q"><p>“Northlight shot our launch in one day and we had a hero film, socials and a full image library. Sales up 38% the month it went live.”</p><cite><b>Dana Whitfield</b> · Marketing lead, Ridgeline Outdoor</cite></div>
+        <div class="q"><p>“I hate being photographed. June had me laughing in five minutes. These are the first headshots I've ever actually used.”</p><cite><b>Marco Bellini</b> · Portrait session</cite></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="enq" id="enquire">
+  <div class="wrap">
+    <div class="info">
+      <span class="lab" data-reveal><i class="dot"></i> Now booking 2027</span>
+      <h2 class="h bs" data-split>Tell us <em>your story</em></h2>
+      <p data-reveal>We take 28 weddings and around 30 brand projects a year so every one gets our full attention. Send your date and we'll reply within one working day with availability and a tailored quote.</p>
+      <dl data-reveal>
+        <dt>Studio</dt><dd>1120 SE Water Ave, Portland OR</dd>
+        <dt>Email</dt><dd>hello@northlight.studio</dd>
+        <dt>Phone</dt><dd>(503) 555-0187</dd>
+        <dt>Hours</dt><dd>Mon–Fri · 10am–6pm</dd>
+      </dl>
+    </div>
+    <form class="f" data-form="Thanks! We've got your date and will reply within one working day." data-reveal="right">
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      <label>Date<input type="date" name="date" required></label>
+      <label>Type of project<select name="type" required><option value="">Choose one</option><option>Wedding / elopement</option><option>Portrait session</option><option>Brand campaign</option><option>Short film / music video</option></select></label>
+      <fieldset><legend>Coverage</legend><div class="chips"><label><input type="radio" name="cov" value="photo"><span>Photo</span></label><label><input type="radio" name="cov" value="film"><span>Film</span></label><label><input type="radio" name="cov" value="both" checked><span>Photo + film</span></label></div></fieldset>
+      <label>Location<input name="location" placeholder="Venue or city"></label>
+      <label>Budget<select name="budget"><option>Under $3,000</option><option selected>$3,000 – $6,000</option><option>$6,000 – $10,000</option><option>$10,000+</option></select></label>
+      <label class="full">Tell us about it<textarea name="msg" placeholder="Guest count, vibe, must-have moments…"></textarea></label>
+      <button class="btn rec" type="submit">Send enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div><span class="lab" data-reveal>08 / FAQ</span><h2 class="h bs" data-split>Good to know</h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Do you travel outside Oregon?</summary><div class="kt-faq-a"><div>Yes. About a third of our work is out of state or abroad. Travel within 100 miles of Portland is included; beyond that we bill flights and lodging at cost, with no day-rate markup.</div></div></details>
+      <details class="kt-faq"><summary>How do we hold our date?</summary><div class="kt-faq-a"><div>A signed agreement and a 30% retainer secure your date. The balance is due two weeks before the shoot. We never double-book.</div></div></details>
+      <details class="kt-faq"><summary>Can we get the raw footage or RAW files?</summary><div class="kt-faq-a"><div>Raw footage is available as a $600 add-on, delivered on a drive. We don't release unedited RAW photos, but every usable frame is edited and delivered.</div></div></details>
+      <details class="kt-faq"><summary>What music do you use in films?</summary><div class="kt-faq-a"><div>Fully licensed tracks from Musicbed and Artlist, chosen with you, so your film can be posted anywhere without being muted.</div></div></details>
+      <details class="kt-faq"><summary>Who owns the images for brand work?</summary><div class="kt-faq-a"><div>You get a two-year commercial licence for web, social and print as standard. Buyouts and paid-media extensions are quoted per project.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a href="#" class="logo">Northlight</a><nav><a href="#">Instagram</a><a href="#">Vimeo</a><a href="#">Journal</a><a href="#">Privacy</a></nav><span>© 2026 Northlight Studio LLC</span></div></footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // running timecode in the viewfinder (24 fps)
+  const tc = document.getElementById('tc'), t0 = Date.now();
+  const pad = n => String(n).padStart(2, '0');
+  setInterval(() => {
+    const ms = Date.now() - t0, s = Math.floor(ms / 1000);
+    tc.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}:${pad(Math.floor((ms % 1000) / 41.67))}`;
+  }, 42);
+
+  // portfolio filter: hidden items move to a stash so the lightbox only pages through visible work
+  const grid = document.getElementById('grid'), stash = document.getElementById('stash');
+  const items = [...grid.children];
+  document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-f]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+    items.forEach(a => {
+      const show = b.dataset.f === 'all' || a.dataset.c === b.dataset.f;
+      (show ? grid : stash).append(a);
+      a.classList.remove('pop'); if (show) { void a.offsetWidth; a.classList.add('pop'); }
+    });
+  }));
+</script>
+</body>
+</html>

@@ -52,6 +52,11 @@ window.DESIGNS = {
       "desc": "Order via WhatsApp or a form, no full store"
     },
     {
+      "id": "industry-landing",
+      "name": "Industry landing pages",
+      "desc": "One landing page per industry, with a shared kit"
+    },
+    {
       "id": "landing-pages",
       "name": "Landing pages",
       "desc": "Single page sites"
@@ -68,6 +73,171 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "industry-landing",
+      "slug": "industry-gallery",
+      "title": "All 9 industry pages",
+      "desc": "Gallery of the nine industry landing pages with live previews.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "industry-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-01-photography",
+      "title": "Northlight Studio · Photography & film",
+      "desc": "Dark cinematic studio: filterable portfolio with lightbox, log-vs-graded slider, photo/film packages, enquiry.",
+      "tags": [
+        "Photography",
+        "Video"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/01-photography/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-02-interior-design",
+      "title": "Atelier Verde · Interior design",
+      "desc": "Light editorial studio: concept-vs-finished room slider, projects by room, process, budget enquiry.",
+      "tags": [
+        "Interior"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/02-interior-design/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-03-beauty-salon",
+      "title": "Rosé & Co · Beauty salon",
+      "desc": "Service menu with prices, live booking with stylist and time slots, gift-card builder, reviews.",
+      "tags": [
+        "Beauty",
+        "Salon"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/03-beauty-salon/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-04-event-wedding",
+      "title": "Gather & Glow · Event & wedding planner",
+      "desc": "Event-type tabs, planning timeline, three packages, gallery, enquiry with date, guests and budget.",
+      "tags": [
+        "Events",
+        "Wedding"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/04-event-wedding/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-05-nonprofit",
+      "title": "Clearwater Fund · Nonprofit",
+      "desc": "Donate widget (one-off/monthly), impact counters, where every $1 goes, stories, volunteer form.",
+      "tags": [
+        "Nonprofit",
+        "Charity"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/05-nonprofit/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-06-fitness-gym",
+      "title": "Ironbark Fitness · Gym",
+      "desc": "Bright community gym: Mon–Sun timetable, plans with yearly switch, trainers, free 7-day pass.",
+      "tags": [
+        "Gym",
+        "Fitness"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/06-fitness-gym/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-07-automotive",
+      "title": "Apex Auto Care · Car services",
+      "desc": "Fixed-price service menu, instant quote by make and service, drop-off slots, detailing slider.",
+      "tags": [
+        "Automotive"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/07-automotive/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-08-legal",
+      "title": "Whitfield Legal · Law firm",
+      "desc": "Modern firm: practice tabs, fixed fees with VAT switch, results, free case evaluation.",
+      "tags": [
+        "Legal"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/08-legal/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-09-home-services",
+      "title": "Homestead Pros · Home services",
+      "desc": "24/7 emergency bar, ZIP coverage check, flat-rate prices, arrival windows, before/after.",
+      "tags": [
+        "Home services"
+      ],
+      "date": "2026-11-19",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/09-home-services/index.html"
+        }
+      ]
+    },
     {
       "cat": "docs",
       "slug": "admissions-20",

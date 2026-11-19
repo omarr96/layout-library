@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironbark Fitness · Community Gym in Brunswick</title>
+<meta name="description" content="A bright, friendly community gym in Brunswick, Melbourne. Coached classes, open gym 5am–11pm and a free 7-day pass.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #fff8ee; --kt-ink: #15261f; --kt-tx: #3d4b44; --kt-mut: #6b776f; --kt-line: #15261f; --kt-accent: #ff5b24; --kt-accent-ink: #15261f; --kt-radius: 22px; --sun: #ffd23f; --mint: #bfe9cf; --sky: #bcdcff; --pink: #ffc6d9; --sh: 5px 5px 0 #15261f; }
+body { font: 16px/1.6 'Plus Jakarta Sans', system-ui, sans-serif; }
+.bg { font-family: 'Bricolage Grotesque', 'Arial Black', sans-serif; font-weight: 800; letter-spacing: -.03em; line-height: .95; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 2px solid var(--kt-ink); border-radius: 99px; background: var(--sun); color: var(--kt-ink); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+h2.h { font-size: clamp(40px, 6vw, 78px); color: var(--kt-ink); margin: 18px 0 18px; }
+h2.h u { text-decoration: none; background: var(--kt-accent); color: #fff; padding: 0 .14em; border-radius: .15em; display: inline-block; transform: rotate(-2deg); }
+section { padding: 110px 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 16px; border: 2px solid var(--kt-ink); font-weight: 800; font-size: 16px; color: var(--kt-ink); box-shadow: var(--sh); transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--kt-ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--kt-ink); }
+.btn.or { background: var(--kt-accent); color: var(--kt-ink); }
+.btn.wh { background: #fff; }
+.btn.yl { background: var(--sun); }
+.box { border: 2px solid var(--kt-ink); border-radius: var(--kt-radius); box-shadow: var(--sh); }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; padding: 14px 0; transition: .3s; }
+.nav .wrap { display: flex; align-items: center; gap: 28px; }
+.nav .in { display: flex; align-items: center; gap: 28px; width: 100%; height: 66px; padding: 0 12px 0 22px; background: #fff; border: 2px solid var(--kt-ink); border-radius: 20px; transition: box-shadow .3s; }
+.nav.scrolled .in { box-shadow: var(--sh); }
+.logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--kt-ink); display: flex; align-items: center; gap: 8px; letter-spacing: -.03em; }
+.logo i { width: 32px; height: 32px; border-radius: 10px; background: var(--kt-accent); display: grid; place-items: center; color: #fff; font-style: normal; font-size: 17px; border: 2px solid var(--kt-ink); }
+.kt-menu { display: flex; gap: 26px; margin-left: auto; }
+.kt-menu a { font-weight: 700; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 46px; padding: 0 20px; font-size: 14.5px; box-shadow: 3px 3px 0 var(--kt-ink); }
+.kt-burger { color: var(--kt-ink); margin-left: auto; }
+
+/* hero */
+.hero { padding: 150px 0 90px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(56px, 8.4vw, 124px); color: var(--kt-ink); margin: 22px 0 24px; }
+.hero h1 .hl { color: var(--kt-accent); }
+.hero .sub { font-size: 20px; font-weight: 500; max-width: 520px; margin: 0 0 34px; }
+.hero .sub [data-type] { font-weight: 800; color: var(--kt-ink); background: var(--mint); padding: 0 6px; border-radius: 6px; }
+.hero .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .rate { display: flex; align-items: center; gap: 12px; margin-top: 34px; font-size: 14.5px; font-weight: 600; }
+.hero .rate b { font-size: 22px; color: var(--kt-ink); }
+.hero .rate .st { color: var(--kt-accent); letter-spacing: 2px; }
+.collage { position: relative; display: grid; grid-template-columns: 1fr .62fr; gap: 16px; align-items: end; }
+.collage img { width: 100%; object-fit: cover; }
+.collage .a { aspect-ratio: 3/4; border-radius: 26px; }
+.collage .b { aspect-ratio: 3/4; border-radius: 120px 120px 26px 26px; margin-bottom: 50px; }
+.collage .chip { position: absolute; left: -24px; top: 34px; padding: 12px 16px; background: #fff; font-weight: 700; font-size: 14px; display: flex; gap: 10px; align-items: center; color: var(--kt-ink); }
+.collage .chip i { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px #c9f5d7; }
+.sticker { position: absolute; right: -10px; bottom: -26px; width: 136px; height: 136px; border-radius: 50%; background: var(--sun); border: 2px solid var(--kt-ink); display: grid; place-items: center; text-align: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; color: var(--kt-ink); transform: rotate(-12deg); box-shadow: var(--sh); animation: wob 5s ease-in-out infinite; }
+.sticker small { display: block; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 4px; }
+@keyframes wob { 50% { transform: rotate(-4deg) scale(1.04); } }
+
+/* ticker */
+.tick { background: var(--kt-ink); color: #fff; padding: 18px 0; border-block: 2px solid var(--kt-ink); transform: rotate(-1.2deg); margin: 10px -20px; }
+.tick .kt-mq-track span { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.tick .kt-mq-track span::after { content: "✺"; color: var(--sun); font-size: 26px; }
+
+/* why */
+.why .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 46px; }
+.why .card { padding: 32px; }
+.why .card:nth-child(1) { background: var(--mint); } .why .card:nth-child(2) { background: var(--sky); } .why .card:nth-child(3) { background: var(--pink); }
+.why .card .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 64px; color: var(--kt-ink); line-height: 1; }
+.why .card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; color: var(--kt-ink); margin: 18px 0 8px; letter-spacing: -.02em; }
+.why .card p { margin: 0; color: var(--kt-ink); opacity: .85; }
+
+/* schedule */
+.sched { background: var(--sun); border-block: 2px solid var(--kt-ink); }
+.sched-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.days { display: flex; gap: 8px; flex-wrap: wrap; margin: 30px 0 26px; }
+.days button { height: 50px; min-width: 66px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--kt-ink); background: #fff; color: var(--kt-ink); font-weight: 800; font-size: 15px; transition: .15s; }
+.days button.on { background: var(--kt-ink); color: #fff; transform: translateY(-3px); box-shadow: 0 3px 0 var(--kt-accent); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; font-weight: 700; color: var(--kt-ink); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend span::before { content: ""; width: 12px; height: 12px; border-radius: 4px; border: 2px solid var(--kt-ink); background: var(--c); }
+.list { display: grid; gap: 12px; }
+.cl { display: grid; grid-template-columns: 110px 14px 1fr 160px 150px; gap: 20px; align-items: center; padding: 18px 20px; background: #fff; border: 2px solid var(--kt-ink); border-radius: 18px; }
+.cl time { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--kt-ink); }
+.cl .dot { width: 14px; height: 40px; border-radius: 6px; background: var(--c); border: 2px solid var(--kt-ink); }
+.cl b { display: block; font-size: 17px; color: var(--kt-ink); }
+.cl small { color: var(--kt-mut); font-weight: 600; }
+.cl .sp { font-size: 14px; font-weight: 700; color: var(--kt-ink); }
+.cl .sp.low { color: #c2410c; }
+.cl .btn { height: 44px; font-size: 14px; padding: 0 16px; box-shadow: 3px 3px 0 var(--kt-ink); }
+
+/* plans */
+.price-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.switch { display: inline-flex; padding: 5px; border: 2px solid var(--kt-ink); border-radius: 16px; background: #fff; }
+.switch button { height: 44px; padding: 0 20px; border-radius: 11px; font-weight: 800; font-size: 15px; color: var(--kt-ink); }
+.switch button.on { background: var(--kt-ink); color: #fff; }
+.switch em { font-style: normal; font-size: 11.5px; background: var(--sun); color: var(--kt-ink); padding: 2px 7px; border-radius: 99px; margin-left: 6px; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; align-items: start; }
+.plan { background: #fff; padding: 34px; display: flex; flex-direction: column; position: relative; }
+.plan.hot { background: var(--kt-accent); color: var(--kt-ink); }
+.plan .ribbon { position: absolute; top: -16px; right: 22px; background: var(--sun); color: var(--kt-ink); border: 2px solid var(--kt-ink); border-radius: 99px; padding: 4px 12px; font-size: 12.5px; font-weight: 800; transform: rotate(4deg); }
+.plan h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; margin: 0; color: inherit; letter-spacing: -.02em; }
+.plan h3 + span { font-weight: 600; opacity: .8; }
+.plan .p { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 60px; color: var(--kt-ink); line-height: 1; margin: 22px 0 4px; letter-spacing: -.03em; }
+.plan.hot .p { color: var(--kt-ink); }
+.plan .p small { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0; }
+.plan .note { font-size: 13.5px; font-weight: 600; opacity: .75; min-height: 21px; }
+.plan ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 11px; }
+.plan li { display: flex; gap: 10px; font-weight: 500; }
+.plan li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 7px; background: var(--mint); color: var(--kt-ink); display: grid; place-items: center; font-weight: 800; font-size: 13px; border: 1.5px solid var(--kt-ink); }
+.plan.hot li::before { background: #fff; }
+.plan .btn { width: 100%; }
+
+/* trainers */
+.tr-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.tr-head .ar { display: flex; gap: 10px; }
+.kt-arrow { border: 2px solid var(--kt-ink); box-shadow: 3px 3px 0 var(--kt-ink); background: #fff; }
+.trainers { --car-gap: 22px; padding: 4px 8px 12px 4px; }
+.coach { width: 286px; background: #fff; overflow: hidden; }
+.coach img { width: 100%; height: 320px; object-fit: cover; border-bottom: 2px solid var(--kt-ink); }
+.coach .c { padding: 20px 22px 22px; }
+.coach h4 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--kt-ink); margin: 0 0 4px; letter-spacing: -.02em; }
+.coach p { margin: 0 0 12px; font-size: 14.5px; }
+.coach .sk { display: flex; gap: 6px; flex-wrap: wrap; }
+.coach .sk span { padding: 4px 10px; border-radius: 99px; background: var(--c, var(--mint)); border: 1.5px solid var(--kt-ink); font-size: 12.5px; font-weight: 700; color: var(--kt-ink); }
+
+/* story / before-after */
+.story { background: var(--kt-ink); color: #c9d5cf; }
+.story .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.story h2.h { color: #fff; }
+.story .kt-compare { border: 2px solid #fff; border-radius: 26px; aspect-ratio: 4/3; box-shadow: 6px 6px 0 var(--kt-accent); }
+.story .kt-tag:first-of-type { left: 14px; }
+.story .kt-tag.r { right: 14px; background: var(--sun); color: var(--kt-ink); }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+.facts div { padding: 18px; border-radius: 18px; border: 2px solid rgba(255,255,255,.2); }
+.facts b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 38px; color: var(--sun); line-height: 1; }
+.facts span { font-size: 13.5px; }
+
+/* gallery */
+.gal { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 16px; margin-top: 44px; }
+.gal a { position: relative; border: 2px solid var(--kt-ink); border-radius: 20px; overflow: hidden; }
+.gal a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gal a:nth-child(6) { grid-column: span 2; }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.gal a:hover img { transform: scale(1.06); }
+.gal a span { position: absolute; left: 12px; bottom: 12px; background: #fff; border: 2px solid var(--kt-ink); border-radius: 99px; padding: 4px 12px; font-size: 13px; font-weight: 800; color: var(--kt-ink); }
+
+/* testimonials */
+.tst { background: var(--mint); border-block: 2px solid var(--kt-ink); }
+.tst .kt-slider { max-width: 980px; margin: 40px auto 0; }
+.tq { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center; background: #fff; border: 2px solid var(--kt-ink); border-radius: 26px; padding: 34px; margin: 0 4px; }
+.tq img { width: 220px; height: 240px; object-fit: cover; border-radius: 18px; border: 2px solid var(--kt-ink); }
+.tq p { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 26px; line-height: 1.3; color: var(--kt-ink); margin: 0 0 20px; letter-spacing: -.01em; }
+.tq b { color: var(--kt-ink); }
+.tq small { display: block; font-weight: 600; }
+.tst .kt-dots { color: var(--kt-ink); }
+
+/* pass form */
+.pass .wrap > .box { background: var(--kt-accent); color: var(--kt-ink); padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; position: relative; overflow: hidden; }
+.pass h2.h { color: var(--kt-ink); }
+.pass h2.h u { background: var(--sun); color: var(--kt-ink); }
+.pass .perks { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 10px; font-weight: 700; }
+.pass .perks li::before { content: "✺ "; color: #fff; }
+.pass form { background: #fff; color: var(--kt-tx); border: 2px solid var(--kt-ink); border-radius: 22px; padding: 30px; display: grid; gap: 14px; }
+.pass label { display: grid; gap: 6px; font-size: 14px; font-weight: 800; color: var(--kt-ink); }
+.pass input, .pass select { height: 52px; border: 2px solid var(--kt-ink); border-radius: 14px; padding: 0 14px; background: var(--kt-bg); outline: none; color: var(--kt-ink); width: 100%; }
+.pass input:focus, .pass select:focus { background: #fff; box-shadow: 3px 3px 0 var(--kt-accent); }
+.pass .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pass form .btn { margin-top: 6px; }
+.pass form small { text-align: center; color: var(--kt-mut); }
+
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+.kt-faq { border-bottom: 2px solid var(--kt-ink); }
+.kt-faq summary { font-size: 1.12rem; font-weight: 800; }
+footer { padding: 60px 0 30px; border-top: 2px solid var(--kt-ink); }
+footer .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; }
+footer h5 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--kt-ink); }
+footer .top a, footer .top p { display: block; margin: 0 0 6px; font-size: 15px; }
+footer .top a:hover { color: var(--kt-accent); }
+footer .bot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 13.5px; padding-top: 22px; border-top: 2px dashed rgba(21,38,31,.25); }
+
+@media (max-width: 1080px) { .cl { grid-template-columns: 90px 14px 1fr 130px; } .cl .sp { display: none; } }
+@media (max-width: 980px) {
+  section { padding: 84px 0; }
+  .hero .wrap, .story .wrap, .pass .wrap > .box, .faq .wrap { grid-template-columns: 1fr; gap: 44px; }
+  .collage { max-width: 560px; }
+  .why .grid, .plans { grid-template-columns: 1fr; max-width: 540px; }
+  .gal { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+  .gal a:nth-child(6) { grid-column: span 1; }
+  .tq { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .tq img { width: 160px; height: 180px; }
+  footer .top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .nav .btn { display: none; }
+  .nav .in { padding: 0 6px 0 14px; }
+  .hero { padding-top: 120px; }
+  .collage .chip { left: 8px; top: 12px; font-size: 13px; padding: 8px 12px; }
+  .sticker { width: 104px; height: 104px; font-size: 17px; right: 0; bottom: -18px; }
+  .tick .kt-mq-track span { font-size: 24px; }
+  .days button { min-width: 0; flex: 1 0 calc(25% - 8px); padding: 0 6px; }
+  .cl { grid-template-columns: 70px 10px 1fr; gap: 12px; padding: 14px; }
+  .cl time { font-size: 19px; }
+  .cl .dot { width: 10px; }
+  .cl .btn { grid-column: 1 / -1; }
+  .coach { width: 76vw; }
+  .facts { gap: 8px; } .facts div { padding: 12px; } .facts b { font-size: 26px; }
+  .gal { grid-auto-rows: 140px; gap: 10px; }
+  .tq { padding: 24px 18px; } .tq p { font-size: 20px; }
+  .pass .wrap > .box { padding: 30px 18px; }
+  .pass form { padding: 22px 16px; }
+  .pass .row { grid-template-columns: 1fr; }
+  footer .top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <div class="in">
+      <a href="#" class="logo"><i>✺</i>Ironbark</a>
+      <nav class="kt-menu"><a href="#classes">Classes</a><a href="#plans">Plans</a><a href="#coaches">Coaches</a><a href="#space">The space</a><a href="#faq">FAQ</a></nav>
+      <a href="#pass" class="btn or">Free 7-day pass</a>
+      <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal>✺ Brunswick, Melbourne · since 2019</span>
+      <h1 class="bg"><span data-split>Strong is a</span> <span class="hl" data-split>team sport.</span></h1>
+      <p class="sub" data-reveal data-delay="200">A bright, no-ego gym where you'll train with <span data-type="your neighbours|coaches who know your name|people who cheer for you|the 6am crew"></span></p>
+      <div class="cta" data-reveal data-delay="300"><a href="#pass" class="btn or">Get 7 days free →</a><a href="#classes" class="btn wh">See the timetable</a></div>
+      <div class="rate" data-reveal data-delay="400"><b>4.9</b><span class="st" aria-hidden="true">★★★★★</span><span>from 612 Google reviews</span></div>
+    </div>
+    <div class="collage" data-reveal="zoom">
+      <img class="a box" src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=900&q=70&auto=format&fit=crop" alt="Group fitness class training together in a bright studio">
+      <img class="b box" src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=700&q=70&auto=format&fit=crop" alt="Member training with battle ropes">
+      <div class="chip box"><i></i>38 people training right now</div>
+      <div class="sticker">7 days<small>totally free</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="tick kt-marquee" data-speed="28s"><div class="kt-mq-track"><span>Strength</span><span>Conditioning</span><span>Spin</span><span>Mobility</span><span>Kettlebells</span><span>Boxfit</span><span>Open gym</span></div></div>
+
+<section class="why">
+  <div class="wrap">
+    <span class="tag" data-reveal style="background:var(--mint)">Why Ironbark</span>
+    <h2 class="h bg" data-split>A gym that feels like a <u>local</u></h2>
+    <div class="grid">
+      <div class="card box" data-reveal><div class="n">01</div><h3>Coached every class</h3><p>Max 14 people, real coaching cues, and scaled options so day-one beginners train next to ex-athletes.</p></div>
+      <div class="card box" data-reveal data-delay="120"><div class="n">02</div><h3>Open 5am–11pm</h3><p>Open gym, racks, turf and rowers 7 days a week, with a coach on the floor at peak times.</p></div>
+      <div class="card box" data-reveal data-delay="240"><div class="n">03</div><h3>Recovery included</h3><p>Sauna, cold plunge and a stretch lounge in every membership. Plus free childminding on weekday mornings.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sched" id="classes">
+  <div class="wrap" data-tabs>
+    <div class="sched-top"><div><span class="tag" data-reveal style="background:#fff">Timetable</span><h2 class="h bg" data-split>This week at Ironbark</h2></div>
+      <div class="legend" data-reveal><span style="--c:var(--kt-accent)">Strength</span><span style="--c:var(--sky)">Cardio</span><span style="--c:var(--mint)">Mobility</span><span style="--c:var(--pink)">Boxfit</span></div></div>
+    <div class="days" role="tablist" data-reveal><button data-tab="mon" class="on">Mon</button><button data-tab="tue">Tue</button><button data-tab="wed">Wed</button><button data-tab="thu">Thu</button><button data-tab="fri">Fri</button><button data-tab="sat">Sat</button><button data-tab="sun">Sun</button></div>
+    <div class="list" data-pane="mon">
+      <div class="cl" style="--c:var(--kt-accent)"><time>6:00</time><span class="dot"></span><div><b>Barbell Basics</b><small>Coach Mia · Rack zone · 50 min</small></div><span class="sp">6 of 14 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--sky)"><time>7:15</time><span class="dot"></span><div><b>Ride 45</b><small>Coach Theo · Spin room · 45 min</small></div><span class="sp low">2 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--mint)"><time>12:15</time><span class="dot"></span><div><b>Lunch Mobility</b><small>Coach Priya · Stretch lounge · 30 min</small></div><span class="sp">9 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--pink)"><time>18:00</time><span class="dot"></span><div><b>Boxfit</b><small>Coach Sam · Bag wall · 45 min</small></div><span class="sp low">1 spot left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="tue">
+      <div class="cl" style="--c:var(--sky)"><time>6:00</time><span class="dot"></span><div><b>Engine Room</b><small>Coach Theo · Turf · 45 min</small></div><span class="sp">5 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--kt-accent)"><time>9:30</time><span class="dot"></span><div><b>Strong Mums</b><small>Coach Mia · Rack zone · creche on · 45 min</small></div><span class="sp">7 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--kt-accent)"><time>18:30</time><span class="dot"></span><div><b>Kettlebell Club</b><small>Coach Jordan · Turf · 50 min</small></div><span class="sp">4 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="wed">
+      <div class="cl" style="--c:var(--kt-accent)"><time>6:00</time><span class="dot"></span><div><b>Barbell Basics</b><small>Coach Mia · Rack zone · 50 min</small></div><span class="sp">8 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--pink)"><time>12:15</time><span class="dot"></span><div><b>Boxfit Express</b><small>Coach Sam · Bag wall · 30 min</small></div><span class="sp">10 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--sky)"><time>19:00</time><span class="dot"></span><div><b>Ride &amp; Row</b><small>Coach Theo · Spin room · 45 min</small></div><span class="sp low">3 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="thu">
+      <div class="cl" style="--c:var(--sky)"><time>6:00</time><span class="dot"></span><div><b>Engine Room</b><small>Coach Jordan · Turf · 45 min</small></div><span class="sp">6 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--mint)"><time>18:00</time><span class="dot"></span><div><b>Hips &amp; Spine</b><small>Coach Priya · Stretch lounge · 40 min</small></div><span class="sp">11 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--kt-accent)"><time>19:15</time><span class="dot"></span><div><b>Lift Club</b><small>Coach Mia · Rack zone · 60 min</small></div><span class="sp low">2 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="fri">
+      <div class="cl" style="--c:var(--pink)"><time>6:30</time><span class="dot"></span><div><b>Friday Boxfit</b><small>Coach Sam · Bag wall · 45 min</small></div><span class="sp">5 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--sky)"><time>17:30</time><span class="dot"></span><div><b>Sweat &amp; Social</b><small>All coaches · Turf · then drinks at Pinker St Brewing</small></div><span class="sp">20 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="sat">
+      <div class="cl" style="--c:var(--kt-accent)"><time>8:00</time><span class="dot"></span><div><b>Partner WOD</b><small>Coach Jordan · Whole floor · 60 min</small></div><span class="sp low">Waitlist open</span><a href="#pass" class="btn wh">Waitlist</a></div>
+      <div class="cl" style="--c:var(--sky)"><time>9:30</time><span class="dot"></span><div><b>Ride 60</b><small>Coach Theo · Spin room · 60 min</small></div><span class="sp">7 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--mint)"><time>11:00</time><span class="dot"></span><div><b>Teen Strength (13–17)</b><small>Coach Mia · Rack zone · 45 min</small></div><span class="sp">6 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+    </div>
+    <div class="list" data-pane="sun">
+      <div class="cl" style="--c:var(--mint)"><time>9:00</time><span class="dot"></span><div><b>Slow Sunday Stretch</b><small>Coach Priya · Stretch lounge · 60 min</small></div><span class="sp">12 spots left</span><a href="#pass" class="btn yl">Book</a></div>
+      <div class="cl" style="--c:var(--sky)"><time>10:30</time><span class="dot"></span><div><b>Merri Creek Run Club</b><small>Meet at the front door · 5 or 8 km</small></div><span class="sp">Free for everyone</span><a href="#pass" class="btn yl">Join</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <div class="price-top"><div><span class="tag" data-reveal style="background:var(--sky)">Memberships</span><h2 class="h bg" data-split>Simple plans. <u>No</u> lock-ins.</h2></div>
+      <div class="switch" role="group" aria-label="Billing period" data-reveal><button class="on" data-bill="m" aria-pressed="true">Monthly</button><button data-bill="y" aria-pressed="false">Yearly<em>save 20%</em></button></div></div>
+    <div class="plans">
+      <div class="plan box" data-reveal><h3>Open Gym</h3><span>Train on your own terms</span><div class="p" data-m="69" data-y="55">$69<small>/mo</small></div><div class="note">Billed monthly. Cancel anytime.</div><ul><li>Gym floor 5am–11pm, 7 days</li><li>Sauna &amp; cold plunge</li><li>Free onboarding session</li><li>Ironbark app &amp; programs</li></ul><a href="#pass" class="btn wh">Start free week</a></div>
+      <div class="plan box hot" data-reveal data-delay="100"><span class="ribbon">Members' fave</span><h3>Unlimited</h3><span>Every class, every day</span><div class="p" data-m="119" data-y="95">$119<small>/mo</small></div><div class="note">Billed monthly. Cancel anytime.</div><ul><li>Unlimited coached classes</li><li>Everything in Open Gym</li><li>Bring a friend free on Fridays</li><li>Free weekday childminding</li><li>Quarterly progress check</li></ul><a href="#pass" class="btn yl">Start free week</a></div>
+      <div class="plan box" data-reveal data-delay="200"><h3>Coached</h3><span>Your own coach, your own plan</span><div class="p" data-m="219" data-y="175">$219<small>/mo</small></div><div class="note">Billed monthly. Cancel anytime.</div><ul><li>Everything in Unlimited</li><li>Fortnightly 1:1 sessions</li><li>Personal program in the app</li><li>Nutrition coaching with Priya</li><li>InBody scan every month</li></ul><a href="#pass" class="btn wh">Start free week</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="coaches" style="padding-top:0" data-slider-scope>
+  <div class="wrap">
+    <div class="tr-head"><div><span class="tag" data-reveal style="background:var(--pink)">Coaches</span><h2 class="h bg" data-split>Meet the crew</h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous coach"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next coach"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel trainers" data-carousel data-reveal>
+      <div class="coach box"><img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=70&auto=format&fit=crop" alt="Coach Mia squatting a barbell" loading="lazy"><div class="c"><h4>Mia Tran</h4><p>Head coach. Ex-national weightlifter who loves a first-timer.</p><div class="sk"><span style="--c:#ffd0bd">Barbell</span><span>Strong Mums</span></div></div></div>
+      <div class="coach box"><img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&q=70&auto=format&fit=crop" alt="Coach Jordan resting between sets in the gym" loading="lazy"><div class="c"><h4>Jordan Pike</h4><p>Kettlebell nerd and the voice behind Saturday Partner WOD.</p><div class="sk"><span style="--c:#ffd0bd">Kettlebells</span><span style="--c:var(--sky)">Conditioning</span></div></div></div>
+      <div class="coach box"><img src="https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?w=600&q=70&auto=format&fit=crop" alt="Coach Priya training with dumbbells" loading="lazy"><div class="c"><h4>Priya Nair</h4><p>Physio-trained mobility coach and our resident nutritionist.</p><div class="sk"><span>Mobility</span><span style="--c:var(--sun)">Nutrition</span></div></div></div>
+      <div class="coach box"><img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=600&q=70&auto=format&fit=crop" alt="Coach Sam doing push-ups on dumbbells" loading="lazy"><div class="c"><h4>Sam Okoro</h4><p>Amateur boxing champ. Teaches technique first, sweat second.</p><div class="sk"><span style="--c:var(--pink)">Boxfit</span><span style="--c:var(--sky)">HIIT</span></div></div></div>
+      <div class="coach box"><img src="https://images.unsplash.com/photo-1520877880798-5ee004e3f11e?w=600&q=70&auto=format&fit=crop" alt="Spin class riding on indoor bikes" loading="lazy"><div class="c"><h4>Theo Marsh</h4><p>Runs the spin room like a party. Also leads Sunday run club.</p><div class="sk"><span style="--c:var(--sky)">Spin</span><span>Running</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap">
+    <div class="kt-compare" data-reveal="left"><img class="kt-before" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1000&q=70&auto=format&fit=crop" alt="Bare concrete floor of the old timber yard during the build"><img class="kt-after" src="https://images.unsplash.com/photo-1623874514711-0f321325f318?w=1000&q=70&auto=format&fit=crop" alt="Finished gym floor with equipment under skylights"><span class="kt-handle"></span><span class="kt-tag">2019 · the timber yard</span><span class="kt-tag r">Today</span><input type="range" min="0" max="100" value="50" aria-label="Drag to compare the old timber yard and today's gym"></div>
+    <div>
+      <span class="tag" data-reveal>Our story</span>
+      <h2 class="h bg" data-split>From timber yard to training floor</h2>
+      <p data-reveal>Ironbark started in a leaky corner of the old Sydney Road timber yard with four racks and twelve founding members. Six years and one very big renovation later, it's 1,400 m² of light, turf and iron, and still run by the same people.</p>
+      <div class="facts" data-reveal><div><b data-count="1400" data-suffix="m²">0</b><span>of training space</span></div><div><b data-count="1250" data-suffix="+">0</b><span>local members</span></div><div><b data-count="62">0</b><span>classes a week</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="space">
+  <div class="wrap">
+    <span class="tag" data-reveal style="background:var(--mint)">The space</span>
+    <h2 class="h bg" data-split>Room to <u>move</u></h2>
+    <div class="gal" data-lightbox data-reveal>
+      <a href="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1600&q=70&auto=format&fit=crop" data-caption="Main floor: racks, platforms and 20 m of turf"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&q=70&auto=format&fit=crop" alt="Main gym floor with racks and machines" loading="lazy"><span>Main floor</span></a>
+      <a href="https://images.unsplash.com/photo-1520877880798-5ee004e3f11e?w=1600&q=70&auto=format&fit=crop" data-caption="Spin room with 24 bikes and a big sound system"><img src="https://images.unsplash.com/photo-1520877880798-5ee004e3f11e?w=600&q=70&auto=format&fit=crop" alt="Row of riders in a spin class" loading="lazy"><span>Spin room</span></a>
+      <a href="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=1600&q=70&auto=format&fit=crop" data-caption="Dumbbells from 2 to 50 kg"><img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=70&auto=format&fit=crop" alt="Rack of dumbbells" loading="lazy"><span>Free weights</span></a>
+      <a href="https://images.unsplash.com/photo-1600881333168-2ef49b341f30?w=1600&q=70&auto=format&fit=crop" data-caption="Stretch lounge for mobility classes and cool-downs"><img src="https://images.unsplash.com/photo-1600881333168-2ef49b341f30?w=600&q=70&auto=format&fit=crop" alt="Person stretching on a mat" loading="lazy"><span>Stretch lounge</span></a>
+      <a href="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=1600&q=70&auto=format&fit=crop" data-caption="Machine zone with cable stations"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=600&q=70&auto=format&fit=crop" alt="Gym machines beside large windows" loading="lazy"><span>Machines</span></a>
+      <a href="https://images.unsplash.com/photo-1517130038641-a774d04afb3c?w=1600&q=70&auto=format&fit=crop" data-caption="Studio 2 for group classes"><img src="https://images.unsplash.com/photo-1517130038641-a774d04afb3c?w=900&q=70&auto=format&fit=crop" alt="Group class raising their arms in a studio" loading="lazy"><span>Studio 2</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="tst">
+  <div class="wrap">
+    <div style="text-align:center"><span class="tag" data-reveal style="background:#fff">Members</span><h2 class="h bg" data-split>Word on Sydney Road</h2></div>
+    <div class="kt-slider" data-autoplay="6500" data-reveal>
+      <div class="kt-track">
+        <div class="tq"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&q=70&auto=format&fit=crop" alt="Ella R."><div><p>“I was terrified of gyms. Mia taught me to deadlift in week one and now I'm the one welcoming newbies at 6am.”</p><b>Ella R.</b><small>Member since 2023 · Unlimited</small></div></div>
+        <div class="tq"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&q=70&auto=format&fit=crop" alt="Tom B."><div><p>“Free childminding on weekday mornings is the only reason I train at all. The kids think it's a playgroup.”</p><b>Tom B.</b><small>Dad of two · Open Gym</small></div></div>
+        <div class="tq"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=500&q=70&auto=format&fit=crop" alt="Leila H."><div><p>“Lost 11 kg, gained a run club and about thirty friends. Friday Sweat &amp; Social is the best hour of my week.”</p><b>Leila H.</b><small>Coached plan · 9 months</small></div></div>
+      </div>
+      <div class="kt-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pass" id="pass">
+  <div class="wrap">
+    <div class="box" data-reveal="zoom">
+      <div>
+        <span class="tag">No card needed</span>
+        <h2 class="h bg">Your first week is <u>on us</u></h2>
+        <p>Seven days of every class, the full gym and the sauna. Fill this in, and we'll text your pass and book a 20-minute welcome with a coach.</p>
+        <ul class="perks"><li>All 62 weekly classes</li><li>Free onboarding with a coach</li><li>Sauna &amp; cold plunge</li><li>Zero pressure to join after</li></ul>
+      </div>
+      <form data-form="You're in! Your 7-day pass is on its way by text.">
+        <div class="row"><label for="p-first">First name<input id="p-first" required autocomplete="given-name"></label><label for="p-last">Last name<input id="p-last" autocomplete="family-name"></label></div>
+        <label for="p-mail">Email<input id="p-mail" type="email" required autocomplete="email"></label>
+        <label for="p-tel">Mobile<input id="p-tel" type="tel" required autocomplete="tel" placeholder="04xx xxx xxx"></label>
+        <div class="row"><label for="p-start">Start date<input id="p-start" type="date" required></label><label for="p-goal">Main goal<select id="p-goal"><option>Get stronger</option><option>Get fitter</option><option>Lose weight</option><option>Move without pain</option><option>Meet people</option></select></label></div>
+        <button class="btn yl" type="submit">Send my free pass →</button>
+        <small>We'll never share your details. One reminder text, that's it.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div><span class="tag" data-reveal style="background:var(--pink)">FAQ</span><h2 class="h bg" data-split>Before you come in</h2><p data-reveal>Still unsure? Drop in any time 7am–7pm and say hi at the front desk.</p></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>I've never been to a gym. Will I fit in?</summary><div class="kt-faq-a"><div>Absolutely. Around a third of our members had never trained before. Every class is scaled, and your free pass includes a one-on-one welcome with a coach.</div></div></details>
+      <details class="kt-faq"><summary>Are there joining fees or contracts?</summary><div class="kt-faq-a"><div>No joining fee and no lock-in on monthly plans. Cancel with 14 days' notice from the app. Yearly plans are paid upfront and can be paused.</div></div></details>
+      <details class="kt-faq"><summary>How does childminding work?</summary><div class="kt-faq-a"><div>Our creche runs Monday to Friday, 8:30–11:30am, for kids aged 6 months to 5 years. It's free with Unlimited and Coached, and $8 a session with Open Gym.</div></div></details>
+      <details class="kt-faq"><summary>Is there parking?</summary><div class="kt-faq-a"><div>Yes, 40 free spaces behind the building off Albion Street, plus bike racks inside. Anstey station is a 4-minute walk.</div></div></details>
+      <details class="kt-faq"><summary>Can I freeze my membership?</summary><div class="kt-faq-a"><div>Up to 8 weeks a year for travel, injury or life, at no cost. Longer freezes are $5 a week.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div><a href="#" class="logo"><i>✺</i>Ironbark</a><p style="margin-top:12px;max-width:300px">A bright, friendly community gym in Brunswick. Strong is a team sport.</p></div>
+      <div><h5>Visit</h5><p>412 Sydney Road<br>Brunswick VIC 3056</p><p>(03) 9555 0193</p></div>
+      <div><h5>Hours</h5><p>Gym: 5am–11pm daily</p><p>Front desk: 7am–7pm</p></div>
+      <div><h5>Follow</h5><a href="#">Instagram</a><a href="#">Strava club</a><a href="#">TikTok</a></div>
+    </div>
+    <div class="bot"><span>© 2026 Ironbark Fitness Pty Ltd</span><span>Privacy · Membership terms</span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // monthly / yearly price switch
+  document.querySelectorAll('[data-bill]').forEach(b => b.addEventListener('click', () => {
+    const y = b.dataset.bill === 'y';
+    document.querySelectorAll('[data-bill]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+    document.querySelectorAll('.plan').forEach(p => {
+      const price = p.querySelector('.p');
+      const per = +price.dataset[b.dataset.bill];
+      price.innerHTML = '$' + per + '<small>/mo</small>';
+      p.querySelector('.note').textContent = y ? '$' + (per * 12).toLocaleString('en-AU') + ' billed yearly. Pause anytime.' : 'Billed monthly. Cancel anytime.';
+    });
+  }));
+</script>
+</body>
+</html>
