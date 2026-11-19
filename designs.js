@@ -69,6 +69,24 @@ window.DESIGNS = {
   ],
   "items": [
     {
+      "cat": "docs",
+      "slug": "admissions-20",
+      "title": "Spring 2027 admissions · 20 Dhaka universities",
+      "desc": "Engineering & science undergraduate admissions at 20 private Dhaka universities: key dates with days left, CSE total cost chart, full comparison table, and a card per university with programs, fees, requirements, timeline and sources.",
+      "tags": ["Report", "Admissions", "Bangladesh"],
+      "date": "2026-11-19",
+      "pages": [{"label": "20 universities", "href": "docs/admissions-20/index.html"}]
+    },
+    {
+      "cat": "docs",
+      "slug": "admissions-8",
+      "title": "Spring 2027 admissions · 8 private universities",
+      "desc": "AIUB, IUB, EWU, DIU, UIU, NSU, IUBAT and ULAB: key dates with days left, CSE total cost chart, comparison table and a card per university.",
+      "tags": ["Report", "Admissions", "Bangladesh"],
+      "date": "2026-11-19",
+      "pages": [{"label": "8 universities", "href": "docs/admissions-8/index.html"}]
+    },
+    {
       "cat": "tools",
       "slug": "ai-run-log",
       "title": "AI run log",
