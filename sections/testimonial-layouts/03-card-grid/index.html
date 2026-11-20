@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Grid Testimonials · Osteria Lume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF3E6;
+    --card:#FFFDF8;
+    --ink:#2A2118;
+    --muted:#6E6052;
+    --terracotta:#B9472A;
+    --olive:#4A5A2E;
+    --star:#D99A1E;
+    --line:#EADFCB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Work Sans",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+  .t-section{padding:clamp(64px,8vw,120px) 20px;position:relative}
+  .wrap{max-width:1200px;margin:0 auto}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,52px)}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);display:flex;align-items:center;gap:10px}
+  .eyebrow svg{width:18px;height:18px}
+  h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(36px,4.6vw,58px);line-height:1.02;margin-top:12px;letter-spacing:-.01em}
+  h2 em{color:var(--terracotta)}
+  .score{
+    display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:14px 20px;
+  }
+  .score b{font-family:"DM Serif Display",serif;font-size:42px;font-weight:400;line-height:1}
+  .score small{display:block;font-size:13px;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 26px 22px;display:flex;flex-direction:column;
+    transition:transform .3s ease,box-shadow .3s ease;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -28px rgba(80,40,10,.45)}
+  .card.feature{background:var(--olive);border-color:var(--olive);color:#F6F1E4}
+  .card.feature .meta,.card.feature .date,.card.feature .dish{color:#D9DCC5}
+  .card.feature .verified{background:rgba(255,255,255,.12);color:#F6F1E4}
+  .card.feature .dish{border-color:rgba(255,255,255,.2)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .stars{display:flex;gap:2px;color:var(--star)}
+  .stars svg{width:18px;height:18px}
+  .stars .off{color:#DCCFB8}
+  .date{font-size:13px;color:var(--muted)}
+  blockquote{margin:16px 0 20px;font-size:16px;flex:1}
+  blockquote p::first-line{font-weight:500}
+  .dish{
+    font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-bottom:16px;
+    display:flex;gap:8px 10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .dish strong{font-family:"DM Serif Display",serif;font-weight:400;font-style:italic;font-size:15px;color:inherit}
+  .card:not(.feature) .dish strong{color:var(--terracotta)}
+  figcaption{display:flex;align-items:center;gap:12px}
+  figcaption img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none}
+  cite{font-style:normal;font-weight:600;font-size:15px;display:block;line-height:1.3}
+  .meta{font-size:13px;color:var(--muted)}
+  .verified{
+    display:inline-flex;align-items:center;gap:5px;flex:none;
+    font-size:11.5px;font-weight:600;color:var(--olive);background:#EEF0E2;border-radius:999px;padding:5px 10px 5px 8px;
+  }
+  .verified svg{width:13px;height:13px}
+
+  .foot{margin-top:clamp(32px,4vw,48px);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;
+    padding:14px 24px;border-radius:999px;background:var(--terracotta);color:#fff;transition:background .2s;
+  }
+  .btn:hover{background:#9C3920}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--bg)}
+  .btn:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+
+  @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){
+    .grid{grid-template-columns:1fr}
+    .card{padding:22px 20px 20px}
+    .score{width:100%}
+  }
+</style>
+</head>
+<body>
+<section class="t-section" aria-labelledby="t-heading">
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3v8a2 2 0 0 0 4 0V3M9 13v8M17 3c-2 2-2.5 5-2.5 8h2.5v10"/></svg>Guest reviews</p>
+        <h2 id="t-heading">What our guests <em>say</em><br>after the last bite</h2>
+      </div>
+      <div class="score" aria-label="Average rating 4.8 out of 5 from 1,284 reviews">
+        <b aria-hidden="true">4.8</b>
+        <div aria-hidden="true">
+          <span class="stars"><svg viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span>
+          <small>1,284 verified reviews</small>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="foot">
+      <a class="btn" href="#">Book a table</a>
+      <a class="btn ghost" href="#">Read all 1,284 reviews</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var IMG = 'https://images.unsplash.com/photo-';
+  var Q = '?w=200&h=200&q=70&auto=format&fit=crop&crop=faces';
+  var reviews = [
+    { n: 'Sofia Marchetti', m: 'Anniversary dinner · Table for 2', d: 'Oct 12, 2026', iso: '2026-10-12', r: 5, img: '1494790108377-be9c29b29330',
+      q: 'The cacio e pepe is made tableside in a hollowed wheel of pecorino, and it is worth every one of the twenty minutes. Our server, Luca, remembered it was our anniversary from the booking note and brought out two glasses of Franciacorta.',
+      dish: 'Cacio e pepe al tavolo' },
+    { n: 'James Whitaker', m: 'Business lunch · Table for 4', d: 'Oct 3, 2026', iso: '2026-10-03', r: 5, img: '1507003211169-0a1dd7228f2d',
+      q: 'In and out in 55 minutes, which is exactly what I needed with clients. The set lunch at $34 is the best value downtown. Grilled branzino, perfectly crisp skin.',
+      dish: 'Branzino alla griglia', feature: true },
+    { n: 'Emma Lindgren', m: 'Friday dinner · Table for 3', d: 'Sep 27, 2026', iso: '2026-09-27', r: 4, img: '1554151228-14d9def656e4',
+      q: 'Wait for our table ran 15 minutes past the booking, but they comped a plate of fried sage leaves and anchovy while we waited. The tiramisu alone gets me back here next month.',
+      dish: 'Tiramisù della nonna' },
+    { n: 'Marcus Reid', m: 'Birthday · Table for 8', d: 'Sep 19, 2026', iso: '2026-09-19', r: 5, img: '1566492031773-4f4e44671857',
+      q: 'Hosted eight of us in the back room. They built a sharing menu around my sister’s nut allergy without any fuss and labelled every dish. The porchetta was the star of the night.',
+      dish: 'Porchetta, salsa verde' },
+    { n: 'Hannah Brooks', m: 'Date night · Bar seating', d: 'Sep 8, 2026', iso: '2026-09-08', r: 5, img: '1546961329-78bef0414d7c',
+      q: 'Sat at the pasta bar and watched them hand-roll the pici. The bartender talked us through three natural wines from Sicily and let us taste before choosing. Easily our new favourite spot.',
+      dish: 'Pici al ragù bianco' },
+    { n: 'Oliver Grant', m: 'Sunday lunch · Table for 5', d: 'Aug 30, 2026', iso: '2026-08-30', r: 5, img: '1570295999919-56ceb5ecca61',
+      q: 'Brought my parents and two kids under ten. Crayons on the table, a half-portion of lasagne for the little ones, and my dad is still talking about the bistecca, cooked rare as he asked.',
+      dish: 'Bistecca alla fiorentina' }
+  ];
+
+  var STAR = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg>';
+  var CHECK = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor" opacity=".18"/><path d="m5 8.2 2 2 4-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var html = reviews.map(function (v) {
+    var stars = '';
+    for (var i = 1; i <= 5; i++) stars += i <= v.r ? STAR : STAR.replace('aria-hidden', 'class="off" aria-hidden');
+    return '<figure class="card' + (v.feature ? ' feature' : '') + '">' +
+      '<div class="top"><span class="stars" role="img" aria-label="Rated ' + v.r + ' out of 5">' + stars + '</span>' +
+      '<time class="date" datetime="' + v.iso + '">' + v.d + '</time></div>' +
+      '<blockquote><p>' + esc(v.q) + '</p></blockquote>' +
+      '<p class="dish"><span>Ordered <strong>' + esc(v.dish) + '</strong></span><span class="verified">' + CHECK + 'Verified diner</span></p>' +
+      '<figcaption><img src="' + IMG + v.img + Q + '" alt="Photo of ' + esc(v.n) + '" width="46" height="46" loading="lazy">' +
+      '<div><cite>' + esc(v.n) + '</cite><span class="meta">' + esc(v.m) + '</span></div></figcaption>' +
+      '</figure>';
+  }).join('');
+  document.getElementById('grid').innerHTML = html;
+})();
+</script>
+</body>
+</html>

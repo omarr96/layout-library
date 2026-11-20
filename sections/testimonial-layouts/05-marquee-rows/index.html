@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marquee Testimonials · Fieldwork Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECE8DF;
+    --ink:#141414;
+    --muted:#5C5850;
+    --orange:#FF4F1A;
+    --lime:#D4F25A;
+    --sky:#B9D7FF;
+    --card:#F8F6F1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+  .t-section{padding:clamp(64px,8vw,120px) 0;overflow:hidden;position:relative}
+  .head{
+    max-width:1200px;margin:0 auto clamp(36px,5vw,60px);padding:0 20px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:20px 40px;flex-wrap:wrap;
+  }
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:10px;height:10px;background:var(--orange);border-radius:50%}
+  h2{
+    font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:.92;letter-spacing:-.04em;margin-top:14px;
+  }
+  h2 .o{color:var(--orange)}
+  .side{max-width:340px;color:var(--muted);font-size:16px}
+  .toggle{
+    margin-top:16px;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+    font:600 14px/1 "Space Grotesk",sans-serif;padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;
+  }
+  .toggle:hover{background:var(--ink);color:var(--bg)}
+  .toggle:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+  .toggle svg{width:12px;height:12px}
+
+  .rows{display:flex;flex-direction:column;gap:20px}
+  .marquee{
+    position:relative;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  }
+  .track{
+    display:flex;gap:20px;width:max-content;padding:6px 0;
+    animation:scroll var(--dur,60s) linear infinite;
+  }
+  .marquee.rev .track{animation-direction:reverse}
+  .marquee:hover .track,.marquee:focus-within .track,.paused .track{animation-play-state:paused}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 10px))}}
+
+  .card{
+    flex:none;width:clamp(280px,30vw,380px);background:var(--card);border:1.5px solid var(--ink);border-radius:22px;
+    padding:22px 22px 20px;display:flex;flex-direction:column;gap:18px;transition:transform .25s,background .25s;
+  }
+  .card:hover{transform:rotate(-1.2deg) translateY(-3px)}
+  .card.c-orange{background:var(--orange);color:#140A05}
+  .card.c-lime{background:var(--lime)}
+  .card.c-sky{background:var(--sky)}
+  .card.c-ink{background:var(--ink);color:#F2EFE8;border-color:var(--ink)}
+  .card.c-ink .role{color:#B8B3A9}
+  .tagline{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  .tagline span{border:1px solid currentColor;border-radius:999px;padding:4px 10px;white-space:nowrap}
+  .tagline b{font-family:"Syne",sans-serif;font-size:19px;white-space:nowrap;letter-spacing:-.02em;text-transform:none}
+  blockquote{font-size:17px;line-height:1.45;font-weight:500;flex:1}
+  figcaption{display:flex;align-items:center;gap:12px}
+  figcaption img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1.5px solid currentColor;flex:none}
+  cite{font-style:normal;font-weight:600;display:block;font-size:15px;line-height:1.25}
+  .role{font-size:13px;color:var(--muted)}
+  .c-orange .role{color:#3B1A0D}
+
+  .clients{
+    max-width:1200px;margin:clamp(40px,5vw,64px) auto 0;padding:0 20px;
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 36px;
+    font-family:"Syne",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;color:#77736A;
+  }
+  .clients p{font-family:"Space Grotesk",sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;width:100%;text-align:center;color:var(--muted)}
+
+  /* reduced motion: no marquee, rows become swipeable lists */
+  @media (prefers-reduced-motion:reduce){
+    .track{animation:none}
+    .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none;padding:0 20px;scroll-snap-type:x mandatory}
+    .card{scroll-snap-align:start}
+    .card:hover{transform:none}
+    .track .dup{display:none}
+    .toggle{display:none}
+  }
+  @media (max-width:600px){
+    .card{width:82vw;max-width:320px;padding:18px}
+    blockquote{font-size:16px}
+    .rows{gap:14px}
+    .track{gap:14px}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7px))}}
+  }
+</style>
+</head>
+<body>
+<section class="t-section" id="sec" aria-labelledby="t-heading">
+  <header class="head">
+    <div>
+      <p class="eyebrow">Kind words</p>
+      <h2 id="t-heading">Clients who<br>said it <span class="o">loud.</span></h2>
+    </div>
+    <div class="side">
+      <p>Brand systems, launches and campaigns for 140+ teams since 2015. Here is what a few of them told us afterwards.</p>
+      <button class="toggle" id="toggle" type="button" aria-pressed="false">
+        <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg>
+        <span>Pause motion</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="rows" role="region" aria-label="Client testimonials">
+    <div class="marquee" style="--dur:70s"><div class="track" id="rowA"></div></div>
+    <div class="marquee rev" style="--dur:80s"><div class="track" id="rowB"></div></div>
+  </div>
+
+  <div class="clients" aria-label="Selected clients">
+    <p>Trusted by teams at</p>
+    <span>Oatbound</span><span>Kiln&nbsp;&amp;&nbsp;Co</span><span>NORTHPAW</span><span>Halcyon Health</span><span>tidewater</span><span>Brightline Rail</span>
+  </div>
+</section>
+
+<script>
+(function () {
+  var IMG = 'https://images.unsplash.com/photo-';
+  var Q = '?w=200&h=200&q=70&auto=format&fit=crop&crop=faces';
+  var A = [
+    { n: 'Clara Jensen', r: 'Founder, Oatbound', img: '1438761681033-6461ffad8d80', c: 'c-orange', tag: 'Rebrand', stat: '3.1× sales',
+      q: 'They renamed our oat milk, redesigned the carton and shot the launch in nine weeks. Retail orders tripled in the first quarter on shelf.' },
+    { n: 'Theo Brandt', r: 'CMO, Brightline Rail', img: '1506794778202-cad84cf45f1d', c: '', tag: 'Campaign', stat: '41M views',
+      q: 'The “Slow is the new fast” campaign was the first time our board forwarded an ad to their friends. Fieldwork pitched it on a single A4 sheet.' },
+    { n: 'Sasha Ivanova', r: 'Head of Design, Halcyon Health', img: '1524504388940-b1c1722653e1', c: 'c-sky', tag: 'Design system', stat: '212 tokens',
+      q: 'They left us with a design system our own engineers actually use. Figma, tokens, docs, the lot — and a two-day workshop so we could own it.' },
+    { n: 'Diego Morales', r: 'Co-founder, Kiln & Co', img: '1527980965255-d3b416303d12', c: 'c-ink', tag: 'Packaging', stat: 'D&AD pencil',
+      q: 'Honest, fast and allergic to fluff. Our ceramic packaging won a pencil, and more importantly the breakage rate in shipping dropped to under 1%.' },
+    { n: 'Ingrid Holm', r: 'Brand Director, tidewater', img: '1534528741775-53994a69daeb', c: 'c-lime', tag: 'Identity', stat: '6 weeks',
+      q: 'Six weeks from first call to a full identity rolled out across 14 stores. The motion logo still gets comments from customers.' },
+    { n: 'Kwame Asante', r: 'CEO, Lumen Bikes', img: '1528892952291-009c663ce843', c: '', tag: 'Web', stat: '+64% conv.',
+      q: 'Our new site is the best salesperson we have. Configurator completions went up 64% and returns dropped because people knew what they were buying.' }
+  ];
+  var B = [
+    { n: 'Ruby Chen', r: 'Marketing Lead, NORTHPAW', img: '1541101767792-f9b2b1c4f127', c: 'c-lime', tag: 'Social', stat: '+180k',
+      q: 'They wrote our dog-food brand a voice so specific people quote it back to us in DMs. We gained 180k followers without a single paid post.' },
+    { n: 'Felix Wagner', r: 'Founder, Quietroom Audio', img: '1552058544-f2b08422138a', c: '', tag: 'Launch', stat: 'Sold out',
+      q: 'Launch film, landing page, and press kit delivered in one sprint. First batch of 2,000 headphones sold out in 48 hours.' },
+    { n: 'Amélie Laurent', r: 'VP Brand, Maison Verre', img: '1544005313-94ddf0286df2', c: 'c-orange', tag: 'Art direction', stat: '3 markets',
+      q: 'Fieldwork shoot like editors and think like strategists. Their art direction made our glassware look as good in Tokyo as it does in Lyon.' },
+    { n: 'Noah Patel', r: 'Product Lead, Ledgerly', img: '1557862921-37829c790f19', c: 'c-sky', tag: 'Product UI', stat: '−38% tickets',
+      q: 'They redesigned onboarding for a finance app nobody found fun. Support tickets in week one dropped 38%. Users now call it “calm”.' },
+    { n: 'Isla McKenzie', r: 'Director, Glasshouse Festival', img: '1567532939604-b6b5b0db2604', c: 'c-ink', tag: 'Event identity', stat: '22k tickets',
+      q: 'The festival poster became the merch, the merch became the wristbands, and we sold out 22,000 tickets two months early.' },
+    { n: 'Owen Hughes', r: 'GM, Ferro Coffee', img: '1599566150163-29194dcaad36', c: '', tag: 'Retail', stat: '9 cafés',
+      q: 'They designed signage, cups and a menu system that our baristas can update themselves. It has scaled across nine cafés with zero agency calls.' }
+  ];
+
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function card(t, dup) {
+    return '<figure class="card ' + t.c + (dup ? ' dup' : '') + '"' + (dup ? ' aria-hidden="true"' : '') + '>' +
+      '<div class="tagline"><span>' + esc(t.tag) + '</span><b>' + esc(t.stat) + '</b></div>' +
+      '<blockquote><p>' + esc(t.q) + '</p></blockquote>' +
+      '<figcaption><img src="' + IMG + t.img + Q + '" alt="' + (dup ? '' : 'Portrait of ' + esc(t.n)) + '" width="42" height="42" loading="lazy">' +
+      '<div><cite>' + esc(t.n) + '</cite><span class="role">' + esc(t.r) + '</span></div></figcaption></figure>';
+  }
+  function fill(id, list) {
+    document.getElementById(id).innerHTML =
+      list.map(function (t) { return card(t, false); }).join('') +
+      list.map(function (t) { return card(t, true); }).join('');
+  }
+  fill('rowA', A);
+  fill('rowB', B);
+
+  var sec = document.getElementById('sec');
+  var btn = document.getElementById('toggle');
+  var userPaused = false;
+  function sync() { sec.classList.toggle('paused', userPaused || document.hidden); }
+  btn.addEventListener('click', function () {
+    userPaused = !userPaused;
+    btn.setAttribute('aria-pressed', String(userPaused));
+    btn.querySelector('span').textContent = userPaused ? 'Play motion' : 'Pause motion';
+    btn.querySelector('svg').innerHTML = userPaused
+      ? '<path d="M2 1l9 5-9 5z"/>'
+      : '<rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/>';
+    sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+})();
+</script>
+</body>
+</html>

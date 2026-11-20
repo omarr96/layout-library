@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signalwise Customer Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&family=DM+Serif+Display&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3f2fb;--panel:#1b1740;--panel2:#241f52;--ink:#161331;--muted:#5d5a78;--violet:#6d5efc;--mint:#3ddc97;--line:#dedbf3;--soft:#c9c5ec}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink)}
+  body{font-family:"Inter",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+  .wrap{max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(16px,4vw,40px)}
+  .head{text-align:center;max-width:720px;margin:0 auto clamp(28px,4vw,44px)}
+  .eyebrow{display:inline-block;font:600 12.5px "Sora",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#4a3bd6;background:#e6e2ff;padding:6px 12px;border-radius:99px}
+  h2{font:700 clamp(30px,4.4vw,52px)/1.08 "Sora",sans-serif;letter-spacing:-.035em;margin:16px 0 12px}
+  .head p{color:var(--muted);font-size:17px}
+
+  .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;margin-bottom:18px}
+  .tabs button{position:relative;border:0;background:none;border-radius:10px;padding:16px 10px;cursor:pointer;color:#6f6c8c;transition:color .2s,background .2s;display:grid;place-items:center;min-height:64px}
+  .tabs button:hover{color:var(--ink);background:#f6f5fd}
+  .tabs button[aria-selected="true"]{color:var(--ink);background:#efedff}
+  .tabs button[aria-selected="true"]::after{content:"";position:absolute;left:24%;right:24%;bottom:6px;height:3px;border-radius:3px;background:var(--violet)}
+  .tabs button:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  .lg1{font:800 19px "Sora",sans-serif;letter-spacing:.18em}
+  .lg2{font:600 24px "Inter",sans-serif;letter-spacing:-.06em}
+  .lg2 i{font-style:normal;color:var(--violet)}
+  .lg3{font:400 25px "DM Serif Display",Georgia,serif;font-style:italic}
+  .lg4{font:600 17px "JetBrains Mono",monospace;letter-spacing:-.02em}
+  .lg4 b{display:inline-block;width:12px;height:12px;border-radius:3px;background:currentColor;margin-right:6px;vertical-align:-1px}
+
+  .panel{background:var(--panel);color:#fff;border-radius:24px;padding:clamp(26px,4.5vw,56px);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);position:relative;overflow:hidden}
+  .panel::before{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(109,94,252,.45),transparent 65%);pointer-events:none}
+  .panel[hidden]{display:none}
+  .panel.in>*{animation:in .5s cubic-bezier(.2,.7,.2,1) both}
+  .panel.in>*:nth-child(2){animation-delay:.08s}
+  @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .industry{font-size:13px;color:var(--soft);letter-spacing:.04em;margin-bottom:18px;display:flex;gap:8px;flex-wrap:wrap}
+  .industry span{border:1px solid rgba(255,255,255,.16);padding:4px 10px;border-radius:99px}
+  blockquote{font:600 clamp(21px,2.4vw,29px)/1.36 "Sora",sans-serif;letter-spacing:-.02em}
+  blockquote mark{background:none;color:var(--mint)}
+  figcaption{display:flex;align-items:center;gap:14px;margin-top:28px}
+  figcaption img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.2)}
+  figcaption strong{display:block;font-size:16px}
+  figcaption span{color:var(--soft);font-size:14px}
+  .side{display:flex;flex-direction:column;gap:12px;position:relative}
+  .metric{background:var(--panel2);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:16px}
+  .metric b{font:700 clamp(30px,3.4vw,40px)/1 "Sora",sans-serif;letter-spacing:-.04em;color:var(--mint);min-width:5.2ch;font-variant-numeric:tabular-nums}
+  .metric span{font-size:14.5px;color:#dcd9f5;line-height:1.4}
+  .cta{margin-top:auto;display:inline-flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;color:var(--ink);text-decoration:none;font:600 15px "Sora",sans-serif;padding:16px 20px;border-radius:14px;transition:background .2s}
+  .cta:hover{background:var(--mint)}
+  .cta:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+  .cta svg{width:18px;height:18px;transition:transform .2s}
+  .cta:hover svg{transform:translateX(4px)}
+
+  @media (max-width:900px){.panel{grid-template-columns:1fr}}
+  @media (max-width:640px){
+    .tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .tabs button{padding:12px 6px;min-height:56px}
+    .lg1{font-size:16px}.lg2{font-size:21px}.lg3{font-size:22px}.lg4{font-size:15px}
+    .panel{border-radius:18px}
+  }
+  @media (prefers-reduced-motion:reduce){.panel.in>*{animation:none}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="cs">
+  <div class="head">
+    <span class="eyebrow">Customer stories</span>
+    <h2 id="cs">Pipeline you can point to</h2>
+    <p>Marketing teams use Signalwise to turn intent data into meetings. Pick a company to see the numbers.</p>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Customer case studies" id="tabs">
+    <button role="tab" id="tab-0" aria-controls="panel" aria-selected="true" tabindex="0"><span class="lg1" aria-hidden="true">NORDHAUL</span><span class="sr">Nordhaul</span></button>
+    <button role="tab" id="tab-1" aria-controls="panel" aria-selected="false" tabindex="-1"><span class="lg2" aria-hidden="true">kelpie<i>.</i></span><span class="sr">Kelpie</span></button>
+    <button role="tab" id="tab-2" aria-controls="panel" aria-selected="false" tabindex="-1"><span class="lg3" aria-hidden="true">Brightfold</span><span class="sr">Brightfold</span></button>
+    <button role="tab" id="tab-3" aria-controls="panel" aria-selected="false" tabindex="-1"><span class="lg4" aria-hidden="true"><b></b>tessel/ops</span><span class="sr">Tessel Ops</span></button>
+  </div>
+
+  <div class="panel" id="panel" role="tabpanel" aria-labelledby="tab-0" tabindex="0" aria-live="polite">
+    <figure>
+      <div class="industry" id="ind"></div>
+      <blockquote><p id="quote"></p></blockquote>
+      <figcaption><img id="av" src="" alt=""><div><strong id="nm"></strong><span id="rl"></span></div></figcaption>
+    </figure>
+    <div class="side">
+      <div id="metrics" style="display:flex;flex-direction:column;gap:12px"></div>
+      <a class="cta" id="cta" href="#"><span id="ctaT">Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
+
+<script>
+(function(){
+  var U='https://images.unsplash.com/photo-',Q='?w=200&h=200&q=70&auto=format&fit=crop&crop=faces';
+  var C=[
+    {co:'Nordhaul',ind:['Logistics SaaS','420 employees','Since 2023'],img:'1500648767791-00dcc994a43e',nm:'Tomás Ferreira',rl:'VP Demand Generation, Nordhaul',
+     q:'We used to spray ads at 9,000 accounts. Signalwise showed us the 600 actually researching freight visibility — <mark>inbound demos tripled in one quarter</mark> without adding a single SDR.',
+     m:[[212,'+','%','more qualified leads in Q1 vs. prior quarter'],[38,'−','%','cost per opportunity'],[3.1,'',' ×','pipeline coverage, up from 1.4×']]},
+    {co:'Kelpie',ind:['HR platform','Series B','Since 2024'],img:'1531123897727-8f129e1688ce',nm:'Adaeze Okonkwo',rl:'Head of Growth, Kelpie',
+     q:'The account scoring finally got sales and marketing looking at the same list. Our reps stopped asking “where are the leads?” and <mark>started closing them in half the time</mark>.',
+     m:[[47,'−','%','shorter sales cycle (64 → 34 days)'],[2.4,'$','M','new pipeline sourced in 6 months'],[91,'','%','of reps log in weekly']]},
+    {co:'Brightfold',ind:['Packaging manufacturer','Enterprise','Since 2022'],img:'1570295999919-56ceb5ecca61',nm:'Callum Reyes',rl:'Director of Marketing Ops, Brightfold',
+     q:'Integration with our CRM took an afternoon, not a quarter. Within eight weeks we had <mark>a board-ready attribution report</mark> I’d been promising for two years.',
+     m:[[5,'',' hrs','to full CRM sync'],[64,'+','%','ABM email reply rate'],[1.8,'$','M','closed-won tied to campaigns']]},
+    {co:'Tessel Ops',ind:['DevOps tooling','PLG + sales','Since 2025'],img:'1508214751196-bcfd4ca60f91',nm:'Freya Lindholm',rl:'CMO, tessel/ops',
+     q:'We had 40,000 free sign-ups and no idea which ones were companies worth calling. Signalwise surfaced <mark>the 312 teams ready to buy</mark>, and we closed 58 of them.',
+     m:[[312,'','','product-qualified accounts surfaced'],[58,'','','enterprise deals closed in 2 quarters'],[27,'+','%','net revenue retention']]}
+  ];
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]')),panel=document.getElementById('panel'),cur=-1,
+      reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,rafs=[];
+  function fmtN(v,dec){return dec?v.toFixed(1):Math.round(v).toLocaleString()}
+  function show(k,focus){
+    if(k===cur)return;cur=k;var c=C[k];
+    tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===k);t.tabIndex=j===k?0:-1});
+    if(focus)tabs[k].focus();
+    panel.setAttribute('aria-labelledby','tab-'+k);
+    document.getElementById('ind').innerHTML=c.ind.map(function(x){return '<span>'+x+'</span>'}).join('');
+    document.getElementById('quote').innerHTML='“'+c.q+'”';
+    var av=document.getElementById('av');av.src=U+c.img+Q;av.alt=c.nm;
+    document.getElementById('nm').textContent=c.nm;
+    document.getElementById('rl').textContent=c.rl;
+    document.getElementById('ctaT').textContent='Read the '+c.co+' case study';
+    document.getElementById('cta').href='#case-'+c.co.toLowerCase().replace(/\W+/g,'-');
+    rafs.forEach(cancelAnimationFrame);rafs=[];
+    var box=document.getElementById('metrics');
+    box.innerHTML=c.m.map(function(m){
+      var dec=m[0]%1!==0,full=m[1]+fmtN(m[0],dec)+m[2];
+      return '<div class="metric"><b aria-hidden="true" data-v="'+m[0]+'" data-p="'+m[1]+'" data-s="'+m[2]+'" data-d="'+(dec?1:0)+'">'+(reduce?full:m[1]+(dec?'0.0':'0')+m[2])+'</b><span><span class="sr">'+full+' </span>'+m[3]+'</span></div>';
+    }).join('');
+    if(!reduce){
+      box.querySelectorAll('b').forEach(function(b){
+        var v=+b.dataset.v,d=+b.dataset.d,t0=performance.now(),dur=1100;
+        (function step(now){var p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);
+          b.textContent=b.dataset.p+fmtN(v*e,d)+b.dataset.s;if(p<1)rafs.push(requestAnimationFrame(step))})(t0);
+      });
+      panel.classList.remove('in');void panel.offsetWidth;panel.classList.add('in');
+    }
+  }
+  tabs.forEach(function(t,k){
+    t.addEventListener('click',function(){show(k)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')n=(k+1)%tabs.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')n=(k-1+tabs.length)%tabs.length;
+      if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();show(n,true)}
+    });
+  });
+  document.getElementById('cta').addEventListener('click',function(e){e.preventDefault()});
+  show(0);
+})();
+</script>
+</body>
+</html>

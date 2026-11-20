@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testimonial Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #111113; --tx: #52525b; --mut: #8a8a93; --line: #e7e7ea; --soft: #f7f7f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+h1 { margin: 0; font-size: 34px; color: var(--ink); letter-spacing: -.025em; }
+.sub { margin: 8px 0 0; max-width: 680px; }
+.kit { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.kit span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; margin-top: 40px; }
+.card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .25s, transform .25s, border-color .25s; display: flex; flex-direction: column; }
+.card:hover { box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); transform: translateY(-3px); border-color: #d4d4d8; }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.b { padding: 16px 18px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.n { font-size: 13px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.b h3 { margin: 0; font-size: 16px; color: var(--ink); }
+.b p { margin: 4px 0 10px; font-size: 13.5px; }
+.sw { display: flex; gap: 5px; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 600px) { .wrap { padding: 36px 16px 60px; } .grid { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Testimonial layouts</h1>
+  <p class="sub">Twenty testimonial sections, each a different layout for a different kind of business. Click one to open it full size.</p>
+  <div class="kit"><span>Big quote</span><span>Quote slider</span><span>Card grid</span><span>Social wall</span><span>Scrolling rows</span><span>Photo slider</span><span>Video grid</span><span>Card carousel</span><span>Rating summary</span><span>Case-study tabs</span><span>Face picker</span><span>Card stack</span><span>Before / after</span><span>Timeline</span><span>Review widget</span><span>Dark slider</span><span>Bento</span><span>Scrolling columns</span><span>Sticky notes</span><span>Audio</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const T = [
+  ["01-big-quote", "Lumetric", "One big quote · SaaS analytics · result stats", ["#0B1020", "#5EEAD4", "#8B7BFF", "#ffffff"]],
+  ["02-quote-slider", "Halloran & Vey", "Quote slider · law firm · fade, dots, progress, pause", ["#F4EFE6", "#6B1E24", "#A8843E", "#ffffff"]],
+  ["03-card-grid", "Osteria Lume", "Card grid · restaurant · verified diner reviews", ["#FBF3E6", "#B9472A", "#4A5A2E", "#ffffff"]],
+  ["04-social-wall", "Pocketly", "Social-post wall · budgeting app · working like buttons", ["#EAF4EE", "#0C8F5E", "#E5345B", "#ffffff"]],
+  ["05-marquee-rows", "Fieldwork Studio", "Two scrolling rows · creative agency · opposite directions", ["#ECE8DF", "#FF4F1A", "#D4F25A", "#1a1a1a"]],
+  ["06-split-photo-slider", "Ironline Coaching", "Photo + quote slider · personal trainer · result per client", ["#111312", "#c8f031", "#eceae4", "#2a2d2a"]],
+  ["07-video-grid", "Northbound Coaching", "Video grid · business coaching · mock player with captions", ["#f6f1e9", "#1f3b33", "#c25a33", "#ffffff"]],
+  ["08-card-carousel", "Dana Whitlock Homes", "3-card carousel · real estate agent · drag and swipe", ["#efe9dd", "#14213d", "#a8834c", "#ffffff"]],
+  ["09-rating-summary", "Stride Lab", "Rating summary · running shoes · star filters and sort", ["#f7f7f5", "#0e1116", "#ff5a1f", "#ffffff"]],
+  ["10-case-study-tabs", "Signalwise", "Case-study tabs · B2B marketing · results that count up", ["#f3f2fb", "#1b1740", "#6d5efc", "#3ddc97"]],
+  ["11-avatar-picker", "Brightwell Dental", "Pick a face · dental clinic · quote swaps in", ["#F3FAF8", "#0E3B43", "#13856F", "#ffffff"]],
+  ["12-card-stack", "Farther & Co.", "Swipeable card stack · travel agency · throw the top card", ["#F6EFE6", "#2B1D14", "#C2552D", "#ffffff"]],
+  ["13-before-after-quote", "Oakline Renovations", "Before/after + quote · home renovation · 3 projects", ["#ECE8E1", "#2F4A3B", "#E3A33E", "#ffffff"]],
+  ["14-journey-timeline", "Maison Lune Weddings", "Journey timeline · wedding planner · fills as you scroll", ["#FBF6F1", "#3A2E2A", "#94603F", "#ffffff"]],
+  ["15-review-widget", "Northgate Plumbing", "Review widget · plumber · source filters, read more", ["#0F2A4A", "#1C64D9", "#F5B301", "#ffffff"]],
+  ["16-dark-type-slider", "Halden & Voss", "Dark big-type slider · architecture · segmented progress", ["#0E0F0C", "#EDE8DD", "#C8A46A", "#2a2b27"]],
+  ["17-bento", "Brightpath Academy", "Bento grid · online courses · stat, rating, photo tiles", ["#FFF8EC", "#6C4CF1", "#D4F36B", "#1B1B3A"]],
+  ["18-vertical-columns", "Casa Albarella", "Three scrolling columns · boutique hotel · pause motion", ["#F3ECE2", "#B5573A", "#2F3A2C", "#ffffff"]],
+  ["19-sticky-notes", "Crumb & Sprinkle", "Sticky notes & polaroids · kids’ bakery · hover straightens", ["#FBF3E6", "#FFE38A", "#FF8FB1", "#4A2C2A"]],
+  ["20-audio-quotes", "Stillwater Counselling", "Audio quotes · therapy clinic · waveform player, transcript", ["#E9EFE8", "#1F4A45", "#C98B6B", "#ffffff"]]
+];
+document.getElementById('grid').innerHTML = T.map(([f, n, d, c], i) => `<a class="card" href="${f}/index.html" target="_blank" rel="noopener">
+  <div class="shot"><iframe data-src="${f}/index.html" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></div>
+  <div class="b"><span class="n">${String(i + 1).padStart(2, '0')}</span><div><h3>${n}</h3><p>${d}</p><div class="sw">${c.map(x => `<i style="background:${x}"></i>`).join('')}</div></div></div></a>`).join('');
+const ro = new ResizeObserver(es => es.forEach(e => e.target.querySelector('iframe').style.transform = `scale(${e.contentRect.width / 1440})`));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const f = e.target.querySelector('iframe'); f.src = f.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); });
+</script>
+</body>
+</html>

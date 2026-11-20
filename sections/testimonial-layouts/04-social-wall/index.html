@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Wall Testimonials · Pocketly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EAF4EE;
+    --card:#FFFFFF;
+    --ink:#10261C;
+    --muted:#5A6E64;
+    --green:#0C8F5E;
+    --green-soft:#D3EFE0;
+    --heart:#E5345B;
+    --line:#DCE8E1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+  .t-section{padding:clamp(64px,8vw,120px) 20px}
+  .wrap{max-width:1200px;margin:0 auto}
+  .head{text-align:center;max-width:680px;margin:0 auto clamp(36px,5vw,56px)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--green);
+    background:var(--green-soft);padding:7px 14px;border-radius:999px;
+  }
+  h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:16px}
+  h2 span{color:var(--green)}
+  .sub{margin-top:14px;color:var(--muted);font-size:17px}
+
+  .wall{columns:3 320px;column-gap:20px}
+  .post{
+    break-inside:avoid;margin-bottom:20px;background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:20px 20px 14px;box-shadow:0 1px 0 rgba(16,38,28,.04);transition:box-shadow .25s,transform .25s;
+    display:block;
+  }
+  .post:hover{box-shadow:0 18px 36px -24px rgba(16,38,28,.35);transform:translateY(-2px)}
+  .post-head{display:flex;align-items:center;gap:12px}
+  .post-head img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none}
+  .who{min-width:0;flex:1}
+  .who cite{font-style:normal;font-weight:700;font-size:15px;display:flex;align-items:center;gap:4px}
+  .who cite svg{width:15px;height:15px;color:var(--green);flex:none}
+  .handle{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .net{width:22px;height:22px;color:#9BB0A5;flex:none}
+  blockquote{margin:14px 0 0;font-size:15.5px;color:#1D3329}
+  blockquote p + p{margin-top:8px}
+  .tag{color:var(--green);font-weight:600}
+  .mention{color:var(--green);font-weight:600}
+  .shot{
+    margin-top:14px;border-radius:14px;padding:16px;
+    background:linear-gradient(140deg,#0C8F5E,#0A5E43);color:#fff;
+  }
+  .shot small{opacity:.8;font-size:12px;display:block}
+  .shot b{font-size:28px;letter-spacing:-.03em;display:block;margin:2px 0 10px}
+  .shot .bars{display:flex;align-items:flex-end;gap:6px;height:54px}
+  .shot .bars i{flex:1;background:rgba(255,255,255,.35);border-radius:4px 4px 0 0}
+  .shot .bars i.hi{background:#B9F5D8}
+  .post-foot{
+    margin-top:14px;padding-top:10px;border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13.5px;
+  }
+  .act{
+    display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:inherit;font:inherit;
+    padding:6px 8px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;
+  }
+  .act svg{width:18px;height:18px}
+  .act:hover{background:#F1F6F3}
+  .act:focus-visible{outline:2px solid var(--green);outline-offset:1px}
+  .like[aria-pressed="true"]{color:var(--heart)}
+  .like[aria-pressed="true"] svg{fill:currentColor;animation:pop .35s ease}
+  @keyframes pop{50%{transform:scale(1.3)}}
+  .reply{pointer-events:none}
+  time{margin-left:auto;white-space:nowrap}
+
+  .foot{text-align:center;margin-top:clamp(20px,3vw,32px)}
+  .stores{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .store{
+    display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff;background:var(--ink);
+    padding:10px 18px;border-radius:14px;font-size:12px;line-height:1.2;text-align:left;
+  }
+  .store b{display:block;font-size:16px}
+  .store svg{width:22px;height:22px}
+  .store:hover{background:#000}
+  .store:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+  .rating-line{margin-top:14px;font-size:14px;color:var(--muted)}
+  .rating-line strong{color:var(--ink)}
+
+  @media (prefers-reduced-motion:reduce){.post,.post:hover{transition:none;transform:none}.like[aria-pressed="true"] svg{animation:none}}
+  @media (max-width:520px){.post{padding:18px 16px 12px}}
+</style>
+</head>
+<body>
+<section class="t-section" aria-labelledby="t-heading">
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow">#PocketlyWins</p>
+      <h2 id="t-heading">Real people, real <span>savings</span>, posted unprompted.</h2>
+      <p class="sub">A few of the 38,000+ posts from people who finally know where their money goes.</p>
+    </header>
+
+    <div class="wall" id="wall"></div>
+
+    <div class="foot">
+      <div class="stores">
+        <a class="store" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg><span>Download on the<b>App Store</b></span></a>
+        <a class="store" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.5v19l10-9.5zM15.3 13.2l2.6 2.5-11.6 6.6zM15.3 10.8 6.3 1.7l11.6 6.6zM19.2 9.1 21.4 10.4c.9.5.9 1.8 0 2.3l-2.2 1.3-2.8-2.5z"/></svg><span>Get it on<b>Google Play</b></span></a>
+      </div>
+      <p class="rating-line"><strong>4.9</strong> on the App Store &middot; <strong>4.8</strong> on Google Play &middot; 212k ratings</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var IMG = 'https://images.unsplash.com/photo-';
+  var Q = '?w=200&h=200&q=70&auto=format&fit=crop&crop=faces';
+  var posts = [
+    { n: 'Aisha Kapoor', h: 'aisha.builds', img: '1488426862026-3ee34a7d66df', v: true, likes: 1243, replies: 86, d: 'Nov 14',
+      t: ['Six months on @pocketly and I just paid off my last credit card. $4,120 gone. The round-up jar alone put away $612 without me noticing. #PocketlyWins'],
+      shot: { label: 'Debt paid off since May', val: '$4,120', bars: [30, 42, 38, 55, 61, 78, 100] } },
+    { n: 'Tunde Adeyemi', h: 'tundecodes', img: '1463453091185-61582044d556', likes: 318, replies: 12, d: 'Nov 12',
+      t: ['Honestly the only budgeting app I have opened more than twice.'] },
+    { n: 'Chloe Martin', h: 'chloemakesthings', img: '1529626455594-4ff0802cfb7e', likes: 742, replies: 41, d: 'Nov 10',
+      t: ['Didn’t realise I had 7 streaming subscriptions until Pocketly flagged them in a single list. Cancelled 4 in one evening — that’s $46 a month back.', 'Small thing, but the “cancel” shortcuts actually open the right settings page. Chef’s kiss.'] },
+    { n: 'Leo Fischer', h: 'leo.fischer', img: '1539571696357-5a69c17a67c6', likes: 96, replies: 5, d: 'Nov 9',
+      t: ['Shared budget with my flatmates for groceries + bills. Zero awkward Venmo requests this month. #PocketlyWins'] },
+    { n: 'Maya Torres', h: 'mayatorres_', img: '1544725176-7c40e5a71c5e', v: true, likes: 2087, replies: 154, d: 'Nov 6',
+      t: ['Freelancer tip: set Pocketly to auto-move 28% of every client payment into a “Taxes” pot. First year I didn’t panic in April. Didn’t even have to think about it.'] },
+    { n: 'Ravi Shah', h: 'ravishah', img: '1595152772835-219674b2a8a6', likes: 451, replies: 23, d: 'Nov 3',
+      t: ['Saved for my Lisbon trip in 5 months using the goal tracker. Watching the little progress ring fill up is weirdly motivating.'] },
+    { n: 'Grace Whitfield', h: 'gracewhit', img: '1580489944761-15a19d654956', likes: 64, replies: 2, d: 'Oct 30',
+      t: ['the weekly spending recap on sunday mornings has replaced my horoscope'] },
+    { n: 'Kenji Mori', h: 'kenji.m', img: '1628157588553-5eeea00af15c', likes: 389, replies: 19, d: 'Oct 27',
+      t: ['Connected 3 banks + a credit union in about 2 minutes. Categorisation was right for ~95% of transactions out of the box. Support answered a question in-app in 6 minutes on a Saturday.'] },
+    { n: 'Lena Novak', h: 'lenanovak', img: '1487412720507-e7ab37603c6f', likes: 873, replies: 47, d: 'Oct 21',
+      t: ['First emergency fund of my life: $3,000. Started with $10 a week. @pocketly thank you for making it boring in the best way 🫶'] }
+  ];
+
+  var VERIFIED = '<svg viewBox="0 0 16 16" fill="currentColor" aria-label="Verified account" role="img"><path d="M8 0l1.9 1.4 2.3-.1.7 2.2 1.9 1.4-.8 2.1.8 2.1-1.9 1.4-.7 2.2-2.3-.1L8 16l-1.9-1.4-2.3.1-.7-2.2L1.2 11l.8-2.1L1.2 6.9l1.9-1.4.7-2.2 2.3.1z"/><path d="m5 8.2 2 2 4-4.2" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var NET = '<svg class="net" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>';
+  var HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.2 3 4.5 6.6 4.5c2 0 3.3 1.1 4.1 2.3h2.6c.8-1.2 2.1-2.3 4.1-2.3 3.6 0 5.4 3.7 3.8 6.9C19 15.6 12 20 12 20z"/></svg>';
+  var REPLY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></svg>';
+
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function fmt(n) { return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n); }
+  function rich(s) {
+    return esc(s).replace(/#(\w+)/g, '<span class="tag">#$1</span>').replace(/@(\w+)/g, '<span class="mention">@$1</span>');
+  }
+
+  var wall = document.getElementById('wall');
+  wall.innerHTML = posts.map(function (p, i) {
+    var body = p.t.map(function (t) { return '<p>' + rich(t) + '</p>'; }).join('');
+    var shot = '';
+    if (p.shot) {
+      var max = Math.max.apply(null, p.shot.bars);
+      shot = '<div class="shot" role="img" aria-label="Screenshot: ' + esc(p.shot.label) + ', ' + esc(p.shot.val) + '"><small>' + esc(p.shot.label) + '</small><b>' + esc(p.shot.val) + '</b><div class="bars">' +
+        p.shot.bars.map(function (b) { return '<i' + (b === max ? ' class="hi"' : '') + ' style="height:' + b + '%"></i>'; }).join('') + '</div></div>';
+    }
+    return '<figure class="post">' +
+      '<figcaption class="post-head"><img src="' + IMG + p.img + Q + '" alt="' + esc(p.n) + '" width="44" height="44" loading="lazy">' +
+      '<div class="who"><cite>' + esc(p.n) + (p.v ? VERIFIED : '') + '</cite><span class="handle">@' + esc(p.h) + '</span></div>' + NET + '</figcaption>' +
+      '<blockquote>' + body + '</blockquote>' + shot +
+      '<div class="post-foot">' +
+      '<button class="act like" type="button" aria-pressed="false" data-i="' + i + '" aria-label="Like post by ' + esc(p.n) + ', ' + p.likes + ' likes">' + HEART + '<span>' + fmt(p.likes) + '</span></button>' +
+      '<span class="act reply" aria-label="' + p.replies + ' replies">' + REPLY + '<span aria-hidden="true">' + p.replies + '</span></span>' +
+      '<time>' + esc(p.d) + '</time></div>' +
+      '</figure>';
+  }).join('');
+
+  wall.addEventListener('click', function (e) {
+    var b = e.target.closest('.like');
+    if (!b) return;
+    var p = posts[+b.getAttribute('data-i')];
+    var on = b.getAttribute('aria-pressed') !== 'true';
+    p.likes += on ? 1 : -1;
+    b.setAttribute('aria-pressed', String(on));
+    b.setAttribute('aria-label', 'Like post by ' + p.n + ', ' + p.likes + ' likes');
+    b.querySelector('span').textContent = fmt(p.likes);
+  });
+})();
+</script>
+</body>
+</html>

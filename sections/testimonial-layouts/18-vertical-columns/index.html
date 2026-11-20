@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Albarella — Guest book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3ECE2;--card:#FBF7F1;--ink:#2F3A2C;--soft:#6B6A5C;--terra:#B5573A;--line:#E4D9C8}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:15px/1.65 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.sec{max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:64px;align-items:center}
+.intro .eb{font:500 12px/1 Jost,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);margin:0 0 22px}
+.intro h2{margin:0;font:500 clamp(40px,4.4vw,62px)/1.02 "Cormorant Garamond",serif;letter-spacing:-.01em}
+.intro h2 em{color:var(--terra)}
+.intro p.lede{color:var(--soft);margin:22px 0 32px;max-width:380px}
+.score{display:flex;gap:28px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.score div{line-height:1.25}
+.score b{display:block;font:600 38px/1 "Cormorant Garamond",serif}
+.score span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.ctrl{margin-top:28px;display:flex;align-items:center;gap:14px}
+.ctrl button{appearance:none;font:500 13px/1 Jost,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);padding:13px 20px;border-radius:99px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:background .2s,color .2s}
+.ctrl button:hover{background:var(--ink);color:var(--bg)}
+.ctrl button:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.ctrl svg{width:11px;height:11px}
+.wall{position:relative;height:680px;overflow:hidden;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%)}
+.col{overflow:hidden;min-width:0}
+.lane{display:flex;flex-direction:column;gap:18px;animation:up var(--d,40s) linear infinite}
+.col.down .lane{animation-name:down}
+.wall:hover .lane,.wall.paused .lane,.wall.bg .lane,.wall:focus-within .lane{animation-play-state:paused}
+@keyframes up{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 9px))}}
+@keyframes down{from{transform:translateY(calc(-50% - 9px))}to{transform:translateY(0)}}
+figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:26px 24px 22px;box-shadow:0 1px 0 rgba(47,58,44,.04)}
+figure .st{color:var(--terra);letter-spacing:3px;font-size:13px;margin-bottom:12px}
+blockquote{margin:0;font:500 20px/1.35 "Cormorant Garamond",serif;color:var(--ink)}
+blockquote p{margin:0}
+figure.tall blockquote{font-size:23px;font-style:italic}
+figcaption{display:flex;gap:12px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+figcaption img,.ini{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+.ini{display:grid;place-items:center;background:#E7D7C4;color:var(--terra);font:600 17px/1 "Cormorant Garamond",serif}
+.who{line-height:1.3;font-size:13.5px}.who strong{display:block;font-weight:500;color:var(--ink)}.who span{color:var(--soft);font-size:12.5px}
+figure.photo{padding:0;overflow:hidden}
+figure.photo img.p{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+figure.photo figcaption{margin:0;border:0;padding:14px 18px;font-size:13px;color:var(--soft);display:block}
+figure.photo figcaption b{color:var(--ink);font-weight:500}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:1020px){.sec{grid-template-columns:minmax(0,1fr);gap:44px}.intro{max-width:620px}}
+@media (max-width:700px){.wall{grid-template-columns:repeat(2,minmax(0,1fr));height:620px}.col:nth-child(3){display:none}}
+@media (max-width:480px){.sec{padding:64px 16px}.wall{grid-template-columns:minmax(0,1fr);height:560px}.col:nth-child(2){display:none}.score{gap:18px}.score b{font-size:32px}}
+@media (prefers-reduced-motion:reduce){.lane{animation:none!important}.wall{height:auto;-webkit-mask-image:none;mask-image:none}.lane [aria-hidden="true"]{display:none}.col{overflow:visible;display:block!important}}
+@media (prefers-reduced-motion:reduce) and (max-width:700px){.wall{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="t18">
+  <div class="intro">
+    <p class="eb">The guest book</p>
+    <h2 id="t18">Twelve rooms, <em>a lemon grove</em> and the people who stayed.</h2>
+    <p class="lede">Casa Albarella is a family-run boutique hotel above Positano. These notes come from our guest book and verified post-stay reviews.</p>
+    <div class="score">
+      <div><b>9.7</b><span>Guest rating</span></div>
+      <div><b>1,840</b><span>Reviews</span></div>
+      <div><b>63%</b><span>Return guests</span></div>
+    </div>
+    <div class="ctrl"><button type="button" id="toggle" aria-pressed="false"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="1" y="0" width="3.5" height="12"/><rect x="7.5" y="0" width="3.5" height="12"/></svg><span>Pause motion</span></button></div>
+  </div>
+
+  <div class="wall" id="wall" role="region" aria-label="Guest reviews, scrolling columns">
+    <div class="col" style="--d:46s"><div class="lane">
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>Giulia left a handwritten map of the path to Fornillo beach on our pillow. We followed it every single morning.</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Clara Whitfield" width="40" height="40"><div class="who"><strong>Clara Whitfield</strong><span>Edinburgh · Room Limone</span></div></figcaption></figure>
+      <figure class="photo"><img class="p" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=450&q=70&auto=format&fit=crop" alt="Sunlit hotel room with a wooden bed and open doors to a terrace" loading="lazy"><figcaption><b>Suite Gelsomino</b> — guests' most requested room, 2025</figcaption></figure>
+      <figure class="tall"><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>“We came for three nights and extended to nine. Nobody judged us for it.”</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Marcus Reyes" width="40" height="40"><div class="who"><strong>Marcus Reyes</strong><span>Austin, Texas</span></div></figcaption></figure>
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>My husband is coeliac. The kitchen baked him gluten-free cornetti every day without us ever asking twice.</p></blockquote><figcaption><span class="ini" aria-hidden="true">SN</span><div class="who"><strong>Sofie Nielsen</strong><span>Copenhagen · Anniversary trip</span></div></figcaption></figure>
+    </div></div>
+
+    <div class="col down" style="--d:58s"><div class="lane">
+      <figure class="tall"><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>“The quietest sea view I've ever slept beside. Shutters open, church bells at eight, espresso at eight-oh-five.”</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Elena Marsh" width="40" height="40"><div class="who"><strong>Elena Marsh</strong><span>London · Honeymoon</span></div></figcaption></figure>
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>Lost my passport in Amalfi town. Paolo drove down, found it at the ferry office and was back before dinner.</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Julien Moreau" width="40" height="40"><div class="who"><strong>Julien Moreau</strong><span>Lyon, France</span></div></figcaption></figure>
+      <figure class="photo"><img class="p" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=450&q=70&auto=format&fit=crop" alt="Terrace pool with sun loungers beside the hotel at golden hour" loading="lazy"><figcaption><b>The terrace pool</b> — open until 10pm in summer</figcaption></figure>
+      <figure><div class="st" aria-label="4 out of 5 stars">★★★★☆</div><blockquote><p>There are 187 steps up from the road, so pack light. Worth every one for that breakfast terrace.</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Robert Hale" width="40" height="40"><div class="who"><strong>Robert Hale</strong><span>Toronto · 3rd visit</span></div></figcaption></figure>
+    </div></div>
+
+    <div class="col" style="--d:40s"><div class="lane">
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>Twelve rooms means they learn your name by lunch. Nonna Rosa's limoncello tasting was the highlight of our whole Italy trip.</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Priya Raman" width="40" height="40"><div class="who"><strong>Priya Raman</strong><span>Singapore</span></div></figcaption></figure>
+      <figure class="tall"><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>“It felt like borrowing a friend's villa — if your friend also had a sommelier.”</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Noah Fischer" width="40" height="40"><div class="who"><strong>Noah Fischer</strong><span>Zürich</span></div></figcaption></figure>
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>They arranged a private boat to Capri at two hours' notice, and the captain's sister made us lunch on board.</p></blockquote><figcaption><span class="ini" aria-hidden="true">AK</span><div class="who"><strong>Aiko &amp; Ken Tanaka</strong><span>Osaka · Room Mare</span></div></figcaption></figure>
+      <figure><div class="st" aria-label="5 out of 5 stars">★★★★★</div><blockquote><p>Linen sheets, no TV, a record player and a stack of Mina albums. I didn't miss my phone once.</p></blockquote><figcaption><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Lena Vogel" width="40" height="40"><div class="who"><strong>Lena Vogel</strong><span>Berlin · Solo stay</span></div></figcaption></figure>
+    </div></div>
+  </div>
+</section>
+<script>
+(function(){
+  var wall=document.getElementById('wall'),btn=document.getElementById('toggle');
+  // duplicate each lane's cards for a seamless loop; clones hidden from assistive tech
+  [].forEach.call(wall.querySelectorAll('.lane'),function(l){
+    [].slice.call(l.children).forEach(function(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');[].forEach.call(k.querySelectorAll('img'),function(i){i.alt=''});l.appendChild(k)});
+  });
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function setP(p){wall.classList.toggle('paused',p);btn.setAttribute('aria-pressed',String(p));btn.querySelector('span').textContent=p?'Play motion':'Pause motion';btn.querySelector('svg').innerHTML=p?'<path d="M2 0l9 6-9 6z"/>':'<rect x="1" y="0" width="3.5" height="12"/><rect x="7.5" y="0" width="3.5" height="12"/>'}
+  btn.addEventListener('click',function(){setP(!wall.classList.contains('paused'))});
+  document.addEventListener('visibilitychange',function(){wall.classList.toggle('bg',document.hidden)});
+  if(reduce.matches){btn.parentNode.hidden=true}
+})();
+</script>
+</body>
+</html>

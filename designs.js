@@ -80,6 +80,343 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "testimonial-gallery",
+      "title": "Testimonial layouts · all 20",
+      "desc": "Gallery of 20 testimonial sections, several with sliders.",
+      "tags": [
+        "Testimonials",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/testimonial-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-01-big-quote",
+      "title": "Testimonials 01 · Lumetric",
+      "desc": "One big quote · SaaS analytics · result stats.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/01-big-quote/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-02-quote-slider",
+      "title": "Testimonials 02 · Halloran & Vey",
+      "desc": "Quote slider · law firm · fade, dots, progress, pause.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/02-quote-slider/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-03-card-grid",
+      "title": "Testimonials 03 · Osteria Lume",
+      "desc": "Card grid · restaurant · verified diner reviews.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/03-card-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-04-social-wall",
+      "title": "Testimonials 04 · Pocketly",
+      "desc": "Social-post wall · budgeting app · working like buttons.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/04-social-wall/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-05-marquee-rows",
+      "title": "Testimonials 05 · Fieldwork Studio",
+      "desc": "Two scrolling rows · creative agency · opposite directions.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/05-marquee-rows/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-06-split-photo-slider",
+      "title": "Testimonials 06 · Ironline Coaching",
+      "desc": "Photo + quote slider · personal trainer · result per client.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/06-split-photo-slider/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-07-video-grid",
+      "title": "Testimonials 07 · Northbound Coaching",
+      "desc": "Video grid · business coaching · mock player with captions.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/07-video-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-08-card-carousel",
+      "title": "Testimonials 08 · Dana Whitlock Homes",
+      "desc": "3-card carousel · real estate agent · drag and swipe.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/08-card-carousel/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-09-rating-summary",
+      "title": "Testimonials 09 · Stride Lab",
+      "desc": "Rating summary · running shoes · star filters and sort.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/09-rating-summary/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-10-case-study-tabs",
+      "title": "Testimonials 10 · Signalwise",
+      "desc": "Case-study tabs · B2B marketing · results that count up.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/10-case-study-tabs/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-11-avatar-picker",
+      "title": "Testimonials 11 · Brightwell Dental",
+      "desc": "Pick a face · dental clinic · quote swaps in.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/11-avatar-picker/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-12-card-stack",
+      "title": "Testimonials 12 · Farther & Co.",
+      "desc": "Swipeable card stack · travel agency · throw the top card.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/12-card-stack/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-13-before-after-quote",
+      "title": "Testimonials 13 · Oakline Renovations",
+      "desc": "Before/after + quote · home renovation · 3 projects.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/13-before-after-quote/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-14-journey-timeline",
+      "title": "Testimonials 14 · Maison Lune Weddings",
+      "desc": "Journey timeline · wedding planner · fills as you scroll.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/14-journey-timeline/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-15-review-widget",
+      "title": "Testimonials 15 · Northgate Plumbing",
+      "desc": "Review widget · plumber · source filters, read more.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/15-review-widget/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-16-dark-type-slider",
+      "title": "Testimonials 16 · Halden & Voss",
+      "desc": "Dark big-type slider · architecture · segmented progress.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/16-dark-type-slider/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-17-bento",
+      "title": "Testimonials 17 · Brightpath Academy",
+      "desc": "Bento grid · online courses · stat, rating, photo tiles.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/17-bento/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-18-vertical-columns",
+      "title": "Testimonials 18 · Casa Albarella",
+      "desc": "Three scrolling columns · boutique hotel · pause motion.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/18-vertical-columns/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-19-sticky-notes",
+      "title": "Testimonials 19 · Crumb & Sprinkle",
+      "desc": "Sticky notes & polaroids · kids’ bakery · hover straightens.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/19-sticky-notes/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "testi-20-audio-quotes",
+      "title": "Testimonials 20 · Stillwater Counselling",
+      "desc": "Audio quotes · therapy clinic · waveform player, transcript.",
+      "tags": [
+        "Testimonials"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/testimonial-layouts/20-audio-quotes/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "faq-gallery",
       "title": "FAQ layouts · all 10",
       "desc": "Gallery of 10 FAQ sections, each a different layout for a different business.",

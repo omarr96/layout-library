@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dana Whitlock Homes — Client Reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#efe9dd;--card:#fbf8f2;--navy:#14213d;--ink:#1d2433;--muted:#626a78;--brass:#a8834c;--line:#dcd3c2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink)}
+  body{font-family:"Jost",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+  .wrap{max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(16px,4vw,40px)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
+  .eyebrow{font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);font-weight:600}
+  h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(38px,5vw,64px);line-height:1.02;color:var(--navy);margin-top:12px;max-width:640px}
+  h2 em{color:var(--brass)}
+  .score{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:14.5px}
+  .score b{font-family:"Cormorant Garamond",serif;font-size:44px;font-weight:600;color:var(--navy);line-height:1}
+  .stars{color:var(--brass);letter-spacing:2px;font-size:15px}
+
+  .carousel{position:relative}
+  .track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 26px;scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+  .track::-webkit-scrollbar{display:none}
+  .track.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+  .track.drag *{pointer-events:none;user-select:none}
+  .track:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:8px}
+  .slide{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;min-width:0}
+  figure{height:100%;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 0 rgba(20,33,61,.04)}
+  .pic{position:relative;aspect-ratio:16/10;overflow:hidden}
+  .pic img{width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none}
+  .sold{position:absolute;top:14px;left:14px;background:var(--navy);color:#fff;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;font-weight:600}
+  .deal{position:absolute;right:14px;bottom:14px;background:rgba(251,248,242,.94);color:var(--navy);font-size:13px;padding:5px 10px;font-weight:600;border-radius:2px}
+  .body{padding:24px 24px 22px;display:flex;flex-direction:column;gap:18px;flex:1}
+  .body .stars{font-size:14px}
+  blockquote{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;line-height:1.38;color:var(--ink);font-weight:500}
+  figcaption{margin-top:auto;display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+  figcaption img{width:46px;height:46px;border-radius:50%;object-fit:cover;-webkit-user-drag:none}
+  figcaption strong{display:block;font-weight:600;font-size:15px;color:var(--navy)}
+  figcaption span{font-size:13.5px;color:var(--muted)}
+
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:8px}
+  .dots{display:flex;gap:6px;flex-wrap:wrap}
+  .dots button{width:28px;height:28px;border:0;background:none;cursor:pointer;display:grid;place-items:center;padding:0}
+  .dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:#c9bea9;transition:all .25s}
+  .dots button[aria-current="true"]::before{width:22px;border-radius:5px;background:var(--navy)}
+  .dots button:focus-visible{outline:2px solid var(--brass);border-radius:4px}
+  .arrows{display:flex;gap:10px}
+  .arrows button{width:52px;height:52px;border-radius:50%;border:1px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,opacity .2s}
+  .arrows button:hover:not(:disabled){background:var(--navy);color:#fff}
+  .arrows button:disabled{opacity:.3;cursor:default}
+  .arrows button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  .arrows svg{width:20px;height:20px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  @media (max-width:1024px){.slide{flex-basis:calc((100% - 24px)/2)}}
+  @media (max-width:640px){.dots{gap:0;flex-wrap:nowrap}.dots button{width:22px}.arrows button{width:46px;height:46px}.slide{flex-basis:100%}.track{gap:16px}.body{padding:20px}blockquote{font-size:20px}}
+  @media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="rt">
+  <div class="head">
+    <div>
+      <span class="eyebrow">Dana Whitlock · Coastal Maine Homes</span>
+      <h2 id="rt">Keys handed over, <em>stories</em> worth sharing</h2>
+    </div>
+    <div class="score"><b>4.9</b><div><div class="stars" aria-hidden="true">★★★★★</div>186 verified client reviews</div></div>
+  </div>
+
+  <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Client reviews">
+    <div class="track" id="track" tabindex="0" aria-label="Reviews, use arrow keys to scroll"></div>
+    <div class="nav">
+      <div class="dots" id="dots" role="group" aria-label="Choose page"></div>
+      <div class="arrows">
+        <button type="button" id="prev" aria-label="Previous reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="next" aria-label="Next reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <p class="sr" id="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var U='https://images.unsplash.com/photo-';
+  var R=[
+    {h:'1600585154340-be6161a56a0c',a:'1494790108377-be9c29b29330',n:'Megan & Luis Ortega',m:'Bought in Cape Elizabeth',tag:'Sold',deal:'Under asking by $38k',
+     q:'Dana spotted a drainage issue the inspector missed and used it to knock $38,000 off. We closed in 29 days and she walked the house with us one last time.'},
+    {h:'1600566753190-17f0baa2a6c3',a:'1472099645785-5658abf4ff4e',n:'Richard Abernathy',m:'Sold in Falmouth Foreside',tag:'Sold',deal:'6 days on market',
+     q:'Listed on a Thursday, four offers by Sunday, under contract the following Wednesday. Her staging advice cost me $1,900 and was worth every penny.'},
+    {h:'1600596542815-ffad4c1539a9',a:'1580489944761-15a19d654956',n:'Priyanka Shah',m:'First home · South Portland',tag:'Bought',deal:'First-time buyer',
+     q:'I sent her about two hundred questions over text, at every hour. Every single one got a patient, plain-English answer. I never once felt silly.'},
+    {h:'1512917774080-9991f1c4c750',a:'1507003211169-0a1dd7228f2d',n:'Theo Nakamura',m:'Relocated from Seattle',tag:'Bought',deal:'Bought sight-unseen',
+     q:'We bought 3,000 miles away off Dana’s FaceTime tours. She held the phone up to every window, opened every closet, and was honest about the road noise.'},
+    {h:'1564013799919-ab600027ffc6',a:'1438761681033-6461ffad8d80',n:'Caroline Beckett',m:'Sold in Kennebunkport',tag:'Sold',deal:'$62k over asking',
+     q:'Selling my parents’ summer house was emotional. Dana handled the estate paperwork, the clear-out crew and the bidding war — $62k over asking.'},
+    {h:'1568605114967-8130f3a36994',a:'1522529599102-193c0d76b5b6',n:'Andre & Simone Baptiste',m:'Upsized in Yarmouth',tag:'Bought',deal:'Buy + sell, same week',
+     q:'She lined up our sale and purchase to close on the same Friday, so we only moved the kids once. I still don’t know how she pulled that off.'},
+    {h:'1600607687939-ce8a6c25118c',a:'1544005313-94ddf0286df2',n:'Hannah Lindqvist',m:'Condo in the Old Port',tag:'Bought',deal:'Negotiated HOA credit',
+     q:'She read the HOA minutes for three years back and found the roof assessment coming. We negotiated a $9,500 credit before signing.'}
+  ];
+  var track=document.getElementById('track'),dots=document.getElementById('dots'),status=document.getElementById('status'),
+      prev=document.getElementById('prev'),next=document.getElementById('next');
+  R.forEach(function(r,k){
+    var s=document.createElement('div');s.className='slide';
+    s.setAttribute('role','group');s.setAttribute('aria-roledescription','slide');s.setAttribute('aria-label',(k+1)+' of '+R.length);
+    s.innerHTML='<figure><div class="pic"><img src="'+U+r.h+'?w=720&h=450&q=70&auto=format&fit=crop" alt="Home '+(r.tag==='Sold'?'sold by':'bought by')+' '+r.n+'" loading="lazy" draggable="false">'+
+      '<span class="sold">'+r.tag+'</span><span class="deal">'+r.deal+'</span></div>'+
+      '<div class="body"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“'+r.q+'”</blockquote>'+
+      '<figcaption><img src="'+U+r.a+'?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="'+r.n+'" loading="lazy" draggable="false"><div><strong>'+r.n+'</strong><span>'+r.m+'</span></div></figcaption></div></figure>';
+    track.appendChild(s);
+  });
+  var slides=track.children;
+  function perView(){return Math.max(1,Math.round(track.clientWidth/slides[0].getBoundingClientRect().width))}
+  function pages(){return Math.max(1,R.length-perView()+1)}
+  function step(){return slides[1].offsetLeft-slides[0].offsetLeft}
+  function index(){return Math.round(track.scrollLeft/step())}
+  function goTo(k){k=Math.max(0,Math.min(pages()-1,k));track.scrollTo({left:slides[k].offsetLeft-slides[0].offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+  var lastPages=0,lastIdx=-1;
+  function buildDots(){
+    var p=pages();if(p===lastPages)return;lastPages=p;dots.innerHTML='';
+    for(var k=0;k<p;k++){(function(k){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to review '+(k+1));b.addEventListener('click',function(){goTo(k)});dots.appendChild(b)})(k)}
+    lastIdx=-1;update();
+  }
+  function update(){
+    var i=Math.min(index(),pages()-1),pv=perView();
+    Array.prototype.forEach.call(dots.children,function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
+    prev.disabled=track.scrollLeft<4;
+    next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4;
+    Array.prototype.forEach.call(slides,function(s,k){s.setAttribute('aria-hidden',(k<i||k>=i+pv)?'true':'false')});
+    if(i!==lastIdx){lastIdx=i;status.textContent='Showing reviews '+(i+1)+(pv>1?'–'+Math.min(R.length,i+pv):'')+' of '+R.length}
+  }
+  prev.addEventListener('click',function(){goTo(index()-1)});
+  next.addEventListener('click',function(){goTo(index()+1)});
+  var raf;track.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(update)},{passive:true});
+  window.addEventListener('resize',function(){lastPages=0;buildDots()});
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();goTo(index()+1)}
+    if(e.key==='ArrowLeft'){e.preventDefault();goTo(index()-1)}
+    if(e.key==='Home'){e.preventDefault();goTo(0)}
+    if(e.key==='End'){e.preventDefault();goTo(pages()-1)}
+  });
+  // mouse drag (touch uses native scroll + snap)
+  var down=false,sx=0,sl=0,moved=false;
+  track.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=track.scrollLeft});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(!moved&&Math.abs(dx)>5){moved=true;track.classList.add('drag')}if(moved)track.scrollLeft=sl-dx});
+  window.addEventListener('pointerup',function(e){if(!down)return;down=false;if(!moved)return;var dx=e.clientX-sx;track.classList.remove('drag');
+    var base=Math.round(sl/step());goTo(Math.abs(dx)>60?base+(dx<0?1:-1)*Math.max(1,Math.round(Math.abs(dx)/step())):base)});
+  buildDots();update();
+})();
+</script>
+</body>
+</html>

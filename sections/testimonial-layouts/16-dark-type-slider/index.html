@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden &amp; Voss — Client words</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0E0F0C;--panel:#16171300;--bone:#EDE8DD;--mute:#9A968C;--line:#2A2B26;--brass:#C8A46A}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--bone)}
+body{font:16px/1.6 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.sec{max-width:1280px;margin:0 auto;padding:110px 48px 120px;position:relative}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;border-bottom:1px solid var(--line);padding-bottom:28px}
+.eyebrow{font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--brass)}
+h2{margin:0;font:400 clamp(30px,3.4vw,46px)/1.05 "Instrument Serif",serif;letter-spacing:-.01em}
+h2 em{color:var(--mute)}
+.meta{font:400 12px/1.7 "JetBrains Mono",monospace;color:var(--mute);text-align:right;text-transform:uppercase;letter-spacing:.08em}
+.meta b{color:var(--bone);font-weight:500}
+.car{position:relative;margin-top:64px}
+.stage{display:grid}
+.slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),visibility 0s .7s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s ease .1s,transform .8s cubic-bezier(.2,.7,.2,1) .1s,visibility 0s}
+figure{margin:0;display:grid;grid-template-columns:120px 1fr;gap:40px}
+.num{font:400 13px/1 "JetBrains Mono",monospace;color:var(--mute);padding-top:22px;letter-spacing:.1em}
+.num span{display:block;font:italic 400 64px/1 "Instrument Serif",serif;color:var(--brass);margin-top:10px;letter-spacing:0}
+blockquote{margin:0;font:400 clamp(34px,4.7vw,72px)/1.04 "Instrument Serif",serif;letter-spacing:-.018em;text-wrap:balance}
+blockquote p{margin:0}
+blockquote mark{background:none;color:var(--brass);font-style:italic;position:relative;white-space:nowrap}
+blockquote mark::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:1px;background:currentColor;opacity:.45;transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1) .5s}
+.slide.on mark::after{transform:scaleX(1)}
+figcaption{display:flex;align-items:center;gap:16px;margin-top:44px;flex-wrap:wrap}
+figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover;filter:grayscale(1) contrast(1.05);border:1px solid var(--line)}
+.who{line-height:1.35}
+.who strong{display:block;font-weight:600;font-size:16px}
+.who span{color:var(--mute);font-size:14px}
+.proj{margin-left:auto;font:400 12px/1.5 "JetBrains Mono",monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);padding:10px 14px;border-radius:2px}
+.proj b{color:var(--bone);font-weight:500}
+.bar{display:grid;grid-template-columns:120px 1fr auto;gap:40px;align-items:center;margin-top:56px}
+.count{font:500 13px/1 "JetBrains Mono",monospace;letter-spacing:.1em}
+.count i{font-style:normal;color:var(--mute)}
+.track{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.seg{appearance:none;border:0;background:none;padding:14px 0;cursor:pointer;position:relative}
+.seg::before{content:"";display:block;height:2px;background:var(--line)}
+.seg .fill{position:absolute;left:0;top:14px;height:2px;width:0;background:var(--brass)}
+.seg.done .fill{width:100%}
+.seg:focus-visible{outline:1px solid var(--brass);outline-offset:4px}
+.btns{display:flex;gap:10px}
+.btn{appearance:none;width:54px;height:54px;border-radius:50%;border:1px solid #3a3b35;background:transparent;color:var(--bone);cursor:pointer;display:grid;place-items:center;transition:background .25s,border-color .25s,color .25s}
+.btn:hover{background:var(--bone);color:var(--bg);border-color:var(--bone)}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.btn svg{width:18px;height:18px}
+.btn.pp svg{width:14px;height:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:900px){
+ .sec{padding:80px 28px 90px}
+ figure,.bar{grid-template-columns:1fr;gap:20px}
+ .num{padding:0;display:flex;align-items:baseline;gap:12px}.num span{font-size:40px;margin:0}
+ .bar{grid-template-columns:auto 1fr;gap:18px 24px}.track{grid-column:1/-1;order:-1}.btns{justify-self:end}
+
+}
+@media (max-width:560px){
+ .sec{padding:64px 16px 72px}
+ .top{flex-direction:column;align-items:flex-start}h2 br{display:none}.meta{text-align:left}
+ blockquote{font-size:31px;line-height:1.08}
+ blockquote mark{white-space:normal}
+ .proj{margin-left:0;width:100%}
+
+ .btn{width:46px;height:46px}
+}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:opacity .2s}.slide{transform:none}mark::after{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="t16">
+  <div class="top">
+    <div>
+      <p class="eyebrow">Client words</p>
+      <h2 id="t16">Buildings people live in. <em>Words from<br>the people who live in them.</em></h2>
+    </div>
+    <p class="meta">Halden &amp; Voss Architects<br><b>62 completed projects</b> · Oslo / Rotterdam</p>
+  </div>
+
+  <div class="car" id="car" aria-roledescription="carousel" aria-label="Client testimonials">
+    <div class="stage" aria-live="polite">
+      <div class="slide on" role="group" aria-roledescription="slide" aria-label="1 of 5">
+        <figure>
+          <div class="num">Project<span>i.</span></div>
+          <div>
+            <blockquote><p>They spent a full week just watching how the <mark>light moved</mark> across our plot. The house now feels like it was always <mark>meant to be there.</mark></p></blockquote>
+            <figcaption><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Ingrid Solberg" width="52" height="52"><div class="who"><strong>Ingrid Solberg</strong><span>Homeowner, Fjordhus residence</span></div><p class="proj">Timber house · <b>214 m²</b> · 2024</p></figcaption>
+          </div>
+        </figure>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5" aria-hidden="true">
+        <figure>
+          <div class="num">Project<span>ii.</span></div>
+          <div>
+            <blockquote><p>We asked for a library. We got a <mark>public living room</mark> — footfall is up 3× and teenagers actually <mark>stay after school.</mark></p></blockquote>
+            <figcaption><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Pieter de Wit" width="52" height="52"><div class="who"><strong>Pieter de Wit</strong><span>Director, Kralingen Public Library</span></div><p class="proj">Civic · <b>3,800 m²</b> · 2023</p></figcaption>
+          </div>
+        </figure>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5" aria-hidden="true">
+        <figure>
+          <div class="num">Project<span>iii.</span></div>
+          <div>
+            <blockquote><p>Delivered <mark>six weeks early</mark> and under budget. In thirty years of developing, I have never written <mark>that sentence</mark> before.</p></blockquote>
+            <figcaption><img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Lars Eikeland" width="52" height="52"><div class="who"><strong>Lars Eikeland</strong><span>Founder, Eikeland Eiendom</span></div><p class="proj">Housing · <b>48 units</b> · 2024</p></figcaption>
+          </div>
+        </figure>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5" aria-hidden="true">
+        <figure>
+          <div class="num">Project<span>iv.</span></div>
+          <div>
+            <blockquote><p>The old warehouse kept its scars, its <mark>brick and its soul.</mark> Our guests photograph the stairwell more than the <mark>food.</mark></p></blockquote>
+            <figcaption><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Femke Jansen" width="52" height="52"><div class="who"><strong>Femke Jansen</strong><span>Owner, Brandwerk restaurant</span></div><p class="proj">Adaptive reuse · <b>1,120 m²</b> · 2022</p></figcaption>
+          </div>
+        </figure>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5" aria-hidden="true">
+        <figure>
+          <div class="num">Project<span>v.</span></div>
+          <div>
+            <blockquote><p>Heating bills dropped by <mark>71 percent.</mark> But what I notice every morning is the <mark>silence.</mark></p></blockquote>
+            <figcaption><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Jonas Vik" width="52" height="52"><div class="who"><strong>Jonas Vik</strong><span>Homeowner, Passivhaus retrofit</span></div><p class="proj">Retrofit · <b>Passivhaus EnerPHit</b> · 2025</p></figcaption>
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <div class="bar">
+      <p class="count" aria-hidden="true"><span id="cur">01</span> <i>/ 05</i></p>
+      <div class="track" id="track"></div>
+      <div class="btns">
+        <button class="btn pp" id="pp" type="button" aria-label="Pause autoplay"><svg viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg></button>
+        <button class="btn" id="prev" type="button" aria-label="Previous testimonial"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M16 9H2M8 3L2 9l6 6"/></svg></button>
+        <button class="btn" id="next" type="button" aria-label="Next testimonial"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 9h14M10 3l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var car=document.getElementById('car'),slides=[].slice.call(car.querySelectorAll('.slide')),track=document.getElementById('track'),cur=document.getElementById('cur'),pp=document.getElementById('pp');
+  var n=slides.length,i=0,DUR=7000,elapsed=0,last=null,hover=false,focus=false,user=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)user=true;
+  var segs=slides.map(function(s,k){var b=document.createElement('button');b.type='button';b.className='seg';b.setAttribute('aria-label','Show testimonial '+(k+1));b.innerHTML='<span class="fill"></span>';b.addEventListener('click',function(){go(k)});track.appendChild(b);return b});
+  function paint(){segs.forEach(function(b,k){b.classList.toggle('done',k<i);b.querySelector('.fill').style.width=k<i?'100%':k===i?(elapsed/DUR*100)+'%':'0';if(k===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')})}
+  function go(k){i=(k+n)%n;elapsed=0;slides.forEach(function(s,j){var on=j===i;s.classList.toggle('on',on);if(on)s.removeAttribute('aria-hidden');else s.setAttribute('aria-hidden','true')});cur.textContent=String(i+1).padStart(2,'0');paint()}
+  function paused(){return user||hover||focus||document.hidden}
+  function tick(t){if(last!==null&&!paused()){elapsed+=t-last;if(elapsed>=DUR)go(i+1);else paint()}last=t;requestAnimationFrame(tick)}
+  function setUser(p){user=p;pp.setAttribute('aria-label',p?'Start autoplay':'Pause autoplay');pp.innerHTML=p?'<svg viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 1l10 6-10 6z"/></svg>':'<svg viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'}
+  pp.addEventListener('click',function(){setUser(!user)});
+  document.getElementById('prev').addEventListener('click',function(){go(i-1)});
+  document.getElementById('next').addEventListener('click',function(){go(i+1)});
+  car.addEventListener('mouseenter',function(){hover=true});car.addEventListener('mouseleave',function(){hover=false});
+  car.addEventListener('focusin',function(){focus=true});car.addEventListener('focusout',function(e){if(!car.contains(e.relatedTarget))focus=false});
+  car.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(i+1);e.preventDefault()}else if(e.key==='ArrowLeft'){go(i-1);e.preventDefault()}});
+  var sx=null,sy=0;
+  car.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;hover=true},{passive:true});
+  car.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1);sx=null;hover=false});
+  if(reduce)setUser(true);
+  go(0);requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

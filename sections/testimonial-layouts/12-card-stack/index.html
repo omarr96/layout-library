@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Stack Testimonials · Farther &amp; Co. Travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6EFE6; --ink:#2B1D14; --muted:#6B584A; --accent:#C2552D; --olive:#5F6B42;
+    --paper:#FFFCF7; --line:#E6D9C8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .section{overflow:hidden;padding:110px 24px 120px}
+  .wrap{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+  h2{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(40px,5.4vw,68px);line-height:1;margin:20px 0 20px;letter-spacing:-.015em;text-wrap:balance}
+  h2 em{color:var(--accent)}
+  .lede{color:var(--muted);font-size:18px;max-width:42ch}
+  .stats{display:flex;gap:36px;margin:36px 0 40px;flex-wrap:wrap}
+  .stats div{border-top:1px solid var(--line);padding-top:12px;min-width:110px}
+  .stats b{display:block;font-family:"DM Serif Display",serif;font-weight:400;font-size:34px;line-height:1.1}
+  .stats span{font-size:14px;color:var(--muted)}
+  .controls{display:flex;align-items:center;gap:14px}
+  .btn{width:56px;height:56px;border-radius:50%;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,transform .2s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn:active{transform:scale(.94)}
+  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .btn svg{width:22px;height:22px}
+  .count{font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted);margin-left:8px;min-width:64px}
+  .count b{color:var(--ink);font-size:20px}
+
+  .deck{position:relative;height:580px;width:100%;max-width:440px;justify-self:center;touch-action:pan-y;user-select:none}
+  .deck:focus-visible{outline:3px solid var(--accent);outline-offset:12px;border-radius:28px}
+  .card{position:absolute;inset:0 0 30px 0;background:var(--paper);border-radius:26px;overflow:hidden;box-shadow:0 2px 0 rgba(43,29,20,.04),0 26px 50px -24px rgba(43,29,20,.45);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .45s ease;will-change:transform;display:flex;flex-direction:column}
+  .card.dragging{transition:none;cursor:grabbing}
+  .card.top{cursor:grab}
+  .photo{height:230px;position:relative;flex:none}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .place{position:absolute;left:16px;bottom:16px;background:rgba(255,252,247,.94);color:var(--ink);font-size:13px;font-weight:700;padding:6px 12px;border-radius:99px;display:flex;gap:6px;align-items:center}
+  .place svg{width:14px;height:14px;color:var(--accent)}
+  .body{padding:24px 28px 26px;display:flex;flex-direction:column;flex:1}
+  .stars{color:#D9932B;letter-spacing:2px;font-size:15px}
+  .q{display:flex;flex-direction:column;flex:1}
+  blockquote{font-family:"DM Serif Display",serif;font-size:22px;line-height:1.3;margin:10px 0 auto}
+  figcaption{display:flex;align-items:center;gap:12px;padding-top:18px;margin-top:18px;border-top:1px dashed var(--line)}
+  figcaption img{width:46px;height:46px;border-radius:50%;object-fit:cover;pointer-events:none}
+  figcaption strong{display:block;font-size:15px}
+  figcaption span{font-size:13px;color:var(--muted)}
+  .trip{margin-left:auto;text-align:right;font-size:12px;color:var(--olive);font-weight:700;text-transform:uppercase;letter-spacing:.06em;line-height:1.3}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .hint{font-size:13px;color:var(--muted);margin-top:16px}
+
+  @media (max-width:960px){
+    .wrap{grid-template-columns:1fr;gap:48px}
+    .intro{text-align:center}
+    .eyebrow,.controls,.stats{justify-content:center}
+    .lede{margin:0 auto}
+  }
+  @media (max-width:520px){
+    .section{padding:72px 16px 84px}
+    .deck{height:560px;max-width:340px}
+    .eyebrow::before{display:none}
+    .photo{height:190px}
+    .body{padding:20px 20px 22px}
+    blockquote{font-size:20px}
+    .stats{gap:18px}
+    .stats div{min-width:90px}
+    .trip{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){ .card{transition:opacity .2s ease} .btn{transition:none} }
+</style>
+</head>
+<body>
+<section class="section" aria-labelledby="t12-title">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Postcards from our travellers</p>
+      <h2 id="t12-title">Trips they still <em>talk about</em></h2>
+      <p class="lede">Every Farther &amp; Co. itinerary is built by one planner, start to finish. Here's what happened when our travellers got there.</p>
+      <div class="stats">
+        <div><b>4.9/5</b><span>2,860 trip reviews</span></div>
+        <div><b>64</b><span>countries planned</span></div>
+        <div><b>24/7</b><span>on-trip concierge</span></div>
+      </div>
+      <div class="controls">
+        <button class="btn" type="button" id="t12-prev" aria-label="Previous story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="btn" type="button" id="t12-next" aria-label="Next story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <p class="count" aria-hidden="true"><b id="t12-cur">01</b> / <span id="t12-total">05</span></p>
+      </div>
+      <p class="hint">Drag or swipe the top card, or use ← → keys.</p>
+    </div>
+
+    <div class="deck" id="t12-deck" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Traveller stories">
+      <p class="sr" aria-live="polite" id="t12-live"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var img = function(id, w, h, faces){ return "https://images.unsplash.com/photo-" + id + "?w=" + w + "&h=" + h + "&q=70&auto=format&fit=crop" + (faces ? "&crop=faces" : ""); };
+  var data = [
+    {photo:"1537996194471-e657df975ab4", place:"Bali, Indonesia", face:"1517841905240-472988babdf9", name:"Maya Lindqvist", from:"Stockholm", trip:"12 nights<br>Honeymoon",
+     q:"Our planner swapped a rainy Ubud day for a private water-temple visit before we'd even noticed the forecast. Twelve nights, not one queue."},
+    {photo:"1502602898657-3e91760cbb34", place:"Paris, France", face:"1506794778202-cad84cf45f1d", name:"Daniel Ferreira", from:"Lisbon", trip:"5 nights<br>City break",
+     q:"I asked for 'Paris without the clichés'. Got a 7am Seine walk with a local historian and a bistro table that isn't on any app."},
+    {photo:"1530789253388-582c481c54b0", place:"Cappadocia, Türkiye", face:"1529626455594-4ff0802cfb7e", name:"Leah Abernathy", from:"Edinburgh", trip:"8 nights<br>Solo trip",
+     q:"The balloon flight was cancelled for wind, and by breakfast they'd rebooked me for the next dawn and moved my hotel night. Total calm."},
+    {photo:"1501785888041-af3ef285b470", place:"Dolomites, Italy", face:"1527980965255-d3b416303d12", name:"Rafael Okoye", from:"Manchester", trip:"9 nights<br>Hut-to-hut",
+     q:"Luggage transfers between five mountain huts, every one on time. We just walked, ate polenta, and slept like rocks."},
+    {photo:"1507525428034-b723cf961d3e", place:"Zanzibar, Tanzania", face:"1546961329-78bef0414d7c", name:"Sophie & Jonah Hart", from:"Bristol", trip:"10 nights<br>Family",
+     q:"Two kids under six, three flights, zero meltdowns. The beach villa had a cot, a stair gate and a fridge full of snacks waiting."}
+  ];
+  var deck = document.getElementById("t12-deck");
+  var live = document.getElementById("t12-live");
+  var cur = document.getElementById("t12-cur");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var pad = function(n){ return (n < 10 ? "0" : "") + n; };
+  document.getElementById("t12-total").textContent = pad(data.length);
+
+  var cards = data.map(function(d, i){
+    var f = document.createElement("div");
+    f.className = "card";
+    f.setAttribute("role","group");
+    f.setAttribute("aria-roledescription","slide");
+    f.setAttribute("aria-label", (i + 1) + " of " + data.length + ": " + d.place);
+    f.innerHTML =
+      '<div class="photo"><img src="' + img(d.photo, 880, 460) + '" alt="' + d.place + ' landscape" draggable="false">' +
+      '<span class="place"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>' + d.place + '</span></div>' +
+      '<div class="body"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>' +
+      '<figure class="q"><blockquote><p>' + d.q + '</p></blockquote>' +
+      '<figcaption><img src="' + img(d.face, 120, 120, true) + '" alt="' + d.name + '" draggable="false"><div><strong>' + d.name + '</strong><span>' + d.from + '</span></div><span class="trip">' + d.trip + '</span></figcaption></figure></div>';
+    deck.appendChild(f);
+    return f;
+  });
+
+  var order = data.map(function(_, i){ return i; });
+  var slots = [
+    "translate(0,0) rotate(0deg) scale(1)",
+    "translate(14px,14px) rotate(3.5deg) scale(.95)",
+    "translate(-12px,26px) rotate(-3deg) scale(.9)"
+  ];
+  var busy = false;
+
+  function layout(){
+    order.forEach(function(ci, pos){
+      var c = cards[ci];
+      c.style.zIndex = String(data.length - pos);
+      c.style.transform = slots[Math.min(pos, 2)];
+      c.style.opacity = pos > 2 ? "0" : "1";
+      var top = pos === 0;
+      c.classList.toggle("top", top);
+      c.setAttribute("aria-hidden", top ? "false" : "true");
+      if ("inert" in c) c.inert = !top;
+    });
+    var i = order[0];
+    cur.textContent = pad(i + 1);
+    live.textContent = "Story " + (i + 1) + " of " + data.length + ": " + data[i].name + ", " + data[i].place;
+  }
+
+  function next(dir){
+    if (busy) return;
+    var top = cards[order[0]];
+    dir = dir || 1;
+    if (reduce){ order.push(order.shift()); layout(); return; }
+    busy = true;
+    top.classList.remove("dragging");
+    top.style.transform = "translate(" + (dir * 130) + "%," + "-20px) rotate(" + (dir * 18) + "deg)";
+    top.style.opacity = "0";
+    setTimeout(function(){
+      order.push(order.shift());
+      layout();
+      busy = false;
+    }, 320);
+  }
+  function prev(){
+    if (busy) return;
+    order.unshift(order.pop());
+    var c = cards[order[0]];
+    if (!reduce){
+      c.style.transition = "none";
+      c.style.zIndex = String(data.length + 1);
+      c.style.transform = "translate(-130%,-20px) rotate(-18deg)";
+      c.style.opacity = "0";
+      void c.offsetWidth;
+      c.style.transition = "";
+    }
+    layout();
+  }
+
+  document.getElementById("t12-next").addEventListener("click", function(){ next(1); });
+  document.getElementById("t12-prev").addEventListener("click", prev);
+  deck.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight"){ e.preventDefault(); next(1); }
+    else if (e.key === "ArrowLeft"){ e.preventDefault(); prev(); }
+  });
+
+  // Drag / swipe the top card
+  var startX = 0, startY = 0, dx = 0, dragging = false, card = null;
+  deck.addEventListener("pointerdown", function(e){
+    if (busy || (e.pointerType === "mouse" && e.button !== 0)) return;
+    card = cards[order[0]];
+    if (!card.contains(e.target)) { card = null; return; }
+    dragging = true; startX = e.clientX; startY = e.clientY; dx = 0;
+    card.classList.add("dragging");
+    deck.setPointerCapture(e.pointerId);
+  });
+  deck.addEventListener("pointermove", function(e){
+    if (!dragging) return;
+    dx = e.clientX - startX;
+    var dy = (e.clientY - startY) * 0.25;
+    card.style.transform = "translate(" + dx + "px," + dy + "px) rotate(" + (dx / 18) + "deg)";
+  });
+  function end(){
+    if (!dragging) return;
+    dragging = false;
+    card.classList.remove("dragging");
+    if (Math.abs(dx) > 90) next(dx > 0 ? 1 : -1);
+    else card.style.transform = slots[0];
+    card = null;
+  }
+  deck.addEventListener("pointerup", end);
+  deck.addEventListener("pointercancel", end);
+
+  layout();
+})();
+</script>
+</body>
+</html>

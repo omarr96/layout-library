@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crumb &amp; Sprinkle — Love notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Caveat:wght@500;700&family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF3E6;--cocoa:#4A2C2A;--pink:#FF8FB1;--butter:#FFE38A;--mint:#BFEBD6;--sky:#C8E1FF;--lilac:#E5D4FF}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--cocoa)}
+body{font:16px/1.5 "Baloo 2",system-ui,sans-serif;overflow-x:hidden;background-image:radial-gradient(rgba(74,44,42,.07) 1.2px,transparent 1.3px);background-size:22px 22px}
+.sec{max-width:1220px;margin:0 auto;padding:90px 36px 110px;text-align:center}
+.badge{display:inline-block;font:700 14px/1 "Baloo 2",sans-serif;background:var(--pink);color:#4A1426;padding:9px 16px 7px;border-radius:99px;transform:rotate(-3deg);margin:0 0 18px;box-shadow:3px 3px 0 var(--cocoa)}
+h2{margin:0 auto;font:800 clamp(36px,5vw,64px)/1 "Baloo 2",sans-serif;letter-spacing:-.02em;max-width:760px}
+h2 .hand{font:700 1.08em/1 Caveat,cursive;color:#D9466F;display:inline-block;transform:rotate(-4deg)}
+.sub{max-width:520px;margin:18px auto 0;font-size:18px;color:#7A5753}
+.wall{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:46px 34px;margin-top:70px;text-align:left;align-items:start}
+.n{--r:-2deg;position:relative;margin:0;transform:rotate(var(--r));transition:transform .35s cubic-bezier(.3,1.6,.5,1),box-shadow .35s;outline:none}
+.n:hover,.n:focus-visible{transform:rotate(0) scale(1.04) translateY(-6px);z-index:2}
+.n:focus-visible{box-shadow:0 0 0 3px var(--bg),0 0 0 6px #D9466F}
+.note{padding:34px 24px 24px;min-height:220px;box-shadow:0 14px 24px -14px rgba(74,44,42,.45),inset 0 -22px 30px -26px rgba(74,44,42,.25);border-radius:2px 2px 18px 2px}
+.note:hover,.note:focus-visible{box-shadow:0 26px 34px -18px rgba(74,44,42,.5),inset 0 -22px 30px -26px rgba(74,44,42,.25)}
+.y{background:var(--butter)}.p{background:#FFD0DE}.m{background:var(--mint)}.s{background:var(--sky)}.l{background:var(--lilac)}
+.tape{position:absolute;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;background:rgba(255,255,255,.55);border-left:2px dashed rgba(0,0,0,.06);border-right:2px dashed rgba(0,0,0,.06);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.08);backdrop-filter:blur(1px)}
+.tape.r{transform:rotate(5deg);left:auto;right:-16px;top:-10px;margin:0;width:78px}
+.pin{position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8fa8,#C81E4F 70%);box-shadow:2px 3px 3px rgba(0,0,0,.25)}
+blockquote{margin:0;font:500 25px/1.15 Caveat,cursive;color:#3B2220}
+blockquote p{margin:0}
+.kid blockquote{font:400 22px/1.25 "Gochi Hand",cursive;color:#2F4FB0}
+figcaption{margin-top:16px;font:700 21px/1 Caveat,cursive;color:#7A3B4E}
+figcaption small{display:block;font:500 14px/1.3 "Baloo 2",sans-serif;color:#7A5753;margin-top:4px}
+.stars{color:#E2557C;font-size:15px;letter-spacing:2px;margin-bottom:8px}
+.pol{background:#fff;padding:12px 12px 18px;box-shadow:0 16px 26px -14px rgba(74,44,42,.5)}
+.pol img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#f2e6d6}
+.pol figcaption{margin-top:12px;text-align:center;font-size:24px}
+.pol blockquote{font-size:22px;margin-top:10px;text-align:center}
+.doodle{display:block;margin-top:10px}
+.foot{margin-top:72px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.foot a{font:700 17px/1 "Baloo 2",sans-serif;text-decoration:none;color:var(--cocoa);background:var(--butter);padding:15px 26px 13px;border-radius:14px;border:2px solid var(--cocoa);box-shadow:4px 4px 0 var(--cocoa);transition:transform .15s,box-shadow .15s}
+.foot a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--cocoa)}
+.foot a:focus-visible{outline:3px solid #D9466F;outline-offset:4px}
+.foot a.alt{background:#fff}
+@media (max-width:1020px){.wall{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 22px}blockquote{font-size:22px}}
+@media (max-width:480px){.sec{padding:64px 16px 80px}.wall{grid-template-columns:minmax(0,1fr);gap:44px;padding:0 10px}.note{min-height:0}.n{--r:0deg!important}.n:nth-child(odd){transform:rotate(-1.5deg)}.n:nth-child(even){transform:rotate(1.5deg)}.n:hover,.n:focus-visible{transform:none}}
+@media (prefers-reduced-motion:reduce){.n{transition:none}.n:hover,.n:focus-visible{transform:rotate(0)}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="t19">
+  <p class="badge">The fridge wall</p>
+  <h2 id="t19">Notes from our <span class="hand">sticky-fingered</span> fans</h2>
+  <p class="sub">Every birthday cake at Crumb &amp; Sprinkle is baked to a child's own drawing. Here's what the families (and a few birthday kids) said afterwards.</p>
+
+  <div class="wall">
+    <figure class="n note y" style="--r:-3deg" tabindex="0">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote><p>Mila drew a purple dinosaur eating a rainbow. They made it EXACTLY — down to the wonky teeth. She cried happy tears.</p></blockquote>
+      <figcaption>— Jess, Mila's mum<small>Dino rainbow cake · age 5</small></figcaption>
+    </figure>
+
+    <figure class="n pol" style="--r:4deg" tabindex="0">
+      <span class="tape r" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=500&h=500&q=70&auto=format&fit=crop" alt="Tall white party cake topped with strawberries and blueberries" loading="lazy">
+      <blockquote><p>"Strawberry tower for Ollie's 7th!"</p></blockquote>
+      <figcaption>Ollie's party, May</figcaption>
+    </figure>
+
+    <figure class="n note kid s" style="--r:-1deg" tabindex="0">
+      <span class="pin" aria-hidden="true"></span>
+      <blockquote><p>dear cake lady. the cake was the best cake in the univers. i ate 3 peeces. my dog wanted some. thank you</p></blockquote>
+      <figcaption>— Theo, age 6<small>Written by Theo himself</small></figcaption>
+      <svg class="doodle" width="90" height="34" viewBox="0 0 90 34" fill="none" stroke="#2F4FB0" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 26c6-10 12-10 18 0M10 18l2-6M20 18l-2-6M15 10a3 3 0 1 1 0 .1"/><path d="M42 20l6-12 6 12h-12zM48 8l0-4"/><path d="M66 22c4-8 16-8 20 0-4 6-16 6-20 0z"/></svg>
+    </figure>
+
+    <figure class="n note p" style="--r:2.5deg" tabindex="0">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote><p>Nut-free AND egg-free for our twins, and nobody at the party could tell. Collected at 9am, still perfect at the 3pm candles.</p></blockquote>
+      <figcaption>— Daniel &amp; Priya<small>Allergy-friendly unicorn cake</small></figcaption>
+    </figure>
+
+    <figure class="n note m" style="--r:3deg" tabindex="0">
+      <span class="tape r" aria-hidden="true"></span>
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote><p>The Saturday decorating class kept eight nine-year-olds busy for two whole hours. A miracle. They each took home a box of cupcakes they iced themselves.</p></blockquote>
+      <figcaption>— Hannah<small>Cupcake party for Ava</small></figcaption>
+    </figure>
+
+    <figure class="n pol" style="--r:-4deg" tabindex="0">
+      <span class="pin" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&h=500&q=70&auto=format&fit=crop" alt="Row of pink frosted cupcakes with sprinkles" loading="lazy">
+      <blockquote><p>"We iced these ourselves!!"</p></blockquote>
+      <figcaption>Ava's crew, age 9</figcaption>
+    </figure>
+
+    <figure class="n note l" style="--r:-2deg" tabindex="0">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote><p>I called in a panic on a Thursday — our order elsewhere fell through. Rosie squeezed us in for Saturday and even piped Leo's name in his football club colours.</p></blockquote>
+      <figcaption>— Marco<small>Last-minute football cake</small></figcaption>
+    </figure>
+
+    <figure class="n pol" style="--r:3deg" tabindex="0">
+      <span class="tape" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&q=70&auto=format&fit=crop" alt="Chocolate drip cake topped with chocolate swirls" loading="lazy">
+      <blockquote><p>"Triple chocolate. Zero leftovers."</p></blockquote>
+      <figcaption>Grandad Ken turns 80</figcaption>
+    </figure>
+  </div>
+
+  <div class="foot"><a href="#">Design your cake</a><a href="#" class="alt">Book a decorating party</a></div>
+</section>
+</body>
+</html>

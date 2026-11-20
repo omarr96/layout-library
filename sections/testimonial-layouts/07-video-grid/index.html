@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northbound Coaching — Video Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f6f1e9;--card:#fffdf9;--ink:#1f2d28;--muted:#5d6762;--green:#1f3b33;--terra:#c25a33;--line:#e4dccf}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink)}
+  body{font-family:"Manrope",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(16px,4vw,40px)}
+  .head{text-align:center;max-width:680px;margin:0 auto clamp(36px,5vw,60px)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(34px,4.6vw,56px);line-height:1.08;letter-spacing:-.02em;margin:14px 0 14px}
+  h2 i{color:var(--green);font-style:italic}
+  .head p{color:var(--muted);font-size:17px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,32px)}
+  figure{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+  figure:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(31,59,51,.45)}
+  .thumb{position:relative;display:block;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;background:#ddd;overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+  figure:hover .thumb img{transform:scale(1.04)}
+  .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(18,30,26,.6))}
+  .play{position:absolute;left:14px;bottom:14px;width:54px;height:54px;border-radius:50%;background:rgba(255,253,249,.92);display:grid;place-items:center;z-index:1;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .25s,background .25s}
+  .play svg{width:18px;height:18px;margin-left:4px;fill:var(--green)}
+  .thumb:hover .play,.thumb:focus-visible .play{transform:scale(1.08);background:#fff}
+  .thumb:focus-visible{outline:3px solid var(--terra);outline-offset:-3px}
+  .dur{position:absolute;right:14px;bottom:14px;z-index:1;background:rgba(15,25,21,.75);color:#fff;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px}
+  .topic{position:absolute;left:12px;top:12px;z-index:1;color:var(--ink);background:rgba(255,253,249,.9);padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.04em}
+  .body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:16px;flex:1}
+  blockquote{font-family:"Fraunces",Georgia,serif;font-size:19px;line-height:1.42;color:var(--ink)}
+  figcaption{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-top:1px dashed var(--line);padding-top:14px}
+  figcaption strong{display:block;font-size:15px}
+  figcaption span{font-size:13.5px;color:var(--muted)}
+  .win{font-size:12.5px;font-weight:700;color:var(--green);background:#e3ece6;padding:4px 10px;border-radius:99px;white-space:nowrap}
+
+  dialog{border:0;padding:0;background:transparent;max-width:min(960px,calc(100vw - 32px));width:100%;margin:auto;color:#fff}
+  dialog::backdrop{background:rgba(14,22,19,.82);backdrop-filter:blur(4px)}
+  .player{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .player img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95)}
+  .player.paused img{filter:brightness(.7)}
+  .bigplay{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer;transition:opacity .2s}
+  .bigplay svg{width:28px;height:28px;margin-left:5px;fill:var(--green)}
+  .player:not(.paused) .bigplay{opacity:0;pointer-events:none}
+  .cc{position:absolute;left:50%;bottom:78px;transform:translateX(-50%);max-width:82%;text-align:center;background:rgba(0,0,0,.72);padding:6px 12px;border-radius:6px;font-size:clamp(13px,1.8vw,18px);line-height:1.4}
+  .cc:empty{display:none}
+  .bar{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent)}
+  .bar button{background:none;border:0;color:#fff;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:8px}
+  .bar button:focus-visible,.close:focus-visible,.bigplay:focus-visible{outline:2px solid #ffb38f;outline-offset:2px}
+  .bar svg{width:20px;height:20px;fill:currentColor}
+  .track{flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.3);position:relative;cursor:pointer}
+  .track i{position:absolute;left:0;top:0;bottom:0;background:var(--terra);border-radius:5px}
+  .time{font-size:13px;font-variant-numeric:tabular-nums;min-width:86px;text-align:right}
+  .cc-on{font-size:11px;font-weight:800;border:1.5px solid currentColor !important;border-radius:4px !important;width:auto !important;height:auto !important;padding:2px 5px}
+  .cc-on[aria-pressed="false"]{opacity:.5}
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px}
+  .meta strong{font-size:17px}.meta span{color:#c9d3ce;font-size:14px}
+  .close{background:#fff;color:var(--ink);border:0;border-radius:99px;padding:9px 16px;font:600 14px "Manrope",sans-serif;cursor:pointer}
+
+  @media (max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:620px){
+    .grid{grid-template-columns:1fr}
+    .time{min-width:0}
+    .cc{bottom:60px}
+    .bar{padding:8px 10px;gap:6px}
+  }
+  @media (prefers-reduced-motion:reduce){figure,.thumb img,.play{transition:none}figure:hover{transform:none}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="vt">
+  <div class="head">
+    <span class="eyebrow">Founder stories</span>
+    <h2 id="vt">Hear it from the people <i>doing the work</i></h2>
+    <p>Six founders and operators on what changed after twelve weeks of Northbound coaching. Unscripted, filmed in their own offices.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<dialog id="modal" aria-labelledby="mName">
+  <div class="player paused" id="player">
+    <img id="mImg" src="" alt="">
+    <button class="bigplay" id="bigplay" type="button" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button>
+    <p class="cc" id="cc" aria-live="polite"></p>
+    <div class="bar">
+      <button type="button" id="pp" aria-label="Play"><svg viewBox="0 0 24 24" id="ppIcon"><path d="M6 4l14 8-14 8z"/></svg></button>
+      <div class="track" id="track" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="fill" style="width:0"></i></div>
+      <span class="time" id="time">0:00 / 0:00</span>
+      <button type="button" class="cc-on" id="ccBtn" aria-pressed="true" aria-label="Captions">CC</button>
+    </div>
+  </div>
+  <div class="meta">
+    <div><strong id="mName"></strong> <span id="mRole"></span></div>
+    <button class="close" id="close" type="button">Close</button>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var U='https://images.unsplash.com/photo-',Q='?w=800&h=500&q=70&auto=format&fit=crop&crop=faces',QL='?w=1400&h=788&q=72&auto=format&fit=crop&crop=faces';
+  var V=[
+    {id:'1573496359142-b8d87734a5a2',name:'Elena Marsh',role:'Founder, Pinecone Payroll',topic:'Hiring',dur:94,win:'Team 4 → 19',
+     q:'“I stopped being the bottleneck. We hired fifteen people in a year and I still take Fridays off.”',
+     cc:['I came in thinking I had a hiring problem.','Turned out I had a delegation problem.','By week six I had written down every decision only I could make.','There were four. Everything else went to the team.','We hired fifteen people that year — and I still take Fridays off.']},
+    {id:'1560250097-0b93528c311a',name:'Graham Teller',role:'MD, Teller & Hale Joinery',topic:'Pricing',dur:121,win:'Margin +18 pts',
+     q:'“We raised prices 22% and lost exactly one client. Margin went from 9% to 27%.”',
+     cc:['Thirty years of undercharging, basically.','Northbound made me cost out every single job.','We raised prices twenty-two percent.','We lost exactly one client.','Margin went from nine percent to twenty-seven.']},
+    {id:'1573497019940-1c28c88b4f3e',name:'Rosa Delgado',role:'CEO, Lumen Dental Group',topic:'Leadership',dur:108,win:'3 new clinics',
+     q:'“My weekly ops meeting went from three hours to forty minutes. We opened three clinics the next year.”',
+     cc:['Our Monday ops meeting used to take three hours.','Now it is forty minutes, with a one-page scorecard.','Managers own their numbers instead of reporting to me.','That freed me to focus on growth.','We opened three new clinics the following year.']},
+    {id:'1531427186611-ecfd6d936c79',name:'Jordan Pike',role:'Co-founder, Fieldnote Studio',topic:'Sales',dur:86,win:'Close rate 2×',
+     q:'“Our close rate doubled once we stopped pitching and started asking better questions.”',
+     cc:['We were pitching way too early.','The coaching was mostly about listening.','Three questions on every discovery call.','Our close rate doubled in one quarter.']},
+    {id:'1567532939604-b6b5b0db2604',name:'Amira Haddad',role:'Owner, Haddad Home Care',topic:'Systems',dur:132,win:'Saved 11 hrs/wk',
+     q:'“Every process lives in one playbook now. I got eleven hours of my week back.”',
+     cc:['Everything lived in my head.','We built one playbook, process by process.','New carers onboard in three days now, not three weeks.','I got eleven hours of my week back.','And I actually went on holiday.']},
+    {id:'1519085360753-af0119f7cbe7',name:'Daniel Osei',role:'Founder, Kiln Coffee Roasters',topic:'Strategy',dur:117,win:'Revenue £1.1m → £2.4m',
+     q:'“Saying no to wholesale café chains felt terrifying. It’s why we more than doubled revenue.”',
+     cc:['We were chasing every café chain that called.','The coaching forced us to pick one customer.','We said no to three big wholesale contracts.','Doubled down on subscriptions instead.','Revenue went from one point one to two point four million.']}
+  ];
+  var grid=document.getElementById('grid');
+  function fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  V.forEach(function(v,k){
+    var f=document.createElement('figure');
+    f.innerHTML='<button class="thumb" type="button" aria-label="Play video testimonial from '+v.name+', '+fmt(v.dur)+'">'+
+      '<img src="'+U+v.id+Q+'" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>'+
+      '<span class="topic" aria-hidden="true">'+v.topic+'</span><span class="dur" aria-hidden="true">'+fmt(v.dur)+'</span></button>'+
+      '<div class="body"><blockquote>'+v.q+'</blockquote><figcaption><div><strong>'+v.name+'</strong><span>'+v.role+'</span></div><span class="win">'+v.win+'</span></figcaption></div>';
+    f.querySelector('.thumb').addEventListener('click',function(e){open(k,e.currentTarget)});
+    grid.appendChild(f);
+  });
+
+  var dlg=document.getElementById('modal'),player=document.getElementById('player'),fill=document.getElementById('fill'),
+      time=document.getElementById('time'),cc=document.getElementById('cc'),track=document.getElementById('track'),
+      ccBtn=document.getElementById('ccBtn'),pp=document.getElementById('pp'),ppIcon=document.getElementById('ppIcon'),
+      cur=null,t=0,timer=null,last=0,opener=null,ccOn=true;
+  var PLAY='<path d="M6 4l14 8-14 8z"/>',PAUSE='<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>';
+  function render(){
+    var p=t/cur.dur;fill.style.width=(p*100)+'%';track.setAttribute('aria-valuenow',Math.round(p*100));
+    time.textContent=fmt(t)+' / '+fmt(cur.dur);
+    var line=cur.cc[Math.min(cur.cc.length-1,Math.floor(p*cur.cc.length))];
+    var txt=ccOn&&t>0?line:'';if(cc.textContent!==txt)cc.textContent=txt;
+  }
+  function tick(now){
+    if(!timer)return;t+=(now-last)/1000;last=now;
+    if(t>=cur.dur){t=cur.dur;render();pause();return}
+    render();timer=requestAnimationFrame(tick);
+  }
+  function play(){if(timer)return;if(t>=cur.dur)t=0;player.classList.remove('paused');pp.setAttribute('aria-label','Pause');ppIcon.innerHTML=PAUSE;last=performance.now();timer=requestAnimationFrame(tick)}
+  function pause(){cancelAnimationFrame(timer);timer=null;player.classList.add('paused');pp.setAttribute('aria-label','Play');ppIcon.innerHTML=PLAY}
+  function open(k,btn){
+    cur=V[k];t=0;opener=btn;
+    var img=document.getElementById('mImg');img.src=U+cur.id+QL;img.alt='Video still of '+cur.name+' speaking to camera';
+    document.getElementById('mName').textContent=cur.name;
+    document.getElementById('mRole').textContent=cur.role;
+    render();pause();dlg.showModal();document.getElementById('bigplay').focus();
+  }
+  document.getElementById('bigplay').addEventListener('click',function(){play();pp.focus()});
+  pp.addEventListener('click',function(){timer?pause():play()});
+  ccBtn.addEventListener('click',function(){ccOn=!ccOn;ccBtn.setAttribute('aria-pressed',ccOn);render()});
+  function seek(p){t=Math.max(0,Math.min(1,p))*cur.dur;render()}
+  track.addEventListener('click',function(e){var r=track.getBoundingClientRect();seek((e.clientX-r.left)/r.width)});
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();seek((t+5)/cur.dur)}
+    if(e.key==='ArrowLeft'){e.preventDefault();seek((t-5)/cur.dur)}
+  });
+  dlg.addEventListener('keydown',function(e){if(e.key===' '&&e.target===dlg){e.preventDefault();timer?pause():play()}});
+  document.getElementById('close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+  dlg.addEventListener('close',function(){pause();if(opener)opener.focus()});
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&timer)pause()});
+})();
+</script>
+</body>
+</html>

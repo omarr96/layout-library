@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before / After Testimonials · Oakline Renovations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECE8E1; --ink:#1E2320; --muted:#5A5F58; --green:#2F4A3B; --green-2:#24392D;
+    --amber:#E3A33E; --amber-ink:#8A5A12; --cream:#F7F3EC; --line:#D6D0C5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"Barlow",system-ui,sans-serif;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .section{max-width:1240px;margin:0 auto;padding:104px 24px 112px}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:40px}
+  .eyebrow{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-ink);display:flex;gap:10px;align-items:center}
+  .eyebrow i{width:10px;height:10px;background:var(--amber);display:inline-block;transform:rotate(45deg)}
+  h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(42px,6vw,76px);line-height:.95;letter-spacing:-.005em;margin-top:14px;max-width:14ch;text-wrap:balance}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;background:#fff;padding:6px;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+  .tab{appearance:none;border:0;background:transparent;font:600 15px "Barlow",sans-serif;color:var(--muted);padding:11px 18px;border-radius:10px;cursor:pointer;transition:background .2s,color .2s}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{background:var(--green);color:var(--cream)}
+  .tab:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+  .grid{display:grid;grid-template-columns:1.45fr 1fr;gap:28px;align-items:stretch}
+  .compare{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:#cfc8bb;touch-action:pan-y;cursor:ew-resize;user-select:none;--pos:50%}
+  .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;transition:opacity .4s}
+  .compare .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  .label{position:absolute;top:18px;font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:6px;pointer-events:none}
+  .label.b{left:18px;background:rgba(30,35,32,.82);color:#fff}
+  .label.a{right:18px;background:var(--amber);color:var(--ink)}
+  .divider{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35);pointer-events:none}
+  .handle{position:absolute;top:50%;left:var(--pos);width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:3px solid #fff;background:var(--green);color:#fff;display:grid;place-items:center;cursor:ew-resize;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+  .handle svg{width:26px;height:26px}
+  .handle:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  .compare.loading img{opacity:.4}
+
+  .story{background:var(--green);color:var(--cream);border-radius:20px;padding:40px 38px 34px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .story::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border:28px solid rgba(227,163,62,.14);border-radius:50%}
+  .fade{transition:opacity .3s ease,transform .35s ease}
+  .fade.out{opacity:0;transform:translateY(8px)}
+  .stars{color:var(--amber);font-size:17px;letter-spacing:3px}
+  blockquote{margin:16px 0 26px;font-size:clamp(19px,1.8vw,22px);line-height:1.5}
+  blockquote p::before{content:"\201C"} blockquote p::after{content:"\201D"}
+  figcaption{display:flex;gap:14px;align-items:center}
+  figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--amber)}
+  figcaption strong{display:block;font-size:17px}
+  figcaption span{font-size:14px;color:#BFCBC2}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(247,243,236,.16);border-radius:12px;overflow:hidden;margin-top:auto;padding-top:0}
+  .facts-wrap{margin-top:30px}
+  .facts div{background:var(--green-2);padding:14px 16px}
+  .facts dt{font:600 12px "Barlow Condensed",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#AFBDB3}
+  .facts dd{font:600 22px "Barlow Condensed",sans-serif;margin-top:2px;color:#fff}
+  .note{font-size:14px;color:var(--muted);margin-top:18px}
+
+  @media (max-width:960px){ .grid{grid-template-columns:1fr} }
+  @media (max-width:560px){
+    .section{padding:72px 16px 80px}
+    .tabs{width:100%}
+    .tab{flex:1;padding:10px 8px;font-size:14px}
+    .compare{aspect-ratio:4/4.2;border-radius:16px}
+    .story{padding:30px 22px 24px;border-radius:16px}
+    .facts dd{font-size:19px}
+  }
+  @media (prefers-reduced-motion:reduce){ .fade,.tab,.compare img{transition:none} }
+</style>
+</head>
+<body>
+<section class="section" aria-labelledby="t13-title">
+  <div class="head">
+    <div>
+      <p class="eyebrow"><i aria-hidden="true"></i>Homeowner stories</p>
+      <h2 id="t13-title">Same house. Whole new life.</h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose a renovation project" id="t13-tabs"></div>
+  </div>
+
+  <div class="grid" id="t13-panel" role="tabpanel">
+    <div>
+      <div class="compare" id="t13-compare">
+        <img class="after" id="t13-after" alt="">
+        <img class="before" id="t13-before" alt="">
+        <span class="label b" aria-hidden="true">Before</span>
+        <span class="label a" aria-hidden="true">After</span>
+        <div class="divider" aria-hidden="true"></div>
+        <button class="handle" id="t13-handle" type="button" role="slider" aria-label="Reveal before photo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% before">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg>
+        </button>
+      </div>
+      <p class="note">Drag the handle, or focus it and use the arrow keys, to compare.</p>
+    </div>
+
+    <div class="story">
+      <div class="fade" id="t13-fade" aria-live="polite">
+        <figure>
+        <span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote><p id="t13-quote"></p></blockquote>
+        <figcaption><img id="t13-face" alt="" width="52" height="52"><div><strong id="t13-name"></strong><span id="t13-where"></span></div></figcaption>
+        </figure>
+        <div class="facts-wrap">
+          <dl class="facts" id="t13-facts"></dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var img = function(id, w, h, faces){ return "https://images.unsplash.com/photo-" + id + "?w=" + w + "&h=" + h + "&q=70&auto=format&fit=crop" + (faces ? "&crop=faces" : ""); };
+  var projects = [
+    {tab:"Victorian kitchen", before:"1517581177682-a085bb7ffb15", after:"1507089947368-19c1da9775ae",
+     beforeAlt:"Gutted room with exposed brick and timber joists during demolition", afterAlt:"Finished white kitchen with island, pendant lights and bar stools",
+     face:"1508214751196-bcfd4ca60f91", name:"Claire Donnelly", where:"Terraced house · Ashby Road",
+     q:"We found rotten joists on day three. Marcus showed us the damage on a video call within the hour, priced the fix on the spot, and still handed over the keys two days early.",
+     facts:[["Duration","11 weeks"],["Budget","£48k · on quote"],["Scope","Joists, rewire, kitchen"],["Mess","Daily site clean"]]},
+    {tab:"Clapboard exterior", before:"1574359411659-15573a27fd0c", after:"1503594384566-461fe158e797",
+     beforeAlt:"Purple-painted wooden house with workers on ladders stripping old paint", afterAlt:"Freshly painted white clapboard house with grey roof under a blue sky",
+     face:"1564564321837-a57b7070ac4f", name:"Idris Haddad", where:"Detached house · Mill Lane",
+     q:"The old purple paint was flaking off in sheets. They replaced 40 metres of rotten boards, primed everything twice, and the neighbours keep stopping to ask who did it.",
+     facts:[["Duration","4 weeks"],["Boards replaced","40 m"],["Scope","Repair + full repaint"],["Warranty","10 years"]]},
+    {tab:"Open-plan living", before:"1581858726788-75bc0f6a952d", after:"1600210492486-724fe5c67fb0",
+     beforeAlt:"Empty bare corridor-style room with plain walls and wooden floor", afterAlt:"Bright open-plan living room with sofas, gallery wall and plants",
+     face:"1531746020798-e6953c6e8e04", name:"Noor Siddiqui", where:"1930s semi · Park Crescent",
+     q:"Knocking through a load-bearing wall terrified me. Oakline handled the structural engineer and building control, and we lived upstairs the whole time without losing a weekend.",
+     facts:[["Duration","7 weeks"],["Budget","£31k · on quote"],["Scope","Steel beam, floors"],["Sign-off","Building control"]]}
+  ];
+  var tabsEl = document.getElementById("t13-tabs");
+  var compare = document.getElementById("t13-compare");
+  var handle = document.getElementById("t13-handle");
+  var fade = document.getElementById("t13-fade");
+  var panel = document.getElementById("t13-panel");
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var current = -1, pos = 50;
+
+  // Preload all images so tab swaps are instant
+  projects.forEach(function(p){ [p.before, p.after].forEach(function(id){ var i = new Image(); i.src = img(id, 1200, 900); }); });
+
+  var tabs = projects.map(function(p, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "tab"; b.id = "t13-tab-" + i;
+    b.setAttribute("role","tab"); b.setAttribute("aria-controls","t13-panel");
+    b.textContent = p.tab;
+    b.addEventListener("click", function(){ select(i); });
+    tabsEl.appendChild(b);
+    return b;
+  });
+  tabsEl.addEventListener("keydown", function(e){
+    var n = projects.length, i;
+    if (e.key === "ArrowRight") i = (current + 1) % n;
+    else if (e.key === "ArrowLeft") i = (current - 1 + n) % n;
+    else return;
+    e.preventDefault(); select(i); tabs[i].focus();
+  });
+
+  function setPos(v){
+    pos = Math.max(0, Math.min(100, v));
+    compare.style.setProperty("--pos", pos + "%");
+    var r = Math.round(pos);
+    handle.setAttribute("aria-valuenow", r);
+    handle.setAttribute("aria-valuetext", r + "% before photo visible");
+  }
+
+  function fill(p){
+    $("t13-after").src = img(p.after, 1200, 900); $("t13-after").alt = "After: " + p.afterAlt;
+    $("t13-before").src = img(p.before, 1200, 900); $("t13-before").alt = "Before: " + p.beforeAlt;
+    $("t13-quote").textContent = p.q;
+    $("t13-face").src = img(p.face, 120, 120, true); $("t13-face").alt = p.name;
+    $("t13-name").textContent = p.name; $("t13-where").textContent = p.where;
+    $("t13-facts").innerHTML = p.facts.map(function(f){ return "<div><dt>" + f[0] + "</dt><dd>" + f[1] + "</dd></div>"; }).join("");
+  }
+
+  function select(i){
+    if (i === current) return;
+    tabs.forEach(function(t, k){ t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1; });
+    panel.setAttribute("aria-labelledby", "t13-tab-" + i);
+    var first = current === -1;
+    current = i;
+    setPos(50);
+    if (first || reduce){ fill(projects[i]); return; }
+    fade.classList.add("out"); compare.classList.add("loading");
+    setTimeout(function(){ fill(projects[i]); fade.classList.remove("out"); compare.classList.remove("loading"); }, 250);
+  }
+
+  // Dragging
+  var dragging = false;
+  function fromEvent(e){
+    var r = compare.getBoundingClientRect();
+    setPos((e.clientX - r.left) / r.width * 100);
+  }
+  compare.addEventListener("pointerdown", function(e){
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragging = true; compare.setPointerCapture(e.pointerId); fromEvent(e);
+    if (e.pointerType === "mouse") e.preventDefault();
+    handle.focus({preventScroll:true});
+  });
+  compare.addEventListener("pointermove", function(e){ if (dragging) fromEvent(e); });
+  compare.addEventListener("pointerup", function(){ dragging = false; });
+  compare.addEventListener("pointercancel", function(){ dragging = false; });
+
+  handle.addEventListener("keydown", function(e){
+    var step = e.shiftKey ? 10 : 2;
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") setPos(pos - step);
+    else if (e.key === "ArrowRight" || e.key === "ArrowUp") setPos(pos + step);
+    else if (e.key === "Home") setPos(0);
+    else if (e.key === "End") setPos(100);
+    else if (e.key === "PageDown") setPos(pos - 10);
+    else if (e.key === "PageUp") setPos(pos + 10);
+    else return;
+    e.preventDefault();
+  });
+
+  select(0);
+})();
+</script>
+</body>
+</html>

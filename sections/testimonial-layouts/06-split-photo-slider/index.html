@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironline Coaching — Client Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#111312; --panel:#1a1d1b; --line:#2b302d; --text:#eceae4; --muted:#a3a79f;
+    --lime:#c8f031; --lime-ink:#151a05;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text)}
+  body{font-family:"Barlow",system-ui,sans-serif;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1240px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(16px,4vw,40px)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(32px,5vw,56px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime)}
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--lime)}
+  h2{font-family:"Anton",Impact,sans-serif;font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:.95;text-transform:uppercase;letter-spacing:.01em;margin-top:14px}
+  h2 span{color:transparent;-webkit-text-stroke:1.5px var(--text)}
+  .head p{max-width:340px;color:var(--muted);font-size:17px}
+
+  .slider{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,72px);align-items:stretch}
+  .slider:focus-visible{outline:2px solid var(--lime);outline-offset:8px;border-radius:6px}
+  .photo{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;background:var(--panel)}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .7s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .photo img.on{opacity:1;transform:scale(1)}
+  .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,12,11,.85));pointer-events:none}
+  .stat{position:absolute;left:20px;right:20px;bottom:20px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+  .stat b{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(44px,5.5vw,72px);line-height:.9;color:var(--lime)}
+  .stat small{display:block;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;max-width:170px;text-align:right}
+  .tag{position:absolute;top:18px;left:18px;z-index:2;background:var(--lime);color:var(--lime-ink);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:3px}
+
+  .copy{display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding-top:4px}
+  .count{font-family:"Anton",sans-serif;font-size:22px;letter-spacing:.08em;color:var(--muted)}
+  .count b{color:var(--text);font-weight:400;font-size:44px;margin-right:4px}
+  .bar{height:2px;background:var(--line);margin-top:14px;position:relative;overflow:hidden}
+  .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--lime);transition:width .5s ease}
+  figure{animation:none}
+  figure.enter{animation:rise .6s cubic-bezier(.2,.7,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .mark{font-family:"Anton",sans-serif;font-size:96px;line-height:.6;color:var(--lime);display:block;height:44px}
+  blockquote p{font-size:clamp(21px,2.3vw,30px);line-height:1.38;font-weight:500;letter-spacing:-.005em}
+  blockquote p em{font-style:normal;color:var(--lime)}
+  figcaption{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+  figcaption strong{display:block;font-size:18px;font-weight:700}
+  figcaption span{color:var(--muted);font-size:15px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .chips li{list-style:none;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:13px;color:var(--muted)}
+
+  .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .controls button{width:56px;height:56px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s}
+  .controls button:hover{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+  .controls button:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+  .controls svg{width:22px;height:22px}
+  .thumbs{display:flex;gap:8px;margin-left:auto}
+  .thumbs button{width:52px;height:52px;border-radius:4px;overflow:hidden;padding:0;opacity:.45;border:2px solid transparent}
+  .thumbs button[aria-current="true"]{opacity:1;border-color:var(--lime)}
+  .thumbs button:hover{background:none;opacity:.85}
+  .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  @media (max-width:900px){
+    .slider{grid-template-columns:1fr}
+    .photo{aspect-ratio:4/3.4}
+    .thumbs{margin-left:0}
+  }
+  @media (max-width:520px){
+    .photo{aspect-ratio:4/4.4}
+    .chips{margin-left:0}
+    .controls button{width:48px;height:48px}
+    .thumbs button{width:44px;height:44px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .photo img,.bar i{transition:none}
+    figure.enter{animation:none}
+  }
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="t-title">
+  <div class="head">
+    <div>
+      <span class="eyebrow">Client results</span>
+      <h2 id="t-title">Real people.<br><span>Real numbers.</span></h2>
+    </div>
+    <p>Every Ironline plan is built one-to-one. Here's what four clients did with theirs — in their words.</p>
+  </div>
+
+  <div class="slider" id="slider" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Client transformations">
+    <div class="photo">
+      <span class="tag" id="prog">16-week recomposition</span>
+      <img class="on" src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=900&h=1100&q=70&auto=format&fit=crop&crop=faces" alt="Priya training pull-ups at a squat rack">
+      <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=900&h=1100&q=70&auto=format&fit=crop&crop=faces" alt="Marcus setting up for a deadlift in a dark gym" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&h=1100&q=70&auto=format&fit=crop&crop=faces" alt="Hannah doing a mat-based glute session in a bright studio" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&h=1100&q=70&auto=format&fit=crop&crop=faces" alt="Leah doing core work on a mat by a window" loading="lazy">
+      <div class="stat" aria-hidden="true"><b id="statN">−11 kg</b><small id="statL">body fat lost, strength up</small></div>
+    </div>
+
+    <div class="copy">
+      <div>
+        <div class="count" aria-hidden="true"><b id="cur">01</b>/ <span id="tot">04</span></div>
+        <div class="bar" aria-hidden="true"><i id="barFill" style="width:25%"></i></div>
+      </div>
+
+      <div aria-live="polite" aria-atomic="true">
+        <figure id="fig" role="group" aria-roledescription="slide" aria-label="1 of 4">
+          <span class="mark" aria-hidden="true">“</span>
+          <blockquote><p id="q"></p></blockquote>
+          <figcaption>
+            <div><strong id="who"></strong><span id="meta"></span></div>
+            <ul class="chips" id="chips"></ul>
+          </figcaption>
+          <p class="sr" id="srStat"></p>
+        </figure>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="prev" aria-label="Previous client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="next" aria-label="Next client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var data=[
+    {q:"I'd never touched a barbell. Sixteen weeks later I did <em>my first strict pull-up</em> on a Tuesday at 6:40am and cried a little in the car park. Dan's check-ins kept me honest every single Sunday.",
+     who:"Priya Raman",meta:"Product designer · Leeds",tag:"16-week recomposition",n:"−11 kg",l:"body fat lost, strength up",chips:["3x / week","Hybrid plan"]},
+    {q:"My deadlift went from 120 to <em>205 kg in nine months</em> and my back hasn't flared once. The programming is boring in the best way — it just works.",
+     who:"Marcus Ellery",meta:"Firefighter · Sheffield",tag:"Powerlifting block",n:"+85 kg",l:"deadlift in 9 months",chips:["4x / week","In-person"]},
+    {q:"After my second baby I wanted to feel strong again, not chase a dress size. Twenty-minute sessions at home, built around nap time. <em>No more knee pain on the stairs.</em>",
+     who:"Hannah Okafor",meta:"Midwife · York",tag:"Postnatal strength",n:"0",l:"days of knee pain since week 6",chips:["Home workouts","20 min"]},
+    {q:"I signed up to survive a half marathon. I finished Manchester in <em>1:52 and negative-split</em> the last 5k. The strength work made the running feel easy.",
+     who:"Leah Carmichael",meta:"Accountant · Harrogate",tag:"Run strong · 12 weeks",n:"1:52",l:"first half marathon finish",chips:["Strength + run","Remote"]}
+  ];
+  var root=document.getElementById('slider'),imgs=root.querySelectorAll('.photo img'),fig=document.getElementById('fig'),
+      thumbs=document.getElementById('thumbs'),i=0,n=data.length;
+  imgs.forEach(function(img,k){
+    var b=document.createElement('button');b.type='button';
+    b.setAttribute('aria-label','Show '+data[k].who);
+    var t=document.createElement('img');t.src=img.src.replace('w=900&h=1100','w=120&h=120');t.alt='';b.appendChild(t);
+    b.addEventListener('click',function(){go(k)});thumbs.appendChild(b);
+  });
+  function pad(x){return (x<10?'0':'')+x}
+  function go(k){
+    i=(k+n)%n;var d=data[i];
+    imgs.forEach(function(im,j){im.classList.toggle('on',j===i)});
+    thumbs.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-current',j===i?'true':'false')});
+    document.getElementById('q').innerHTML=d.q;
+    document.getElementById('who').textContent=d.who;
+    document.getElementById('meta').textContent=d.meta;
+    document.getElementById('prog').textContent=d.tag;
+    document.getElementById('statN').textContent=d.n;
+    document.getElementById('statL').textContent=d.l;
+    document.getElementById('srStat').textContent='Result: '+d.n+' '+d.l+'.';
+    document.getElementById('chips').innerHTML=d.chips.map(function(c){return '<li>'+c+'</li>'}).join('');
+    document.getElementById('cur').textContent=pad(i+1);
+    document.getElementById('tot').textContent=pad(n);
+    document.getElementById('barFill').style.width=((i+1)/n*100)+'%';
+    fig.setAttribute('aria-label',(i+1)+' of '+n);
+    fig.classList.remove('enter');void fig.offsetWidth;fig.classList.add('enter');
+  }
+  document.getElementById('prev').addEventListener('click',function(){go(i-1)});
+  document.getElementById('next').addEventListener('click',function(){go(i+1)});
+  root.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){e.preventDefault();go(i-1)}
+    if(e.key==='ArrowRight'){e.preventDefault();go(i+1)}
+  });
+  var sx=null,sy=0;
+  root.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  root.addEventListener('touchend',function(e){
+    if(sx===null)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1);sx=null;
+  });
+  go(0);fig.classList.remove('enter');
+})();
+</script>
+</body>
+</html>

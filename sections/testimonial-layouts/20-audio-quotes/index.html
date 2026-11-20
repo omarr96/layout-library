@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stillwater — In their own voices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E9EFE8;--card:#F8FAF6;--ink:#1F3B37;--teal:#1F4A45;--soft:#5C6F69;--clay:#C98B6B;--clayd:#9A5C3F;--line:#D3DED6;--wave:#B9CBC3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:16px/1.6 Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.sec{max-width:1180px;margin:0 auto;padding:100px 40px 110px}
+.head{text-align:center;max-width:640px;margin:0 auto 56px}
+.eb{display:inline-flex;align-items:center;gap:10px;font:600 13px/1 Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--clayd);margin:0 0 18px}
+.eb svg{width:18px;height:18px}
+h2{margin:0;font:500 clamp(34px,4.2vw,52px)/1.1 Lora,serif;letter-spacing:-.015em;color:var(--teal)}
+h2 em{color:var(--clayd)}
+.head p{color:var(--soft);margin:18px 0 0;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+figure.a{margin:0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;transition:box-shadow .3s,border-color .3s}
+figure.a.playing{border-color:var(--teal);box-shadow:0 20px 44px -28px rgba(31,74,69,.55)}
+.top{display:flex;align-items:center;gap:14px}
+.av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font:600 17px/1 Lora,serif;color:#fff;flex:none}
+.who{line-height:1.3}.who strong{display:block;font-weight:600}.who span{font-size:14px;color:var(--soft)}
+.chip{margin-left:auto;font:500 12.5px/1 Figtree,sans-serif;background:#DCE8E1;color:var(--teal);padding:7px 11px;border-radius:99px;white-space:nowrap}
+blockquote{margin:22px 0 0;font:italic 500 21px/1.45 Lora,serif;color:var(--teal)}
+blockquote p{margin:0}
+.player{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;margin-top:24px;background:#EEF3EE;border-radius:16px;padding:12px 16px 12px 12px}
+.play{appearance:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--teal);color:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s}
+.play:hover{background:#163834;transform:scale(1.05)}
+.play:focus-visible,.tx:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.play svg{width:16px;height:16px}
+.wave{display:flex;align-items:center;gap:3px;height:44px;cursor:pointer;min-width:0;overflow:hidden}
+.wave i{flex:1 1 0;min-width:2px;max-width:5px;border-radius:3px;background:var(--wave);height:var(--h);transition:background .15s,transform .15s;transform-origin:center}
+.wave i.on{background:var(--clay)}
+.time{font:500 13.5px/1 Figtree,sans-serif;font-variant-numeric:tabular-nums;color:var(--soft);white-space:nowrap}
+.time b{color:var(--teal);font-weight:600}
+.tx{appearance:none;background:none;border:0;padding:6px 0;margin-top:18px;font:600 14.5px/1.2 Figtree,sans-serif;color:var(--clayd);cursor:pointer;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;border-radius:4px}
+.tx svg{width:12px;height:12px;transition:transform .3s}
+.tx[aria-expanded="true"] svg{transform:rotate(180deg)}
+.trans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.trans.open{grid-template-rows:1fr}
+.trans>div{overflow:hidden}
+.trans p{margin:12px 0 0;font-size:15px;color:#3E524D;padding-left:14px;border-left:2px solid var(--line)}
+.trans p span{font-variant-numeric:tabular-nums;color:var(--clayd);font-weight:600;margin-right:6px;font-size:13px}
+.note{margin:40px auto 0;text-align:center;font-size:14px;color:var(--soft);max-width:560px}
+.note a{color:var(--teal);font-weight:600}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.sec{padding:64px 16px 76px}figure.a{padding:20px}.chip{display:none}blockquote{font-size:19px}.player{gap:12px;padding:10px 12px 10px 10px}.wave{gap:2px}}
+@media (prefers-reduced-motion:reduce){.trans,.play,.tx svg{transition:none}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="t20">
+  <div class="head">
+    <p class="eb"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 9v0M5 6v6M8 3v12M11 6v6M14 8v2"/></svg>In their own voices</p>
+    <h2 id="t20">Small steps, said <em>out loud</em></h2>
+    <p>Clients of Stillwater Counselling recorded these short voice notes after finishing their sessions. Names have been shortened, with permission, to protect privacy.</p>
+  </div>
+  <p class="sr" id="live" aria-live="polite"></p>
+  <div class="grid" id="grid">
+    <figure class="a" data-dur="74" data-seed="3">
+      <div class="top"><span class="av" style="background:#3D7A6F" aria-hidden="true">S</span><div class="who"><strong>Sarah, 34</strong><span>Anxiety · 12 sessions</span></div><span class="chip">Individual therapy</span></div>
+      <blockquote><p>“For the first time in years I can take the motorway to work without pulling over to breathe.”</p></blockquote>
+      <div class="player"><button class="play" type="button" aria-label="Play Sarah's voice note, 1 minute 14 seconds"></button><div class="wave" aria-hidden="true"></div><span class="time"><b>0:00</b> / 1:14</span></div>
+      <button class="tx" type="button" aria-expanded="false">Read transcript<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="trans"><div>
+        <p><span>0:02</span>I'd been having panic attacks on the M6 for about three years. I'd planned my whole life around avoiding it.</p>
+        <p><span>0:21</span>Dr. Lewin never pushed me. We broke it into tiny pieces — one junction, then two. She gave me a breathing exercise I still use at red lights.</p>
+        <p><span>0:48</span>Last month I drove to my sister's in Manchester. Ninety minutes. I cried when I parked, but the good kind.</p>
+      </div></div>
+    </figure>
+
+    <figure class="a" data-dur="58" data-seed="7">
+      <div class="top"><span class="av" style="background:#9A5C3F" aria-hidden="true">M</span><div class="who"><strong>Marcus, 41</strong><span>Grief · 9 sessions</span></div><span class="chip">Bereavement support</span></div>
+      <blockquote><p>“I stopped trying to get over losing Dad. Instead I learned how to carry it.”</p></blockquote>
+      <div class="player"><button class="play" type="button" aria-label="Play Marcus's voice note, 58 seconds"></button><div class="wave" aria-hidden="true"></div><span class="time"><b>0:00</b> / 0:58</span></div>
+      <button class="tx" type="button" aria-expanded="false">Read transcript<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="trans"><div>
+        <p><span>0:03</span>I'm not really a talking-about-feelings guy. My wife booked the first session for me, honestly.</p>
+        <p><span>0:19</span>What helped was that nobody told me how long grief should take. We wrote Dad a letter in week four. I read it at his bench in the park.</p>
+        <p><span>0:41</span>I sleep through the night now. I can tell his fishing stories and laugh.</p>
+      </div></div>
+    </figure>
+
+    <figure class="a" data-dur="92" data-seed="11">
+      <div class="top"><span class="av" style="background:#5F6FA3" aria-hidden="true">A</span><div class="who"><strong>Aisha &amp; Tom</strong><span>Couples · 14 sessions</span></div><span class="chip">Couples counselling</span></div>
+      <blockquote><p>“We used to have the same argument every Sunday. Now we have a ten-minute check-in instead.”</p></blockquote>
+      <div class="player"><button class="play" type="button" aria-label="Play Aisha and Tom's voice note, 1 minute 32 seconds"></button><div class="wave" aria-hidden="true"></div><span class="time"><b>0:00</b> / 1:32</span></div>
+      <button class="tx" type="button" aria-expanded="false">Read transcript<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="trans"><div>
+        <p><span>0:04</span><b>Aisha:</b> After the baby we were basically flatmates who argued about the dishwasher.</p>
+        <p><span>0:22</span><b>Tom:</b> Our counsellor, Jonah, gave us this structure — each of us gets five minutes, no interrupting, then one ask for the week.</p>
+        <p><span>0:58</span><b>Aisha:</b> It sounds so simple. It changed everything. We did our first weekend away in two years last month.</p>
+      </div></div>
+    </figure>
+
+    <figure class="a" data-dur="66" data-seed="19">
+      <div class="top"><span class="av" style="background:#7A6A3A" aria-hidden="true">J</span><div class="who"><strong>Jamie, 23</strong><span>Burnout · 8 sessions</span></div><span class="chip">Online sessions</span></div>
+      <blockquote><p>“I learned that saying no to a shift isn't failing. My manager actually respected it.”</p></blockquote>
+      <div class="player"><button class="play" type="button" aria-label="Play Jamie's voice note, 1 minute 6 seconds"></button><div class="wave" aria-hidden="true"></div><span class="time"><b>0:00</b> / 1:06</span></div>
+      <button class="tx" type="button" aria-expanded="false">Read transcript<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>
+      <div class="trans"><div>
+        <p><span>0:02</span>I was working nursing shifts back to back and doing sessions on my phone in the car park on breaks.</p>
+        <p><span>0:24</span>Online made it possible. We mapped where my energy actually went in a week — it was eye-opening.</p>
+        <p><span>0:47</span>I've cut overtime to one shift a fortnight and I've started climbing again on Thursdays.</p>
+      </div></div>
+    </figure>
+  </div>
+  <p class="note">Voice notes are shared with written consent and can be withdrawn at any time. If you're in crisis, please call your local emergency number. <a href="#">Book a free 15-minute call</a></p>
+</section>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var PLAY='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.2v11.6c0 .6.7 1 1.2.6l9-5.8c.4-.3.4-.9 0-1.2l-9-5.8C4.7 1.3 4 1.6 4 2.2z"/></svg>';
+  var PAUSE='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.6" height="12" rx="1"/><rect x="9.4" y="2" width="3.6" height="12" rx="1"/></svg>';
+  var live=document.getElementById('live'),BARS=48,active=null;
+  function fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+  function rng(seed){var x=seed*9301+49297;return function(){x=(x*9301+49297)%233280;return x/233280}}
+  var cards=[].slice.call(document.querySelectorAll('figure.a')).map(function(fig){
+    var c={fig:fig,dur:+fig.dataset.dur,t:0,playing:false,btn:fig.querySelector('.play'),wave:fig.querySelector('.wave'),time:fig.querySelector('.time b'),name:fig.querySelector('.who strong').textContent};
+    var r=rng(+fig.dataset.seed),bars=[];
+    for(var k=0;k<BARS;k++){var env=Math.sin(Math.PI*(k+.5)/BARS)*.55+.45,h=Math.max(.14,Math.min(1,env*(.35+r()*.75)));var i=document.createElement('i');i.style.setProperty('--h',Math.round(h*100)+'%');c.wave.appendChild(i);bars.push(i)}
+    c.bars=bars;c.btn.innerHTML=PLAY;c.label=c.btn.getAttribute('aria-label');
+    c.btn.addEventListener('click',function(){c.playing?pause(c,true):play(c)});
+    c.wave.addEventListener('click',function(e){var b=c.wave.getBoundingClientRect();c.t=Math.max(0,Math.min(1,(e.clientX-b.left)/b.width))*c.dur;paint(c);if(!c.playing)play(c)});
+    var tx=fig.querySelector('.tx'),tr=fig.querySelector('.trans'),id='tr'+Math.random().toString(36).slice(2,7);
+    tr.id=id;tx.setAttribute('aria-controls',id);tr.setAttribute('hidden','');
+    tx.addEventListener('click',function(){var open=tx.getAttribute('aria-expanded')!=='true';tx.setAttribute('aria-expanded',String(open));tx.firstChild.nodeValue=open?'Hide transcript':'Read transcript';if(open){tr.removeAttribute('hidden');requestAnimationFrame(function(){requestAnimationFrame(function(){tr.classList.add('open')})})}else{tr.classList.remove('open');setTimeout(function(){if(tx.getAttribute('aria-expanded')==='false')tr.setAttribute('hidden','')},reduce?0:360)}});
+    return c;
+  });
+  function paint(c){var p=c.t/c.dur,on=Math.floor(p*BARS);c.bars.forEach(function(b,k){b.classList.toggle('on',k<on||(p>0&&k===on));b.style.transform=(c.playing&&!reduce&&Math.abs(k-on)<4)?'scaleY('+(1+.35*Math.abs(Math.sin(c.t*7+k)))+')':''});c.time.textContent=fmt(c.t)}
+  function play(c){if(active&&active!==c)pause(active,false);if(c.t>=c.dur)c.t=0;c.playing=true;active=c;c.fig.classList.add('playing');c.btn.innerHTML=PAUSE;c.btn.setAttribute('aria-label',c.label.replace('Play','Pause'));live.textContent='Playing voice note from '+c.name;last=null}
+  function pause(c,announce){c.playing=false;c.fig.classList.remove('playing');c.btn.innerHTML=PLAY;c.btn.setAttribute('aria-label',c.label);if(active===c)active=null;paint(c);if(announce)live.textContent='Paused'}
+  var last=null;
+  function tick(t){if(active&&!document.hidden){if(last!==null){active.t+=(t-last)/1000;if(active.t>=active.dur){active.t=active.dur;paint(active);var a=active;pause(a,false);live.textContent='Voice note from '+a.name+' finished';a.t=a.dur}else paint(active)}last=t}else last=null;requestAnimationFrame(tick)}
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

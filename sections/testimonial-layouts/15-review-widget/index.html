@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review Widget · Northgate Plumbing &amp; Heating</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF3F9; --navy:#0F2A4A; --ink:#14253B; --muted:#5B6B80; --blue:#1C64D9; --blue-soft:#E3EDFC;
+    --star:#F5B301; --card:#FFFFFF; --line:#DCE4EE; --green:#16865A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"Manrope",system-ui,sans-serif;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .section{max-width:1180px;margin:0 auto;padding:100px 24px 110px}
+  .head{text-align:center;margin-bottom:44px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:7px 14px;border-radius:8px}
+  .eyebrow svg{width:16px;height:16px}
+  h2{font-size:clamp(32px,4.4vw,50px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:18px auto 12px;max-width:18ch;color:var(--navy);text-wrap:balance}
+  .lede{color:var(--muted);font-size:17px;max-width:54ch;margin:0 auto}
+
+  .widget{display:grid;grid-template-columns:340px 1fr;background:var(--card);border-radius:24px;box-shadow:0 1px 2px rgba(15,42,74,.06),0 30px 60px -36px rgba(15,42,74,.4);overflow:hidden}
+  .summary{background:var(--navy);color:#fff;padding:36px 30px;display:flex;flex-direction:column;gap:22px}
+  .biz{display:flex;align-items:center;gap:12px}
+  .logo{width:44px;height:44px;border-radius:12px;background:var(--blue);display:grid;place-items:center;flex:none}
+  .logo svg{width:24px;height:24px}
+  .biz strong{display:block;font-size:16px;line-height:1.25}
+  .biz span{font-size:13px;color:#A9BBD3}
+  .score{display:flex;align-items:flex-end;gap:14px}
+  .score b{font-size:72px;font-weight:800;line-height:.9;letter-spacing:-.04em}
+  .score .stars svg{width:22px;height:22px}
+  .score small{display:block;font-size:13px;color:#A9BBD3;margin-top:6px}
+  .stars{display:inline-flex;gap:2px;color:var(--star)}
+  .stars .off{color:#C9D3DF}
+  .sources{display:flex;flex-direction:column;gap:8px}
+  .sources p{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A9BBD3;margin-bottom:2px}
+  .src{appearance:none;display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:11px 14px;color:#fff;font:inherit;cursor:pointer;transition:background .2s,border-color .2s}
+  .src:hover{background:rgba(255,255,255,.12)}
+  .src[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+  .src[aria-pressed="true"] .src-meta{color:var(--muted)}
+  .src:focus-visible{outline:3px solid var(--star);outline-offset:2px}
+  .badge{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none;color:#fff}
+  .badge svg{width:16px;height:16px}
+  .b-all{background:#3B4F6B}.b-search{background:#2E7D5B}.b-site{background:#D9542B}.b-dir{background:#6A4BC4}
+  .src-name{font-weight:700;font-size:14px;line-height:1.2}
+  .src-meta{font-size:12px;color:#A9BBD3}
+  .src-rate{margin-left:auto;font-weight:800;font-size:15px;display:flex;align-items:center;gap:4px}
+  .src-rate svg{width:14px;height:14px;color:var(--star)}
+  .cta{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
+  .cta a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:14px;padding:13px 16px;border-radius:12px;background:var(--star);color:var(--navy);white-space:nowrap}
+  .cta a.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+  .cta a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+  .list-wrap{position:relative;display:flex;flex-direction:column;min-width:0}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 28px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .bar h3{font-size:16px;font-weight:800;color:var(--navy)}
+  .bar span{font-size:13px;color:var(--muted)}
+  .live{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--green);font-weight:700}
+  .live i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(22,134,90,.15)}
+  .list{list-style:none;height:600px;overflow-y:auto;padding:20px 28px 60px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:#B8C6D8 transparent;overscroll-behavior:contain}
+  .list:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+  .list-wrap::after{content:"";position:absolute;left:0;right:12px;bottom:0;height:70px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
+  .review{border:1px solid var(--line);border-radius:16px;padding:20px 22px;background:#fff;transition:border-color .2s,box-shadow .2s}
+  .review:hover{border-color:#BFD0E6;box-shadow:0 10px 24px -18px rgba(15,42,74,.35)}
+  .r-top{display:flex;align-items:center;gap:12px}
+  .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;flex:none;color:#fff}
+  .who strong{display:block;font-size:15px;line-height:1.25}
+  .who span{font-size:13px;color:var(--muted)}
+  .r-top .badge{margin-left:auto;width:26px;height:26px;border-radius:7px}
+  .r-meta{display:flex;align-items:center;gap:10px;margin:12px 0 8px;flex-wrap:wrap}
+  .r-meta .stars svg{width:16px;height:16px}
+  .job{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:3px 9px;border-radius:6px}
+  .verified{font-size:12px;font-weight:700;color:var(--green);display:inline-flex;align-items:center;gap:4px}
+  .verified svg{width:14px;height:14px}
+  .review blockquote{font-size:15px;color:#2A3B52;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .review.open blockquote{-webkit-line-clamp:unset;display:block}
+  .more{appearance:none;background:none;border:0;color:var(--blue);font:700 14px "Manrope",sans-serif;cursor:pointer;padding:6px 0 0;display:inline-flex;align-items:center;gap:4px}
+  .more svg{width:14px;height:14px;transition:transform .2s}
+  .review.open .more svg{transform:rotate(180deg)}
+  .more:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+  .more[hidden]{display:none}
+  .reply{margin-top:12px;background:var(--bg);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--muted)}
+  .reply b{color:var(--ink)}
+  .empty{color:var(--muted);text-align:center;padding:40px 0}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  @media (max-width:900px){
+    .widget{grid-template-columns:1fr}
+    .review blockquote{-webkit-line-clamp:3}
+    .sources{display:grid;grid-template-columns:1fr 1fr}
+    .sources p{grid-column:1/-1}
+  }
+  @media (max-width:560px){
+    .section{padding:68px 16px 76px}
+    .summary{padding:28px 18px}
+    .sources{grid-template-columns:1fr}
+    .score b{font-size:60px}
+    .bar{padding:16px 18px}
+    .list{padding:16px 14px 60px;height:560px}
+    .review{padding:16px 16px}
+  }
+  @media (prefers-reduced-motion:reduce){ .list{scroll-behavior:auto} .more svg,.src,.review{transition:none} }
+</style>
+</head>
+<body>
+<section class="section" aria-labelledby="t15-title">
+  <header class="head">
+    <span class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>Rated 4.9 by 956 local homeowners</span>
+    <h2 id="t15-title">Fixed fast. Left spotless. Reviewed honestly.</h2>
+    <p class="lede">Every review below is from a real Northgate job: burst pipes at midnight, boiler swaps, and the odd rubber duck stuck in a toilet.</p>
+  </header>
+
+  <div class="widget">
+    <aside class="summary" aria-label="Rating summary">
+      <div class="biz">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 15a2.5 2.5 0 002.5 2.5"/></svg></span>
+        <div><strong>Northgate Plumbing &amp; Heating</strong><span>Gas Safe · Est. 2009 · Leeds</span></div>
+      </div>
+      <div class="score">
+        <b>4.9</b>
+        <div><span class="stars" role="img" aria-label="4.9 out of 5 stars" id="t15-overall"></span><small>956 reviews across 3 sites</small></div>
+      </div>
+      <div class="sources" role="group" aria-label="Filter reviews by source">
+        <p>Review sources</p>
+        <button class="src" type="button" data-src="all" aria-pressed="true"><span class="badge b-all" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></span><span><span class="src-name">All sources</span><br><span class="src-meta">956 reviews</span></span><span class="src-rate">4.9</span></button>
+        <button class="src" type="button" data-src="search" aria-pressed="false"></button>
+        <button class="src" type="button" data-src="site" aria-pressed="false"></button>
+        <button class="src" type="button" data-src="dir" aria-pressed="false"></button>
+      </div>
+      <div class="cta">
+        <a href="#t15-list">Read reviews</a>
+        <a href="#t15-title" class="ghost">Leave a review</a>
+      </div>
+    </aside>
+
+    <div class="list-wrap">
+      <div class="bar">
+        <div><h3 id="t15-list-title">Latest reviews</h3><span id="t15-count"></span></div>
+        <span class="live"><i aria-hidden="true"></i>Updated daily</span>
+      </div>
+      <ul class="list" id="t15-list" tabindex="0" aria-labelledby="t15-list-title"></ul>
+      <p class="sr" aria-live="polite" id="t15-live"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var ICON = {
+    search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>',
+    site:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>',
+    dir:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></svg>'
+  };
+  var SOURCES = {
+    search:{name:"Search reviews", meta:"612 reviews", rate:"4.9", cls:"b-search"},
+    site:{name:"Review site", meta:"248 reviews", rate:"4.8", cls:"b-site"},
+    dir:{name:"Local trades directory", meta:"96 reviews", rate:"5.0", cls:"b-dir"}
+  };
+  var STAR = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg>';
+  var COLORS = ["#1C64D9","#D9542B","#2E7D5B","#6A4BC4","#B7791F","#0E7490","#BE185D"];
+  var reviews = [
+    {n:"Joanne Whitaker", loc:"Headingley", d:"2 days ago", s:"search", r:5, job:"Boiler repair",
+     t:"Boiler died on the coldest night of the year with a newborn in the house. Called at 7:40am, Sam was on the doorstep by 9 and had the diverter valve swapped and heating back on in 40 minutes. He even bled the radiators upstairs without being asked. Price was exactly what was quoted on the phone."},
+    {n:"Rashid Patel", loc:"Chapel Allerton", d:"4 days ago", s:"site", r:5, job:"Bathroom refit",
+     t:"Full bathroom refit over eight working days. Dust sheets down every morning, hoovered every evening, and a WhatsApp photo update at the end of each day so I could see progress from work. The tiling around the niche is genuinely beautiful.",
+     reply:"Thanks Rashid! Kyle was chuffed with that niche too."},
+    {n:"Megan O'Hara", loc:"Roundhay", d:"1 week ago", s:"dir", r:5, job:"Burst pipe",
+     t:"Pipe burst under the kitchen floor at 11pm on a Sunday. The emergency line answered on the second ring and talked me through shutting off the stopcock while the engineer drove over. Water off in five minutes, repair done by 1am."},
+    {n:"Graham Lowe", loc:"Horsforth", d:"1 week ago", s:"search", r:5, job:"Annual service",
+     t:"Third year using Northgate for the boiler service. Always on time, always shows me the flue gas readings, never tries to upsell. Booking reminder text comes a month ahead which I appreciate."},
+    {n:"Aisha Mensah", loc:"Meanwood", d:"2 weeks ago", s:"site", r:4, job:"Leaking tap",
+     t:"Quick fix on a dripping kitchen mixer, sorted in under half an hour. Only four stars because the first slot got moved by a day, but they rang to explain and knocked the call-out fee off, which was fair."},
+    {n:"Tom Ashworth", loc:"Kirkstall", d:"2 weeks ago", s:"search", r:5, job:"New boiler",
+     t:"Got three quotes for a combi swap. Northgate weren't the cheapest but were the only ones who measured our flow rate and explained why a smaller boiler would actually suit our flat better. Fitted in a day, ten-year warranty registered before they left, and our gas bill is down about 18% so far."},
+    {n:"Priti Sharma", loc:"Moortown", d:"3 weeks ago", s:"dir", r:5, job:"Blocked drain",
+     t:"My four-year-old flushed a rubber duck. The engineer retrieved it with a camera and a grabber, didn't laugh (much), and gave the duck back washed. Ten out of ten."},
+    {n:"Callum Fraser", loc:"Armley", d:"3 weeks ago", s:"search", r:5, job:"Radiator install",
+     t:"Two new column radiators in the lounge and a power flush of the whole system. Pipework was run neatly under the floorboards rather than surface mounted like the last lot did. Heating is quieter and warms up noticeably faster."},
+    {n:"Lena Kowalski", loc:"Headingley", d:"1 month ago", s:"site", r:5, job:"Landlord gas check",
+     t:"I manage four student houses and Northgate now does all the gas safety certificates. They coordinate directly with the tenants, upload the certificates to a shared folder the same day, and flag anything that'll need attention before it becomes urgent.",
+     reply:"Always a pleasure, Lena. See you in September for the next round!"},
+    {n:"Derek Holmes", loc:"Pudsey", d:"1 month ago", s:"dir", r:5, job:"Outside tap",
+     t:"Small job, fitted an outside tap with a frost-proof valve. Booked online on Monday, done Wednesday morning. Tidy, friendly and cheaper than I expected."},
+    {n:"Fatima Bello", loc:"Chapeltown", d:"1 month ago", s:"search", r:5, job:"Shower repair",
+     t:"Electric shower kept tripping the fuse. Diagnosed a failed heating element in ten minutes and had a replacement in the van. In and out in under an hour."}
+  ];
+  var list = document.getElementById("t15-list");
+  var live = document.getElementById("t15-live");
+  var count = document.getElementById("t15-count");
+  var btns = document.querySelectorAll(".src");
+
+  function stars(n){
+    var h = "";
+    for (var i = 1; i <= 5; i++) h += i <= n ? STAR : STAR.replace("<svg ", '<svg class="off" ');
+    return h;
+  }
+  document.getElementById("t15-overall").innerHTML = stars(5);
+
+  btns.forEach(function(b){
+    var k = b.getAttribute("data-src");
+    if (!SOURCES[k]) return;
+    var s = SOURCES[k];
+    b.innerHTML = '<span class="badge ' + s.cls + '" aria-hidden="true">' + ICON[k] + '</span><span><span class="src-name">' + s.name + '</span><br><span class="src-meta">' + s.meta + '</span></span><span class="src-rate">' + STAR + s.rate + '</span>';
+    b.setAttribute("aria-label", s.name + ", rated " + s.rate + " from " + s.meta);
+  });
+
+  function initials(n){ return n.split(" ").map(function(p){ return p[0]; }).slice(0, 2).join(""); }
+
+  function render(filter){
+    var items = reviews.filter(function(r){ return filter === "all" || r.s === filter; });
+    list.innerHTML = "";
+    items.forEach(function(r, i){
+      var src = SOURCES[r.s];
+      var li = document.createElement("li");
+      li.innerHTML =
+        '<figure class="review">' +
+          '<figcaption class="r-top"><span class="avatar" style="background:' + COLORS[reviews.indexOf(r) % COLORS.length] + '" aria-hidden="true">' + initials(r.n) + '</span>' +
+          '<div class="who"><strong>' + r.n + '</strong><span>' + r.loc + ' · ' + r.d + '</span></div>' +
+          '<span class="badge ' + src.cls + '" title="From ' + src.name + '" role="img" aria-label="From ' + src.name + '">' + ICON[r.s] + '</span></figcaption>' +
+          '<div class="r-meta"><span class="stars" role="img" aria-label="' + r.r + ' out of 5 stars">' + stars(r.r) + '</span><span class="job">' + r.job + '</span>' +
+          '<span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Verified job</span></div>' +
+          '<blockquote id="t15-q' + i + '"><p>' + r.t + '</p></blockquote>' +
+          '<button class="more" type="button" aria-expanded="false" aria-controls="t15-q' + i + '" hidden>Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
+          (r.reply ? '<p class="reply"><b>Reply from Northgate:</b> ' + r.reply + '</p>' : '') +
+        '</figure>';
+      list.appendChild(li);
+    });
+    if (!items.length) list.innerHTML = '<li class="empty">No reviews from this source yet.</li>';
+    count.textContent = "Showing " + items.length + " of the most recent";
+    list.scrollTop = 0;
+    checkClamp();
+  }
+
+  function checkClamp(){
+    list.querySelectorAll(".review").forEach(function(card){
+      if (card.classList.contains("open")) return;
+      var q = card.querySelector("blockquote"), b = card.querySelector(".more");
+      b.hidden = q.scrollHeight <= q.clientHeight + 2;
+    });
+  }
+
+  list.addEventListener("click", function(e){
+    var b = e.target.closest(".more");
+    if (!b) return;
+    var card = b.closest(".review");
+    var open = card.classList.toggle("open");
+    b.setAttribute("aria-expanded", open ? "true" : "false");
+    b.firstChild.nodeValue = open ? "Show less " : "Read more ";
+  });
+
+  btns.forEach(function(b){
+    b.addEventListener("click", function(){
+      btns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      var k = b.getAttribute("data-src");
+      render(k);
+      live.textContent = (k === "all" ? "All sources" : SOURCES[k].name) + ": " + list.querySelectorAll(".review").length + " reviews shown";
+    });
+  });
+
+  var rt;
+  window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(checkClamp, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(checkClamp);
+  render("all");
+})();
+</script>
+</body>
+</html>
