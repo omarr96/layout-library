@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pennant Help Centre</title>
+<meta name="description" content="Search Pennant's help centre for answers on cards, transfers, fees, security and your account.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#F2F6F5; --card:#FFFFFF; --ink:#0B2A22; --muted:#4D6159; --line:#DCE5E2;
+--brand:#0B3D2E; --mint:#19C37D; --mint-soft:#E3F7EE; --mark:#FFE58A;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.faq{padding:0 0 110px}
+.hero{background:var(--brand);color:#fff;padding:88px 24px 120px;text-align:center;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(25,195,125,.25)}
+.hero::before{width:560px;height:560px;left:-180px;top:-260px}
+.hero::after{width:420px;height:420px;right:-120px;bottom:-260px}
+.hero-in{max-width:720px;margin:0 auto;position:relative;z-index:1}
+.badge{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--mint);background:rgba(25,195,125,.12);padding:6px 12px;border-radius:8px}
+h2{font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-.03em;margin:18px 0 28px;font-weight:800}
+.search{position:relative}
+.search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.search svg{position:absolute;left:24px;top:50%;width:24px;height:24px;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search input{width:100%;font:inherit;font-size:18px;color:var(--ink);background:#fff;border:2px solid transparent;border-radius:18px;padding:22px 120px 22px 62px;box-shadow:0 20px 50px -20px rgba(0,0,0,.45);outline:none;transition:border-color .2s,box-shadow .2s}
+.search input::placeholder{color:#7A8C85}
+.search input:focus{border-color:var(--mint);box-shadow:0 0 0 5px rgba(25,195,125,.25),0 20px 50px -20px rgba(0,0,0,.45)}
+.search input::-webkit-search-cancel-button{display:none}
+.clear{all:unset;position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:700;color:var(--brand);background:var(--mint-soft);padding:8px 14px;border-radius:10px;cursor:pointer}
+.clear:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.clear[hidden]{display:none}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px;align-items:center}
+.chips span{font-size:14px;color:#A9C3B9;margin-right:4px}
+.chip{all:unset;cursor:pointer;font-size:14px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:999px;transition:background .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--mint)}
+.chip[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:var(--brand)}
+.chip:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.body{max-width:820px;margin:-56px auto 0;padding:0 24px;position:relative;z-index:2}
+.panel{background:var(--card);border-radius:22px;box-shadow:0 1px 2px rgba(11,42,34,.05),0 20px 50px -24px rgba(11,42,34,.22);padding:10px 30px 14px}
+.status{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 12px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted);flex-wrap:wrap}
+.status strong{color:var(--ink)}
+.item{border-bottom:1px solid var(--line)}
+.item:last-of-type{border-bottom:0}
+.item[hidden]{display:none}
+.item h3{margin:0;font:inherit}
+.q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:flex-start;gap:16px;padding:22px 0;cursor:pointer;font-weight:700;font-size:17px;line-height:1.45}
+.q:focus-visible{outline:2px solid var(--mint);outline-offset:4px;border-radius:6px}
+.q .t{flex:1}
+.topic{flex:none;font-size:12px;font-weight:700;color:var(--brand);background:var(--mint-soft);border-radius:6px;padding:3px 8px;margin-top:2px}
+.caret{flex:none;width:9px;height:9px;margin:8px 6px 0 4px;border:solid var(--brand);border-width:2.2px 2.2px 0 0;transform:rotate(45deg);transition:transform .3s}
+.q[aria-expanded="true"] .caret{transform:rotate(135deg)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.a>div{overflow:hidden}
+.item.open .a{grid-template-rows:1fr}
+.a p{margin:0;padding:0 40px 22px 0;color:var(--muted);font-size:16px}
+mark{background:var(--mark);color:var(--ink);border-radius:3px;padding:0 2px}
+.empty{text-align:center;padding:48px 16px 40px}
+.empty[hidden]{display:none}
+.empty svg{width:56px;height:56px;color:var(--mint)}
+.empty h3{margin:12px 0 6px;font-size:20px}
+.empty p{margin:0 auto 22px;color:var(--muted);max-width:380px}
+.ask{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;font-weight:700;text-decoration:none;padding:13px 22px;border-radius:12px}
+.ask:hover{background:#125A44}
+.ask:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.foot{text-align:center;color:var(--muted);font-size:15px;margin-top:28px}
+.foot a{color:var(--brand);font-weight:700}
+@media (max-width:600px){
+.hero{padding:64px 16px 96px}
+.search input{font-size:16px;padding:18px 88px 18px 52px;border-radius:14px}
+.search svg{left:18px;width:20px;height:20px}
+.clear{right:10px;padding:7px 10px}
+.body{padding:0 16px}
+.panel{padding:6px 18px 10px}
+.q{font-size:16px;gap:10px;flex-wrap:wrap}
+.q .t{flex:1 1 calc(100% - 40px);order:1}
+.caret{order:2}
+.topic{order:3;margin-top:-4px}
+.a p{padding-right:0}
+}
+@media (prefers-reduced-motion:reduce){.a,.caret,.search input{transition:none}}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+<div class="hero">
+<div class="hero-in">
+<span class="badge">Pennant Help Centre</span>
+<h2 id="faq-title">How can we help?</h2>
+<div class="search" role="search">
+<label for="faq-search">Search help articles</label>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="faq-search" type="search" placeholder="Try “freeze card” or “limits”" autocomplete="off" aria-describedby="faq-count">
+<button class="clear" id="faq-clear" type="button" hidden>Clear</button>
+</div>
+<div class="chips" role="group" aria-label="Popular topics">
+<span>Popular:</span>
+<button class="chip" type="button" data-topic="Cards" aria-pressed="false">Cards</button>
+<button class="chip" type="button" data-topic="Transfers" aria-pressed="false">Transfers</button>
+<button class="chip" type="button" data-topic="Fees" aria-pressed="false">Fees</button>
+<button class="chip" type="button" data-topic="Security" aria-pressed="false">Security</button>
+<button class="chip" type="button" data-topic="Account" aria-pressed="false">Account</button>
+</div>
+</div>
+</div>
+
+<div class="body">
+<div class="panel">
+<div class="status"><span id="faq-count" aria-live="polite"><strong>7</strong> questions</span><span id="faq-scope">Showing all topics</span></div>
+<div id="faq-list">
+<div class="item" data-topic="Cards">
+<h3><button class="q" id="q-freeze-card" aria-expanded="false" aria-controls="a-freeze-card"><span class="t">How do I freeze or replace a lost card?</span><span class="topic">Cards</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-freeze-card" role="region" aria-labelledby="q-freeze-card"><div><p>Open the app, tap your card and choose Freeze — it takes effect instantly and you can unfreeze it any time. If it's gone for good, tap Report lost or stolen and we'll cancel it and post a free replacement that arrives in 3–5 working days. A virtual card is ready to use immediately.</p></div></div>
+</div>
+<div class="item" data-topic="Transfers">
+<h3><button class="q" id="q-transfer-limit" aria-expanded="false" aria-controls="a-transfer-limit"><span class="t">What are my daily transfer limits?</span><span class="topic">Transfers</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-transfer-limit" role="region" aria-labelledby="q-transfer-limit"><div><p>You can send up to £25,000 a day by Faster Payments and up to £250,000 a day by CHAPS. New payees are capped at £5,000 for the first 24 hours as a safety measure. You can view and lower your limits under Settings, then Payment limits.</p></div></div>
+</div>
+<div class="item" data-topic="Fees">
+<h3><button class="q" id="q-abroad-fees" aria-expanded="false" aria-controls="a-abroad-fees"><span class="t">Are there fees for spending abroad?</span><span class="topic">Fees</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-abroad-fees" role="region" aria-labelledby="q-abroad-fees"><div><p>Card payments abroad use the Mastercard exchange rate with no markup on every plan. Cash withdrawals are free up to £200 a month on Standard and £600 on Plus, then 2% after that. Weekend currency exchange carries a 0.5% fee.</p></div></div>
+</div>
+<div class="item" data-topic="Security">
+<h3><button class="q" id="q-deposit-protection" aria-expanded="false" aria-controls="a-deposit-protection"><span class="t">Is my money protected?</span><span class="topic">Security</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-deposit-protection" role="region" aria-labelledby="q-deposit-protection"><div><p>Yes. Pennant is a UK-authorised bank, so eligible deposits are protected by the Financial Services Compensation Scheme up to £85,000 per person. Joint accounts are covered up to £170,000.</p></div></div>
+</div>
+<div class="item" data-topic="Security">
+<h3><button class="q" id="q-scam-call" aria-expanded="false" aria-controls="a-scam-call"><span class="t">Someone called claiming to be Pennant. What should I do?</span><span class="topic">Security</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-scam-call" role="region" aria-labelledby="q-scam-call"><div><p>Hang up. We will never ask you to move money to a safe account, share a one-time code or read out your PIN. Every real call from us also shows up in the app under Security, then Verify a call. Report anything suspicious through in-app chat and we'll check your account straight away.</p></div></div>
+</div>
+<div class="item" data-topic="Security">
+<h3><button class="q" id="q-unrecognised-payment" aria-expanded="false" aria-controls="a-unrecognised-payment"><span class="t">I don't recognise a payment. How do I dispute it?</span><span class="topic">Security</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-unrecognised-payment" role="region" aria-labelledby="q-unrecognised-payment"><div><p>Tap the transaction, then I don't recognise this. Freeze your card first if you think it's fraud. We'll usually refund unauthorised card payments within 1 working day while we investigate, and resolve most disputes within 15 working days.</p></div></div>
+</div>
+<div class="item" data-topic="Account">
+<h3><button class="q" id="q-open-account" aria-expanded="false" aria-controls="a-open-account"><span class="t">What do I need to open an account?</span><span class="topic">Account</span><span class="caret" aria-hidden="true"></span></button></h3>
+<div class="a" id="a-open-account" role="region" aria-labelledby="q-open-account"><div><p>You need to be 18 or over, live in the UK, and have a passport, UK driving licence or national ID card. Most people are verified in under 10 minutes using a quick selfie video, and your sort code and account number appear in the app straight away.</p></div></div>
+</div>
+</div>
+
+<div class="empty" id="faq-empty" hidden>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8.5 9h.01M13.5 9h.01M8.5 13.5c1.5-1 3.5-1 5 0"/></svg>
+<h3>No answers for “<span id="faq-term"></span>”</h3>
+<p>Try a different word, or ask our support team — the average chat reply time today is 2 minutes.</p>
+<a class="ask" href="mailto:help@pennant.example">Ask us
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</div>
+<p class="foot">Pennant support is available 24/7 in the app. Call <a href="tel:+442030000000">020 3000 0000</a> if you're locked out.</p>
+</div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I freeze or replace a lost card?","acceptedAnswer":{"@type":"Answer","text":"Open the app, tap your card and choose Freeze — it takes effect instantly and you can unfreeze it any time. If it's gone for good, tap Report lost or stolen and we'll cancel it and post a free replacement that arrives in 3–5 working days. A virtual card is ready to use immediately."}},
+{"@type":"Question","name":"What are my daily transfer limits?","acceptedAnswer":{"@type":"Answer","text":"You can send up to £25,000 a day by Faster Payments and up to £250,000 a day by CHAPS. New payees are capped at £5,000 for the first 24 hours as a safety measure. You can view and lower your limits under Settings, then Payment limits."}},
+{"@type":"Question","name":"Are there fees for spending abroad?","acceptedAnswer":{"@type":"Answer","text":"Card payments abroad use the Mastercard exchange rate with no markup on every plan. Cash withdrawals are free up to £200 a month on Standard and £600 on Plus, then 2% after that. Weekend currency exchange carries a 0.5% fee."}},
+{"@type":"Question","name":"Is my money protected?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pennant is a UK-authorised bank, so eligible deposits are protected by the Financial Services Compensation Scheme up to £85,000 per person. Joint accounts are covered up to £170,000."}},
+{"@type":"Question","name":"Someone called claiming to be Pennant. What should I do?","acceptedAnswer":{"@type":"Answer","text":"Hang up. We will never ask you to move money to a safe account, share a one-time code or read out your PIN. Every real call from us also shows up in the app under Security, then Verify a call. Report anything suspicious through in-app chat and we'll check your account straight away."}},
+{"@type":"Question","name":"I don't recognise a payment. How do I dispute it?","acceptedAnswer":{"@type":"Answer","text":"Tap the transaction, then I don't recognise this. Freeze your card first if you think it's fraud. We'll usually refund unauthorised card payments within 1 working day while we investigate, and resolve most disputes within 15 working days."}},
+{"@type":"Question","name":"What do I need to open an account?","acceptedAnswer":{"@type":"Answer","text":"You need to be 18 or over, live in the UK, and have a passport, UK driving licence or national ID card. Most people are verified in under 10 minutes using a quick selfie video, and your sort code and account number appear in the app straight away."}}
+]}
+</script>
+<script>
+(function(){
+var input = document.getElementById('faq-search');
+var clearBtn = document.getElementById('faq-clear');
+var countEl = document.getElementById('faq-count');
+var scopeEl = document.getElementById('faq-scope');
+var emptyEl = document.getElementById('faq-empty');
+var termEl = document.getElementById('faq-term');
+var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+var items = Array.prototype.slice.call(document.querySelectorAll('#faq-list .item')).map(function(el){
+var t = el.querySelector('.q .t'), p = el.querySelector('.a p');
+return { el: el, btn: el.querySelector('.q'), t: t, p: p, qText: t.textContent, aText: p.textContent, topic: el.getAttribute('data-topic') };
+});
+var activeTopic = null;
+var userOpen = {};
+
+function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+function highlight(text, terms){
+if (!terms.length) return esc(text);
+var lower = norm(text), marks = [];
+terms.forEach(function(term){
+var i = 0;
+while ((i = lower.indexOf(term, i)) > -1) { marks.push([i, i + term.length]); i += term.length; }
+});
+if (!marks.length) return esc(text);
+marks.sort(function(a, b){ return a[0] - b[0]; });
+var merged = [marks[0]];
+marks.slice(1).forEach(function(m){
+var last = merged[merged.length - 1];
+if (m[0] <= last[1]) last[1] = Math.max(last[1], m[1]); else merged.push(m);
+});
+var out = '', pos = 0;
+merged.forEach(function(m){ out += esc(text.slice(pos, m[0])) + '<mark>' + esc(text.slice(m[0], m[1])) + '</mark>'; pos = m[1]; });
+return out + esc(text.slice(pos));
+}
+
+function setOpen(it, open){
+it.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+it.el.classList.toggle('open', open);
+}
+
+function apply(){
+var raw = input.value.trim();
+var terms = norm(raw).split(/\s+/).filter(function(w){ return w.length > 1; });
+var shown = 0;
+items.forEach(function(it){
+var hay = norm(it.qText + ' ' + it.aText);
+var matchTopic = !activeTopic || it.topic === activeTopic;
+var matchText = terms.every(function(w){ return hay.indexOf(w) > -1; });
+var visible = matchTopic && matchText;
+it.el.hidden = !visible;
+it.t.innerHTML = highlight(it.qText, terms);
+it.p.innerHTML = highlight(it.aText, terms);
+if (visible) {
+shown++;
+var answerHit = terms.length && terms.some(function(w){ return norm(it.aText).indexOf(w) > -1 && norm(it.qText).indexOf(w) === -1; });
+setOpen(it, !!userOpen[it.btn.id] || !!answerHit);
+}
+});
+countEl.innerHTML = '<strong>' + shown + '</strong> ' + (raw || activeTopic ? (shown === 1 ? 'result' : 'results') : 'questions');
+scopeEl.textContent = activeTopic ? 'Topic: ' + activeTopic : 'Showing all topics';
+clearBtn.hidden = !raw;
+emptyEl.hidden = shown > 0;
+termEl.textContent = raw || activeTopic || '';
+}
+
+input.addEventListener('input', apply);
+input.addEventListener('keydown', function(e){
+if (e.key === 'Escape' && input.value) { input.value = ''; apply(); }
+});
+clearBtn.addEventListener('click', function(){ input.value = ''; apply(); input.focus(); });
+
+chips.forEach(function(chip){
+chip.addEventListener('click', function(){
+var t = chip.getAttribute('data-topic');
+activeTopic = activeTopic === t ? null : t;
+chips.forEach(function(c){ c.setAttribute('aria-pressed', c.getAttribute('data-topic') === activeTopic ? 'true' : 'false'); });
+apply();
+});
+});
+
+items.forEach(function(it){
+it.btn.addEventListener('click', function(){
+var open = it.btn.getAttribute('aria-expanded') !== 'true';
+userOpen[it.btn.id] = open;
+setOpen(it, open);
+if (open && history.replaceState) history.replaceState(null, '', '#' + it.btn.id);
+});
+it.btn.addEventListener('keydown', function(e){
+if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+var vis = items.filter(function(x){ return !x.el.hidden; });
+var i = vis.indexOf(it);
+var next = e.key === 'ArrowDown' ? vis[(i + 1) % vis.length] : vis[(i - 1 + vis.length) % vis.length];
+if (next) { e.preventDefault(); next.btn.focus(); }
+});
+});
+
+function fromHash(){
+var id = decodeURIComponent(location.hash.slice(1));
+var it = items.filter(function(x){ return x.btn.id === id; })[0];
+if (!it) return;
+input.value = ''; activeTopic = null;
+chips.forEach(function(c){ c.setAttribute('aria-pressed', 'false'); });
+userOpen = {}; userOpen[id] = true;
+apply();
+it.btn.scrollIntoView({block:'center'});
+it.btn.focus({preventScroll:true});
+}
+window.addEventListener('hashchange', fromHash);
+apply();
+fromHash();
+})();
+</script>
+</body>
+</html>

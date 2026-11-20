@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nimbo Mobile — Help</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1FF; --ink:#1B1240; --muted:#5A5378; --violet:#4A23D9; --violet-d:#2A1580;
+  --lime:#C8F24B; --white:#fff; --line:#E3DDF7; --bubble:#FFFFFF;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.faq{max-width:1180px;margin:0 auto;padding:88px 32px 110px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:64px;align-items:start}
+.intro{position:sticky;top:40px}
+.tag{display:inline-block;font:600 13px/1 "Space Grotesk",sans-serif;background:var(--lime);color:var(--ink);padding:8px 12px;border-radius:99px}
+h1{font:700 clamp(36px,5vw,60px)/1.02 "Space Grotesk",sans-serif;letter-spacing:-.035em;margin:20px 0 18px}
+h1 em{font-style:normal;color:var(--violet)}
+.intro p{color:var(--muted);font-size:18px;max-width:38ch;margin:0 0 28px}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stats div{font-size:14px;color:var(--muted)}
+.stats b{display:block;font:700 26px/1.1 "Space Grotesk",sans-serif;color:var(--ink)}
+
+.chat{background:var(--white);border-radius:28px;box-shadow:0 30px 60px -30px rgba(42,21,128,.35),0 0 0 1px var(--line);display:flex;flex-direction:column;overflow:hidden;height:min(720px,calc(100vh - 80px));min-height:560px}
+.chat-top{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--violet-d);color:#fff}
+.av{width:42px;height:42px;border-radius:50%;background:var(--lime);color:var(--violet-d);display:grid;place-items:center;font:700 18px "Space Grotesk",sans-serif;position:relative;flex:none}
+.av::after{content:"";position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:50%;background:#3BE38A;border:2px solid var(--violet-d)}
+.chat-top b{display:block;font:600 16px "Space Grotesk",sans-serif}
+.chat-top small{color:#CFC6FF;font-size:13px}
+.reset{margin-left:auto;background:rgba(255,255,255,.1);color:#fff;border:0;border-radius:99px;padding:8px 14px;font:500 13px "DM Sans",sans-serif;cursor:pointer;white-space:nowrap}
+.reset:hover{background:rgba(255,255,255,.2)}
+.log{flex:1;overflow-y:auto;padding:22px 20px 8px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(#FBFAFF,#F6F3FF);overscroll-behavior:contain}
+.msg{max-width:84%;padding:12px 16px;border-radius:20px;font-size:15px;animation:pop .28s ease both}
+.msg p{margin:0 0 8px}.msg p:last-child{margin:0}
+.msg.bot{align-self:flex-start;background:var(--bubble);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg.user{align-self:flex-end;background:var(--violet);color:#fff;border-bottom-right-radius:6px}
+.msg.bot strong{color:var(--violet-d)}
+.msg code{font-size:14px;background:#EFEAFF;padding:1px 6px;border-radius:6px}
+.who{font-size:12px;color:var(--muted);margin:6px 4px -4px}
+.who.r{align-self:flex-end}
+.typing{display:inline-flex;gap:5px;padding:16px 18px}
+.typing i{width:8px;height:8px;border-radius:50%;background:#A89BE0;animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+.human{align-self:stretch;margin-top:6px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:var(--ink);color:#fff;animation:pop .28s ease both}
+.human p{margin:0;font-size:14px;flex:1}
+.human a{background:var(--lime);color:var(--ink);font-weight:700;font-size:14px;text-decoration:none;padding:10px 14px;border-radius:99px;white-space:nowrap}
+.human a:hover{background:#D8FA74}
+.dock{border-top:1px solid var(--line);padding:14px 16px 16px;background:#fff}
+.dock h2{font:600 12px "Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px 4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chip{border:1.5px solid var(--violet);background:#fff;color:var(--violet);border-radius:99px;padding:8px 14px;font:500 14px/1.3 "DM Sans",sans-serif;cursor:pointer;text-align:left;transition:background .2s,color .2s}
+.chip:hover{background:var(--violet);color:#fff}
+.chip:disabled{opacity:.45;cursor:default;background:#fff;color:var(--violet)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+.chip:focus-visible{outline-color:var(--ink)}
+.done{font-size:14px;color:var(--muted);margin:0 4px}
+
+.all{grid-column:1/-1;margin-top:8px}
+.all h2{font:700 28px "Space Grotesk",sans-serif;letter-spacing:-.02em;margin:0 0 6px}
+.all>p{margin:0 0 20px;color:var(--muted)}
+.acc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.it{background:#fff;border:1px solid var(--line);border-radius:18px}
+.it h3{margin:0}
+.it button{all:unset;box-sizing:border-box;width:100%;display:flex;gap:12px;align-items:center;padding:18px 20px;font:600 16px/1.35 "Space Grotesk",sans-serif;cursor:pointer;border-radius:18px}
+.it button:focus-visible{outline:3px solid var(--violet);outline-offset:-3px}
+.pm{margin-left:auto;flex:none;width:26px;height:26px;border-radius:50%;background:var(--bg);position:relative}
+.pm::before,.pm::after{content:"";position:absolute;left:8px;right:8px;top:12px;height:2px;background:var(--violet);border-radius:2px;transition:transform .3s}
+.pm::after{transform:rotate(90deg)}
+[aria-expanded="true"] .pm{background:var(--lime)}
+[aria-expanded="true"] .pm::after{transform:rotate(0)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.panel>div{overflow:hidden;visibility:hidden;transition:visibility 0s .3s}
+.it.open .panel{grid-template-rows:1fr}
+.it.open .panel>div{visibility:visible;transition:none}
+.panel .in{padding:0 20px 18px;color:var(--muted);font-size:15px}
+.panel .in p{margin:0 0 8px}.panel .in p:last-child{margin:0}
+.panel code{background:#EFEAFF;padding:1px 6px;border-radius:6px;font-size:14px;color:var(--ink)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (max-width:960px){
+  .faq{grid-template-columns:1fr;gap:36px;padding:56px 20px 80px}
+  .intro{position:static}
+  .acc{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .chat{border-radius:22px;height:640px;min-height:0}
+  .chips{max-height:128px;overflow-y:auto;padding:2px}
+  .msg{max-width:92%}
+  .human{flex-direction:column;align-items:flex-start}
+  .stats{gap:20px}
+}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="intro">
+    <span class="tag">Nimbo Help</span>
+    <h1 id="faq-title">Got a question? <em>Just ask.</em></h1>
+    <p>Tap a question and Nia, our help assistant, answers straight away. Switching, roaming, eSIM, bills — it's all here.</p>
+    <div class="stats">
+      <div><b>99%</b>UK population coverage</div>
+      <div><b>&lt;3 min</b>average wait for a human</div>
+    </div>
+  </div>
+
+  <div class="chat">
+    <div class="chat-top">
+      <div class="av" aria-hidden="true">N</div>
+      <div><b>Nia from Nimbo</b><small>Online · replies instantly</small></div>
+      <button class="reset" type="button" id="reset">Start over</button>
+    </div>
+    <div class="log" id="log" role="log" aria-live="polite" aria-label="Conversation" tabindex="0"></div>
+    <div class="dock">
+      <h2 id="sugg">Suggested questions</h2>
+      <ul class="chips" id="chips" aria-labelledby="sugg"></ul>
+    </div>
+  </div>
+
+  <div class="all">
+    <h2 id="all-title">All answers</h2>
+    <p>Prefer to read? Every question from the chat, in one place.</p>
+    <div class="acc" id="acc"></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var QA=[
+    {s:'keep-number',q:'How do I keep my old number?',a:'<p>Text <code>PAC</code> to <strong>65075</strong> from your old phone to get your switching code. Pop it in at checkout and your number moves over the <strong>next working day</strong>.</p><p>Your old network stops billing automatically — no calls needed.</p>'},
+    {s:'esim',q:'Can I get an eSIM?',a:'<p>Yes — choose eSIM at checkout and we\'ll email a QR code within <strong>10 minutes</strong>. It works on iPhone XS and later, Pixel 3 and later and most Samsung Galaxy S20+ phones.</p>'},
+    {s:'roaming',q:'How much does roaming cost?',a:'<p>Roaming in <strong>47 destinations</strong> across Europe is included on every plan, up to 25GB a month.</p><p>For the USA, Canada and Australia add a World Pass for <strong>£2.25 a day</strong>, only charged on days you use your phone.</p>'},
+    {s:'rollover',q:'Does unused data roll over?',a:'<p>On our 30GB and 80GB plans, unused data rolls into the next month — up to double your allowance. Rollover data is used first.</p>'},
+    {s:'leave-anytime',q:'Can I leave my plan any time?',a:'<p>SIM-only plans are <strong>30-day rolling</strong>, so you can leave with 30 days\' notice and no fee. Phone plans run for 24 months; you can leave early by paying off the remaining device balance.</p>'},
+    {s:'spend-cap',q:'Can I set a spending cap?',a:'<p>Yes. In the app go to <strong>Account → Spend cap</strong> and pick any amount from £0 to £100. We\'ll text you at 80% and stop extras at the limit, so no bill shocks.</p>'},
+    {s:'no-signal',q:'What if I have no signal at home?',a:'<p>Turn on <strong>Wi-Fi Calling</strong> in your phone\'s settings — it\'s free and works on any broadband. If that doesn\'t help within 14 days of joining, you can leave with a full refund.</p>'},
+    {s:'lost-phone',q:'My phone was lost or stolen — what now?',a:'<p>Call <strong>0800 046 2525</strong> (free, 24/7) or log in on the web to bar your SIM straight away. You won\'t pay for calls made after you tell us. A replacement eSIM is instant; a physical SIM arrives next day.</p>'},
+    {s:'5g',q:'Is 5G included?',a:'<p>5G is included on every plan at no extra cost. It\'s live in <strong>420+ towns and cities</strong>, and you\'ll drop back to 4G seamlessly where it isn\'t.</p>'}
+  ];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var log=document.getElementById('log'), chips=document.getElementById('chips'), acc=document.getElementById('acc');
+  var busy=false, asked={}, queue=[];
+
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+  function scrollLog(){log.scrollTo({top:log.scrollHeight,behavior:reduce?'auto':'smooth'});}
+
+  function greet(){
+    log.innerHTML='';
+    log.appendChild(el('div','who','Nia'));
+    log.appendChild(el('div','msg bot','<p>Hi! I\'m Nia. Pick a question below and I\'ll answer it. If I can\'t help, I\'ll put you through to the team.</p>'));
+  }
+
+  function renderChips(){
+    chips.innerHTML='';
+    QA.forEach(function(item){
+      var li=el('li'), b=el('button','chip',item.q);
+      b.type='button'; b.dataset.s=item.s;
+      if(asked[item.s]){b.disabled=true;b.setAttribute('aria-label',item.q+' (answered)');}
+      b.addEventListener('click',function(){ask(item.s);});
+      li.appendChild(b); chips.appendChild(li);
+    });
+  }
+
+  function ask(slug){
+    var item=QA.filter(function(x){return x.s===slug;})[0];
+    if(!item||asked[slug])return;
+    if(busy){queue.push(slug);return;}
+    busy=true; asked[slug]=true;
+    var btn=chips.querySelector('[data-s="'+slug+'"]');
+    if(btn){btn.disabled=true;btn.setAttribute('aria-label',item.q+' (answered)');}
+    var hb=log.querySelector('.human'); if(hb)hb.remove();
+    log.appendChild(el('div','who r','You'));
+    log.appendChild(el('div','msg user','<p>'+item.q+'</p>'));
+    var t=el('div','msg bot typing','<i></i><i></i><i></i><span class="sr">Nia is typing</span>');
+    log.appendChild(t); scrollLog();
+    var delay=reduce?250:Math.min(1600,700+item.a.length*2);
+    setTimeout(function(){
+      t.remove();
+      log.appendChild(el('div','who','Nia'));
+      log.appendChild(el('div','msg bot',item.a));
+      var h=el('div','human','<p>Still not sorted? A real person can help — average wait under 3 minutes.</p><a href="tel:08000462525">Talk to a human</a>');
+      log.appendChild(h);
+      scrollLog(); busy=false;
+      if(Object.keys(asked).length===QA.length){chips.parentElement.querySelector('h2').textContent='You\'ve asked everything';}
+      if(queue.length)ask(queue.shift());
+    },delay);
+  }
+
+  /* accordion */
+  QA.forEach(function(item){
+    var wrap=el('div','it');
+    wrap.innerHTML='<h3><button type="button" id="acc-'+item.s+'" aria-expanded="false" aria-controls="ans-'+item.s+'">'+item.q+'<span class="pm" aria-hidden="true"></span></button></h3><div class="panel" id="ans-'+item.s+'" role="region" aria-labelledby="acc-'+item.s+'"><div><div class="in">'+item.a+'</div></div></div>';
+    acc.appendChild(wrap);
+  });
+  var accBtns=[].slice.call(acc.querySelectorAll('button'));
+  function setOpen(b,open){b.setAttribute('aria-expanded',String(open));b.closest('.it').classList.toggle('open',open);}
+  accBtns.forEach(function(b,i){
+    b.addEventListener('click',function(){setOpen(b,b.getAttribute('aria-expanded')!=='true');});
+    b.addEventListener('keydown',function(e){
+      var t;
+      if(e.key==='ArrowDown')t=accBtns[(i+1)%accBtns.length];
+      else if(e.key==='ArrowUp')t=accBtns[(i-1+accBtns.length)%accBtns.length];
+      else if(e.key==='Home')t=accBtns[0]; else if(e.key==='End')t=accBtns[accBtns.length-1];
+      if(t){e.preventDefault();t.focus();}
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click',function(){
+    if(busy)return; asked={}; queue=[]; greet(); renderChips();
+    chips.parentElement.querySelector('h2').textContent='Suggested questions';
+  });
+
+  function fromHash(){
+    var h=decodeURIComponent(location.hash.slice(1));
+    if(h.indexOf('q-')!==0)return;
+    var slug=h.slice(2), b=document.getElementById('acc-'+slug);
+    if(!b)return;
+    setOpen(b,true);
+    ask(slug);
+    document.querySelector('.chat').scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'});
+  }
+
+  greet(); renderChips();
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I keep my old number?","acceptedAnswer":{"@type":"Answer","text":"Text PAC to 65075 from your old phone to get your switching code. Enter it at checkout and your number moves over the next working day."}},
+{"@type":"Question","name":"Can I get an eSIM?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose eSIM at checkout and we'll email a QR code within 10 minutes. It works on iPhone XS and later, Pixel 3 and later and most Samsung Galaxy S20+ phones."}},
+{"@type":"Question","name":"How much does roaming cost?","acceptedAnswer":{"@type":"Answer","text":"Roaming in 47 destinations across Europe is included on every plan, up to 25GB a month. For the USA, Canada and Australia add a World Pass for £2.25 a day."}},
+{"@type":"Question","name":"Does unused data roll over?","acceptedAnswer":{"@type":"Answer","text":"On our 30GB and 80GB plans, unused data rolls into the next month, up to double your allowance."}},
+{"@type":"Question","name":"Can I leave my plan any time?","acceptedAnswer":{"@type":"Answer","text":"SIM-only plans are 30-day rolling, so you can leave with 30 days' notice and no fee. Phone plans run for 24 months."}},
+{"@type":"Question","name":"Can I set a spending cap?","acceptedAnswer":{"@type":"Answer","text":"Yes. In the app go to Account, then Spend cap, and pick any amount from £0 to £100."}},
+{"@type":"Question","name":"What if I have no signal at home?","acceptedAnswer":{"@type":"Answer","text":"Turn on Wi-Fi Calling. If that doesn't help within 14 days of joining, you can leave with a full refund."}},
+{"@type":"Question","name":"My phone was lost or stolen — what now?","acceptedAnswer":{"@type":"Answer","text":"Call 0800 046 2525 (free, 24/7) or log in on the web to bar your SIM straight away. A replacement eSIM is instant; a physical SIM arrives next day."}},
+{"@type":"Question","name":"Is 5G included?","acceptedAnswer":{"@type":"Answer","text":"5G is included on every plan at no extra cost and is live in 420+ towns and cities."}}
+]}
+</script>
+</body>
+</html>

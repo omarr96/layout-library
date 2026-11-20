@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrenfield Barn — Wedding FAQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F0E7; --ink:#2F3326; --muted:#5E6152; --sage:#7D8C6A; --blush:#B9785F; --line:#DDD3C3; --paper:#FBF8F2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16px/1.7 "Jost",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.faq{max-width:1320px;margin:0 auto;padding:80px 40px 110px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px;align-items:start}
+.media{position:sticky;top:32px;aspect-ratio:4/5;max-height:calc(100vh - 64px);width:100%;border-radius:220px 220px 8px 8px;overflow:hidden;background:#E6DCCB}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .8s ease,transform 1.6s ease}
+.media img.on{opacity:1;transform:scale(1)}
+.media::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(30,28,20,.55));pointer-events:none}
+.cap{position:absolute;left:28px;right:28px;bottom:24px;z-index:2;color:#FBF6EE;font:italic 500 22px/1.3 "Cormorant Garamond",serif;transition:opacity .4s}
+.cap small{display:block;font:400 11px/1 "Jost",sans-serif;letter-spacing:.24em;text-transform:uppercase;opacity:.85;margin-bottom:8px;font-style:normal}
+.body{padding-top:24px}
+.kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--blush);font-weight:500}
+h1{font:500 clamp(40px,5vw,66px)/1.02 "Cormorant Garamond",serif;letter-spacing:-.01em;margin:16px 0 18px}
+h1 i{color:var(--sage)}
+.lede{margin:0 0 40px;color:var(--muted);max-width:44ch;font-size:17px}
+.acc{border-top:1px solid var(--line)}
+.item{border-bottom:1px solid var(--line)}
+.item h2{margin:0;font:inherit}
+.q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:baseline;gap:18px;padding:22px 4px;cursor:pointer;font:500 24px/1.25 "Cormorant Garamond",serif;color:var(--ink);transition:color .25s}
+.q .n{font:400 12px/1 "Jost",sans-serif;letter-spacing:.12em;color:var(--blush);min-width:22px}
+.q .t{flex:1}
+.q .ic{flex:none;align-self:center;width:18px;height:18px;position:relative}
+.q .ic::before,.q .ic::after{content:"";position:absolute;left:0;right:0;top:8px;height:1.5px;background:currentColor;transition:transform .35s}
+.q .ic::after{transform:rotate(90deg)}
+.q[aria-expanded="true"] .ic::after{transform:rotate(0)}
+.q:hover{color:var(--sage)}
+.q:focus-visible{outline:2px solid var(--blush);outline-offset:2px;border-radius:2px}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.a>div{overflow:hidden;visibility:hidden;transition:visibility 0s .45s}
+.item.open .a{grid-template-rows:1fr}
+.item.open .a>div{visibility:visible;transition:none}
+.a .in{padding:0 40px 26px 44px;color:var(--muted)}
+.a p{margin:0 0 10px}.a p:last-child{margin:0}
+.a strong{font-weight:500;color:var(--ink)}
+.thumb{display:none}
+.cta{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:15px 28px;border-radius:99px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.btn:hover{background:#454A37}
+.btn:focus-visible{outline:2px solid var(--blush);outline-offset:3px}
+.cta p{margin:0;font-size:15px;color:var(--muted)}
+.cta a.l{color:var(--ink);text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){.media img,.a,.a>div,.q .ic::after,.cap{transition:none}.media img{transform:none}}
+@media (max-width:900px){
+  .faq{grid-template-columns:1fr;gap:0;padding:48px 20px 80px}
+  .media{display:none}
+  .body{padding-top:0}
+  .thumb{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:6px;margin:0 0 16px}
+  .a .in{padding:0 4px 24px 40px}
+  .q{font-size:21px;padding:20px 2px}
+}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="media" id="media" aria-hidden="true">
+    <img class="on" data-for="capacity" src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="outdoor-ceremony" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="rain-plan" src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="catering" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="styling" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="own-drinks" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="finish-time" src="https://images.unsplash.com/photo-1530023367847-a683933f4172?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="accommodation" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1400&q=70&auto=format&fit=crop" alt="">
+    <img data-for="booking" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1400&q=70&auto=format&fit=crop" alt="">
+    <p class="cap" id="cap"><small>The Threshing Barn</small>Oak beams, festoon light and room for 160.</p>
+  </div>
+
+  <div class="body">
+    <span class="kicker">Weddings at Wrenfield</span>
+    <h1 id="faq-title">Everything you'd like to <i>know</i></h1>
+    <p class="lede">A 17th-century threshing barn, two acres of orchard and walled garden, forty minutes from Bath. Here's what couples ask us most.</p>
+
+    <div class="acc" id="acc">
+      <div class="item" data-cap="The Threshing Barn|Oak beams, festoon light and room for 160.">
+        <h2><button class="q" id="q-capacity"><span class="n">01</span><span class="t">How many guests can Wrenfield hold?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="Inside the Threshing Barn, set for a wedding breakfast with draped fabric and chandeliers" loading="lazy" src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=900&q=70&auto=format&fit=crop"><p>The Threshing Barn seats <strong>160 for dinner</strong> on long banquet tables, or 140 on rounds. For the evening reception we can welcome up to <strong>220 guests</strong> across the barn and courtyard.</p><p>Smaller weddings from 30 guests are welcome on Sunday to Thursday dates.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="The Orchard Lawn|Say your vows under the old apple trees.">
+        <h2><button class="q" id="q-outdoor-ceremony"><span class="n">02</span><span class="t">Can we get married outdoors?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="Outdoor ceremony aisle lined with flowers and gold chairs" loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=70&auto=format&fit=crop"><p>Yes. The Orchard Lawn is licensed for legal ceremonies from <strong>April to September</strong>, seating up to 150. The registrar fee is set by the local council (currently £620 on a Saturday) and booked by you directly.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="The Garden Pavilion|Our covered rain plan, with views over the walled garden.">
+        <h2><button class="q" id="q-rain-plan"><span class="n">03</span><span class="t">What happens if it rains?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="A flower-covered garden pavilion with white columns" loading="lazy" src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=900&q=70&auto=format&fit=crop"><p>We decide together by <strong>10am on the day</strong>. The covered Garden Pavilion is set up as a back-up for every outdoor ceremony at no extra cost, and we keep 60 golf umbrellas by the door.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="Seasonal menus|From three approved local caterers.">
+        <h2><button class="q" id="q-catering"><span class="n">04</span><span class="t">Do we have to use your caterers?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="A plated main course on a candlelit dinner table" loading="lazy" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=70&auto=format&fit=crop"><p>We work with <strong>three approved caterers</strong> who know the barn kitchen well — a seasonal farm-to-table menu, a wood-fired feast and a vegan kitchen. Three-course menus start from <strong>£68 per guest</strong>, including staff and tableware.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="Your styling|Bring your own florist and make it yours.">
+        <h2><button class="q" id="q-styling"><span class="n">05</span><span class="t">Can we bring our own florist and decorations?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="Long wedding tables decorated with wildflowers in glass vases" loading="lazy" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=70&auto=format&fit=crop"><p>Absolutely. Any florist and stylist is welcome. Set-up starts from <strong>9am</strong> on the day (or 4pm the day before for Saturday weddings). We just ask for no confetti cannons, glitter or naked flames other than in glass holders.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="The Barn Bar|Local ciders, English sparkling and a proper cocktail list.">
+        <h2><button class="q" id="q-own-drinks"><span class="n">06</span><span class="t">Can we bring our own drinks?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="A wedding table with flowers, glassware and place settings" loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&q=70&auto=format&fit=crop"><p>You can supply your own wine and fizz for the drinks reception and dinner with a corkage fee of <strong>£12 per bottle</strong>, which covers chilling, glassware and service. The evening bar is run by our own team.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="Into the evening|Dancing in the barn until midnight.">
+        <h2><button class="q" id="q-finish-time"><span class="n">07</span><span class="t">What time does the party have to finish?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="Outdoor dinner tables set at dusk with red napkins" loading="lazy" src="https://images.unsplash.com/photo-1530023367847-a683933f4172?w=900&q=70&auto=format&fit=crop"><p>Music runs until <strong>midnight</strong>, the bar closes at 11:45pm and carriages are at 12:30am. Live bands are welcome; we have a sound limiter set to 96 dB to keep the neighbours friendly.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="The Coach House|Eight rooms for you and your closest people.">
+        <h2><button class="q" id="q-accommodation"><span class="n">08</span><span class="t">Is there accommodation on site?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="A couple holding hands, in soft evening light" loading="lazy" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=900&q=70&auto=format&fit=crop"><p>The Coach House has <strong>8 bedrooms sleeping 18</strong>, and the bridal suite is included with every full-day booking. The rest are £165 a night with breakfast. There are four more B&amp;Bs within a 5-minute drive.</p></div></div></div>
+      </div>
+      <div class="item" data-cap="Your date|Held for 7 days while you decide.">
+        <h2><button class="q" id="q-booking"><span class="n">09</span><span class="t">How do we book, and what's the deposit?</span><span class="ic" aria-hidden="true"></span></button></h2>
+        <div class="a" role="region"><div><div class="in"><img class="thumb" alt="Close-up of a couple's hands with wedding rings and a bouquet" loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=70&auto=format&fit=crop"><p>After a viewing we'll hold your date for <strong>7 days</strong>. A <strong>£2,500 deposit</strong> secures it, with the balance due 12 weeks before. Venue hire starts at £6,900 for midweek dates and £11,500 for a peak-season Saturday.</p></div></div></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn" href="#viewing">Book a viewing</a>
+      <p>Or call Hattie on <a class="l" href="tel:01225480310">01225 480310</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  var btns=[].slice.call(document.querySelectorAll('.q'));
+  var imgs=[].slice.call(document.querySelectorAll('#media img'));
+  var cap=document.getElementById('cap');
+
+  btns.forEach(function(b,i){
+    var slug=b.id.slice(2), panel=b.parentElement.nextElementSibling;
+    panel.id='a-'+slug; panel.setAttribute('aria-labelledby',b.id);
+    b.setAttribute('aria-controls',panel.id); b.setAttribute('aria-expanded','false');
+    b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true');});
+    b.addEventListener('keydown',function(e){
+      var t;
+      if(e.key==='ArrowDown')t=btns[(i+1)%btns.length];
+      else if(e.key==='ArrowUp')t=btns[(i-1+btns.length)%btns.length];
+      else if(e.key==='Home')t=btns[0]; else if(e.key==='End')t=btns[btns.length-1];
+      if(t){e.preventDefault();t.focus();}
+    });
+  });
+
+  function show(slug,item){
+    imgs.forEach(function(im){im.classList.toggle('on',im.dataset.for===slug);});
+    var c=(item.dataset.cap||'').split('|');
+    cap.innerHTML='<small>'+c[0]+'</small>'+c[1];
+  }
+
+  function set(b,open){
+    btns.forEach(function(o){
+      var on=o===b&&open;
+      o.setAttribute('aria-expanded',String(on));
+      o.closest('.item').classList.toggle('open',on);
+    });
+    if(open)show(b.id.slice(2),b.closest('.item'));
+  }
+
+  function fromHash(){
+    var h=decodeURIComponent(location.hash.slice(1));
+    if(h.indexOf('q-')!==0)return false;
+    var b=document.getElementById(h);
+    if(!b||!b.classList.contains('q'))return false;
+    set(b,true);
+    b.scrollIntoView({block:'center',behavior:reduce.matches?'auto':'smooth'});
+    b.focus({preventScroll:true});
+    return true;
+  }
+  window.addEventListener('hashchange',fromHash);
+  if(!fromHash())set(btns[0],true);
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How many guests can Wrenfield hold?","acceptedAnswer":{"@type":"Answer","text":"The Threshing Barn seats 160 for dinner on long banquet tables, or 140 on rounds. For the evening reception we can welcome up to 220 guests across the barn and courtyard."}},
+{"@type":"Question","name":"Can we get married outdoors?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Orchard Lawn is licensed for legal ceremonies from April to September, seating up to 150."}},
+{"@type":"Question","name":"What happens if it rains?","acceptedAnswer":{"@type":"Answer","text":"We decide together by 10am on the day. The covered Garden Pavilion is set up as a back-up for every outdoor ceremony at no extra cost."}},
+{"@type":"Question","name":"Do we have to use your caterers?","acceptedAnswer":{"@type":"Answer","text":"We work with three approved caterers. Three-course menus start from £68 per guest, including staff and tableware."}},
+{"@type":"Question","name":"Can we bring our own florist and decorations?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Any florist and stylist is welcome. Set-up starts from 9am on the day, or 4pm the day before for Saturday weddings."}},
+{"@type":"Question","name":"Can we bring our own drinks?","acceptedAnswer":{"@type":"Answer","text":"You can supply your own wine and fizz for the drinks reception and dinner with a corkage fee of £12 per bottle. The evening bar is run by our own team."}},
+{"@type":"Question","name":"What time does the party have to finish?","acceptedAnswer":{"@type":"Answer","text":"Music runs until midnight, the bar closes at 11:45pm and carriages are at 12:30am."}},
+{"@type":"Question","name":"Is there accommodation on site?","acceptedAnswer":{"@type":"Answer","text":"The Coach House has 8 bedrooms sleeping 18, and the bridal suite is included with every full-day booking. The rest are £165 a night with breakfast."}},
+{"@type":"Question","name":"How do we book, and what's the deposit?","acceptedAnswer":{"@type":"Answer","text":"After a viewing we'll hold your date for 7 days. A £2,500 deposit secures it, with the balance due 12 weeks before. Venue hire starts at £6,900 midweek and £11,500 for a peak-season Saturday."}}
+]}
+</script>
+</body>
+</html>

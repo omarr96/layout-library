@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "faq-gallery",
+      "title": "FAQ layouts · all 10",
+      "desc": "Gallery of 10 FAQ sections, each a different layout for a different business.",
+      "tags": [
+        "FAQ",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/faq-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-01-classic-accordion",
+      "title": "FAQ 01 · Taskloom",
+      "desc": "Classic accordion · project-management app · one open at a time.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/01-classic-accordion/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-02-two-col-intro",
+      "title": "FAQ 02 · Northpaw Studio",
+      "desc": "Two columns · design agency · sticky intro with \"Book a call\" card.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/02-two-col-intro/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-03-category-tabs",
+      "title": "FAQ 03 · Maison Verre",
+      "desc": "Category tabs · fashion store · Orders, Shipping, Returns, Payment.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/03-category-tabs/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-04-search-filter",
+      "title": "FAQ 04 · Pennant",
+      "desc": "Live search · bank help centre · highlights matches, topic chips.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/04-search-filter/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-05-card-grid",
+      "title": "FAQ 05 · Hotel Olivar",
+      "desc": "Card grid · boutique hotel · every answer visible.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/05-card-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-06-sidebar-nav",
+      "title": "FAQ 06 · Harbourline Insurance",
+      "desc": "Sticky side menu · insurance · highlights the group you are reading.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/06-sidebar-nav/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-07-chat-style",
+      "title": "FAQ 07 · Nimbo Mobile",
+      "desc": "Chat style · phone network · answers arrive as chat replies.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/07-chat-style/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-08-image-swap",
+      "title": "FAQ 08 · Wrenfield Barn & Gardens",
+      "desc": "Image that changes · wedding venue · photo follows the open question.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/08-image-swap/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-09-numbered-editorial",
+      "title": "FAQ 09 · Atelier Halden",
+      "desc": "Big numbered list · architecture studio · key facts beside answers.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/09-numbered-editorial/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "faq-10-dark-feedback",
+      "title": "FAQ 10 · Parcelwire",
+      "desc": "Dark · developer API · \"Was this helpful?\", code with copy, help form.",
+      "tags": [
+        "FAQ"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "FAQ",
+          "href": "sections/faq-layouts/10-dark-feedback/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "hero-gallery",
       "title": "Hero layouts · all 20",
       "desc": "Gallery of 20 hero sections, each a different layout for a different business.",

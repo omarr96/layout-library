@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbourline Insurance — FAQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F4; --card:#FFFFFF; --ink:#0F2A2B; --muted:#4F6466; --line:#DCE5E1;
+  --teal:#0F4C4A; --teal-2:#E2EFEB; --coral:#E8684A; --focus:#E8684A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.faq{max-width:1200px;margin:0 auto;padding:88px 32px 120px}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+h1{font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:-.03em;margin:12px 0 0;font-weight:800;max-width:15ch}
+.head p{margin:0;max-width:40ch;color:var(--muted)}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start}
+.layout>*{min-width:0}
+.side{position:sticky;top:24px}
+.side h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px 14px;font-weight:700}
+.side ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.side a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;border-left:3px solid transparent;transition:background .2s,color .2s}
+.side a .n{margin-left:auto;font-size:12px;font-weight:700;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:1px 8px}
+.side a svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8}
+.side a:hover{background:var(--teal-2)}
+.side a.is-current{background:var(--teal);color:#fff;border-left-color:var(--coral)}
+.side a.is-current .n{background:rgba(255,255,255,.14);border-color:transparent;color:#fff}
+.help{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.help strong{display:block;font-size:15px}
+.help p{margin:4px 0 12px;font-size:14px;color:var(--muted)}
+.help a{display:inline-flex;font-weight:700;color:var(--teal);text-decoration:none;font-size:15px}
+.help a:hover{text-decoration:underline}
+.group{scroll-margin-top:24px;margin-bottom:48px}
+.group:last-child{margin-bottom:0}
+.group h3{display:flex;align-items:center;gap:12px;font-size:22px;letter-spacing:-.02em;margin:0 0 16px}
+.group h3 span{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--teal-2);color:var(--teal)}
+.group h3 svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+.list{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.item+.item{border-top:1px solid var(--line)}
+.q{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:16px;width:100%;padding:20px 24px;cursor:pointer;font-weight:600;font-size:17px;line-height:1.4}
+.q:hover{background:#FAFCFB}
+.q:focus-visible{outline:3px solid var(--focus);outline-offset:-3px;border-radius:4px}
+.chev{margin-left:auto;flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:transform .3s,background .3s,border-color .3s}
+.chev svg{width:14px;height:14px;stroke:var(--teal);fill:none;stroke-width:2.2}
+.q[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--teal);border-color:var(--teal)}
+.q[aria-expanded="true"] .chev svg{stroke:#fff}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.a>div{overflow:hidden;visibility:hidden;transition:visibility 0s .35s}
+.item.open .a>div{visibility:visible;transition:none}
+.a .in{padding:0 24px 22px;color:var(--muted);max-width:68ch}
+.a .in p{margin:0 0 10px}.a .in p:last-child{margin:0}
+.a .in strong{color:var(--ink)}
+.item.open .a{grid-template-rows:1fr}
+@media (prefers-reduced-motion:reduce){.a,.chev,.side a{transition:none}}
+@media (max-width:900px){
+  .faq{padding:56px 20px 80px}
+  .layout{grid-template-columns:1fr;gap:28px}
+  .side{top:0;z-index:5;background:var(--bg);margin:0 -20px;padding:12px 20px;border-bottom:1px solid var(--line)}
+  .side h2,.help{display:none}
+  .side ol{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .side ol::-webkit-scrollbar{display:none}
+  .side a{white-space:nowrap;border:1px solid var(--line);background:var(--card);padding:8px 14px;font-size:14px}
+  .side a .n{display:none}
+  .group{scroll-margin-top:80px}
+  .q{padding:18px;font-size:16px}
+  .a .in{padding:0 18px 20px}
+}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <header class="head">
+    <div>
+      <span class="eyebrow">Help &amp; FAQs</span>
+      <h1 id="faq-title">Answers about your car and home cover</h1>
+    </div>
+    <p>Straight answers on quotes, claims and payments. Can't see your question? Our UK team picks up in under 2 minutes on average.</p>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="FAQ categories">
+      <h2>Categories</h2>
+      <ol id="nav"></ol>
+      <div class="help">
+        <strong>24/7 claims line</strong>
+        <p>Been in an accident or had a leak? Call us any time.</p>
+        <a href="tel:03301234567">0330 123 4567</a>
+      </div>
+    </nav>
+
+    <div id="groups">
+      <section class="group" id="quotes" data-icon="quote" aria-labelledby="h-quotes">
+        <h3 id="h-quotes"><span></span>Quotes &amp; buying</h3>
+        <div class="list">
+          <div class="item"><button class="q" id="q-quote-time">How long does a quote take?</button><div class="a" role="region"><div><div class="in"><p>Most car quotes take <strong>about 4 minutes</strong> and home quotes around 6. We pre-fill your vehicle details from the registration and your property details from the postcode, so you mostly confirm rather than type.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-quote-valid">How long is my quote valid for?</button><div class="a" role="region"><div><div class="in"><p>Your price is held for <strong>30 days</strong> as long as your details don't change. Saved quotes live in your account and you can buy with one tap from the reminder email.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-multi-discount">Do you offer a discount for car and home together?</button><div class="a" role="region"><div><div class="in"><p>Yes. Add a second policy to the same account and both get <strong>12% off</strong> for the first year, then 8% at every renewal while you keep both.</p></div></div></div></div>
+        </div>
+      </section>
+
+      <section class="group" id="car" data-icon="car" aria-labelledby="h-car">
+        <h3 id="h-car"><span></span>Car cover</h3>
+        <div class="list">
+          <div class="item"><button class="q" id="q-other-drivers">Can I add another driver?</button><div class="a" role="region"><div><div class="in"><p>You can add up to <strong>4 named drivers</strong> in the app. Adding someone with 3+ years' experience usually costs between £0 and £40 a year; a learner or newly qualified driver costs more.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-courtesy-car">Do I get a courtesy car?</button><div class="a" role="region"><div><div class="in"><p>On Comprehensive and Comprehensive Plus, yes — a small hatchback while yours is fixed at one of our approved garages. Comprehensive Plus also gives you a hire car for up to <strong>21 days</strong> if yours is stolen or written off.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-europe">Am I covered to drive in Europe?</button><div class="a" role="region"><div><div class="in"><p>All car policies include the legal minimum cover in the EU. Comprehensive policies include full cover for trips of up to <strong>90 days</strong> a year at no extra cost — just tell us before you go.</p></div></div></div></div>
+        </div>
+      </section>
+
+      <section class="group" id="home" data-icon="home" aria-labelledby="h-home">
+        <h3 id="h-home"><span></span>Home cover</h3>
+        <div class="list">
+          <div class="item"><button class="q" id="q-accidental-damage">Is accidental damage included?</button><div class="a" role="region"><div><div class="in"><p>It's optional on Standard (about £3 a month) and included on Home Plus. It covers one-off accidents like red wine on the carpet or a drill through a pipe — not wear and tear.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-high-value">How do I cover jewellery or a bike away from home?</button><div class="a" role="region"><div><div class="in"><p>Add <strong>Personal Possessions</strong> cover from £4 a month. Any single item worth over £2,000 needs to be listed by name, with a receipt or valuation.</p></div></div></div></div>
+        </div>
+      </section>
+
+      <section class="group" id="claims" data-icon="claim" aria-labelledby="h-claims">
+        <h3 id="h-claims"><span></span>Making a claim</h3>
+        <div class="list">
+          <div class="item"><button class="q" id="q-how-claim">How do I make a claim?</button><div class="a" role="region"><div><div class="in"><p>Start a claim in the app or call <strong>0330 123 4567</strong>, 24 hours a day. Have photos, the date and a rough description ready. You'll get a named handler within one working day.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-claim-time">How long does a claim take to settle?</button><div class="a" role="region"><div><div class="in"><p>Simple claims like a windscreen or a burst pipe are usually settled in <strong>5–10 working days</strong>. Larger claims involving loss adjusters or third parties take 4–8 weeks, and we update you at least weekly.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-excess">What is my excess?</button><div class="a" role="region"><div><div class="in"><p>Your excess is the amount you pay towards each claim. Car policies have a £250 compulsory excess plus any voluntary amount you chose; home policies default to £100. It's shown on your policy schedule.</p></div></div></div></div>
+        </div>
+      </section>
+
+      <section class="group" id="payments" data-icon="card" aria-labelledby="h-payments">
+        <h3 id="h-payments"><span></span>Payments &amp; renewals</h3>
+        <div class="list">
+          <div class="item"><button class="q" id="q-monthly">Can I pay monthly?</button><div class="a" role="region"><div><div class="in"><p>Yes, by Direct Debit over 11 instalments. Paying monthly costs a little more (a representative APR of <strong>19.9%</strong>), so paying annually is cheaper if you can.</p></div></div></div></div>
+          <div class="item"><button class="q" id="q-cancel">Can I cancel my policy?</button><div class="a" role="region"><div><div class="in"><p>You can cancel within <strong>14 days</strong> for a full refund if you haven't claimed. After that we refund the unused days minus a £30 admin fee.</p></div></div></div></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var icons={
+    quote:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+    car:'<path d="M5 17h14M5 17a2 2 0 1 1-4 0v-4l2-6h14l2 6v4a2 2 0 1 1-4 0"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+    home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+    claim:'<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/>',
+    card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>'
+  };
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var groups=[].slice.call(document.querySelectorAll('.group'));
+  var nav=document.getElementById('nav');
+  var buttons=[].slice.call(document.querySelectorAll('.q'));
+
+  groups.forEach(function(g){
+    var svg='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[g.dataset.icon]+'</svg>';
+    g.querySelector('h3 span').innerHTML=svg;
+    var li=document.createElement('li');
+    var count=g.querySelectorAll('.item').length;
+    li.innerHTML='<a href="#'+g.id+'">'+svg+'<span>'+g.querySelector('h3').textContent+'</span><span class="n" aria-label="'+count+' questions">'+count+'</span></a>';
+    nav.appendChild(li);
+  });
+
+  buttons.forEach(function(b){
+    var slug=b.id.slice(2), panel=b.nextElementSibling;
+    panel.id='a-'+slug;
+    panel.setAttribute('aria-labelledby',b.id);
+    b.setAttribute('aria-controls',panel.id);
+    b.setAttribute('aria-expanded','false');
+    b.insertAdjacentHTML('beforeend','<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>');
+    b.addEventListener('click',function(){toggle(b)});
+    b.addEventListener('keydown',function(e){
+      var i=buttons.indexOf(b),t;
+      if(e.key==='ArrowDown')t=buttons[(i+1)%buttons.length];
+      else if(e.key==='ArrowUp')t=buttons[(i-1+buttons.length)%buttons.length];
+      else if(e.key==='Home')t=buttons[0];
+      else if(e.key==='End')t=buttons[buttons.length-1];
+      if(t){e.preventDefault();t.focus();}
+    });
+  });
+
+  function toggle(b,force){
+    var item=b.parentElement, open=force!==undefined?force:b.getAttribute('aria-expanded')!=='true';
+    b.setAttribute('aria-expanded',String(open));
+    item.classList.toggle('open',open);
+  }
+
+  function fromHash(){
+    var h=decodeURIComponent(location.hash.slice(1));
+    if(h.indexOf('q-')!==0)return;
+    var b=document.getElementById(h);
+    if(!b||!b.classList.contains('q'))return;
+    toggle(b,true);
+    b.scrollIntoView({block:'center',behavior:reduce.matches?'auto':'smooth'});
+    b.focus({preventScroll:true});
+  }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+
+  /* scroll-spy */
+  var links=[].slice.call(nav.querySelectorAll('a'));
+  function setCurrent(id){
+    links.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;
+      a.classList.toggle('is-current',on);
+      if(on){a.setAttribute('aria-current','true');
+        if(window.innerWidth<=900){var ol=nav;ol.scrollTo({left:a.parentElement.offsetLeft-20,behavior:reduce.matches?'auto':'smooth'});}
+      }else a.removeAttribute('aria-current');
+    });
+  }
+  var ticking=false;
+  function spy(){
+    ticking=false;
+    var line=window.innerHeight*0.4, cur=groups[0].id;
+    groups.forEach(function(g){if(g.getBoundingClientRect().top<=line)cur=g.id;});
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=groups[groups.length-1].id;
+    if(cur!==spy.last){spy.last=cur;setCurrent(cur);}
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(spy);}},{passive:true});
+  window.addEventListener('resize',spy);
+  spy();
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How long does a quote take?","acceptedAnswer":{"@type":"Answer","text":"Most car quotes take about 4 minutes and home quotes around 6. We pre-fill your vehicle details from the registration and your property details from the postcode."}},
+{"@type":"Question","name":"How long is my quote valid for?","acceptedAnswer":{"@type":"Answer","text":"Your price is held for 30 days as long as your details don't change. Saved quotes live in your account."}},
+{"@type":"Question","name":"Do you offer a discount for car and home together?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add a second policy to the same account and both get 12% off for the first year, then 8% at every renewal while you keep both."}},
+{"@type":"Question","name":"Can I add another driver?","acceptedAnswer":{"@type":"Answer","text":"You can add up to 4 named drivers in the app. Adding someone with 3+ years' experience usually costs between £0 and £40 a year."}},
+{"@type":"Question","name":"Do I get a courtesy car?","acceptedAnswer":{"@type":"Answer","text":"On Comprehensive and Comprehensive Plus, yes. Comprehensive Plus also gives you a hire car for up to 21 days if yours is stolen or written off."}},
+{"@type":"Question","name":"Am I covered to drive in Europe?","acceptedAnswer":{"@type":"Answer","text":"All car policies include the legal minimum cover in the EU. Comprehensive policies include full cover for trips of up to 90 days a year at no extra cost."}},
+{"@type":"Question","name":"Is accidental damage included?","acceptedAnswer":{"@type":"Answer","text":"It's optional on Standard (about £3 a month) and included on Home Plus. It covers one-off accidents, not wear and tear."}},
+{"@type":"Question","name":"How do I cover jewellery or a bike away from home?","acceptedAnswer":{"@type":"Answer","text":"Add Personal Possessions cover from £4 a month. Any single item worth over £2,000 needs to be listed by name, with a receipt or valuation."}},
+{"@type":"Question","name":"How do I make a claim?","acceptedAnswer":{"@type":"Answer","text":"Start a claim in the app or call 0330 123 4567, 24 hours a day. You'll get a named handler within one working day."}},
+{"@type":"Question","name":"How long does a claim take to settle?","acceptedAnswer":{"@type":"Answer","text":"Simple claims are usually settled in 5–10 working days. Larger claims take 4–8 weeks, and we update you at least weekly."}},
+{"@type":"Question","name":"What is my excess?","acceptedAnswer":{"@type":"Answer","text":"Car policies have a £250 compulsory excess plus any voluntary amount you chose; home policies default to £100."}},
+{"@type":"Question","name":"Can I pay monthly?","acceptedAnswer":{"@type":"Answer","text":"Yes, by Direct Debit over 11 instalments, at a representative APR of 19.9%."}},
+{"@type":"Question","name":"Can I cancel my policy?","acceptedAnswer":{"@type":"Answer","text":"You can cancel within 14 days for a full refund if you haven't claimed. After that we refund the unused days minus a £30 admin fee."}}
+]}
+</script>
+</body>
+</html>

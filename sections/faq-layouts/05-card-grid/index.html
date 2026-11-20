@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel Olivar FAQ</title>
+<meta name="description" content="Hotel Olivar guest questions: check-in, breakfast, parking, pets, spa and cancellations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EFE9DF; --card:#FBF8F2; --ink:#2A2620; --muted:#635B4F; --line:#DED5C5;
+    --olive:#3F4E35; --terra:#B85C38; --terra-ink:#9A4A2A; --terra-soft:#F3E1D6;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .faq{padding:110px 32px 120px}
+  .wrap{max-width:1200px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+  .kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-ink);font-weight:600;display:flex;align-items:center;gap:10px}
+  .kicker svg{width:18px;height:18px}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(40px,5.4vw,68px);line-height:1.02;letter-spacing:-.02em;margin:16px 0 0;color:var(--olive)}
+  h2 em{font-style:italic;color:var(--terra-ink)}
+  header p{max-width:380px;margin:0;color:var(--muted);font-size:17px}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;list-style:none;margin:0;padding:0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 30px 30px;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease,border-color .3s;scroll-margin:40px}
+  .card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(63,78,53,.45)}
+  .card:target,.card.flash{border-color:var(--terra);box-shadow:0 0 0 4px rgba(184,92,56,.18)}
+  .ic{width:52px;height:52px;border-radius:16px;background:var(--terra-soft);color:var(--terra-ink);display:grid;place-items:center;margin-bottom:22px}
+  .ic svg{width:26px;height:26px}
+  .card h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:22px;line-height:1.25;margin:0 0 10px;color:var(--ink)}
+  .card p{margin:0;color:var(--muted);font-size:15.5px}
+  .card strong{color:var(--ink);font-weight:600}
+  .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s ease;margin-top:0}
+  .more>div{overflow:hidden}
+  .more.open{grid-template-rows:1fr}
+  .more .grid{padding-top:22px}
+  .more:not(.open) .card{visibility:hidden;transition:visibility 0s .5s}
+  .foot{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
+  .foot p{margin:0;color:var(--muted)}
+  .foot p a{color:var(--olive);font-weight:600}
+  .see{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-weight:600;font-size:16px;color:#fff;background:var(--olive);padding:15px 26px;border-radius:999px;transition:background .2s}
+  .see:hover{background:#2F3B27}
+  .see:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+  .see svg{width:18px;height:18px;transition:transform .35s}
+  .see[aria-expanded="true"] svg{transform:rotate(180deg)}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:640px){
+    .faq{padding:64px 16px 80px}
+    .grid{grid-template-columns:1fr;gap:14px}
+    .more .grid{padding-top:14px}
+    .card{padding:26px 22px}
+    header{margin-bottom:36px;gap:16px}
+    .foot{flex-direction:column;align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){.card,.more,.see svg{transition:none}.card:hover{transform:none}.more:not(.open) .card{transition:none}}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21c-4-3-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-3 8-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Hotel Olivar · Sintra</div>
+        <h2 id="faq-title">Before you <em>arrive</em></h2>
+      </div>
+      <p>Everything guests usually ask us before their stay. For anything else, our front desk is here day and night.</p>
+    </header>
+
+    <ul class="grid">
+      <li class="card" id="q-check-in">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>What time is check-in and check-out?</h3>
+        <p>Check-in is from <strong>3pm</strong> and check-out is by <strong>11am</strong>. Early check-in from 11am or late check-out until 2pm is €35, subject to availability.</p>
+      </li>
+      <li class="card" id="q-breakfast">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h13v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-4ZM17 11h1.5a2.5 2.5 0 0 1 0 5H16M8 3v3M12 3v3"/></svg></div>
+        <h3>Is breakfast included?</h3>
+        <p>Yes, on every room rate. Breakfast is served in the orangery from 7:30 to 10:30am, with pastries from our bakery, local cheeses and eggs cooked to order.</p>
+      </li>
+      <li class="card" id="q-parking">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M10 17V8h3a2.5 2.5 0 0 1 0 5h-3"/></svg></div>
+        <h3>Do you have parking?</h3>
+        <p>We have 14 free spaces in our gated courtyard, assigned on arrival, and two EV chargers. Valet parking is €15 per night if the courtyard is full.</p>
+      </li>
+      <li class="card" id="q-airport">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10.5 13.5 3 11l1.5-1.5 7 1 4-4.5c1-1 2.5-1.5 3-1s0 2-1 3l-4.5 4 1 7L17.5 20.5 15 13"/></svg></div>
+        <h3>Can you arrange an airport transfer?</h3>
+        <p>Our driver collects from Lisbon Airport for <strong>€65</strong> each way for up to 3 guests. The drive takes about 35 minutes. Book at least 24 hours ahead.</p>
+      </li>
+      <li class="card" id="q-pets">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="10" r="2"/><circle cx="10" cy="6" r="2"/><circle cx="14" cy="6" r="2"/><circle cx="18" cy="10" r="2"/><path d="M12 12c-3 0-5 3.5-5 5.5S9 20 12 19c3 1 5 0 5-1.5S15 12 12 12Z"/></svg></div>
+        <h3>Are dogs welcome?</h3>
+        <p>Well-behaved dogs up to 20 kg are welcome in our garden rooms for €25 per night, with a bed, bowls and treats waiting. Please let us know when you book.</p>
+      </li>
+      <li class="card" id="q-cancellation">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 14.5l5 0"/></svg></div>
+        <h3>What is your cancellation policy?</h3>
+        <p>Flexible rates can be cancelled free of charge up to <strong>7 days</strong> before arrival; after that we charge the first night. Advance rates are 15% cheaper but non-refundable.</p>
+      </li>
+    </ul>
+
+    <div class="more" id="more-faqs">
+      <div>
+        <ul class="grid">
+          <li class="card" id="q-spa">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20c-4 0-8-2.5-8-7 3 0 6 1.5 8 4 2-2.5 5-4 8-4 0 4.5-4 7-8 7ZM12 17c-2-2.5-2-6 0-10 2 4 2 7.5 0 10Z"/></svg></div>
+            <h3>Is there a spa and pool?</h3>
+            <p>Our heated outdoor pool is open 8am–8pm from April to October. The spa has a sauna and two treatment rooms; massages start at €70 for 50 minutes.</p>
+          </li>
+          <li class="card" id="q-children">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="3"/><path d="M6 21v-3a6 6 0 0 1 12 0v3M9 14l-3-2M15 14l3-2"/></svg></div>
+            <h3>Can we bring children?</h3>
+            <p>Children of all ages are welcome. Cots are free, and an extra bed for children up to 12 is €30 per night including breakfast. Our junior suites sleep a family of four.</p>
+          </li>
+          <li class="card" id="q-restaurant">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5a2 2 0 0 0 2 2M9 3v5a2 2 0 0 1-2 2M17 21V3c-2 1.5-3 4-3 7v4h3"/></svg></div>
+            <h3>Do you serve dinner?</h3>
+            <p>Our restaurant, Casa Olivar, serves a seasonal Portuguese menu Tuesday to Saturday from 7pm. Hotel guests get priority tables; we recommend booking a day ahead.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot">
+      <p>Still curious? Call the front desk on <a href="tel:+351219000000">+351 219 000 000</a>.</p>
+      <button class="see" type="button" aria-expanded="false" aria-controls="more-faqs"><span>See all FAQs</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What time is check-in and check-out?","acceptedAnswer":{"@type":"Answer","text":"Check-in is from 3pm and check-out is by 11am. Early check-in from 11am or late check-out until 2pm is €35, subject to availability."}},
+{"@type":"Question","name":"Is breakfast included?","acceptedAnswer":{"@type":"Answer","text":"Yes, on every room rate. Breakfast is served in the orangery from 7:30 to 10:30am, with pastries from our bakery, local cheeses and eggs cooked to order."}},
+{"@type":"Question","name":"Do you have parking?","acceptedAnswer":{"@type":"Answer","text":"We have 14 free spaces in our gated courtyard, assigned on arrival, and two EV chargers. Valet parking is €15 per night if the courtyard is full."}},
+{"@type":"Question","name":"Can you arrange an airport transfer?","acceptedAnswer":{"@type":"Answer","text":"Our driver collects from Lisbon Airport for €65 each way for up to 3 guests. The drive takes about 35 minutes. Book at least 24 hours ahead."}},
+{"@type":"Question","name":"Are dogs welcome?","acceptedAnswer":{"@type":"Answer","text":"Well-behaved dogs up to 20 kg are welcome in our garden rooms for €25 per night, with a bed, bowls and treats waiting. Please let us know when you book."}},
+{"@type":"Question","name":"What is your cancellation policy?","acceptedAnswer":{"@type":"Answer","text":"Flexible rates can be cancelled free of charge up to 7 days before arrival; after that we charge the first night. Advance rates are 15% cheaper but non-refundable."}},
+{"@type":"Question","name":"Is there a spa and pool?","acceptedAnswer":{"@type":"Answer","text":"Our heated outdoor pool is open 8am–8pm from April to October. The spa has a sauna and two treatment rooms; massages start at €70 for 50 minutes."}},
+{"@type":"Question","name":"Can we bring children?","acceptedAnswer":{"@type":"Answer","text":"Children of all ages are welcome. Cots are free, and an extra bed for children up to 12 is €30 per night including breakfast. Our junior suites sleep a family of four."}},
+{"@type":"Question","name":"Do you serve dinner?","acceptedAnswer":{"@type":"Answer","text":"Our restaurant, Casa Olivar, serves a seasonal Portuguese menu Tuesday to Saturday from 7pm. Hotel guests get priority tables; we recommend booking a day ahead."}}
+]}
+</script>
+<script>
+(function(){
+  var more = document.getElementById('more-faqs');
+  var btn = document.querySelector('.see');
+  var label = btn.querySelector('span');
+
+  function setMore(open){
+    more.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    label.textContent = open ? 'Show fewer' : 'See all FAQs';
+  }
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    setMore(open);
+    if (open) {
+      var first = more.querySelector('.card');
+      first.setAttribute('tabindex', '-1');
+      first.focus({preventScroll:true});
+    }
+  });
+
+  function fromHash(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    var card = id && document.getElementById(id);
+    if (!card || !card.classList.contains('card')) return;
+    if (more.contains(card)) setMore(true);
+    card.setAttribute('tabindex', '-1');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function(){
+      card.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'});
+      card.focus({preventScroll:true});
+      card.classList.add('flash');
+      setTimeout(function(){ card.classList.remove('flash'); }, 2400);
+    }, more.contains(card) ? 450 : 0);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>

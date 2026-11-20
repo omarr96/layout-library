@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parcelwire API — FAQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0F; --panel:#11131A; --panel-2:#171A23; --line:#232735; --ink:#E8EAF0; --muted:#9AA1B2;
+  --mint:#6EF2C0; --blue:#8EA2FF; --amber:#FFC56E; --pink:#FF8FB1; --code:#0D0F15;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Geist",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background-image:radial-gradient(800px 400px at 80% -10%,rgba(110,242,192,.09),transparent 60%)}
+.faq{position:relative;max-width:920px;margin:0 auto;padding:88px 28px 110px}
+.pill{display:inline-flex;align-items:center;gap:8px;font:500 13px "Geist Mono",monospace;color:var(--mint);border:1px solid rgba(110,242,192,.3);background:rgba(110,242,192,.06);padding:5px 12px;border-radius:99px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+h1{font-weight:600;font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.035em;margin:18px 0 14px}
+.sub{color:var(--muted);font-size:18px;margin:0 0 44px;max-width:52ch}
+.sub a{color:var(--ink)}
+.acc{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+.item+.item{border-top:1px solid var(--line)}
+.item h2{margin:0;font:inherit}
+.q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:14px;padding:20px 22px;cursor:pointer;font-weight:500;font-size:17px;line-height:1.4}
+.q:hover{background:var(--panel-2)}
+.q:focus-visible{outline:2px solid var(--mint);outline-offset:-2px}
+.q .k{font:500 12px "Geist Mono",monospace;color:var(--muted);min-width:24px}
+.q .ar{margin-left:auto;flex:none;width:20px;height:20px;color:var(--muted);transition:transform .3s,color .3s}
+.q[aria-expanded="true"] .ar{transform:rotate(90deg);color:var(--mint)}
+.q[aria-expanded="true"] .k{color:var(--mint)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+.a>div{overflow:hidden;visibility:hidden;transition:visibility 0s .32s}
+.item.open .a{grid-template-rows:1fr}
+.item.open .a>div{visibility:visible;transition:none}
+.in{padding:0 22px 20px 60px;color:#C4C9D4}
+.in p{margin:0 0 12px}
+.in p code{font:400 14px "Geist Mono",monospace;background:var(--panel-2);border:1px solid var(--line);padding:1px 6px;border-radius:6px;color:var(--ink)}
+.in a{color:var(--blue)}
+.code{position:relative;margin:4px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--code);overflow:hidden}
+.code .bar{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 6px 14px;border-bottom:1px solid var(--line);font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.copy{font:500 12px "Geist Mono",monospace;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.copy:hover{border-color:#3A4054}
+.copy.ok{color:var(--mint);border-color:rgba(110,242,192,.4)}
+.copy svg{width:13px;height:13px}
+pre{margin:0;padding:14px 16px;overflow-x:auto;font:400 13.5px/1.65 "Geist Mono",monospace;color:#D7DBE5;tab-size:2}
+.c{color:#6B7387}.s{color:var(--mint)}.kw{color:var(--pink)}.f{color:var(--blue)}.n{color:var(--amber)}
+.fb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.fb button{font:500 13px "Geist",sans-serif;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:99px;padding:5px 14px;cursor:pointer}
+.fb button:hover{border-color:var(--mint);color:var(--mint)}
+.fb .thanks{color:var(--mint)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+
+.stuck{margin-top:56px;display:grid;grid-template-columns:1fr 1.4fr;gap:40px;padding:32px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel),var(--bg))}
+.stuck h2{margin:0 0 8px;font-size:26px;letter-spacing:-.02em;font-weight:600}
+.stuck>div>p{margin:0;color:var(--muted)}
+.stuck code{font:400 13px "Geist Mono",monospace;color:var(--ink)}
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#C4C9D4}
+input,select,textarea{width:100%;font:400 15px "Geist",sans-serif;color:var(--ink);background:var(--code);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+textarea{min-height:110px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#6B7387}
+[aria-invalid="true"]{border-color:var(--pink)}
+.err{color:var(--pink);font-size:13px;margin-top:4px;min-height:0}
+.send{justify-self:start;font:600 15px "Geist",sans-serif;color:#06110C;background:var(--mint);border:0;border-radius:10px;padding:12px 20px;cursor:pointer}
+.send:hover{background:#8FF7D1}
+.ok-msg{padding:16px;border:1px solid rgba(110,242,192,.35);border-radius:12px;background:rgba(110,242,192,.06);color:var(--ink)}
+.ok-msg strong{color:var(--mint)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.a,.a>div,.q .ar{transition:none}}
+@media (max-width:760px){
+  .faq{padding:56px 16px 80px}
+  .q{padding:18px 16px}
+  .in{padding:0 16px 18px}
+  .stuck{grid-template-columns:1fr;padding:22px;gap:24px}
+  .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <span class="pill">API v3 · All systems normal</span>
+  <h1 id="faq-title">Frequently asked questions</h1>
+  <p class="sub">Common questions about authentication, limits, webhooks and billing for the Parcelwire email &amp; SMS API. For the full reference, see the <a href="#docs">API docs</a>.</p>
+
+  <div class="acc" id="acc">
+    <div class="item"><h2><button class="q" id="q-authentication"><span class="k">01</span>How do I authenticate requests?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Send your secret key as a Bearer token. Create keys under <strong>Settings → API keys</strong>; they're shown once, so store them in an environment variable.</p>
+        <div class="code"><div class="bar"><span>bash</span></div><pre><code><span class="c"># Send a test email</span>
+curl https://api.parcelwire.dev/v3/emails \
+  -H <span class="s">"Authorization: Bearer $PARCELWIRE_KEY"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"to":"ada@example.com","subject":"Hello","text":"It works"}'</span></code></pre></div>
+        <p>Never put secret keys in browser or mobile code — use a restricted publishable key instead.</p>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-rate-limits"><span class="k">02</span>What are the rate limits?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Free projects get <strong>10 requests/second</strong>; Pro gets 100 and Scale gets 1,000. Every response includes <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code>.</p>
+        <p>If you go over, you'll get a <code>429</code> with a <code>Retry-After</code> header in seconds. Our SDKs back off and retry automatically, up to 3 times.</p>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-verify-webhooks"><span class="k">03</span>How do I verify webhook signatures?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Each webhook carries a <code>Parcelwire-Signature</code> header: an HMAC-SHA256 of <code>timestamp.body</code> using your endpoint's signing secret. Reject requests older than 5 minutes.</p>
+        <div class="code"><div class="bar"><span>node.js</span></div><pre><code><span class="kw">import</span> crypto <span class="kw">from</span> <span class="s">"node:crypto"</span>;
+
+<span class="kw">export function</span> <span class="f">verify</span>(rawBody, header, secret) {
+  <span class="kw">const</span> [t, sig] = header.<span class="f">split</span>(<span class="s">","</span>).<span class="f">map</span>(p =&gt; p.<span class="f">split</span>(<span class="s">"="</span>)[<span class="n">1</span>]);
+  <span class="kw">if</span> (Date.<span class="f">now</span>() / <span class="n">1000</span> - <span class="f">Number</span>(t) &gt; <span class="n">300</span>) <span class="kw">return false</span>;
+  <span class="kw">const</span> expected = crypto.<span class="f">createHmac</span>(<span class="s">"sha256"</span>, secret)
+    .<span class="f">update</span>(<span class="s">`${t}.${rawBody}`</span>).<span class="f">digest</span>(<span class="s">"hex"</span>);
+  <span class="kw">return</span> crypto.<span class="f">timingSafeEqual</span>(Buffer.<span class="f">from</span>(sig), Buffer.<span class="f">from</span>(expected));
+}</code></pre></div>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-test-mode"><span class="k">04</span>Is there a sandbox or test mode?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Yes. Keys starting with <code>pw_test_</code> accept every request and fire webhooks, but never deliver a real message. Send to <code>bounce@sim.parcelwire.dev</code> to simulate a bounce. Test mode is free and not counted towards your quota.</p>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-idempotency"><span class="k">05</span>How do I retry safely without sending twice?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Add an <code>Idempotency-Key</code> header (any unique string, e.g. your order ID). If we see the same key within <strong>24 hours</strong>, we return the original response instead of sending again.</p>
+        <div class="code"><div class="bar"><span>python</span></div><pre><code><span class="kw">from</span> parcelwire <span class="kw">import</span> Client
+
+client = <span class="f">Client</span>()
+client.emails.<span class="f">send</span>(
+    to=<span class="s">"ada@example.com"</span>,
+    idempotency_key=<span class="s">f"order-{order.id}"</span>,
+)</code></pre></div>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-pricing"><span class="k">06</span>How is usage billed?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>The first <strong>3,000 emails a month are free</strong>. After that, emails are $0.80 per 1,000 and SMS is priced per country (from $0.0079 per segment in the US). You're billed monthly in arrears, and you can set a hard spend limit in the dashboard.</p>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-sdks"><span class="k">07</span>Which SDKs do you support?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Official SDKs for <strong>Node.js, Python, Go, Ruby and PHP</strong>, all typed and open source under MIT. Anything else can call the REST API directly; there's an OpenAPI 3.1 spec to generate your own client.</p>
+        <div class="code"><div class="bar"><span>bash</span></div><pre><code>npm install @parcelwire/node</code></pre></div>
+      </div></div></div></div>
+
+    <div class="item"><h2><button class="q" id="q-data-regions"><span class="k">08</span>Where is my data stored?</button></h2>
+      <div class="a" role="region"><div><div class="in">
+        <p>Choose <strong>EU (Frankfurt)</strong> or <strong>US (Virginia)</strong> when you create a project; data never leaves that region. Message bodies are kept for 30 days for debugging, then deleted. Delivery metadata is kept for 13 months.</p>
+      </div></div></div></div>
+
+  </div>
+
+  <div class="stuck" id="stuck">
+    <div>
+      <h2 id="stuck-title">Still stuck?</h2>
+      <p>Send us the details — include a request ID (<code>req_…</code>) if you have one. An engineer replies within 4 hours on weekdays; Pro &amp; Scale also get priority Slack support.</p>
+    </div>
+    <div id="form-wrap">
+      <form id="form" novalidate aria-labelledby="stuck-title">
+        <div class="row">
+          <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required aria-describedby="e-email"><div class="err" id="e-email"></div></div>
+          <div><label for="f-topic">Topic</label><select id="f-topic" name="topic"><option>Authentication</option><option>Webhooks</option><option>Deliverability</option><option>Billing</option><option>Something else</option></select></div>
+        </div>
+        <div><label for="f-req">Request ID (optional)</label><input id="f-req" name="request_id" placeholder="req_8fK2…" autocomplete="off"></div>
+        <div><label for="f-msg">What's going on?</label><textarea id="f-msg" name="message" required placeholder="What you expected, what happened, and any error codes" aria-describedby="e-msg"></textarea><div class="err" id="e-msg"></div></div>
+        <button class="send" type="submit">Send to support</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  var btns=[].slice.call(document.querySelectorAll('.q'));
+  var copyIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+
+  btns.forEach(function(b,i){
+    var slug=b.id.slice(2), panel=b.parentElement.nextElementSibling;
+    panel.id='a-'+slug; panel.setAttribute('aria-labelledby',b.id);
+    b.setAttribute('aria-controls',panel.id); b.setAttribute('aria-expanded','false');
+    b.insertAdjacentHTML('beforeend','<svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>');
+    b.addEventListener('click',function(){set(b,b.getAttribute('aria-expanded')!=='true');});
+    b.addEventListener('keydown',function(e){
+      var t;
+      if(e.key==='ArrowDown')t=btns[(i+1)%btns.length];
+      else if(e.key==='ArrowUp')t=btns[(i-1+btns.length)%btns.length];
+      else if(e.key==='Home')t=btns[0]; else if(e.key==='End')t=btns[btns.length-1];
+      if(t){e.preventDefault();t.focus();}
+    });
+    /* feedback row */
+    var fb=document.createElement('div');
+    fb.className='fb';
+    fb.innerHTML='<span>Was this helpful?</span><button type="button" data-v="yes">Yes</button><button type="button" data-v="no">No</button>';
+    panel.querySelector('.in').appendChild(fb);
+    fb.addEventListener('click',function(e){
+      var v=e.target.closest('button'); if(!v)return;
+      var msg=v.dataset.v==='yes'?'Thanks for the feedback!':'Thanks — we\'ll improve this answer. Need help now? <a href="#stuck">Contact support</a>.';
+      fb.innerHTML='<span class="thanks" role="status">'+msg+'</span>';
+    });
+  });
+
+  function set(b,open){
+    b.setAttribute('aria-expanded',String(open));
+    b.closest('.item').classList.toggle('open',open);
+  }
+
+  /* copy buttons */
+  [].slice.call(document.querySelectorAll('.code')).forEach(function(c){
+    var bar=c.querySelector('.bar'), btn=document.createElement('button');
+    btn.type='button'; btn.className='copy'; btn.innerHTML=copyIcon+'<span>Copy</span>';
+    btn.setAttribute('aria-label','Copy '+bar.textContent+' code');
+    bar.appendChild(btn);
+    var live=document.createElement('span'); live.className='sr'; live.setAttribute('aria-live','polite'); bar.appendChild(live);
+    btn.addEventListener('click',function(){
+      var text=c.querySelector('pre').textContent;
+      function done(ok){
+        btn.classList.toggle('ok',ok); btn.querySelector('span').textContent=ok?'Copied':'Press ⌘C';
+        live.textContent=ok?'Copied to clipboard':'';
+        clearTimeout(btn._t); btn._t=setTimeout(function(){btn.classList.remove('ok');btn.querySelector('span').textContent='Copy';live.textContent='';},1800);
+      }
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){done(true);},fallback);}
+      else fallback();
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly','');
+        ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+        var ok=false; try{ok=document.execCommand('copy');}catch(e){} ta.remove(); done(ok);
+      }
+    });
+  });
+
+  /* deep link */
+  function fromHash(){
+    var h=decodeURIComponent(location.hash.slice(1));
+    if(h.indexOf('q-')!==0)return;
+    var b=document.getElementById(h);
+    if(!b||!b.classList.contains('q'))return;
+    set(b,true);
+    b.scrollIntoView({block:'center',behavior:reduce.matches?'auto':'smooth'});
+    b.focus({preventScroll:true});
+  }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+
+  /* still stuck form */
+  var form=document.getElementById('form');
+  function check(input,errId,msg){
+    var bad=!input.value.trim()||(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim()));
+    input.setAttribute('aria-invalid',String(bad));
+    document.getElementById(errId).textContent=bad?msg:'';
+    return !bad;
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=form.email, msg=form.message;
+    var ok1=check(email,'e-email','Enter a valid email so we can reply.');
+    var ok2=check(msg,'e-msg','Tell us a little about the problem.');
+    if(!ok1){email.focus();return;}
+    if(!ok2){msg.focus();return;}
+    var wrap=document.getElementById('form-wrap');
+    wrap.innerHTML='<div class="ok-msg" role="status" tabindex="-1"><strong>Ticket received.</strong> We\'ve emailed a copy to '+email.value.replace(/[<>&"]/g,'')+'. An engineer will reply within 4 working hours.</div>';
+    wrap.firstChild.focus();
+  });
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I authenticate requests?","acceptedAnswer":{"@type":"Answer","text":"Send your secret key as a Bearer token in the Authorization header. Never put secret keys in browser or mobile code."}},
+{"@type":"Question","name":"What are the rate limits?","acceptedAnswer":{"@type":"Answer","text":"Free projects get 10 requests per second, Pro gets 100 and Scale gets 1,000. Over the limit you'll get a 429 with a Retry-After header."}},
+{"@type":"Question","name":"How do I verify webhook signatures?","acceptedAnswer":{"@type":"Answer","text":"Each webhook carries a Parcelwire-Signature header: an HMAC-SHA256 of timestamp.body using your endpoint's signing secret. Reject requests older than 5 minutes."}},
+{"@type":"Question","name":"Is there a sandbox or test mode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Keys starting with pw_test_ accept every request and fire webhooks, but never deliver a real message. Test mode is free."}},
+{"@type":"Question","name":"How do I retry safely without sending twice?","acceptedAnswer":{"@type":"Answer","text":"Add an Idempotency-Key header. If we see the same key within 24 hours, we return the original response instead of sending again."}},
+{"@type":"Question","name":"How is usage billed?","acceptedAnswer":{"@type":"Answer","text":"The first 3,000 emails a month are free. After that, emails are $0.80 per 1,000 and SMS is priced per country. You can set a hard spend limit."}},
+{"@type":"Question","name":"Which SDKs do you support?","acceptedAnswer":{"@type":"Answer","text":"Official SDKs for Node.js, Python, Go, Ruby and PHP, all open source under MIT, plus an OpenAPI 3.1 spec."}},
+{"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Choose EU (Frankfurt) or US (Virginia) when you create a project. Message bodies are kept for 30 days, delivery metadata for 13 months."}}
+]}
+</script>
+</body>
+</html>

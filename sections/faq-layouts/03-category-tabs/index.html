@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Verre FAQ</title>
+<meta name="description" content="Maison Verre help: orders, shipping, returns and payment questions answered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F2; --ink:#1C1A17; --muted:#625C54; --line:#E6DFD4; --chip:#F1EBE1;
+    --accent:#B5835A; --accent-ink:#8A5A35;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Jost",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .faq{padding:110px 24px 120px}
+  .wrap{max-width:900px;margin:0 auto}
+  header{text-align:center;margin-bottom:44px}
+  .kicker{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--accent-ink);font-weight:500}
+  h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(40px,6vw,64px);line-height:1.05;margin:14px 0 14px;letter-spacing:-.01em}
+  h2 em{font-style:italic;color:var(--accent-ink)}
+  .lede{color:var(--muted);margin:0 auto;max-width:520px;font-size:17px}
+  .tabs{display:flex;justify-content:center;gap:6px;border-bottom:1px solid var(--line);margin-bottom:8px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:16px 22px;font-size:15px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);position:relative;white-space:nowrap;transition:color .2s}
+  .tab::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;background:var(--ink);transform:scaleX(0);transition:transform .3s ease}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--ink)}
+  .tab[aria-selected="true"]::after{transform:scaleX(1)}
+  .tab:focus-visible{outline:2px solid var(--accent-ink);outline-offset:-4px;border-radius:4px}
+  .count{font-size:12px;letter-spacing:0;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--chip);color:var(--ink);display:inline-grid;place-items:center;font-variant-numeric:tabular-nums;transition:background .2s,color .2s}
+  .tab[aria-selected="true"] .count{background:var(--ink);color:var(--bg)}
+  .panel{animation:fade .4s ease}
+  .panel[hidden]{display:none}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .item{border-bottom:1px solid var(--line)}
+  .item h3{margin:0;font:inherit}
+  .q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 4px;cursor:pointer;font-family:"Cormorant Garamond",Georgia,serif;font-size:24px;font-weight:600;line-height:1.25}
+  .q:hover{color:var(--accent-ink)}
+  .q:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px;border-radius:4px}
+  .chev{flex:none;width:10px;height:10px;margin:0 6px 6px 0;border:solid var(--accent-ink);border-width:0 1.8px 1.8px 0;transform:rotate(45deg);transition:transform .35s ease}
+  .q[aria-expanded="true"] .chev{transform:translateY(6px) rotate(225deg)}
+  .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+  .a>div{overflow:hidden}
+  .item.open .a{grid-template-rows:1fr}
+  .a p{margin:0;padding:0 48px 26px 4px;color:var(--muted);font-size:16px}
+  .a strong{color:var(--ink);font-weight:600}
+  .help{margin-top:52px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:26px 30px}
+  .help h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:26px;margin:0 0 2px}
+  .help p{margin:0;color:var(--muted);font-size:15px}
+  .help a{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;padding:14px 26px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:background .2s}
+  .help a:hover{background:var(--accent-ink)}
+  .help a:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+  @media (max-width:700px){
+    .tabs{justify-content:flex-start;gap:0;margin:0 -16px 8px;padding:0 8px}
+    .tab{padding:14px 12px;font-size:13px;gap:8px}
+    .tab::after{left:8px;right:8px}
+  }
+  @media (max-width:440px){
+    .tabs{margin:0 0 8px;padding:0;justify-content:space-between}
+    .tab{padding:14px 4px;font-size:12px;letter-spacing:.02em;gap:5px}
+    .tab::after{left:2px;right:2px}
+    .count{min-width:20px;height:20px;font-size:11px;padding:0 5px}
+  }
+  @media (max-width:600px){
+    .faq{padding:64px 16px 80px}
+    .q{font-size:21px;padding:22px 0;gap:16px}
+    .a p{padding:0 0 22px}
+    .help{padding:22px}
+  }
+  @media (prefers-reduced-motion:reduce){.a,.chev,.tab::after{transition:none}.panel{animation:none}}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <header>
+      <div class="kicker">Client care</div>
+      <h2 id="faq-title">Frequently <em>asked</em></h2>
+      <p class="lede">Quick answers on orders, delivery, returns and payment. Pick a topic below.</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="FAQ topics">
+      <button class="tab" role="tab" id="tab-orders" aria-controls="panel-orders" aria-selected="true">Orders <span class="count" aria-label="3 questions">3</span></button>
+      <button class="tab" role="tab" id="tab-shipping" aria-controls="panel-shipping" aria-selected="false" tabindex="-1">Shipping <span class="count" aria-label="3 questions">3</span></button>
+      <button class="tab" role="tab" id="tab-returns" aria-controls="panel-returns" aria-selected="false" tabindex="-1">Returns <span class="count" aria-label="3 questions">3</span></button>
+      <button class="tab" role="tab" id="tab-payment" aria-controls="panel-payment" aria-selected="false" tabindex="-1">Payment <span class="count" aria-label="2 questions">2</span></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-orders" aria-labelledby="tab-orders">
+      <div class="item">
+        <h3><button class="q" id="q-change-order" aria-expanded="false" aria-controls="a-change-order">Can I change or cancel my order?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-change-order" role="region" aria-labelledby="q-change-order"><div><p>You have <strong>1 hour</strong> after checkout to edit sizes, the address or cancel, straight from the link in your confirmation email. After that the order is packed at our atelier and can no longer be changed — but you can return it free once it arrives.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-sizing" aria-expanded="false" aria-controls="a-sizing">How do I find my size?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-sizing" role="region" aria-labelledby="q-sizing"><div><p>Each product page lists garment measurements in cm and inches, plus the height and size our model is wearing. Our tailoring runs true to size; knitwear is cut relaxed, so size down if you prefer a closer fit. Still unsure? Our stylists reply on live chat within 5 minutes, 9am–7pm CET.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-restock" aria-expanded="false" aria-controls="a-restock">Will a sold-out piece come back?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-restock" role="region" aria-labelledby="q-restock"><div><p>Core pieces like the Ines trench and the Lune knit are restocked every 6–8 weeks. Seasonal pieces are made in limited runs and rarely return. Tap <strong>Notify me</strong> on any size to get an email the moment it's back.</p></div></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-shipping" aria-labelledby="tab-shipping" hidden>
+      <div class="item">
+        <h3><button class="q" id="q-delivery-times" aria-expanded="false" aria-controls="a-delivery-times">How long does delivery take?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-delivery-times" role="region" aria-labelledby="q-delivery-times"><div><p>Orders placed before 2pm CET ship the same day. <strong>Standard</strong> delivery takes 2–4 business days in the EU and UK, 4–6 to the US. <strong>Express</strong> arrives next business day in the EU and in 2 days to the US and UK.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-shipping-cost" aria-expanded="false" aria-controls="a-shipping-cost">How much is shipping?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-shipping-cost" role="region" aria-labelledby="q-shipping-cost"><div><p>Standard shipping is free on orders over €150 and €7.50 below that. Express costs €18 in the EU and €25 to the UK and US. Every parcel ships carbon-neutral in recycled, tissue-wrapped packaging.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-duties" aria-expanded="false" aria-controls="a-duties">Will I pay customs duties?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-duties" role="region" aria-labelledby="q-duties"><div><p>No surprises: for the UK, US, Canada and Switzerland, duties and taxes are calculated at checkout and paid upfront, so nothing is due on delivery. Orders within the EU carry no duties at all.</p></div></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-returns" aria-labelledby="tab-returns" hidden>
+      <div class="item">
+        <h3><button class="q" id="q-return-policy" aria-expanded="false" aria-controls="a-return-policy">What is your return policy?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-return-policy" role="region" aria-labelledby="q-return-policy"><div><p>You can return unworn pieces with tags attached within <strong>30 days</strong> of delivery. Returns are free in the EU and UK; US returns cost $8, deducted from your refund. Earrings and swimwear without the hygiene seal can't be returned.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-start-return" aria-expanded="false" aria-controls="a-start-return">How do I start a return?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-start-return" role="region" aria-labelledby="q-start-return"><div><p>Go to <strong>Account → Orders</strong>, choose the items and print the prepaid label or show the QR code at any drop-off point. Guest checkout? Use the returns portal with your order number and email.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-refund-time" aria-expanded="false" aria-controls="a-refund-time">When will I get my refund?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-refund-time" role="region" aria-labelledby="q-refund-time"><div><p>We refund within 3 business days of your parcel reaching our warehouse, to the original payment method. Your bank may take a further 3–5 days to show it. Prefer an exchange? Choose it in the portal and we'll ship the new size as soon as your return is scanned.</p></div></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-payment" aria-labelledby="tab-payment" hidden>
+      <div class="item">
+        <h3><button class="q" id="q-payment-methods" aria-expanded="false" aria-controls="a-payment-methods">Which payment methods do you accept?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-payment-methods" role="region" aria-labelledby="q-payment-methods"><div><p>Visa, Mastercard, American Express, Apple Pay, Google Pay, PayPal, iDEAL and Bancontact. All payments are processed securely and your card details are never stored on our servers.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-pay-later" aria-expanded="false" aria-controls="a-pay-later">Can I pay in instalments?<span class="chev" aria-hidden="true"></span></button></h3>
+        <div class="a" id="a-pay-later" role="region" aria-labelledby="q-pay-later"><div><p>Yes — choose Klarna at checkout to split orders over €50 into 3 interest-free payments, or pay in full 30 days later. Availability depends on your country and Klarna's approval.</p></div></div>
+      </div>
+    </div>
+
+    <div class="help">
+      <div><h3>Need a hand?</h3><p>Our client care team is here Mon–Sat, 9am–7pm CET.</p></div>
+      <a href="mailto:care@maisonverre.example">Contact client care</a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can I change or cancel my order?","acceptedAnswer":{"@type":"Answer","text":"You have 1 hour after checkout to edit sizes, the address or cancel, straight from the link in your confirmation email. After that the order is packed at our atelier and can no longer be changed — but you can return it free once it arrives."}},
+{"@type":"Question","name":"How do I find my size?","acceptedAnswer":{"@type":"Answer","text":"Each product page lists garment measurements in cm and inches, plus the height and size our model is wearing. Our tailoring runs true to size; knitwear is cut relaxed, so size down if you prefer a closer fit. Still unsure? Our stylists reply on live chat within 5 minutes, 9am–7pm CET."}},
+{"@type":"Question","name":"Will a sold-out piece come back?","acceptedAnswer":{"@type":"Answer","text":"Core pieces like the Ines trench and the Lune knit are restocked every 6–8 weeks. Seasonal pieces are made in limited runs and rarely return. Tap Notify me on any size to get an email the moment it's back."}},
+{"@type":"Question","name":"How long does delivery take?","acceptedAnswer":{"@type":"Answer","text":"Orders placed before 2pm CET ship the same day. Standard delivery takes 2–4 business days in the EU and UK, 4–6 to the US. Express arrives next business day in the EU and in 2 days to the US and UK."}},
+{"@type":"Question","name":"How much is shipping?","acceptedAnswer":{"@type":"Answer","text":"Standard shipping is free on orders over €150 and €7.50 below that. Express costs €18 in the EU and €25 to the UK and US. Every parcel ships carbon-neutral in recycled, tissue-wrapped packaging."}},
+{"@type":"Question","name":"Will I pay customs duties?","acceptedAnswer":{"@type":"Answer","text":"No surprises: for the UK, US, Canada and Switzerland, duties and taxes are calculated at checkout and paid upfront, so nothing is due on delivery. Orders within the EU carry no duties at all."}},
+{"@type":"Question","name":"What is your return policy?","acceptedAnswer":{"@type":"Answer","text":"You can return unworn pieces with tags attached within 30 days of delivery. Returns are free in the EU and UK; US returns cost $8, deducted from your refund. Earrings and swimwear without the hygiene seal can't be returned."}},
+{"@type":"Question","name":"How do I start a return?","acceptedAnswer":{"@type":"Answer","text":"Go to Account → Orders, choose the items and print the prepaid label or show the QR code at any drop-off point. Guest checkout? Use the returns portal with your order number and email."}},
+{"@type":"Question","name":"When will I get my refund?","acceptedAnswer":{"@type":"Answer","text":"We refund within 3 business days of your parcel reaching our warehouse, to the original payment method. Your bank may take a further 3–5 days to show it. Prefer an exchange? Choose it in the portal and we'll ship the new size as soon as your return is scanned."}},
+{"@type":"Question","name":"Which payment methods do you accept?","acceptedAnswer":{"@type":"Answer","text":"Visa, Mastercard, American Express, Apple Pay, Google Pay, PayPal, iDEAL and Bancontact. All payments are processed securely and your card details are never stored on our servers."}},
+{"@type":"Question","name":"Can I pay in instalments?","acceptedAnswer":{"@type":"Answer","text":"Yes — choose Klarna at checkout to split orders over €50 into 3 interest-free payments, or pay in full 30 days later. Availability depends on your country and Klarna's approval."}}
+]}
+</script>
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+
+  // keep counts honest
+  tabs.forEach(function(t, i){
+    var n = panels[i].querySelectorAll('.q').length;
+    var c = t.querySelector('.count');
+    c.textContent = n;
+    c.setAttribute('aria-label', n + (n === 1 ? ' question' : ' questions'));
+  });
+
+  function selectTab(tab, focus){
+    tabs.forEach(function(t, i){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+    });
+    if (focus) tab.focus();
+    tab.scrollIntoView({block:'nearest', inline:'nearest'});
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ selectTab(tab, false); });
+    tab.addEventListener('keydown', function(e){
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); selectTab(next, true); }
+    });
+  });
+
+  function setOpen(btn, open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.closest('.item').classList.toggle('open', open);
+  }
+
+  panels.forEach(function(panel){
+    var qs = Array.prototype.slice.call(panel.querySelectorAll('.q'));
+    qs.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        qs.forEach(function(b){ setOpen(b, b === btn && open); });
+        if (open && history.replaceState) history.replaceState(null, '', '#' + btn.id);
+      });
+      btn.addEventListener('keydown', function(e){
+        var next = null;
+        if (e.key === 'ArrowDown') next = qs[(i + 1) % qs.length];
+        else if (e.key === 'ArrowUp') next = qs[(i - 1 + qs.length) % qs.length];
+        if (next) { e.preventDefault(); next.focus(); }
+      });
+    });
+    if (qs[0]) setOpen(qs[0], true);
+  });
+
+  function fromHash(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    var btn = id && document.getElementById(id);
+    if (!btn || !btn.classList.contains('q')) return;
+    var panel = btn.closest('[role="tabpanel"]');
+    selectTab(tabs[panels.indexOf(panel)], false);
+    Array.prototype.forEach.call(panel.querySelectorAll('.q'), function(b){ setOpen(b, b === btn); });
+    btn.scrollIntoView({block:'center'});
+    btn.focus({preventScroll:true});
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>

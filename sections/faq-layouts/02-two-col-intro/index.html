@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northpaw Studio FAQ</title>
+<meta name="description" content="How Northpaw Studio runs web design and branding projects: timelines, pricing, process and support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EFE6; --ink:#141414; --muted:#5B5750; --line:#D9D2C3; --paper:#FBF9F4;
+    --accent:#FF5B2E; --accent-ink:#C23A12;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .faq{padding:120px 40px}
+  .grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
+  .intro{position:sticky;top:40px}
+  .tag{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .tag::before{content:"";width:28px;height:2px;background:var(--accent)}
+  h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(48px,6.4vw,88px);line-height:.95;letter-spacing:-.02em;margin:22px 0 24px}
+  h2 em{color:var(--accent-ink);font-style:italic}
+  .intro>p{color:var(--muted);font-size:18px;max-width:420px;margin:0 0 40px}
+  .card{background:var(--ink);color:#F3EFE6;border-radius:24px;padding:28px;max-width:440px;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:var(--accent);opacity:.9}
+  .who{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+  .who img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #F3EFE6;flex:none}
+  .who strong{display:block;font-size:18px;font-weight:600}
+  .who span{font-size:14px;color:#BDB7AA}
+  .card p{position:relative;z-index:1;margin:20px 0 24px;color:#D8D2C4;font-size:16px}
+  .btn{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--ink);font-weight:700;font-size:16px;text-decoration:none;padding:14px 22px;border-radius:999px;transition:transform .2s,background .2s}
+  .btn:hover{transform:translateY(-2px);background:#FF7A55}
+  .btn:focus-visible{outline:3px solid #F3EFE6;outline-offset:3px}
+  .btn svg{width:18px;height:18px}
+  .meta{position:relative;z-index:1;display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:13px;color:#BDB7AA}
+  .meta span::before{content:"●";color:#5BD18B;margin-right:6px;font-size:10px;vertical-align:2px}
+  .list{border-top:2px solid var(--ink)}
+  .item{border-bottom:1px solid var(--line)}
+  .item h3{margin:0;font:inherit}
+  .q{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:56px 1fr 44px;align-items:center;gap:8px;padding:28px 0;cursor:pointer;font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+  .q:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:6px}
+  .num{font-size:14px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+  .arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .25s,color .25s}
+  .arrow svg{width:18px;height:18px}
+  .q:hover .arrow{background:var(--ink);color:var(--bg)}
+  .q[aria-expanded="true"] .arrow{transform:rotate(45deg);background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+  .a>div{overflow:hidden}
+  .item.open .a{grid-template-rows:1fr}
+  .a p{margin:0;padding:0 52px 30px 64px;color:var(--muted);font-size:17px;max-width:720px}
+  .a ul{margin:-14px 0 0;padding:0 52px 30px 84px;color:var(--muted);font-size:16px}
+  .a li{margin:4px 0}
+  .a strong{color:var(--ink);font-weight:600}
+  @media (max-width:960px){
+    .faq{padding:80px 28px}
+    .grid{grid-template-columns:1fr;gap:56px}
+    .intro{position:static}
+  }
+  @media (max-width:600px){
+    .faq{padding:64px 16px}
+    .q{grid-template-columns:36px 1fr 40px;font-size:18px;padding:22px 0}
+    .arrow{width:40px;height:40px}
+    .a p{padding:0 0 24px 44px;font-size:16px}
+    .a ul{padding:0 0 24px 62px}
+    .card{padding:24px}
+    .card::after{width:120px;height:120px;right:-60px;top:-60px}
+    .intro>p{font-size:17px}
+  }
+  @media (prefers-reduced-motion:reduce){.a,.arrow,.btn{transition:none}}
+</style>
+</head>
+<body>
+<section class="faq" aria-labelledby="faq-title">
+  <div class="grid">
+    <aside class="intro">
+      <div class="tag">FAQ</div>
+      <h2 id="faq-title">Good questions <em>before</em> good work.</h2>
+      <p>The things founders and marketing leads ask us most before we start a website or brand project. Don't see yours? Grab 20 minutes with our studio lead.</p>
+      <div class="card">
+        <div class="who">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&h=240&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Maya Okafor" width="64" height="64" loading="lazy">
+          <div><strong>Maya Okafor</strong><span>Studio lead, Northpaw</span></div>
+        </div>
+        <p>"Tell me what you're building and I'll tell you honestly whether we're the right fit — no pitch deck."</p>
+        <a class="btn" href="#book">Book a call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="meta"><span>Free 20-min call</span><span>Replies within 1 day</span></div>
+      </div>
+    </aside>
+
+    <div class="list" id="faq-list">
+      <div class="item">
+        <h3><button class="q" id="q-cost" aria-expanded="false" aria-controls="a-cost"><span class="num">01</span><span>How much does a new website cost?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-cost" role="region" aria-labelledby="q-cost"><div><p>Most marketing sites land between <strong>$18,000 and $45,000</strong> depending on page count, custom illustration and integrations. Brand identity projects start at $12,000. You'll get a fixed quote after a scoping call — we don't bill by the hour on projects.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-timeline" aria-expanded="false" aria-controls="a-timeline"><span class="num">02</span><span>How long does a project take?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-timeline" role="region" aria-labelledby="q-timeline"><div><p>A typical website runs <strong>8–12 weeks</strong> from kickoff to launch:</p><ul><li>Weeks 1–2: discovery, sitemap and content plan</li><li>Weeks 3–6: design, two rounds of revisions</li><li>Weeks 7–11: build, QA and content entry</li><li>Week 12: launch and handover training</li></ul></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-platform" aria-expanded="false" aria-controls="a-platform"><span class="num">03</span><span>Which platform do you build on?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-platform" role="region" aria-labelledby="q-platform"><div><p>Webflow for most marketing sites, WordPress when you need complex content or WooCommerce, and Shopify for stores. We'll recommend one based on who will edit the site day-to-day, not on what's easiest for us.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-payment" aria-expanded="false" aria-controls="a-payment"><span class="num">04</span><span>How do payments work?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-payment" role="region" aria-labelledby="q-payment"><div><p>40% to book your slot, 30% when designs are approved and 30% at launch. Invoices are due within 14 days. For projects over $40,000 we can split the schedule into monthly payments.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-copy" aria-expanded="false" aria-controls="a-copy"><span class="num">05</span><span>Do you write the copy too?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-copy" role="region" aria-labelledby="q-copy"><div><p>Yes — our in-house copywriter can take it on for around $350 per page, or we can edit copy you've already drafted. Either way we write alongside the design so headlines and layouts fit each other.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-ownership" aria-expanded="false" aria-controls="a-ownership"><span class="num">06</span><span>Who owns the design and code?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-ownership" role="region" aria-labelledby="q-ownership"><div><p>You do. Full ownership of the site, source files, Figma files and brand assets transfers to you on final payment. We only ask to show the work in our portfolio — and you can say no.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-support" aria-expanded="false" aria-controls="a-support"><span class="num">07</span><span>What happens after launch?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-support" role="region" aria-labelledby="q-support"><div><p>Every launch includes 30 days of free fixes. After that, our Care plan is $650 a month for updates, monitoring, backups and up to 6 hours of design or dev changes. Plenty of clients go without it — your team will be trained to edit the site.</p></div></div>
+      </div>
+      <div class="item">
+        <h3><button class="q" id="q-remote" aria-expanded="false" aria-controls="a-remote"><span class="num">08</span><span>Do you work with clients outside Lisbon?</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+        <div class="a" id="a-remote" role="region" aria-labelledby="q-remote"><div><p>About 70% of our clients are in the UK, US and Germany. We run weekly video check-ins, share progress in a live Figma file and keep at least 3 hours of overlap with your working day.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much does a new website cost?","acceptedAnswer":{"@type":"Answer","text":"Most marketing sites land between $18,000 and $45,000 depending on page count, custom illustration and integrations. Brand identity projects start at $12,000. You'll get a fixed quote after a scoping call — we don't bill by the hour on projects."}},
+{"@type":"Question","name":"How long does a project take?","acceptedAnswer":{"@type":"Answer","text":"A typical website runs 8–12 weeks from kickoff to launch: weeks 1–2 discovery, sitemap and content plan; weeks 3–6 design with two rounds of revisions; weeks 7–11 build, QA and content entry; week 12 launch and handover training."}},
+{"@type":"Question","name":"Which platform do you build on?","acceptedAnswer":{"@type":"Answer","text":"Webflow for most marketing sites, WordPress when you need complex content or WooCommerce, and Shopify for stores. We'll recommend one based on who will edit the site day-to-day, not on what's easiest for us."}},
+{"@type":"Question","name":"How do payments work?","acceptedAnswer":{"@type":"Answer","text":"40% to book your slot, 30% when designs are approved and 30% at launch. Invoices are due within 14 days. For projects over $40,000 we can split the schedule into monthly payments."}},
+{"@type":"Question","name":"Do you write the copy too?","acceptedAnswer":{"@type":"Answer","text":"Yes — our in-house copywriter can take it on for around $350 per page, or we can edit copy you've already drafted. Either way we write alongside the design so headlines and layouts fit each other."}},
+{"@type":"Question","name":"Who owns the design and code?","acceptedAnswer":{"@type":"Answer","text":"You do. Full ownership of the site, source files, Figma files and brand assets transfers to you on final payment. We only ask to show the work in our portfolio — and you can say no."}},
+{"@type":"Question","name":"What happens after launch?","acceptedAnswer":{"@type":"Answer","text":"Every launch includes 30 days of free fixes. After that, our Care plan is $650 a month for updates, monitoring, backups and up to 6 hours of design or dev changes. Plenty of clients go without it — your team will be trained to edit the site."}},
+{"@type":"Question","name":"Do you work with clients outside Lisbon?","acceptedAnswer":{"@type":"Answer","text":"About 70% of our clients are in the UK, US and Germany. We run weekly video check-ins, share progress in a live Figma file and keep at least 3 hours of overlap with your working day."}}
+]}
+</script>
+<script>
+(function(){
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('#faq-list .q'));
+
+  function setOpen(btn, open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.closest('.item').classList.toggle('open', open);
+  }
+
+  buttons.forEach(function(btn, i){
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      setOpen(btn, open);
+      if (open && history.replaceState) history.replaceState(null, '', '#' + btn.id);
+    });
+    btn.addEventListener('keydown', function(e){
+      var next = null;
+      if (e.key === 'ArrowDown') next = buttons[(i + 1) % buttons.length];
+      else if (e.key === 'ArrowUp') next = buttons[(i - 1 + buttons.length) % buttons.length];
+      else if (e.key === 'Home') next = buttons[0];
+      else if (e.key === 'End') next = buttons[buttons.length - 1];
+      if (next) { e.preventDefault(); next.focus(); }
+    });
+  });
+
+  function fromHash(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    var btn = id && document.getElementById(id);
+    if (btn && buttons.indexOf(btn) > -1) {
+      setOpen(btn, true);
+      btn.scrollIntoView({block:'center'});
+      btn.focus({preventScroll:true});
+    }
+  }
+  window.addEventListener('hashchange', fromHash);
+  if (location.hash) fromHash(); else setOpen(buttons[0], true);
+})();
+</script>
+</body>
+</html>
