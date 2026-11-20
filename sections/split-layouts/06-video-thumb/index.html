@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Plate Network — Watch our story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF6EC; --ink:#1E3328; --muted:#4D5F55; --tomato:#E4572E; --tomato-d:#C2401A;
+    --leaf:#2F6B4F; --card:#FFFFFF; --line:#F0DFCC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  .wrap{max-width:1240px;margin:0 auto;padding:112px 32px}
+  .split{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center}
+
+  /* media */
+  .media{position:relative}
+  .media::before{content:"";position:absolute;inset:28px -18px -18px 28px;border-radius:28px;background:var(--tomato);opacity:.14}
+  .thumb{position:relative;display:block;width:100%;aspect-ratio:5/4;border:0;padding:0;border-radius:28px;overflow:hidden;cursor:pointer;background:#ddd;font:inherit;color:#fff}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,24,0) 45%,rgba(20,30,24,.72))}
+  .thumb:hover img,.thumb:focus-visible img{transform:scale(1.04)}
+  .thumb:focus-visible{outline:3px solid var(--tomato);outline-offset:5px}
+  .play{position:absolute;left:50%;top:50%;z-index:2;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:var(--tomato);display:grid;place-items:center;box-shadow:0 14px 34px rgba(228,87,46,.45)}
+  .play::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:ring 2.4s ease-out infinite}
+  .play svg{width:30px;height:30px;margin-left:5px}
+  @keyframes ring{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.35);opacity:0}}
+  .caption{position:absolute;left:28px;right:28px;bottom:24px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;text-align:left}
+  .caption strong{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.25rem;line-height:1.2}
+  .caption span{font-size:.9rem;opacity:.9}
+  .dur{flex:none;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:600}
+
+  /* text */
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tomato-d)}
+  .eyebrow svg{width:18px;height:18px}
+  h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2.1rem,4.2vw,3.4rem);line-height:1.04;letter-spacing:-.02em;margin:16px 0 20px}
+  h2 em{font-style:normal;color:var(--tomato)}
+  .lead{font-size:1.12rem;color:var(--muted);max-width:52ch}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:36px 0 34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+  .stat b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:800;line-height:1;color:var(--leaf)}
+  .stat span{display:block;margin-top:8px;font-size:.88rem;color:var(--muted);line-height:1.35}
+  .actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:15px 26px;font-weight:600;text-decoration:none;font-size:1rem;transition:background .2s,transform .2s}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--leaf);transform:translateY(-2px)}
+  .btn-ghost{color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  .btn svg{width:18px;height:18px}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+
+  /* modal */
+  dialog{border:0;padding:0;background:transparent;width:min(960px,calc(100vw - 32px));max-width:none;margin:auto;color:#fff}
+  dialog::backdrop{background:rgba(14,22,18,.86);backdrop-filter:blur(4px)}
+  .player{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .screen{position:relative;aspect-ratio:16/9}
+  .screen img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 12s linear,filter .3s}
+  .player.playing .screen img{transform:scale(1.12)}
+  .player:not(.playing) .screen img{filter:brightness(.7)}
+  .sub{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(0,0,0,.66);padding:6px 14px;border-radius:6px;font-size:clamp(.8rem,1.6vw,1rem);width:max-content;max-width:88%;text-align:center}
+  .bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;border:0;background:var(--tomato);color:#fff;display:grid;place-items:center;cursor:pointer}
+  .bigplay svg{width:26px;height:26px;margin-left:4px}
+  .player.playing .bigplay{display:none}
+  .bar{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#141a17;font-size:.85rem}
+  .bar button{background:none;border:0;color:#fff;cursor:pointer;display:grid;place-items:center;width:34px;height:34px;border-radius:8px}
+  .bar button:hover{background:rgba(255,255,255,.1)}
+  .bar svg{width:20px;height:20px}
+  .track{flex:1;height:6px;border-radius:6px;background:rgba(255,255,255,.2);overflow:hidden}
+  .fill{height:100%;width:0;background:var(--tomato)}
+  .time{font-variant-numeric:tabular-nums;opacity:.85;min-width:84px;text-align:right}
+  .close{position:absolute;top:-52px;right:0;width:42px;height:42px;border-radius:50%;border:0;background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+  .close svg{width:20px;height:20px}
+  .note{text-align:center;font-size:.8rem;opacity:.65;margin-top:12px}
+
+  @media (max-width:980px){
+    .split{grid-template-columns:1fr;gap:56px}
+    .media{max-width:680px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:72px 16px}
+    .media::before{inset:16px -8px -10px 16px}
+    .play{width:76px;height:76px;margin:-38px 0 0 -38px}
+    .caption{left:18px;right:18px;bottom:16px}
+    .caption strong{font-size:1.05rem}
+    .stats{grid-template-columns:1fr;gap:10px}
+    .stat{display:flex;align-items:baseline;gap:14px}
+    .stat span{margin-top:0}
+    .btn{width:100%;justify-content:center}
+    .time{min-width:0}
+    .close{top:-50px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="fp-title">
+  <div class="split">
+    <div class="media">
+      <button class="thumb" type="button" id="openVideo" aria-haspopup="dialog" aria-controls="videoModal">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1400&q=70&auto=format&fit=crop" alt="Volunteers unloading boxes of donated food at a community distribution day">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l12-7.5z"/></svg></span>
+        <span class="caption">
+          <span><strong>Saturday at the Eastbank depot</strong><span>A short film by our volunteers</span></span>
+          <span class="dur">2:48</span>
+        </span>
+        <span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Play video: Saturday at the Eastbank depot, 2 minutes 48 seconds</span>
+      </button>
+    </div>
+
+    <div class="copy">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C1 8.5 3 5 6.4 5c2 0 3.3 1 4.1 2.2h3C14.3 6 15.6 5 17.6 5 21 5 23 8.5 21.6 11.7 19.5 16.4 12 21 12 21z"/></svg>Full Plate Network</span>
+      <h2 id="fp-title">No one in our city should <em>skip a meal</em> to pay the rent.</h2>
+      <p class="lead">Every week, 4,600 neighbours rescue surplus food from grocers and farms and turn it into hot dinners and grocery boxes. Watch one Saturday at our busiest depot — from the 6 a.m. van run to the last family served.</p>
+
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><b>1.2M</b><span>meals shared in 2025</span></div>
+        <div class="stat" role="listitem"><b>38</b><span>neighbourhood kitchens</span></div>
+        <div class="stat" role="listitem"><b>92p</b><span>of every £1 goes to food</span></div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#donate">Give a week of meals — £25
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#volunteer">Volunteer a shift</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog id="videoModal" aria-label="Video: Saturday at the Eastbank depot">
+  <button class="close" type="button" id="closeVideo" aria-label="Close video">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="player" id="player">
+    <div class="screen">
+      <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1400&q=70&auto=format&fit=crop" alt="">
+      <p class="sub" id="sub" aria-live="polite">“We started with one van and a borrowed church hall.”</p>
+      <button class="bigplay" type="button" id="bigPlay" aria-label="Play">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
+      </button>
+    </div>
+    <div class="bar">
+      <button type="button" id="toggle" aria-label="Play">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="toggleIcon"><path d="M7 4.5v15l12-7.5z"/></svg>
+      </button>
+      <div class="track" role="progressbar" aria-label="Playback progress" aria-valuemin="0" aria-valuemax="168" aria-valuenow="0" id="track"><div class="fill" id="fill"></div></div>
+      <span class="time" id="time">0:00 / 2:48</span>
+    </div>
+  </div>
+  <p class="note">Preview player — the full film lives on our channel.</p>
+</dialog>
+
+<script>
+(function(){
+  var modal=document.getElementById('videoModal'),openBtn=document.getElementById('openVideo'),
+      closeBtn=document.getElementById('closeVideo'),player=document.getElementById('player'),
+      toggle=document.getElementById('toggle'),icon=document.getElementById('toggleIcon'),
+      big=document.getElementById('bigPlay'),fill=document.getElementById('fill'),
+      track=document.getElementById('track'),time=document.getElementById('time'),sub=document.getElementById('sub');
+  var DURATION=168,t=0,timer=null;
+  var lines=[
+    [0,"“We started with one van and a borrowed church hall.”"],
+    [30,"“Now the first pallets arrive before six.”"],
+    [70,"“Most of our volunteers were once on the other side of the table.”"],
+    [120,"“Nobody leaves without a hot meal — that’s the only rule.”"]
+  ];
+  var PLAY='<path d="M7 4.5v15l12-7.5z"/>',PAUSE='<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>';
+  function fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+  function render(){
+    fill.style.width=(t/DURATION*100)+'%';
+    track.setAttribute('aria-valuenow',Math.floor(t));
+    time.textContent=fmt(t)+' / '+fmt(DURATION);
+    var cur=lines[0][1];
+    for(var i=0;i<lines.length;i++){if(t>=lines[i][0])cur=lines[i][1]}
+    if(sub.textContent!==cur)sub.textContent=cur;
+  }
+  function play(){
+    if(timer)return;
+    player.classList.add('playing');icon.innerHTML=PAUSE;toggle.setAttribute('aria-label','Pause');
+    timer=setInterval(function(){t+=0.25;if(t>=DURATION){t=DURATION;pause()}render()},250);
+  }
+  function pause(){
+    clearInterval(timer);timer=null;
+    player.classList.remove('playing');icon.innerHTML=PLAY;toggle.setAttribute('aria-label','Play');
+  }
+  function open(){
+    t=0;render();
+    if(typeof modal.showModal==='function'){modal.showModal()}else{modal.setAttribute('open','')}
+    play();toggle.focus();
+  }
+  function close(){pause();if(modal.open)modal.close()}
+  openBtn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  modal.addEventListener('close',function(){pause();openBtn.focus()});
+  modal.addEventListener('click',function(e){if(e.target===modal)close()});
+  toggle.addEventListener('click',function(){if(timer){pause()}else{if(t>=DURATION)t=0;play()}});
+  big.addEventListener('click',function(){if(t>=DURATION)t=0;play();toggle.focus()});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)pause()});
+})();
+</script>
+</body>
+</html>

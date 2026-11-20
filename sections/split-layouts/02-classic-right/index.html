@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerline Bookkeeping — Split: Classic Right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f4ec; --ink:#14213d; --muted:#4f5870; --gold:#c98a12; --gold-l:#f3e2b8;
+    --navy:#14213d; --line:#e2dccb; --card:#fffdf8; --green:#2f7d4f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1220px;margin:0 auto;padding:120px 32px}
+  .split{display:grid;grid-template-columns:1fr 1.05fr;gap:88px;align-items:center}
+
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--gold)}
+  h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.05;letter-spacing:-.01em;margin:20px 0 22px}
+  h2 i{color:var(--gold)}
+  .lead{font-size:17.5px;color:var(--muted);max-width:50ch}
+
+  .checks{list-style:none;margin:34px 0 38px;border-top:1px solid var(--line)}
+  .checks li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .checks li div span{color:var(--muted);font-size:14.5px;display:block}
+  .checks b{font-weight:700}
+  .tick{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold-l);display:grid;place-items:center;margin-top:1px}
+  .tick svg{width:15px;height:15px}
+
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:15.5px;padding:16px 28px;border-radius:4px;transition:background .2s,transform .2s}
+  .btn:hover{background:#0b1529;transform:translateY(-1px)}
+  .btn svg{width:18px;height:18px}
+  .link{color:var(--ink);font-weight:700;font-size:15px;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:5px}
+  .link:hover{color:var(--gold)}
+  a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+  /* media */
+  .media{position:relative;padding:0 0 40px 40px}
+  .media::before{content:"";position:absolute;left:0;bottom:0;width:62%;height:70%;background:var(--navy);border-radius:4px}
+  .frame{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/4.6;box-shadow:0 30px 60px -32px rgba(20,33,61,.6)}
+  .frame img{width:100%;height:100%;object-fit:cover}
+  .stat-card{position:absolute;right:-24px;bottom:84px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 20px;width:250px;box-shadow:0 22px 44px -22px rgba(20,33,61,.45)}
+  .stat-card small{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .stat-card strong{display:block;font-family:"DM Serif Display",serif;font-weight:400;font-size:40px;line-height:1.1;margin:4px 0 10px}
+  .bar{height:8px;background:var(--gold-l);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;width:86%;background:var(--gold);border-radius:inherit}
+  .stat-card p{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .badge{position:absolute;top:24px;left:16px;background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;padding:10px 14px;border-radius:4px;display:flex;gap:8px;align-items:center}
+  .badge svg{width:16px;height:16px}
+  .trust{display:flex;gap:28px;margin-top:40px;padding-top:24px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted);flex-wrap:wrap}
+  .trust b{display:block;font-family:"DM Serif Display",serif;font-weight:400;font-size:28px;color:var(--ink);line-height:1.1}
+
+  @media (max-width:1000px){
+    .wrap{padding:88px 28px}
+    .split{grid-template-columns:1fr;gap:56px}
+    .media{max-width:600px;width:100%;margin:0 auto}
+    .frame{aspect-ratio:4/3.3}
+    .stat-card{right:16px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:64px 16px}
+    .media{padding:0 0 24px 24px}
+    .stat-card{position:relative;right:auto;bottom:auto;width:auto;margin:-48px 12px 0 12px}
+    .media::before{height:60%}
+    .btn{width:100%;justify-content:center}
+    .lead{font-size:16.5px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="ll-title">
+  <div class="split">
+    <div class="copy">
+      <p class="eyebrow">Ledgerline Bookkeeping</p>
+      <h2 id="ll-title">Books that close themselves — <i>almost.</i></h2>
+      <p class="lead">We look after the numbers for 340 independent businesses, from two-person studios to 60-seat restaurants. You get a named bookkeeper, a monthly report you’ll actually read, and a tax season with no surprises.</p>
+
+      <ul class="checks">
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <div><b>Month-end close in 3 working days</b><span>Reconciled bank, card and payroll accounts, every month.</span></div></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <div><b>VAT &amp; payroll filed on time</b><span>We track deadlines so you never pay a late penalty again.</span></div></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <div><b>Receipts snapped, not shoeboxed</b><span>Photograph it, forward it, forget it — we match it to the ledger.</span></div></li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <div><b>Fixed monthly fee from £180</b><span>No hourly billing, no invoice shock in April.</span></div></li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn" href="#call">Book a free 20-min review
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="link" href="#pricing">See plans &amp; pricing</a>
+      </div>
+
+      <div class="trust">
+        <div><b>340</b>clients on retainer</div>
+        <div><b>£1.2m</b>tax saved last year</div>
+        <div><b>0</b>missed deadlines since 2016</div>
+      </div>
+    </div>
+
+    <figure class="media">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=70&auto=format&fit=crop" alt="Two colleagues high-fiving across a desk covered in paperwork and a laptop" width="1400" height="1610" loading="lazy">
+      </div>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15l-3.5 6 .9-4.5L6 15"/><path d="M12 15l3.5 6-.9-4.5L18 15"/><circle cx="12" cy="9" r="6"/></svg>Chartered &amp; certified</span>
+      <figcaption class="stat-card">
+        <small>October books closed</small>
+        <strong>Day 3 of 3</strong>
+        <div class="bar" role="img" aria-label="86 percent of transactions auto-matched"><i></i></div>
+        <p>86% of transactions auto-matched</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+</body>
+</html>

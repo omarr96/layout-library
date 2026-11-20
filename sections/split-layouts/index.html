@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image + Text Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #111113; --tx: #52525b; --mut: #8a8a93; --line: #e7e7ea; --soft: #f7f7f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+h1 { margin: 0; font-size: 34px; color: var(--ink); letter-spacing: -.025em; }
+.sub { margin: 8px 0 0; max-width: 680px; }
+.kit { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.kit span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; margin-top: 40px; }
+.card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .25s, transform .25s, border-color .25s; display: flex; flex-direction: column; }
+.card:hover { box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); transform: translateY(-3px); border-color: #d4d4d8; }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.b { padding: 16px 18px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.n { font-size: 13px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.b h3 { margin: 0; font-size: 16px; color: var(--ink); }
+.b p { margin: 4px 0 10px; font-size: 13.5px; }
+.sw { display: flex; gap: 5px; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 600px) { .wrap { padding: 36px 16px 60px; } .grid { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Image + text layouts</h1>
+  <p class="sub">Ten two-column sections with an image on one side and text on the other. Click one to open it full size.</p>
+  <div class="kit"><span>Image left</span><span>Image right</span><span>Overlapping card</span><span>Stacked images</span><span>Full-bleed half</span><span>Video thumbnail</span><span>Arch image</span><span>Image + counters</span><span>Tilted frame</span><span>Portrait + quote</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const T = [
+  ["01-classic-left", "Brightwell Dental Studio", "Image left, text right · dental clinic · floating review card", ["#f2faf8", "#0b2a2a", "#0f766e", "#ffffff"]],
+  ["02-classic-right", "Ledgerline Bookkeeping", "Text left with checklist, image right · bookkeeping · progress card", ["#f7f4ec", "#14213d", "#c98a12", "#ffffff"]],
+  ["03-overlap-card", "Atelier Maren Interiors", "Card overlapping the image · interior design · material swatches", ["#efe7dc", "#2b2724", "#a4532c", "#ffffff"]],
+  ["04-image-stack", "Ironridge Builders", "Two stacked images + 15 years badge · construction", ["#f4f2ee", "#1c1f24", "#e8590c", "#ffffff"]],
+  ["05-full-bleed-half", "Osteria Lume", "Edge-to-edge half image · restaurant · open-now pill", ["#1b2620", "#d6b46a", "#c2464f", "#ffffff"]],
+  ["06-video-thumb", "Full Plate Network", "Image with play button · charity · mock video player", ["#FFF6EC", "#1E3328", "#E4572E", "#ffffff"]],
+  ["07-arch-image", "Fern & Fable Florals", "Arch-shaped image · wedding florist · signature", ["#F7EEE9", "#B76E6E", "#6F8466", "#ffffff"]],
+  ["08-stats-row", "Northline Freight", "Image + counters · logistics · count up on scroll", ["#0B1A30", "#FF6A13", "#E8EDF3", "#ffffff"]],
+  ["09-tilted-frame", "Pixel Pals Code School", "Tilted polaroid frame · kids' coding school · playful shapes", ["#FFF8EA", "#5B3DF5", "#FFC83D", "#2FCFAE"]],
+  ["10-quote-split", "Ashcombe Hale LLP", "Portrait + founder quote · law firm · minimal", ["#F3F0E9", "#1B1E22", "#7A2E2E", "#ffffff"]]
+];
+document.getElementById('grid').innerHTML = T.map(([f, n, d, c], i) => `<a class="card" href="${f}/index.html" target="_blank" rel="noopener">
+  <div class="shot"><iframe data-src="${f}/index.html" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></div>
+  <div class="b"><span class="n">${String(i + 1).padStart(2, '0')}</span><div><h3>${n}</h3><p>${d}</p><div class="sw">${c.map(x => `<i style="background:${x}"></i>`).join('')}</div></div></div></a>`).join('');
+const ro = new ResizeObserver(es => es.forEach(e => e.target.querySelector('iframe').style.transform = `scale(${e.contentRect.width / 1440})`));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const f = e.target.querySelector('iframe'); f.src = f.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); });
+</script>
+</body>
+</html>

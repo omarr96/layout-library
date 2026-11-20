@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Maren Interiors — Split: Overlap Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#efe7dc; --ink:#2b2724; --muted:#6b6058; --terra:#a4532c; --card:#faf6f0; --line:#ddd1c2; --sand:#d9c7ae;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"Jost",system-ui,sans-serif;font-weight:400;color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1320px;margin:0 auto;padding:120px 32px}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px}
+  .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--terra);font-weight:500}
+  .index{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;color:var(--muted)}
+
+  .stage{position:relative;display:grid;grid-template-columns:repeat(12,1fr);align-items:center}
+  .photo{grid-column:1 / span 8;grid-row:1;position:relative;aspect-ratio:4/3.05;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .stage:hover .photo img{transform:scale(1.03)}
+  .photo-tag{position:absolute;left:22px;bottom:22px;background:rgba(250,246,240,.92);padding:8px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+  .card{grid-column:7 / span 6;grid-row:1;position:relative;z-index:2;background:var(--card);padding:60px 56px 52px;box-shadow:0 40px 80px -40px rgba(43,39,36,.45)}
+  .card::before{content:"";position:absolute;top:-14px;right:-14px;width:96px;height:96px;border-top:1px solid var(--terra);border-right:1px solid var(--terra)}
+  h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(36px,4.2vw,58px);line-height:1.02;letter-spacing:-.01em;margin:18px 0 22px}
+  h2 em{font-style:italic;color:var(--terra);font-weight:400}
+  .card p{color:var(--muted);font-size:16.5px;font-weight:300;max-width:46ch}
+  .card p + p{margin-top:14px}
+
+  .palette{margin:32px 0 34px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .palette-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .palette-label output{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:0;text-transform:none;color:var(--ink)}
+  .swatches{display:flex;gap:12px;flex-wrap:wrap}
+  .sw{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);transition:transform .25s}
+  .sw::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid transparent;transition:border-color .25s}
+  .sw[aria-pressed="true"]::after{border-color:var(--ink)}
+  .sw:hover{transform:translateY(-2px)}
+  .sw:focus-visible{outline:2px solid var(--terra);outline-offset:6px}
+
+  .more{display:inline-flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+  .more span{width:52px;height:52px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;transition:background .3s,color .3s}
+  .more svg{width:18px;height:18px}
+  .more:hover span{background:var(--ink);color:var(--card)}
+  .more:focus-visible{outline:2px solid var(--terra);outline-offset:4px}
+  .credit{display:flex;gap:16px;align-items:center;margin-top:30px;font-size:14px;color:var(--muted)}
+  .credit b{display:block;color:var(--ink);font-weight:500}
+  .mono{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--card);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;flex:none}
+
+  @media (max-width:1100px){
+    .photo{grid-column:1 / span 9}
+    .card{grid-column:6 / span 7;padding:48px 40px}
+  }
+  @media (max-width:860px){
+    .wrap{padding:80px 24px}
+    .stage{display:block}
+    .photo{aspect-ratio:4/3.2}
+    .card{margin:-72px 20px 0;padding:44px 32px}
+    .card::before{right:-8px;top:-8px;width:64px;height:64px}
+  }
+  @media (max-width:520px){
+    .wrap{padding:60px 16px}
+    .head{flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:28px}
+    .card{margin:-48px 10px 0;padding:36px 22px}
+    .card::before{display:none}
+    .photo-tag{left:12px;bottom:60px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="am-title">
+  <div class="head">
+    <p class="eyebrow">Atelier Maren · Interiors</p>
+    <p class="index">Selected work — No. 14</p>
+  </div>
+
+  <div class="stage">
+    <figure class="photo">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1400&q=70&auto=format&fit=crop" alt="Sunlit living room with a low grey sofa, wooden coffee table and a long clerestory window" width="1400" height="1068" loading="lazy">
+      <figcaption class="photo-tag">Hollis Road House, 2024</figcaption>
+    </figure>
+
+    <article class="card">
+      <p class="eyebrow">Our approach</p>
+      <h2 id="am-title">Rooms that feel <em>lived-in</em> from the very first day.</h2>
+      <p>We design homes around the way you actually live — where the morning light falls, where the post lands, where the dog sleeps. Then we layer in honest materials that get better with every year.</p>
+      <p>Most projects run eight to fourteen weeks, from first sketch to the last cushion.</p>
+
+      <div class="palette" role="group" aria-labelledby="pal-l">
+        <div class="palette-label"><span id="pal-l">Material palette</span><output id="pal-out" aria-live="polite">Limewashed oak</output></div>
+        <div class="swatches">
+          <button class="sw" type="button" style="background:#d8c3a2" aria-pressed="true" data-name="Limewashed oak" aria-label="Limewashed oak"></button>
+          <button class="sw" type="button" style="background:#a4532c" aria-pressed="false" data-name="Terracotta clay" aria-label="Terracotta clay"></button>
+          <button class="sw" type="button" style="background:#8a8f78" aria-pressed="false" data-name="Sage linen" aria-label="Sage linen"></button>
+          <button class="sw" type="button" style="background:#e9e2d6" aria-pressed="false" data-name="Bone travertine" aria-label="Bone travertine"></button>
+          <button class="sw" type="button" style="background:#3b322c" aria-pressed="false" data-name="Smoked walnut" aria-label="Smoked walnut"></button>
+        </div>
+      </div>
+
+      <a class="more" href="#project">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        View the project
+      </a>
+
+      <div class="credit">
+        <span class="mono" aria-hidden="true">M</span>
+        <div><b>Maren Holt</b>Founder &amp; lead designer</div>
+      </div>
+    </article>
+  </div>
+</section>
+<script>
+(function(){
+  var btns = document.querySelectorAll('.sw');
+  var out = document.getElementById('pal-out');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      out.textContent = b.getAttribute('data-name');
+    });
+  });
+})();
+</script>
+</body>
+</html>

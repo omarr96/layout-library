@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "split-gallery",
+      "title": "Image + text layouts · all 10",
+      "desc": "Gallery of 10 image + text sections, each a different layout.",
+      "tags": [
+        "Image + text",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/split-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-01-classic-left",
+      "title": "Image + text 01 · Brightwell Dental Studio",
+      "desc": "Image left, text right · dental clinic · floating review card.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/01-classic-left/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-02-classic-right",
+      "title": "Image + text 02 · Ledgerline Bookkeeping",
+      "desc": "Text left with checklist, image right · bookkeeping · progress card.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/02-classic-right/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-03-overlap-card",
+      "title": "Image + text 03 · Atelier Maren Interiors",
+      "desc": "Card overlapping the image · interior design · material swatches.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/03-overlap-card/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-04-image-stack",
+      "title": "Image + text 04 · Ironridge Builders",
+      "desc": "Two stacked images + 15 years badge · construction.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/04-image-stack/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-05-full-bleed-half",
+      "title": "Image + text 05 · Osteria Lume",
+      "desc": "Edge-to-edge half image · restaurant · open-now pill.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/05-full-bleed-half/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-06-video-thumb",
+      "title": "Image + text 06 · Full Plate Network",
+      "desc": "Image with play button · charity · mock video player.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/06-video-thumb/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-07-arch-image",
+      "title": "Image + text 07 · Fern & Fable Florals",
+      "desc": "Arch-shaped image · wedding florist · signature.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/07-arch-image/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-08-stats-row",
+      "title": "Image + text 08 · Northline Freight",
+      "desc": "Image + counters · logistics · count up on scroll.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/08-stats-row/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-09-tilted-frame",
+      "title": "Image + text 09 · Pixel Pals Code School",
+      "desc": "Tilted polaroid frame · kids' coding school · playful shapes.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/09-tilted-frame/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "split-10-quote-split",
+      "title": "Image + text 10 · Ashcombe Hale LLP",
+      "desc": "Portrait + founder quote · law firm · minimal.",
+      "tags": [
+        "Image + text"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/split-layouts/10-quote-split/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "features-gallery",
       "title": "Features layouts · all 10",
       "desc": "Gallery of 10 features sections, each a different layout.",

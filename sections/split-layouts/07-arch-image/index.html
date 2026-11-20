@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fern &amp; Fable Florals — Wedding flowers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7EEE9; --ink:#3A2A32; --muted:#6B5A61; --sage:#6F8466; --sage-d:#56684F;
+    --blush:#E9CFC6; --rose:#B76E6E; --line:#DCC7BE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+  .wrap{max-width:1180px;margin:0 auto;padding:120px 32px}
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:96px;align-items:center}
+
+  /* arch */
+  .arch-col{position:relative;justify-self:center;width:100%;max-width:460px}
+  .arch-outline{position:absolute;inset:-22px 22px 22px -22px;border:1px solid var(--rose);border-radius:999px 999px 0 0;opacity:.55;pointer-events:none}
+  .arch{position:relative;aspect-ratio:3/4.1;border-radius:999px 999px 0 0;overflow:hidden;background:var(--blush)}
+  .arch img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+  .arch-col:hover .arch img{transform:scale(1.05)}
+  .sprig{position:absolute;right:-38px;bottom:56px;width:92px;color:var(--sage)}
+  .seal{position:absolute;left:-34px;bottom:-30px;width:118px;height:118px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;text-align:center}
+  .seal svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 26s linear infinite}
+  .seal text{font-family:"Jost",sans-serif;font-size:9.6px;letter-spacing:2px;text-transform:uppercase;fill:var(--bg)}
+  .seal b{font-family:"Cormorant Garamond",serif;font-size:1.9rem;font-weight:500;font-style:italic;line-height:1}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* text */
+  .eyebrow{display:flex;align-items:center;gap:14px;font-size:.78rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--sage-d)}
+  .eyebrow::before{content:"";width:40px;height:1px;background:currentColor}
+  h2{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(2.4rem,4.8vw,4rem);line-height:1.06;letter-spacing:-.01em;margin:22px 0 26px}
+  h2 em{font-style:italic;color:var(--rose)}
+  .copy p{font-size:1.07rem;color:var(--muted);max-width:50ch}
+  .copy p+p{margin-top:16px}
+  .dropcap::first-letter{font-family:"Cormorant Garamond",serif;float:left;font-size:4.1rem;line-height:.8;padding:8px 10px 0 0;color:var(--ink)}
+  .offer{list-style:none;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:8px 28px;margin:32px 0 36px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .offer li{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:400;color:var(--ink)}
+  .offer svg{width:20px;height:20px;color:var(--sage);flex:none}
+  .sign{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .sig{font-family:"Pinyon Script",cursive;font-size:2.9rem;line-height:1;color:var(--ink)}
+  .sig-meta{font-size:.86rem;line-height:1.4;color:var(--muted);border-left:1px solid var(--line);padding-left:22px}
+  .sig-meta strong{display:block;font-weight:500;color:var(--ink);letter-spacing:.04em}
+  .cta{display:inline-flex;align-items:center;gap:12px;margin-top:36px;font-size:.82rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-bottom:6px;border-bottom:1px solid var(--ink);transition:gap .3s,color .3s,border-color .3s}
+  .cta:hover{gap:20px;color:var(--rose);border-color:var(--rose)}
+  .cta svg{width:18px;height:18px}
+  a:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+
+  @media (max-width:960px){
+    .split{grid-template-columns:1fr;gap:88px}
+    .arch-col{max-width:400px}
+    .copy{max-width:620px;margin:0 auto}
+  }
+  @media (max-width:560px){
+    .wrap{padding:76px 16px 72px}
+    .arch-col{max-width:300px}
+    .arch-outline{inset:-14px 14px 14px -14px}
+    .sprig{right:-20px;width:64px}
+    .seal{left:-12px;bottom:-26px;width:96px;height:96px}
+    .seal text{font-size:9.4px}
+    .seal b{font-size:1.5rem}
+    .offer{grid-template-columns:1fr}
+    .sig{font-size:2.5rem}
+    .eyebrow{letter-spacing:.2em;font-size:.72rem}
+    .eyebrow::before{width:24px}
+    .sig-meta{border-left:0;padding-left:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="ff-title">
+  <div class="split">
+    <figure class="arch-col">
+      <span class="arch-outline" aria-hidden="true"></span>
+      <div class="arch">
+        <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=70&auto=format&fit=crop" alt="A loose, garden-style bridal bouquet of blush garden roses, eucalyptus and dusky plum blooms">
+      </div>
+      <svg class="sprig" viewBox="0 0 80 160" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+        <path d="M40 158C38 110 42 60 58 6"/>
+        <path d="M41 130c-12-4-22-14-24-28 12 2 22 12 24 28zM42 104c12-6 22-18 22-32-12 4-20 16-22 32zM44 78c-12-4-20-14-21-28 11 3 19 13 21 28zM48 52c11-6 18-17 18-30-11 4-17 15-18 30z"/>
+      </svg>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text textLength="282" lengthAdjust="spacing"><textPath href="#circ" textLength="282" lengthAdjust="spacing">Seasonal · Locally grown · Est. 2014 · </textPath></text></svg>
+        <b>F&amp;F</b>
+      </div>
+    </figure>
+
+    <div class="copy">
+      <p class="eyebrow">Wedding flowers, Cotswolds</p>
+      <h2 id="ff-title">Flowers that look like they were <em>gathered</em>, never arranged.</h2>
+      <p class="dropcap">Every wedding we take on begins in our cutting garden outside Bibury, where we grow over ninety varieties of roses, sweet peas, cosmos and trailing herbs. We design around what is blooming that week — so your bouquet carries the scent and colour of the exact season you said “I do.”</p>
+      <p>We take just twenty-two weddings a year, which means one designer sees you from first sketch to the final buttonhole.</p>
+
+      <ul class="offer">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c0-6 0-9 0-12M12 9c-3 0-6-2-6-6 3 0 6 2 6 6zM12 12c3 0 6-2 6-6-3 0-6 2-6 6z"/></svg>Bridal &amp; party</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V11a8 8 0 0 1 16 0v10M4 21h16M9 21v-6a3 3 0 0 1 6 0v6"/></svg>Ceremony arches</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18M5 10v10M19 10v10M8 10V7a4 4 0 0 1 8 0v3"/></svg>Table styling</li>
+      </ul>
+
+      <div class="sign">
+        <span class="sig" aria-hidden="true">Imogen Hale</span>
+        <p class="sig-meta"><strong>Imogen Hale</strong>Founder &amp; head florist</p>
+      </div>
+
+      <a class="cta" href="#enquire">Check your date
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+</body>
+</html>
