@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel Card Features</title>
+<meta name="description" content="Kestrel Card: real-rate spending in 150 currencies, spending insights, instant freeze, cashback, fee-free ATMs and live notifications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C0E12; --tile:#14171E; --tile-2:#1A1E27; --line:#252A35; --ink:#F3F5F7; --muted:#A1A8B5;
+    --lime:#C8F560; --lime-ink:#1B2400; --violet:#8B7BFF; --ice:#7FD4FF;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .bento-sec{padding:104px 24px 112px;overflow:hidden}
+  .wrap{max-width:1200px;margin:0 auto}
+  header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+  h2{text-wrap:balance;font-size:clamp(34px,4.8vw,58px);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin:14px 0 0;max-width:680px}
+  .lede{color:var(--muted);font-size:17px;max-width:360px;margin:0}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(230px,auto);gap:16px;
+    grid-template-areas:"card card chart chart" "card card freeze cash" "map map notif notif"}
+  .tile{position:relative;background:var(--tile);border:1px solid var(--line);border-radius:24px;padding:26px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+  .tile:hover{border-color:#3A4150;transform:translateY(-2px)}
+  .tile h3{font-size:20px;letter-spacing:-.02em;margin:0 0 6px;font-weight:600}
+  .tile p{margin:0;color:var(--muted);font-size:15px}
+  .t-card{grid-area:card;background:radial-gradient(120% 80% at 80% 0%,#2A2550 0%,var(--tile) 60%)}
+  .t-chart{grid-area:chart}.t-freeze{grid-area:freeze}.t-cash{grid-area:cash;background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+  .t-map{grid-area:map}.t-notif{grid-area:notif}
+  /* card visual */
+  .cardwrap{flex:1;display:grid;place-items:center;padding:30px 0 20px;perspective:900px}
+  .plastic{width:min(100%,380px);aspect-ratio:1.586;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;
+    background:linear-gradient(135deg,#1E1A3A 0%,#3B2F8F 45%,#8B7BFF 100%);box-shadow:0 40px 60px -30px rgba(139,123,255,.6),inset 0 1px 0 rgba(255,255,255,.25);
+    transform:rotateX(14deg) rotateY(-16deg) rotate(-4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s;position:relative}
+  .t-card:hover .plastic{transform:rotateX(0) rotateY(0) rotate(0)}
+  .plastic .row{display:flex;justify-content:space-between;align-items:center}
+  .logo{font-weight:700;letter-spacing:-.03em;font-size:20px}
+  .logo span{color:var(--lime)}
+  .chip{width:42px;height:32px;border-radius:7px;background:linear-gradient(135deg,#E9DFA8,#B9A55C);position:relative}
+  .chip::after{content:"";position:absolute;inset:8px 6px;border:1px solid rgba(0,0,0,.25);border-radius:3px}
+  .pan{font-size:17px;letter-spacing:.14em;opacity:.9}
+  .plastic small{font-size:12px;opacity:.8;letter-spacing:.06em}
+  .frost{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(200,235,255,.75),rgba(127,212,255,.45));backdrop-filter:blur(4px);opacity:0;transition:opacity .4s;display:grid;place-items:center;color:#0B3550;font-weight:700;font-size:15px;letter-spacing:.08em}
+  .frozen .frost{opacity:1}
+  .fx{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .fx span{font-size:13px;border:1px solid var(--line);background:var(--tile-2);padding:5px 10px;border-radius:999px;color:var(--ink)}
+  /* chart */
+  .chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .big{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .big small{display:block;font-size:13px;color:var(--muted);font-weight:500;letter-spacing:0;margin-top:6px}
+  .bars{height:150px;display:flex;align-items:flex-end;gap:10px;margin:auto 0 14px;padding-top:22px;box-sizing:content-box}
+  .bar{flex:1;border-radius:8px 8px 3px 3px;background:#2C3240;position:relative;transform-origin:bottom;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+  .bar.hi{background:var(--violet)}
+  .bar::after{content:attr(data-d);position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted)}
+  .bars{padding-bottom:22px}
+  .bars .bar{max-height:100%}
+  @keyframes grow{from{transform:scaleY(.05)}}
+  .legend{display:flex;gap:14px;font-size:13px;color:var(--muted)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:0}
+  /* freeze */
+  .switch{all:unset;box-sizing:border-box;cursor:pointer;margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 16px;border-radius:16px;background:var(--tile-2);border:1px solid var(--line);font-weight:600;font-size:15px}
+  .switch:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+  .track{width:52px;height:30px;border-radius:999px;background:#343A47;position:relative;transition:background .25s;flex:none}
+  .track::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+  .switch[aria-pressed=true] .track{background:var(--ice)}
+  .switch[aria-pressed=true] .track::after{transform:translateX(22px)}
+  .status{font-size:13px;color:var(--muted);margin-top:10px;min-height:20px}
+  .snow{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(127,212,255,.12);color:var(--ice);margin-bottom:16px}
+  .snow svg,.ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  /* cash */
+  .t-cash p{color:#33410C}
+  .pct{font-size:clamp(64px,7vw,92px);font-weight:700;letter-spacing:-.06em;line-height:.9;margin-top:auto}
+  .pct sup{font-size:.4em;vertical-align:.95em;margin-left:2px}
+  .cash-meta{display:flex;justify-content:space-between;font-size:13px;font-weight:600;border-top:1px solid rgba(27,36,0,.2);padding-top:10px;margin-top:10px}
+  /* map */
+  .map-body{display:grid;grid-template-columns:.7fr 1.3fr;gap:20px;align-items:center;flex:1}
+  .map{width:100%;height:auto;display:block}
+  .pin{fill:var(--lime)}
+  .pulse{fill:none;stroke:var(--lime);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+  .pulse.d2{animation-delay:.8s}.pulse.d3{animation-delay:1.6s}
+  @keyframes pulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.6);opacity:0}}
+  .stat-row{display:flex;gap:22px;margin-top:18px}
+  .stat-row b{display:block;font-size:24px;letter-spacing:-.03em}
+  .stat-row span{font-size:13px;color:var(--muted)}
+  /* notif */
+  .stack{margin-top:auto;display:grid;gap:8px;padding-top:18px}
+  .note{display:flex;align-items:center;gap:12px;background:var(--tile-2);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:14px;animation:slide .6s cubic-bezier(.2,.8,.2,1) both}
+  .note:nth-child(2){animation-delay:.12s;opacity:.85}.note:nth-child(3){animation-delay:.24s;opacity:.6}
+  @keyframes slide{from{opacity:0;transform:translateY(10px)}}
+  .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+  .note b{font-weight:600}
+  .note small{display:block;color:var(--muted);font-size:12px}
+  .amt{margin-left:auto;font-weight:600;white-space:nowrap}
+  .amt.plus{color:var(--lime)}
+  @media (max-width:1000px){
+    .bento{grid-template-columns:repeat(2,1fr);grid-template-areas:"card card" "chart chart" "freeze cash" "map map" "notif notif"}
+  }
+  @media (max-width:640px){
+    .bento-sec{padding:72px 16px 80px}
+    .bento{grid-template-columns:1fr;grid-template-areas:"card" "chart" "freeze" "cash" "map" "notif";grid-auto-rows:auto}
+    .tile{padding:22px;border-radius:20px}
+    .map-body{grid-template-columns:1fr}
+    .plastic{padding:16px 18px;border-radius:16px}
+    .pan{font-size:14px}
+    .pct{margin-top:20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .pulse{opacity:0}
+  }
+</style>
+</head>
+<body>
+<section class="bento-sec" aria-labelledby="k-title">
+  <div class="wrap">
+    <header>
+      <div>
+        <span class="eyebrow"><i aria-hidden="true"></i>Kestrel Card</span>
+        <h2 id="k-title">One card. Every currency. Zero nonsense fees.</h2>
+      </div>
+      <p class="lede">A metal debit card and an app that tells you where your money went — before your bank statement does.</p>
+    </header>
+
+    <div class="bento">
+      <article class="tile t-card">
+        <h3>Spend like a local in 150+ currencies</h3>
+        <p>Always the real mid-market rate. No 2.99% "foreign transaction" surprise when you get home.</p>
+        <div class="cardwrap">
+          <div class="plastic" id="plastic" role="img" aria-label="Kestrel metal card in violet gradient">
+            <div class="row"><span class="logo">kestrel<span>.</span></span><span class="chip" aria-hidden="true"></span></div>
+            <div aria-hidden="true"><div class="pan">•••• •••• •••• 4471</div><div class="row" style="margin-top:6px"><small>MAYA OKONJO</small><small>09/29</small></div></div>
+            <div class="frost" aria-hidden="true">FROZEN</div>
+          </div>
+        </div>
+        <div class="fx" aria-label="Example rates"><span>€1 = £0.85</span><span>$1 = £0.79</span><span>¥100 = £0.53</span></div>
+      </article>
+
+      <article class="tile t-chart">
+        <div class="chart-head">
+          <div><h3>Insights that nudge, not nag</h3><p>Weekly spending sorted automatically.</p></div>
+          <div class="big">£412<small>this week</small></div>
+        </div>
+        <div class="bars" role="img" aria-label="Bar chart of daily spending Monday to Sunday, highest on Friday">
+          <div class="bar" data-d="M" style="height:38%"></div>
+          <div class="bar" data-d="T" style="height:52%;animation-delay:.05s"></div>
+          <div class="bar" data-d="W" style="height:30%;animation-delay:.1s"></div>
+          <div class="bar" data-d="T" style="height:61%;animation-delay:.15s"></div>
+          <div class="bar hi" data-d="F" style="height:100%;animation-delay:.2s"></div>
+          <div class="bar" data-d="S" style="height:72%;animation-delay:.25s"></div>
+          <div class="bar" data-d="S" style="height:44%;animation-delay:.3s"></div>
+        </div>
+        <div class="legend"><span><i style="background:var(--violet)"></i>Eating out +22%</span><span><i style="background:#2C3240"></i>Everything else</span></div>
+      </article>
+
+      <article class="tile t-freeze">
+        <span class="snow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 6l14.2 12M19.1 6 4.9 18M9 4l3 2 3-2M9 20l3-2 3 2"/></svg></span>
+        <h3>Freeze in one tap</h3>
+        <p>Lost it in a taxi? Lock it instantly. Found it? Unlock just as fast.</p>
+        <button class="switch" id="freeze" aria-pressed="false"><span>Freeze card</span><span class="track" aria-hidden="true"></span></button>
+        <div class="status" id="freeze-status" aria-live="polite">Card active</div>
+      </article>
+
+      <article class="tile t-cash">
+        <h3>Cashback, automatically</h3>
+        <p>On groceries, transport and streaming.</p>
+        <div class="pct"><span id="cash" data-to="3">3</span><sup>%</sup></div>
+        <div class="cash-meta"><span>Avg. member earns</span><span>£186 / yr</span></div>
+      </article>
+
+      <article class="tile t-map">
+        <div class="map-body">
+          <div>
+            <h3>Free cash, almost anywhere</h3>
+            <p>Fee-free ATM withdrawals up to £400 a month in 90 countries.</p>
+            <div class="stat-row"><div><b>90</b><span>countries</span></div><div><b>£400</b><span>free / month</span></div></div>
+          </div>
+          <svg class="map" viewBox="0 0 400 200" role="img" aria-label="Dotted world map with highlighted cities in London, New York, Lagos, Singapore and Sydney">
+            <defs><pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.5" fill="#3A4150"/></pattern></defs>
+            <g fill="url(#dots)">
+              <path d="M40 40 120 30 150 50 130 80 105 95 95 120 80 110 60 80 35 60Z"/>
+              <path d="M105 125 135 130 142 150 125 186 112 180 104 150Z"/>
+              <path d="M185 38 226 34 232 60 205 72 186 62Z"/>
+              <path d="M188 80 236 76 252 100 236 150 214 162 200 122 184 100Z"/>
+              <path d="M232 28 342 28 366 54 332 86 300 98 270 86 246 70Z"/>
+              <path d="M318 130 360 127 370 150 340 162 316 150Z"/>
+            </g>
+            <g>
+              <circle class="pulse" cx="196" cy="52" r="5"/><circle class="pin" cx="196" cy="52" r="3"/>
+              <circle class="pulse d2" cx="108" cy="66" r="5"/><circle class="pin" cx="108" cy="66" r="3"/>
+              <circle class="pulse d3" cx="206" cy="108" r="5"/><circle class="pin" cx="206" cy="108" r="3"/>
+              <circle class="pulse d2" cx="306" cy="92" r="5"/><circle class="pin" cx="306" cy="92" r="3"/>
+              <circle class="pulse" cx="356" cy="150" r="5"/><circle class="pin" cx="356" cy="150" r="3"/>
+            </g>
+          </svg>
+        </div>
+      </article>
+
+      <article class="tile t-notif">
+        <h3>Know the second you spend</h3>
+        <p>Instant notifications with the merchant, map and running budget.</p>
+        <ul class="stack" style="list-style:none;margin:0;padding-left:0">
+          <li class="note"><span class="ic" style="background:rgba(200,245,96,.14);color:var(--lime)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 0 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM6 2v2M10 2v2M14 2v2"/></svg></span><span><b>Larkspur Coffee</b><small>Lisbon · €3.20 at real rate</small></span><span class="amt">−£2.72</span></li>
+          <li class="note"><span class="ic" style="background:rgba(139,123,255,.16);color:var(--violet)" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span><b>Subscription blocked</b><small>Trial ended — you asked us to</small></span><span class="amt">£0.00</span></li>
+          <li class="note"><span class="ic" style="background:rgba(127,212,255,.14);color:var(--ice)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span><span><b>Cashback landed</b><small>October rewards</small></span><span class="amt plus">+£14.60</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var btn=document.getElementById('freeze'),card=document.getElementById('plastic'),st=document.getElementById('freeze-status');
+  btn.addEventListener('click',function(){
+    var on=btn.getAttribute('aria-pressed')!=='true';
+    btn.setAttribute('aria-pressed',on);
+    btn.firstElementChild.textContent=on?'Unfreeze card':'Freeze card';
+    card.classList.toggle('frozen',on);
+    card.setAttribute('aria-label',on?'Kestrel metal card, currently frozen':'Kestrel metal card in violet gradient');
+    st.textContent=on?'Card frozen — payments blocked':'Card active';
+  });
+  var el=document.getElementById('cash');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window))return;
+  var to=parseFloat(el.dataset.to);
+  el.textContent='0.0';
+  var io=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting)return;
+    io.disconnect();
+    var t0=null,dur=1200;
+    function step(t){
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
+      el.textContent=p<1?(to*e).toFixed(1):String(to);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  },{threshold:.5});
+  io.observe(el);
+})();
+</script>
+</body>
+</html>

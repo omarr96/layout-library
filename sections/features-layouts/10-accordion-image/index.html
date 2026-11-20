@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accordion Image Features · Voltra Cycles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F1EC;
+    --ink:#16171A;
+    --muted:#5D5F66;
+    --volt:#FF5A1F;
+    --volt-dark:#C43F0E;
+    --line:#D6D6CE;
+    --panel:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Barlow,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .sec{padding:clamp(72px,9vw,128px) 24px}
+  .wrap{max-width:1240px;margin:0 auto}
+  .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px;margin-bottom:clamp(36px,5vw,60px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--volt-dark)}
+  .eyebrow svg{width:16px;height:16px;fill:var(--volt)}
+  h2{font:800 clamp(44px,6.4vw,92px)/.92 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.01em;margin-top:14px}
+  h2 span{color:var(--volt)}
+  .head p{max-width:380px;color:var(--muted);font-size:17px}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:stretch}
+  .acc{border-top:2px solid var(--ink)}
+  .item{border-bottom:1px solid var(--line)}
+  .item h3{margin:0}
+  .trig{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:52px 1fr 40px;align-items:center;gap:12px;padding:22px 4px}
+  .trig:focus-visible{outline:2px solid var(--volt);outline-offset:2px;border-radius:6px}
+  .trig .no{font:700 15px/1 "Barlow Condensed",sans-serif;color:var(--muted);letter-spacing:.06em}
+  .trig .t{font:700 clamp(24px,2.4vw,32px)/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.005em;transition:color .25s}
+  .trig .pm{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:background .25s,border-color .25s,transform .35s}
+  .trig .pm svg{width:16px;height:16px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round}
+  .trig:hover .t{color:var(--volt-dark)}
+  .trig[aria-expanded="true"] .no{color:var(--volt)}
+  .trig[aria-expanded="true"] .pm{background:var(--volt);border-color:var(--volt);transform:rotate(45deg)}
+  .trig[aria-expanded="true"] .pm svg{stroke:#fff}
+  .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.3,.7,.2,1)}
+  .panel.open{grid-template-rows:1fr}
+  .panel>div{overflow:hidden}
+  .panel .in{padding:0 4px 26px 68px}
+  .panel p{color:var(--muted);max-width:460px}
+  .specs{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:16px}
+  .specs div{font-size:13px;color:var(--muted);line-height:1.3}
+  .specs b{display:block;font:700 26px/1 "Barlow Condensed",sans-serif;color:var(--ink)}
+  .panel .mimg{display:none}
+
+  .media{position:relative;border-radius:28px;overflow:hidden;background:#2A2B2F;min-height:560px}
+  .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .55s ease,transform 1.1s ease}
+  .media img.on{opacity:1;transform:none}
+  .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(10,10,12,.65));pointer-events:none}
+  .cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;color:#fff}
+  .cap .model{font:700 28px/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+  .cap .model small{display:block;font:500 13px/1.4 Barlow,sans-serif;text-transform:none;opacity:.85;margin-top:6px}
+  .cap .price{font:700 15px/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;background:var(--volt);color:#fff;padding:10px 14px;border-radius:99px;white-space:nowrap}
+  .count{position:absolute;top:20px;right:20px;z-index:2;font:700 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.1em;color:#fff;background:rgba(22,23,26,.55);backdrop-filter:blur(6px);padding:9px 12px;border-radius:99px}
+
+  .foot{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;gap:10px;font:700 17px/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--ink);padding:16px 24px;border-radius:8px;text-decoration:none;transition:background .2s}
+  .btn:hover{background:var(--volt-dark)}
+  .btn:focus-visible{outline:2px solid var(--volt);outline-offset:3px}
+  .btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none}
+  .foot span{color:var(--muted);font-size:14px}
+
+  @media (max-width:900px){
+    .grid{grid-template-columns:minmax(0,1fr)}
+    .media{min-height:0;aspect-ratio:4/3;order:-1}
+  }
+  @media (max-width:560px){
+    .sec{padding:64px 16px}
+    .media{display:none}
+    .panel .mimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;margin-bottom:16px}
+    .panel .in{padding:0 0 24px}
+    .trig{grid-template-columns:36px 1fr 36px}
+    .trig .pm{width:36px;height:36px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}.media img{transform:none}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="vt-title">
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>Voltra Commuter S2</p>
+        <h2 id="vt-title">Built for <span>every</span><br>mile of the city</h2>
+      </div>
+      <p>A 19-kilo e-bike that climbs like a mountain bike, locks itself and still fits in the lift. Open a feature to see it up close.</p>
+    </header>
+
+    <div class="grid">
+      <div class="acc" id="acc">
+        <div class="item">
+          <h3><button class="trig" type="button" id="t1" aria-expanded="true" aria-controls="p1" data-i="0"><span class="no">01</span><span class="t">120 km real-world range</span><span class="pm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+          <div class="panel open" id="p1" role="region" aria-labelledby="t1"><div><div class="in">
+            <img class="mimg" src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=1400&q=70&auto=format&fit=crop" alt="Loaded touring bike parked on a hilltop at sunset" loading="lazy">
+            <p>A 630 Wh battery hidden inside the down tube gets you across town and back all week. Pop it out with one key and charge it at your desk.</p>
+            <div class="specs"><div><b>630 Wh</b>removable cell</div><div><b>4 h</b>full charge</div><div><b>1,000</b>cycles to 80%</div></div>
+          </div></div></div>
+        </div>
+        <div class="item">
+          <h3><button class="trig" type="button" id="t2" aria-expanded="false" aria-controls="p2" data-i="1"><span class="no">02</span><span class="t">Silent mid-drive motor</span><span class="pm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+          <div class="panel" id="p2" role="region" aria-labelledby="t2" hidden><div><div class="in">
+            <img class="mimg" src="https://images.unsplash.com/photo-1559348349-86f1f65817fe?w=1400&q=70&auto=format&fit=crop" alt="Dark matte bicycle leaning against a concrete wall" loading="lazy">
+            <p>85 Nm of torque, a torque sensor that reads how hard you press and a whisper-quiet belt drive that never needs oil.</p>
+            <div class="specs"><div><b>85 Nm</b>peak torque</div><div><b>25 km/h</b>assist limit</div><div><b>30,000 km</b>belt life</div></div>
+          </div></div></div>
+        </div>
+        <div class="item">
+          <h3><button class="trig" type="button" id="t3" aria-expanded="false" aria-controls="p3" data-i="2"><span class="no">03</span><span class="t">Auto-lock &amp; GPS tracking</span><span class="pm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+          <div class="panel" id="p3" role="region" aria-labelledby="t3" hidden><div><div class="in">
+            <img class="mimg" src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=1400&q=70&auto=format&fit=crop" alt="Bicycle with orange tyres parked against a white brick wall" loading="lazy">
+            <p>Walk away and the rear wheel locks. Move it without your phone and the alarm sounds while the app shows you exactly where it is.</p>
+            <div class="specs"><div><b>110 dB</b>alarm</div><div><b>Live</b>GPS + eSIM</div><div><b>3 yrs</b>connectivity incl.</div></div>
+          </div></div></div>
+        </div>
+        <div class="item">
+          <h3><button class="trig" type="button" id="t4" aria-expanded="false" aria-controls="p4" data-i="3"><span class="no">04</span><span class="t">Service that comes to you</span><span class="pm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+          <div class="panel" id="p4" role="region" aria-labelledby="t4" hidden><div><div class="in">
+            <img class="mimg" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1400&q=70&auto=format&fit=crop" alt="White steel-frame bicycle against a dark wall" loading="lazy">
+            <p>Mobile mechanics in 14 cities fix flats and tune brakes at your home or office — the first two years of servicing are on us.</p>
+            <div class="specs"><div><b>14</b>cities covered</div><div><b>48 h</b>average visit</div><div><b>2 yrs</b>free servicing</div></div>
+          </div></div></div>
+        </div>
+      </div>
+
+      <figure class="media">
+        <img class="on" src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=1400&q=70&auto=format&fit=crop" alt="Loaded touring bike parked on a hilltop at sunset">
+        <img src="https://images.unsplash.com/photo-1559348349-86f1f65817fe?w=1400&q=70&auto=format&fit=crop" alt="Dark matte bicycle leaning against a concrete wall" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=1400&q=70&auto=format&fit=crop" alt="Bicycle with orange tyres parked against a white brick wall" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1400&q=70&auto=format&fit=crop" alt="White steel-frame bicycle against a dark wall" loading="lazy">
+        <span class="count" id="count">01 / 04</span>
+        <figcaption class="cap"><span class="model">Commuter S2<small>Step-through or high frame · 3 sizes</small></span><span class="price">From $2,490</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="foot">
+      <a class="btn" href="#">Book a test ride <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span>Free 30-minute ride at home · 0% finance over 24 months</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var trigs=[].slice.call(document.querySelectorAll('.trig')),
+      imgs=[].slice.call(document.querySelectorAll('.media img')),
+      count=document.getElementById('count'),
+      reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function open(btn){
+    trigs.forEach(function(b){
+      var p=document.getElementById(b.getAttribute('aria-controls')), on=b===btn;
+      b.setAttribute('aria-expanded',on?'true':'false');
+      if(on){ p.hidden=false; requestAnimationFrame(function(){requestAnimationFrame(function(){p.classList.add('open');});}); }
+      else if(p.classList.contains('open')||!p.hidden){
+        p.classList.remove('open');
+        if(reduce) p.hidden=true; else setTimeout(function(){ if(b.getAttribute('aria-expanded')==='false') p.hidden=true; },460);
+      }
+    });
+    var i=+btn.dataset.i;
+    imgs.forEach(function(m,k){m.classList.toggle('on',k===i);});
+    count.textContent='0'+(i+1)+' / 0'+imgs.length;
+  }
+  trigs.forEach(function(b,k){
+    b.addEventListener('click',function(){ if(b.getAttribute('aria-expanded')!=='true') open(b); });
+    b.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowDown') n=trigs[(k+1)%trigs.length];
+      else if(e.key==='ArrowUp') n=trigs[(k-1+trigs.length)%trigs.length];
+      else if(e.key==='Home') n=trigs[0];
+      else if(e.key==='End') n=trigs[trigs.length-1];
+      if(n){e.preventDefault();n.focus();}
+    });
+  });
+})();
+</script>
+</body>
+</html>

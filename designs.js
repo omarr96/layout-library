@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "features-gallery",
+      "title": "Features layouts · all 10",
+      "desc": "Gallery of 10 features sections, each a different layout.",
+      "tags": [
+        "Features",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/features-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-01-icon-grid",
+      "title": "Features 01 · Tallyboard",
+      "desc": "Icon grid · project-management app · hover accent.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/01-icon-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-02-big-number-list",
+      "title": "Features 02 · Hartwell & Cole",
+      "desc": "Big numbered list · accounting firm · outline numerals.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/02-big-number-list/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-03-tabs-preview",
+      "title": "Features 03 · Postbloom",
+      "desc": "Tabs + app preview · email marketing · 4 live mockups.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/03-tabs-preview/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-04-bento",
+      "title": "Features 04 · Kestrel Card",
+      "desc": "Bento grid · fintech card · freeze toggle, map, chart.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/04-bento/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-05-alternating-rows",
+      "title": "Features 05 · Hearthly",
+      "desc": "Alternating rows · smart home · floating UI cards.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/05-alternating-rows/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-06-centre-product",
+      "title": "Features 06 · Kinetra Loop 2",
+      "desc": "Product in the centre · fitness tracker · connector lines.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/06-centre-product/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-07-comparison",
+      "title": "Features 07 · Clausewell",
+      "desc": "Comparison table · online legal docs · us vs the old way.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/07-comparison/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-08-hover-cards",
+      "title": "Features 08 · Bastion Nine",
+      "desc": "Hover cards · cybersecurity · dark, glow follows cursor.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/08-hover-cards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-09-sticky-scroll",
+      "title": "Features 09 · Slowpour Club",
+      "desc": "Sticky scroll · coffee subscription · steps highlight.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/09-sticky-scroll/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "features-10-accordion-image",
+      "title": "Features 10 · Voltra Cycles",
+      "desc": "Accordion + image · e-bike · photo follows open item.",
+      "tags": [
+        "Features"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/features-layouts/10-accordion-image/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "testimonial-gallery",
       "title": "Testimonial layouts · all 20",
       "desc": "Gallery of 20 testimonial sections, several with sliders.",

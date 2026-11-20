@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centre Product Features · Kinetra Loop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF2EC;
+    --card:#FFFFFF;
+    --ink:#111613;
+    --muted:#5A645E;
+    --lime:#C8F031;
+    --lime-ink:#3D5200;
+    --coral:#FF6B4A;
+    --line:#CBD5CD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .sec{padding:clamp(72px,9vw,128px) 24px;position:relative}
+  .wrap{max-width:1220px;margin:0 auto}
+  .head{text-align:center;max-width:720px;margin:0 auto clamp(48px,6vw,80px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 Sora,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--lime-ink);background:var(--lime);padding:8px 14px;border-radius:99px}
+  h2{font:700 clamp(32px,4.4vw,54px)/1.06 Sora,sans-serif;letter-spacing:-.035em;margin-top:20px}
+  h2 em{font-style:normal;color:var(--coral)}
+  .head p{color:var(--muted);font-size:clamp(16px,1.4vw,18px);margin-top:16px}
+
+  .stage{position:relative;display:grid;grid-template-columns:1fr minmax(260px,330px) 1fr;gap:clamp(56px,7vw,110px);align-items:center}
+  .wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+  .wires path{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 5;transition:stroke .3s}
+  .wires path.on{stroke:var(--ink);stroke-dasharray:none}
+  .wires circle{fill:var(--bg);stroke:var(--line);stroke-width:1.5;transition:all .3s}
+  .wires circle.on{fill:var(--lime);stroke:var(--ink)}
+  .col{display:flex;flex-direction:column;gap:clamp(28px,4vw,52px);position:relative;z-index:1}
+  .col.l{text-align:right}
+  .feat{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;padding:14px 16px;border-radius:18px;transition:background .25s,box-shadow .25s}
+  .col.r .feat{grid-template-columns:auto 1fr}
+  .col.l .feat .ic{order:2}
+  .feat:hover,.feat[aria-pressed="true"]{background:var(--card);box-shadow:0 18px 40px -26px rgba(17,22,19,.45)}
+  .feat:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);transition:background .25s,border-color .25s}
+  .feat[aria-pressed="true"] .ic{background:var(--lime);border-color:var(--lime)}
+  .ic svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .feat .h3{display:block;font:600 18px/1.3 Sora,sans-serif;letter-spacing:-.01em}
+  .feat .p{display:block;color:var(--muted);font-size:14.5px;margin-top:6px}
+  .feat .stat{display:inline-block;margin-top:8px;font:600 12px/1 Sora,sans-serif;color:var(--lime-ink);background:rgba(200,240,49,.35);padding:5px 9px;border-radius:99px}
+
+  /* watch */
+  .device{position:relative;display:flex;justify-content:center;z-index:1}
+  .glow{position:absolute;width:min(120%,92vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(200,240,49,.55),rgba(200,240,49,0) 62%);top:50%;left:50%;transform:translate(-50%,-50%)}
+  .watch{position:relative;width:min(240px,62vw)}
+  .strap{width:62%;margin:0 auto;height:120px;background:linear-gradient(90deg,#2A302C,#3A423D 50%,#2A302C);position:relative}
+  .strap.t{border-radius:26px 26px 6px 6px}
+  .strap.b{border-radius:6px 6px 26px 26px}
+  .strap::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:10px;border-radius:5px;background:rgba(255,255,255,.08)}
+  .strap.t::after{top:22px;height:60px}
+  .strap.b::after{bottom:22px;height:60px}
+  .case{position:relative;aspect-ratio:.86;border-radius:54px;background:linear-gradient(145deg,#5E6762,#1B201D 55%,#3A403C);padding:12px;box-shadow:0 40px 70px -30px rgba(17,22,19,.65),inset 0 1px 1px rgba(255,255,255,.35)}
+  .crown{position:absolute;right:-9px;top:28%;width:12px;height:40px;border-radius:4px;background:linear-gradient(90deg,#2A302C,#6A736E)}
+  .crown::after{content:"";position:absolute;left:2px;top:58px;width:8px;height:26px;border-radius:3px;background:#2A302C}
+  .screen{height:100%;border-radius:44px;background:#050706;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;overflow:hidden;position:relative}
+  .scr-time{position:absolute;top:18px;font:500 12px/1 Sora,sans-serif;color:#8A938E}
+  .ring{width:112px;height:112px;position:relative}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+  .ring .trk{stroke:rgba(255,255,255,.1)}
+  .ring .val{stroke:var(--lime);stroke-dasharray:283;stroke-dashoffset:60;transition:stroke-dashoffset .8s cubic-bezier(.3,.7,.2,1),stroke .4s}
+  .ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 26px/1 Sora,sans-serif;letter-spacing:-.03em}
+  .scr-lbl{font:500 12px/1.2 Sora,sans-serif;color:#B6BFBA;letter-spacing:.04em;max-width:80%}
+  .scr-sub{font-size:11px;color:var(--lime)}
+  .screen .fade{transition:opacity .25s}
+  .screen.swap .fade{opacity:0}
+
+  .foot{text-align:center;margin-top:clamp(48px,6vw,80px);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;align-items:center;color:var(--muted);font-size:14px}
+  .btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 Sora,sans-serif;color:#fff;background:var(--ink);padding:15px 24px;border-radius:99px;text-decoration:none;transition:transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+  .btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
+  @media (max-width:980px){
+    .stage{grid-template-columns:1fr 1fr;gap:20px 24px}
+    .device{grid-column:1/-1;order:-1;margin-bottom:24px}
+    .wires{display:none}
+    .col.l{text-align:left}
+    .col.l .feat{grid-template-columns:auto 1fr}
+    .col.l .feat .ic{order:-1}
+    .col{gap:16px}
+  }
+  @media (max-width:600px){
+    .sec{padding:64px 16px}
+    .stage{grid-template-columns:minmax(0,1fr)}
+    .feat{padding:12px 4px}
+    .feat:hover,.feat[aria-pressed="true"]{padding:12px 14px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="kt-title">
+  <div class="wrap">
+    <header class="head">
+      <span class="eyebrow">Kinetra Loop 2</span>
+      <h2 id="kt-title">Six sensors. One band.<br><em>Zero</em> guesswork.</h2>
+      <p>A 29-gram tracker that reads your body around the clock and tells you, in plain words, whether to push hard or take it easy today.</p>
+    </header>
+
+    <div class="stage" id="stage">
+      <svg class="wires" id="wires" aria-hidden="true"></svg>
+
+      <div class="col l">
+        <button class="feat" type="button" aria-pressed="true" data-v="72" data-l="BPM · resting 51" data-s="Zone 2 · steady" data-p="0.62">
+          <span class="txt"><span class="h3">24/7 heart rhythm</span><span class="p">Optical sensor samples every second and flags irregular beats before you feel them.</span><span class="stat">±1 bpm vs chest strap</span></span>
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span>
+        </button>
+        <button class="feat" type="button" aria-pressed="false" data-v="84" data-l="Recovery score" data-s="Ready to train" data-p="0.84">
+          <span class="txt"><span class="h3">Morning recovery</span><span class="p">HRV, sleep and skin temperature roll into one score the moment you wake up.</span><span class="stat">Updated by 6:00 am</span></span>
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><path d="M7 16a5 5 0 0 1 10 0"/><path d="M3 20h18"/></svg></span>
+        </button>
+        <button class="feat" type="button" aria-pressed="false" data-v="7:42" data-l="Sleep · 4 stages" data-s="Deep 1h 38m" data-p="0.9">
+          <span class="txt"><span class="h3">Sleep staging</span><span class="p">Light, deep, REM and awake — tracked silently with no screen glow at night.</span><span class="stat">Lab-validated stages</span></span>
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span>
+        </button>
+      </div>
+
+      <div class="device">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="watch" role="img" aria-label="Kinetra Loop 2 tracker showing the selected metric on its screen">
+          <div class="strap t"></div>
+          <div class="case">
+            <span class="crown"></span>
+            <div class="screen" id="screen">
+              <span class="scr-time">07:14</span>
+              <div class="ring fade"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="45"/><circle class="val" id="ringVal" cx="50" cy="50" r="45"/></svg><b id="scrVal">72</b></div>
+              <span class="scr-lbl fade" id="scrLbl">BPM · resting 51</span>
+              <span class="scr-sub fade" id="scrSub">Zone 2 · steady</span>
+            </div>
+          </div>
+          <div class="strap b"></div>
+        </div>
+      </div>
+
+      <div class="col r">
+        <button class="feat" type="button" aria-pressed="false" data-v="98%" data-l="Blood oxygen" data-s="Altitude mode off" data-p="0.98">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 15a2.5 2.5 0 0 0 2.5 2.5"/></svg></span>
+          <span class="txt"><span class="h3">SpO₂ &amp; altitude</span><span class="p">Blood-oxygen trends that adapt for climbs, long-haul flights and ski trips.</span><span class="stat">Spot check in 15 s</span></span>
+        </button>
+        <button class="feat" type="button" aria-pressed="false" data-v="11d" data-l="Battery left" data-s="Charged 2 days ago" data-p="0.78">
+          <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M22 11v2M7 10v4M10.5 10v4"/></svg></span>
+          <span class="txt"><span class="h3">Two-week battery</span><span class="p">Fourteen days on a charge, and 0–80% in the time it takes to shower.</span><span class="stat">0–80% in 22 min</span></span>
+        </button>
+        <button class="feat" type="button" aria-pressed="false" data-v="50m" data-l="Swim · 32 lengths" data-s="Auto-detected" data-p="0.55">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><circle cx="16" cy="6" r="2"/><path d="M5 12l5-5 3 3"/></svg></span>
+          <span class="txt"><span class="h3">Pool to trail</span><span class="p">Water-resistant to 50 m with automatic workout detection for 40+ sports.</span><span class="stat">5 ATM rated</span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="foot">
+      <a class="btn" href="#">Pre-order for $179 <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span>Ships January · No subscription required · 60-night trial</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'), svg=document.getElementById('wires'),
+      watch=stage.querySelector('.watch .case'), feats=[].slice.call(stage.querySelectorAll('.feat')),
+      screen=document.getElementById('screen'), val=document.getElementById('scrVal'),
+      lbl=document.getElementById('scrLbl'), sub=document.getElementById('scrSub'),
+      ring=document.getElementById('ringVal'), NS='http://www.w3.org/2000/svg',
+      reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches, timer;
+
+  function draw(){
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    if(getComputedStyle(svg).display==='none') return;
+    var s=stage.getBoundingClientRect(), w=watch.getBoundingClientRect();
+    feats.forEach(function(f,i){
+      var r=f.getBoundingClientRect(), left=f.parentNode.classList.contains('l');
+      var x1=(left?r.right:r.left)-s.left, y1=r.top+r.height/2-s.top;
+      var x2=(left?w.left+6:w.right-6)-s.left, y2=w.top-s.top+w.height*(0.28+(i%3)*0.22);
+      var mx=(x1+x2)/2;
+      var p=document.createElementNS(NS,'path');
+      p.setAttribute('d','M'+x1+' '+y1+' C'+mx+' '+y1+' '+mx+' '+y2+' '+x2+' '+y2);
+      var c1=document.createElementNS(NS,'circle');c1.setAttribute('cx',x1);c1.setAttribute('cy',y1);c1.setAttribute('r',4);
+      var c2=document.createElementNS(NS,'circle');c2.setAttribute('cx',x2);c2.setAttribute('cy',y2);c2.setAttribute('r',3);
+      if(f.getAttribute('aria-pressed')==='true'){p.classList.add('on');c1.classList.add('on');c2.classList.add('on');}
+      svg.appendChild(p);svg.appendChild(c1);svg.appendChild(c2);
+    });
+  }
+  function select(f){
+    feats.forEach(function(x){x.setAttribute('aria-pressed',x===f?'true':'false');});
+    draw();
+    var apply=function(){
+      val.textContent=f.dataset.v; lbl.textContent=f.dataset.l; sub.textContent=f.dataset.s;
+      ring.style.strokeDashoffset=String(283*(1-parseFloat(f.dataset.p)));
+      screen.classList.remove('swap');
+    };
+    clearTimeout(timer);
+    if(reduce){apply();return;}
+    screen.classList.add('swap'); timer=setTimeout(apply,220);
+  }
+  feats.forEach(function(f){
+    f.addEventListener('click',function(){select(f);});
+    f.addEventListener('mouseenter',function(){if(window.matchMedia('(hover:hover)').matches) select(f);});
+  });
+  ring.style.strokeDashoffset=String(283*(1-0.62));
+  var raf; window.addEventListener('resize',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(draw);});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
+  window.addEventListener('load',draw); draw();
+})();
+</script>
+</body>
+</html>

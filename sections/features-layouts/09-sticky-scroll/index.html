@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticky Scroll Features · Slowpour Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EADB;
+    --paper:#FBF6EC;
+    --ink:#2A1A12;
+    --muted:#6E5A4C;
+    --rust:#B8492A;
+    --line:#DCCBB3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:17px/1.65 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html,body{overflow-x:clip}
+  .sec{padding:clamp(72px,9vw,128px) 24px}
+  .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:start}
+  .stick{position:sticky;top:clamp(24px,6vh,64px)}
+  .eyebrow{font:700 12px/1 Karla,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--rust)}
+  h2{font:400 clamp(34px,3.9vw,52px)/1.04 "DM Serif Display",Georgia,serif;letter-spacing:-.01em;margin-top:16px}
+  h2 em{color:var(--rust)}
+  .intro{color:var(--muted);margin-top:16px;max-width:460px}
+  .frame{position:relative;margin-top:28px;height:min(40vh,400px);min-height:240px;border-radius:24px 24px 160px 24px;overflow:hidden;background:var(--line);box-shadow:0 30px 60px -36px rgba(42,26,18,.6)}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .6s ease,transform 1.2s ease}
+  .frame img.on{opacity:1;transform:scale(1)}
+  .badge{position:absolute;left:18px;bottom:18px;z-index:2;background:var(--paper);color:var(--ink);border-radius:99px;padding:8px 14px 8px 8px;display:flex;align-items:center;gap:10px;font:600 14px/1 Karla,sans-serif;box-shadow:0 10px 24px -12px rgba(42,26,18,.5)}
+  .badge b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--rust);color:#fff;font:400 16px/1 "DM Serif Display",serif}
+  .prog{display:flex;gap:6px;margin-top:20px}
+  .prog i{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
+  .prog i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+  .prog i.done::after{transform:scaleX(1)}
+
+  .steps{list-style:none;display:flex;flex-direction:column;gap:22vh;padding:8vh 0 40vh}
+  .step{position:relative;padding:32px 32px 32px 96px;border-radius:24px;border:1px solid transparent;opacity:.42;transition:opacity .45s,background .45s,border-color .45s,transform .45s;display:flex;flex-direction:column}
+  .step.active{opacity:1;background:var(--paper);border-color:var(--line);transform:translateX(-6px)}
+  .step .n{position:absolute;left:30px;top:26px;font:400 44px/1 "DM Serif Display",serif;color:var(--rust)}
+  .step .when{font:700 12px/1 Karla,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .step h3{font:400 clamp(26px,2.4vw,32px)/1.15 "DM Serif Display",serif;margin-top:10px}
+  .step p{color:var(--muted);margin-top:10px}
+  .step .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .step .chips span{font:600 13px/1 Karla,sans-serif;padding:8px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink);background:var(--bg)}
+  .step .mimg{display:none}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;align-self:flex-start;font:700 15px/1 Karla,sans-serif;color:var(--paper);background:var(--ink);padding:15px 22px;border-radius:99px;text-decoration:none;transition:background .2s}
+  .cta:hover{background:var(--rust)}
+  .cta:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+
+  @media (max-width:900px){
+    .wrap{grid-template-columns:minmax(0,1fr)}
+    .stick{position:static}
+    .frame,.prog{display:none}
+    .steps{padding:0;gap:16px}
+    .step{opacity:1;min-height:0;background:var(--paper);border-color:var(--line);transform:none!important;padding:24px}
+    .step .n{position:static;font-size:34px;margin-bottom:12px}
+    .step .mimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;margin-bottom:18px}
+  }
+  @media (max-width:480px){.sec{padding:64px 16px}.step{padding:18px}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}.frame img{transform:none}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="sp-title">
+  <div class="wrap">
+    <div class="stick">
+      <p class="eyebrow">How the club works</p>
+      <h2 id="sp-title">From a tiny farm lot to your <em>first sip,</em> in five steps.</h2>
+      <p class="intro">Slowpour Club roasts single-origin beans to order and ships them while they are still at their peak. You set the taste — we handle the rest.</p>
+      <div class="frame" aria-hidden="true">
+        <img class="on" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?w=1400&q=70&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1400&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1400&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1400&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        <span class="badge"><b id="bNum">1</b><span id="bTxt">Taste profile</span></span>
+      </div>
+      <div class="prog" aria-hidden="true"><i class="done"></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <ol class="steps" id="steps">
+      <li class="step active" data-label="Taste profile">
+        <img class="mimg" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?w=1400&q=70&auto=format&fit=crop" alt="Seven cups of coffee in different strengths arranged on a round wooden table" loading="lazy">
+        <span class="n" aria-hidden="true">01</span>
+        <span class="when">2 minutes</span>
+        <h3>Tell us how you drink it</h3>
+        <p>A six-question quiz maps your palate — fruity or chocolatey, black or with oat milk, French press or espresso.</p>
+        <div class="chips"><span>Bright &amp; floral</span><span>Nutty &amp; smooth</span><span>Dark &amp; bold</span></div>
+      </li>
+      <li class="step" data-label="Sourced direct">
+        <img class="mimg" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&q=70&auto=format&fit=crop" alt="Close-up of freshly roasted coffee beans" loading="lazy">
+        <span class="n" aria-hidden="true">02</span>
+        <span class="when">Every month</span>
+        <h3>We buy direct from 31 farms</h3>
+        <p>Micro-lots from Huila, Sidama and Nyeri, paid on average 2.4× the Fairtrade minimum — with the farmer named on every bag.</p>
+      </li>
+      <li class="step" data-label="Roasted Tuesday">
+        <img class="mimg" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1400&q=70&auto=format&fit=crop" alt="Espresso portafilter full of ground coffee beside a bowl of beans" loading="lazy">
+        <span class="n" aria-hidden="true">03</span>
+        <span class="when">Every Tuesday</span>
+        <h3>Roasted to order, never stockpiled</h3>
+        <p>Our 15-kilo drum roaster only fires once your order is in. Pick whole bean or one of seven grind sizes matched to your brewer.</p>
+      </li>
+      <li class="step" data-label="At your door">
+        <img class="mimg" src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1400&q=70&auto=format&fit=crop" alt="Wooden serving board with whole beans, ground coffee and a latte" loading="lazy">
+        <span class="n" aria-hidden="true">04</span>
+        <span class="when">Within 48 hours</span>
+        <h3>Letterbox-friendly delivery</h3>
+        <p>Compostable valve bags slip through the door. Skip, pause or swap origins any time from a single text message.</p>
+      </li>
+      <li class="step" data-label="Brew &amp; rate">
+        <img class="mimg" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1400&q=70&auto=format&fit=crop" alt="Barista pouring water from a gooseneck kettle into a pour-over brewer" loading="lazy">
+        <span class="n" aria-hidden="true">05</span>
+        <span class="when">Every cup</span>
+        <h3>Rate it and we fine-tune</h3>
+        <p>Thumbs up or down on each bag and the next one moves closer to your perfect cup. Most members hit it by bag three.</p>
+        <a class="cta" href="#">Take the taste quiz — first bag $9</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+(function(){
+  var steps=[].slice.call(document.querySelectorAll('.step')),
+      imgs=[].slice.call(document.querySelectorAll('.frame img')),
+      bars=[].slice.call(document.querySelectorAll('.prog i')),
+      bNum=document.getElementById('bNum'), bTxt=document.getElementById('bTxt'), cur=0;
+  function set(i){
+    if(i===cur) return; cur=i;
+    steps.forEach(function(s,k){s.classList.toggle('active',k===i);});
+    imgs.forEach(function(m,k){m.classList.toggle('on',k===i);});
+    bars.forEach(function(b,k){b.classList.toggle('done',k<=i);});
+    bNum.textContent=i+1; bTxt.textContent=steps[i].getAttribute('data-label').replace('&amp;','&');
+  }
+  var ticking=false;
+  function check(){
+    ticking=false;
+    var mid=window.innerHeight/2, best=0, bd=Infinity;
+    steps.forEach(function(s,k){
+      var r=s.getBoundingClientRect(), d=Math.abs(r.top+r.height/2-mid);
+      if(d<bd){bd=d;best=k;}
+    });
+    set(best);
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(check);} },{passive:true});
+  window.addEventListener('resize',check);
+  check();
+})();
+</script>
+</body>
+</html>

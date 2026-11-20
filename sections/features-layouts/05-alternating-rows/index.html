@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearthly Home Hub</title>
+<meta name="description" content="Hearthly smart home hub: learning climate control, keyless entry and lighting scenes that follow your day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EFE8; --ink:#22252A; --muted:#5F625F; --line:#E0D9CD; --card:#FFFFFF;
+    --amber:#D9772B; --amber-ink:#9C4C14; --amber-soft:#F8E3CF; --sage:#4F6E5B; --sage-soft:#DCE6DE;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Urbanist",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .rows{padding:112px 24px 120px;overflow-x:clip}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{text-align:center;max-width:720px;margin:0 auto 88px}
+  .eyebrow{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-ink)}
+  h2{text-wrap:balance;font-size:clamp(36px,5vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:14px 0 16px}
+  .lede{color:var(--muted);font-size:19px;margin:0}
+  .row{display:grid;grid-template-columns:1.08fr 1fr;gap:88px;align-items:center}
+  .row+.row{margin-top:120px}
+  .row.rev .media{order:2}
+  .media{position:relative}
+  .photo{border-radius:28px;overflow:hidden;aspect-ratio:5/4;background:#DDD5C8}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+  .media:hover img{transform:scale(1.04)}
+  .float{position:absolute;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-radius:20px;padding:16px 18px;box-shadow:0 24px 48px -20px rgba(34,37,42,.35);display:flex;align-items:center;gap:14px;font-size:14px}
+  .float b{display:block;font-size:16px;font-weight:700}
+  .float small{color:var(--muted);font-size:13px}
+  .f1{left:-28px;bottom:36px}
+  .f2{right:-28px;top:40px}
+  .f3{left:-28px;top:44px;flex-direction:column;align-items:stretch;gap:10px;min-width:220px}
+  .dial{width:58px;height:58px;border-radius:50%;background:conic-gradient(var(--amber) 0 68%,#EFE8DE 68% 100%);display:grid;place-items:center;flex:none}
+  .dial span{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;font-size:17px}
+  .badge{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--sage-soft);color:var(--sage);flex:none}
+  .badge svg,.ticks svg,.num svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .scenes{display:flex;gap:6px}
+  .scenes span{flex:1;text-align:center;font-size:12px;font-weight:700;padding:7px 8px;border-radius:10px;background:#F2EDE6;color:var(--muted)}
+  .scenes span.on{background:var(--ink);color:#fff}
+  .lvl{height:6px;border-radius:3px;background:#EFE8DE;overflow:hidden}
+  .lvl i{display:block;height:100%;width:40%;background:linear-gradient(90deg,#F4C58F,var(--amber));border-radius:3px}
+  .num{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-ink)}
+  .num em{font-style:normal;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--amber);display:grid;place-items:center;letter-spacing:0;font-size:14px}
+  .row h3{font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.03em;font-weight:800;margin:16px 0 14px}
+  .row p{color:var(--muted);font-size:17.5px;margin:0 0 22px;max-width:480px}
+  .ticks{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:12px}
+  .ticks li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:16.5px}
+  .ticks svg{flex:none;width:22px;height:22px;padding:3px;border-radius:50%;background:var(--sage-soft);color:var(--sage);margin-top:2px}
+  .proof{display:flex;align-items:center;gap:16px;padding-top:22px;border-top:1px solid var(--line);max-width:480px}
+  .proof strong{font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .proof span{color:var(--muted);font-size:15px;line-height:1.4}
+  @media (max-width:1240px){
+    .row{gap:56px}
+    .f1,.f3{left:16px}.f2{right:16px}
+  }
+  @media (max-width:820px){
+    .rows{padding:80px 20px 88px}
+    header{margin-bottom:56px}
+    .row{grid-template-columns:1fr;gap:36px}
+    .row.rev .media{order:0}
+    .row+.row{margin-top:80px}
+  }
+  @media (max-width:520px){
+    .rows{padding:72px 16px 80px}
+    .lede{font-size:17px}
+    .photo{border-radius:20px;aspect-ratio:4/3.4}
+    .float{padding:12px 14px;border-radius:16px;gap:10px}
+    .f1{left:12px;bottom:12px}.f2{right:12px;top:12px}.f3{left:12px;top:12px;min-width:0;right:12px}
+    .dial{width:46px;height:46px}.dial span{width:34px;height:34px;font-size:14px}
+    .float b{font-size:14px}
+    .row p{font-size:16.5px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="rows" aria-labelledby="h-title">
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">The Hearthly Hub</span>
+      <h2 id="h-title">A home that quietly gets you.</h2>
+      <p class="lede">One palm-sized hub connects your heating, locks and lights — then learns your routine so you stop thinking about any of them.</p>
+    </header>
+
+    <article class="row">
+      <div class="media">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=1400&q=70&auto=format&fit=crop" alt="Round smart thermostat mounted on a pale wall showing 63 degrees" loading="lazy" width="1400" height="1120"></div>
+        <div class="float f1" aria-hidden="true"><span class="dial"><span>20°</span></span><span><b>Living room</b><small>Warming · ready by 6:40pm</small></span></div>
+      </div>
+      <div>
+        <span class="num"><em>01</em>Climate</span>
+        <h3>Heating that learns your week in seven days.</h3>
+        <p>Hearthly notices when you leave, when you're back and which rooms you actually use — then heats only those, only then.</p>
+        <ul class="ticks">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Room-by-room schedules with radiator valves</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Geofencing switches to Away when the last phone leaves</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Works with gas boilers and heat pumps</li>
+        </ul>
+        <div class="proof"><strong>31%</strong><span>average cut in heating bills in the first winter, across 12,400 homes</span></div>
+      </div>
+    </article>
+
+    <article class="row rev">
+      <div class="media">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=1400&q=70&auto=format&fit=crop" alt="Hand holding a phone app next to a smart lock fitted on the inside of a white door" loading="lazy" width="1400" height="1120"></div>
+        <div class="float f2" aria-hidden="true"><span class="badge"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span><b>Front door locked</b><small>Auto-locked 2 min ago</small></span></div>
+      </div>
+      <div>
+        <span class="num"><em>02</em>Entry</span>
+        <h3>Keys are optional. Peace of mind isn't.</h3>
+        <p>Unlock as you walk up, send a one-time code to the dog walker and get a nudge if the back door is left open after 10pm.</p>
+        <ul class="ticks">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fits over your existing deadbolt in 15 minutes</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Guest codes that expire on a schedule</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>End-to-end encrypted, works offline</li>
+        </ul>
+        <div class="proof"><strong>0</strong><span>spare keys under the plant pot. Promise.</span></div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="media">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1400&q=70&auto=format&fit=crop" alt="Warm living room with a leather sofa, pink armchairs, plants and glowing floor lamps" loading="lazy" width="1400" height="1120"></div>
+        <div class="float f3" aria-hidden="true"><span><b>Evening scene</b><small>Lamps at 40% · 2700K</small></span><div class="lvl"><i></i></div><div class="scenes"><span>Morning</span><span class="on">Evening</span><span>Film</span></div></div>
+      </div>
+      <div>
+        <span class="num"><em>03</em>Lighting</span>
+        <h3>Light that follows the sun, not a switch.</h3>
+        <p>Bright and cool while you work, warm and low as the evening winds down. Scenes shift on their own as daylight fades.</p>
+        <ul class="ticks">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Works with 3,000+ bulbs and plugs</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sunrise wake-up and gentle wind-down</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Voice, app or the old switch on the wall</li>
+        </ul>
+        <div class="proof"><strong>4.8</strong><span>average rating from 9,200 reviews — "the hub my parents can actually use"</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+</body>
+</html>

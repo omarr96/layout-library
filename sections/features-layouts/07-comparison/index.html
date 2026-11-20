@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparison Features · Clausewell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F2E9;
+    --paper:#FFFDF8;
+    --ink:#1A2238;
+    --muted:#5C6275;
+    --green:#1F5A45;
+    --green-soft:#E3EFE8;
+    --gold:#B8862F;
+    --red:#B23A2E;
+    --line:#E2DCCD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .sec{padding:clamp(72px,9vw,128px) 24px}
+  .wrap{max-width:1120px;margin:0 auto}
+  .head{display:grid;grid-template-columns:1.2fr 1fr;gap:24px 64px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+  .eyebrow{font:600 12px/1 "Public Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+  h2{font:400 clamp(36px,4.8vw,60px)/1.04 Newsreader,Georgia,serif;letter-spacing:-.02em;margin-top:18px}
+  h2 i{color:var(--green)}
+  .head p{color:var(--muted);font-size:17px}
+
+  .switch{display:none;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:16px}
+  .switch button{flex:1;font:600 13px/1 "Public Sans",sans-serif;color:var(--muted);background:none;border:0;border-radius:99px;padding:11px 10px;cursor:pointer}
+  .switch button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .switch button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+  .tbl-wrap{position:relative}
+  table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+  caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  col.c-feat{width:34%}
+  th,td{padding:18px 20px;text-align:center;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody th{text-align:left;font-weight:500;font-size:15.5px}
+  tbody th small{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:2px}
+  thead th{padding:24px 20px 20px;font:500 22px/1.2 Newsreader,serif;vertical-align:bottom;border-bottom:1px solid var(--ink)}
+  thead th span{display:block;font:500 12px/1.3 "Public Sans",sans-serif;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+  thead th:first-child{text-align:left;font:600 12px/1 "Public Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  td{font-size:14.5px;color:var(--muted)}
+  /* highlighted column */
+  .us{background:var(--paper);color:var(--ink);font-weight:500;border-left:1px solid var(--line);border-right:1px solid var(--line);position:relative}
+  thead .us{border-top:1px solid var(--line);border-radius:18px 18px 0 0;color:var(--green);border-bottom-color:var(--green)}
+  thead .us .tag{display:inline-block;margin:0 0 10px;font:700 10.5px/1 "Public Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--green);padding:6px 10px;border-radius:99px}
+  thead .us span{color:var(--green)}
+  tfoot .us{border-radius:0 0 18px 18px;border-bottom:1px solid var(--line);box-shadow:0 30px 50px -40px rgba(26,34,56,.5)}
+  tfoot td,tfoot th{border-bottom:0;padding-top:22px;padding-bottom:26px}
+  tfoot th{text-align:left;font:500 20px/1.2 Newsreader,serif}
+  .price{font:500 26px/1 Newsreader,serif;color:var(--ink);display:block}
+  .price-n{display:block;font-size:12.5px;color:var(--muted);margin-top:6px}
+  .us .price{color:var(--green)}
+  .mk{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;vertical-align:middle}
+  .mk svg{width:15px;height:15px;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .yes{background:var(--green-soft)} .yes svg{stroke:var(--green)}
+  .no{background:#F6E2DE} .no svg{stroke:var(--red)}
+  .part{background:#F3E8D2} .part svg{stroke:var(--gold)}
+  .note{display:block;font-size:12.5px;margin-top:4px;line-height:1.35}
+  tbody tr{transition:background .2s}
+  tbody tr:hover td:not(.us),tbody tr:hover th{background:rgba(255,253,248,.55)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  .cta{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:600 14px/1 "Public Sans",sans-serif;color:#fff;background:var(--green);padding:13px 18px;border-radius:10px;text-decoration:none;transition:background .2s}
+  .cta:hover{background:#174535}
+  .cta:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:28px;color:var(--muted);font-size:13.5px;align-items:center}
+  .legend .mk{width:22px;height:22px;margin-right:6px}
+  .legend .mk svg{width:12px;height:12px}
+  .legend .fine{margin-left:auto;font-style:italic;font-family:Newsreader,serif;font-size:15px}
+
+  @media (max-width:860px){
+    .head{grid-template-columns:1fr}
+    .switch{display:flex}
+    table[data-show="firm"] .c-diy,table[data-show="diy"] .c-firm{display:none}
+    col.c-feat{width:42%}
+    th,td{padding:16px 12px}
+    thead th{font-size:19px}
+  }
+  @media (max-width:480px){
+    .sec{padding:64px 16px}
+    col.c-feat{width:44%}
+    th,td{padding:14px 8px}
+    tbody th{font-size:14px}
+    thead th{font-size:17px;padding:20px 8px 16px}
+    thead .us .tag{font-size:8.5px;letter-spacing:.06em;padding:4px 6px}
+    .cta{padding:10px 11px;font-size:13px;white-space:nowrap}
+    .price{font-size:21px}
+    tfoot th{font-size:17px}
+    .note{font-size:11.5px}
+    .legend .fine{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="cw-title">
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <p class="eyebrow">Why switch</p>
+        <h2 id="cw-title">The paperwork, minus <i>the billable hours.</i></h2>
+      </div>
+      <p>Clausewell drafts lawyer-reviewed contracts, NDAs and wills in minutes. Here is how that stacks up against the two ways most people still do it.</p>
+    </header>
+
+    <div class="switch" role="group" aria-label="Compare Clausewell with">
+      <button type="button" data-show="firm" aria-pressed="true">vs. Law firm</button>
+      <button type="button" data-show="diy" aria-pressed="false">vs. Free templates</button>
+    </div>
+
+    <div class="tbl-wrap">
+      <table id="cmp" data-show="firm">
+        <caption>Clausewell compared with a traditional law firm and free online templates</caption>
+        <colgroup><col class="c-feat"><col class="c-us"><col class="c-firm"><col class="c-diy"></colgroup>
+        <thead>
+          <tr>
+            <th scope="col">What you get</th>
+            <th scope="col" class="us"><em class="tag">Recommended</em><br>Clausewell<span>Online, lawyer-reviewed</span></th>
+            <th scope="col" class="c-firm">Law firm<span>The old way</span></th>
+            <th scope="col" class="c-diy">Free templates<span>The risky way</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">First draft ready<small>From starting to signable</small></th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="note">Under 15 minutes</span></td>
+            <td class="c-firm"><span class="mk part"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></span><span class="note">5–10 business days</span></td>
+            <td class="c-diy"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="note">Instant</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Reviewed by a licensed attorney<small>In your state</small></th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-firm"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-diy"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="sr">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Tailored to your situation<small>Plain-English interview</small></th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-firm"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-diy"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="note">One-size-fits-all</span></td>
+          </tr>
+          <tr>
+            <th scope="row">E-signature &amp; secure vault<small>Stored for life</small></th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-firm"><span class="mk part"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></span><span class="note">Sometimes, extra fee</span></td>
+            <td class="c-diy"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="sr">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Unlimited edits for 12 months</th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="sr">Yes</span></td>
+            <td class="c-firm"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="note">Billed per change</span></td>
+            <td class="c-diy"><span class="mk part"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></span><span class="note">On your own</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Ask-a-lawyer calls<small>30-minute sessions</small></th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="note">2 included / year</span></td>
+            <td class="c-firm"><span class="mk part"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></span><span class="note">Billed hourly</span></td>
+            <td class="c-diy"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="sr">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Updated when the law changes</th>
+            <td class="us"><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="note">Auto-alerts</span></td>
+            <td class="c-firm"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="note">If you ask</span></td>
+            <td class="c-diy"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="sr">No</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row">Typical NDA cost</th>
+            <td class="us"><span class="price">$39</span><span class="price-n">flat, incl. review</span><a class="cta" href="#">Start free</a></td>
+            <td class="c-firm"><span class="price">$650+</span><span class="price-n">at $325/hr</span></td>
+            <td class="c-diy"><span class="price">$0</span><span class="price-n">until it fails in court</span></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><span class="mk yes"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Included</span>
+      <span><span class="mk part"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></span>Partly / extra cost</span>
+      <span><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span>Not included</span>
+      <span class="fine">Firm pricing based on 2026 US median rates.</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var table=document.getElementById('cmp'), btns=[].slice.call(document.querySelectorAll('.switch button'));
+  // screen readers: label partial marks
+  [].slice.call(table.querySelectorAll('.mk.part')).forEach(function(m){
+    if(!m.nextElementSibling){var s=document.createElement('span');s.className='sr';s.textContent='Partly';m.after(s);}
+  });
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      table.setAttribute('data-show',b.dataset.show);
+    });
+  });
+})();
+</script>
+</body>
+</html>

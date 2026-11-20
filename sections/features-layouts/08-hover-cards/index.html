@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hover Card Features · Bastion Nine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06080C;
+    --card:#0D1118;
+    --ink:#EEF2F7;
+    --muted:#8B95A7;
+    --line:rgba(238,242,247,.09);
+    --acc:#2BF5A6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .sec{position:relative;padding:clamp(72px,9vw,128px) 24px;isolation:isolate}
+  .sec::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 40% at 15% 0%,rgba(43,245,166,.10),transparent 70%),radial-gradient(40% 40% at 100% 100%,rgba(122,92,255,.10),transparent 70%)}
+  .wrap{max-width:1200px;margin:0 auto}
+  .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-bottom:clamp(40px,5vw,64px)}
+  .head>div{max-width:640px}
+  .eyebrow{font:500 12.5px/1 "JetBrains Mono",monospace;color:var(--acc);letter-spacing:.06em;display:inline-flex;align-items:center;gap:10px}
+  .eyebrow b{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(43,245,166,.15);animation:blink 2s infinite}
+  @keyframes blink{50%{opacity:.35}}
+  h2{font:800 clamp(34px,4.6vw,58px)/1.04 Manrope,sans-serif;letter-spacing:-.04em;margin-top:18px}
+  h2 span{background:linear-gradient(90deg,#2BF5A6,#5CC8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .head p{color:var(--muted);max-width:400px;font-size:16.5px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .card{--c:#2BF5A6;--x:50%;--y:0%;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 26px 26px;min-height:340px;display:flex;flex-direction:column;outline:none;transition:border-color .35s,transform .35s,background .35s}
+  .card::before{content:"";position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--x) var(--y),color-mix(in srgb,var(--c) 22%,transparent),transparent 65%)}
+  .card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.3,.7,.2,1)}
+  .card>*{position:relative;z-index:1}
+  .card>.dots{position:absolute;z-index:0;right:0;top:0;width:60%;height:70%;background-image:radial-gradient(rgba(238,242,247,.13) 1px,transparent 1.4px);background-size:14px 14px;-webkit-mask-image:radial-gradient(90% 90% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(90% 90% at 100% 0%,#000,transparent 70%);transition:opacity .4s;pointer-events:none}
+  .card:hover>.dots,.card:focus-within>.dots{opacity:.35}
+  .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:background .35s,border-color .35s}
+  .ic svg{width:24px;height:24px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
+  .num{font:500 12px/1 "JetBrains Mono",monospace;color:var(--muted)}
+  .card h3{font:700 21px/1.25 Manrope,sans-serif;letter-spacing:-.02em;margin-top:auto;padding-top:40px}
+  .card .lead{color:var(--muted);font-size:15px;margin-top:8px}
+  .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.3,.7,.2,1)}
+  .more>div{overflow:hidden}
+  .more ul{list-style:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:8px}
+  .more li{display:flex;gap:10px;font-size:14px;color:#C9D1DD}
+  .more li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;border-radius:2px;background:var(--c)}
+  .more .metric{display:flex;align-items:baseline;gap:8px;margin-top:14px;font:500 12px/1.2 "JetBrains Mono",monospace;color:var(--muted)}
+  .more .metric b{font:700 24px/1 Manrope,sans-serif;color:var(--c);letter-spacing:-.02em}
+
+  .card:hover,.card:focus-visible,.card:focus-within{border-color:color-mix(in srgb,var(--c) 45%,transparent);transform:translateY(-4px);background:#10151E}
+  .card:hover::before,.card:focus-visible::before,.card:focus-within::before{opacity:1}
+  .card:hover::after,.card:focus-visible::after,.card:focus-within::after{transform:scaleX(1)}
+  .card:hover .ic,.card:focus-visible .ic,.card:focus-within .ic{background:color-mix(in srgb,var(--c) 16%,transparent);border-color:color-mix(in srgb,var(--c) 50%,transparent)}
+  .card:hover .ic svg,.card:focus-visible .ic svg,.card:focus-within .ic svg{stroke:var(--c)}
+  .card:hover .more,.card:focus-visible .more,.card:focus-within .more{grid-template-rows:1fr}
+  .card:focus-visible{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--c)}
+
+  .c1{--c:#2BF5A6}.c2{--c:#5CC8FF}.c3{--c:#B49BFF}.c4{--c:#FF7A8A}.c5{--c:#FFC857}.c6{--c:#4FF0E0}
+
+  .strip{margin-top:clamp(32px,4vw,48px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px;align-items:center;padding:20px 24px;border:1px solid var(--line);border-radius:16px;font:500 13px/1.4 "JetBrains Mono",monospace;color:var(--muted)}
+  .strip .ok{color:var(--acc)}
+  .strip a{color:var(--bg);background:var(--acc);font:700 14px/1 Manrope,sans-serif;padding:13px 20px;border-radius:10px;text-decoration:none;transition:filter .2s}
+  .strip a:hover{filter:brightness(1.1)}
+  .strip a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+  @media (hover:none){.more{grid-template-rows:1fr}.card::after{transform:scaleX(1)}.card .ic svg{stroke:var(--c)}}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:620px){.sec{padding:64px 16px}.grid{grid-template-columns:minmax(0,1fr)}.card{min-height:0}.card h3{padding-top:28px}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.card:hover,.card:focus-within{transform:none}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="b9-title">
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <p class="eyebrow"><b aria-hidden="true"></b>SOC online · 14 analysts on shift</p>
+        <h2 id="b9-title">Every layer watched.<br><span>Nothing left to chance.</span></h2>
+      </div>
+      <p>Bastion Nine runs your security operations around the clock, so a 3&nbsp;a.m. phishing click gets contained before your coffee is poured.</p>
+    </header>
+
+    <div class="grid" id="grid">
+      <article class="card c1" tabindex="0" aria-labelledby="f1"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="num">01 / MDR</span></div>
+        <h3 id="f1">24/7 managed detection</h3>
+        <p class="lead">Human analysts plus behaviour models on every endpoint.</p>
+        <div class="more"><div>
+          <ul><li>Isolate compromised laptops in one click</li><li>Weekly threat-hunt reports, no jargon</li></ul>
+          <p class="metric"><b>4 min</b> median time to contain</p>
+        </div></div>
+      </article>
+      <article class="card c2" tabindex="0" aria-labelledby="f2"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 13h4M7 16h7"/></svg></span><span class="num">02 / MAIL</span></div>
+        <h3 id="f2">Inbox phishing shield</h3>
+        <p class="lead">Catches spoofed invoices and lookalike domains before they land.</p>
+        <div class="more"><div>
+          <ul><li>Link rewriting with sandbox detonation</li><li>One-tap "report" button for staff</li></ul>
+          <p class="metric"><b>99.4%</b> malicious mail blocked</p>
+        </div></div>
+      </article>
+      <article class="card c3" tabindex="0" aria-labelledby="f3"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M17 4l2-2M19 9h2"/></svg></span><span class="num">03 / IDENTITY</span></div>
+        <h3 id="f3">Identity &amp; access</h3>
+        <p class="lead">Passwordless sign-in and alerts on impossible-travel logins.</p>
+        <div class="more"><div>
+          <ul><li>Phishing-resistant passkeys for every seat</li><li>Auto-revoke access when people leave</li></ul>
+          <p class="metric"><b>0</b> shared admin passwords</p>
+        </div></div>
+      </article>
+      <article class="card c4" tabindex="0" aria-labelledby="f4"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><span class="num">04 / IR</span></div>
+        <h3 id="f4">Incident response on retainer</h3>
+        <p class="lead">A named responder on the phone within 15 minutes, any hour.</p>
+        <div class="more"><div>
+          <ul><li>Ransomware playbooks tested quarterly</li><li>Forensics &amp; insurer-ready reports</li></ul>
+          <p class="metric"><b>15 min</b> guaranteed call-back</p>
+        </div></div>
+      </article>
+      <article class="card c5" tabindex="0" aria-labelledby="f5"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg></span><span class="num">05 / EXPOSURE</span></div>
+        <h3 id="f5">Attack-surface scanning</h3>
+        <p class="lead">We find forgotten servers and open ports before attackers do.</p>
+        <div class="more"><div>
+          <ul><li>Continuous external scans, ranked by risk</li><li>Fix-it tickets straight into your tracker</li></ul>
+          <p class="metric"><b>2,300+</b> checks every night</p>
+        </div></div>
+      </article>
+      <article class="card c6" tabindex="0" aria-labelledby="f6"><span class="dots" aria-hidden="true"></span>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 11V7a3 3 0 0 1 6 0v4"/><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M12 15v2"/></svg></span><span class="num">06 / COMPLY</span></div>
+        <h3 id="f6">Audit-ready compliance</h3>
+        <p class="lead">Evidence for ISO 27001, SOC 2 and Cyber Essentials, collected for you.</p>
+        <div class="more"><div>
+          <ul><li>Live control dashboard for auditors</li><li>Policy templates written by our CISO team</li></ul>
+          <p class="metric"><b>6 wks</b> average time to certification</p>
+        </div></div>
+      </article>
+    </div>
+
+    <div class="strip">
+      <span><span class="ok">●</span> All systems nominal &nbsp;·&nbsp; 1.2M events triaged in the last 24h</span>
+      <a href="#">Book a free threat assessment</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards=document.querySelectorAll('.card');
+  Array.prototype.forEach.call(cards,function(c){
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty('--x',(e.clientX-r.left)+'px');
+      c.style.setProperty('--y',(e.clientY-r.top)+'px');
+    });
+  });
+})();
+</script>
+</body>
+</html>
