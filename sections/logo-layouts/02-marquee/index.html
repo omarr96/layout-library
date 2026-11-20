@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo Marquee · Hollow &amp; Hart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,500&family=Space+Mono:wght@700&family=Unbounded:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EEE6;
+    --ink:#1B1A17;
+    --muted:#6B655B;
+    --logo:#3A3731;
+    --accent:#E4572E;
+    --line:#DCD3C4;
+    --speed:42s;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"Syne",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;overflow-x:hidden}
+  .clients{width:100%;padding:104px 0}
+  .head{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+  h2{margin-top:16px;font-size:clamp(34px,5.2vw,68px);line-height:.98;font-weight:800;letter-spacing:-.035em;max-width:720px}
+  h2 span{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;letter-spacing:-.02em}
+  .side{max-width:330px;font-size:16px;line-height:1.6;color:var(--muted);font-weight:500}
+  .side b{color:var(--ink)}
+  .ctrl{margin-top:18px;display:inline-flex;align-items:center;gap:10px;font:700 13px/1 "Syne",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:11px 18px;cursor:pointer;transition:background .2s,color .2s}
+  .ctrl:hover{background:var(--ink);color:var(--bg)}
+  .ctrl:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .marquee{margin-top:64px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);position:relative;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .track{display:flex;width:max-content;animation:slide var(--speed) linear infinite}
+  .marquee:hover .track,.marquee:focus-within .track,.paused .track,.hidden-tab .track{animation-play-state:paused}
+  .group{display:flex;align-items:center;list-style:none}
+  .group li{display:flex;align-items:center;height:132px;padding:0 52px;position:relative}
+  .group li::after{content:"";position:absolute;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.8}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  .logo{display:inline-flex;align-items:center;gap:10px;color:var(--logo);white-space:nowrap;transition:color .25s}
+  .marquee li:hover .logo{color:var(--accent)}
+  .a{font-family:"Playfair Display",serif;font-weight:700;font-size:30px;letter-spacing:-.01em}
+  .b{font-weight:800;font-size:26px;letter-spacing:-.04em}
+  .c{font-family:"Space Mono",monospace;font-size:19px;letter-spacing:.04em;text-transform:uppercase}
+  .d{font-family:"Unbounded",sans-serif;font-weight:600;font-size:21px;letter-spacing:-.02em}
+  .e{font-weight:600;font-size:23px;letter-spacing:.32em;text-transform:uppercase}
+  .f{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;font-size:31px}
+  .mono{width:44px;height:44px;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;font-family:"Playfair Display",serif;font-weight:700;font-size:18px}
+  .stats{max-width:1240px;margin:36px auto 0;padding:0 24px;display:flex;gap:16px 48px;flex-wrap:wrap;font-size:15px;color:var(--muted);font-weight:500}
+  .stats strong{font-family:"Playfair Display",serif;font-size:24px;color:var(--ink);font-weight:700;margin-right:6px}
+  @media (max-width:640px){
+    .clients{padding:72px 0}
+    .head,.stats{padding:0 16px}
+    .group li{height:104px;padding:0 34px}
+    .a,.f{font-size:25px}.b{font-size:22px}.c{font-size:16px}.d{font-size:18px}.e{font-size:18px}
+    .marquee{margin-top:44px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .track{animation:none;width:100%}
+    .marquee{-webkit-mask-image:none;mask-image:none}
+    .group{flex-wrap:wrap;justify-content:center;padding:12px 0}
+    .group[aria-hidden="true"]{display:none}
+    .group li{height:96px}
+    .ctrl{display:none}
+  }
+</style>
+</head>
+<body>
+<section class="clients" aria-labelledby="clients-title">
+  <div class="head">
+    <div>
+      <p class="eyebrow">Selected clients · 2016—now</p>
+      <h2 id="clients-title">Brands we've helped <span>sound like themselves.</span></h2>
+    </div>
+    <div class="side">
+      <p>Hollow &amp; Hart is an independent brand and campaign studio in Bristol. <b>140+ launches</b> for founders, challengers and the odd household name.</p>
+      <button class="ctrl" type="button" aria-pressed="false" aria-controls="marquee">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path class="ico" d="M8 5v14M16 5v14"/></svg>
+        <span class="lbl">Pause logos</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="marquee" id="marquee">
+    <div class="track">
+      <ul class="group" aria-label="Client logos">
+        <li><span class="logo a" role="img" aria-label="Saltwick">Saltwick</span></li>
+        <li><span class="logo b" role="img" aria-label="Velvet Ox">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 6c3 0 5 2 6 5h12c1-3 3-5 6-5-1 5-4 8-7 9v8a5 5 0 0 1-10 0v-8c-3-1-6-4-7-9Z" fill="currentColor"/></svg>
+          <span aria-hidden="true">velvet ox</span></span></li>
+        <li><span class="logo c" role="img" aria-label="Monday Kiln">[monday/kiln]</span></li>
+        <li><span class="logo d" role="img" aria-label="Pomelo Social">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="16" r="11" fill="currentColor"/><path d="M14 5c1-3 4-4 7-3-1 3-4 4-7 3Z" fill="currentColor"/></svg>
+          <span aria-hidden="true">pomelo</span></span></li>
+        <li><span class="logo e" role="img" aria-label="Northcote Wool">Northcote</span></li>
+        <li><span class="logo f" role="img" aria-label="Ardent Gin">
+          <span class="mono" aria-hidden="true">A</span><span aria-hidden="true">Ardent Gin</span></span></li>
+        <li><span class="logo b" role="img" aria-label="Grainhaus">
+          <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 2h22v22H2z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M2 13h22M13 2v22" stroke="currentColor" stroke-width="3"/></svg>
+          <span aria-hidden="true">GRAINHAUS</span></span></li>
+        <li><span class="logo a" role="img" aria-label="Fable &amp; Fern"><span aria-hidden="true">Fable <span style="font-style:italic;font-weight:500">&amp;</span> Fern</span></span></li>
+        <li><span class="logo c" role="img" aria-label="Tidewell Radio">
+          <svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><path d="M1 10q3.5-8 7 0t7 0 7 0 7 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          <span aria-hidden="true">tidewell.fm</span></span></li>
+        <li><span class="logo d" role="img" aria-label="Kettle Club">kettle—club</span></li>
+      </ul>
+      <ul class="group" aria-hidden="true"></ul>
+    </div>
+  </div>
+
+  <div class="stats">
+    <p><strong>140+</strong>brand launches</p>
+    <p><strong>11</strong>industry awards</p>
+    <p><strong>9 yrs</strong>average client relationship</p>
+  </div>
+</section>
+<script>
+(function(){
+  var root=document.querySelector('.clients');
+  var groups=root.querySelectorAll('.group');
+  // clone first group for the seamless loop (decorative copy, hidden from AT)
+  groups[1].innerHTML=groups[0].innerHTML;
+  groups[1].querySelectorAll('[role="img"]').forEach(function(el){el.removeAttribute('role');el.removeAttribute('aria-label');});
+  var btn=root.querySelector('.ctrl');
+  var mq=document.getElementById('marquee');
+  btn.addEventListener('click',function(){
+    var on=btn.getAttribute('aria-pressed')!=='true';
+    btn.setAttribute('aria-pressed',String(on));
+    mq.classList.toggle('paused',on);
+    btn.querySelector('.lbl').textContent=on?'Play logos':'Pause logos';
+    btn.querySelector('.ico').setAttribute('d',on?'M7 4l13 8-13 8Z':'M8 5v14M16 5v14');
+  });
+  document.addEventListener('visibilitychange',function(){
+    mq.classList.toggle('hidden-tab',document.hidden);
+  });
+})();
+</script>
+</body>
+</html>

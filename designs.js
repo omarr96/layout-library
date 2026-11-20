@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "logo-gallery",
+      "title": "Client logo layouts · all 10",
+      "desc": "Gallery of 10 client logo sections, each a different layout.",
+      "tags": [
+        "Client logos",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/logo-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-01-simple-row",
+      "title": "Client logo 01 · Tasklane",
+      "desc": "Simple row · SaaS · “Trusted by 2,000+ teams”.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/01-simple-row/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-02-marquee",
+      "title": "Client logo 02 · Hollow & Hart",
+      "desc": "Logo marquee · agency · pause button, fade edges.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/02-marquee/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-03-grid-borders",
+      "title": "Client logo 03 · Aldermoor Partners",
+      "desc": "Bordered grid · consulting · hover reveals colour.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/03-grid-borders/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-04-dark-band",
+      "title": "Client logo 04 · Ninebit Labs",
+      "desc": "Dark band + rating · software house · counters.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/04-dark-band/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-05-split-heading",
+      "title": "Client logo 05 · Loudhouse",
+      "desc": "Heading left, 3×3 logos right · marketing agency.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/05-split-heading/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-06-logo-cards",
+      "title": "Client logo 06 · Cartwell Studio",
+      "desc": "Flip cards with results · e-commerce agency.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/06-logo-cards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-07-two-rows-opposite",
+      "title": "Client logo 07 · Houselight Productions",
+      "desc": "Two rows, opposite directions · event production.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/07-two-rows-opposite/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-08-logos-with-quote",
+      "title": "Client logo 08 · Hireloom",
+      "desc": "Logo tabs with client quote · recruitment agency.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/08-logos-with-quote/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-09-industry-filter",
+      "title": "Client logo 09 · Northgrid Systems",
+      "desc": "Industry filter chips · IT services · live count.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/09-industry-filter/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "logo-10-badges-awards",
+      "title": "Client logo 10 · Aldermoor Architects",
+      "desc": "Logos + awards + ratings · architecture firm.",
+      "tags": [
+        "Client logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/logo-layouts/10-badges-awards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "split-gallery",
       "title": "Image + text layouts · all 10",
       "desc": "Gallery of 10 image + text sections, each a different layout.",

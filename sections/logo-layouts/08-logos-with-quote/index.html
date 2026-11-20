@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hireloom — Client stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Josefin+Sans:wght@600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F4EE;--card:#FFFFFF;--ink:#16291E;--green:#1F3D2B;--tx:#4C5A50;--mut:#7D8A80;--line:#DCE3D7;--lime:#C9F27B}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{font:16px/1.6 "DM Sans",system-ui,sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased}
+.sec{max-width:1160px;margin:0 auto;padding:110px 32px}
+.head{text-align:center;max-width:680px;margin:0 auto 52px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:var(--lime);padding:5px 12px;border-radius:99px}
+h2{font-family:Fraunces,serif;font-weight:400;font-size:clamp(32px,4.2vw,52px);line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin:18px 0 14px}
+h2 em{font-style:italic;color:var(--green)}
+.head p{margin:0;font-size:17px}
+.tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--card);border:1px solid var(--line);border-radius:20px;padding:8px;gap:6px}
+.tab{all:unset;box-sizing:border-box;position:relative;height:84px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:14px;cursor:pointer;color:#97A299;transition:color .25s,background .25s;white-space:nowrap}
+.tab:hover{color:var(--green);background:#F6F8F3}
+.tab[aria-selected="true"]{color:var(--ink);background:#EAF0E4}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:50%;bottom:-17px;width:18px;height:18px;background:var(--card);border-left:1px solid var(--line);border-top:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+.tab:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.tab svg{flex:none}
+.a{font-family:Fraunces,serif;font-weight:600;font-size:22px;letter-spacing:-.02em}
+.b{font-family:"Josefin Sans",sans-serif;font-weight:700;font-size:17px;letter-spacing:.2em;text-transform:uppercase;padding-top:3px}
+.c{font-family:"Archivo Black",sans-serif;font-size:20px;letter-spacing:-.03em;text-transform:lowercase}
+.d{font-family:"DM Sans",sans-serif;font-weight:500;font-size:20px;letter-spacing:-.03em}
+.e{font-family:Fraunces,serif;font-style:italic;font-size:23px}
+.panel{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:52px 56px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center}
+.panel[hidden]{display:none}
+.panel.in{animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.panel:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+blockquote{margin:0;position:relative}
+blockquote svg{color:var(--lime);margin-bottom:14px}
+blockquote p{margin:0;font-family:Fraunces,serif;font-size:clamp(22px,2.3vw,29px);line-height:1.35;letter-spacing:-.015em;color:var(--ink)}
+blockquote mark{background:linear-gradient(transparent 60%,var(--lime) 60%);color:inherit}
+.who{display:flex;align-items:center;gap:14px;margin-top:28px}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.who b{display:block;color:var(--ink);font-weight:700}
+.who span{font-size:14px;color:var(--mut)}
+.res{background:var(--green);color:#DDE8DA;border-radius:18px;padding:28px}
+.res .k{font-family:Fraunces,serif;font-size:54px;line-height:1;color:var(--lime);letter-spacing:-.03em}
+.res .l{margin:6px 0 18px;font-size:15px;color:#fff}
+.res ul{margin:0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.14);list-style:none;display:grid;gap:8px;font-size:14px}
+.res li{display:flex;gap:9px;align-items:flex-start}
+.res li svg{flex:none;margin-top:4px;color:var(--lime)}
+.foot{display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;margin-top:34px;font-size:14.5px;color:var(--mut)}
+.foot b{color:var(--ink)}
+@media (max-width:960px){.panel{grid-template-columns:1fr;gap:32px;padding:40px}.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.tab[aria-selected="true"]::after{display:none}}
+@media (max-width:560px){.sec{padding:72px 16px}.tabs{grid-template-columns:repeat(2,minmax(0,1fr));padding:6px;border-radius:16px}.tab{height:64px;transform:scale(.88)}.tab:last-child{grid-column:span 2}.panel{padding:28px 22px;border-radius:18px;margin-top:16px}.res .k{font-size:44px}}
+@media (prefers-reduced-motion:reduce){.panel.in{animation:none}.tab{transition:none}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="t">
+  <div class="head">
+    <span class="eyebrow">Hiring partners</span>
+    <h2 id="t">The teams we hire for <em>say it better than we can</em></h2>
+    <p>Hireloom places engineers, analysts and operators into scale-ups and regulated companies. Pick a client to hear how the search went.</p>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Clients">
+    <button class="tab a" role="tab" id="tab-1" aria-controls="p-1" aria-selected="true"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L3 7v2h18V7z M5 11h3v7H5z M10.5 11h3v7h-3z M16 11h3v7h-3z M3 20h18v2H3z" fill="currentColor"/></svg>Quillstone</button>
+    <button class="tab b" role="tab" id="tab-2" aria-controls="p-2" aria-selected="false" tabindex="-1"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>Ardent</button>
+    <button class="tab c" role="tab" id="tab-3" aria-controls="p-3" aria-selected="false" tabindex="-1"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="4" fill="currentColor"/><circle cx="18" cy="6" r="3" fill="currentColor"/><circle cx="18" cy="18" r="3" fill="currentColor"/><path d="M6 12L18 6M6 12l12 6" stroke="currentColor" stroke-width="2"/></svg>Polymer</button>
+    <button class="tab d" role="tab" id="tab-4" aria-controls="p-4" aria-selected="false" tabindex="-1"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16l10-10 10 10" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M7 20l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2.6"/></svg>greywick</button>
+    <button class="tab e" role="tab" id="tab-5" aria-controls="p-5" aria-selected="false" tabindex="-1"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c4 5 6 8.5 6 12a6 6 0 0 1-12 0c0-3.5 2-7 6-12z" fill="currentColor"/></svg>Bluefen</button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-1" aria-labelledby="tab-1" tabindex="0">
+    <blockquote>
+      <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l1 5c-5 1-8 4-8 9h8v16zm22 0V17c0-10 5-16 15-17l1 5c-5 1-8 4-8 9h8v16z" fill="currentColor"/></svg>
+      <p>We’d burned six months with two other agencies. Hireloom understood compliance-heavy engineering, sent four candidates, and <mark>we hired three of them</mark>.</p>
+    </blockquote>
+    <div>
+      <div class="res"><div class="k">3 of 4</div><div class="l">shortlisted candidates hired</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Senior backend &amp; platform roles</li><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Filled in 31 days</li></ul></div>
+      <div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Imogen Reyes" width="56" height="56" loading="lazy"><div><b>Imogen Reyes</b><span>VP Engineering, Quillstone Bank</span></div></div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-2" aria-labelledby="tab-2" tabindex="0" hidden>
+    <blockquote>
+      <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l1 5c-5 1-8 4-8 9h8v16zm22 0V17c0-10 5-16 15-17l1 5c-5 1-8 4-8 9h8v16z" fill="currentColor"/></svg>
+      <p>Opening three new clinics meant hiring a full operations layer at once. They ran it like a project, with weekly calls, and <mark>every manager is still with us a year on</mark>.</p>
+    </blockquote>
+    <div>
+      <div class="res"><div class="k">100%</div><div class="l">12-month retention on 9 hires</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Clinic &amp; regional ops managers</li><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Three sites, one hiring plan</li></ul></div>
+      <div class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Daniel Okafor-Hale" width="56" height="56" loading="lazy"><div><b>Daniel Okafor-Hale</b><span>COO, Ardent Health</span></div></div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-3" aria-labelledby="tab-3" tabindex="0" hidden>
+    <blockquote>
+      <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l1 5c-5 1-8 4-8 9h8v16zm22 0V17c0-10 5-16 15-17l1 5c-5 1-8 4-8 9h8v16z" fill="currentColor"/></svg>
+      <p>Materials scientists who can also write production code are rare. Hireloom found them in places we hadn’t looked and <mark>doubled our R&amp;D team in a quarter</mark>.</p>
+    </blockquote>
+    <div>
+      <div class="res"><div class="k">2×</div><div class="l">R&amp;D headcount in 90 days</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Computational chemists</li><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Hires from 5 countries</li></ul></div>
+      <div class="who"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&h=300&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Amara Lindqvist" width="56" height="56" loading="lazy"><div><b>Dr Amara Lindqvist</b><span>Head of Research, Polymer Labs</span></div></div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-4" aria-labelledby="tab-4" tabindex="0" hidden>
+    <blockquote>
+      <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l1 5c-5 1-8 4-8 9h8v16zm22 0V17c0-10 5-16 15-17l1 5c-5 1-8 4-8 9h8v16z" fill="currentColor"/></svg>
+      <p>Peak season used to mean panic hiring. Now Hireloom keeps a warm bench of planners and analysts, and <mark>our time-to-hire dropped from 58 days to 19</mark>.</p>
+    </blockquote>
+    <div>
+      <div class="res"><div class="k">19 days</div><div class="l">average time-to-hire, down from 58</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Supply-chain analysts</li><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Rolling retained search</li></ul></div>
+      <div class="who"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Marcus Tan" width="56" height="56" loading="lazy"><div><b>Marcus Tan</b><span>People Director, Greywick Logistics</span></div></div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-5" aria-labelledby="tab-5" tabindex="0" hidden>
+    <blockquote>
+      <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l1 5c-5 1-8 4-8 9h8v16zm22 0V17c0-10 5-16 15-17l1 5c-5 1-8 4-8 9h8v16z" fill="currentColor"/></svg>
+      <p>They didn’t just send CVs, they told us honestly when our salary bands were off. That candour is why <mark>we’ve used them for every senior role since</mark>.</p>
+    </blockquote>
+    <div>
+      <div class="res"><div class="k">14</div><div class="l">senior placements since 2022</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Grid &amp; data engineering leads</li><li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Salary benchmarking included</li></ul></div>
+      <div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&q=70&auto=format&fit=crop&crop=faces" alt="Portrait of Freya Whitcombe" width="56" height="56" loading="lazy"><div><b>Freya Whitcombe</b><span>CEO, Bluefen Energy</span></div></div>
+    </div>
+  </div>
+
+  <div class="foot"><span><b>4.9/5</b> average client rating</span><span><b>1,850</b> placements since 2014</span><span><b>91%</b> still in role after a year</span></div>
+</section>
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t, focus) {
+    tabs.forEach(function (x) {
+      var on = x === t, p = document.getElementById(x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected', String(on));
+      x.tabIndex = on ? 0 : -1;
+      p.hidden = !on;
+      p.classList.remove('in');
+      if (on) { void p.offsetWidth; p.classList.add('in'); }
+    });
+    if (focus) t.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') n = tabs[0];
+      else if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); select(n, true); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
