@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farwander — Small-group journeys worth the detour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#F2B544;--sun-d:#E09B1F;--ink:#0B1614;--white:#fff;--glass:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;isolation:isolate;overflow:hidden}
+.bg{position:absolute;inset:0;z-index:-2}
+.bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%;animation:zoom 24s ease-out forwards}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 80% 60% at 50% 45%,rgba(6,14,13,.35),rgba(6,14,13,.7)),linear-gradient(180deg,rgba(6,14,13,.55),rgba(6,14,13,.15) 30%,rgba(6,14,13,.75))}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(11,22,20,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .3s}
+.nav.scrolled::before,.nav.open::before{opacity:1}
+.nav-in{max-width:1320px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;gap:40px}
+.logo{font-family:"DM Serif Display",serif;font-size:27px;display:flex;align-items:center;gap:8px}
+.logo svg{flex:none}
+.links{display:flex;gap:30px;font-size:15.5px;margin:0 auto}
+.links a{opacity:.88;position:relative}
+.links a:hover{opacity:1}
+.links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--sun);transition:right .25s}
+.links a:hover::after{right:0}
+.nav-r{display:flex;align-items:center;gap:20px;font-size:15px}
+.btn-o{border:1.5px solid rgba(255,255,255,.6);border-radius:99px;padding:10px 20px;font-weight:500}
+.btn-o:hover{background:#fff;color:var(--ink)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);background:transparent;cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:12px;width:18px;height:2px;background:#fff;content:"";transition:.2s}
+.burger span{top:20px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
+/* content */
+.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 40px}
+.eyebrow{font-size:14px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--sun)}
+h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(46px,8.6vw,124px);line-height:.95;letter-spacing:-.02em;margin:18px 0 20px;text-shadow:0 4px 40px rgba(0,0,0,.3)}
+h1 em{font-style:italic;color:var(--sun)}
+.sub{font-size:clamp(16px,1.6vw,19px);font-weight:300;max-width:580px;color:rgba(255,255,255,.88);line-height:1.55}
+.search{margin-top:40px;width:100%;max-width:860px;background:#fff;border-radius:999px;padding:8px;display:grid;grid-template-columns:1.5fr 1fr 1fr auto;align-items:center;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);color:var(--ink);text-align:left}
+.fld{padding:8px 22px;border-right:1px solid #e7e7e2;position:relative}
+.fld:nth-child(3){border-right:0}
+.fld label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6b7370}
+.fld input,.fld select{width:100%;border:0;background:transparent;font:500 16.5px Outfit,sans-serif;color:var(--ink);padding:3px 0;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+.fld input{cursor:text}
+.fld input::placeholder{color:#9aa19e}
+.fld:focus-within label{color:var(--sun-d)}
+.fld.bad label{color:#C2410C}
+.fld .err{position:absolute;left:22px;top:100%;margin-top:14px;font-size:13px;color:#fff;background:#C2410C;padding:5px 10px;border-radius:8px;display:none;white-space:nowrap}
+.fld.bad .err{display:block}
+.go{border:0;cursor:pointer;background:var(--sun);color:var(--ink);font:600 16px Outfit,sans-serif;height:58px;padding:0 30px;border-radius:999px;display:flex;align-items:center;gap:10px;transition:background .2s}
+.go:hover{background:var(--sun-d)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;font-size:14px;align-items:center}
+.chips span{opacity:.75}
+.chip{font:500 14px Outfit,sans-serif;color:#fff;background:var(--glass);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:7px 15px;cursor:pointer;transition:background .2s}
+.chip:hover{background:rgba(255,255,255,.28)}
+.result{margin-top:22px;min-height:52px;max-width:860px;width:100%}
+.res{display:none;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:rgba(11,22,20,.72);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:14px 20px;text-align:left}
+.res.show{display:flex;animation:up .4s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}}
+.res p{font-size:15.5px}.res b{color:var(--sun)}
+.res a{font-weight:600;font-size:15px;white-space:nowrap;border-bottom:1.5px solid var(--sun)}
+.foot{max-width:1320px;width:100%;margin:0 auto;padding:22px 32px 30px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px;color:rgba(255,255,255,.85)}
+.proof{display:flex;gap:36px;flex-wrap:wrap}
+.proof b{display:block;font-family:"DM Serif Display",serif;font-weight:400;font-size:26px;color:#fff;line-height:1.1}
+.credit{opacity:.7;font-size:13px}
+@media (max-width:900px){
+  .links,.nav-r .btn-o,.nav-r a:not(.btn-o){display:none}
+  .burger{display:block}
+  .nav-in{padding:16px 20px}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:rgba(11,22,20,.97);padding:6px 24px 26px}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:18px}
+  .search{grid-template-columns:1fr 1fr;border-radius:26px;padding:10px;gap:4px}
+  .fld{border-right:0;border-bottom:1px solid #eee;padding:10px 14px}
+  .fld:first-child{grid-column:1/-1}
+  .fld:nth-child(3){border-bottom:1px solid #eee}
+  .go{grid-column:1/-1;justify-content:center;height:54px;margin-top:6px}
+  .fld .err{left:14px;top:auto;bottom:6px;margin:0;font-size:12px;padding:3px 8px}
+}
+@media (max-width:560px){
+  .main{padding-top:120px}
+  .eyebrow{font-size:12px;letter-spacing:.18em}
+  .proof{gap:22px}
+  .proof b{font-size:22px}
+  .foot{padding:18px 20px 24px}
+  .credit{display:none}
+}
+@media (prefers-reduced-motion:reduce){.bg img{animation:none}.res.show{animation:none}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=70&auto=format&fit=crop" alt="Wooden rowing boat drifting on a turquoise alpine lake below jagged mountain peaks"></div>
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#" class="logo" aria-label="Farwander home"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="none" stroke="#F2B544" stroke-width="2"/><path d="M13 4l3 9-3 9-3-9z" fill="#F2B544"/></svg>Farwander</a>
+      <nav class="links" aria-label="Primary"><a href="#">Destinations</a><a href="#">Journeys</a><a href="#">Private trips</a><a href="#">Stories</a></nav>
+      <div class="nav-r"><a href="#">Sign in</a><a href="#" class="btn-o">Talk to an expert</a></div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu"><a href="#">Destinations</a><a href="#">Journeys</a><a href="#">Private trips</a><a href="#">Stories</a><a href="#">Talk to an expert</a></div>
+  </header>
+
+  <div class="main">
+    <p class="eyebrow">Small groups · Local guides · Since 2009</p>
+    <h1>Go somewhere<br><em>unforgettable</em></h1>
+    <p class="sub">Hand-crafted journeys for 12 travellers or fewer — from Dolomite hut-to-hut treks to slow trains across Japan. Flexible booking on every departure.</p>
+
+    <form class="search" id="search" novalidate role="search" aria-label="Find a journey">
+      <div class="fld" id="f-dest">
+        <label for="dest">Where to?</label>
+        <input id="dest" list="places" placeholder="Search a country or region" autocomplete="off" aria-describedby="dest-err">
+        <datalist id="places"><option value="Dolomites, Italy"><option value="Kyoto &amp; Kansai, Japan"><option value="Patagonia, Chile"><option value="Atlas Mountains, Morocco"><option value="Faroe Islands"><option value="Peruvian Andes"></datalist>
+        <span class="err" id="dest-err" role="alert"></span>
+      </div>
+      <div class="fld">
+        <label for="when">When</label>
+        <select id="when"><option value="any time">Any time</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option></select>
+      </div>
+      <div class="fld">
+        <label for="who">Travellers</label>
+        <select id="who"><option value="1">1 traveller</option><option value="2" selected>2 travellers</option><option value="3">3 travellers</option><option value="4">4 travellers</option><option value="6">5–6 travellers</option></select>
+      </div>
+      <button class="go" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search</button>
+    </form>
+
+    <div class="chips"><span>Popular:</span>
+      <button class="chip" type="button">Dolomites, Italy</button><button class="chip" type="button">Kyoto &amp; Kansai, Japan</button><button class="chip" type="button">Patagonia, Chile</button><button class="chip" type="button">Atlas Mountains, Morocco</button>
+    </div>
+
+    <div class="result" aria-live="polite"><div class="res" id="res"><p id="res-t"></p><a href="#">View journeys →</a></div></div>
+  </div>
+
+  <div class="foot">
+    <div class="proof">
+      <div><b>4.9★</b>11,800 Trustpilot reviews</div>
+      <div><b>140</b>destinations on 6 continents</div>
+      <div><b>Carbon-balanced</b>every departure</div>
+    </div>
+    <span class="credit">Lago di Braies, Dolomites — our “Hut to Hut” journey</span>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function setMenu(o){nav.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  b.addEventListener('click',function(){setMenu(!nav.classList.contains('open'));});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>30);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var form=document.getElementById('search'),dest=document.getElementById('dest'),fd=document.getElementById('f-dest'),err=document.getElementById('dest-err');
+  var res=document.getElementById('res'),rt=document.getElementById('res-t');
+  function bad(msg){fd.classList.add('bad');err.textContent=msg;dest.setAttribute('aria-invalid','true');dest.focus();res.classList.remove('show');}
+  dest.addEventListener('input',function(){fd.classList.remove('bad');err.textContent='';dest.removeAttribute('aria-invalid');});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=dest.value.trim();
+    if(!v)return bad('Tell us where you’d like to go');
+    if(v.length<3)return bad('Type at least 3 letters');
+    var seed=0;for(var i=0;i<v.length;i++)seed=(seed*31+v.charCodeAt(i))%997;
+    var n=4+seed%17,w=document.getElementById('when').value,p=document.getElementById('who').value;
+    var from=(1890+(seed%9)*215).toLocaleString();
+    rt.innerHTML='';
+    var s1=document.createElement('b');s1.textContent=n+' journeys';
+    rt.appendChild(s1);
+    rt.appendChild(document.createTextNode(' to '+v.split(',')[0]+(w==='any time'?' any time':' in '+w)+' for '+p+(p==='1'?' traveller':' travellers')+' — from $'+from+' pp.'));
+    res.classList.remove('show');void res.offsetWidth;res.classList.add('show');
+  });
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click',function(){dest.value=c.textContent;dest.dispatchEvent(new Event('input'));form.requestSubmit?form.requestSubmit():form.dispatchEvent(new Event('submit',{cancelable:true}));});
+  });
+})();
+</script>
+</body>
+</html>

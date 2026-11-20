@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pennywell — Money on autopilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#1E1450;--deep:#120B36;--violet:#6C4BFF;--coral:#FF7A59;--mint:#3DDC97;--soft:#B9AEFF;--white:#fff}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"DM Sans",system-ui,sans-serif;color:#fff;background:var(--deep);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+h1,h2,.sora{font-family:Sora,sans-serif}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;background:
+ radial-gradient(800px 600px at 85% 20%,rgba(108,75,255,.75),transparent 60%),
+ radial-gradient(700px 500px at 10% 90%,rgba(255,122,89,.35),transparent 60%),
+ radial-gradient(600px 500px at 60% 100%,rgba(61,220,151,.22),transparent 60%),
+ linear-gradient(160deg,#1E1450 0%,#120B36 70%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,#000,transparent 80%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);pointer-events:none}
+
+.nav{position:relative;z-index:20;max-width:1280px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;gap:36px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Sora,sans-serif;font-weight:700;font-size:21px}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--mint),var(--violet));display:grid;place-items:center;font-style:normal;font-weight:800;color:var(--deep)}
+.links{display:flex;gap:30px;list-style:none;margin:0 auto 0 0;padding:0;font-size:15px;color:rgba(255,255,255,.78)}
+.links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:13px 20px;font-weight:700;font-size:15px;transition:.2s}
+.btn-light{background:#fff;color:var(--indigo)}
+.btn-light:hover{background:var(--mint)}
+.login{font-weight:500;font-size:15px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;place-items:center}
+.mmenu{display:none}
+
+.grid{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 7px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:14px}
+.badge b{background:var(--mint);color:var(--deep);border-radius:99px;padding:3px 10px;font-size:12px}
+h1{font-size:clamp(40px,5.4vw,76px);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin:22px 0 20px}
+h1 span{background:linear-gradient(90deg,var(--mint),var(--soft) 60%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:18px;line-height:1.6;color:rgba(255,255,255,.78);max-width:520px;margin:0 0 30px}
+.sms{display:flex;gap:8px;max-width:480px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:6px}
+.sms label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sms input{flex:1;min-width:0;background:none;border:0;color:#fff;padding:0 14px;font-size:16px;outline:none}
+.sms input::placeholder{color:rgba(255,255,255,.55)}
+.sms.err{border-color:#FF8B8B;box-shadow:0 0 0 4px rgba(255,139,139,.15)}
+.sms .btn{background:var(--coral);color:#fff;white-space:nowrap}
+.sms .btn:hover{background:#ff6a45}
+.note{font-size:14px;margin:10px 0 0 4px;color:rgba(255,255,255,.6);min-height:20px}
+.note.ok{color:var(--mint)}
+.note.bad{color:#FFAFAF}
+.stores{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.store{display:flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:12px;background:#000;border:1px solid rgba(255,255,255,.3);transition:.2s}
+.store:hover{border-color:#fff;transform:translateY(-2px)}
+.store small{display:block;font-size:10px;letter-spacing:.04em;opacity:.8;line-height:1}
+.store b{font-size:17px;font-weight:700;line-height:1.2}
+.rating{display:flex;align-items:center;gap:14px;margin-top:28px;font-size:14px;color:rgba(255,255,255,.75)}
+.rating .st{color:#FFC861;letter-spacing:2px;font-size:16px}
+.rating b{color:#fff}
+
+/* phone */
+.stage{position:relative;display:flex;justify-content:center;padding:20px 0}
+.glow{position:absolute;width:360px;height:360px;border-radius:50%;background:var(--violet);filter:blur(90px);opacity:.55;top:50%;left:50%;transform:translate(-50%,-50%)}
+.phone{position:relative;width:310px;height:640px;border-radius:52px;background:#0B0820;padding:12px;box-shadow:0 0 0 2px #3a3366,0 50px 100px -30px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08);transform:rotate(-3deg)}
+.screen{position:relative;height:100%;border-radius:42px;background:#F6F4FF;color:#1A1438;overflow:hidden;padding:46px 18px 18px;display:flex;flex-direction:column;gap:14px}
+.notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#0B0820}
+.status{position:absolute;top:14px;left:26px;right:24px;display:flex;justify-content:space-between;font-size:12px;font-weight:700}
+.hi{display:flex;justify-content:space-between;align-items:center}
+.hi p{margin:0;font-size:13px;color:#6B6590}
+.hi h2{margin:2px 0 0;font-size:18px;font-weight:700}
+.ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--coral),#FFB36B);display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
+.bal{background:linear-gradient(140deg,var(--violet),#4A2FD6);color:#fff;border-radius:22px;padding:16px}
+.bal small{opacity:.8;font-size:12px}
+.bal .amt{font-family:Sora,sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em;margin:2px 0 10px}
+.seg{display:flex;background:rgba(255,255,255,.16);border-radius:10px;padding:3px}
+.seg button{flex:1;border:0;background:none;color:#fff;font-size:12px;font-weight:700;padding:6px 0;border-radius:8px;opacity:.75}
+.seg button[aria-selected=true]{background:#fff;color:var(--violet);opacity:1}
+.chart{display:flex;align-items:flex-end;gap:7px;height:76px;margin-top:12px}
+.chart i{flex:1;border-radius:6px 6px 3px 3px;background:rgba(255,255,255,.35);height:20%;transition:height .5s cubic-bezier(.2,.8,.2,1)}
+.chart i.hot{background:var(--mint)}
+.spent{display:flex;justify-content:space-between;font-size:12px;margin-top:8px;opacity:.9}
+.tx h3{font-size:13px;margin:2px 0 8px;font-family:Sora,sans-serif}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #E8E4FA;font-size:13px}
+.row:last-child{border:0}
+.row .ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:none}
+.row div{flex:1;min-width:0}
+.row b{display:block;font-weight:700}
+.row small{color:#857FA8}
+.row .v{font-weight:700}
+.row .v.in{color:#17A36B}
+
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;background:#fff;color:#1A1438;border-radius:16px;padding:10px 14px 10px 10px;box-shadow:0 20px 40px -14px rgba(0,0,0,.5);font-size:13px;animation:float 6s ease-in-out infinite}
+.chip .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:16px;flex:none}
+.chip b{display:block;font-size:14px}
+.chip small{color:#6B6590}
+.c1{top:47%;left:max(0px,calc(50% - 330px))}
+.c2{top:63%;right:max(0px,calc(50% - 320px));animation-delay:-2s}
+.c3{bottom:5%;left:max(0px,calc(50% - 300px));animation-delay:-4s}
+.prog{width:110px;height:6px;border-radius:6px;background:#ECE8FF;margin-top:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--violet),var(--coral))}
+@keyframes float{50%{transform:translateY(-12px)}}
+
+@media (max-width:1000px){
+  .links,.nav .login,.nav>.btn{display:none}
+  .burger{display:grid}
+  .mmenu{display:flex;flex-direction:column;position:absolute;top:78px;left:16px;right:16px;z-index:30;background:#fff;color:var(--indigo);border-radius:20px;padding:10px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s}
+  .mmenu.open{opacity:1;visibility:visible;transform:none}
+  .mmenu a{padding:14px 16px;border-radius:12px;font-weight:600}
+  .mmenu a:hover{background:#F1EEFF}
+  .mmenu .btn{background:var(--violet);color:#fff;margin-top:6px}
+  .grid{grid-template-columns:1fr;padding-top:24px;text-align:left}
+  .stage{margin-top:10px}
+}
+@media (max-width:520px){
+  .nav{padding:16px}
+  .grid{padding:16px 16px 56px}
+  .sms{flex-direction:column;padding:8px}
+  .sms input{height:48px}
+  .phone{width:270px;height:560px;border-radius:46px;transform:none}
+  .screen{border-radius:36px;padding:44px 14px 14px;gap:10px}
+  .bal .amt{font-size:24px}
+  .row:nth-child(n+4){display:none}
+  .chip{padding:8px 10px 8px 8px;font-size:12px}
+  .chip b{font-size:13px}
+  .c1{left:0;top:43%}
+  .c2{right:0;top:66%}
+  .c3{left:0;bottom:3%}
+  .prog{width:90px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="hero">
+  <header class="nav">
+    <a href="#" class="logo" aria-label="Pennywell home"><i>p</i>Pennywell</a>
+    <ul class="links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Savings goals</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Security</a></li>
+    </ul>
+    <a href="#" class="login">Log in</a>
+    <a href="#" class="btn btn-light">Get the app</a>
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg width="20" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h20M0 7h20M0 13h20"/></svg></button>
+    <nav class="mmenu" id="mmenu" aria-label="Mobile">
+      <a href="#">Features</a><a href="#">Savings goals</a><a href="#">Pricing</a><a href="#">Security</a><a href="#">Log in</a>
+      <a href="#" class="btn">Get the app</a>
+    </nav>
+  </header>
+
+  <div class="grid">
+    <section>
+      <span class="badge"><b>New</b> Auto-split paychecks into goals</span>
+      <h1>Your money, <span>finally on autopilot.</span></h1>
+      <p class="sub">Pennywell rounds up every purchase, flags bills before they bite and quietly moves spare cash into the goals you care about. Members save an average of $312 a month.</p>
+      <form class="sms" id="sms" novalidate>
+        <label for="phone">Mobile number</label>
+        <input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Your mobile, e.g. (415) 555-0132">
+        <button class="btn" type="submit">Text me the app</button>
+      </form>
+      <p class="note" id="note" role="status" aria-live="polite">Free forever on the Basic plan. No credit check.</p>
+      <div class="stores">
+        <a href="#" class="store" aria-label="Download on the App Store">
+          <svg width="22" height="26" viewBox="0 0 22 26" fill="#fff" aria-hidden="true"><path d="M18 13.8c0-3 2.5-4.4 2.6-4.5-1.4-2.1-3.6-2.4-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.2 1.5 12.2 1 1.5 2.2 3.1 3.8 3 1.5 0 2.1-1 4-1 1.8 0 2.4 1 4 1 1.6 0 2.7-1.5 3.700-3 1.200-1.700 1.600-3.300 1.700-3.400-.1 0-3.200-1.200-3.300-4.900zM15 4.700c.8-1 1.4-2.400 1.200-3.700-1.200 0-2.600.8-3.500 1.800-.8.9-1.500 2.300-1.300 3.600 1.300.1 2.700-.7 3.600-1.700z"/></svg>
+          <span><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <a href="#" class="store" aria-label="Get it on Google Play">
+          <svg width="22" height="24" viewBox="0 0 22 24" aria-hidden="true"><path d="M1 1l11 11L1 23c-.4-.2-.6-.6-.6-1.1V2.1c0-.5.2-.9.6-1.1z" fill="#3DDC97"/><path d="M16 8l-4 4 4 4 4.400-2.500c1.100-.7 1.100-2.300 0-3z" fill="#FFC861"/><path d="M1 1c.3-.2.800-.2 1.200 0L16 8l-4 4z" fill="#6C4BFF"/><path d="M12 12l4 4-13.800 7.900c-.4.2-.9.2-1.200 0z" fill="#FF7A59"/></svg>
+          <span><small>GET IT ON</small><b>Google Play</b></span>
+        </a>
+      </div>
+      <div class="rating"><span class="st" aria-hidden="true">★★★★★</span><span><b>4.8</b> from 61,200 reviews · FDIC-insured partner bank</span></div>
+    </section>
+
+    <section class="stage" aria-label="Pennywell app preview">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="notch" aria-hidden="true"></div>
+          <div class="status" aria-hidden="true"><span>9:41</span><span>5G ▮▮▮</span></div>
+          <div class="hi"><div><p>Good morning</p><h2>Maya Chen</h2></div><span class="ava" aria-hidden="true">MC</span></div>
+          <div class="bal">
+            <small>Total balance</small>
+            <div class="amt">$8,412.60</div>
+            <div class="seg" role="tablist" aria-label="Spending period">
+              <button role="tab" aria-selected="true" data-p="week">Week</button>
+              <button role="tab" aria-selected="false" data-p="month" tabindex="-1">Month</button>
+              <button role="tab" aria-selected="false" data-p="year" tabindex="-1">Year</button>
+            </div>
+            <div class="chart" id="chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="spent" aria-live="polite"><span id="spentL">Spent this week</span><b id="spentV">$486.20</b></div>
+          </div>
+          <div class="tx">
+            <h3>Recent</h3>
+            <div class="row"><span class="ic" style="background:#E5FBF1">💼</span><div><b>Paycheck · Lumen Labs</b><small>Split into 3 goals</small></div><span class="v in">+$2,850</span></div>
+            <div class="row"><span class="ic" style="background:#FFEDE7">🛒</span><div><b>Greenleaf Market</b><small>Groceries · round-up $0.60</small></div><span class="v">−$42.40</span></div>
+            <div class="row"><span class="ic" style="background:#EEEAFF">🚲</span><div><b>CityBike</b><small>Transport</small></div><span class="v">−$9.00</span></div>
+            <div class="row"><span class="ic" style="background:#FFF6DD">☕</span><div><b>Hollow Bean</b><small>Coffee · round-up $0.25</small></div><span class="v">−$4.75</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="chip c1" aria-hidden="true"><span class="ic" style="background:#E5FBF1">💰</span><div><b>+$3.40 rounded up</b><small>Moved to “Lisbon trip”</small></div></div>
+      <div class="chip c2" aria-hidden="true"><span class="ic" style="background:#FFEDE7">🔔</span><div><b>Rent due in 3 days</b><small>$1,650 · you're covered</small></div></div>
+      <div class="chip c3" aria-hidden="true"><span class="ic" style="background:#EEEAFF">✈️</span><div><b>Lisbon trip · 72%</b><div class="prog"><i></i></div></div></div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){menu.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu')}
+  burger.addEventListener('click',function(e){e.stopPropagation();setMenu(!menu.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target))setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  var data={
+    week:{bars:[40,62,35,80,55,92,48],hot:5,label:'Spent this week',val:'$486.20'},
+    month:{bars:[58,72,64,88,70,52,45],hot:3,label:'Spent in November',val:'$2,104.75'},
+    year:{bars:[66,58,74,62,90,70,78],hot:4,label:'Spent in 2026',val:'$24,930.10'}
+  };
+  var bars=document.querySelectorAll('#chart i'),tabs=[].slice.call(document.querySelectorAll('.seg button'));
+  function show(p){
+    var d=data[p];
+    bars.forEach(function(b,k){b.style.height=d.bars[k]+'%';b.classList.toggle('hot',k===d.hot)});
+    document.getElementById('spentL').textContent=d.label;
+    document.getElementById('spentV').textContent=d.val;
+    tabs.forEach(function(t){var on=t.dataset.p===p;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t.dataset.p)});
+    t.addEventListener('keydown',function(e){
+      var s=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(s){e.preventDefault();var n=tabs[(i+s+tabs.length)%tabs.length];show(n.dataset.p);n.focus()}
+    });
+  });
+  show('week');
+
+  var form=document.getElementById('sms'),inp=document.getElementById('phone'),note=document.getElementById('note');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var digits=inp.value.replace(/\D/g,'');
+    if(digits.length===11&&digits[0]==='1')digits=digits.slice(1);
+    if(digits.length!==10){
+      form.classList.add('err');inp.setAttribute('aria-invalid','true');inp.focus();
+      note.className='note bad';note.textContent='Please enter a 10-digit US mobile number.';return;
+    }
+    form.classList.remove('err');inp.removeAttribute('aria-invalid');
+    note.className='note ok';
+    note.textContent='✓ Sent! Check ('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6)+' for your download link.';
+    form.reset();
+  });
+  inp.addEventListener('input',function(){if(form.classList.contains('err')){form.classList.remove('err');inp.removeAttribute('aria-invalid')}});
+})();
+</script>
+</body>
+</html>

@@ -52,6 +52,11 @@ window.DESIGNS = {
       "desc": "Order via WhatsApp or a form, no full store"
     },
     {
+      "id": "section-layouts",
+      "name": "Sections layout",
+      "desc": "Single sections in many layouts: heroes, FAQs and more"
+    },
+    {
       "id": "industry-landing",
       "name": "Industry landing pages",
       "desc": "One landing page per industry, with a shared kit"
@@ -73,6 +78,551 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "section-layouts",
+      "slug": "hero-gallery",
+      "title": "Hero layouts · all 20",
+      "desc": "Gallery of 20 hero sections, each a different layout for a different business.",
+      "tags": [
+        "Hero",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/hero-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-01-minimal-centered",
+      "title": "Hero 01 · Ledgerly",
+      "desc": "Minimal centered · invoicing SaaS · rotating word, logo strip.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/01-minimal-centered/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-02-bg-slider",
+      "title": "Hero 02 · Casa Corallo",
+      "desc": "Background image slider · boutique resort · 4 slides, progress dots.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/02-bg-slider/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-03-form-right",
+      "title": "Hero 03 · Hartwell & Rowe",
+      "desc": "Form on the right · injury law firm · free case review form.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/03-form-right/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-04-image-right-stats",
+      "title": "Hero 04 · Brightwell Dental",
+      "desc": "Image right + floating stat cards · dental clinic · pick a time.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/04-image-right-stats/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-05-full-bleed-centered",
+      "title": "Hero 05 · Farwander",
+      "desc": "Full-bleed photo, centered · travel tours · \"Where to?\" search.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/05-full-bleed-centered/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-06-split-screen",
+      "title": "Hero 06 · Maison Olea",
+      "desc": "50/50 split screen · fashion boutique · lookbook slider.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/06-split-screen/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-07-search-tabs",
+      "title": "Hero 07 · Keystone & Vale",
+      "desc": "Search with tabs · real estate · Buy / Rent / Sell.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/07-search-tabs/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-08-bento-grid",
+      "title": "Hero 08 · Fable & Fold",
+      "desc": "Bento grid · branding agency · stats, testimonial, image tiles.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/08-bento-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-09-app-mockup",
+      "title": "Hero 09 · Pennywell",
+      "desc": "App mockup · finance app · live phone UI, text-me-the-app.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/09-app-mockup/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-10-editorial-type",
+      "title": "Hero 10 · Halde Arkitekter",
+      "desc": "Editorial typography · architecture studio · marquee strip.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/10-editorial-type/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-11-booking-widget",
+      "title": "Hero 11 · Ember & Vine",
+      "desc": "Booking widget over photo · restaurant · open time slots.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/11-booking-widget/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-12-content-carousel",
+      "title": "Hero 12 · Holm & Hearth",
+      "desc": "Content carousel, alternating split · furniture sale · thumbnails.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/12-content-carousel/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-13-diagonal-split",
+      "title": "Hero 13 · Redline Boxing Club",
+      "desc": "Diagonal split · boxing gym · outlined type, class tabs.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/13-diagonal-split/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-14-video-course",
+      "title": "Hero 14 · Fieldwise",
+      "desc": "Signup + video thumbnail · online course · player modal.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/14-video-course/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-15-product-spotlight",
+      "title": "Hero 15 · Aurel One",
+      "desc": "Product spotlight · headphones · colour swatches, spec callouts.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/15-product-spotlight/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-16-event-countdown",
+      "title": "Hero 16 · Saltwave Festival",
+      "desc": "Event countdown · music festival · ticket tiers.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/16-event-countdown/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-17-collage",
+      "title": "Hero 17 · Willow & Wren",
+      "desc": "Photo collage · wedding photographer · date checker.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/17-collage/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-18-calculator-right",
+      "title": "Hero 18 · Harbourline Mortgages",
+      "desc": "Calculator on the right · mortgage broker · live payment.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/18-calculator-right/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-19-tracking-input",
+      "title": "Hero 19 · Hopline Courier",
+      "desc": "Single big input · courier tracking · result timeline.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/19-tracking-input/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-20-accordion-panels",
+      "title": "Hero 20 · Stillwater House",
+      "desc": "Expanding image panels · spa & wellness · hover to open.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/20-accordion-panels/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-10-waste-collection",
+      "title": "Kerbwise",
+      "desc": "Waste collection · collection-day lookup, skip size picker, bin guide, business quote.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/10-waste-collection/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-11-hajj-umrah",
+      "title": "Sakinah Pilgrim Travel",
+      "desc": "Hajj & Umrah · packages with hotel distance, group departures, instalment calculator.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/11-hajj-umrah/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-12-study-abroad",
+      "title": "Postmark Exchange",
+      "desc": "Study abroad · destination tabs with costs, estimator with scholarships, timeline.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/12-study-abroad/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-13-solar-heatpump",
+      "title": "Solvane Home Energy",
+      "desc": "Solar & heat pumps · savings calculator, grant note, products, free survey.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/13-solar-heatpump/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-14-movers",
+      "title": "Carryall Removals",
+      "desc": "Movers · instant estimate with crew and van, services, storage, quote form.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/14-movers/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-15-cleaning",
+      "title": "Spruce Cleaning Co.",
+      "desc": "Cleaning · price calculator, what’s-included checklists, guarantee, booking slots.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/15-cleaning/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-16-childcare",
+      "title": "Bramblewood Day Nursery",
+      "desc": "Nursery · rooms by age, day timeline, fees and funded hours, tour/waitlist form.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/16-childcare/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-17-vet-pet",
+      "title": "Brambleway Vets & Pet Spa",
+      "desc": "Vet & pet care · emergency bar, wellness plans, grooming prices, new-patient form.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/17-vet-pet/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-18-driving-school",
+      "title": "Lanemark Driving School",
+      "desc": "Driving school · manual/auto pricing switch, pass rates, postcode check, first lesson.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/18-driving-school/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-19-physio-clinic",
+      "title": "Stillwater Physio",
+      "desc": "Physio & chiro · conditions tabs, practitioners, first-visit steps, slot booking.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/19-physio-clinic/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-20-accountant",
+      "title": "Tallyfield Accountants",
+      "desc": "Accountant · fixed packages, live tax-deadline calendar, savings, consultation.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/20-accountant/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-21-home-care",
+      "title": "Willowbrook Home Care",
+      "desc": "Home care · care types, assessment steps, carers, weekly cost estimate.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/21-home-care/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "industry-landing",
+      "slug": "il-22-funeral-home",
+      "title": "Ellery Glen Funeral Home",
+      "desc": "Funeral home · 24/7 line, first steps, fixed prices with itemised list, obituaries.",
+      "tags": [
+        "Landing page"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "industry-landing/22-funeral-home/index.html"
+        }
+      ]
+    },
     {
       "cat": "industry-landing",
       "slug": "industry-gallery",

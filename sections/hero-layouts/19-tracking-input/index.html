@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hopline Courier — Track your parcel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--yel:#ffd23f;--ink:#111318;--ink2:#1b1e26;--blue:#2b59ff;--paper:#f3f1ea;--muted:#5e6270;--line:#d9d6cc;--ok:#18a058}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Space Grotesk",system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.mono{font-family:"JetBrains Mono",monospace}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+
+.nav{position:relative;z-index:30;background:var(--ink);color:#fff}
+.nav .wrap{display:flex;align-items:center;gap:36px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;letter-spacing:-.02em}
+.logo i{width:32px;height:32px;background:var(--yel);border-radius:8px;display:grid;place-items:center;transform:skewX(-10deg)}
+.logo i::before{content:"";width:12px;height:12px;border:3px solid var(--ink);border-left:0;border-bottom:0;transform:rotate(45deg) translate(-2px,2px)}
+.links{display:flex;gap:28px;list-style:none;font-size:15px;color:#c9ccd6}
+.links a:hover{color:var(--yel)}
+.right{margin-left:auto;display:flex;gap:12px;align-items:center}
+.ghost{color:#fff;font-weight:500;font-size:15px;padding:10px 14px}
+.cta{background:var(--yel);color:var(--ink);font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:10px}
+.cta:hover{background:#ffe07a}
+.burger{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:none;color:#fff}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:currentColor;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+
+.hero{position:relative;overflow:hidden;padding:84px 0 96px;isolation:isolate}
+.map{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.map .road{stroke:#e2ded2;stroke-width:14;fill:none;stroke-linecap:round}
+.map .st{stroke:#e8e5db;stroke-width:5;fill:none}
+.map .route{stroke:var(--blue);stroke-width:4;fill:none;stroke-dasharray:10 10;animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 70% at 50% 45%,var(--paper) 30%,rgba(243,241,234,.4) 75%,transparent)}
+.center{max-width:820px;margin-inline:auto;text-align:center}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:7px 14px 7px 8px;font-size:13px}
+.chip b{background:var(--yel);color:var(--ink);border-radius:999px;padding:2px 9px;font-size:12px}
+h1{font-size:clamp(44px,7vw,96px);font-weight:700;letter-spacing:-.045em;line-height:.95;margin:22px 0 18px}
+h1 span{background:var(--yel);padding:0 .12em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lede{font-size:18.5px;line-height:1.55;color:var(--muted);max-width:600px;margin-inline:auto}
+
+.track{margin:36px auto 0;max-width:720px;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:8px;display:flex;gap:8px;box-shadow:8px 8px 0 var(--ink);text-align:left}
+.track label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fld{flex:1;display:flex;align-items:center;gap:12px;padding:0 14px;min-width:0}
+.fld svg{width:24px;height:24px;flex:none;color:var(--muted)}
+.fld input{border:0;outline:none;width:100%;font-family:"JetBrains Mono",monospace;font-size:19px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:14px 0;background:transparent;min-width:0}
+.fld input::placeholder{color:#9a9ca6;text-transform:none;letter-spacing:0;font-family:"Space Grotesk"}
+.track button{background:var(--blue);color:#fff;border:0;border-radius:13px;padding:0 28px;font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.track button:hover{background:#1e46e0}
+.track[data-err] {border-color:#c2261d;box-shadow:8px 8px 0 #c2261d}
+.below{margin-top:16px;font-size:14px;color:var(--muted);display:flex;gap:8px 18px;justify-content:center;flex-wrap:wrap}
+.below button{background:none;border:0;color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:0}
+.err{color:#c2261d;font-weight:600;font-size:14.5px;margin-top:14px;min-height:1px}
+
+/* RESULT */
+.result{max-width:820px;margin:34px auto 0;background:#fff;border:2px solid var(--ink);border-radius:22px;overflow:hidden;text-align:left;animation:pop .4s cubic-bezier(.2,.9,.3,1.2)}
+.result[hidden]{display:none}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.rh{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;padding:22px 26px;background:var(--ink);color:#fff}
+.rh .st{font-size:24px;font-weight:700;letter-spacing:-.02em;flex:1;min-width:220px}
+.rh .st small{display:block;font-size:12px;color:#aeb2bd;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.eta{background:var(--yel);color:var(--ink);border-radius:12px;padding:10px 14px;font-weight:700;line-height:1.2}
+.eta small{display:block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.bar{height:8px;background:#eceae3}
+.bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .8s ease}
+.rb{display:grid;grid-template-columns:1fr 220px;gap:26px;padding:24px 26px}
+.tl{list-style:none;position:relative}
+.tl li{position:relative;padding:0 0 18px 34px}
+.tl li::before{content:"";position:absolute;left:8px;top:18px;bottom:-2px;width:2px;background:#e1ded4}
+.tl li:last-child::before{display:none}
+.tl li::after{content:"";position:absolute;left:0;top:3px;width:14px;height:14px;border-radius:50%;border:2px solid #c9c6bb;background:#fff}
+.tl li.done::after{background:var(--ok);border-color:var(--ok)}
+.tl li.done::before{background:var(--ok)}
+.tl li.now::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 5px rgba(43,89,255,.18)}
+.tl b{display:block;font-size:15.5px}
+.tl li:not(.done):not(.now) b{color:#8d909a}
+.tl small{font-size:13px;color:var(--muted)}
+.side{border-left:1px dashed var(--line);padding-left:24px;font-size:14px;display:grid;gap:14px;align-content:start}
+.side span{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.side b{font-weight:600}
+.side button{background:none;border:1.5px solid var(--ink);border-radius:10px;padding:10px;font-weight:600}
+.side button:hover{background:var(--yel)}
+
+.trust{display:flex;justify-content:center;gap:12px 40px;flex-wrap:wrap;margin-top:56px;font-size:14.5px;color:var(--muted)}
+.trust b{color:var(--ink);font-size:20px;display:block;letter-spacing:-.02em}
+
+@media (max-width:960px){
+  .links{display:none}
+}
+@media (max-width:700px){
+  .right .ghost,.right .cta{display:none}
+  .burger{display:grid;place-items:center}
+  .mmenu{position:absolute;left:12px;right:12px;top:80px;background:var(--ink2);border-radius:16px;padding:10px;z-index:40;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .mmenu.open{display:block}
+  .mmenu a{display:block;padding:14px;color:#fff;border-radius:10px}
+  .mmenu a:hover{background:rgba(255,255,255,.08)}
+  .mmenu .cta{color:var(--ink);text-align:center;margin-top:6px}
+  .rb{grid-template-columns:1fr}
+  .side{border-left:0;border-top:1px dashed var(--line);padding:18px 0 0;grid-template-columns:1fr 1fr}
+  .side button{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{padding:52px 0 64px}
+  .lede{font-size:16.5px}
+  .track{flex-direction:column;box-shadow:5px 5px 0 var(--ink);border-radius:16px}
+  .track[data-err]{box-shadow:5px 5px 0 #c2261d}
+  .fld{padding:0 8px}
+  .fld input{font-size:16px}
+  .track button{justify-content:center;padding:15px}
+  .rh{padding:18px}.rh .st{font-size:20px;min-width:0}
+  .rb{padding:20px 18px}
+  .trust{gap:18px 28px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Hopline Courier home"><i aria-hidden="true"></i>hopline</a>
+    <ul class="links">
+      <li><a href="#">Send a parcel</a></li>
+      <li><a href="#">Business</a></li>
+      <li><a href="#">Drop-off points</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+    <div class="right">
+      <a href="#" class="ghost">Log in</a>
+      <a href="#" class="cta">Get a quote</a>
+      <button class="burger" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+  <nav class="mmenu" id="mmenu" aria-label="Mobile">
+    <a href="#">Send a parcel</a><a href="#">Business</a><a href="#">Drop-off points</a><a href="#">Help</a><a href="#">Log in</a><a href="#" class="cta">Get a quote</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="title">
+  <svg class="map" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1440" height="820" fill="#f3f1ea"/>
+    <path fill="#dfe9d6" d="M0 560c140-30 220 40 340 20s170-110 300-90 120 140 0 200-360 110-640 130z"/>
+    <path fill="#d5e3ef" d="M1180 0c-40 90 30 170 120 210s140 20 140 20V0z"/>
+    <g class="st"><path d="M0 120h1440M0 300h1440M0 470h1440M0 680h1440M150 0v820M420 0v820M690 0v820M960 0v820M1230 0v820"/></g>
+    <g class="road"><path d="M-20 220C300 260 420 80 720 140s420 220 760 160"/><path d="M260 -20c40 260-80 420 60 860"/><path d="M1080 -20c-60 300 140 520 40 860"/></g>
+    <path class="route" d="M120 640C320 600 300 420 520 400s300 160 500 60 200-260 320-300"/>
+    <g fill="#111318"><circle cx="120" cy="640" r="9"/><circle cx="120" cy="640" r="18" fill="none" stroke="#111318" stroke-width="2"/></g>
+    <g transform="translate(1340 160)"><path d="M0-34c-14 0-24 10-24 24 0 18 24 40 24 40s24-22 24-40c0-14-10-24-24-24z" fill="#2b59ff"/><circle cy="-10" r="8" fill="#fff"/></g>
+    <g transform="translate(520 400)"><rect x="-16" y="-16" width="32" height="32" rx="8" fill="#ffd23f" stroke="#111318" stroke-width="2"/><path d="M-7-2h14v9h-14zM-7-2l7-5 7 5" fill="none" stroke="#111318" stroke-width="2"/></g>
+  </svg>
+
+  <div class="wrap">
+    <div class="center">
+      <span class="chip"><b>Live</b> 2.1 million parcels on the move today</span>
+      <h1 id="title">Where’s my <span>parcel?</span></h1>
+      <p class="lede">Pop in your 12-character Hopline tracking number for live, step-by-step updates — from collection van to your doorstep, with a one-hour delivery window on the day.</p>
+
+      <form class="track" id="track" novalidate>
+        <label for="tn">Tracking number</label>
+        <div class="fld">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
+          <input id="tn" name="tn" autocomplete="off" spellcheck="false" maxlength="14" placeholder="e.g. HL 4829 3017 66" aria-describedby="err hint">
+        </div>
+        <button type="submit">Track <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="err" id="err" role="alert"></p>
+      <div class="below" id="hint"><span>Starts with <span class="mono">HL</span> followed by 10 digits</span><button type="button" id="sample">Try a sample number</button></div>
+
+      <section class="result" id="result" hidden aria-live="polite" aria-labelledby="r-status">
+        <div class="rh">
+          <div class="st"><small class="mono" id="r-num">HL4829301766</small><span id="r-status">Out for delivery</span></div>
+          <div class="eta"><small>Estimated arrival</small><span id="r-eta">Today, 13:10 – 14:10</span></div>
+        </div>
+        <div class="bar" role="progressbar" aria-label="Delivery progress" aria-valuemin="0" aria-valuemax="100" id="r-bar" aria-valuenow="0"><i></i></div>
+        <div class="rb">
+          <ol class="tl" id="r-tl"></ol>
+          <div class="side">
+            <div><span>From</span><b id="r-from">Northgate Ceramics, Leeds</b></div>
+            <div><span>Service</span><b id="r-svc">Next Day · 2.4 kg</b></div>
+            <div><span>Driver</span><b id="r-drv">Marcus · van HL-217</b></div>
+            <button type="button" id="redir">Change delivery</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="trust">
+        <div><b>98.6%</b>on-time last month</div>
+        <div><b>3,400+</b>drop-off points</div>
+        <div><b>4.7 / 5</b>from 52k reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Close menu':'Open menu');menu.classList.toggle('open',o);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true')});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  var $=function(id){return document.getElementById(id)};
+  var form=$('track'),input=$('tn'),err=$('err'),res=$('result');
+  var steps=[
+    ['Label created','Sender booked collection'],
+    ['Collected','Picked up by our driver'],
+    ['At sorting hub','Processed at Hopline Midlands Hub, Coventry'],
+    ['Out for delivery','On the van — 9 stops before yours'],
+    ['Delivered','Signed for at your door']
+  ];
+  var senders=['Northgate Ceramics, Leeds','Fernby Books, Bristol','Kilnworks Coffee, Glasgow','Atlas Running Co., Manchester','Little Oak Toys, Norwich'];
+  var drivers=['Marcus · van HL-217','Priya · van HL-084','Tomasz · van HL-339','Dee · van HL-152'];
+
+  function fmtTime(h,m){return (h<10?'0':'')+h+':'+(m<10?'0':'')+m}
+  function show(code){
+    var digits=code.slice(2),sum=0;
+    for(var i=0;i<digits.length;i++)sum+=+digits[i]*(i+1);
+    var stage=1+sum%4; // 1..4 (index of current step)
+    var now=new Date(),base=now.getHours();
+    $('r-num').textContent=code.slice(0,2)+' '+digits.slice(0,4)+' '+digits.slice(4,8)+' '+digits.slice(8);
+    $('r-status').textContent=stage===4?'Delivered':steps[stage][0];
+    var h=Math.min(Math.max(base+1,9),19),mm=(sum*7)%60;
+    $('r-eta').textContent=stage===4?'Today at '+fmtTime(Math.max(base-1,8),mm):stage===3?'Today, '+fmtTime(h,mm)+' – '+fmtTime(h+1,mm):stage===2?'Tomorrow, by 18:00':'In 2 working days';
+    $('r-from').textContent=senders[sum%senders.length];
+    $('r-drv').textContent=stage>=3?drivers[sum%drivers.length]:'Assigned on delivery day';
+    $('r-svc').textContent=(sum%2?'Next Day':'Standard 48h')+' · '+(1+sum%9)+'.'+(sum%10)+' kg';
+    var tl=$('r-tl');tl.innerHTML='';
+    var labels=['Mon','Tue','Wed','Thu','Fri'];
+    steps.forEach(function(s,i){
+      var li=document.createElement('li');
+      var state=i<stage||(stage===4&&i===4)?'done':i===stage?'now':'';
+      if(state)li.className=state;
+      var when=i<=stage?(i===stage||(stage===4&&i===4)?'Today, ':labels[(i+2)%5]+', ')+fmtTime(7+i*2+(sum%2),(sum*3+i*11)%60):'Pending';
+      li.innerHTML='<b>'+s[0]+'</b><small>'+(i<=stage?s[1]+' · '+when:when)+'</small>';
+      if(state==='now')li.setAttribute('aria-current','step');
+      tl.appendChild(li);
+    });
+    var pct=stage===4?100:Math.round(stage/4*100-8);
+    res.hidden=false;
+    var bar=$('r-bar');bar.setAttribute('aria-valuenow',pct);
+    bar.firstElementChild.style.width='0';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){bar.firstElementChild.style.width=pct+'%';});});
+    $('redir').hidden=stage===4;
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var code=input.value.toUpperCase().replace(/[\s-]/g,'');
+    if(!code){fail('Enter your tracking number to see where your parcel is.');return;}
+    if(!/^HL\d{10}$/.test(code)){fail('That doesn’t look like a Hopline number — it should be HL plus 10 digits, e.g. HL 4829 3017 66.');return;}
+    err.textContent='';form.removeAttribute('data-err');input.removeAttribute('aria-invalid');
+    show(code);
+  });
+  function fail(m){err.textContent=m;form.setAttribute('data-err','');input.setAttribute('aria-invalid','true');res.hidden=true;input.focus();}
+  input.addEventListener('input',function(){if(form.hasAttribute('data-err')){form.removeAttribute('data-err');err.textContent='';input.removeAttribute('aria-invalid');}});
+  $('sample').addEventListener('click',function(){input.value='HL 4829 3017 66';form.requestSubmit?form.requestSubmit():form.dispatchEvent(new Event('submit',{cancelable:true}));});
+  $('redir').addEventListener('click',function(){this.textContent='Options sent by text ✓';this.disabled=true;});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurel One — Wireless noise-cancelling headphones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090c;--panel:#111318;--text:#eef0f4;--dim:#8b909c;--line:rgba(238,240,244,.1);--accent:#7cf3d0;--b1:#4a4f5a;--b2:#16181d;--pad:#0e0f12}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.hero{position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 52%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%),linear-gradient(var(--line) 1px,transparent 1px) 0 0/100% 80px;opacity:.9;transition:background .6s;pointer-events:none}
+/* nav */
+.nav{position:relative;z-index:20;display:flex;align-items:center;gap:32px;padding:22px clamp(16px,4vw,56px)}
+.logo{font-weight:700;letter-spacing:.32em;font-size:1rem;display:flex;align-items:center;gap:10px}
+.logo i{width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);position:relative;transition:border-color .4s}
+.logo i::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--accent);transition:background .4s}
+.links{display:flex;gap:28px;list-style:none;font-size:.88rem;color:var(--dim);margin:0 auto}
+.links a:hover,.links a:focus-visible{color:var(--text)}
+.links a[aria-current]{color:var(--text)}
+.end{display:flex;align-items:center;gap:10px}
+.ibtn{position:relative;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);display:grid;place-items:center}
+.ibtn:hover{border-color:var(--dim)}
+.ibtn svg{width:18px;height:18px}
+.count{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:#08090c;font-size:.68rem;font-weight:700;display:grid;place-items:center;transform:scale(0);transition:transform .25s}
+.count.on{transform:scale(1)}
+.navcta{border-radius:999px;background:var(--text);color:#08090c;font-weight:600;font-size:.86rem;padding:11px 18px;margin-left:6px;transition:background .3s}
+.navcta:hover{background:var(--accent)}
+.burger{display:none}
+.mmenu{display:none}
+/* stage */
+.stage{position:relative;flex:1;display:grid;grid-template-columns:1fr minmax(360px,560px) 1fr;align-items:center;gap:20px;padding:10px clamp(16px,4vw,56px) 0;max-width:1440px;width:100%;margin:0 auto}
+.intro{align-self:center}
+.eyebrow{font-size:.75rem;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;transition:color .4s}
+h1{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;letter-spacing:-.04em;line-height:.98;margin:16px 0 18px}
+h1 span{display:block;font-weight:300;color:var(--dim)}
+.intro p{color:var(--dim);line-height:1.7;max-width:330px;font-size:.98rem}
+.product{position:relative;aspect-ratio:1/1.16}
+.product svg.hp{position:relative;z-index:2;width:100%;height:86%;filter:drop-shadow(0 40px 50px rgba(0,0,0,.6));animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.halo{position:absolute;inset:8% 10% 22%;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);transition:border-color .5s}
+.halo::before{content:"";position:absolute;inset:9%;border-radius:50%;border:1px dashed var(--line)}
+.floor{position:absolute;left:22%;right:22%;bottom:15%;height:24px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 35%,transparent),transparent);filter:blur(4px)}
+/* callouts */
+.callout{position:absolute;z-index:3;font-size:.78rem;color:var(--dim);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.callout b{display:block;color:var(--text);font-size:1.05rem;font-weight:600;font-family:Sora,sans-serif}
+.callout::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 25%,transparent);flex:none;transition:background .4s}
+.callout .ln{width:56px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);flex:none}
+.c1{top:16%;left:-4%;flex-direction:row-reverse;text-align:right}
+.c1 .ln{background:linear-gradient(270deg,var(--accent),transparent)}
+.c2{top:16%;right:-6%}
+.c3,.c4{bottom:0;flex-direction:column;text-align:center;gap:6px;transform:translateX(-50%)}
+.c3{left:19.75%}.c4{left:80.25%}
+.c3 .ln,.c4 .ln{width:1px;height:22px;background:linear-gradient(180deg,var(--accent),transparent)}
+/* buy panel */
+.buy{justify-self:end;width:100%;max-width:320px;background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:22px;padding:24px}
+.buy h2{font-size:.75rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.colorname{font-size:1.15rem;font-weight:600;margin-bottom:14px}
+.sw{display:flex;gap:12px;margin-bottom:24px}
+.sw button{width:36px;height:36px;border-radius:50%;border:0;background:var(--c);box-shadow:inset 0 -6px 10px rgba(0,0,0,.35),0 0 0 2px var(--bg),0 0 0 3px transparent;transition:box-shadow .2s,transform .2s}
+.sw button:hover{transform:translateY(-2px)}
+.sw button[aria-checked="true"]{box-shadow:inset 0 -6px 10px rgba(0,0,0,.35),0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
+.price{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.price strong{font-size:2.1rem;font-weight:700;letter-spacing:-.03em}
+.price s{color:var(--dim)}
+.fin{font-size:.8rem;color:var(--dim);margin-bottom:18px}
+.add{width:100%;border:0;border-radius:14px;background:var(--accent);color:#08090c;font-weight:700;padding:16px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:.98rem;transition:background .4s,transform .15s}
+.add:hover{transform:translateY(-1px)}
+.add:active{transform:translateY(1px)}
+.add svg{width:18px;height:18px}
+.added{font-size:.84rem;color:var(--accent);margin-top:12px;min-height:1.2em}
+.ship{display:flex;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:.76rem;color:var(--dim)}
+.strip{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 40px;padding:26px 16px 30px;font-size:.78rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.strip span b{color:var(--text);font-weight:600}
+.specs-m{display:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:1180px){
+  .stage{grid-template-columns:1fr 1fr;grid-template-areas:"intro buy" "product product"}
+  .intro{grid-area:intro}.buy{grid-area:buy}.product{grid-area:product;max-width:520px;width:100%;margin:0 auto}
+}
+@media (max-width:960px){
+  .links{display:none}
+  .end{margin-left:auto}
+  .burger{display:grid}
+  .burger span,.burger span::before,.burger span::after{display:block;width:16px;height:1.5px;background:currentColor;position:relative;transition:.25s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-5px}.burger span::after{top:5px}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+  .mmenu{position:absolute;top:100%;left:16px;right:16px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:8px 18px 18px;flex-direction:column}
+  .mmenu.open{display:flex}
+  .mmenu a{padding:14px 0;border-bottom:1px solid var(--line)}
+}
+@media (max-width:420px){.navcta{display:none}.nav{gap:12px}}
+@media (max-width:760px){
+  .stage{grid-template-columns:1fr;grid-template-areas:"intro" "product" "specs" "buy";gap:12px}
+  .intro{text-align:center}.intro p{margin:0 auto}
+  .product{max-width:420px}
+  .callout{display:none}
+  .product{aspect-ratio:1/1.02}.product svg.hp{height:100%}.floor{bottom:3%}.halo{inset:12% 10%}
+  .specs-m{grid-area:specs;display:grid;grid-template-columns:1fr 1fr;gap:8px;list-style:none}
+  .specs-m li{border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.76rem;color:var(--dim)}
+  .specs-m b{display:block;color:var(--text);font-size:1rem}
+  .buy{justify-self:stretch;max-width:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero" id="hero">
+  <nav class="nav" aria-label="Main">
+    <a href="#" class="logo" aria-label="Aurel home"><i aria-hidden="true"></i>AUREL</a>
+    <ul class="links">
+      <li><a href="#" aria-current="page">Headphones</a></li>
+      <li><a href="#">Earbuds</a></li>
+      <li><a href="#">Speakers</a></li>
+      <li><a href="#">Aurel App</a></li>
+      <li><a href="#">Support</a></li>
+    </ul>
+    <div class="end">
+      <button class="ibtn" type="button" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+      <button class="ibtn" type="button" id="bagBtn" aria-label="Bag, empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" id="count">0</span></button>
+      <a href="#buy" class="navcta">Buy now</a>
+      <button class="ibtn burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Headphones</a><a href="#">Earbuds</a><a href="#">Speakers</a><a href="#">Aurel App</a><a href="#">Support</a>
+    </div>
+  </nav>
+
+  <div class="stage">
+    <div class="intro">
+      <span class="eyebrow mono">New · Studio series</span>
+      <h1>Aurel One<span>Silence, tuned.</span></h1>
+      <p>Over-ear wireless headphones with adaptive noise cancelling that re-tunes 48,000 times a second — so the only thing you hear is the music.</p>
+    </div>
+
+    <div class="product">
+      <div class="halo" aria-hidden="true"></div>
+      <div class="floor" aria-hidden="true"></div>
+      <svg class="hp" viewBox="0 0 400 410" role="img" aria-labelledby="hpTitle">
+        <title id="hpTitle">Aurel One over-ear headphones in Graphite</title>
+        <defs>
+          <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--b1)"/><stop offset="1" style="stop-color:var(--b2)"/></linearGradient>
+          <linearGradient id="gBand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--b1)"/><stop offset="1" style="stop-color:var(--b2)"/></linearGradient>
+          <radialGradient id="gShine" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <path d="M78 236 C66 86 334 86 322 236" fill="none" stroke="url(#gBand)" stroke-width="24" stroke-linecap="round"/>
+        <path d="M100 168 C120 104 280 104 300 168" fill="none" stroke="var(--pad)" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+        <path d="M110 150 C135 112 265 112 290 150" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+        <rect x="68" y="206" width="20" height="56" rx="6" fill="#9aa0aa"/>
+        <rect x="312" y="206" width="20" height="56" rx="6" fill="#9aa0aa"/>
+        <rect x="72" y="214" width="12" height="40" rx="4" fill="#5d626c"/>
+        <rect x="316" y="214" width="12" height="40" rx="4" fill="#5d626c"/>
+        <g>
+          <rect x="108" y="250" width="34" height="132" rx="17" fill="var(--pad)"/>
+          <rect x="30" y="236" width="98" height="160" rx="49" fill="url(#gBody)"/>
+          <rect x="30" y="236" width="98" height="160" rx="49" fill="url(#gShine)"/>
+          <rect x="44" y="256" width="70" height="120" rx="35" fill="none" stroke="var(--accent)" stroke-width="2" opacity=".85"/>
+          <circle cx="79" cy="316" r="7" fill="var(--accent)" opacity=".9"/>
+        </g>
+        <g>
+          <rect x="258" y="250" width="34" height="132" rx="17" fill="var(--pad)"/>
+          <rect x="272" y="236" width="98" height="160" rx="49" fill="url(#gBody)"/>
+          <rect x="272" y="236" width="98" height="160" rx="49" fill="url(#gShine)"/>
+          <rect x="286" y="256" width="70" height="120" rx="35" fill="none" stroke="var(--accent)" stroke-width="2" opacity=".85"/>
+          <text x="321" y="322" text-anchor="middle" font-family="Sora,sans-serif" font-size="11" font-weight="700" letter-spacing="3" fill="var(--accent)">AUREL</text>
+        </g>
+      </svg>
+      <div class="callout c1"><span class="ln" aria-hidden="true"></span><div><b>60 hrs</b>battery · 10 min = 7 hrs</div></div>
+      <div class="callout c2"><span class="ln" aria-hidden="true"></span><div><b>−42 dB</b>adaptive ANC</div></div>
+      <div class="callout c3"><span class="ln" aria-hidden="true"></span><div><b>40 mm</b>beryllium drivers</div></div>
+      <div class="callout c4"><span class="ln" aria-hidden="true"></span><div><b>248 g</b>memory-foam fit</div></div>
+    </div>
+
+    <ul class="specs-m" aria-label="Key specs">
+      <li><b>60 hrs</b>battery life</li><li><b>−42 dB</b>adaptive ANC</li><li><b>40 mm</b>beryllium drivers</li><li><b>248 g</b>memory-foam fit</li>
+    </ul>
+
+    <div class="buy" id="buy">
+      <h2 class="mono" id="swLabel">Colour</h2>
+      <p class="colorname" id="cname" aria-live="polite">Graphite</p>
+      <div class="sw" role="radiogroup" aria-labelledby="swLabel">
+        <button type="button" role="radio" aria-checked="true" aria-label="Graphite" style="--c:#3a3e47" data-name="Graphite" data-b1="#4a4f5a" data-b2="#16181d" data-pad="#0e0f12" data-accent="#7cf3d0"></button>
+        <button type="button" role="radio" aria-checked="false" aria-label="Sandstone" tabindex="-1" style="--c:#d8c3a5" data-name="Sandstone" data-b1="#e9dac4" data-b2="#a88f6e" data-pad="#3a3128" data-accent="#ff9b5e"></button>
+        <button type="button" role="radio" aria-checked="false" aria-label="Glacier" tabindex="-1" style="--c:#b9c9da" data-name="Glacier" data-b1="#dfe8f2" data-b2="#7f93aa" data-pad="#2a3340" data-accent="#8fb8ff"></button>
+        <button type="button" role="radio" aria-checked="false" aria-label="Ultraviolet" tabindex="-1" style="--c:#5a3fa8" data-name="Ultraviolet" data-b1="#7b5fd0" data-b2="#2a1a5a" data-pad="#140c2c" data-accent="#c9a8ff"></button>
+      </div>
+      <div class="price"><strong>£349</strong><s>£399</s></div>
+      <p class="fin">or £29.08/mo for 12 months at 0% APR</p>
+      <button class="add" type="button" id="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span id="addText">Add to bag — Graphite</span></button>
+      <p class="added" id="added" role="status"></p>
+      <div class="ship"><span>Free next-day delivery</span><span>2-year warranty</span></div>
+    </div>
+  </div>
+
+  <div class="strip mono"><span><b>4.8★</b> 2,140 reviews</span><span><b>Hi-Res</b> wireless · LDAC</span><span><b>Multipoint</b> 2 devices</span><span><b>USB-C</b> lossless audio</span></div>
+</header>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Close menu':'Open menu');menu.classList.toggle('open',o);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  var root=document.documentElement,sws=[].slice.call(document.querySelectorAll('.sw [role="radio"]')),cname=document.getElementById('cname'),addText=document.getElementById('addText'),title=document.getElementById('hpTitle');
+  var current='Graphite';
+  function pick(b,focus){
+    sws.forEach(function(x){var on=x===b;x.setAttribute('aria-checked',String(on));x.tabIndex=on?0:-1;});
+    ['b1','b2','pad','accent'].forEach(function(k){root.style.setProperty('--'+k,b.dataset[k]);});
+    current=b.dataset.name;cname.textContent=current;addText.textContent='Add to bag — '+current;title.textContent='Aurel One over-ear headphones in '+current;
+    if(focus)b.focus();
+  }
+  sws.forEach(function(b,i){
+    b.addEventListener('click',function(){pick(b,false);});
+    b.addEventListener('keydown',function(e){
+      var j=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%sws.length;
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+sws.length)%sws.length;
+      if(j!==null){e.preventDefault();pick(sws[j],true);}
+    });
+  });
+
+  var n=0,count=document.getElementById('count'),bag=document.getElementById('bagBtn'),added=document.getElementById('added');
+  document.getElementById('add').addEventListener('click',function(){
+    n++;count.textContent=n;count.classList.add('on');
+    bag.setAttribute('aria-label','Bag, '+n+(n===1?' item':' items'));
+    added.textContent='✓ Aurel One in '+current+' added to your bag ('+n+(n===1?' item':' items')+'). Ships tomorrow.';
+  });
+})();
+</script>
+</body>
+</html>

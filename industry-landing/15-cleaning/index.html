@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spruce Cleaning Co. · Home, Deep &amp; End-of-Tenancy Cleaning in Dublin</title>
+<meta name="description" content="Vetted, insured cleaners across Dublin. Regular home cleaning from €34/hour, deep cleans, end-of-tenancy cleans with deposit-back guarantee and office cleaning. Instant prices, book online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f3faf7; --kt-ink: #0e3b36; --kt-tx: #45625d; --kt-mut: #6e8681; --kt-line: rgba(14,59,54,.12); --kt-accent: #0b7a5e; --kt-accent-ink: #fff; --kt-radius: 26px; --mint: #c8f0e0; --lemon: #ffe873; --lilac: #e4defe; --white: #fff; --sky: #dff3fb; }
+body { font: 16.5px/1.65 'DM Sans', system-ui, sans-serif; }
+.sr { font-family: Sora, system-ui, sans-serif; font-weight: 700; letter-spacing: -.035em; line-height: 1.04; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+section { padding: 100px 0; }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 99px; background: var(--white); border: 1px solid var(--kt-line); font-weight: 600; font-size: 14px; color: var(--kt-ink); }
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--kt-accent); }
+h2.h { font-size: clamp(36px, 4.6vw, 58px); color: var(--kt-ink); margin: 18px 0 16px; }
+h2.h span.hl { background: var(--lemon); border-radius: 14px; padding: 0 .16em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.lead { font-size: 18px; max-width: 560px; }
+.center { text-align: center; } .center .lead { margin-inline: auto; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 99px; font-weight: 700; font-size: 16px; transition: transform .2s, box-shadow .2s, background .2s; }
+.btn.g { background: var(--kt-accent); color: #fff; box-shadow: 0 10px 24px rgba(11,122,94,.28); }
+.btn.g:hover { transform: translateY(-2px); background: #086a51; }
+.btn.w { background: var(--white); color: var(--kt-ink); border: 1px solid var(--kt-line); }
+.btn.w:hover { transform: translateY(-2px); }
+.card { background: var(--white); border-radius: var(--kt-radius); box-shadow: 0 1px 0 var(--kt-line), 0 20px 50px -24px rgba(14,59,54,.25); }
+
+/* nav: blur lives on a pseudo-element so the slide-in menu isn't trapped */
+.nav { position: fixed; inset: 14px 14px auto; z-index: 50; border-radius: 99px; }
+.nav::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(255,255,255,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--kt-line); transition: box-shadow .3s; }
+.nav.scrolled::before { box-shadow: 0 14px 40px -18px rgba(14,59,54,.35); }
+.nav .bar { position: relative; display: flex; align-items: center; gap: 28px; height: 66px; padding: 0 10px 0 22px; max-width: 1200px; margin: 0 auto; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: Sora, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -.03em; color: var(--kt-ink); margin-right: auto; }
+.logo svg { width: 34px; height: 34px; }
+.kt-menu { display: flex; gap: 26px; }
+.kt-menu a { font-weight: 600; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 48px; padding: 0 22px; font-size: 15px; }
+.kt-burger { color: var(--kt-ink); }
+
+/* hero */
+.hero { padding: 150px 0 70px; position: relative; overflow: hidden; }
+.bub { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, rgba(200,240,224,.6) 45%, rgba(200,240,224,.15) 70%); border: 1px solid rgba(255,255,255,.8); animation: float 9s ease-in-out infinite; pointer-events: none; }
+@keyframes float { 50% { transform: translateY(-24px); } }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+.hero h1 { font-size: clamp(46px, 6.4vw, 86px); color: var(--kt-ink); margin: 20px 0 22px; }
+.hero h1 .sp { color: var(--kt-accent); }
+.hero p { font-size: 19px; max-width: 500px; margin: 0 0 30px; }
+.hero .acts { display: flex; gap: 12px; flex-wrap: wrap; }
+.proof { display: flex; align-items: center; gap: 14px; margin-top: 34px; font-size: 14.5px; }
+.faces { display: flex; }
+.faces img { width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--kt-bg); object-fit: cover; margin-left: -10px; }
+.faces img:first-child { margin-left: 0; }
+.proof b { color: var(--kt-ink); display: block; }
+.hpic { position: relative; }
+.hpic > img { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; border-radius: 200px 200px 30px 30px; }
+.float { position: absolute; padding: 14px 18px; display: flex; align-items: center; gap: 12px; font-size: 14px; animation: float 7s ease-in-out infinite; }
+.float b { display: block; color: var(--kt-ink); font-size: 15px; }
+.float .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.float.a { left: -40px; top: 22%; } .float.a .ic { background: var(--mint); color: var(--kt-accent); }
+.float.b { right: -24px; bottom: 14%; animation-delay: -3s; } .float.b .ic { background: var(--lemon); color: var(--kt-ink); }
+
+/* logos strip */
+.strip { padding: 26px 0; border-block: 1px solid var(--kt-line); background: var(--white); }
+.strip .kt-mq-track { --mq-gap: 46px; }
+.strip span { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--kt-ink); white-space: nowrap; font-size: 15.5px; }
+.strip span::before { content: "✦"; color: var(--kt-accent); }
+
+/* calculator */
+.calc .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.cbox { padding: 44px; border-radius: 30px 0 0 30px; }
+.cbox h3, .cres h3 { font-family: Sora, sans-serif; font-size: 24px; letter-spacing: -.02em; color: var(--kt-ink); margin: 0 0 24px; }
+.grp { border: 0; padding: 0; margin: 0 0 24px; }
+.grp legend, .grp .lab { font-weight: 700; color: var(--kt-ink); margin-bottom: 10px; font-size: 15px; display: block; padding: 0; }
+.seg { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); gap: 6px; background: var(--kt-bg); padding: 6px; border-radius: 18px; }
+.seg label { position: relative; }
+.seg input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.seg span { display: grid; place-items: center; text-align: center; min-height: 48px; padding: 6px 4px; border-radius: 13px; font-weight: 600; font-size: 14.5px; color: var(--kt-ink); line-height: 1.2; transition: .2s; }
+.seg span small { display: block; font-size: 11.5px; color: var(--kt-accent); font-weight: 700; }
+.seg input:checked + span { background: var(--white); box-shadow: 0 4px 14px -4px rgba(14,59,54,.3); }
+.seg input:checked + span small { color: var(--kt-accent); }
+.seg input:focus-visible + span { outline: 3px solid var(--kt-accent); }
+.steppers { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.stp { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--kt-bg); border-radius: 18px; padding: 10px 10px 10px 18px; }
+.stp span { font-weight: 700; color: var(--kt-ink); font-size: 15px; }
+.stp .ctl { display: flex; align-items: center; gap: 6px; }
+.stp button { width: 38px; height: 38px; border-radius: 12px; background: var(--white); color: var(--kt-ink); font-size: 20px; font-weight: 700; box-shadow: 0 2px 6px -2px rgba(14,59,54,.3); }
+.stp button:hover { background: var(--mint); }
+.stp output { min-width: 26px; text-align: center; font-family: Sora, sans-serif; font-weight: 700; font-size: 20px; color: var(--kt-ink); }
+.extras { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.extras label { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--kt-line); font-size: 14.5px; color: var(--kt-ink); cursor: pointer; }
+.extras input { width: 18px; height: 18px; accent-color: var(--kt-accent); margin: 0; flex: none; }
+.extras em { margin-left: auto; font-style: normal; color: var(--kt-mut); font-size: 13.5px; }
+.cres { background: var(--kt-ink); color: #b9d3cd; padding: 44px; border-radius: 0 30px 30px 0; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.cres::after { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(200,240,224,.18), transparent 70%); }
+.cres h3 { color: #fff; }
+.big { font-family: Sora, sans-serif; font-weight: 800; font-size: clamp(54px, 6vw, 76px); color: #fff; letter-spacing: -.04em; line-height: 1; }
+.big small { font-size: 18px; font-weight: 600; letter-spacing: 0; color: #b9d3cd; }
+.was { margin: 10px 0 0; min-height: 26px; font-size: 15px; }
+.was s { color: #87a59f; margin-right: 8px; }
+.was b { color: var(--lemon); }
+.rows { margin: 26px 0; }
+.rows div { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 15px; }
+.rows b { color: #fff; text-align: right; }
+.cres .btn { margin-top: auto; background: var(--lemon); color: var(--kt-ink); box-shadow: none; }
+.cres .btn:hover { background: #fff1a6; }
+.cres .fine { font-size: 13px; margin: 14px 0 0; color: #87a59f; }
+
+/* checklist tabs */
+.tbar { display: inline-flex; flex-wrap: wrap; gap: 6px; padding: 6px; background: var(--white); border-radius: 99px; border: 1px solid var(--kt-line); margin: 30px 0 40px; }
+.tbar button { padding: 12px 22px; border-radius: 99px; font-weight: 700; font-size: 15px; color: var(--kt-ink); }
+.tbar button.on { background: var(--kt-ink); color: #fff; }
+.cl { display: grid; grid-template-columns: .66fr 1.34fr; gap: 22px; text-align: left; }
+.cl .ph { position: relative; border-radius: 30px; overflow: hidden; min-height: 420px; }
+.cl .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cl .ph .tg { position: absolute; left: 20px; bottom: 20px; right: 20px; padding: 18px 20px; border-radius: 20px; background: rgba(255,255,255,.94); color: var(--kt-ink); }
+.cl .ph .tg b { font-family: Sora, sans-serif; font-size: 22px; display: block; }
+.rooms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.room { padding: 24px 22px; }
+.room h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-family: Sora, sans-serif; font-size: 18px; color: var(--kt-ink); }
+.room h3 i { width: 34px; height: 34px; border-radius: 10px; background: var(--mint); display: grid; place-items: center; font-style: normal; font-size: 16px; }
+.room ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px; }
+.room li { padding-left: 26px; position: relative; color: var(--kt-ink); }
+.room li::before { content: ""; position: absolute; left: 0; top: 3px; width: 17px; height: 17px; border-radius: 50%; background: var(--kt-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/11px no-repeat; }
+.room li.plus::before { background-color: #c99b00; }
+.legend { grid-column: 1 / -1; font-size: 13.5px; color: var(--kt-mut); display: flex; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+.legend span::before { content: "●"; margin-right: 6px; color: var(--kt-accent); } .legend span.p::before { color: #c99b00; }
+
+/* trust */
+.trust { background: var(--white); border-radius: 40px; margin: 0 14px; }
+.tgrid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
+.badges { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; }
+.bd { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 20px; background: var(--kt-bg); }
+.bd .ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; flex: none; }
+.bd .ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.bd b { display: block; color: var(--kt-ink); font-size: 15.5px; }
+.bd span { font-size: 14px; }
+.team { display: grid; gap: 14px; }
+.mate { display: flex; align-items: center; gap: 16px; padding: 16px; }
+.mate img { width: 74px; height: 74px; border-radius: 22px; object-fit: cover; flex: none; }
+.mate b { display: block; color: var(--kt-ink); font-family: Sora, sans-serif; font-size: 17px; }
+.mate span { font-size: 14px; display: block; }
+.mate .st { color: #c99b00; font-weight: 700; font-size: 13.5px; }
+.guar { margin-top: 26px; display: flex; gap: 18px; align-items: center; padding: 22px 24px; border-radius: 24px; background: var(--lemon); color: var(--kt-ink); }
+.seal { width: 74px; height: 74px; border-radius: 50%; background: var(--kt-ink); color: var(--lemon); display: grid; place-items: center; font-family: Sora, sans-serif; font-weight: 800; font-size: 13px; text-align: center; line-height: 1.05; flex: none; transform: rotate(-8deg); }
+.seal b { display: block; font-size: 22px; }
+.guar p { margin: 0; font-size: 15px; } .guar strong { display: block; font-family: Sora, sans-serif; font-size: 18px; }
+
+/* before after */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+.ba figure { margin: 0; }
+.ba .kt-compare { border-radius: 30px; aspect-ratio: 5/4; }
+.ba .kt-before { filter: sepia(.35) saturate(.55) brightness(.68) contrast(.85) blur(.6px); }
+.ba .kt-tag { left: 16px; } .ba .kt-tag.r { left: auto; right: 16px; background: var(--kt-accent); }
+.ba figcaption { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 14px; font-size: 14.5px; }
+.ba figcaption b { color: var(--kt-ink); }
+
+/* reviews */
+.rh { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 34px; }
+.rh .ar { display: flex; gap: 10px; }
+.kt-arrow { background: var(--white); }
+.revs > .card { width: 360px; padding: 28px; display: flex; flex-direction: column; }
+.revs { padding: 6px 6px 30px; margin: 0 -6px; }
+.revs .card:nth-child(3n+1) { background: var(--mint); } .revs .card:nth-child(3n+2) { background: var(--lilac); } .revs .card:nth-child(3n) { background: var(--sky); }
+.stars { color: #c99b00; letter-spacing: 2px; }
+.revs p { color: var(--kt-ink); font-size: 16.5px; margin: 12px 0 22px; }
+.who { margin-top: auto; display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
+.who b { color: var(--kt-ink); display: block; }
+.who em { font-style: normal; font-weight: 700; color: var(--kt-accent); background: var(--white); padding: 4px 10px; border-radius: 99px; align-self: flex-start; font-size: 12.5px; white-space: nowrap; }
+
+/* book */
+.book .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+.book form { padding: 36px; display: grid; gap: 16px; }
+.f { display: grid; gap: 6px; font-weight: 700; font-size: 14px; color: var(--kt-ink); }
+.f input, .f select, .f textarea { height: 52px; border-radius: 16px; border: 1px solid rgba(14,59,54,.2); background: var(--kt-bg); padding: 0 16px; font-weight: 500; font-size: 15.5px; outline: none; width: 100%; }
+.f textarea { height: 92px; padding: 12px 16px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--kt-accent); background: #fff; box-shadow: 0 0 0 4px rgba(11,122,94,.14); }
+.c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.c3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.slot { border: 0; padding: 0; margin: 0; }
+.slot legend { font-weight: 700; font-size: 14px; color: var(--kt-ink); margin-bottom: 8px; padding: 0; }
+.slot .seg { --n: 3; }
+.bk-note { font-size: 13.5px; color: var(--kt-mut); margin: 0; }
+.perks { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 12px; }
+.perks li { display: flex; gap: 12px; align-items: flex-start; color: var(--kt-ink); font-weight: 500; }
+.perks li::before { content: "✓"; width: 26px; height: 26px; border-radius: 50%; background: var(--mint); color: var(--kt-accent); display: grid; place-items: center; font-weight: 800; flex: none; font-size: 14px; }
+.hrs { margin-top: 28px; padding: 22px 24px; }
+.hrs div { display: flex; justify-content: space-between; padding: 6px 0; font-size: 15px; color: var(--kt-ink); }
+
+.faq .wrap { max-width: 860px; }
+.kt-faq summary { font-family: Sora, sans-serif; font-weight: 600; letter-spacing: -.01em; }
+footer { background: var(--kt-ink); color: #a7c2bc; padding: 60px 0 36px; font-size: 14.5px; border-radius: 40px 40px 0 0; }
+footer .top { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
+footer .logo { color: #fff; margin: 0; }
+footer nav { display: grid; grid-template-columns: repeat(3, auto); gap: 8px 40px; }
+footer a:hover { color: #fff; }
+footer .bot { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+@media (max-width: 1020px) {
+  .rooms { grid-template-columns: 1fr 1fr; }
+  .cl { grid-template-columns: 1fr; } .cl .ph { min-height: 300px; }
+}
+@media (max-width: 900px) {
+  section { padding: 76px 0; }
+  .nav::before { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
+  .hero .wrap, .calc .wrap, .tgrid, .book .wrap, .ba { grid-template-columns: 1fr; }
+  .hpic { max-width: 480px; margin: 0 auto; width: 100%; }
+  .float.a { left: -6px; } .float.b { right: -6px; }
+  .cbox { border-radius: 30px 30px 0 0; } .cres { border-radius: 0 0 30px 30px; }
+  .trust { margin: 0; border-radius: 30px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav { inset: 10px 10px auto; }
+  .nav .btn { display: none; }
+  .hero { padding: 120px 0 50px; }
+  .hero h1 { font-size: 44px; }
+  .cbox, .cres, .book form { padding: 26px 18px; }
+  .seg span { font-size: 13px; }
+  .steppers, .extras, .rooms, .badges, .c2, .c3 { grid-template-columns: 1fr; }
+  .tbar { border-radius: 22px; }
+  .tbar button { padding: 10px 14px; font-size: 14px; }
+  .revs > .card { width: 82vw; }
+  .float { padding: 10px 12px; font-size: 13px; } .float .ic { width: 32px; height: 32px; }
+  footer nav { grid-template-columns: repeat(2, auto); }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="bar">
+    <a href="#" class="logo" aria-label="Spruce Cleaning Co. home"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#0b7a5e"/><path d="M17 7c-5 6-5 12 0 20 5-8 5-14 0-20z" fill="#c8f0e0"/><path d="M17 12v15" stroke="#0b7a5e" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="9" r="3" fill="#ffe873"/></svg>Spruce</a>
+    <nav class="kt-menu"><a href="#prices">Prices</a><a href="#included">What's included</a><a href="#cleaners">Our cleaners</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a></nav>
+    <a href="#book" class="btn g">Book a clean</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="bub" style="width:120px;height:120px;left:4%;top:120px" aria-hidden="true"></span>
+  <span class="bub" style="width:60px;height:60px;left:42%;top:180px;animation-delay:-4s" aria-hidden="true"></span>
+  <span class="bub" style="width:90px;height:90px;left:46%;bottom:40px;animation-delay:-2s" aria-hidden="true"></span>
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal><i></i>Cleaning Dublin homes &amp; offices since 2014</span>
+      <h1 class="sr"><span data-split>Come home to</span><br><span class="sp" data-rotate="spotless floors.|a calm kitchen.|fresh sheets.|a free Saturday."></span></h1>
+      <p data-reveal data-delay="200">Vetted, insured cleaners who show up when they say, bring their own kit and follow a checklist you can actually see. Weekly cleans from €34 an hour.</p>
+      <div class="acts" data-reveal data-delay="300"><a href="#prices" class="btn g">See my price</a><a href="#included" class="btn w">What's included</a></div>
+      <div class="proof" data-reveal data-delay="400"><div class="faces"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=70&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=70&auto=format&fit=crop" alt=""><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&q=70&auto=format&fit=crop" alt=""></div><span><b>4.9/5 from 3,120 cleans</b>rated after every visit</span></div>
+    </div>
+    <div class="hpic" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1758273238415-01ec03d9ef27?w=1100&q=70&auto=format&fit=crop" alt="Cleaner mopping the floor of a bright, airy living room">
+      <div class="float card a"><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>Aoife arrives 9:00</b>Weekly · Ranelagh</span></div>
+      <div class="float card b"><span class="ic"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>€6.5m insured</b>Garda-vetted team</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip kt-marquee" data-speed="40s" aria-label="Areas we cover"><div class="kt-mq-track"><span>Ranelagh</span><span>Rathmines</span><span>Drumcondra</span><span>Clontarf</span><span>Sandymount</span><span>Dún Laoghaire</span><span>Stoneybatter</span><span>Phibsborough</span><span>Dundrum</span><span>Malahide</span><span>Docklands</span></div></div>
+
+<section class="calc" id="prices">
+  <div class="wrap center" style="display:block;margin-bottom:44px">
+    <span class="pill" data-reveal><i></i>Instant price</span>
+    <h2 class="h sr" data-split>Your price, <span class="hl">no phone call</span></h2>
+    <p class="lead" data-reveal>Pick your rooms and how often. Weekly regulars save 20%, and the price you see is the price you pay.</p>
+  </div>
+  <div class="wrap">
+    <form class="cbox card" id="calc" data-reveal>
+      <h3>Tell us about your home</h3>
+      <fieldset class="grp"><legend>Type of clean</legend>
+        <div class="seg" style="--n:3">
+          <label><input type="radio" name="type" value="regular" checked><span>Regular</span></label>
+          <label><input type="radio" name="type" value="deep"><span>Deep clean</span></label>
+          <label><input type="radio" name="type" value="tenancy"><span>End of tenancy</span></label>
+        </div>
+      </fieldset>
+      <div class="steppers">
+        <div class="stp"><span id="bedl">Bedrooms</span><div class="ctl"><button type="button" data-step="beds" data-d="-1" aria-label="Fewer bedrooms">−</button><output id="beds" aria-labelledby="bedl">2</output><button type="button" data-step="beds" data-d="1" aria-label="More bedrooms">+</button></div></div>
+        <div class="stp"><span id="bathl">Bathrooms</span><div class="ctl"><button type="button" data-step="baths" data-d="-1" aria-label="Fewer bathrooms">−</button><output id="baths" aria-labelledby="bathl">1</output><button type="button" data-step="baths" data-d="1" aria-label="More bathrooms">+</button></div></div>
+      </div>
+      <fieldset class="grp" id="freqg"><legend>How often?</legend>
+        <div class="seg" style="--n:4">
+          <label><input type="radio" name="freq" value="weekly" checked><span>Weekly<small>−20%</small></span></label>
+          <label><input type="radio" name="freq" value="fortnightly"><span>Fortnightly<small>−10%</small></span></label>
+          <label><input type="radio" name="freq" value="monthly"><span>Monthly<small>−5%</small></span></label>
+          <label><input type="radio" name="freq" value="once"><span>One-off</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="grp" style="margin:0"><legend>Extras</legend>
+        <div class="extras">
+          <label><input type="checkbox" name="x" value="45">Inside oven<em>+€45</em></label>
+          <label><input type="checkbox" name="x" value="25">Inside fridge<em>+€25</em></label>
+          <label><input type="checkbox" name="x" value="30">Interior windows<em>+€30</em></label>
+          <label><input type="checkbox" name="x" value="35">Ironing, 1 hour<em>+€35</em></label>
+        </div>
+      </fieldset>
+    </form>
+    <aside class="cres" aria-live="polite" data-reveal="right">
+      <h3 id="restitle">Regular clean</h3>
+      <div class="big" id="total">€0<small> / visit</small></div>
+      <p class="was" id="was"></p>
+      <div class="rows">
+        <div><span>Time on site</span><b id="time">–</b></div>
+        <div><span>Cleaners</span><b id="team">–</b></div>
+        <div><span>Supplies &amp; equipment</span><b>Included</b></div>
+        <div><span>Per month</span><b id="month">–</b></div>
+      </div>
+      <a href="#book" class="btn" id="usePrice">Book at this price</a>
+      <p class="fine">€34/hour per cleaner, 2-hour minimum. VAT included. Cancel or skip a visit free with 48 hours' notice.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="included" style="padding-top:20px">
+  <div class="wrap center" data-tabs>
+    <span class="pill" data-reveal><i></i>The checklist</span>
+    <h2 class="h sr" data-split>Exactly what <span class="hl">gets done</span></h2>
+    <p class="lead" data-reveal>Your cleaner ticks every line in the app before they leave. You get a copy, with photos, by 6pm.</p>
+    <div class="tbar" role="tablist" aria-label="Clean types"><button data-tab="regular" class="on">Regular</button><button data-tab="deep">Deep clean</button><button data-tab="tenancy">End of tenancy</button><button data-tab="office">Office</button></div>
+
+    <div class="cl" data-pane="regular" role="tabpanel">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1646980241033-cd7abda2ee88?w=900&q=70&auto=format&fit=crop" alt="Cleaner carrying a caddy and broom up a staircase in a bright home" loading="lazy"><div class="tg"><b>Regular clean</b>Keeps a tidy home tidy. Same cleaner every visit.</div></div>
+      <div class="rooms">
+        <div class="room card"><h3><i aria-hidden="true">🍳</i>Kitchen</h3><ul><li>Worktops &amp; splashback</li><li>Hob and outside of appliances</li><li>Sink and taps polished</li><li>Cupboard fronts wiped</li><li>Floor hoovered &amp; mopped</li><li>Bins emptied</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛁</i>Bathrooms</h3><ul><li>Toilet, inside and out</li><li>Shower, bath &amp; screen</li><li>Sink, taps, mirror</li><li>Tiles wiped down</li><li>Floor mopped</li><li>Towels folded</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛋️</i>Living &amp; bedrooms</h3><ul><li>Dusting, all reachable surfaces</li><li>Hoovering incl. under rugs</li><li>Beds made (linen changed on request)</li><li>Skirting boards spot-cleaned</li><li>Light switches disinfected</li><li>Tidy &amp; cushions plumped</li></ul></div>
+      </div>
+    </div>
+    <div class="cl" data-pane="deep" role="tabpanel">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?w=900&q=70&auto=format&fit=crop" alt="Cleaner in gloves vacuuming a grey upholstered ottoman" loading="lazy"><div class="tg"><b>Deep clean</b>Top-to-bottom reset. Twice a year, or before your first regular.</div></div>
+      <div class="rooms">
+        <div class="room card"><h3><i aria-hidden="true">🍳</i>Kitchen</h3><ul><li>Everything in Regular</li><li class="plus">Degrease extractor hood</li><li class="plus">Inside microwave</li><li class="plus">Cupboard interiors (empty)</li><li class="plus">Behind &amp; under appliances</li><li class="plus">Descale kettle &amp; taps</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛁</i>Bathrooms</h3><ul><li>Everything in Regular</li><li class="plus">Limescale removal</li><li class="plus">Grout scrubbed</li><li class="plus">Extractor fan cleaned</li><li class="plus">Behind toilet &amp; pipes</li><li class="plus">Shower head descaled</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛋️</i>Living &amp; bedrooms</h3><ul><li>Everything in Regular</li><li class="plus">Skirting boards &amp; door frames</li><li class="plus">Radiators &amp; behind them</li><li class="plus">Upholstery hoovered</li><li class="plus">Under beds &amp; sofas</li><li class="plus">Window sills &amp; tracks</li></ul></div>
+      </div>
+    </div>
+    <div class="cl" data-pane="tenancy" role="tabpanel">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1740657254989-42fe9c3b8cce?w=900&q=70&auto=format&fit=crop" alt="Gloved hands scrubbing a soapy floor" loading="lazy"><div class="tg"><b>End of tenancy</b>Built around landlord inventories. Deposit-back guarantee.</div></div>
+      <div class="rooms">
+        <div class="room card"><h3><i aria-hidden="true">🍳</i>Kitchen</h3><ul><li>Everything in Deep</li><li class="plus">Oven, racks &amp; trays</li><li class="plus">Fridge &amp; freezer, defrosted</li><li class="plus">Washing machine drawer &amp; seal</li><li class="plus">Dishwasher filter</li><li class="plus">All cupboards in &amp; out</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛁</i>Bathrooms</h3><ul><li>Everything in Deep</li><li class="plus">Mould treatment on sealant</li><li class="plus">Cabinets inside</li><li class="plus">Towel rails &amp; fittings</li><li class="plus">Grout whitened</li><li class="plus">Drains cleared</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🛋️</i>Living &amp; bedrooms</h3><ul><li>Everything in Deep</li><li class="plus">Wardrobes &amp; drawers inside</li><li class="plus">Walls spot-cleaned</li><li class="plus">Light fittings &amp; shades</li><li class="plus">Interior windows</li><li class="plus">Carpets steam-cleaned (add-on)</li></ul></div>
+      </div>
+    </div>
+    <div class="cl" data-pane="office" role="tabpanel">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1781637590564-01c65dbf2039?w=900&q=70&auto=format&fit=crop" alt="Cleaner in yellow gloves vacuuming a carpeted office floor" loading="lazy"><div class="tg"><b>Office cleaning</b>Early morning or after hours, 1 to 5 days a week. From €29/hour.</div></div>
+      <div class="rooms">
+        <div class="room card"><h3><i aria-hidden="true">💻</i>Workspace</h3><ul><li>Desks wiped (clear-desk policy)</li><li>Phones &amp; keyboards disinfected</li><li>Bins &amp; recycling emptied</li><li>Floors hoovered</li><li>Glass partitions polished</li><li>Meeting rooms reset</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">☕</i>Kitchen</h3><ul><li>Dishwasher loaded &amp; emptied</li><li>Coffee machine cleaned</li><li>Fridge cleared on Fridays</li><li>Worktops &amp; tables</li><li>Floor mopped</li><li class="plus">Supplies restocked</li></ul></div>
+        <div class="room card"><h3><i aria-hidden="true">🚻</i>Washrooms</h3><ul><li>Toilets &amp; urinals sanitised</li><li>Sinks, mirrors, taps</li><li>Soap &amp; paper refilled</li><li>Sanitary bins (via partner)</li><li>Floors mopped</li><li>Touchpoints disinfected</li></ul></div>
+      </div>
+    </div>
+    <div class="legend" style="justify-content:center;margin-top:20px"><span>Included</span><span class="p">Added for this clean type</span></div>
+  </div>
+</section>
+
+<section class="trust" id="cleaners">
+  <div class="wrap tgrid">
+    <div>
+      <span class="pill" data-reveal><i></i>Vetted &amp; insured</span>
+      <h2 class="h sr" data-split>People you'd trust <span class="hl">with a key</span></h2>
+      <p class="lead" data-reveal>Fewer than 1 in 12 applicants join Spruce. Every cleaner is employed directly on a living wage, never a gig worker, and stays with your home for the long run.</p>
+      <div class="badges">
+        <div class="bd" data-reveal><span class="ic" style="background:var(--mint);color:var(--kt-accent)"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Garda vetted</b>Plus two references, checked by phone</span></div>
+        <div class="bd" data-reveal data-delay="100"><span class="ic" style="background:var(--lemon);color:var(--kt-ink)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8M12 8v8"/></svg></span><span><b>€6.5m insured</b>Public liability &amp; breakages</span></div>
+        <div class="bd" data-reveal data-delay="200"><span class="ic" style="background:var(--lilac);color:#4b3aa8"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><span><b>Trained 40 hours</b>In our Inchicore training flat</span></div>
+        <div class="bd" data-reveal data-delay="300"><span class="ic" style="background:var(--sky);color:#0b5c7a"><svg viewBox="0 0 24 24"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="5" y="11" width="14" height="10" rx="2"/></svg></span><span><b>Coded key safe</b>Keys never labelled with your address</span></div>
+      </div>
+      <div class="guar" data-reveal><div class="seal"><span><b>24h</b>re-clean</span></div><p><strong>Happiness guarantee</strong>Something missed? Tell us within 24 hours and we'll come back and redo it free. End-of-tenancy cleans come with a deposit-back guarantee.</p></div>
+    </div>
+    <div class="team">
+      <div class="mate card" data-reveal="right"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=70&auto=format&fit=crop" alt="Portrait of Aoife Brennan, smiling"><span><b>Aoife Brennan</b><span>Team lead · 6 years with Spruce</span><span class="st">★ 4.98 · 1,412 cleans</span></span></div>
+      <div class="mate card" data-reveal="right" data-delay="100"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=70&auto=format&fit=crop" alt="Portrait of Tomás Kowalski"><span><b>Tomás Kowalski</b><span>Deep &amp; end-of-tenancy specialist</span><span class="st">★ 4.95 · 860 cleans</span></span></div>
+      <div class="mate card" data-reveal="right" data-delay="200"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=70&auto=format&fit=crop" alt="Portrait of Niamh Doyle"><span><b>Niamh Doyle</b><span>Regular homes · Southside</span><span class="st">★ 4.97 · 990 cleans</span></span></div>
+      <div class="mate card" data-reveal="right" data-delay="300"><img src="https://images.unsplash.com/photo-1642505172378-a6f5e5b15580?w=200&q=70&auto=format&fit=crop" alt="Spruce cleaner polishing a kitchen sink"><span><b>Eco products, always</b><span>Plant-based, fragrance-free on request, safe around kids and pets</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center"><span class="pill" data-reveal><i></i>Before &amp; after</span><h2 class="h sr" data-split>Drag the <span class="hl">handle</span></h2></div>
+    <div class="ba">
+      <figure data-reveal>
+        <div class="kt-compare"><img class="kt-before" src="https://images.unsplash.com/photo-1757387240036-d7eb9b096c40?w=1100&q=70&auto=format&fit=crop" alt="Kitchen before cleaning, dull and grimy"><img class="kt-after" src="https://images.unsplash.com/photo-1757387240036-d7eb9b096c40?w=1100&q=70&auto=format&fit=crop" alt="Kitchen after a deep clean, bright white cabinets and polished worktops"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare kitchen before and after"></div>
+        <figcaption><span><b>End of tenancy, Rathmines</b> · 2-bed apartment</span><span>2 cleaners · 5h 40m · deposit returned in full</span></figcaption>
+      </figure>
+      <figure data-reveal data-delay="150">
+        <div class="kt-compare"><img class="kt-before" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1100&q=70&auto=format&fit=crop" alt="Living room before cleaning, dusty and dim"><img class="kt-after" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1100&q=70&auto=format&fit=crop" alt="Living room after a deep clean, fresh and bright"><span class="kt-handle"></span><span class="kt-tag">Before</span><span class="kt-tag r">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare living room before and after"></div>
+        <figcaption><span><b>Deep clean, Clontarf</b> · 3-bed semi</span><span>2 cleaners · 4h 15m · now weekly regulars</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" data-slider-scope style="padding-top:0">
+  <div class="wrap">
+    <div class="rh"><div><span class="pill" data-reveal><i></i>4.9 average · 3,120 reviews</span><h2 class="h sr" data-split>Fresh <span class="hl">feedback</span></h2></div>
+      <div class="ar"><button class="kt-arrow" data-cprev aria-label="Previous review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel revs" data-carousel>
+      <div class="card"><span class="stars" aria-label="5 stars">★★★★★</span><p>Aoife has done our house every Thursday for two years. She knows which plants get watered and that the cat is not allowed in the office. I'd be lost.</p><div class="who"><span><b>Clare M.</b>Ranelagh</span><em>Weekly</em></div></div>
+      <div class="card"><span class="stars" aria-label="5 stars">★★★★★</span><p>Landlord's inventory clerk said it was the cleanest handover she'd seen this year. Full deposit back, €1,850, in nine days.</p><div class="who"><span><b>Daniel O.</b>Stoneybatter</span><em>End of tenancy</em></div></div>
+      <div class="card"><span class="stars" aria-label="5 stars">★★★★★</span><p>Booked a deep clean after the builders left. Brick dust in places I didn't know existed, all gone. The checklist photos were a nice touch.</p><div class="who"><span><b>Sinéad K.</b>Clontarf</span><em>Deep clean</em></div></div>
+      <div class="card"><span class="stars" aria-label="5 stars">★★★★★</span><p>Our 30-person office has never looked better on a Monday. They restock the coffee too, which has done wonders for morale.</p><div class="who"><span><b>Ravi P.</b>Grand Canal Dock</span><em>Office</em></div></div>
+      <div class="card"><span class="stars" aria-label="4 stars">★★★★☆</span><p>Missed the top of the fridge on the first visit. I mentioned it in the app and Tomás came back the next morning. Spotless ever since.</p><div class="who"><span><b>Helen B.</b>Drumcondra</span><em>Fortnightly</em></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="pill" data-reveal><i></i>Book online</span>
+      <h2 class="h sr" data-split>Pick a day, <span class="hl">we'll do the rest</span></h2>
+      <p class="lead" data-reveal>Book in two minutes. We'll match you with a cleaner near you and text their name and photo the day before.</p>
+      <ul class="perks" data-reveal><li>No contract, pause or cancel any time</li><li>Pay after the clean, by card</li><li>Same cleaner on every regular visit</li><li>Not happy? Free re-clean within 24 hours</li></ul>
+      <div class="hrs card" data-reveal><div><span>Mon–Fri</span><b>7:30am – 7pm</b></div><div><span>Saturday</span><b>8am – 4pm</b></div><div><span>Phone</span><b><a href="tel:+35315550188">01 555 0188</a></b></div></div>
+    </div>
+    <form class="card" data-form="Booked! We'll text your cleaner's name and photo the day before." data-reveal="right">
+      <div class="c2"><label class="f">Type of clean<select name="type" id="btype"><option value="regular">Regular home clean</option><option value="deep">Deep clean</option><option value="tenancy">End of tenancy</option><option value="office">Office (we'll call you)</option></select></label><label class="f">How often<select name="freq" id="bfreq"><option value="weekly">Weekly</option><option value="fortnightly">Fortnightly</option><option value="monthly">Monthly</option><option value="once">One-off</option></select></label></div>
+      <div class="c3"><label class="f">Bedrooms<input name="beds" id="bbeds" type="number" min="0" max="8" value="2"></label><label class="f">Bathrooms<input name="baths" id="bbaths" type="number" min="1" max="6" value="1"></label><label class="f">Eircode<input name="eircode" autocomplete="postal-code" placeholder="D06 X2Y4" required></label></div>
+      <label class="f">First clean date<input name="date" type="date" id="bdate" required></label>
+      <fieldset class="slot"><legend>Arrival time</legend><div class="seg">
+        <label><input type="radio" name="slot" value="morning" checked><span>Morning<small>8–10am</small></span></label>
+        <label><input type="radio" name="slot" value="midday"><span>Midday<small>11am–1pm</small></span></label>
+        <label><input type="radio" name="slot" value="afternoon"><span>Afternoon<small>2–4pm</small></span></label>
+      </div></fieldset>
+      <div class="c2"><label class="f">Name<input name="name" autocomplete="name" required></label><label class="f">Mobile<input name="phone" type="tel" autocomplete="tel" required></label></div>
+      <label class="f">Email<input name="email" type="email" autocomplete="email" required></label>
+      <label class="f">How will we get in?<select name="access"><option>I'll be home</option><option>Key in a key safe</option><option>Concierge / neighbour</option><option>Collect a key from me first</option></select></label>
+      <p class="bk-note" id="bnote">Estimated price shown after you use the calculator above.</p>
+      <button class="btn g" type="submit">Confirm booking</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:30px"><span class="pill" data-reveal><i></i>FAQ</span><h2 class="h sr" data-split>Questions, <span class="hl">answered</span></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Do I need to supply cleaning products?</summary><div class="kt-faq-a"><div>No. Your cleaner brings a full kit: plant-based products, microfibre cloths, a HEPA vacuum and a steam mop. If you'd prefer we use your products or a particular brand, just leave a note on your booking.</div></div></details>
+      <details class="kt-faq"><summary>Will I get the same cleaner every time?</summary><div class="kt-faq-a"><div>Yes, for weekly and fortnightly cleans. If they're on holiday or off sick we'll text you the name of their cover by 6pm the evening before, and you can choose to skip that visit free.</div></div></details>
+      <details class="kt-faq"><summary>What's the deposit-back guarantee?</summary><div class="kt-faq-a"><div>If your landlord or agent withholds deposit over cleaning on anything in our end-of-tenancy checklist, send us the report within 72 hours of the inspection and we'll return to re-clean those items free.</div></div></details>
+      <details class="kt-faq"><summary>What if something gets broken?</summary><div class="kt-faq-a"><div>Tell us within 48 hours. We're insured up to €6.5 million and settle most breakage claims within 10 working days, without you needing to go through your home insurance.</div></div></details>
+      <details class="kt-faq"><summary>How do I cancel or skip a clean?</summary><div class="kt-faq-a"><div>In the app or by text, free with 48 hours' notice. Inside 48 hours we charge 50% of the visit, because your cleaner has kept that slot for you.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div><a href="#" class="logo" aria-label="Spruce Cleaning Co. home"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#c8f0e0"/><path d="M17 7c-5 6-5 12 0 20 5-8 5-14 0-20z" fill="#0b7a5e"/><circle cx="26" cy="9" r="3" fill="#ffe873"/></svg>Spruce</a><p style="max-width:300px;margin:14px 0 0">Spruce Cleaning Co. Ltd · 22 Emmet Road, Inchicore, Dublin 8, D08 K2X7</p></div>
+      <nav aria-label="Footer"><a href="#prices">Prices</a><a href="#included">Checklists</a><a href="#cleaners">Our cleaners</a><a href="#book">Book</a><a href="#">Work with us</a><a href="#">Gift a clean</a><a href="#">Terms</a><a href="#">Privacy</a><a href="#faq">FAQ</a></nav>
+    </div>
+    <div class="bot"><span>© 2026 Spruce Cleaning Co. Ltd · CRO 548812</span><span><a href="tel:+35315550188">01 555 0188</a> · <a href="mailto:hello@sprucecleaning.ie">hello@sprucecleaning.ie</a></span></div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // Price calculator: clean type, bedrooms, bathrooms, frequency discount, extras
+  (function () {
+    const RATE = 34, MULT = { regular: 1, deep: 1.9, tenancy: 2.5 }, DISC = { weekly: .2, fortnightly: .1, monthly: .05, once: 0 };
+    const PER_MONTH = { weekly: 4.33, fortnightly: 2.17, monthly: 1, once: 0 };
+    const NAMES = { regular: 'Regular clean', deep: 'Deep clean', tenancy: 'End-of-tenancy clean' };
+    const $ = id => document.getElementById(id), form = $('calc');
+    const state = { beds: 2, baths: 1 }, LIM = { beds: [0, 8], baths: [1, 6] };
+    const eur = n => '€' + Math.round(n).toLocaleString('en-IE');
+    let last = {};
+    form.addEventListener('click', e => {
+      const b = e.target.closest('[data-step]'); if (!b) return;
+      const k = b.dataset.step, [mn, mx] = LIM[k];
+      state[k] = Math.min(mx, Math.max(mn, state[k] + +b.dataset.d)); $(k).textContent = state[k]; update();
+    });
+    form.addEventListener('change', update);
+    form.addEventListener('submit', e => e.preventDefault());
+    function update() {
+      const type = form.querySelector('[name=type]:checked').value;
+      const regular = type === 'regular';
+      $('freqg').style.display = regular ? '' : 'none';
+      const freq = regular ? form.querySelector('[name=freq]:checked').value : 'once';
+      const extras = [...form.querySelectorAll('[name=x]:checked')].reduce((s, c) => s + +c.value, 0);
+      const hours = Math.max(2, (1.25 + state.beds * .75 + state.baths * .6) * MULT[type]);
+      const people = hours > 5 ? 2 : 1, onsite = hours / people;
+      const full = hours * RATE + extras, price = hours * RATE * (1 - DISC[freq]) + extras;
+      $('restitle').textContent = NAMES[type];
+      $('total').firstChild.textContent = eur(price);
+      $('was').innerHTML = DISC[freq] ? `<s>${eur(full)}</s><b>You save ${eur(full - price)} a visit</b>` : (regular ? 'Choose weekly to save 20%' : 'One-off price, all supplies included');
+      const q = Math.round(onsite * 4), hh = Math.floor(q / 4), mm = (q % 4) * 15;
+      $('time').textContent = hh + 'h' + (mm ? ' ' + mm + 'm' : '');
+      $('team').textContent = people === 2 ? '2 cleaners' : '1 cleaner';
+      $('month').textContent = PER_MONTH[freq] ? eur(price * PER_MONTH[freq]) : 'One-off';
+      last = { type, freq, price: eur(price) };
+    }
+    $('usePrice').addEventListener('click', () => {
+      $('btype').value = last.type; $('bfreq').value = last.freq; $('bbeds').value = state.beds; $('bbaths').value = state.baths;
+      $('bnote').textContent = `Your price: ${last.price} per visit for ${state.beds} bed / ${state.baths} bath. Pay after the clean.`;
+    });
+    const t = new Date(); t.setDate(t.getDate() + 1);
+    $('bdate').min = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    update();
+  })();
+</script>
+</body>
+</html>

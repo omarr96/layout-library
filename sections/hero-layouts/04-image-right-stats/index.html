@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightwell Dental — Gentle family &amp; cosmetic dentistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2FAF8;--teal:#0E7C74;--teal-d:#0A5F59;--mint:#CDEEE7;--coral:#FF7A59;--ink:#12312F;--muted:#4D6663;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:40}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(242,250,248,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:-1}
+.nav-in{max-width:1260px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em}
+.logo svg{flex:none}
+.links{display:flex;gap:30px;font-weight:500;font-size:15.5px;color:var(--muted);margin-right:auto}
+.links a:hover{color:var(--teal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px Figtree,sans-serif;border-radius:999px;padding:15px 26px;border:0;cursor:pointer;transition:transform .15s,background .15s}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px #b9d9d3}
+.btn-line:hover{box-shadow:inset 0 0 0 1.5px var(--teal)}
+.btn-sm{padding:11px 20px;font-size:15px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:0;background:var(--mint);cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:13px;width:18px;height:2px;border-radius:2px;background:var(--ink);content:"";transition:.2s}
+.burger span{top:21px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+a:focus-visible,button:focus-visible{outline:2.5px solid var(--coral);outline-offset:3px}
+.hero{overflow-x:clip;max-width:1260px;margin:0 auto;padding:128px 28px 80px;display:grid;grid-template-columns:1fr 1.02fr;gap:64px;align-items:center;min-height:100vh}
+.badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:99px;padding:7px 16px 7px 8px;font-size:14px;font-weight:600;color:var(--teal-d);box-shadow:0 2px 10px rgba(14,124,116,.08)}
+.badge i{width:24px;height:24px;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;font-style:normal;font-size:13px}
+h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,5.4vw,72px);line-height:1;letter-spacing:-.035em;margin:24px 0 22px}
+h1 .u{position:relative;color:var(--teal);white-space:nowrap}
+h1 .u svg{position:absolute;left:0;bottom:-10px;width:100%;height:14px}
+.lead{font-size:18.5px;color:var(--muted);max-width:520px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 38px}
+.svc{display:flex;flex-wrap:wrap;gap:10px}
+.svc span{font-size:14px;font-weight:600;padding:8px 14px;border-radius:10px;background:var(--mint);color:var(--teal-d)}
+.ins{margin-top:30px;font-size:14px;color:var(--muted)}
+.ins b{color:var(--ink)}
+/* visual */
+.visual{position:relative;padding:28px 0 28px 28px}
+.blob{position:absolute;right:-40px;top:-30px;width:320px;height:320px;border-radius:50%;background:var(--mint);z-index:-1}
+.ph{position:relative;border-radius:32px;overflow:hidden;aspect-ratio:4/4.6;box-shadow:0 40px 80px -40px rgba(18,49,47,.45)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.fc{position:absolute;background:var(--card);border-radius:20px;box-shadow:0 20px 50px -18px rgba(18,49,47,.35);padding:16px 18px;animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.fc-rate{left:-10px;top:56px;display:flex;align-items:center;gap:14px}
+.avs{display:flex}
+.avs span{width:36px;height:36px;border-radius:50%;border:2.5px solid #fff;margin-left:-10px;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff}
+.avs span:first-child{margin-left:0}
+.fc-rate b{font-family:"Bricolage Grotesque",sans-serif;font-size:22px;display:block;line-height:1}
+.fc-rate small{font-size:12.5px;color:var(--muted)}
+.fc-rate .st{color:#F5A524;font-size:12px;letter-spacing:1px}
+.fc-stat{right:-18px;top:44%;text-align:left;animation-delay:-2s;min-width:170px}
+.fc-stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:34px;color:var(--teal);line-height:1}
+.fc-stat small{font-size:13px;color:var(--muted)}
+.bar{height:6px;border-radius:6px;background:var(--mint);margin-top:12px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--coral);border-radius:6px;transition:width 1.6s ease}
+.fc-slot{left:14px;bottom:0;animation-delay:-4s;width:min(310px,80%)}
+.fc-slot h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.fc-slot h3::before{content:"";width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
+.fc-slot p{font-size:12.5px;color:var(--muted);margin:2px 0 10px}
+.slots{display:flex;gap:8px;flex-wrap:wrap}
+.slots button{font:600 13.5px Figtree,sans-serif;padding:8px 12px;border-radius:10px;border:1.5px solid #cfe5e0;background:#fff;color:var(--ink);cursor:pointer}
+.slots button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+@media (max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:56px;padding-top:112px;min-height:0}
+  .visual{max-width:620px;width:100%;margin:0 auto}
+}
+@media (max-width:860px){
+  .links,.nav-in>.btn{display:none}
+  .burger{display:block}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:#fff;padding:8px 28px 24px;box-shadow:0 20px 40px -20px rgba(18,49,47,.3)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid #e3efec;font-weight:600}
+  .mmenu .btn{width:100%;margin-top:18px;border:0}
+}
+@media (max-width:560px){
+  .hero{padding:100px 18px 56px}
+  .nav-in{padding:14px 18px}
+  .ctas .btn{width:100%}
+  .visual{padding:16px 0 0}
+  .fc-rate{left:-6px;top:18px;padding:12px 14px}
+  .fc-stat{right:-6px;min-width:0;padding:12px 14px}
+  .fc-stat .n{font-size:26px}
+  .fc-slot{position:relative;left:auto;bottom:auto;width:auto;margin:-48px 12px 0;animation:none}
+  .blob{width:200px;height:200px;right:-20px}
+}
+@media (prefers-reduced-motion:reduce){.fc{animation:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo" aria-label="Brightwell Dental home"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6c-3-3-10-3-11 3-1 5 2 8 3 13 .6 3 1.4 6 3.2 6 2.3 0 2-7 4.8-7s2.5 7 4.8 7c1.8 0 2.6-3 3.2-6 1-5 4-8 3-13-1-6-8-6-11-3z" fill="#0E7C74"/><circle cx="22" cy="10" r="2.4" fill="#FF7A59"/></svg>Brightwell</a>
+    <nav class="links" aria-label="Primary"><a href="#">Treatments</a><a href="#">Invisalign</a><a href="#">Our team</a><a href="#">Pricing</a></nav>
+    <a href="#book" class="btn btn-teal btn-sm">Book a visit</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+  <div class="mmenu" id="mmenu"><a href="#">Treatments</a><a href="#">Invisalign</a><a href="#">Our team</a><a href="#">Pricing</a><a href="#book" class="btn btn-teal">Book a visit</a></div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="badge"><i aria-hidden="true">★</i>Voted Portland's friendliest dentist 2025</span>
+    <h1>Dentistry that makes you <span class="u">want to smile<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10C60 3 180 1 298 8" fill="none" stroke="#FF7A59" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
+    <p class="lead">Calm, judgement-free care for the whole family — from first check-ups to clear aligners and same-day crowns. Evening and Saturday appointments available.</p>
+    <div class="ctas" id="book">
+      <a href="#" class="btn btn-teal" id="cta">Book a free consultation
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></a>
+      <a href="tel:+15035550199" class="btn btn-line">(503) 555-0199</a>
+    </div>
+    <div class="svc" aria-label="Popular treatments"><span>Check-ups &amp; cleans</span><span>Invisalign</span><span>Whitening</span><span>Implants</span><span>Emergency care</span></div>
+    <p class="ins">New patients welcome · <b>Most insurance accepted</b> · 0% finance from $49/mo</p>
+  </div>
+
+  <div class="visual">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1800&q=70&auto=format&fit=crop" alt="Bright modern treatment room at Brightwell Dental with patient chair"></div>
+
+    <div class="fc fc-rate">
+      <div class="avs" aria-hidden="true"><span style="background:#0E7C74">MJ</span><span style="background:#FF7A59">AL</span><span style="background:#6C63FF">RS</span></div>
+      <div><span class="st" aria-hidden="true">★★★★★</span><b>4.9</b><small>2,318 Google reviews</small></div>
+    </div>
+
+    <div class="fc fc-stat">
+      <div class="n"><span class="count" data-to="12400">0</span>+</div>
+      <small>happy smiles since 2011</small>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+
+    <div class="fc fc-slot">
+      <h3>Next available today</h3>
+      <p>Pick a time — we'll hold it for 10 minutes.</p>
+      <div class="slots" role="group" aria-label="Available appointment times">
+        <button type="button" aria-pressed="false">3:40 pm</button>
+        <button type="button" aria-pressed="false">4:20 pm</button>
+        <button type="button" aria-pressed="false">6:00 pm</button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function setMenu(o){nav.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  b.addEventListener('click',function(){setMenu(!nav.classList.contains('open'));});
+  document.querySelectorAll('#mmenu a').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.count').forEach(function(el){
+    var to=+el.dataset.to;
+    if(reduce){el.textContent=to.toLocaleString();return;}
+    var t0=null;
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1600);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  });
+  setTimeout(function(){document.getElementById('bar').style.width='86%';},150);
+
+  var cta=document.getElementById('cta'),label=cta.firstChild;
+  var btns=document.querySelectorAll('.slots button');
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var on=btn.getAttribute('aria-pressed')!=='true';
+      btns.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      btn.setAttribute('aria-pressed',on);
+      label.nodeValue=on?'Book today at '+btn.textContent+' ':'Book a free consultation ';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldwise — Learn product design in 12 weeks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fffaf2;--ink:#17153a;--soft:#5d5b78;--indigo:#3b2fc9;--indigo-d:#2c22a3;--lime:#c8f169;--peach:#ffd8c2;--line:#ebe4d6}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+img{display:block;max-width:100%}
+.hero{position:relative;overflow:hidden;padding-bottom:72px}
+.hero::before{content:"";position:absolute;width:620px;height:620px;right:-140px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(200,241,105,.55),transparent 65%);z-index:0;pointer-events:none}
+.hero::after{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-240px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,194,.8),transparent 65%);z-index:0;pointer-events:none}
+/* nav */
+.nav{position:relative;z-index:20;display:flex;align-items:center;gap:40px;max-width:1280px;margin:0 auto;padding:22px clamp(16px,4vw,40px)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo svg{width:30px;height:30px}
+.links{display:flex;gap:30px;list-style:none;font-size:.94rem;font-weight:500;color:var(--soft)}
+.links a:hover,.links a:focus-visible{color:var(--ink)}
+.nav__end{margin-left:auto;display:flex;align-items:center;gap:18px}
+.signin{font-weight:600;font-size:.94rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;border-radius:12px;font-weight:700;transition:transform .15s,background .2s,box-shadow .2s}
+.btn--ink{background:var(--ink);color:#fff;padding:12px 18px;font-size:.92rem}
+.btn--ink:hover{background:var(--indigo)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);align-items:center;justify-content:center;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+/* grid */
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:48px clamp(16px,4vw,40px) 0;display:grid;grid-template-columns:1fr 1.08fr;gap:64px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-size:.84rem;font-weight:600}
+.pill b{background:var(--lime);border-radius:999px;padding:4px 10px;font-size:.75rem}
+h1{font-size:clamp(2.6rem,5.2vw,4.6rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:22px 0 20px}
+h1 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;color:var(--indigo);letter-spacing:-.01em}
+.lead{font-size:1.1rem;line-height:1.65;color:var(--soft);max-width:500px}
+.signup{margin-top:32px;max-width:500px}
+.signup label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px}
+.row{display:flex;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:6px;transition:border-color .2s,box-shadow .2s}
+.row:focus-within{border-color:var(--indigo);box-shadow:0 0 0 4px rgba(59,47,201,.12)}
+.row.err{border-color:#d0342c}
+.row input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:12px 12px;font-size:1rem;color:var(--ink)}
+.btn--go{background:var(--indigo);color:#fff;padding:12px 20px;font-size:.95rem;white-space:nowrap}
+.btn--go:hover{background:var(--indigo-d);transform:translateY(-1px)}
+.help{font-size:.82rem;color:var(--soft);margin-top:10px}
+.help.error{color:#c22a22;font-weight:600}
+.ok{display:none;align-items:center;gap:12px;background:#effad7;border:1px solid #c5e28a;border-radius:14px;padding:14px 16px;font-size:.92rem;line-height:1.5}
+.ok.show{display:flex}
+.ok svg{flex:none;width:26px;height:26px;color:#3e7a10}
+.proof{display:flex;align-items:center;gap:16px;margin-top:34px;flex-wrap:wrap}
+.avatars{display:flex}
+.avatars img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid var(--cream);margin-left:-12px}
+.avatars img:first-child{margin-left:0}
+.avatars span{width:44px;height:44px;border-radius:50%;border:3px solid var(--cream);margin-left:-12px;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:.72rem;font-weight:700}
+.stars{display:flex;gap:2px;color:#f2a20c}
+.stars svg{width:16px;height:16px}
+.proof p{font-size:.88rem;color:var(--soft)}
+.proof p b{color:var(--ink)}
+/* video card */
+.vid{position:relative}
+.frame{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/3.2;box-shadow:0 40px 80px -30px rgba(23,21,58,.45);background:var(--ink)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,21,58,.05) 40%,rgba(23,21,58,.75))}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:92px;height:92px;border-radius:50%;border:0;background:var(--lime);color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 0 0 12px rgba(200,241,105,.3)}
+.play::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid rgba(200,241,105,.7);animation:ring 2.2s ease-out infinite}
+@keyframes ring{from{transform:scale(.9);opacity:1}to{transform:scale(1.45);opacity:0}}
+.play:hover{transform:translate(-50%,-50%) scale(1.06)}
+.play svg{width:30px;height:30px;margin-left:5px}
+.vmeta{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.vmeta strong{display:block;font-size:1.05rem}
+.vmeta small{opacity:.8;font-size:.85rem}
+.dur{position:absolute;top:18px;right:18px;z-index:2;color:#fff;background:rgba(23,21,58,.55);border-radius:8px;padding:5px 10px;font-size:.82rem;font-weight:600}
+.chip{position:absolute;z-index:3;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 18px 40px -12px rgba(23,21,58,.3);font-size:.84rem;display:flex;align-items:center;gap:12px}
+.chip--a{left:-28px;top:34px}
+.chip--b{right:-18px;bottom:-26px}
+.chip i{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-weight:800}
+.chip--a i{background:var(--peach)}
+.chip--b i{background:var(--lime)}
+.chip strong{display:block;font-size:.95rem}
+.chip small{color:var(--soft)}
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(14,12,36,.82)}
+.modal.open{display:flex;animation:fade .2s ease}
+@keyframes fade{from{opacity:0}}
+.player{position:relative;width:min(960px,100%);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.screen{position:relative;aspect-ratio:16/9;background:#000}
+.screen img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.caption{position:absolute;left:50%;bottom:72px;transform:translateX(-50%);background:rgba(0,0,0,.72);color:#fff;padding:6px 12px;border-radius:6px;font-size:.95rem;max-width:90%;text-align:center}
+.bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;padding:14px 18px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:.85rem}
+.pbtn{width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#000;display:grid;place-items:center;cursor:pointer;flex:none}
+.pbtn svg{width:16px;height:16px}
+.track{flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.25);overflow:hidden}
+.track div{height:100%;width:0;background:var(--lime)}
+.close{position:absolute;top:12px;right:12px;z-index:3;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.92);cursor:pointer;display:grid;place-items:center}
+.close svg{width:18px;height:18px}
+.ptitle{padding:14px 18px;background:#0f0e24;color:#fff;font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ptitle span{opacity:.65}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:3px}
+@media (max-width:1000px){
+  .links,.signin{display:none}
+  .burger{display:inline-flex}
+  .mmenu{position:absolute;top:100%;left:16px;right:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 18px 18px;flex-direction:column;box-shadow:0 24px 50px -10px rgba(23,21,58,.2)}
+  .mmenu.open{display:flex}
+  .mmenu a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:600}
+  .mmenu .btn{margin-top:14px;padding:14px}
+  .wrap{grid-template-columns:1fr;gap:56px;padding-top:28px}
+  .vid{max-width:680px}
+  .chip--a{left:-8px}
+  .chip--b{right:-6px}
+}
+@media (max-width:520px){
+  .nav__end .btn--ink{display:none}
+  .row{flex-direction:column}
+  .btn--go{padding:14px}
+  .chip--a{top:-18px;left:10px}
+  .chip--b{bottom:-30px;right:10px}
+  .play{width:72px;height:72px}
+  .vmeta{display:none}
+  .caption{bottom:62px;font-size:.8rem}
+  .bar{gap:10px;padding:10px 12px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <nav class="nav" aria-label="Main">
+    <a href="#" class="logo" aria-label="Fieldwise home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#17153a"/><path d="M9 22V10h10M9 16h7" stroke="#c8f169" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="22" cy="21" r="3" fill="#c8f169"/></svg>
+      Fieldwise
+    </a>
+    <ul class="links">
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Mentors</a></li>
+      <li><a href="#">Student work</a></li>
+      <li><a href="#">For teams</a></li>
+      <li><a href="#">Pricing</a></li>
+    </ul>
+    <div class="nav__end">
+      <a href="#" class="signin">Sign in</a>
+      <a href="#join" class="btn btn--ink">Start free week</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Courses</a><a href="#">Mentors</a><a href="#">Student work</a><a href="#">For teams</a><a href="#">Pricing</a><a href="#">Sign in</a>
+      <a href="#join" class="btn btn--ink">Start free week</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div>
+      <span class="pill"><b>New cohort</b>Starts 13 January · 38 seats left</span>
+      <h1>Become a product designer in <em>twelve weeks.</em></h1>
+      <p class="lead">Live crits with senior designers from top product teams, three real portfolio projects, and a hiring partner network that has placed 1,900+ graduates.</p>
+
+      <form class="signup" id="join" novalidate>
+        <div id="formBody">
+          <label for="email">Get the free first week — lessons, files and a live crit</label>
+          <div class="row" id="row">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="help" required>
+            <button class="btn btn--go" type="submit">Start learning free</button>
+          </div>
+          <p class="help" id="help">No card needed. Unsubscribe in one click.</p>
+        </div>
+        <div class="ok" id="ok" role="status" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6"/></svg>
+          <span id="okText"></span>
+        </div>
+      </form>
+
+      <div class="proof">
+        <div class="avatars">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=70&auto=format&fit=crop" alt="Student Amara">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=70&auto=format&fit=crop" alt="Student Luis">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=70&auto=format&fit=crop" alt="Student Hanna">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=70&auto=format&fit=crop" alt="Student Tomás">
+          <span aria-hidden="true">24k</span>
+        </div>
+        <div>
+          <div class="stars" role="img" aria-label="Rated 4.9 out of 5">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg>
+          </div>
+          <p><b>4.9/5</b> from 3,200+ reviews · 24,000 students</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vid">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=70&auto=format&fit=crop" alt="Three students laughing together while working on laptops at a shared table">
+        <button class="play" type="button" id="playBtn" aria-haspopup="dialog" aria-label="Play course trailer, 2 minutes 14 seconds">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>
+        </button>
+        <div class="vmeta"><div><strong>Watch: inside a Fieldwise crit</strong><small>Week 4 · Designing onboarding flows</small></div></div>
+        <span class="dur">2:14</span>
+      </div>
+      <div class="chip chip--a"><i>87%</i><div><strong>Hired in 6 months</strong><small>2025 graduate survey</small></div></div>
+      <div class="chip chip--b"><i>1:1</i><div><strong>Weekly mentor calls</strong><small>with a senior designer</small></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="player">
+    <button class="close" type="button" id="closeBtn" aria-label="Close video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="screen">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1800&q=70&auto=format&fit=crop" alt="Students reviewing a design on a laptop during a crit session">
+      <p class="caption" id="caption">“Don’t show me the screen — show me the decision behind it.”</p>
+      <div class="bar">
+        <button class="pbtn" type="button" id="pp" aria-label="Pause"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="ppIcon" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button>
+        <span id="time">0:00</span>
+        <div class="track" role="progressbar" aria-label="Playback progress" aria-valuemin="0" aria-valuemax="134" aria-valuenow="0" id="prog"><div id="fill"></div></div>
+        <span>2:14</span>
+      </div>
+    </div>
+    <div class="ptitle"><strong id="mTitle">Course trailer: inside a Fieldwise crit</strong><span>Preview player · demo</span></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Close menu':'Open menu');menu.classList.toggle('open',o);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false);});
+
+  /* signup */
+  var form=document.getElementById('join'),email=document.getElementById('email'),help=document.getElementById('help'),row=document.getElementById('row');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
+      help.textContent=v?'That email doesn’t look right — check for typos.':'Please enter your email to get the free week.';
+      help.classList.add('error');row.classList.add('err');email.setAttribute('aria-invalid','true');email.focus();return;
+    }
+    document.getElementById('formBody').hidden=true;
+    document.getElementById('okText').innerHTML='<strong>You’re in!</strong> Week 1 is on its way to '+v.replace(/[<>&"]/g,'')+'. Your first live crit is Thursday at 6pm GMT.';
+    var ok=document.getElementById('ok');ok.classList.add('show');ok.focus();
+  });
+  email.addEventListener('input',function(){if(help.classList.contains('error')){help.textContent='No card needed. Unsubscribe in one click.';help.classList.remove('error');row.classList.remove('err');email.removeAttribute('aria-invalid');}});
+
+  /* modal fake player */
+  var modal=document.getElementById('modal'),openBtn=document.getElementById('playBtn'),closeBtn=document.getElementById('closeBtn'),pp=document.getElementById('pp'),icon=document.getElementById('ppIcon'),fill=document.getElementById('fill'),prog=document.getElementById('prog'),time=document.getElementById('time'),cap=document.getElementById('caption');
+  var caps=['“Don’t show me the screen — show me the decision behind it.”','“Every flow starts with one question: what does the user already know?”','“Kill your darlings early. It’s cheaper in Figma than in code.”','“Your portfolio is a story about how you think.”'];
+  var t=0,timer=null,playing=false,DUR=134;
+  function fmt(s){return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');}
+  function draw(){fill.style.width=(t/DUR*100)+'%';prog.setAttribute('aria-valuenow',String(Math.floor(t)));time.textContent=fmt(t);cap.textContent=caps[Math.floor(t/12)%caps.length];}
+  function play(){if(playing)return;playing=true;icon.setAttribute('d','M6 4h4v16H6zM14 4h4v16h-4z');pp.setAttribute('aria-label','Pause');timer=setInterval(function(){t+=0.5;if(t>=DUR){t=DUR;pause();}draw();},500);}
+  function pause(){playing=false;clearInterval(timer);icon.setAttribute('d','M6 4l14 8-14 8z');pp.setAttribute('aria-label','Play');}
+  function open(){modal.classList.add('open');document.body.style.overflow='hidden';t=0;draw();play();closeBtn.focus();}
+  function close(){pause();modal.classList.remove('open');document.body.style.overflow='';openBtn.focus();}
+  openBtn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  pp.addEventListener('click',function(){playing?pause():play();});
+  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){if(modal.classList.contains('open'))close();else if(menu.classList.contains('open')){setMenu(false);burger.focus();}}
+    if(e.key==='Tab'&&modal.classList.contains('open')){
+      var f=[closeBtn,pp];var idx=f.indexOf(document.activeElement);
+      e.preventDefault();f[(idx+(e.shiftKey?-1:1)+f.length)%f.length].focus();
+    }
+  });
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&playing)pause();});
+})();
+</script>
+</body>
+</html>

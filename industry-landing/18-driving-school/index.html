@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lanemark Driving School · Manual &amp; Automatic Lessons in Manchester</title>
+<meta name="description" content="DVSA-approved driving instructors across south and central Manchester. Manual and automatic lessons, block bookings, one-week intensive courses and refreshers. 74% first-time pass rate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f6f5ef; --kt-ink: #141414; --kt-tx: #3c3c3a; --kt-mut: #6b6b66; --kt-line: rgba(20,20,20,.14); --kt-accent: #d7261e; --kt-accent-ink: #fff; --kt-radius: 6px; --yel: #ffcc00; --asphalt: #1c1d1f; --tar: #26282b; --paper: #fff; }
+body { font: 16.5px/1.6 'Space Grotesk', system-ui, sans-serif; }
+.an { font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .98; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+section { padding: 100px 0; }
+.kick { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--kt-accent); }
+.kick::before { content: ""; width: 28px; height: 4px; background: repeating-linear-gradient(90deg, currentColor 0 10px, transparent 10px 16px); }
+h2.h { font-size: clamp(42px, 6vw, 84px); color: var(--kt-ink); margin: 14px 0 18px; line-height: 1.16; }
+h2.h .y { background: var(--yel); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; padding: 0 28px; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: .06em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%); transition: transform .15s, background .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.red { background: var(--kt-accent); color: #fff; }
+.btn.red:hover { background: #b51d16; }
+.btn.yel { background: var(--yel); color: var(--kt-ink); }
+.btn.blk { background: var(--kt-ink); color: #fff; }
+.btn svg { width: 18px; height: 18px; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; background: var(--kt-ink); color: #fff; transition: box-shadow .3s; }
+.nav.scrolled { box-shadow: 0 6px 0 var(--yel); }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 12px; font-family: Anton, sans-serif; font-size: 26px; text-transform: uppercase; letter-spacing: .02em; margin-right: auto; }
+.logo .l { width: 40px; height: 40px; background: #fff; border-radius: 4px; display: grid; place-items: center; color: var(--kt-accent); font-size: 30px; line-height: 1; box-shadow: inset 0 0 0 2px var(--kt-accent); }
+.kt-menu { display: flex; gap: 28px; }
+.kt-menu a { font-weight: 600; font-size: 15px; color: #fff; }
+.kt-menu a:hover { color: var(--yel); }
+.nav .btn { height: 46px; padding: 0 22px; font-size: 14px; }
+.kt-burger { color: #fff; }
+
+/* hero */
+.hero { position: relative; background: var(--asphalt); color: #c9c9c4; padding: 160px 0 0; overflow: hidden; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .45; }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,20,20,.96) 0%, rgba(20,20,20,.82) 45%, rgba(20,20,20,.25) 100%); }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.25fr .75fr; gap: 50px; align-items: end; }
+.hero h1 { font-size: clamp(56px, 9vw, 132px); color: #fff; margin: 18px 0 22px; }
+.hero h1 .y { color: var(--yel); }
+.hero .typed { display: block; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: none; font-size: clamp(20px, 2.4vw, 28px); color: #fff; letter-spacing: 0; line-height: 1.3; margin-top: 14px; }
+.hero .typed span { color: var(--yel); }
+.hero p { font-size: 18.5px; max-width: 560px; margin: 0 0 30px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.slot { background: var(--paper); color: var(--kt-ink); padding: 26px; border-top: 8px solid var(--yel); margin-bottom: 70px; }
+.slot small { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--kt-accent); }
+.slot b { display: block; font-family: Anton, sans-serif; font-size: 34px; text-transform: uppercase; line-height: 1.05; margin: 6px 0 10px; }
+.slot ul { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 6px; font-size: 15px; }
+.slot li::before { content: "→ "; color: var(--kt-accent); font-weight: 700; }
+.slot .btn { width: 100%; }
+.road { position: relative; z-index: 1; height: 64px; background: var(--tar); margin-top: 40px; display: flex; align-items: center; overflow: hidden; }
+.road::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 6px; margin-top: -3px; background: repeating-linear-gradient(90deg, var(--yel) 0 60px, transparent 60px 110px); background-size: 110px 6px; animation: drive 1.6s linear infinite; }
+@keyframes drive { to { background-position: -110px 0; } }
+
+/* stats */
+.stats { background: var(--yel); padding: 56px 0; }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stats .wrap > div { border-left: 4px solid var(--kt-ink); padding-left: 18px; }
+.stats b { display: block; font-family: Anton, sans-serif; font-size: clamp(46px, 5.4vw, 72px); color: var(--kt-ink); line-height: 1; font-weight: 400; }
+.stats span { font-weight: 600; color: var(--kt-ink); font-size: 15px; }
+
+/* prices */
+.ptop { display: flex; justify-content: space-between; align-items: flex-end; gap: 26px; flex-wrap: wrap; }
+.switch { display: inline-grid; grid-template-columns: 1fr 1fr; background: var(--kt-ink); padding: 5px; border-radius: 99px; position: relative; }
+.switch button { position: relative; z-index: 1; height: 50px; padding: 0 28px; border-radius: 99px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 14px; color: #fff; transition: color .25s; }
+.switch button[aria-pressed="true"] { color: var(--kt-ink); }
+.switch::before { content: ""; position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); background: var(--yel); border-radius: 99px; transition: transform .3s cubic-bezier(.7,0,.2,1); }
+.switch.auto::before { transform: translateX(100%); }
+.pk { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 44px; }
+.pkc { background: var(--paper); border: 2px solid var(--kt-ink); padding: 28px 24px; display: flex; flex-direction: column; position: relative; transition: transform .2s; }
+.pkc:hover { transform: translateY(-6px); }
+.pkc h3 { font-family: Anton, sans-serif; font-weight: 400; font-size: 30px; text-transform: uppercase; color: var(--kt-ink); margin: 0 0 4px; line-height: 1.05; }
+.pkc .hrs { font-size: 14px; font-weight: 600; color: var(--kt-mut); }
+.pkc .pr { font-family: Anton, sans-serif; font-size: 58px; color: var(--kt-ink); line-height: 1; margin: 18px 0 6px; transition: opacity .2s; }
+.pkc .per { font-size: 14.5px; font-weight: 700; color: var(--kt-ink); }
+.pkc .sv { display: inline-block; align-self: flex-start; margin: 10px 0 18px; padding: 4px 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: #e8f6ea; color: #1b6b2c; min-height: 27px; }
+.pkc .sv:empty { visibility: hidden; }
+.pkc ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 8px; font-size: 14.5px; }
+.pkc li { padding-left: 22px; position: relative; }
+.pkc li::before { content: ""; position: absolute; left: 0; top: 8px; width: 12px; height: 4px; background: var(--kt-accent); }
+.pkc .btn { margin-top: auto; height: 50px; font-size: 14px; }
+.pkc.hot { background: var(--kt-ink); color: #c9c9c4; }
+.pkc.hot h3, .pkc.hot .pr, .pkc.hot .per { color: #fff; }
+.pkc.hot .hrs { color: #a3a39e; }
+.pkc.hot .sv { background: var(--yel); color: var(--kt-ink); }
+.pkc .badge { position: absolute; top: -14px; right: 18px; background: var(--kt-accent); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; }
+.pk.fade .pr { opacity: .2; }
+.extras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.ex { border: 2px dashed var(--kt-line); padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.ex b { color: var(--kt-ink); display: block; font-size: 16.5px; }
+.ex span { font-size: 14px; }
+.ex .p { font-family: Anton, sans-serif; font-size: 30px; color: var(--kt-accent); white-space: nowrap; }
+
+.fleet { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 18px; margin-top: 56px; }
+.fleet figure { margin: 0; position: relative; overflow: hidden; border: 2px solid var(--kt-ink); aspect-ratio: 4 / 3; }
+.fleet figure:first-child { aspect-ratio: auto; }
+.fleet img { width: 100%; height: 100%; object-fit: cover; }
+.fleet figcaption { position: absolute; left: 0; bottom: 0; background: var(--kt-ink); color: #fff; font-weight: 600; font-size: 14px; padding: 8px 14px; }
+.fleet figcaption b { color: var(--yel); }
+
+/* journey */
+.jr { background: var(--asphalt); color: #b9b9b3; }
+.jr h2.h { color: #fff; } .jr .kick { color: var(--yel); }
+.steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; margin-top: 56px; position: relative; counter-reset: s; }
+.steps::before { content: ""; position: absolute; left: 0; right: 0; top: 30px; height: 6px; background: repeating-linear-gradient(90deg, var(--yel) 0 36px, transparent 36px 60px); }
+.st { position: relative; padding-right: 22px; }
+.st i { position: relative; display: grid; place-items: center; width: 66px; height: 66px; border-radius: 50%; background: var(--asphalt); border: 4px solid var(--yel); font-style: normal; font-family: Anton, sans-serif; font-size: 26px; color: #fff; margin-bottom: 20px; }
+.st:last-child i { background: var(--kt-accent); border-color: var(--kt-accent); }
+.st b { display: block; color: #fff; font-size: 18px; margin-bottom: 6px; }
+.st p { margin: 0; font-size: 14.5px; }
+.st em { display: block; margin-top: 10px; font-style: normal; font-size: 13px; color: var(--yel); font-weight: 700; }
+
+/* instructors */
+.ins { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 44px; }
+.inst { background: var(--paper); border: 2px solid var(--kt-ink); overflow: hidden; }
+.inst .ph { position: relative; aspect-ratio: 1 / .95; overflow: hidden; }
+.inst .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.inst:hover .ph img { transform: scale(1.05); }
+.inst .ph span { position: absolute; left: 0; bottom: 0; background: var(--yel); color: var(--kt-ink); font-weight: 700; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; padding: 6px 12px; }
+.inst .c { padding: 20px 22px 22px; }
+.inst b { font-family: Anton, sans-serif; font-weight: 400; font-size: 26px; text-transform: uppercase; color: var(--kt-ink); display: block; line-height: 1.1; }
+.inst dl { margin: 12px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14px; }
+.inst dt { font-weight: 700; color: var(--kt-ink); }
+.inst dd { margin: 0; }
+
+/* coverage */
+.cov .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.check { background: var(--kt-ink); color: #c9c9c4; padding: 34px; }
+.check label { display: block; font-family: Anton, sans-serif; text-transform: uppercase; font-size: 28px; color: #fff; margin-bottom: 14px; }
+.check .r { display: flex; gap: 10px; }
+.check input { flex: 1; min-width: 0; height: 58px; background: var(--yel); border: 0; color: var(--kt-ink); font-weight: 700; font-size: 22px; letter-spacing: .1em; padding: 0 18px; text-transform: uppercase; outline: none; border-radius: 0; }
+.check input::placeholder { color: rgba(20,20,20,.55); }
+.check input:focus { box-shadow: inset 0 0 0 3px #fff; }
+.check .btn { height: 58px; flex: none; }
+.out { margin: 16px 0 0; min-height: 52px; font-size: 15.5px; }
+.out b { color: #fff; }
+.out.ok b { color: #7ee08f; } .out.near b { color: var(--yel); } .out.no b { color: #ff8a80; }
+.centres { margin-top: 26px; display: grid; gap: 0; }
+.centres div { display: grid; grid-template-columns: 1fr auto auto auto; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--kt-line); align-items: center; color: var(--kt-ink); font-weight: 600; }
+.centres div span { font-size: 13.5px; color: var(--kt-mut); font-weight: 500; }
+.centres .bar { width: 110px; height: 10px; background: #e6e5de; position: relative; }
+.centres .bar i { position: absolute; inset: 0 auto 0 0; background: var(--kt-accent); }
+.centres b { font-family: Anton, sans-serif; font-weight: 400; font-size: 22px; min-width: 48px; text-align: right; }
+.areas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.areas span { border: 2px solid var(--kt-ink); padding: 4px 10px; font-weight: 600; font-size: 13.5px; color: var(--kt-ink); }
+
+/* passes */
+.passes { background: var(--yel); overflow: hidden; }
+.passes .kick { color: var(--kt-ink); }
+.passes h2.h .y { background: var(--kt-ink); color: var(--yel); }
+.phead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.arr { display: flex; gap: 10px; }
+.kt-arrow { border: 2px solid var(--kt-ink); background: var(--kt-ink); color: #fff; border-radius: 0; }
+.kt-arrow:hover { background: var(--kt-accent); border-color: var(--kt-accent); }
+.pc { margin-top: 40px; --car-gap: 18px; }
+.pass { width: 300px; background: var(--paper); border: 2px solid var(--kt-ink); }
+.pass .ph { position: relative; aspect-ratio: 4 / 4.2; overflow: hidden; }
+.pass img { width: 100%; height: 100%; object-fit: cover; }
+.pass .stamp { position: absolute; top: 14px; right: 14px; background: var(--kt-accent); color: #fff; font-family: Anton, sans-serif; text-transform: uppercase; font-size: 20px; padding: 6px 12px; transform: rotate(4deg); }
+.pass .c { padding: 18px 20px 20px; }
+.pass b { display: block; font-size: 18px; color: var(--kt-ink); }
+.pass small { display: block; font-size: 13.5px; color: var(--kt-mut); margin-bottom: 8px; }
+.pass p { margin: 0; font-size: 14.5px; }
+
+/* book */
+.book .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+.offer { margin-top: 26px; background: var(--kt-ink); color: #c9c9c4; padding: 26px; position: relative; overflow: hidden; }
+.offer::after { content: "L"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%) rotate(-8deg); width: 84px; height: 84px; background: #fff; color: var(--kt-accent); font-family: Anton, sans-serif; font-size: 66px; display: grid; place-items: center; line-height: 1; border-radius: 6px; }
+.offer b { display: block; font-family: Anton, sans-serif; font-weight: 400; font-size: 40px; text-transform: uppercase; color: var(--yel); line-height: 1; margin-bottom: 8px; padding-right: 100px; }
+.offer p { margin: 0; padding-right: 100px; font-size: 15px; }
+.contact { margin-top: 22px; font-size: 15.5px; display: grid; gap: 6px; }
+.contact a { font-weight: 700; color: var(--kt-ink); }
+form.bk { background: var(--paper); border: 2px solid var(--kt-ink); padding: 34px; display: grid; gap: 16px; box-shadow: 12px 12px 0 var(--yel); }
+.f { display: grid; gap: 6px; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-ink); }
+.f input, .f select { height: 52px; border: 2px solid var(--kt-ink); border-radius: 0; background: #fff; padding: 0 14px; font-weight: 500; font-size: 16px; letter-spacing: 0; text-transform: none; outline: none; width: 100%; color: var(--kt-ink); }
+.f input:focus, .f select:focus { border-color: var(--kt-accent); box-shadow: 0 0 0 3px rgba(215,38,30,.2); }
+.c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend { font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-ink); margin-bottom: 8px; padding: 0; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts label { position: relative; }
+.opts input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.opts span { display: inline-flex; align-items: center; height: 44px; padding: 0 16px; border: 2px solid var(--kt-ink); font-weight: 600; font-size: 14.5px; color: var(--kt-ink); transition: .15s; }
+.opts input:checked + span { background: var(--kt-ink); color: var(--yel); }
+.opts input:focus-visible + span { outline: 3px solid var(--kt-accent); outline-offset: 2px; }
+.bk .btn { justify-self: start; }
+
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+.kt-faq summary { font-size: 1.1rem; }
+footer { background: var(--kt-ink); color: #a3a39e; padding: 54px 0 0; font-size: 14.5px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-start; padding-bottom: 40px; }
+footer .logo { color: #fff; margin: 0 0 10px; }
+footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+footer a:hover { color: var(--yel); }
+footer .road { margin: 0; height: 40px; }
+
+@media (max-width: 1080px) {
+  .pk, .ins { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+  .steps::before { display: none; }
+  .extras { grid-template-columns: 1fr; }
+  .fleet { grid-template-columns: 1fr 1fr; } .fleet figure:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 8; }
+}
+@media (max-width: 960px) {
+  section { padding: 76px 0; }
+  .hero .wrap, .cov .wrap, .book .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .slot { margin-bottom: 0; max-width: 440px; }
+  .stats .wrap { grid-template-columns: 1fr 1fr; row-gap: 30px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .nav .wrap { height: 66px; }
+  .logo { font-size: 22px; }
+  .hero { padding: 120px 0 0; }
+  .pk, .ins, .c2, .fleet { grid-template-columns: 1fr; }
+  .fleet figure:first-child { aspect-ratio: 4 / 3; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .switch { width: 100%; } .switch button { padding: 0 10px; }
+  .check { padding: 24px 18px; }
+  .check .r { flex-direction: column; } .check input { flex: none; }
+  .centres div { grid-template-columns: 1fr auto auto; }
+  .centres .bar { display: none; }
+  .pass { width: 78vw; }
+  form.bk { padding: 24px 18px; box-shadow: 8px 8px 0 var(--yel); }
+  .offer b { font-size: 32px; }
+  .offer::after { width: 64px; height: 64px; font-size: 50px; right: 14px; }
+  .offer b, .offer p { padding-right: 76px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Lanemark Driving School home"><span class="l" aria-hidden="true">L</span>Lanemark</a>
+    <nav class="kt-menu"><a href="#prices">Prices</a><a href="#journey">How it works</a><a href="#instructors">Instructors</a><a href="#coverage">Areas</a><a href="#passes">Passes</a></nav>
+    <a href="#book" class="btn yel">Book a lesson</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=70&auto=format&fit=crop" alt="">
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal style="color:var(--yel)">DVSA-approved instructors · Manchester</span>
+      <h1 class="an"><span data-split>Pass first.</span><br><span class="y" data-split>Drive for life.</span><span class="typed" data-reveal data-delay="300">Lessons in <span data-type="manual cars|automatics|one-week intensives|motorway confidence|refresher hours"></span></span></h1>
+      <p data-reveal data-delay="400">Patient, local instructors who know every roundabout on the Didsbury and Cheetham Hill test routes. Door-to-door pick-up from home, college or work.</p>
+      <div class="cta" data-reveal data-delay="500"><a href="#book" class="btn red">First lesson £25</a><a href="#prices" class="btn yel">See prices</a></div>
+    </div>
+    <aside class="slot" data-reveal="right" aria-label="Next available lessons">
+      <small>Next free slots this week</small>
+      <b>4 instructors free</b>
+      <ul><li>Tue 4:30pm · Withington · manual</li><li>Wed 10:00am · Sale · automatic</li><li>Thu 6:00pm · Chorlton · manual</li><li>Sat 9:00am · Stockport · automatic</li></ul>
+      <a href="#book" class="btn blk">Grab a slot</a>
+    </aside>
+  </div>
+  <div class="road" aria-hidden="true"></div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div data-reveal><b data-count="74" data-suffix="%">0</b><span>first-time pass rate (national: 48%)</span></div>
+    <div data-reveal data-delay="100"><b data-count="3120" data-suffix="+">0</b><span>pupils passed since 2015</span></div>
+    <div data-reveal data-delay="200"><b data-count="16">0</b><span>instructors, 9 manual · 7 auto</span></div>
+    <div data-reveal data-delay="300"><b data-count="4.9" data-suffix="★">0</b><span>from 1,280 Google reviews</span></div>
+  </div>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <div class="ptop">
+      <div><span class="kick" data-reveal>Lesson prices</span><h2 class="h an" data-split>Book more, <span class="y">pay less</span></h2></div>
+      <div class="switch" id="tx" role="group" aria-label="Transmission" data-reveal><button type="button" data-mode="manual" aria-pressed="true">Manual</button><button type="button" data-mode="auto" aria-pressed="false">Automatic</button></div>
+    </div>
+    <div class="pk" id="pk">
+      <article class="pkc" data-hours="1" data-manual="40" data-auto="44" data-reveal><h3>Pay as you go</h3><span class="hrs">1 or 2 hour lessons</span><div class="pr">£40</div><span class="per"></span><span class="sv"></span>
+        <ul><li>Pick-up and drop-off included</li><li>Online diary to book and move lessons</li><li>Progress tracked in the app</li></ul><a href="#book" class="btn blk">Book one hour</a></article>
+      <article class="pkc" data-hours="10" data-manual="380" data-auto="420" data-reveal data-delay="100"><h3>10-hour block</h3><span class="hrs">Most learners start here</span><div class="pr">£380</div><span class="per"></span><span class="sv"></span>
+        <ul><li>Same instructor every lesson</li><li>Free theory test app access</li><li>Use within 4 months</li></ul><a href="#book" class="btn blk">Buy 10 hours</a></article>
+      <article class="pkc hot" data-hours="20" data-manual="720" data-auto="800" data-reveal data-delay="200"><span class="badge">Best value</span><h3>20-hour block</h3><span class="hrs">For complete beginners</span><div class="pr">£720</div><span class="per"></span><span class="sv"></span>
+        <ul><li>Everything in the 10-hour block</li><li>Free 2-hour mock test</li><li>Test-day car hire included</li></ul><a href="#book" class="btn yel">Buy 20 hours</a></article>
+      <article class="pkc" data-hours="30" data-manual="1295" data-auto="1425" data-reveal data-delay="300"><h3>Intensive week</h3><span class="hrs">30 hours over 5–6 days</span><div class="pr">£1,295</div><span class="per"></span><span class="sv"></span>
+        <ul><li>Practical test booked for the final day</li><li>DVSA test fee (£62) included</li><li>Theory pass needed before you start</li></ul><a href="#book" class="btn blk">Plan my week</a></article>
+    </div>
+    <div class="extras">
+      <div class="ex" data-reveal><span><b>Refresher pack</b>3 × 2 hours for lapsed or nervous drivers</span><span class="p" data-manual="225" data-auto="249">£225</span></div>
+      <div class="ex" data-reveal data-delay="100"><span><b>Motorway lessons</b>2 hours on the M60 and M56 after you pass</span><span class="p" data-manual="80" data-auto="88">£80</span></div>
+      <div class="ex" data-reveal data-delay="200"><span><b>Pass Plus</b>6 hours: night, rural, dual carriageway</span><span class="p" data-manual="235" data-auto="259">£235</span></div>
+    </div>
+    <div class="fleet">
+      <figure data-reveal><img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=1000&q=70&auto=format&fit=crop" alt="Blue VW Polo hatchback parked on a quiet street"><figcaption><b>Manual fleet</b> · Polo, Fiesta, Corsa</figcaption></figure>
+      <figure data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=700&q=70&auto=format&fit=crop" alt="Dashboard and steering wheel of a modern automatic car"><figcaption><b>Automatics</b> · hybrids &amp; EVs</figcaption></figure>
+      <figure data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=700&q=70&auto=format&fit=crop" alt="Empty multi-storey car park with painted bays and arrows"><figcaption><b>Manoeuvres</b> · bay parking practice</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="jr" id="journey">
+  <div class="wrap">
+    <span class="kick" data-reveal>Your learner journey</span>
+    <h2 class="h an" data-split>From L plates to <span style="color:var(--yel)">open road</span></h2>
+    <div class="steps">
+      <div class="st" data-reveal><i>1</i><b>Provisional licence</b><p>Apply on GOV.UK for £34. You can book lessons from 17.</p><em>Day 1</em></div>
+      <div class="st" data-reveal data-delay="80"><i>2</i><b>First lesson</b><p>Quiet roads, controls and moving off. £25 intro hour.</p><em>Week 1</em></div>
+      <div class="st" data-reveal data-delay="160"><i>3</i><b>Theory test</b><p>Revise with our app while you learn. Pass before booking your practical.</p><em>Weeks 2–6</em></div>
+      <div class="st" data-reveal data-delay="240"><i>4</i><b>Weekly lessons</b><p>Roundabouts, manoeuvres, dual carriageways and test routes.</p><em>Avg 38 hours</em></div>
+      <div class="st" data-reveal data-delay="320"><i>5</i><b>Mock test</b><p>A full test with a different instructor, marked like the real thing.</p><em>2 weeks before</em></div>
+      <div class="st" data-reveal data-delay="400"><i>✓</i><b>Pass &amp; go</b><p>Use our car on test day. Then add motorway lessons or Pass Plus.</p><em>Test day</em></div>
+    </div>
+  </div>
+</section>
+
+<section id="instructors">
+  <div class="wrap">
+    <span class="kick" data-reveal>Instructors</span>
+    <h2 class="h an" data-split>Calm voices, <span class="y">dual controls</span></h2>
+    <div class="ins">
+      <article class="inst" data-reveal><div class="ph"><img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=600&q=70&auto=format&fit=crop" alt="Portrait of instructor Graham Doyle"><span>Manual · Grade A</span></div><div class="c"><b>Graham Doyle</b><dl><dt>Car</dt><dd>2024 VW Polo, manual</dd><dt>Areas</dt><dd>Didsbury, Withington, Burnage</dd><dt>Pass rate</dt><dd>79% first time</dd></dl></div></article>
+      <article class="inst" data-reveal data-delay="100"><div class="ph"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=70&auto=format&fit=crop" alt="Portrait of instructor Sophie Brennan"><span>Automatic · Grade A</span></div><div class="c"><b>Sophie Brennan</b><dl><dt>Car</dt><dd>2025 Toyota Yaris Hybrid, auto</dd><dt>Areas</dt><dd>Sale, Stretford, Chorlton</dd><dt>Good for</dt><dd>Nervous learners</dd></dl></div></article>
+      <article class="inst" data-reveal data-delay="200"><div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop" alt="Portrait of instructor Imran Qureshi"><span>Manual + Auto</span></div><div class="c"><b>Imran Qureshi</b><dl><dt>Cars</dt><dd>Ford Fiesta manual + MG4 auto</dd><dt>Areas</dt><dd>Rusholme, Longsight, City Centre</dd><dt>Speaks</dt><dd>English, Urdu, Punjabi</dd></dl></div></article>
+      <article class="inst" data-reveal data-delay="300"><div class="ph"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=70&auto=format&fit=crop" alt="Portrait of instructor Tom Whitfield"><span>Intensives</span></div><div class="c"><b>Tom Whitfield</b><dl><dt>Car</dt><dd>2024 Vauxhall Corsa, manual</dd><dt>Areas</dt><dd>Stockport, Cheadle, Heaton Moor</dd><dt>Pass rate</dt><dd>81% on intensives</dd></dl></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="cov" id="coverage" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal>Coverage &amp; test routes</span>
+      <h2 class="h an" data-split>Do we pick up <span class="y">from you?</span></h2>
+      <form class="check" id="pcf" data-reveal novalidate>
+        <label for="pc">Enter your postcode</label>
+        <div class="r"><input id="pc" placeholder="e.g. M20 2RN" autocomplete="postal-code" maxlength="8" required><button class="btn red" type="submit">Check</button></div>
+        <p class="out" id="pcout" aria-live="polite">We cover 38 postcode districts across Manchester, Trafford and Stockport.</p>
+      </form>
+      <div class="areas" data-reveal><span>Didsbury</span><span>Chorlton</span><span>Withington</span><span>Fallowfield</span><span>Levenshulme</span><span>Sale</span><span>Stretford</span><span>Salford Quays</span><span>Stockport</span><span>Cheadle</span><span>City Centre</span><span>Prestwich</span></div>
+    </div>
+    <div data-reveal="right">
+      <p style="margin-top:0">We teach on the real test routes from these DVSA centres. Our pupils' first-time pass rates over the last 12 months:</p>
+      <div class="centres">
+        <div>West Didsbury<span>M20</span><span class="bar"><i style="width:77%"></i></span><b>77%</b></div>
+        <div>Manchester (Cheetham Hill)<span>M8</span><span class="bar"><i style="width:71%"></i></span><b>71%</b></div>
+        <div>Sale<span>M33</span><span class="bar"><i style="width:76%"></i></span><b>76%</b></div>
+        <div>Hyde<span>SK14</span><span class="bar"><i style="width:73%"></i></span><b>73%</b></div>
+        <div>Bury<span>BL9</span><span class="bar"><i style="width:69%"></i></span><b>69%</b></div>
+      </div>
+      <p style="font-size:14px;margin-top:18px">Test waits in Greater Manchester are currently 14–20 weeks. We book your test for you as soon as your instructor says you're on track, and use cancellation alerts to bring it forward.</p>
+    </div>
+  </div>
+</section>
+
+<section class="passes" id="passes" data-slider-scope>
+  <div class="wrap">
+    <div class="phead"><div><span class="kick" data-reveal>Wall of passes</span><h2 class="h an" data-split>Fresh <span class="y">full licences</span></h2></div>
+      <div class="arr"><button class="kt-arrow" data-cprev aria-label="Previous pass"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-cnext aria-label="Next pass"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="kt-carousel pc" data-carousel>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=70&auto=format&fit=crop" alt="Amelia smiling after passing her driving test"><span class="stamp">Passed!</span></div><div class="c"><b>Amelia R.</b><small>West Didsbury · 1st attempt · 2 minors</small><p>"Graham never once raised his voice. I went from terrified to bored on roundabouts."</p></div></article>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=70&auto=format&fit=crop" alt="Kwame smiling after passing his driving test"><span class="stamp">0 faults</span></div><div class="c"><b>Kwame A.</b><small>Cheetham Hill · intensive week · 0 faults</small><p>"Monday to Saturday, test on Saturday. Tom had me ready. Clean sheet."</p></div></article>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=70&auto=format&fit=crop" alt="Hannah laughing after passing her automatic test"><span class="stamp">Passed!</span></div><div class="c"><b>Hannah P.</b><small>Sale · automatic · 1st attempt</small><p>"Switched to auto after failing twice elsewhere. Sophie got me through in 22 hours."</p></div></article>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=600&q=70&auto=format&fit=crop" alt="Luca smiling after passing his manual test"><span class="stamp">Passed!</span></div><div class="c"><b>Luca M.</b><small>West Didsbury · manual · 3 minors</small><p>"The mock test was harder than the real one, which is exactly the point."</p></div></article>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=600&q=70&auto=format&fit=crop" alt="Zara smiling in sunglasses after passing her test"><span class="stamp">1st time</span></div><div class="c"><b>Zara H.</b><small>Hyde · manual · 1st attempt</small><p>"Imran taught me in Urdu when I got stuck on theory. Passed at 17 and a half!"</p></div></article>
+      <article class="pass"><div class="ph"><img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=600&q=70&auto=format&fit=crop" alt="Mei laughing after passing her refresher course"><span class="stamp">Back on road</span></div><div class="c"><b>Mei L.</b><small>Refresher pack · Stockport</small><p>"Licence for 12 years, hadn't driven for 8. Three lessons and I'm doing the school run."</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal>Get started</span>
+      <h2 class="h an" data-split>Book your <span class="y">first lesson</span></h2>
+      <p data-reveal>Tell us where and when suits you. We'll match you with an instructor in your area and call within one working day.</p>
+      <div class="offer" data-reveal><b>£25 intro hour</b><p>First lesson for new pupils, manual or automatic. Normally £40–£44. No obligation to book more.</p></div>
+      <div class="contact" data-reveal><span>Call or WhatsApp <a href="tel:+441614960582">0161 496 0582</a></span><span>Office: Mon–Fri 9am–6pm, Sat 9am–1pm</span><span>Lessons: 7am–9pm, 7 days a week</span></div>
+    </div>
+    <form class="bk" data-form="Thanks! An instructor near you will call within one working day." data-reveal="right">
+      <fieldset><legend>Transmission</legend><div class="opts">
+        <label><input type="radio" name="tx" value="manual" checked><span>Manual</span></label>
+        <label><input type="radio" name="tx" value="auto"><span>Automatic</span></label>
+        <label><input type="radio" name="tx" value="unsure"><span>Not sure yet</span></label>
+      </div></fieldset>
+      <div class="c2"><label class="f">Course<select name="course" required><option>£25 intro lesson</option><option>Pay as you go</option><option>10-hour block</option><option>20-hour block</option><option>Intensive week</option><option>Refresher pack</option><option>Motorway / Pass Plus</option></select></label><label class="f">Pick-up postcode<input id="bpc" name="postcode" autocomplete="postal-code" maxlength="8" required></label></div>
+      <div class="c2"><label class="f">Full name<input name="name" autocomplete="name" required></label><label class="f">Mobile<input name="phone" type="tel" autocomplete="tel" required></label></div>
+      <label class="f">Email<input name="email" type="email" autocomplete="email" required></label>
+      <div class="c2"><label class="f">Driving experience<select name="exp"><option>Complete beginner</option><option>A few hours</option><option>10+ hours</option><option>Test booked already</option><option>Full licence, need a refresher</option></select></label><label class="f">Theory test<select name="theory"><option>Not taken yet</option><option>Booked</option><option>Passed</option></select></label></div>
+      <fieldset><legend>When suits you?</legend><div class="opts">
+        <label><input type="checkbox" name="when" value="weekday-am"><span>Weekday mornings</span></label>
+        <label><input type="checkbox" name="when" value="weekday-pm"><span>Weekday afternoons</span></label>
+        <label><input type="checkbox" name="when" value="evenings" checked><span>Evenings</span></label>
+        <label><input type="checkbox" name="when" value="weekends"><span>Weekends</span></label>
+      </div></fieldset>
+      <button class="btn red" type="submit">Request my first lesson</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="kick" data-reveal>FAQ</span><h2 class="h an" data-split>Before you <span class="y">buckle up</span></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>How many lessons will I need?</summary><div class="kt-faq-a"><div>The DVSA average is around 45 hours of lessons plus 22 hours of private practice. Our pupils average 38 hours. After your first lesson your instructor will give you an honest estimate.</div></div></details>
+      <details class="kt-faq"><summary>Manual or automatic: which should I learn?</summary><div class="kt-faq-a"><div>An automatic licence only lets you drive automatics, but most new cars and all electric cars are automatic now. Learners usually need around 25% fewer hours in an automatic. If you might drive a manual van or older family car, learn manual.</div></div></details>
+      <details class="kt-faq"><summary>Can I use your car for my test?</summary><div class="kt-faq-a"><div>Yes. Test-day hire is £80 (free with a 20-hour block) and includes a one-hour warm-up lesson right before the test.</div></div></details>
+      <details class="kt-faq"><summary>What if I need to cancel a lesson?</summary><div class="kt-faq-a"><div>Move or cancel free of charge up to 48 hours before in the app. Inside 48 hours the lesson is charged in full, unless your instructor can fill the slot.</div></div></details>
+      <details class="kt-faq"><summary>Is an intensive course right for me?</summary><div class="kt-faq-a"><div>Intensives suit people who have passed their theory and can clear a full week. Complete beginners should allow at least 30 hours. We'll do a free 1-hour assessment drive first so we don't book a test you're not ready for.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a href="#" class="logo" aria-label="Lanemark Driving School home"><span class="l" aria-hidden="true">L</span>Lanemark</a><p style="margin:0">Unit 4, 27 Wilmslow Road, Manchester M14 5TB · © 2026 Lanemark Driving School Ltd</p></div>
+    <nav><a href="#prices">Prices</a><a href="#instructors">Instructors</a><a href="#coverage">Areas</a><a href="#book">Book</a><a href="#">Become an instructor</a><a href="#">Privacy</a></nav>
+  </div>
+  <div class="road" aria-hidden="true"></div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  (function () {
+    // manual / automatic switch: swaps every price, works out per-hour cost and saving vs pay-as-you-go
+    const sw = document.getElementById('tx'), cards = [...document.querySelectorAll('#pk .pkc')], extras = [...document.querySelectorAll('.ex .p')];
+    const fmt = n => '£' + n.toLocaleString('en-GB', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+    const setMode = mode => {
+      sw.classList.toggle('auto', mode === 'auto');
+      sw.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === mode));
+      const base = +cards[0].dataset[mode];
+      cards.forEach(c => {
+        const total = +c.dataset[mode], hrs = +c.dataset.hours, per = total / hrs, save = base * hrs - total;
+        c.querySelector('.pr').textContent = fmt(total);
+        c.querySelector('.per').textContent = hrs === 1 ? 'per hour' : `${fmt(Math.round(per * 100) / 100)} per hour`;
+        c.querySelector('.sv').textContent = save > 0 ? `Save ${fmt(save)}${hrs === 30 ? ' + test fee' : ''}` : '';
+      });
+      extras.forEach(p => { p.textContent = fmt(+p.dataset[mode]); });
+      const r = document.querySelector(`.bk input[name=tx][value=${mode}]`); if (r) r.checked = true;
+    };
+    sw.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      const pk = document.getElementById('pk'); pk.classList.add('fade');
+      setTimeout(() => { setMode(b.dataset.mode); pk.classList.remove('fade'); }, 160);
+    });
+    setMode('manual');
+
+    // postcode coverage: core districts free pick-up, outer ring with a small travel charge
+    const core = new Set('M1 M2 M3 M4 M8 M9 M11 M12 M13 M14 M15 M16 M18 M19 M20 M21 M22 M23 M32 M33 M41 M50 SK4 SK8'.split(' '));
+    const near = new Set('M5 M6 M7 M25 M30 M31 M34 M40 M90 SK1 SK2 SK3 SK5 SK6 SK7 SK14'.split(' '));
+    const f = document.getElementById('pcf'), inp = document.getElementById('pc'), out = document.getElementById('pcout');
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      const raw = inp.value.toUpperCase().replace(/\s+/g, ' ').trim();
+      const m = raw.match(/^([A-Z]{1,2}\d[A-Z\d]?)(?:\s*(\d[A-Z]{2}))?$/);
+      if (!m) { out.className = 'out no'; out.innerHTML = '<b>That doesn\'t look like a UK postcode.</b> Try something like M20 2RN.'; return; }
+      const d = m[1];
+      if (core.has(d)) { out.className = 'out ok'; out.innerHTML = `<b>Yes, we cover ${d}!</b> Free pick-up from home, school or work. 3 instructors work this area.`; }
+      else if (near.has(d)) { out.className = 'out near'; out.innerHTML = `<b>We can reach ${d}.</b> It's on the edge of our patch, so lessons start and end at a nearby meeting point, or add £5 for door-to-door.`; }
+      else { out.className = 'out no'; out.innerHTML = `<b>Sorry, ${d} is outside our area.</b> Call us and we'll recommend a good local instructor.`; return; }
+      document.getElementById('bpc').value = raw;
+    });
+  })();
+</script>
+</body>
+</html>

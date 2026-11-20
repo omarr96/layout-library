@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #111113; --tx: #52525b; --mut: #8a8a93; --line: #e7e7ea; --soft: #f7f7f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+h1 { margin: 0; font-size: 34px; color: var(--ink); letter-spacing: -.025em; }
+.sub { margin: 8px 0 0; max-width: 680px; }
+.kit { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.kit span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; margin-top: 40px; }
+.card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .25s, transform .25s, border-color .25s; display: flex; flex-direction: column; }
+.card:hover { box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); transform: translateY(-3px); border-color: #d4d4d8; }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.b { padding: 16px 18px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.n { font-size: 13px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.b h3 { margin: 0; font-size: 16px; color: var(--ink); }
+.b p { margin: 4px 0 10px; font-size: 13.5px; }
+.sw { display: flex; gap: 5px; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 600px) { .wrap { padding: 36px 16px 60px; } .grid { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Hero layouts</h1>
+  <p class="sub">Twenty hero sections, each a different layout for a different kind of business. Click one to open it full size.</p>
+  <div class="kit"><span>Minimal</span><span>Background slider</span><span>Form right</span><span>Image + stat cards</span><span>Full-bleed photo</span><span>Split screen</span><span>Search tabs</span><span>Bento grid</span><span>App mockup</span><span>Editorial type</span><span>Booking widget</span><span>Content carousel</span><span>Diagonal split</span><span>Video + signup</span><span>Product spotlight</span><span>Countdown</span><span>Collage</span><span>Calculator</span><span>Single input</span><span>Accordion panels</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const T = [
+  ["01-minimal-centered", "Ledgerly", "Minimal centered · invoicing SaaS · rotating word, logo strip", ["#FAFAF7", "#111318", "#4F46E5", "#D9F99D"]],
+  ["02-bg-slider", "Casa Corallo", "Background image slider · boutique resort · 4 slides, progress dots", ["#0F1A1C", "#E8DCC8", "#C7704A", "#ffffff"]],
+  ["03-form-right", "Hartwell & Rowe", "Form on the right · injury law firm · free case review form", ["#0B1F3A", "#C9A227", "#F7F4EE", "#ffffff"]],
+  ["04-image-right-stats", "Brightwell Dental", "Image right + floating stat cards · dental clinic · pick a time", ["#F2FAF8", "#0E7C74", "#FF7A59", "#12312F"]],
+  ["05-full-bleed-centered", "Farwander", "Full-bleed photo, centered · travel tours · \"Where to?\" search", ["#0B1614", "#F2B544", "#FFFFFF", "#2a3a36"]],
+  ["06-split-screen", "Maison Olea", "50/50 split screen · fashion boutique · lookbook slider", ["#F3EDE4", "#1C1A17", "#C8932E", "#ffffff"]],
+  ["07-search-tabs", "Keystone & Vale", "Search with tabs · real estate · Buy / Rent / Sell", ["#0F2533", "#19A974", "#EAF4F1", "#ffffff"]],
+  ["08-bento-grid", "Fable & Fold", "Bento grid · branding agency · stats, testimonial, image tiles", ["#F4F1EA", "#D4F25A", "#C9B8FF", "#FF5A36"]],
+  ["09-app-mockup", "Pennywell", "App mockup · finance app · live phone UI, text-me-the-app", ["#1E1450", "#6C4BFF", "#FF7A59", "#3DDC97"]],
+  ["10-editorial-type", "Halde Arkitekter", "Editorial typography · architecture studio · marquee strip", ["#E6E2DA", "#1E1E1C", "#B4502A", "#ffffff"]],
+  ["11-booking-widget", "Ember & Vine", "Booking widget over photo · restaurant · open time slots", ["#1a120d", "#e0a458", "#f4ece1", "#ffffff"]],
+  ["12-content-carousel", "Holm & Hearth", "Content carousel, alternating split · furniture sale · thumbnails", ["#f3efe8", "#c2603c", "#2b2a26", "#ffffff"]],
+  ["13-diagonal-split", "Redline Boxing Club", "Diagonal split · boxing gym · outlined type, class tabs", ["#0c0c0e", "#ff3b30", "#f5f3ee", "#ffffff"]],
+  ["14-video-course", "Fieldwise", "Signup + video thumbnail · online course · player modal", ["#fffaf2", "#3b2fc9", "#c8f169", "#1a1a1a"]],
+  ["15-product-spotlight", "Aurel One", "Product spotlight · headphones · colour swatches, spec callouts", ["#08090c", "#7cf3d0", "#eef0f4", "#2a2d35"]],
+  ["16-event-countdown", "Saltwave Festival", "Event countdown · music festival · ticket tiers", ["#120b1f", "#ff4d6d", "#d4ff3a", "#ffffff"]],
+  ["17-collage", "Willow & Wren", "Photo collage · wedding photographer · date checker", ["#f6f0e8", "#2f3b2f", "#c97b63", "#ffffff"]],
+  ["18-calculator-right", "Harbourline Mortgages", "Calculator on the right · mortgage broker · live payment", ["#0e3b36", "#c9f0dd", "#e9b949", "#ffffff"]],
+  ["19-tracking-input", "Hopline Courier", "Single big input · courier tracking · result timeline", ["#ffd23f", "#111318", "#2b59ff", "#ffffff"]],
+  ["20-accordion-panels", "Stillwater House", "Expanding image panels · spa & wellness · hover to open", ["#efe7dc", "#3d4a3a", "#b5735a", "#ffffff"]]
+];
+document.getElementById('grid').innerHTML = T.map(([f, n, d, c], i) => `<a class="card" href="${f}/index.html" target="_blank" rel="noopener">
+  <div class="shot"><iframe data-src="${f}/index.html" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></div>
+  <div class="b"><span class="n">${String(i + 1).padStart(2, '0')}</span><div><h3>${n}</h3><p>${d}</p><div class="sw">${c.map(x => `<i style="background:${x}"></i>`).join('')}</div></div></div></a>`).join('');
+const ro = new ResizeObserver(es => es.forEach(e => e.target.querySelector('iframe').style.transform = `scale(${e.contentRect.width / 1440})`));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const f = e.target.querySelector('iframe'); f.src = f.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); });
+</script>
+</body>
+</html>

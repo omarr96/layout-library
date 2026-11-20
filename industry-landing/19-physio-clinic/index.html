@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stillwater Physio &amp; Chiropractic · Portland, Oregon</title>
+<meta name="description" content="Physical therapy and chiropractic care in Sellwood, Portland. Back and neck pain, sports injuries, post-surgery rehab and headaches. Same-week appointments, no referral needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f6f3ee; --kt-ink: #1e3634; --kt-tx: #4a5a57; --kt-mut: #5d6b68; --kt-line: rgba(30,54,52,.13); --kt-accent: #2f6b5f; --kt-accent-ink: #fff; --kt-radius: 18px; --clay: #c46f4e; --clay-d: #a4542f; --mist: #e3ebe6; --sand: #ece4d7; --white: #fffdf9; }
+body { font: 17px/1.7 'Albert Sans', system-ui, sans-serif; }
+.nw { font-family: Newsreader, Georgia, serif; font-weight: 400; letter-spacing: -.015em; line-height: 1.08; }
+.nw em, h2.h em { font-style: italic; color: var(--kt-accent); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+section { padding: 110px 0; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--kt-mut); }
+.eyebrow::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--clay); margin-right: 10px; vertical-align: 1px; }
+h2.h { font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.6vw, 58px); color: var(--kt-ink); margin: 14px 0 18px; letter-spacing: -.02em; line-height: 1.08; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 99px; font-weight: 600; font-size: 15.5px; transition: background .2s, color .2s, transform .2s; }
+.btn.pri { background: var(--kt-ink); color: #fff; }
+.btn.pri:hover { background: var(--kt-accent); }
+.btn.out { box-shadow: inset 0 0 0 1.5px var(--kt-ink); color: var(--kt-ink); }
+.btn.out:hover { background: var(--kt-ink); color: #fff; }
+.btn svg { width: 18px; height: 18px; }
+
+/* nav: the blur lives on a pseudo-element so the fixed mobile menu is not trapped inside the bar */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: box-shadow .3s; }
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(246,243,238,0); transition: background .3s; }
+.nav.scrolled::before { background: rgba(246,243,238,.88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.nav.scrolled { box-shadow: 0 1px 0 var(--kt-line); }
+.nav .wrap { display: flex; align-items: center; gap: 34px; height: 82px; }
+.logo { display: flex; align-items: center; gap: 12px; color: var(--kt-ink); margin-right: auto; line-height: 1.05; }
+.logo svg { width: 38px; height: 38px; flex: none; }
+.logo b { font-family: Newsreader, serif; font-weight: 500; font-size: 23px; display: block; letter-spacing: -.01em; }
+.logo small { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--kt-mut); font-weight: 600; }
+.kt-menu { display: flex; gap: 30px; }
+.kt-menu a { font-weight: 500; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 44px; padding: 0 20px; font-size: 14.5px; }
+.kt-burger { color: var(--kt-ink); }
+
+/* hero */
+.hero { padding: 160px 0 90px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
+.hero h1 { font-size: clamp(46px, 6.2vw, 86px); color: var(--kt-ink); margin: 20px 0 24px; }
+.hero h1 [data-rotate] { font-style: italic; color: var(--kt-accent); }
+.hero .lead { font-size: 19px; max-width: 530px; margin: 0 0 32px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.facts { display: flex; gap: 34px; margin-top: 46px; padding-top: 28px; border-top: 1px solid var(--kt-line); flex-wrap: wrap; }
+.facts b { display: block; font-family: Newsreader, serif; font-weight: 400; font-size: 38px; color: var(--kt-ink); line-height: 1; }
+.facts span { font-size: 14px; }
+.arch { position: relative; }
+.arch .img { border-radius: 999px 999px 24px 24px; overflow: hidden; aspect-ratio: 4 / 5; }
+.arch img { width: 100%; height: 100%; object-fit: cover; }
+.arch .note { position: absolute; left: -40px; bottom: 50px; background: var(--white); border-radius: 18px; padding: 18px 20px; max-width: 250px; box-shadow: 0 24px 50px -24px rgba(30,54,52,.45); font-size: 14px; }
+.arch .note b { display: block; color: var(--kt-ink); font-size: 15.5px; margin-bottom: 2px; }
+.arch .sun { position: absolute; top: -26px; right: -26px; width: 120px; height: 120px; border-radius: 50%; background: var(--clay); opacity: .9; z-index: -1; }
+
+/* insurance */
+.ins { border-block: 1px solid var(--kt-line); padding: 24px 0; background: var(--white); }
+.ins .wrap { display: flex; align-items: center; gap: 30px; }
+.ins p { margin: 0; flex: none; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--kt-mut); }
+.ins .kt-marquee { flex: 1; min-width: 0; }
+.ins .kt-mq-track { --mq-gap: 46px; }
+.ins span { font-family: Newsreader, serif; font-size: 22px; color: var(--kt-ink); white-space: nowrap; display: flex; align-items: center; gap: 46px; }
+.ins span::after { content: "·"; color: var(--clay); }
+
+/* conditions */
+.cond-head { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: end; }
+.ctabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 40px 0 30px; border-bottom: 1px solid var(--kt-line); }
+.ctabs button { padding: 14px 4px; margin-right: 22px; font-weight: 600; font-size: 16px; color: var(--kt-mut); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .2s, border-color .2s; }
+.ctabs button.on { color: var(--kt-ink); border-color: var(--clay); }
+.cp { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.cp img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: var(--kt-radius); }
+.cp h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 34px; color: var(--kt-ink); margin: 0 0 12px; line-height: 1.15; }
+.cp ul { list-style: none; padding: 0; margin: 22px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; font-size: 15.5px; }
+.cp li { padding-left: 18px; position: relative; color: var(--kt-ink); }
+.cp li::before { content: ""; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--kt-accent); }
+.plan { display: flex; gap: 14px; align-items: center; background: var(--mist); border-radius: 14px; padding: 14px 18px; font-size: 15px; }
+.plan b { color: var(--kt-ink); }
+
+/* treatments */
+.tx { background: var(--kt-ink); color: #b7c6c2; border-radius: 40px; margin: 0 16px; }
+.tx h2.h { color: #fff; } .tx h2.h em { color: #e6a98d; }
+.tx .eyebrow { color: #9fb2ad; }
+.tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 50px; background: rgba(255,255,255,.1); border-radius: 22px; overflow: hidden; }
+.t { background: var(--kt-ink); padding: 34px 30px; transition: background .3s; }
+.t:hover { background: #24403d; }
+.t svg { width: 38px; height: 38px; fill: none; stroke: #e6a98d; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.t h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 26px; color: #fff; margin: 16px 0 8px; }
+.t p { margin: 0; font-size: 15px; }
+.t small { display: block; margin-top: 14px; font-size: 13px; color: #8fa6a1; letter-spacing: .04em; }
+
+/* team */
+.team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 50px; }
+.pr img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 160px 160px 18px 18px; margin-bottom: 18px; filter: saturate(.85); transition: filter .4s; }
+.pr:hover img { filter: none; }
+.pr b { font-family: Newsreader, serif; font-weight: 500; font-size: 23px; color: var(--kt-ink); display: block; line-height: 1.2; }
+.pr .cr { font-size: 13.5px; font-weight: 600; color: var(--kt-accent); letter-spacing: .03em; }
+.pr p { font-size: 15px; margin: 8px 0 12px; }
+.pr .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.pr .tags span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--sand); color: var(--kt-ink); }
+
+/* first visit */
+.visit { background: var(--sand); }
+.vgrid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: start; }
+.vgrid > div:first-child { position: sticky; top: 120px; }
+.vsteps { list-style: none; margin: 0; padding: 0; counter-reset: v; }
+.vsteps li { position: relative; padding: 0 0 38px 78px; }
+.vsteps li::before { counter-increment: v; content: counter(v); position: absolute; left: 0; top: 0; width: 52px; height: 52px; border-radius: 50%; background: var(--white); color: var(--kt-ink); font-family: Newsreader, serif; font-size: 24px; display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px var(--kt-ink); }
+.vsteps li::after { content: ""; position: absolute; left: 26px; top: 58px; bottom: 6px; width: 1.5px; background: repeating-linear-gradient(var(--kt-ink) 0 4px, transparent 4px 9px); opacity: .4; }
+.vsteps li:last-child::after { display: none; }
+.vsteps h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 27px; color: var(--kt-ink); margin: 6px 0 6px; }
+.vsteps p { margin: 0; }
+.vsteps small { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--clay-d); letter-spacing: .06em; text-transform: uppercase; }
+.bring { margin-top: 28px; background: var(--white); border-radius: 18px; padding: 22px 24px; font-size: 15px; }
+.bring b { color: var(--kt-ink); display: block; margin-bottom: 6px; }
+
+/* prices */
+.pgrid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; margin-top: 40px; align-items: start; }
+.plist { border-top: 1px solid var(--kt-ink); }
+.pi { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 22px 0; border-bottom: 1px solid var(--kt-line); }
+.pi b { font-family: Newsreader, serif; font-weight: 400; font-size: 25px; color: var(--kt-ink); line-height: 1.2; }
+.pi span { font-size: 14.5px; grid-column: 1; }
+.pi .amt { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-family: Newsreader, serif; font-size: 34px; color: var(--kt-ink); }
+.pi .amt small { font-family: 'Albert Sans', sans-serif; font-size: 13px; color: var(--kt-mut); }
+.pack { background: var(--kt-accent); color: #d5e6e0; border-radius: 24px; padding: 34px; }
+.pack .eyebrow { color: #cfe3dc; } .pack .eyebrow::before { background: #f2c3ad; }
+.pack h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 34px; color: #fff; margin: 12px 0 6px; line-height: 1.1; }
+.pack .big { font-family: Newsreader, serif; font-size: 60px; color: #fff; line-height: 1; margin: 18px 0 4px; }
+.pack ul { padding-left: 18px; margin: 18px 0 26px; font-size: 15px; display: grid; gap: 6px; }
+.pack .btn { background: #fff; color: var(--kt-ink); }
+.pack .btn:hover { background: var(--sand); }
+.pnote { margin-top: 24px; font-size: 14.5px; }
+
+/* reviews */
+.rhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.score { display: flex; align-items: center; gap: 16px; }
+.score b { font-family: Newsreader, serif; font-weight: 400; font-size: 64px; color: var(--kt-ink); line-height: 1; }
+.score span { font-size: 14px; }
+.score i { font-style: normal; color: #d08a2d; letter-spacing: 2px; display: block; font-size: 17px; }
+.rgrid { columns: 3; column-gap: 24px; margin-top: 46px; }
+.rv { break-inside: avoid; background: var(--white); border-radius: 20px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--kt-line); }
+.rv p { font-family: Newsreader, serif; font-size: 20px; line-height: 1.45; color: var(--kt-ink); margin: 0 0 18px; }
+.rv .by { font-size: 14px; }
+.rv .by b { color: var(--kt-ink); }
+.rv .cond { display: inline-block; margin-bottom: 14px; font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--mist); color: var(--kt-accent); }
+
+/* booking */
+.book { background: var(--white); border-top: 1px solid var(--kt-line); }
+.book .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+form.bf { display: grid; gap: 22px; }
+.f { display: grid; gap: 6px; font-weight: 600; font-size: 14px; color: var(--kt-ink); }
+.f input, .f select, .f textarea { height: 52px; border-radius: 12px; border: 1px solid rgba(30,54,52,.25); background: var(--kt-bg); padding: 0 16px; font-size: 16px; outline: none; width: 100%; color: var(--kt-ink); }
+.f textarea { height: 92px; padding: 12px 16px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--kt-accent); box-shadow: 0 0 0 3px rgba(47,107,95,.16); background: #fff; }
+.c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+legend { font-weight: 600; font-size: 14px; color: var(--kt-ink); margin-bottom: 10px; padding: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips label { position: relative; }
+.chips input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chips span { display: grid; place-items: center; min-width: 74px; padding: 9px 14px; border-radius: 14px; border: 1px solid rgba(30,54,52,.25); background: var(--kt-bg); font-size: 14.5px; font-weight: 600; color: var(--kt-ink); text-align: center; line-height: 1.25; transition: .15s; }
+.chips span small { display: block; font-weight: 500; font-size: 12px; color: var(--kt-mut); }
+.chips input:checked + span { background: var(--kt-ink); border-color: var(--kt-ink); color: #fff; }
+.chips input:checked + span small { color: #b7c6c2; }
+.chips input:focus-visible + span { outline: 3px solid var(--clay); outline-offset: 2px; }
+.chips input:disabled + span { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
+.chips input:disabled { cursor: not-allowed; }
+.pick { margin: 0; font-size: 15px; padding: 14px 18px; border-radius: 12px; background: var(--mist); color: var(--kt-ink); }
+.side h3 { font-family: Newsreader, serif; font-weight: 400; font-size: 26px; color: var(--kt-ink); margin: 34px 0 10px; }
+.hrs { display: grid; gap: 4px; font-size: 15px; }
+.hrs div { display: flex; justify-content: space-between; border-bottom: 1px dotted var(--kt-line); padding: 6px 0; color: var(--kt-ink); }
+.side .call { margin-top: 26px; font-size: 15px; }
+.side .call a { font-family: Newsreader, serif; font-size: 30px; color: var(--kt-ink); display: block; }
+
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+.kt-faq summary { font-family: Newsreader, serif; font-weight: 400; font-size: 22px; }
+footer { background: var(--kt-ink); color: #a7b8b4; padding: 70px 0 40px; font-size: 14.5px; }
+footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer .logo { color: #fff; margin-bottom: 16px; } footer .logo small { color: #a7b8b4; }
+footer h4 { font-family: Newsreader, serif; font-weight: 400; font-size: 20px; color: #fff; margin: 0 0 10px; }
+footer p { margin: 0 0 6px; }
+footer a:hover { color: #fff; }
+footer .base { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px; font-size: 13px; }
+
+@media (max-width: 1060px) {
+  .team { grid-template-columns: repeat(2, 1fr); }
+  .tgrid { grid-template-columns: 1fr 1fr; }
+  .rgrid { columns: 2; }
+}
+@media (max-width: 900px) {
+  .nav.scrolled::before { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--kt-bg); }
+}
+@media (max-width: 960px) {
+  section { padding: 80px 0; }
+  .hero .wrap, .cond-head, .cp, .vgrid, .pgrid, .book .wrap, .faq .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .vgrid > div:first-child { position: static; }
+  .arch { max-width: 460px; width: 100%; margin: 0 auto; }
+  .arch .note { left: -10px; }
+  .tx { margin: 0 10px; border-radius: 28px; }
+  footer .wrap { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  .nav .btn { display: none; }
+  .nav .wrap { height: 70px; }
+  .hero { padding: 120px 0 60px; }
+  .facts { gap: 22px; } .facts b { font-size: 32px; }
+  .arch .note { position: relative; left: 0; bottom: 0; margin: -40px 16px 0; }
+  .arch .sun { width: 80px; height: 80px; top: -16px; right: -8px; }
+  .ins .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ins .kt-marquee { width: 100%; }
+  .ctabs button { margin-right: 12px; font-size: 15px; }
+  .cp ul, .c2 { grid-template-columns: 1fr; }
+  .tgrid, .team { grid-template-columns: 1fr; }
+  .t { padding: 28px 22px; }
+  .rgrid { columns: 1; }
+  .vsteps li { padding-left: 66px; }
+  .pi b { font-size: 21px; } .pi .amt { font-size: 28px; }
+  .pack { padding: 26px 22px; }
+  .chips span { min-width: 64px; padding: 8px 10px; }
+  footer .wrap { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Stillwater Physio home"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#2f6b5f"/><path d="M8 23c4-3 8-3 12 0s8 3 12 0M8 29c4-3 8-3 12 0s8 3 12 0" fill="none" stroke="#f6f3ee" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="13" r="4" fill="#e6a98d"/></svg><span><b>Stillwater</b><small>Physio &amp; Chiropractic</small></span></a>
+    <nav class="kt-menu"><a href="#conditions">Conditions</a><a href="#treatments">Treatments</a><a href="#team">Practitioners</a><a href="#prices">Prices</a><a href="#faq">FAQ</a></nav>
+    <a href="#book" class="btn pri">Book online</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Sellwood, Portland · since 2011</span>
+      <h1 class="nw"><span data-split>Move without</span><br><span data-rotate="thinking|wincing|bracing|guarding"></span> <span data-split>about it.</span></h1>
+      <p class="lead" data-reveal data-delay="200">Physical therapists and chiropractors working side by side. A full hour for your first visit, a clear diagnosis, and a plan you can do at home. No referral needed in Oregon.</p>
+      <div class="cta" data-reveal data-delay="300"><a href="#book" class="btn pri">Book an assessment</a><a href="tel:+15035550147" class="btn out"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>(503) 555-0147</a></div>
+      <div class="facts" data-reveal data-delay="400">
+        <div><b data-count="94" data-suffix="%">0</b><span>report less pain by visit 4</span></div>
+        <div><b data-count="5.2">0</b><span>average visits per plan</span></div>
+        <div><b data-count="4.9" data-suffix="★">0</b><span>from 860 reviews</span></div>
+      </div>
+    </div>
+    <div class="arch" data-reveal="zoom">
+      <span class="sun" aria-hidden="true"></span>
+      <div class="img"><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1000&q=70&auto=format&fit=crop" alt="Physical therapist working on a patient's upper back and shoulder"></div>
+      <div class="note"><b>Same-week appointments</b>Early 7am and evening slots until 7:30pm for people who work.</div>
+    </div>
+  </div>
+</section>
+
+<div class="ins" aria-label="Insurance accepted">
+  <div class="wrap">
+    <p>Insurance we bill</p>
+    <div class="kt-marquee" data-speed="40s"><div class="kt-mq-track"><span>Most PPO plans</span><span>Medicare Part B</span><span>Oregon Health Plan</span><span>Workers' compensation</span><span>Auto injury (PIP)</span><span>TRICARE</span><span>VA Community Care</span><span>HSA &amp; FSA cards</span><span>Out-of-network superbills</span></div></div>
+  </div>
+</div>
+
+<section id="conditions">
+  <div class="wrap" data-tabs>
+    <div class="cond-head"><div><span class="eyebrow" data-reveal>What we treat</span><h2 class="h" data-split>Find where it <em>hurts</em></h2></div><p data-reveal style="margin:0">Most people come to us with one of these four. If yours isn't listed, call. We'll tell you honestly whether we can help or who can.</p></div>
+    <div class="ctabs" role="tablist" aria-label="Conditions" data-reveal>
+      <button data-tab="back" class="on">Back &amp; neck</button><button data-tab="sport">Sports injuries</button><button data-tab="surgery">Post-surgery</button><button data-tab="head">Headaches &amp; jaw</button>
+    </div>
+    <div class="cp" data-pane="back">
+      <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=900&q=70&auto=format&fit=crop" alt="Clinician explaining a spine scan on a monitor to a patient">
+      <div><h3>Back &amp; neck pain</h3><p>Desk necks, lifting tweaks and the low back that's "just always been like that". We find the driver, not only the sore spot.</p>
+        <ul><li>Acute low back pain</li><li>Sciatica &amp; disc bulges</li><li>Neck stiffness</li><li>Postural pain</li><li>Pregnancy back pain</li><li>Whiplash</li></ul>
+        <div class="plan"><span aria-hidden="true">⏱</span><span><b>Typical plan:</b> 4–6 visits over 3–5 weeks</span></div></div>
+    </div>
+    <div class="cp" data-pane="sport">
+      <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=900&q=70&auto=format&fit=crop" alt="Runner on a gravel road through green hills">
+      <div><h3>Sports injuries</h3><p>From weekend trail runners to high-school soccer players. Load management and strength, so you return stronger, not just pain-free.</p>
+        <ul><li>Runner's knee</li><li>Ankle sprains</li><li>Hamstring strains</li><li>Achilles tendinopathy</li><li>Tennis &amp; golfer's elbow</li><li>Shoulder impingement</li></ul>
+        <div class="plan"><span aria-hidden="true">⏱</span><span><b>Typical plan:</b> 5–8 visits with a return-to-sport test</span></div></div>
+    </div>
+    <div class="cp" data-pane="surgery">
+      <img src="https://images.unsplash.com/photo-1597764690523-15bea4c581c9?w=900&q=70&auto=format&fit=crop" alt="Clinician fitting a wrist brace on a patient's hand">
+      <div><h3>Post-surgery rehab</h3><p>We follow your surgeon's protocol to the week and send them progress notes. Hydrotherapy available at our Milwaukie partner pool.</p>
+        <ul><li>ACL reconstruction</li><li>Knee &amp; hip replacement</li><li>Rotator cuff repair</li><li>Spinal fusion</li><li>Wrist &amp; hand fractures</li><li>Ankle ORIF</li></ul>
+        <div class="plan"><span aria-hidden="true">⏱</span><span><b>Typical plan:</b> 2× weekly for 8–16 weeks</span></div></div>
+    </div>
+    <div class="cp" data-pane="head">
+      <img src="https://images.unsplash.com/photo-1598901986949-f593ff2a31a6?w=900&q=70&auto=format&fit=crop" alt="Practitioner's hands gently treating a patient's face and jaw">
+      <div><h3>Headaches &amp; jaw pain</h3><p>Many headaches start in the neck. Many jaw clicks start with clenching. Gentle manual therapy and habit work, with your dentist in the loop.</p>
+        <ul><li>Tension headaches</li><li>Cervicogenic headaches</li><li>TMJ / jaw pain</li><li>Dizziness after whiplash</li><li>Clenching &amp; grinding</li><li>Concussion recovery</li></ul>
+        <div class="plan"><span aria-hidden="true">⏱</span><span><b>Typical plan:</b> 4–6 visits, then monthly check-ins</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tx" id="treatments">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Treatments</span>
+    <h2 class="h" data-split>Hands-on, then <em>hands-off</em></h2>
+    <p data-reveal style="max-width:620px">Every plan mixes treatment in the clinic with exercises you'll actually do. You leave each visit with a short video program on your phone.</p>
+    <div class="tgrid">
+      <div class="t" data-reveal><svg viewBox="0 0 48 48"><path d="M14 30c0-8 4-16 10-16s10 8 10 16"/><path d="M10 34h28M18 26c2-2 10-2 12 0"/></svg><h3>Manual therapy</h3><p>Joint mobilisation and soft-tissue work to calm pain and restore range.</p><small>All physical therapists</small></div>
+      <div class="t" data-reveal data-delay="80"><svg viewBox="0 0 48 48"><path d="M24 6v36M18 12h12M16 20h16M18 28h12M20 36h8"/></svg><h3>Chiropractic care</h3><p>Gentle adjustments, instrument-assisted when you'd rather skip the crack.</p><small>Dr. Ortega · Dr. Lindqvist</small></div>
+      <div class="t" data-reveal data-delay="160"><svg viewBox="0 0 48 48"><path d="M24 4v18M18 22h12l-2 6h-8z"/><path d="M24 28v16"/></svg><h3>Dry needling</h3><p>Fine needles into tight trigger points. Often one session changes a stubborn knot.</p><small>Certified DPTs · add-on $35</small></div>
+      <div class="t" data-reveal data-delay="240"><svg viewBox="0 0 48 48"><path d="M8 24h6M34 24h6M14 16v16M34 16v16M14 24h20"/></svg><h3>Exercise rehab</h3><p>Progressive strength work in our open gym, tracked week by week.</p><small>Included in every plan</small></div>
+      <div class="t" data-reveal data-delay="320"><svg viewBox="0 0 48 48"><path d="M10 30c6-10 22-10 28 0M14 36c4-6 16-6 20 0"/><circle cx="24" cy="16" r="5"/></svg><h3>Sports massage</h3><p>Deep, targeted work for training blocks, race prep and recovery weeks.</p><small>Licensed massage therapist</small></div>
+      <div class="t" data-reveal data-delay="400"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l7 5"/></svg><h3>Telehealth check-ins</h3><p>20-minute video visits to progress your program between in-person sessions.</p><small>$55 · most plans cover</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Practitioners</span>
+    <h2 class="h" data-split>The people who'll <em>listen first</em></h2>
+    <div class="team">
+      <article class="pr" data-reveal><img src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=600&q=70&auto=format&fit=crop" alt="Portrait of Dr. Renée Calloway"><b>Dr. Renée Calloway</b><span class="cr">PT, DPT, OCS · Founder</span><p>Board-certified orthopedic specialist. Backs, hips and the tricky long-term cases.</p><div class="tags"><span>Low back</span><span>Hip</span><span>Pregnancy</span></div></article>
+      <article class="pr" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=70&auto=format&fit=crop" alt="Portrait of Dr. Mateo Ortega in a white coat"><b>Dr. Mateo Ortega</b><span class="cr">DC · Chiropractor</span><p>Gentle, low-force techniques. Neck pain, headaches and desk-bound spines.</p><div class="tags"><span>Neck</span><span>Headaches</span><span>Activator</span></div></article>
+      <article class="pr" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=70&auto=format&fit=crop" alt="Portrait of Dr. Priya Raman"><b>Dr. Priya Raman</b><span class="cr">PT, DPT, SCS</span><p>Sports clinical specialist and former collegiate runner. ACL and return-to-sport testing.</p><div class="tags"><span>Running</span><span>ACL</span><span>Dry needling</span></div></article>
+      <article class="pr" data-reveal data-delay="300"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=600&q=70&auto=format&fit=crop" alt="Portrait of Dr. Erik Lindqvist"><b>Dr. Erik Lindqvist</b><span class="cr">DC, CCSP</span><p>Certified chiropractic sports physician. Shoulders, ribs and cyclists' necks.</p><div class="tags"><span>Shoulder</span><span>Cycling</span><span>TMJ</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="visit">
+  <div class="wrap vgrid">
+    <div>
+      <span class="eyebrow" data-reveal>Your first visit</span>
+      <h2 class="h" data-split>An hour that's <em>all yours</em></h2>
+      <p data-reveal>No one likes walking into a clinic not knowing what happens next. Here's exactly how your first 60 minutes go.</p>
+      <div class="bring" data-reveal><b>Bring with you</b>Comfortable clothes you can move in, your insurance card, any scan reports or surgical notes, and a list of medications.</div>
+    </div>
+    <ol class="vsteps">
+      <li data-reveal><h3>Before you arrive</h3><p>Fill in a 5-minute health form online. We check your insurance benefits and text you what you'll owe, if anything.</p><small>The day before</small></li>
+      <li data-reveal><h3>We talk</h3><p>Your story: what happened, what makes it better or worse, and what you want to get back to doing.</p><small>Minutes 0–15</small></li>
+      <li data-reveal><h3>We assess</h3><p>Movement, strength and nerve tests, plus hands-on examination. We explain what we find in plain English.</p><small>Minutes 15–35</small></li>
+      <li data-reveal><h3>First treatment</h3><p>Hands-on care and two or three key exercises, so you leave feeling a difference on day one.</p><small>Minutes 35–55</small></li>
+      <li data-reveal><h3>Your plan</h3><p>How many visits we expect, what progress looks like, and your home program sent to your phone.</p><small>Minutes 55–60</small></li>
+    </ol>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Self-pay prices</span>
+    <h2 class="h" data-split>Clear prices, <em>no surprises</em></h2>
+    <div class="pgrid">
+      <div class="plist" data-reveal>
+        <div class="pi"><b>Initial assessment</b><span>60 minutes with a physical therapist or chiropractor</span><span class="amt">$145</span></div>
+        <div class="pi"><b>Physical therapy follow-up</b><span>45 minutes, treatment and exercise progression</span><span class="amt">$110</span></div>
+        <div class="pi"><b>Chiropractic visit</b><span>30 minutes, adjustment and soft-tissue work</span><span class="amt">$75</span></div>
+        <div class="pi"><b>Sports massage</b><span>60 minutes, or 90 minutes for $150</span><span class="amt">$105</span></div>
+        <div class="pi"><b>Return-to-sport testing</b><span>Force-plate jump and strength battery, written report</span><span class="amt">$180</span></div>
+      </div>
+      <div class="pack" data-reveal="right">
+        <span class="eyebrow">Recovery package</span>
+        <h3>Assessment + 6 follow-ups</h3>
+        <p style="margin:0">Most plans need 5 or 6 visits. Pay up front and save.</p>
+        <div class="big">$695</div><span>instead of $805 · valid 4 months</span>
+        <ul><li>Initial assessment and 6 × 45-minute sessions</li><li>Unlimited telehealth check-ins</li><li>Home program app and resistance band kit</li><li>Unused visits refunded</li></ul>
+        <a href="#book" class="btn">Book your assessment</a>
+      </div>
+    </div>
+    <p class="pnote" data-reveal>Using insurance? We bill in-network plans directly. Typical copay is $25–$50 per visit. Out-of-network? We hand you a superbill to claim back. HSA and FSA cards accepted.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="rhead"><div><span class="eyebrow" data-reveal>Patient stories</span><h2 class="h" data-split>Back to <em>normal life</em></h2></div><div class="score" data-reveal><b>4.9</b><span><i aria-hidden="true">★★★★★</i>860 reviews on Google</span></div></div>
+    <div class="rgrid">
+      <div class="rv" data-reveal><span class="cond">Sciatica</span><p>Six weeks of shooting leg pain gone in five visits. Renée explained my MRI better than the specialist did.</p><div class="by"><b>Karen W.</b> · Sellwood</div></div>
+      <div class="rv" data-reveal data-delay="100"><span class="cond">ACL rehab</span><p>Priya got me from crutches to my first trail half-marathon in ten months. The return-to-sport testing gave me real confidence.</p><div class="by"><b>Jordan M.</b> · Westmoreland</div></div>
+      <div class="rv" data-reveal data-delay="200"><span class="cond">Headaches</span><p>Three headaches a week for years. Dr. Ortega found it was my neck and my desk. Now it's maybe one a month.</p><div class="by"><b>Lena S.</b> · Brooklyn</div></div>
+      <div class="rv" data-reveal><span class="cond">Knee replacement</span><p>They followed my surgeon's protocol to the day and sent him notes after every visit. Walking the dog again by week seven.</p><div class="by"><b>Robert H.</b> · Milwaukie</div></div>
+      <div class="rv" data-reveal data-delay="100"><span class="cond">Shoulder</span><p>Honest from day one: they told me I didn't need surgery yet and showed me why. Pain-free on the bike.</p><div class="by"><b>Dev P.</b> · Eastmoreland</div></div>
+      <div class="rv" data-reveal data-delay="200"><span class="cond">Pregnancy back pain</span><p>Kind, gentle and they never made me feel rushed. The pelvic belt tip alone was worth it.</p><div class="by"><b>Maya T.</b> · Woodstock</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="side">
+      <span class="eyebrow" data-reveal>Book online</span>
+      <h2 class="h" data-split>Pick a day, <em>pick a time</em></h2>
+      <p data-reveal>Choose a slot and we'll hold it for 15 minutes while we confirm by text. New patients are booked for a full hour.</p>
+      <h3 data-reveal>Clinic hours</h3>
+      <div class="hrs" data-reveal><div><span>Monday–Thursday</span><span>7:00am – 7:30pm</span></div><div><span>Friday</span><span>7:00am – 5:00pm</span></div><div><span>Saturday</span><span>8:00am – 1:00pm</span></div><div><span>Sunday</span><span>Closed</span></div></div>
+      <div class="call" data-reveal>Rather talk to someone?<a href="tel:+15035550147">(503) 555-0147</a>8417 SE 13th Ave, Portland, OR 97202 · free parking behind the clinic</div>
+    </div>
+    <form class="bf" data-form="Request received! We'll text to confirm your slot within 15 minutes." data-reveal="right">
+      <div class="c2"><label class="f">Visit type<select name="type" required><option>New patient assessment (60 min)</option><option>Physical therapy follow-up</option><option>Chiropractic visit</option><option>Sports massage</option><option>Telehealth check-in</option></select></label><label class="f">Practitioner<select name="who"><option>First available</option><option>Dr. Renée Calloway, DPT</option><option>Dr. Mateo Ortega, DC</option><option>Dr. Priya Raman, DPT</option><option>Dr. Erik Lindqvist, DC</option></select></label></div>
+      <fieldset><legend>Day</legend><div class="chips" id="days"></div></fieldset>
+      <fieldset><legend>Time</legend><div class="chips" id="times"></div></fieldset>
+      <p class="pick" id="pick" aria-live="polite">Choose a day and time.</p>
+      <div class="c2"><label class="f">Full name<input name="name" autocomplete="name" required></label><label class="f">Phone<input name="phone" type="tel" autocomplete="tel" required></label></div>
+      <div class="c2"><label class="f">Email<input name="email" type="email" autocomplete="email" required></label><label class="f">Paying with<select name="pay"><option>Insurance (PPO / Medicare)</option><option>Workers' comp or auto claim</option><option>Self-pay / HSA</option></select></label></div>
+      <label class="f">What's bothering you?<textarea name="notes" placeholder="e.g. Right knee pain when running downhill, started 3 weeks ago"></textarea></label>
+      <button class="btn pri" type="submit" style="justify-self:start">Request this appointment</button>
+    </form>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div><span class="eyebrow" data-reveal>FAQ</span><h2 class="h" data-split>Questions we <em>hear a lot</em></h2></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>Do I need a doctor's referral?</summary><div class="kt-faq-a"><div>Not in Oregon. You can book physical therapy and chiropractic care directly. A few insurance plans still require one for coverage, and we'll check that for you before your first visit.</div></div></details>
+      <details class="kt-faq"><summary>Physical therapist or chiropractor: who should I see?</summary><div class="kt-faq-a"><div>Either can assess you, and they work as one team, so you'll be passed across if the other is a better fit. As a rough guide: post-surgery and sports rehab start with a PT; neck pain and headaches often start with a chiropractor.</div></div></details>
+      <details class="kt-faq"><summary>Will the adjustments hurt?</summary><div class="kt-faq-a"><div>No. You may hear a pop, which is just gas in the joint. If you'd rather not, we use instrument-assisted or low-force techniques instead. You can say stop at any point.</div></div></details>
+      <details class="kt-faq"><summary>How quickly can I be seen?</summary><div class="kt-faq-a"><div>Usually within 3 working days, often the same week. Cancellations go to our waitlist by text, so join it if the slot you want is taken.</div></div></details>
+      <details class="kt-faq"><summary>What's your cancellation policy?</summary><div class="kt-faq-a"><div>Please give 24 hours' notice. Late cancellations and no-shows are charged $50, waived once a year because life happens.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a href="#" class="logo" aria-label="Stillwater Physio home"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#f6f3ee"/><path d="M8 23c4-3 8-3 12 0s8 3 12 0M8 29c4-3 8-3 12 0s8 3 12 0" fill="none" stroke="#2f6b5f" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="13" r="4" fill="#c46f4e"/></svg><span><b>Stillwater</b><small>Physio &amp; Chiropractic</small></span></a><p>Physical therapy, chiropractic and sports massage in Sellwood, Portland.</p></div>
+    <div><h4>Visit</h4><p>8417 SE 13th Ave</p><p>Portland, OR 97202</p><p><a href="tel:+15035550147">(503) 555-0147</a></p></div>
+    <div><h4>Explore</h4><p><a href="#conditions">Conditions</a> · <a href="#treatments">Treatments</a></p><p><a href="#team">Practitioners</a> · <a href="#prices">Prices</a></p><p><a href="#">Patient forms</a> · <a href="#">Privacy (HIPAA)</a></p></div>
+    <div class="base">© 2026 Stillwater Physio &amp; Chiropractic PC. Results vary. This site does not replace a medical assessment.</div>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+  // booking: next 6 open days (no Sundays), time slots per day with some already taken
+  (function () {
+    const daysEl = document.getElementById('days'), timesEl = document.getElementById('times'), pick = document.getElementById('pick');
+    const slots = { wk: ['7:00am', '8:30am', '10:00am', '11:30am', '1:00pm', '2:30pm', '4:00pm', '5:30pm', '6:30pm'], fri: ['7:00am', '8:30am', '10:00am', '11:30am', '1:00pm', '2:30pm', '3:30pm'], sat: ['8:00am', '9:00am', '10:00am', '11:00am', '12:00pm'] };
+    const dayName = d => d.toLocaleDateString('en-US', { weekday: 'short' });
+    const dayNum = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const days = [], d = new Date();
+    d.setDate(d.getDate() + 1);
+    while (days.length < 6) { if (d.getDay() !== 0) days.push(new Date(d)); d.setDate(d.getDate() + 1); }
+    daysEl.innerHTML = days.map((x, i) => `<label><input type="radio" name="day" value="${x.toISOString().slice(0, 10)}"${i ? '' : ' checked'}><span>${dayName(x)}<small>${dayNum(x)}</small></span></label>`).join('');
+    const render = () => {
+      const i = days.findIndex(x => x.toISOString().slice(0, 10) === daysEl.querySelector('input:checked').value), day = days[i];
+      const list = day.getDay() === 6 ? slots.sat : day.getDay() === 5 ? slots.fri : slots.wk;
+      // a simple repeatable pattern decides which slots look booked
+      const booked = k => ((k + 1) * (day.getDate() + 3)) % 4 === 0;
+      let first = -1;
+      timesEl.innerHTML = list.map((t, k) => { const off = booked(k); if (!off && first < 0) first = k; return `<label><input type="radio" name="time" value="${t}"${off ? ' disabled' : ''}><span>${t}</span></label>`; }).join('');
+      if (first >= 0) timesEl.querySelectorAll('input')[first].checked = true;
+      update();
+    };
+    const update = () => {
+      const dv = daysEl.querySelector('input:checked'), tv = timesEl.querySelector('input:checked');
+      const day = dv && days.find(x => x.toISOString().slice(0, 10) === dv.value);
+      pick.textContent = day && tv ? `Your slot: ${day.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at ${tv.value}` : 'Choose a day and time.';
+    };
+    daysEl.addEventListener('change', render);
+    timesEl.addEventListener('change', update);
+    render();
+    // the kit resets the form after submit, so rebuild the default selection
+    document.querySelector('form.bf').addEventListener('reset', () => setTimeout(() => { daysEl.querySelector('input').checked = true; render(); }));
+  })();
+</script>
+</body>
+</html>

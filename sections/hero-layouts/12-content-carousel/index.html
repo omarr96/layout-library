@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holm &amp; Hearth — Winter Sale on modern furniture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3efe8;--paper:#fbf9f5;--ink:#2b2a26;--soft:#6b675e;--terra:#c2603c;--terra-d:#a54d2d;--sage:#8a9a7e;--line:#e2dbcf}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+img{display:block;max-width:100%}
+.promo{background:var(--ink);color:#f3efe8;text-align:center;font-size:.82rem;letter-spacing:.04em;padding:9px 16px}
+.promo b{color:#f0a487;font-weight:500}
+/* nav */
+.nav{position:relative;z-index:20;display:flex;align-items:center;gap:32px;padding:20px clamp(16px,4vw,56px);background:var(--bg)}
+.logo{font-family:"DM Serif Display",serif;font-size:1.6rem;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.logo i{width:12px;height:12px;border-radius:50% 50% 0 50%;background:var(--terra);display:inline-block}
+.links{display:flex;gap:28px;list-style:none;font-size:.95rem;margin-right:auto}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.links a:hover::after,.links a:focus-visible::after{transform:scaleX(1)}
+.links .sale{color:var(--terra)}
+.tools{display:flex;align-items:center;gap:8px}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);position:relative}
+.icon-btn:hover{background:#e9e3d8}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:4px;right:2px;background:var(--terra);color:#fff;font-size:.65rem;min-width:17px;height:17px;border-radius:9px;display:grid;place-items:center;font-weight:600}
+.cta{background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:999px;font-size:.9rem;font-weight:500;border:0;transition:background .2s}
+.cta:hover{background:var(--terra)}
+.burger{display:none}
+.mmenu{display:none}
+/* carousel */
+.hero{padding:8px clamp(16px,4vw,56px) 40px}
+.carousel{position:relative;background:var(--paper);border-radius:28px;overflow:hidden;border:1px solid var(--line)}
+.track{position:relative;min-height:620px}
+.slide{position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s}
+.slide.is-active{opacity:1;visibility:visible;position:relative}
+.slide--rev{grid-template-columns:1fr 1.05fr}
+.slide--rev .media{order:2}
+.media{position:relative;overflow:hidden;min-height:620px;background:var(--c,#d9d2c4)}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s ease}
+.slide.is-active .media img{transform:scale(1)}
+.tag{position:absolute;top:24px;left:24px;background:var(--terra);color:#fff;border-radius:999px;padding:8px 14px;font-size:.82rem;font-weight:500;letter-spacing:.02em}
+.slide--rev .tag{left:auto;right:24px}
+.copy{display:flex;flex-direction:column;justify-content:center;padding:64px clamp(28px,5vw,80px) 120px}
+.kicker{font-size:.8rem;text-transform:uppercase;letter-spacing:.18em;color:var(--sage);font-weight:600}
+.copy h1,.copy h2{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(2.4rem,4.6vw,4.4rem);line-height:1.02;letter-spacing:-.015em;margin:16px 0 18px}
+.copy h1 em,.copy h2 em{color:var(--terra)}
+.copy p{color:var(--soft);line-height:1.7;max-width:440px;font-size:1.02rem}
+.price{display:flex;align-items:baseline;gap:12px;margin:26px 0 28px;flex-wrap:wrap}
+.price .now{font-size:1.9rem;font-weight:500}
+.price s{color:#9b968b;font-size:1.05rem}
+.price .save{font-size:.82rem;color:var(--terra-d);background:#f6e2d8;border-radius:6px;padding:4px 8px;font-weight:500}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border-radius:999px;padding:15px 26px;font-weight:500;font-size:.95rem;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:10px;transition:.2s}
+.btn--solid{background:var(--terra);border-color:var(--terra);color:#fff}
+.btn--solid:hover{background:var(--terra-d);border-color:var(--terra-d)}
+.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+.swatches{display:flex;gap:6px;align-items:center;margin-top:24px;font-size:.82rem;color:var(--soft)}
+.swatches i{width:16px;height:16px;border-radius:50%;border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+/* controls */
+.controls{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:24px;padding:20px clamp(20px,3vw,32px);z-index:5;pointer-events:none}
+.controls>*{pointer-events:auto}
+.counter{font-family:"DM Serif Display",serif;font-size:1.6rem;display:flex;align-items:baseline;gap:6px;background:var(--paper);padding:6px 14px;border-radius:14px}
+.counter small{font-family:Outfit,sans-serif;font-size:.85rem;color:var(--soft)}
+.thumbs{display:flex;gap:10px;list-style:none;margin-left:auto;background:var(--paper);padding:8px;border-radius:18px;box-shadow:0 10px 30px rgba(43,42,38,.08)}
+.thumb{position:relative;width:64px;height:64px;border-radius:12px;overflow:hidden;border:2px solid transparent;padding:0;background:#ddd;opacity:.6;transition:opacity .2s,border-color .2s}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb:hover{opacity:1}
+.thumb[aria-current="true"]{opacity:1;border-color:var(--terra)}
+.thumb .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--terra)}
+.arrows{display:flex;gap:8px}
+.arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center;transition:.2s;color:var(--ink)}
+.arrow:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.arrow svg{width:18px;height:18px}
+.perks{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 36px;margin-top:22px;font-size:.88rem;color:var(--soft)}
+.perks span{display:inline-flex;align-items:center;gap:8px}
+.perks svg{width:18px;height:18px;color:var(--sage)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+@media (max-width:1060px){
+  .links,.tools .cta{display:none}
+  .tools{margin-left:auto}
+  .burger{display:inline-flex}
+  .burger span,.burger span::before,.burger span::after{display:block;width:18px;height:1.5px;background:currentColor;position:relative;transition:.25s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-6px}.burger span::after{top:6px}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+  .mmenu{position:absolute;left:16px;right:16px;top:100%;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:12px 20px 20px;box-shadow:0 24px 50px rgba(43,42,38,.15);flex-direction:column}
+  .mmenu.open{display:flex}
+  .mmenu a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.05rem}
+  .mmenu .cta{margin-top:14px;text-align:center;border:0}
+}
+@media (max-width:860px){
+  .track{min-height:0}
+  .slide,.slide--rev{grid-template-columns:1fr}
+  .slide--rev .media{order:0}
+  .media{min-height:0;aspect-ratio:4/3}
+  .copy{padding:32px 24px 28px}
+  .controls{position:relative;padding:0 20px 20px;flex-wrap:wrap;gap:14px}
+  .thumbs{margin-left:0;order:3;width:100%;justify-content:space-between;box-shadow:none;padding:0}
+  .thumbs li{flex:1}
+  .thumb{width:100%;height:auto;aspect-ratio:1}
+  .arrows{margin-left:auto}
+}
+@media (max-width:420px){
+  .nav{gap:12px}
+  .icon-btn.search{display:none}
+  .actions{flex-direction:column}
+  .actions .btn{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.media img{transform:none!important}}
+</style>
+</head>
+<body>
+<div class="promo">Winter Sale — <b>up to 40% off</b> sofas, chairs &amp; bedroom · ends Sunday</div>
+<nav class="nav" aria-label="Main">
+  <a href="#" class="logo" aria-label="Holm and Hearth home"><i aria-hidden="true"></i>Holm &amp; Hearth</a>
+  <ul class="links">
+    <li><a href="#">Living</a></li>
+    <li><a href="#">Bedroom</a></li>
+    <li><a href="#">Dining</a></li>
+    <li><a href="#">Lighting</a></li>
+    <li><a href="#">Showrooms</a></li>
+    <li><a href="#" class="sale">Sale</a></li>
+  </ul>
+  <div class="tools">
+    <button class="icon-btn search" type="button" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    <button class="icon-btn" type="button" aria-label="Basket, 2 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge">2</span></button>
+    <a href="#" class="cta">Book a showroom visit</a>
+    <button class="icon-btn burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a href="#">Living</a><a href="#">Bedroom</a><a href="#">Dining</a><a href="#">Lighting</a><a href="#">Showrooms</a><a href="#" style="color:var(--terra)">Sale</a>
+    <a href="#" class="cta">Book a showroom visit</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <section class="carousel" aria-roledescription="carousel" aria-label="Winter Sale highlights">
+    <div class="track" id="track">
+      <div class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4">
+        <div class="media" style="--c:#cfd6cc"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1800&q=70&auto=format&fit=crop" alt="Forest-green velvet three-seater sofa on a pale oak floor"><span class="tag">−35% this week</span></div>
+        <div class="copy">
+          <span class="kicker">Living room · The Alva sofa</span>
+          <h1>Sink into <em>deep green</em> velvet.</h1>
+          <p>Hand-built in Leicester with a kiln-dried beech frame, feather-wrapped cushions and a 15-year frame guarantee.</p>
+          <div class="price"><span class="now">£1,169</span><s>£1,799</s><span class="save">Save £630</span></div>
+          <div class="actions"><a href="#" class="btn btn--solid">Shop the Alva</a><a href="#" class="btn btn--ghost">Order free swatches</a></div>
+          <div class="swatches" aria-label="Available in 4 colours"><i style="background:#2f5a48"></i><i style="background:#b8835a"></i><i style="background:#cfc6b6"></i><i style="background:#3d4a5c"></i><span>+ 18 fabrics</span></div>
+        </div>
+      </div>
+      <div class="slide slide--rev" role="group" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
+        <div class="media" style="--c:#e7e3dc"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1800&q=70&auto=format&fit=crop" alt="Mustard yellow lounge chair beside a brass floor lamp in a bright room" loading="lazy"><span class="tag">−25%</span></div>
+        <div class="copy">
+          <span class="kicker">Accent chairs · The Sol lounger</span>
+          <h2>A little <em>sunshine</em> for the corner.</h2>
+          <p>Mustard bouclé on solid ash legs. Compact enough for flats, generous enough for a Sunday afternoon with a long novel.</p>
+          <div class="price"><span class="now">£449</span><s>£599</s><span class="save">Save £150</span></div>
+          <div class="actions"><a href="#" class="btn btn--solid">Shop chairs</a><a href="#" class="btn btn--ghost">See it in a room</a></div>
+        </div>
+      </div>
+      <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
+        <div class="media" style="--c:#ebe7e1"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1800&q=70&auto=format&fit=crop" alt="Calm bedroom with a tufted upholstered bed, linen bedding and bedside lamps" loading="lazy"><span class="tag">Up to −40%</span></div>
+        <div class="copy">
+          <span class="kicker">Bedroom · The Linnea collection</span>
+          <h2>Rest easy, <em>spend less.</em></h2>
+          <p>Upholstered beds, stonewashed linen and oak bedside tables — bundle any three pieces and we’ll take an extra 10% off at checkout.</p>
+          <div class="price"><span class="now">From £689</span><s>£1,149</s><span class="save">Up to 40% off</span></div>
+          <div class="actions"><a href="#" class="btn btn--solid">Shop bedroom</a><a href="#" class="btn btn--ghost">Build a bundle</a></div>
+        </div>
+      </div>
+      <div class="slide slide--rev" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
+        <div class="media" style="--c:#eceae6"><img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1800&q=70&auto=format&fit=crop" alt="Cream tufted armchair against a soft white wall" loading="lazy"><span class="tag">Last chance</span></div>
+        <div class="copy">
+          <span class="kicker">Ex-display · Final pieces</span>
+          <h2>Showroom pieces, <em>half price.</em></h2>
+          <p>One-off floor models from our Bath and Hackney showrooms, lightly loved and fully inspected. When they’re gone, they’re gone.</p>
+          <div class="price"><span class="now">From £129</span><s>£259</s><span class="save">50% off</span></div>
+          <div class="actions"><a href="#" class="btn btn--solid">Browse ex-display</a><a href="#" class="btn btn--ghost">Find a showroom</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="counter" aria-hidden="true"><span id="cur">01</span><small>/ 04</small></div>
+      <div class="arrows">
+        <button class="arrow" type="button" id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="arrow" type="button" id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <ul class="thumbs" aria-label="Choose slide">
+        <li><button class="thumb" type="button" aria-label="Slide 1: Alva sofa" aria-current="true"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=60&auto=format&fit=crop" alt=""><span class="bar"></span></button></li>
+        <li><button class="thumb" type="button" aria-label="Slide 2: Sol lounge chair"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=60&auto=format&fit=crop" alt=""><span class="bar"></span></button></li>
+        <li><button class="thumb" type="button" aria-label="Slide 3: Linnea bedroom"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=60&auto=format&fit=crop" alt=""><span class="bar"></span></button></li>
+        <li><button class="thumb" type="button" aria-label="Slide 4: Ex-display pieces"><img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=200&q=60&auto=format&fit=crop" alt=""><span class="bar"></span></button></li>
+      </ul>
+    </div>
+    <p class="sr" aria-live="polite" id="live"></p>
+  </section>
+  <div class="perks">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Free delivery over £500</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg>100-night home trial</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6z"/></svg>15-year frame guarantee</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>0% finance over 24 months</span>
+  </div>
+</header>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Close menu':'Open menu');menu.classList.toggle('open',o);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  var root=document.querySelector('.carousel'),slides=[].slice.call(document.querySelectorAll('.slide')),thumbs=[].slice.call(document.querySelectorAll('.thumb')),cur=document.getElementById('cur'),live=document.getElementById('live');
+  var i=0,n=slides.length,DUR=6500,start=0,elapsed=0,raf=null,paused=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(k,announce){
+    i=(k+n)%n;
+    slides.forEach(function(s,j){var on=j===i;s.classList.toggle('is-active',on);s.setAttribute('aria-hidden',String(!on));s.querySelectorAll('a').forEach(function(a){a.tabIndex=on?0:-1;});});
+    thumbs.forEach(function(t,j){t.setAttribute('aria-current',String(j===i));t.querySelector('.bar').style.width='0';});
+    cur.textContent=String(i+1).padStart(2,'0');
+    if(announce)live.textContent='Slide '+(i+1)+' of '+n+': '+slides[i].querySelector('h1,h2').textContent;
+    elapsed=0;start=performance.now();
+  }
+  function tick(now){
+    if(!paused){
+      elapsed+=now-start;
+      var pct=Math.min(elapsed/DUR,1);
+      thumbs[i].querySelector('.bar').style.width=(pct*100)+'%';
+      if(pct>=1)go(i+1,false);
+    }
+    start=now;raf=requestAnimationFrame(tick);
+  }
+  document.getElementById('prev').addEventListener('click',function(){go(i-1,true);});
+  document.getElementById('next').addEventListener('click',function(){go(i+1,true);});
+  thumbs.forEach(function(t,j){t.addEventListener('click',function(){go(j,true);});});
+  root.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(i-1,true);if(e.key==='ArrowRight')go(i+1,true);});
+  go(0,false);
+  if(!reduce){
+    root.addEventListener('mouseenter',function(){paused=true;});
+    root.addEventListener('mouseleave',function(){paused=false;});
+    root.addEventListener('focusin',function(){paused=true;});
+    root.addEventListener('focusout',function(){paused=false;});
+    document.addEventListener('visibilitychange',function(){paused=document.hidden;});
+    start=performance.now();raf=requestAnimationFrame(tick);
+  }
+})();
+</script>
+</body>
+</html>

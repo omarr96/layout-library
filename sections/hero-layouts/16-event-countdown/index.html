@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saltwave Festival 2027 — Marrow Bay, 9–11 July</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#120b1f;--ink2:#1d1330;--coral:#ff4d6d;--lime:#d4ff3a;--text:#f6f1ff;--muted:#b9acd3;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.wrap{width:min(1280px,100% - 48px);margin-inline:auto}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;padding:18px 0}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(18,11,31,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:-1}
+.nav .wrap{display:flex;align-items:center;gap:32px}
+.logo{font-family:Unbounded;font-weight:900;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.logo i{width:30px;height:30px;border-radius:50%;background:conic-gradient(from 90deg,var(--coral),var(--lime),var(--coral));display:block;position:relative}
+.logo i::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--ink)}
+.links{display:flex;gap:28px;margin-left:auto;list-style:none;font-weight:500;font-size:15px}
+.links a{opacity:.85}.links a:hover{opacity:1;color:var(--lime)}
+.cta{background:var(--lime);color:var(--ink);font-weight:700;padding:11px 20px;border-radius:999px;font-size:14px;border:0;white-space:nowrap}
+.cta:hover{background:#fff}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:#fff}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:currentColor;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;padding:128px 0 56px;isolation:isolate;overflow:hidden}
+.bg{position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1800&q=70&auto=format&fit=crop") center 40%/cover}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(18,11,31,.97) 0%,rgba(18,11,31,.86) 45%,rgba(18,11,31,.55) 100%),linear-gradient(0deg,var(--ink) 0%,transparent 40%)}
+.glow{position:absolute;z-index:-1;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,109,.35),transparent 65%);right:-160px;top:-120px;filter:blur(10px)}
+.grid{display:grid;grid-template-columns:1.2fr .9fr;gap:48px;align-items:start}
+.tag{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);background:rgba(255,255,255,.06);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500;color:var(--muted)}
+.tag b{color:var(--lime);font-weight:700}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 0 rgba(255,77,109,.7);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,77,109,0)}100%{box-shadow:0 0 0 0 rgba(255,77,109,0)}}
+h1{font-family:Unbounded;font-weight:900;font-size:clamp(48px,8.4vw,124px);line-height:.88;letter-spacing:-.045em;margin:22px 0 18px;text-transform:uppercase}
+h1 .o{color:var(--lime)}
+h1 .c{color:var(--coral)}
+.meta{display:flex;flex-wrap:wrap;gap:12px 28px;font-weight:500;color:var(--muted);font-size:16px}
+.meta span{display:flex;gap:8px;align-items:center}
+.meta svg{width:18px;height:18px;color:var(--lime);flex:none}
+.lede{max-width:560px;margin-top:18px;font-size:17px;line-height:1.6;color:#ddd3ee}
+
+.count{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.unit{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:18px;padding:14px 10px 12px;min-width:96px;text-align:center}
+.unit b{display:block;font-family:Unbounded;font-weight:700;font-size:40px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.unit small{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+.unit.s b{color:var(--coral)}
+.count-label{font-size:13px;color:var(--muted);margin-top:28px;text-transform:uppercase;letter-spacing:.18em}
+
+.lineup{margin-top:34px}
+.lineup h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:14px}
+.acts{display:flex;gap:14px;list-style:none;flex-wrap:wrap}
+.act{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid var(--line);padding:6px 16px 6px 6px;border-radius:999px}
+.act img{width:44px;height:44px;border-radius:50%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.act b{display:block;font-size:14px}.act small{font-size:12px;color:var(--muted)}
+.act.more{padding:6px 18px;color:var(--lime);font-weight:700;font-size:14px}
+
+/* TICKETS */
+.tickets{background:linear-gradient(180deg,rgba(29,19,48,.92),rgba(18,11,31,.94));border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative}
+.tickets::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:6px;border-radius:28px 28px 0 0;background:linear-gradient(90deg,var(--coral),var(--lime))}
+.tickets h2{font-family:Unbounded;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.tickets p.sub{color:var(--muted);font-size:14px;margin:6px 0 18px}
+.tier{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:rgba(255,255,255,.04);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;color:var(--text);margin-bottom:10px;transition:border-color .2s,background .2s}
+.tier:hover{border-color:rgba(255,255,255,.35)}
+.tier[aria-checked=true]{border-color:var(--lime);background:rgba(212,255,58,.08)}
+.radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);flex:none;display:grid;place-items:center}
+.tier[aria-checked=true] .radio{border-color:var(--lime)}
+.tier[aria-checked=true] .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--lime)}
+.tier .nm{flex:1}.tier .nm b{display:block;font-size:15px}.tier .nm small{color:var(--muted);font-size:12.5px}
+.tier .pr{font-family:Unbounded;font-weight:700;font-size:18px}
+.badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--coral);color:#fff;padding:3px 7px;border-radius:6px;margin-left:6px;vertical-align:2px}
+.row{display:flex;align-items:center;justify-content:space-between;margin:16px 0 6px}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.qty button{width:40px;height:40px;border:0;background:none;color:#fff;font-size:20px;border-radius:50%}
+.qty button:hover{background:rgba(255,255,255,.08)}
+.qty output{min-width:28px;text-align:center;font-weight:700}
+.total{font-family:Unbounded;font-size:28px;font-weight:700}
+.stock{height:6px;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden;margin:14px 0 6px}
+.stock i{display:block;height:100%;width:82%;background:linear-gradient(90deg,var(--lime),var(--coral))}
+.stock-t{font-size:12.5px;color:var(--muted)}
+.buy{width:100%;margin-top:18px;background:var(--coral);color:#fff;border:0;border-radius:14px;padding:16px;font-weight:700;font-size:16px;display:flex;justify-content:center;gap:10px;transition:transform .2s,background .2s}
+.buy:hover{background:#ff6683;transform:translateY(-2px)}
+.done{display:none;margin-top:14px;background:rgba(212,255,58,.1);border:1px solid rgba(212,255,58,.4);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5}
+.done.show{display:block}
+.fine{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+
+@media (max-width:1080px){
+  .grid{grid-template-columns:1fr;gap:40px}
+  .tickets{max-width:560px}
+}
+@media (max-width:860px){
+  .links,.nav .cta{display:none}
+  .burger{display:grid;place-items:center}
+  .mmenu{position:fixed;inset:76px 12px auto;z-index:49;background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .mmenu.open{display:block}
+  .mmenu a{display:block;padding:14px 16px;border-radius:12px;font-weight:500}
+  .mmenu a:hover{background:rgba(255,255,255,.06)}
+  .mmenu .cta{display:block;text-align:center;margin-top:8px}
+}
+@media (max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{padding-top:108px}
+  .count{gap:8px;display:grid;grid-template-columns:repeat(4,1fr)}
+  .unit{min-width:0;padding:12px 4px 10px;border-radius:14px}
+  .unit b{font-size:26px}
+  .unit small{font-size:9.5px;letter-spacing:.1em}
+  .act{padding-right:12px}.act img{width:36px;height:36px}
+  .tickets{padding:22px 18px;border-radius:22px}
+  .tier{padding:12px}.tier .pr{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Saltwave Festival home"><i aria-hidden="true"></i>SALTWAVE</a>
+    <ul class="links">
+      <li><a href="#">Line-up</a></li>
+      <li><a href="#">Stages</a></li>
+      <li><a href="#">Camping</a></li>
+      <li><a href="#">Getting there</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+    <a href="#tickets" class="cta">Buy tickets</a>
+    <button class="burger" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#">Line-up</a><a href="#">Stages</a><a href="#">Camping</a><a href="#">Getting there</a><a href="#">FAQ</a>
+  <a href="#tickets" class="cta">Buy tickets</a>
+</nav>
+
+<main>
+<section class="hero" aria-labelledby="title">
+  <div class="bg" role="img" aria-label="Festival crowd with hands raised in front of a stage flooded with golden light"></div>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap grid">
+    <div>
+      <span class="tag"><span class="dot" aria-hidden="true"></span>Phase 2 line-up out now · <b>82% sold</b></span>
+      <h1 id="title">Salt<span class="c">wave</span><br><span class="o">Fest '27</span></h1>
+      <div class="meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>9 – 11 July 2027</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Marrow Bay Fields, Cornwall</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>4 stages · 46 artists</span>
+      </div>
+      <p class="lede">Three days of cliff-top sunsets, bass under the stars and a beach stage that runs until 3am. Camping, sea swims and the best street food in the South West — all inside one wristband.</p>
+
+      <p class="count-label" id="countlbl">Gates open in</p>
+      <div class="count" role="timer" aria-labelledby="countlbl" aria-live="off">
+        <div class="unit"><b id="cd-d">000</b><small>Days</small></div>
+        <div class="unit"><b id="cd-h">00</b><small>Hours</small></div>
+        <div class="unit"><b id="cd-m">00</b><small>Minutes</small></div>
+        <div class="unit s"><b id="cd-s">00</b><small>Seconds</small></div>
+      </div>
+
+      <div class="lineup">
+        <h2>Headliners</h2>
+        <ul class="acts">
+          <li class="act"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=70&auto=format&fit=crop" alt="Portrait of Nova Lark"><div><b>Nova Lark</b><small>Fri · Main stage</small></div></li>
+          <li class="act"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=70&auto=format&fit=crop" alt="Portrait of DJ Harbourmaster"><div><b>Harbourmaster</b><small>Sat · Tide stage</small></div></li>
+          <li class="act"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=70&auto=format&fit=crop" alt="Portrait of Amara Vey"><div><b>Amara Vey</b><small>Sat · Main stage</small></div></li>
+          <li class="act"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=70&auto=format&fit=crop" alt="Portrait of The Low Tides frontman"><div><b>The Low Tides</b><small>Sun · Main stage</small></div></li>
+          <li class="act more"><a href="#">+ 42 more acts →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="tickets" id="tickets" aria-labelledby="tk-title">
+      <h2 id="tk-title">Get your wristband</h2>
+      <p class="sub">Tier 2 pricing ends 31 January — prices rise after.</p>
+      <div role="radiogroup" aria-labelledby="tk-title" id="tiers">
+        <button type="button" class="tier" role="radio" aria-checked="false" data-price="89" data-name="Day Pass"><span class="radio" aria-hidden="true"></span><span class="nm"><b>Day Pass</b><small>Any single day · no camping</small></span><span class="pr">£89</span></button>
+        <button type="button" class="tier" role="radio" aria-checked="true" data-price="189" data-name="Weekend + Camping"><span class="radio" aria-hidden="true"></span><span class="nm"><b>Weekend + Camping<span class="badge">Popular</span></b><small>3 days · standard campsite</small></span><span class="pr">£189</span></button>
+        <button type="button" class="tier" role="radio" aria-checked="false" data-price="349" data-name="Shoreline VIP"><span class="radio" aria-hidden="true"></span><span class="nm"><b>Shoreline VIP</b><small>Viewing deck, bell tent, fast lane</small></span><span class="pr">£349</span></button>
+      </div>
+      <div class="row">
+        <span id="qlbl">Tickets</span>
+        <div class="qty" role="group" aria-labelledby="qlbl">
+          <button type="button" id="minus" aria-label="Remove one ticket">−</button>
+          <output id="q" aria-live="polite">2</output>
+          <button type="button" id="plus" aria-label="Add one ticket">+</button>
+        </div>
+      </div>
+      <div class="row"><span>Total</span><span class="total" id="total" aria-live="polite">£378</span></div>
+      <div class="stock" aria-hidden="true"><i></i></div>
+      <p class="stock-t">1,940 Tier 2 tickets left</p>
+      <button type="button" class="buy" id="buy">Reserve tickets <span aria-hidden="true">→</span></button>
+      <div class="done" id="done" role="status"></div>
+      <p class="fine">Pay in 3 with no fees · Free ticket transfers until 1 June</p>
+    </aside>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  burger.addEventListener('click',function(){
+    var o=burger.getAttribute('aria-expanded')==='true';
+    burger.setAttribute('aria-expanded',String(!o));
+    burger.setAttribute('aria-label',o?'Open menu':'Close menu');
+    menu.classList.toggle('open',!o);
+  });
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.focus();}});
+
+  // Countdown
+  var target=new Date('2027-07-09T14:00:00+01:00').getTime();
+  var els={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var diff=Math.max(0,target-Date.now());
+    var s=Math.floor(diff/1000);
+    els.d.textContent=Math.floor(s/86400);
+    els.h.textContent=pad(Math.floor(s%86400/3600));
+    els.m.textContent=pad(Math.floor(s%3600/60));
+    els.s.textContent=pad(s%60);
+    if(diff===0){document.getElementById('countlbl').textContent='Gates are open — see you at the front';}
+  }
+  tick();setInterval(tick,1000);
+
+  // Tickets
+  var tiers=[].slice.call(document.querySelectorAll('.tier')),qty=2,qEl=document.getElementById('q'),tot=document.getElementById('total');
+  function current(){return tiers.filter(function(t){return t.getAttribute('aria-checked')==='true'})[0]}
+  function render(){
+    var t=current();qEl.textContent=qty;
+    tot.textContent='£'+(t.dataset.price*qty).toLocaleString('en-GB');
+    tiers.forEach(function(x){x.tabIndex=x===t?0:-1});
+  }
+  function select(t){tiers.forEach(function(x){x.setAttribute('aria-checked',String(x===t))});render();}
+  tiers.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowDown'||e.key==='ArrowRight')n=tiers[(i+1)%tiers.length];
+      if(e.key==='ArrowUp'||e.key==='ArrowLeft')n=tiers[(i-1+tiers.length)%tiers.length];
+      if(n){e.preventDefault();select(n);n.focus();}
+    });
+  });
+  document.getElementById('minus').addEventListener('click',function(){if(qty>1){qty--;render();}});
+  document.getElementById('plus').addEventListener('click',function(){if(qty<8){qty++;render();}});
+  document.getElementById('buy').addEventListener('click',function(){
+    var t=current(),d=document.getElementById('done');
+    d.innerHTML='<strong>'+qty+' × '+t.dataset.name+'</strong> held for 10 minutes. Total '+tot.textContent+' — finish checkout to lock in Tier 2 pricing.';
+    d.classList.add('show');
+  });
+  render();
+})();
+</script>
+</body>
+</html>

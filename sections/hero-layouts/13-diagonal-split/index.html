@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redline Boxing Club — Train like a fighter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0c0c0e;--coal:#16161a;--red:#ff3b30;--red-d:#d92a20;--bone:#f5f3ee;--grey:#a3a3ab;--line:rgba(245,243,238,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--black);color:var(--bone);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.hero{position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+/* diagonal photo */
+.photo{position:absolute;top:0;right:0;bottom:0;width:62%;clip-path:polygon(28% 0,100% 0,100% 100%,0 100%);z-index:-2}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:60% 30%;filter:contrast(1.08) saturate(1.1)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,12,14,.55),transparent 45%),linear-gradient(0deg,rgba(12,12,14,.7),transparent 35%)}
+.slash{position:absolute;top:0;bottom:0;left:38%;width:62%;clip-path:polygon(28% 0,30.5% 0,2.5% 100%,0 100%);background:var(--red);z-index:-1}
+.ghost{position:absolute;left:-1vw;bottom:-3vw;font-family:Anton,Impact,sans-serif;font-size:clamp(7rem,21vw,20rem);line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(245,243,238,.13);letter-spacing:.01em;white-space:nowrap;z-index:-1;pointer-events:none;user-select:none}
+/* nav */
+.nav{position:relative;z-index:20;display:flex;align-items:center;gap:36px;padding:24px clamp(18px,4vw,60px)}
+.logo{display:flex;align-items:center;gap:10px;font-family:Anton,sans-serif;font-size:1.5rem;letter-spacing:.04em;text-transform:uppercase}
+.logo b{display:grid;place-items:center;width:38px;height:38px;background:var(--red);transform:skewX(-12deg);font-weight:400}
+.logo b span{transform:skewX(12deg)}
+.links{display:flex;gap:30px;list-style:none;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase}
+.links a{opacity:.8;transition:.2s}
+.links a:hover,.links a:focus-visible{opacity:1;color:var(--red)}
+.nav__cta{margin-left:auto;display:flex;align-items:center;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:0;padding:15px 26px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:background .2s,color .2s}
+.btn--red{background:var(--red);color:#fff}
+.btn--red:hover{background:var(--red-d)}
+.btn--line{background:var(--bone);color:var(--black)}
+.btn--line:hover{background:#fff}
+.btn svg{width:18px;height:18px}
+.login{font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.burger{display:none;width:46px;height:46px;border:1px solid var(--line);background:var(--coal);color:var(--bone);align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:currentColor;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+/* content */
+.content{flex:1;display:flex;align-items:center;padding:20px clamp(18px,4vw,60px) 60px}
+.inner{max-width:600px}
+.tagline{display:inline-flex;align-items:center;gap:10px;font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-size:.95rem}
+.tagline i{width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 0 0 rgba(255,59,48,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
+h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(3.4rem,8vw,7.6rem);line-height:.9;letter-spacing:.005em;margin:18px 0 22px}
+h1 .out{color:transparent;-webkit-text-stroke:2px var(--bone)}
+h1 .red{color:var(--red)}
+.lead{font-size:1.1rem;line-height:1.65;color:#d1d0cc;max-width:480px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 36px}
+/* class tabs */
+.classes{background:rgba(22,22,26,.85);border:1px solid var(--line);border-left:4px solid var(--red);padding:18px 20px;max-width:520px}
+.tabs{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.tab{background:transparent;border:1px solid var(--line);color:var(--grey);font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.92rem;padding:8px 14px;transition:.2s}
+.tab:hover{color:var(--bone)}
+.tab[aria-selected="true"]{background:var(--bone);color:var(--black);border-color:var(--bone)}
+.panel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel[hidden]{display:none}
+.panel div{font-size:.82rem;color:var(--grey);text-transform:uppercase;letter-spacing:.08em}
+.panel strong{display:block;font-family:"Barlow Condensed",sans-serif;font-size:1.4rem;color:var(--bone);letter-spacing:.02em;margin-top:2px;text-transform:none}
+.panel p{grid-column:1/-1;font-size:.95rem;color:#cfcdc8;line-height:1.55;text-transform:none;letter-spacing:0}
+/* stats */
+.stats{position:absolute;right:clamp(18px,4vw,60px);bottom:40px;display:flex;gap:2px;z-index:2}
+.stat{background:var(--bone);color:var(--black);padding:16px 22px;min-width:130px}
+.stat:last-child{background:var(--red);color:#fff}
+.stat b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:2.2rem;line-height:1}
+.stat span{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em}
+.coach{position:absolute;right:clamp(18px,4vw,60px);top:46%;z-index:2;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.85rem;writing-mode:vertical-rl;color:rgba(245,243,238,.75);display:flex;align-items:center;gap:12px}
+.coach::before{content:"";width:1px;height:60px;background:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+@media (max-width:1100px){
+  .links,.login{display:none}
+  .burger{display:inline-flex}
+  .mmenu{position:absolute;top:100%;left:16px;right:16px;background:var(--coal);border:1px solid var(--line);border-top:3px solid var(--red);padding:12px 20px 20px;flex-direction:column}
+  .mmenu.open{display:flex}
+  .mmenu a{font-family:"Barlow Condensed",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:1.2rem;padding:14px 0;border-bottom:1px solid var(--line)}
+  .mmenu .btn{margin-top:16px;justify-content:center;border:0}
+  .stats{display:none}
+}
+@media (max-width:860px){
+  .hero{min-height:0}
+  .photo{position:relative;width:100%;height:58vh;min-height:340px;clip-path:polygon(0 0,100% 0,100% 82%,0 100%);order:2;z-index:0;margin-top:-10px}
+  .slash{display:none}
+  .nav__cta .btn--red{display:none}
+  .content{order:1;padding-bottom:30px}
+  .ghost{font-size:30vw;top:auto;bottom:-3vw;left:-2vw;z-index:1;-webkit-text-stroke-color:rgba(245,243,238,.4)}
+  .coach{display:none}
+}
+@media (max-width:480px){
+  .panel{grid-template-columns:1fr 1fr}
+  .ctas .btn{flex:1;justify-content:center;white-space:nowrap;padding:15px 14px;letter-spacing:.06em}
+  h1 .out{-webkit-text-stroke-width:1.5px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="photo"><img src="https://images.unsplash.com/photo-1622599511051-16f55a1234d0?w=1800&q=70&auto=format&fit=crop" alt="Boxer in a guard stance wearing white gloves under red and blue gym lights"></div>
+  <div class="slash" aria-hidden="true"></div>
+  <div class="ghost" aria-hidden="true">KNOCKOUT</div>
+
+  <nav class="nav" aria-label="Main">
+    <a href="#" class="logo" aria-label="Redline Boxing Club home"><b><span>R</span></b>Redline</a>
+    <ul class="links">
+      <li><a href="#">Classes</a></li>
+      <li><a href="#">Timetable</a></li>
+      <li><a href="#">Coaches</a></li>
+      <li><a href="#">Memberships</a></li>
+      <li><a href="#">Fight Team</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="#" class="login">Member login</a>
+      <a href="#" class="btn btn--red">Free trial</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Classes</a><a href="#">Timetable</a><a href="#">Coaches</a><a href="#">Memberships</a><a href="#">Fight Team</a><a href="#">Member login</a>
+      <a href="#" class="btn btn--red">Claim your free trial</a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="inner">
+      <span class="tagline"><i aria-hidden="true"></i>Open 6am – 10pm · Manchester Northern Quarter</span>
+      <h1><span class="out">Hit</span> harder.<br>Think <span class="red">faster.</span></h1>
+      <p class="lead">Real boxing coached by ex-pros. Pads, bags, footwork and conditioning in a gym that welcomes first-timers and sharpens fighters.</p>
+      <div class="ctas">
+        <a href="#" class="btn btn--red">Book a free class
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#" class="btn btn--line">View timetable</a>
+      </div>
+
+      <div class="classes">
+        <div class="tabs" role="tablist" aria-label="Class types">
+          <button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1">Beginners</button>
+          <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Fight Camp</button>
+          <button class="tab" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Boxfit HIIT</button>
+          <button class="tab" role="tab" id="t4" aria-selected="false" aria-controls="p4" tabindex="-1">Juniors</button>
+        </div>
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+          <div>Next class<strong>Today 18:30</strong></div><div>Coach<strong>Dee Okafor</strong></div><div>Length<strong>60 min</strong></div>
+          <p>Stance, jab, cross and slips from zero. Gloves and wraps provided — just bring water.</p>
+        </div>
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+          <div>Next class<strong>Tue 19:00</strong></div><div>Coach<strong>Marco Reyes</strong></div><div>Length<strong>90 min</strong></div>
+          <p>Six-week camp with controlled sparring, ring craft and a white-collar bout at the end. Invite only.</p>
+        </div>
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+          <div>Next class<strong>Today 07:00</strong></div><div>Coach<strong>Priya Lal</strong></div><div>Length<strong>45 min</strong></div>
+          <p>Bag rounds, skipping and bodyweight circuits. No contact — burns up to 700 kcal a session.</p>
+        </div>
+        <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+          <div>Next class<strong>Sat 10:00</strong></div><div>Coach<strong>Sam Whitlock</strong></div><div>Ages<strong>9 – 15</strong></div>
+          <p>Discipline, fitness and confidence. DBS-checked coaches and strictly non-contact until 13.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coach" aria-hidden="true">Head coach · 3× ABA champion</div>
+  <div class="stats">
+    <div class="stat"><b>4.9</b><span>Google · 612 reviews</span></div>
+    <div class="stat"><b>40+</b><span>Classes a week</span></div>
+  </div>
+</header>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Close menu':'Open menu');menu.classList.toggle('open',o);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t,focus){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t,false);});
+    t.addEventListener('keydown',function(e){
+      var k=e.key,j=null;
+      if(k==='ArrowRight')j=(i+1)%tabs.length;else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(k==='Home')j=0;else if(k==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();select(tabs[j],true);}
+    });
+  });
+})();
+</script>
+</body>
+</html>

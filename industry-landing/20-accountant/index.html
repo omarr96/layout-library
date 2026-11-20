@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tallyfield Accountants · Fixed-fee accounting for freelancers &amp; small businesses</title>
+<meta name="description" content="Chartered certified accountants in Bristol. Bookkeeping, tax returns, payroll, VAT and company setup on one fixed monthly fee. Free 20-minute consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+:root { --kt-bg: #f5f6f8; --kt-ink: #0d1b3e; --kt-tx: #45506a; --kt-mut: #5d6782; --kt-line: rgba(13,27,62,.12); --kt-accent: #2b59ff; --kt-accent-ink: #fff; --kt-radius: 10px; --lime: #d4f36b; --navy: #0d1b3e; --ice: #e7ecff; --card: #fff; --amber: #f5a524; }
+body { font: 16.5px/1.65 'Hanken Grotesk', system-ui, sans-serif; }
+.hd { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-weight: 800; letter-spacing: -.035em; line-height: 1.02; color: var(--kt-ink); }
+.mono { font-family: 'Spline Sans Mono', ui-monospace, monospace; letter-spacing: -.02em; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+section { padding: 108px 0; }
+.lbl { display: inline-flex; align-items: center; gap: 10px; font: 600 12.5px 'Spline Sans Mono', monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--kt-accent); }
+.lbl::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+h2.hd { font-size: clamp(34px, 4.8vw, 60px); margin: 16px 0 16px; }
+h2.hd mark { background: linear-gradient(transparent 58%, var(--lime) 58%, var(--lime) 92%, transparent 92%); color: inherit; padding: 0 .06em; }
+.lead { font-size: 18.5px; max-width: 600px; margin: 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 10px; font-weight: 700; font-size: 15.5px; transition: .2s; }
+.btn.pri { background: var(--kt-accent); color: #fff; box-shadow: 0 8px 22px rgba(43,89,255,.28); }
+.btn.pri:hover { background: #1d45d8; transform: translateY(-2px); }
+.btn.ln { border: 1.5px solid var(--kt-ink); color: var(--kt-ink); }
+.btn.ln:hover { background: var(--kt-ink); color: #fff; }
+.btn.lime { background: var(--lime); color: var(--navy); }
+.btn.lime:hover { background: #c3e64f; }
+
+/* nav: solid white, hairline rule like a ledger */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; background: rgba(245,246,248,.97); border-bottom: 1px solid transparent; transition: .3s; }
+.nav.scrolled { border-color: var(--kt-line); box-shadow: 0 6px 24px rgba(13,27,62,.06); }
+.nav .wrap { display: flex; align-items: center; gap: 30px; height: 74px; }
+.logo { display: flex; align-items: center; gap: 10px; font: 800 21px 'Schibsted Grotesk', sans-serif; letter-spacing: -.04em; color: var(--kt-ink); margin-right: auto; }
+.logo svg { width: 30px; height: 30px; }
+.kt-menu { display: flex; gap: 28px; }
+.kt-menu a { font-weight: 600; font-size: 15px; color: var(--kt-ink); }
+.kt-menu a:hover { color: var(--kt-accent); }
+.nav .btn { height: 44px; padding: 0 18px; font-size: 14.5px; }
+.kt-burger { color: var(--kt-ink); }
+
+/* hero */
+.hero { padding: 150px 0 80px; background-image: linear-gradient(var(--kt-line) 1px, transparent 1px); background-size: 100% 44px; background-position: 0 30px; position: relative; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(245,246,248,.2), var(--kt-bg) 92%); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(44px, 6.6vw, 88px); margin: 20px 0 24px; }
+.hero h1 [data-rotate] { color: var(--kt-accent); }
+.hero .lead { margin-bottom: 32px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.trust { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 34px; font-size: 14px; font-weight: 600; color: var(--kt-ink); }
+.trust span { display: inline-flex; align-items: center; gap: 8px; }
+.trust svg { width: 18px; height: 18px; color: var(--kt-accent); }
+.hpic { position: relative; }
+.hpic > img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; }
+.receipt { position: absolute; left: -44px; bottom: 36px; width: 270px; background: var(--card); border-radius: 12px; padding: 18px 20px 16px; box-shadow: 0 24px 60px rgba(13,27,62,.2); font-size: 13px; }
+.receipt::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 8px; background: radial-gradient(circle at 6px 0, var(--card) 6px, transparent 6.5px) 0 0/12px 8px repeat-x; }
+.receipt h3 { margin: 0 0 10px; font: 700 13px 'Spline Sans Mono', monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--kt-mut); }
+.receipt .r { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--kt-line); color: var(--kt-ink); }
+.receipt .r.t { border: 0; padding-top: 10px; font-weight: 600; }
+.receipt .r.t b { background: var(--lime); padding: 1px 6px; border-radius: 4px; }
+.chip { position: absolute; right: 18px; top: 18px; background: var(--navy); color: #fff; padding: 10px 14px; border-radius: 10px; font-size: 13px; display: flex; gap: 10px; align-items: center; }
+.chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(212,243,107,.25); }
+
+/* software marquee */
+.soft { padding: 28px 0; border-block: 1px solid var(--kt-line); background: var(--card); }
+.soft .row { display: flex; align-items: center; gap: 30px; }
+.soft .row > small { flex: none; font: 600 12px 'Spline Sans Mono', monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--kt-mut); max-width: 150px; line-height: 1.4; }
+.soft .kt-marquee { flex: 1; --mq-gap: 54px; }
+.soft .kt-mq-track span { display: inline-flex; align-items: center; gap: 9px; font: 700 19px 'Schibsted Grotesk', sans-serif; letter-spacing: -.03em; color: #59627c; white-space: nowrap; }
+.soft .kt-mq-track span i { width: 22px; height: 22px; border-radius: 6px; background: var(--ice); border: 2px solid #b8c6ff; }
+.soft .kt-mq-track span:nth-child(3n) i { border-radius: 50%; }
+.soft .kt-mq-track span:nth-child(3n+1) i { transform: rotate(45deg) scale(.8); }
+
+/* services ledger */
+.svc { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 50px; border-top: 1px solid var(--kt-line); border-left: 1px solid var(--kt-line); }
+.svc > div { padding: 34px 30px; border-right: 1px solid var(--kt-line); border-bottom: 1px solid var(--kt-line); background: var(--card); transition: background .25s; }
+.svc > div:hover { background: var(--ice); }
+.svc .n { font: 500 13px 'Spline Sans Mono', monospace; color: var(--kt-mut); }
+.svc h3 { font: 700 23px 'Schibsted Grotesk', sans-serif; letter-spacing: -.03em; color: var(--kt-ink); margin: 18px 0 8px; display: flex; align-items: center; gap: 12px; }
+.svc h3 svg { width: 28px; height: 28px; color: var(--kt-accent); }
+.svc p { margin: 0; font-size: 15px; }
+.svc .from { display: block; margin-top: 16px; font: 600 13.5px 'Spline Sans Mono', monospace; color: var(--kt-ink); }
+
+/* packages */
+.pk { background: var(--navy); color: #b8c2db; }
+.pk h2.hd, .pk .hd { color: #fff; }
+.pk h2.hd mark { background: linear-gradient(transparent 58%, rgba(43,89,255,.7) 58%, rgba(43,89,255,.7) 92%, transparent 92%); }
+.pk .lbl { color: var(--lime); }
+.phead { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.bill { display: inline-flex; padding: 5px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); }
+.bill button { height: 44px; padding: 0 18px; border-radius: 8px; font-weight: 700; font-size: 14.5px; color: #d7deef; transition: .2s; }
+.bill button[aria-pressed="true"] { background: #fff; color: var(--navy); }
+.bill button em { font-style: normal; font-size: 12px; background: var(--lime); color: var(--navy); padding: 2px 7px; border-radius: 99px; margin-left: 6px; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; }
+.plan { border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 30px; display: flex; flex-direction: column; position: relative; }
+.plan.hot { background: #fff; color: var(--kt-tx); border-color: #fff; }
+.plan .tag { position: absolute; top: -13px; left: 30px; background: var(--lime); color: var(--navy); font: 700 12px 'Spline Sans Mono', monospace; padding: 5px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: .05em; }
+.plan h3 { font: 700 24px 'Schibsted Grotesk', sans-serif; letter-spacing: -.03em; margin: 0; color: #fff; }
+.plan.hot h3, .plan.hot .price b { color: var(--kt-ink); }
+.plan .who { font-size: 14.5px; margin: 6px 0 22px; min-height: 48px; }
+.price { padding: 18px 0; border-block: 1px dashed rgba(255,255,255,.2); }
+.plan.hot .price { border-color: var(--kt-line); }
+.price b { font: 600 52px 'Spline Sans Mono', monospace; letter-spacing: -.05em; color: #fff; line-height: 1; }
+.price b small { font-size: 22px; vertical-align: 18px; margin-right: 2px; }
+.price > span { font-size: 14px; margin-left: 4px; }
+.price .yr { display: block; margin-top: 8px; font-size: 13px; min-height: 20px; }
+.plan ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; font-size: 15px; }
+.plan li { display: flex; gap: 10px; }
+.plan li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 5px; background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1b3e' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat; }
+.plan.hot li::before { background-color: var(--ice); }
+.plan .btn { margin-top: auto; }
+.plan:not(.hot) .btn { border-color: rgba(255,255,255,.5); color: #fff; }
+.plan:not(.hot) .btn:hover { background: #fff; color: var(--navy); }
+.addons { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 14.5px; }
+.addons b { color: #fff; font-weight: 600; }
+
+/* deadlines */
+.dl .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+.dl .side { position: sticky; top: 110px; }
+.filt { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 0; }
+.filt button { height: 40px; padding: 0 15px; border-radius: 8px; border: 1.5px solid var(--kt-line); font-weight: 600; font-size: 14px; color: var(--kt-ink); background: var(--card); transition: .2s; }
+.filt button:hover { border-color: var(--kt-ink); }
+.filt button[aria-pressed="true"] { background: var(--kt-ink); border-color: var(--kt-ink); color: #fff; }
+.today { margin-top: 26px; font: 500 13.5px 'Spline Sans Mono', monospace; color: var(--kt-mut); }
+.cal { list-style: none; padding: 0; margin: 0; background: var(--card); border: 1px solid var(--kt-line); border-radius: 16px; overflow: hidden; }
+.cal li { display: grid; grid-template-columns: 74px 1fr auto; gap: 20px; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--kt-line); animation: kt-fade .4s ease both; }
+.cal li:last-child { border-bottom: 0; }
+.cal .d { text-align: center; border: 1.5px solid var(--kt-line); border-radius: 10px; padding: 6px 0 7px; line-height: 1.1; }
+.cal .d b { display: block; font: 600 26px 'Spline Sans Mono', monospace; color: var(--kt-ink); letter-spacing: -.04em; }
+.cal .d small { font: 600 11.5px 'Spline Sans Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--kt-accent); }
+.cal h3 { margin: 0; font-size: 16.5px; font-weight: 700; color: var(--kt-ink); line-height: 1.35; }
+.cal p { margin: 4px 0 0; font-size: 13.5px; }
+.cal .left { font: 600 12.5px 'Spline Sans Mono', monospace; padding: 6px 10px; border-radius: 6px; background: var(--ice); color: #1d3fbf; white-space: nowrap; }
+.cal .left.soon { background: #fff1d6; color: #8a5200; }
+.cal .left.now { background: #ffe1dc; color: #b42318; }
+.calnote { font-size: 13.5px; margin-top: 14px; }
+
+/* switching */
+.sw { background: var(--card); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 50px; position: relative; }
+.steps::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; border-top: 2px dashed #c4cde6; }
+.step { position: relative; padding-right: 28px; }
+.step .no { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--kt-accent); color: #fff; font: 600 18px 'Spline Sans Mono', monospace; position: relative; }
+.step:last-child .no { background: var(--lime); color: var(--navy); }
+.step h3 { font: 700 21px 'Schibsted Grotesk', sans-serif; letter-spacing: -.025em; color: var(--kt-ink); margin: 22px 0 8px; }
+.step p { margin: 0; font-size: 15px; }
+.step .t { display: inline-block; margin-top: 12px; font: 600 12.5px 'Spline Sans Mono', monospace; color: var(--kt-accent); }
+
+/* savings */
+.sav { padding: 96px 0; }
+.nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--kt-ink); margin-top: 46px; }
+.nums > div { padding: 26px 24px 0 0; }
+.nums b { display: block; font: 600 clamp(40px, 4.8vw, 62px) 'Spline Sans Mono', monospace; letter-spacing: -.06em; color: var(--kt-ink); line-height: 1; }
+.nums b small { font-size: .5em; letter-spacing: 0; }
+.nums > div > span { display: block; margin-top: 12px; font-size: 14.5px; max-width: 230px; }
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; }
+.case { background: var(--card); border: 1px solid var(--kt-line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.case img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.case .c { padding: 22px 24px 24px; }
+.case small { font: 600 12px 'Spline Sans Mono', monospace; color: var(--kt-mut); text-transform: uppercase; letter-spacing: .05em; }
+.case h3 { margin: 8px 0 6px; font: 700 19px 'Schibsted Grotesk', sans-serif; letter-spacing: -.02em; color: var(--kt-ink); line-height: 1.25; }
+.case p { margin: 0; font-size: 14.5px; }
+.case .s { display: inline-block; margin-top: 14px; font: 600 14px 'Spline Sans Mono', monospace; background: var(--lime); color: var(--navy); padding: 3px 8px; border-radius: 5px; }
+
+/* testimonials */
+.tst { padding-top: 0; }
+.tbox { background: var(--ice); border-radius: 20px; padding: 56px 60px; position: relative; }
+.tq { padding: 0 8px; }
+.tq p { font: 600 clamp(22px, 2.8vw, 34px)/1.3 'Schibsted Grotesk', sans-serif; letter-spacing: -.025em; color: var(--kt-ink); margin: 0 0 26px; max-width: 900px; }
+.tq .who { display: flex; align-items: center; gap: 14px; }
+.tq .av { width: 48px; height: 48px; border-radius: 12px; background: var(--kt-accent); color: #fff; display: grid; place-items: center; font: 700 17px 'Schibsted Grotesk', sans-serif; }
+.tq b { display: block; color: var(--kt-ink); }
+.tq small { font-size: 14px; }
+.stars { color: var(--kt-accent); letter-spacing: 3px; font-size: 18px; margin-bottom: 18px; }
+.tctl { position: absolute; right: 40px; bottom: 40px; display: flex; gap: 8px; }
+.tctl .kt-arrow { background: #fff; }
+.tbox .kt-dots { justify-content: flex-start; color: var(--kt-ink); }
+
+
+/* faq + form */
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; }
+.book { padding-top: 0; }
+.book .box { display: grid; grid-template-columns: .9fr 1.1fr; border-radius: 22px; overflow: hidden; background: var(--card); border: 1px solid var(--kt-line); box-shadow: 0 30px 80px rgba(13,27,62,.08); }
+.book .info { background: var(--navy); color: #b8c2db; padding: 52px 46px; }
+.book .info h2.hd { color: #fff; }
+.book .info .lbl { color: var(--lime); }
+.book .info ul { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 14px; }
+.book .info li { display: flex; gap: 12px; color: #e3e8f5; }
+.book .info li svg { width: 20px; height: 20px; color: var(--lime); flex: none; margin-top: 3px; }
+.book .info .ph { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); font-size: 14.5px; }
+.book .info .ph a { display: block; font: 600 24px 'Spline Sans Mono', monospace; color: #fff; letter-spacing: -.03em; margin-top: 4px; }
+.book form { padding: 46px; display: grid; gap: 16px; }
+.book fieldset { border: 0; padding: 0; margin: 0; }
+.book legend, .fld > span { display: block; font-size: 13.5px; font-weight: 700; color: var(--kt-ink); margin-bottom: 8px; }
+.seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.seg label { position: relative; }
+.seg input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.seg span { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 52px; padding: 6px 8px; border-radius: 10px; border: 1.5px solid var(--kt-line); font-size: 14px; font-weight: 600; color: var(--kt-ink); line-height: 1.25; transition: .2s; }
+.seg input:checked + span { border-color: var(--kt-accent); background: var(--ice); color: #1d3fbf; }
+.seg input:focus-visible + span { outline: 2px solid var(--kt-accent); outline-offset: 2px; }
+.fld { display: block; }
+.fld input, .fld select, .fld textarea { width: 100%; height: 52px; border-radius: 10px; border: 1.5px solid var(--kt-line); background: var(--kt-bg); padding: 0 14px; outline: none; color: var(--kt-ink); transition: border-color .2s; }
+.fld textarea { height: 96px; padding: 12px 14px; resize: vertical; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { border-color: var(--kt-accent); background: #fff; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cons { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; }
+.cons input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--kt-accent); flex: none; }
+
+footer { background: var(--navy); color: #9aa5c2; padding: 64px 0 36px; font-size: 14.5px; }
+footer .top { display: flex; justify-content: space-between; align-items: center; gap: 24px 36px; flex-wrap: wrap; }
+footer .logo { color: #fff; margin: 0; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+footer a:hover { color: var(--lime); }
+footer .legal { margin-top: 46px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); font-size: 12.5px; }
+
+@media (max-width: 1040px) {
+  .hero .wrap, .dl .wrap, .faq .wrap, .book .box { grid-template-columns: 1fr; gap: 40px; }
+  .dl .side { position: static; }
+  .hpic { max-width: 560px; }
+  .receipt { left: 16px; }
+  .plans { grid-template-columns: 1fr; max-width: 560px; }
+  .svc { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+  .steps::before { display: none; }
+  .nums { grid-template-columns: 1fr 1fr; gap: 30px 0; }
+  .cases { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) { .nav .btn { display: none; } }
+@media (max-width: 640px) {
+  .wrap { padding: 0 18px; }
+  section { padding: 76px 0; }
+  .hero { padding: 116px 0 60px; }
+  .hero h1 { font-size: 40px; }
+  .receipt { width: auto; right: 16px; bottom: 20px; }
+  .chip { right: 12px; top: 12px; }
+  .soft .row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .soft .row > small { max-width: none; }
+  .soft .kt-marquee { width: 100%; }
+  .svc, .steps, .cases, .g2 { grid-template-columns: 1fr; }
+  .svc > div { padding: 26px 22px; }
+  .plan { padding: 26px 22px; }
+  .cal li { grid-template-columns: 60px 1fr; gap: 14px; padding: 16px; }
+  .cal .left { grid-column: 2; justify-self: start; }
+  .book .info, .book form { padding: 30px 22px; }
+  .tbox { padding: 34px 22px 90px; }
+  .tctl { left: 22px; right: auto; bottom: 26px; }
+  .seg { grid-template-columns: 1fr 1fr; }
+  .bill button { padding: 0 12px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a href="#" class="logo"><svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#0d1b3e"/><path d="M8 9v12M12.5 9v12M17 9v12M21.5 9v12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 20 24 10" stroke="#d4f36b" stroke-width="2.4" stroke-linecap="round"/></svg>Tallyfield</a>
+    <nav class="kt-menu"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#deadlines">Tax deadlines</a><a href="#switch">Switching</a><a href="#faq">FAQ</a></nav>
+    <a href="#consult" class="btn pri">Free consultation</a>
+    <button class="kt-burger" aria-label="Open menu"><svg class="kt-svg" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="lbl" data-reveal>Chartered certified accountants · Bristol &amp; online</span>
+      <h1 class="hd"><span data-split>Fixed-fee accounting for people who'd rather be</span> <span data-rotate="building things.|with clients.|on holiday.|outdoors."></span></h1>
+      <p class="lead" data-reveal>Bookkeeping, tax returns, payroll and VAT for freelancers and small businesses, all on one monthly fee. A named accountant who replies the same day, and no surprise invoices. Ever.</p>
+      <div class="cta" data-reveal data-delay="100"><a href="#consult" class="btn pri">Book a free 20-min call</a><a href="#packages" class="btn ln">See fixed prices</a></div>
+      <div class="trust" data-reveal data-delay="200">
+        <span><svg class="kt-ic" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>ACCA regulated practice</span>
+        <span><svg class="kt-ic" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6L3.4 9.3l6-.7z"/></svg>4.9 from 380 reviews</span>
+        <span><svg class="kt-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Same-day replies</span>
+      </div>
+    </div>
+    <div class="hpic" data-reveal="zoom">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=70&auto=format&fit=crop" alt="Accountant and client celebrating at a desk covered with paperwork">
+      <div class="chip"><i aria-hidden="true"></i>Return filed · 14 days early</div>
+      <div class="receipt" aria-label="Example client saving">
+        <h3>Freelance designer · 2025/26</h3>
+        <div class="r mono"><span>Expenses found</span><span>£2,840</span></div>
+        <div class="r mono"><span>Pension relief</span><span>£1,120</span></div>
+        <div class="r mono"><span>Use of home</span><span>£312</span></div>
+        <div class="r t mono"><span>Tax saved</span><b>£1,734.60</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="soft">
+  <div class="wrap row">
+    <small>Works with the software you already use</small>
+    <div class="kt-marquee" data-speed="38s"><div class="kt-mq-track"><span><i></i>Ledgerkit</span><span><i></i>Booksly</span><span><i></i>Tallio</span><span><i></i>PayrollNest</span><span><i></i>Slipstack</span><span><i></i>Vatbridge</span><span><i></i>Cashlens</span><span><i></i>Fileright</span><span><i></i>Penny&amp;Pound</span></div></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <span class="lbl" data-reveal>What we do</span>
+    <h2 class="hd" data-split>Everything in the <mark>books</mark>, handled.</h2>
+    <p class="lead" data-reveal>Pick a package and all of this is covered, or ask for a single job at a fixed price.</p>
+    <div class="svc" data-reveal>
+      <div><span class="n">01</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg>Bookkeeping</h3><p>Bank feeds reconciled every week, receipts matched from a photo, and a clean ledger you can trust.</p><span class="from">from £35/mo</span></div>
+      <div><span class="n">02</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Tax returns</h3><p>Self Assessment, partnership and Corporation Tax returns, checked by two people and filed early.</p><span class="from">from £195 one-off</span></div>
+      <div><span class="n">03</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c.7-3.5 3-5.5 6-5.5s5.3 2 6 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.6.8 2.6 2.6 3 5.2"/></svg>Payroll</h3><p>RTI submissions, payslips, pension auto-enrolment and P60s, run on the same day every month.</p><span class="from">from £4 per employee</span></div>
+      <div><span class="n">04</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>VAT &amp; MTD</h3><p>Registration, scheme choice (flat rate or standard) and Making Tax Digital returns every quarter.</p><span class="from">from £45/quarter</span></div>
+      <div><span class="n">05</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>Company setup</h3><p>Limited company formation, bank account, HMRC registrations and the director's salary/dividend plan.</p><span class="from">£95, free on annual plans</span></div>
+      <div><span class="n">06</span><h3><svg class="kt-ic" viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg>Advisory</h3><p>Cash-flow forecasts, R&amp;D tax relief checks and an honest second opinion before big decisions.</p><span class="from">£120/hour, quoted first</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pk" id="packages">
+  <div class="wrap">
+    <div class="phead">
+      <div><span class="lbl" data-reveal>Fixed monthly packages</span><h2 class="hd" data-split>One price. <mark>No</mark> clock watching.</h2><p class="lead" data-reveal>Unlimited calls and emails are included on every plan. Prices exclude VAT.</p></div>
+      <div class="bill" role="group" aria-label="Billing period" data-reveal><button type="button" data-bill="m" aria-pressed="true">Monthly</button><button type="button" data-bill="y" aria-pressed="false">Annual <em>2 months free</em></button></div>
+    </div>
+    <div class="plans">
+      <div class="plan" data-reveal>
+        <h3>Sole trader</h3>
+        <p class="who">Freelancers, contractors and side hustles with turnover under £90k.</p>
+        <div class="price"><b><small>£</small><span class="amt" data-m="49" data-y="41">49</span></b><span>/month</span><small class="yr" data-yr="£490 billed once a year"></small></div>
+        <ul><li>Self Assessment tax return</li><li>Quarterly MTD Income Tax updates</li><li>Ledgerkit bookkeeping app included</li><li>Expense &amp; mileage tracking</li><li>Payment on account planning</li><li>Unlimited questions, same-day reply</li></ul>
+        <a href="#consult" class="btn ln" data-plan="Sole trader">Choose sole trader</a>
+      </div>
+      <div class="plan hot" data-reveal data-delay="100">
+        <span class="tag">Most popular</span>
+        <h3>Limited company</h3>
+        <p class="who">One- or two-director companies, including contractors and small agencies.</p>
+        <div class="price"><b><small>£</small><span class="amt" data-m="139" data-y="116">139</span></b><span>/month</span><small class="yr" data-yr="£1,390 billed once a year"></small></div>
+        <ul><li>Year-end accounts &amp; CT600 return</li><li>Self Assessment for 2 directors</li><li>Quarterly VAT returns</li><li>Directors' payroll &amp; dividend paperwork</li><li>Confirmation statement filed</li><li>Monthly bookkeeping review</li><li>Bristol registered office address</li></ul>
+        <a href="#consult" class="btn pri" data-plan="Limited company">Choose limited company</a>
+      </div>
+      <div class="plan" data-reveal data-delay="200">
+        <h3>Growing team</h3>
+        <p class="who">Companies with staff, stock or investors who need numbers every month.</p>
+        <div class="price"><b><small>£</small><span class="amt" data-m="259" data-y="216">259</span></b><span>/month</span><small class="yr" data-yr="£2,590 billed once a year"></small></div>
+        <ul><li>Everything in Limited company</li><li>Payroll for up to 15 employees</li><li>Pension auto-enrolment</li><li>Monthly management accounts</li><li>13-week cash-flow forecast</li><li>Quarterly review meeting</li><li>R&amp;D tax relief eligibility check</li></ul>
+        <a href="#consult" class="btn ln" data-plan="Growing team">Choose growing team</a>
+      </div>
+    </div>
+    <div class="addons" data-reveal><span><b>Add-ons:</b> rental property income +£15/mo</span><span>extra employees £4 each/mo</span><span>catch-up bookkeeping from £150</span><span>company formation £95</span></div>
+  </div>
+</section>
+
+<section class="dl" id="deadlines">
+  <div class="wrap">
+    <div class="side">
+      <span class="lbl" data-reveal>Tax deadline calendar</span>
+      <h2 class="hd" data-split>What's <mark>due</mark> next</h2>
+      <p class="lead" data-reveal>The UK dates that catch most small businesses out. On a package, we file before every one of them and remind you of anything you need to pay.</p>
+      <div class="filt" role="group" aria-label="Filter deadlines" data-reveal>
+        <button type="button" data-f="all" aria-pressed="true">Everything</button>
+        <button type="button" data-f="sole" aria-pressed="false">Sole traders</button>
+        <button type="button" data-f="ltd" aria-pressed="false">Limited companies</button>
+        <button type="button" data-f="emp" aria-pressed="false">Employers</button>
+        <button type="button" data-f="vat" aria-pressed="false">VAT</button>
+      </div>
+      <p class="today" id="today" data-reveal></p>
+    </div>
+    <div data-reveal>
+      <ul class="cal" id="cal" aria-live="polite"><li><span></span><div><h3>Loading the next deadlines…</h3></div></li></ul>
+      <p class="calnote">Company dates assume a 31 March year end and VAT quarters ending January, April, July and October. Yours may differ, and we'll set your own calendar up on day one.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sw" id="switch">
+  <div class="wrap">
+    <span class="lbl" data-reveal>Switching accountant</span>
+    <h2 class="hd" data-split>Moving to us takes <mark>ten minutes</mark> of your time</h2>
+    <p class="lead" data-reveal>You can switch at any point in the year. We do the awkward part, including the email to your old accountant.</p>
+    <div class="steps">
+      <div class="step" data-reveal><span class="no">01</span><h3>Free call &amp; fixed quote</h3><p>A 20-minute chat about your business, then a fixed monthly price in writing the same day.</p><span class="t">Day 1</span></div>
+      <div class="step" data-reveal data-delay="100"><span class="no">02</span><h3>We contact your old firm</h3><p>We send the professional clearance letter and collect your records, logins and last returns.</p><span class="t">Days 2–10</span></div>
+      <div class="step" data-reveal data-delay="200"><span class="no">03</span><h3>Connect your bank</h3><p>Link your bank feed and software in a couple of clicks. Old data is migrated for you.</p><span class="t">Day 11</span></div>
+      <div class="step" data-reveal data-delay="300"><span class="no">04</span><h3>Meet your accountant</h3><p>A kick-off call with your named accountant, plus your personal deadline calendar.</p><span class="t">Within 2 weeks</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sav">
+  <div class="wrap">
+    <span class="lbl" data-reveal>What clients save</span>
+    <h2 class="hd" data-split>The fee usually <mark>pays for itself</mark></h2>
+    <div class="nums" data-reveal>
+      <div><b class="mono"><small>£</small><span data-count="2180">0</span></b><span>average tax saved by new clients in their first year</span></div>
+      <div><b class="mono" data-count="1240">0</b><span>freelancers and small businesses on a fixed fee</span></div>
+      <div><b class="mono" data-count="0">0</b><span>HMRC late filing penalties for clients since 2019</span></div>
+      <div><b class="mono" data-count="11.5" data-suffix="h">0</b><span>admin time saved per month, by clients' own estimate</span></div>
+    </div>
+    <div class="cases">
+      <div class="case" data-reveal><img src="https://images.unsplash.com/photo-1611095973763-414019e72400?w=900&q=70&auto=format&fit=crop" alt="Freelancer giving a thumbs up at his laptop in a café" loading="lazy"><div class="c"><small>Freelance developer · Sole trader</small><h3>Moved to a limited company at the right time</h3><p>We modelled both options before he incorporated, then set up a salary and dividend split.</p><span class="s">£6,140 saved a year</span></div></div>
+      <div class="case" data-reveal data-delay="100"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=900&q=70&auto=format&fit=crop" alt="Two café owners serving food behind their counter" loading="lazy"><div class="c"><small>Neighbourhood café · Limited company</small><h3>Switched to the right VAT scheme</h3><p>Cash accounting and a closer look at zero-rated takeaway food cut their quarterly bill.</p><span class="s">£3,920 saved a year</span></div></div>
+      <div class="case" data-reveal data-delay="200"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=70&auto=format&fit=crop" alt="Small software team working on laptops around a table" loading="lazy"><div class="c"><small>Software studio · 9 staff</small><h3>First R&amp;D tax relief claim</h3><p>Two years of qualifying development work documented and claimed with HMRC.</p><span class="s">£41,800 recovered</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tst" data-slider-scope>
+  <div class="wrap">
+    <div class="tbox" data-reveal>
+      <div class="kt-slider" data-autoplay="8000">
+        <div class="kt-track">
+          <div class="tq"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>“I used to dread January. Now Hannah sends me one message in November saying what I owe and when, and that's it. The fee is less than my old accountant charged for the return alone.”</p><div class="who"><span class="av" aria-hidden="true">RK</span><div><b>Rosa Kemp</b><small>Illustrator, Clifton · client since 2022</small></div></div></div>
+          <div class="tq"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>“Switching took one phone call. They chased my previous accountant for three years of records and found a VAT overpayment of nearly £2,000 along the way.”</p><div class="who"><span class="av" aria-hidden="true">JA</span><div><b>Jordan Asante</b><small>Director, Asante Joinery Ltd · client since 2024</small></div></div></div>
+          <div class="tq"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>“Payroll for twelve people, monthly management accounts and a cash-flow forecast I actually understand. Our investors noticed the difference in the first board pack.”</p><div class="who"><span class="av" aria-hidden="true">ML</span><div><b>Mei Lin Hartley</b><small>Co-founder, Fernwood Studio · client since 2021</small></div></div></div>
+        </div>
+      </div>
+      <div class="kt-dots"></div>
+      <div class="tctl"><button class="kt-arrow" data-prev aria-label="Previous review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button class="kt-arrow" data-next aria-label="Next review"><svg class="kt-svg" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div><span class="lbl" data-reveal>FAQ</span><h2 class="hd" data-split>Straight <mark>answers</mark></h2><p data-reveal>Can't see your question? Call <a href="tel:01174960381" style="color:var(--kt-accent);font-weight:700">0117 496 0381</a>, weekdays 8:30–18:00.</p></div>
+    <div data-faq data-reveal>
+      <details class="kt-faq" open><summary>What if my business needs more than the package covers?</summary><div class="kt-faq-a"><div>We'll tell you before doing any extra work and quote a fixed price. Most clients never pay anything beyond their monthly fee; the most common extra is an HMRC enquiry, which our £8/month fee protection add-on covers.</div></div></details>
+      <details class="kt-faq"><summary>Is there a minimum contract?</summary><div class="kt-faq-a"><div>Monthly plans roll month to month with 30 days' notice. Annual plans are paid up front, include two months free and a free company formation, and are refundable pro rata if we haven't filed your return yet.</div></div></details>
+      <details class="kt-faq"><summary>Do I have to use your software?</summary><div class="kt-faq-a"><div>No. We work with all the major cloud bookkeeping tools. If you don't have one yet, Ledgerkit is included free on the Sole trader plan and costs £12/month on the others.</div></div></details>
+      <details class="kt-faq"><summary>Does Making Tax Digital for Income Tax affect me?</summary><div class="kt-faq-a"><div>If your self-employed and property income is over £50,000, quarterly digital updates started in April 2026. The threshold drops to £30,000 from April 2027. Our Sole trader plan includes every quarterly update and the final declaration.</div></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="consult">
+  <div class="wrap">
+    <div class="box" data-reveal="zoom">
+      <div class="info">
+        <span class="lbl">Free consultation</span>
+        <h2 class="hd">Twenty minutes, a fixed quote, no pressure.</h2>
+        <p>Tell us a little about your business and a qualified accountant will call you at the time you choose.</p>
+        <ul>
+          <li><svg class="kt-ic" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Honest view on sole trader vs limited company</li>
+          <li><svg class="kt-ic" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Quick check for tax you may be overpaying</li>
+          <li><svg class="kt-ic" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Written fixed-fee quote the same day</li>
+        </ul>
+        <div class="ph">Prefer to talk now?<a href="tel:01174960381">0117 496 0381</a></div>
+      </div>
+      <form data-form="Thanks! Your accountant will call at the time you picked and send a fixed quote the same day.">
+        <fieldset><legend>Your business is a…</legend><div class="seg">
+          <label><input type="radio" name="type" value="Sole trader" checked><span>Sole trader</span></label>
+          <label><input type="radio" name="type" value="Limited company"><span>Limited company</span></label>
+          <label><input type="radio" name="type" value="Growing team"><span>Company with staff</span></label>
+          <label><input type="radio" name="type" value="Not set up yet"><span>Not set up yet</span></label>
+        </div></fieldset>
+        <div class="g2">
+          <label class="fld"><span>Annual turnover</span><select name="turnover"><option>Under £30k</option><option>£30k – £90k</option><option>£90k – £250k</option><option>£250k – £1m</option><option>Over £1m</option></select></label>
+          <label class="fld"><span>Best time to call</span><select name="time"><option>Morning (9–12)</option><option>Lunchtime (12–2)</option><option>Afternoon (2–5)</option><option>After 5pm</option></select></label>
+        </div>
+        <div class="g2">
+          <label class="fld"><span>Full name</span><input name="name" autocomplete="name" required></label>
+          <label class="fld"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" required></label>
+        </div>
+        <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="fld"><span>Anything we should know? <small style="font-weight:500;color:var(--kt-mut)">(optional)</small></span><textarea name="notes" placeholder="E.g. switching from another accountant, a deadline coming up, or a letter from HMRC."></textarea></label>
+        <label class="cons"><input type="checkbox" required> I'm happy for Tallyfield to contact me about this enquiry. We never share your details.</label>
+        <button class="btn pri" type="submit">Book my free consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top"><a href="#" class="logo"><svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#2b59ff"/><path d="M8 9v12M12.5 9v12M17 9v12M21.5 9v12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M6 20 24 10" stroke="#d4f36b" stroke-width="2.4" stroke-linecap="round"/></svg>Tallyfield</a><nav><a href="#services">Services</a><a href="#packages">Packages</a><a href="#deadlines">Tax calendar</a><a href="#">Privacy</a><a href="#">Complaints</a></nav><span>27 Queen Square, Bristol BS1 4ND · <a href="tel:01174960381">0117 496 0381</a></span></div>
+    <p class="legal">Tallyfield Accountants Ltd is a firm of chartered certified accountants, registered in England and Wales no. 11938402. Office open Monday to Friday 8:30–18:00. Tax savings shown are examples from client work and depend on individual circumstances. © 2026 Tallyfield Accountants Ltd.</p>
+  </div>
+</footer>
+
+<script src="../kit/kit.js"></script>
+<script>
+(function () {
+  /* monthly / annual billing switch */
+  var billBtns = document.querySelectorAll('[data-bill]');
+  function setBill(mode) {
+    billBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.bill === mode ? 'true' : 'false'); });
+    document.querySelectorAll('.amt').forEach(function (el) { el.textContent = el.dataset[mode]; });
+    document.querySelectorAll('[data-yr]').forEach(function (el) { el.textContent = mode === 'y' ? el.dataset.yr : 'Billed monthly, cancel with 30 days’ notice'; });
+  }
+  billBtns.forEach(function (b) { b.addEventListener('click', function () { setBill(b.dataset.bill); }); });
+  setBill('m');
+
+  /* choosing a plan pre-selects the business type in the form */
+  document.querySelectorAll('[data-plan]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var r = document.querySelector('input[name="type"][value="' + a.dataset.plan + '"]');
+      if (r) r.checked = true;
+    });
+  });
+
+  /* deadline calendar: recurring UK dates, rolled forward to the next occurrence */
+  var D = [
+    [1, 31, 'Self Assessment return and balancing payment', 'Online return for last tax year, plus your first payment on account.', ['sole', 'ltd']],
+    [7, 31, 'Second payment on account', 'Half of last year’s Self Assessment bill, paid in advance.', ['sole']],
+    [10, 5, 'Register for Self Assessment', 'If you started trading in the last tax year and haven’t registered yet.', ['sole']],
+    [10, 31, 'Paper Self Assessment return', 'Only if you still file on paper. Online is due 31 January.', ['sole']],
+    [12, 30, 'Online return to pay via your tax code', 'File by today and owe under £3,000? HMRC can collect it through PAYE.', ['sole']],
+    [2, 7, 'MTD Income Tax quarterly update', 'Digital update for the quarter to 5 January.', ['sole']],
+    [5, 7, 'MTD Income Tax quarterly update', 'Digital update for the quarter to 5 April.', ['sole']],
+    [8, 7, 'MTD Income Tax quarterly update', 'Digital update for the quarter to 5 July.', ['sole']],
+    [11, 7, 'MTD Income Tax quarterly update', 'Digital update for the quarter to 5 October.', ['sole']],
+    [3, 7, 'VAT return and payment', 'For the quarter ending 31 January.', ['vat']],
+    [6, 7, 'VAT return and payment', 'For the quarter ending 30 April.', ['vat']],
+    [9, 7, 'VAT return and payment', 'For the quarter ending 31 July.', ['vat']],
+    [12, 7, 'VAT return and payment', 'For the quarter ending 31 October.', ['vat']],
+    [1, 1, 'Corporation Tax payment', 'For a company year ending 31 March, nine months and a day later.', ['ltd']],
+    [3, 31, 'Corporation Tax return (CT600)', 'Due 12 months after a 31 March year end.', ['ltd']],
+    [12, 31, 'Accounts filed at Companies House', 'Nine months after a 31 March year end. Late filing starts at £150.', ['ltd']],
+    [4, 5, 'End of the tax year', 'Last day to use this year’s ISA, pension and dividend allowances.', ['sole', 'ltd', 'emp']],
+    [4, 19, 'Final payroll submission of the year', 'Last Employer Payment Summary for the tax year just ended.', ['emp']],
+    [5, 31, 'P60s to every employee', 'Annual pay and tax summary for staff on payroll at 5 April.', ['emp']],
+    [7, 6, 'P11D benefits returns', 'Report company cars, health cover and other benefits in kind.', ['emp', 'ltd']]
+  ];
+  for (var m = 1; m <= 12; m++) D.push([m, 22, 'PAYE and National Insurance payment', 'Electronic payment for the last tax month.', ['emp']]);
+
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  var items = D.map(function (d) {
+    var dt = new Date(now.getFullYear(), d[0] - 1, d[1]);
+    if (dt < now) dt = new Date(now.getFullYear() + 1, d[0] - 1, d[1]);
+    return { date: dt, title: d[2], note: d[3], tags: d[4], days: Math.round((dt - now) / 864e5) };
+  }).sort(function (a, b) { return a.date - b.date; });
+
+  var cal = document.getElementById('cal');
+  document.getElementById('today').textContent = 'Today: ' + now.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function render(f) {
+    var list = items.filter(function (i) { return f === 'all' || i.tags.indexOf(f) > -1; }).slice(0, 7);
+    cal.innerHTML = list.map(function (i) {
+      var cls = i.days <= 7 ? 'now' : i.days <= 30 ? 'soon' : '';
+      var left = i.days === 0 ? 'Today' : i.days === 1 ? 'Tomorrow' : 'In ' + i.days + ' days';
+      return '<li><span class="d"><b>' + i.date.getDate() + '</b><small>' + MON[i.date.getMonth()] + ' ' + String(i.date.getFullYear()).slice(2) + '</small></span><div><h3>' + esc(i.title) + '</h3><p>' + esc(i.note) + '</p></div><span class="left ' + cls + '">' + left + '</span></li>';
+    }).join('');
+  }
+  var fBtns = document.querySelectorAll('[data-f]');
+  fBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      fBtns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      render(b.dataset.f);
+    });
+  });
+  render('all');
+})();
+</script>
+</body>
+</html>

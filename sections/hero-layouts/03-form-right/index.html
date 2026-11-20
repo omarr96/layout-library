@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hartwell &amp; Rowe — Personal Injury Attorneys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1F3A;--navy2:#13294B;--gold:#C9A227;--gold-l:#E7CF7A;--paper:#F7F4EE;--ink:#1B2430;--muted:#5D6675;--err:#B42318;--ok:#15803D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Public Sans",system-ui,sans-serif;background:var(--navy);color:#fff;overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.topbar{background:#071528;font-size:13px;color:#c5cdd9}
+.topbar .in{max-width:1240px;margin:0 auto;padding:8px 28px;display:flex;justify-content:space-between;gap:16px}
+.topbar b{color:var(--gold-l);font-weight:600}
+.nav{position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(11,31,58,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:-1}
+.nav-in{max-width:1240px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:36px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .mk{width:42px;height:42px;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:"Libre Baskerville",serif;color:var(--gold);font-size:17px}
+.logo .tx{font-family:"Libre Baskerville",serif;font-size:19px;line-height:1.1}
+.logo .tx small{display:block;font-family:"Public Sans",sans-serif;font-size:10.5px;letter-spacing:.22em;color:#aab4c3;text-transform:uppercase;margin-top:3px}
+.links{display:flex;gap:28px;margin-left:auto;font-size:15px;color:#d6dce5}
+.links a:hover{color:var(--gold-l)}
+.call{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--navy);font-weight:700;padding:12px 18px;border-radius:4px;font-size:15px}
+.call:hover{background:var(--gold-l)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.25);border-radius:4px;width:44px;height:44px;color:#fff;cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:11px;width:20px;height:2px;background:#fff;content:"";transition:.2s}
+.burger span{top:20px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1800&q=70&auto=format&fit=crop") 20% center/cover;opacity:.18;filter:grayscale(1)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,var(--navy) 25%,rgba(11,31,58,.8) 60%,var(--navy2))}
+.wrap{max-width:1240px;margin:0 auto;padding:72px 28px 88px;display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);font-weight:600}
+.kicker::before{content:"";width:28px;height:2px;background:var(--gold)}
+h1{font-family:"Libre Baskerville",serif;font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.12;margin:20px 0 22px;letter-spacing:-.01em}
+h1 em{color:var(--gold-l)}
+.lead{font-size:18px;color:#cdd5e0;max-width:560px}
+.checks{list-style:none;margin:30px 0 34px;display:grid;gap:14px}
+.checks li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;color:#eef1f5}
+.checks svg{flex:none;margin-top:2px}
+.checks b{color:#fff}
+.trust{display:flex;flex-wrap:wrap;gap:28px;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.rating{display:flex;align-items:center;gap:12px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:18px}
+.rating p{font-size:14px;color:#c5cdd9}.rating p b{color:#fff;font-size:16px}
+.big{font-family:"Libre Baskerville",serif;font-size:30px;color:var(--gold-l);line-height:1}
+.stat small{display:block;font-size:13px;color:#aab4c3;margin-top:6px}
+/* card */
+.card{background:var(--paper);color:var(--ink);border-radius:6px;padding:34px 32px 30px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);border-top:5px solid var(--gold);position:relative}
+.card h2{font-family:"Libre Baskerville",serif;font-size:25px;font-weight:400;line-height:1.25}
+.card .sub{color:var(--muted);font-size:14.5px;margin:8px 0 22px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{margin-bottom:14px}
+.f label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#2c3746}
+.f input,.f select,.f textarea{width:100%;font:16px "Public Sans",sans-serif;color:var(--ink);background:#fff;border:1px solid #CFD5DD;border-radius:4px;padding:12px 13px;transition:border-color .15s,box-shadow .15s}
+.f textarea{resize:vertical;min-height:78px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(201,162,39,.35)}
+.f.bad input,.f.bad select{border-color:var(--err)}
+.f .msg{display:none;font-size:12.5px;color:var(--err);margin-top:5px}
+.f.bad .msg{display:block}
+.consent{display:flex;gap:10px;font-size:12.5px;color:var(--muted);margin:4px 0 18px;align-items:flex-start}
+.consent input{margin-top:3px;width:16px;height:16px;accent-color:var(--navy);flex:none}
+.consent.bad{color:var(--err)}
+.submit{width:100%;background:var(--navy);color:#fff;border:0;border-radius:4px;padding:16px;font:700 16px "Public Sans",sans-serif;cursor:pointer;display:flex;gap:10px;justify-content:center;align-items:center}
+.submit:hover{background:#163563}
+.fine{display:flex;gap:8px;align-items:center;justify-content:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+.ok{display:none;text-align:center;padding:30px 6px}
+.ok .ic{width:64px;height:64px;border-radius:50%;background:#E7F5EC;display:grid;place-items:center;margin:0 auto 18px}
+.ok h3{font-family:"Libre Baskerville",serif;font-weight:400;font-size:24px}
+.ok p{color:var(--muted);margin:10px 0 0;font-size:15px}
+.ok:focus{outline:none}.card.done form{display:none}.card.done .ok{display:block}
+@media (max-width:1024px){
+  .wrap{grid-template-columns:1fr;gap:48px;padding-top:56px}
+  .card{max-width:620px}
+}
+@media (max-width:900px){
+  .links,.nav-in>.call{display:none}
+  .burger{display:block}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:6px 28px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mmenu .call{display:flex;justify-content:center;margin-top:18px;border:0}
+}
+@media (max-width:560px){
+  .topbar .hide{display:none}
+  .nav-in,.wrap,.topbar .in{padding-left:18px;padding-right:18px}
+  .row{grid-template-columns:1fr;gap:0}
+  .card{padding:28px 20px 24px}
+  .lead{font-size:16.5px}
+  .trust{gap:20px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in"><span>Serving Ohio &amp; Pennsylvania since 1994</span><span class="hide">Available <b>24/7</b> — se habla español</span></div></div>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo" aria-label="Hartwell and Rowe home"><span class="mk">H&amp;R</span><span class="tx">Hartwell &amp; Rowe<small>Injury Attorneys</small></span></a>
+    <nav class="links" aria-label="Primary"><a href="#">Practice areas</a><a href="#">Case results</a><a href="#">Our attorneys</a><a href="#">Contact</a></nav>
+    <a href="tel:+18005550142" class="call"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg>(800) 555-0142</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+  <div class="mmenu" id="mmenu"><a href="#">Practice areas</a><a href="#">Case results</a><a href="#">Our attorneys</a><a href="#">Contact</a><a href="tel:+18005550142" class="call">Call (800) 555-0142</a></div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Free case review</span>
+      <h1>Hurt in an accident? <em>You pay nothing</em> unless we win.</h1>
+      <p class="lead">Insurers have lawyers on day one. You should too. Our trial attorneys have recovered over $412 million for injured families across the Midwest.</p>
+      <ul class="checks">
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="11" fill="#C9A227"/><path d="M6.5 11.2l3 3 6-6.2" fill="none" stroke="#0B1F3A" stroke-width="2"/></svg><span><b>No fee unless we win</b> — we cover every cost up front.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="11" fill="#C9A227"/><path d="M6.5 11.2l3 3 6-6.2" fill="none" stroke="#0B1F3A" stroke-width="2"/></svg><span><b>Call back within 15 minutes</b>, day or night.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="11" fill="#C9A227"/><path d="M6.5 11.2l3 3 6-6.2" fill="none" stroke="#0B1F3A" stroke-width="2"/></svg><span><b>Car, truck, workplace &amp; medical</b> injury specialists.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="11" fill="#C9A227"/><path d="M6.5 11.2l3 3 6-6.2" fill="none" stroke="#0B1F3A" stroke-width="2"/></svg><span><b>We come to you</b> — home or hospital visits.</span></li>
+      </ul>
+      <div class="trust">
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span><p><b>4.9 / 5</b><br>from 1,240 client reviews</p></div>
+        <div class="stat"><span class="big">$412M+</span><small>recovered for clients</small></div>
+        <div class="stat"><span class="big">98%</span><small>success rate</small></div>
+      </div>
+    </div>
+
+    <div class="card" id="card">
+      <form id="form" novalidate>
+        <h2>Get your free case evaluation</h2>
+        <p class="sub">Takes 60 seconds. 100% confidential.</p>
+        <div class="row">
+          <div class="f"><label for="fn">Full name</label><input id="fn" name="name" autocomplete="name" required><span class="msg" id="fn-m">Please enter your name.</span></div>
+          <div class="f"><label for="ph">Phone</label><input id="ph" name="phone" type="tel" autocomplete="tel" inputmode="tel" required><span class="msg" id="ph-m">Enter a valid phone number.</span></div>
+        </div>
+        <div class="f"><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required><span class="msg" id="em-m">Enter a valid email address.</span></div>
+        <div class="row">
+          <div class="f"><label for="ty">Type of accident</label>
+            <select id="ty" name="type" required><option value="">Select…</option><option>Car accident</option><option>Truck accident</option><option>Motorcycle accident</option><option>Slip &amp; fall</option><option>Workplace injury</option><option>Medical malpractice</option><option>Other</option></select>
+            <span class="msg" id="ty-m">Choose an accident type.</span></div>
+          <div class="f"><label for="wh">When did it happen?</label>
+            <select id="wh" name="when" required><option value="">Select…</option><option>Within the last week</option><option>Within 6 months</option><option>6–24 months ago</option><option>Over 2 years ago</option></select>
+            <span class="msg" id="wh-m">Tell us roughly when.</span></div>
+        </div>
+        <div class="f"><label for="ds">Briefly, what happened? <span style="font-weight:400;color:#7a8391">(optional)</span></label><textarea id="ds" name="details" rows="3"></textarea></div>
+        <label class="consent" id="cs-wrap"><input type="checkbox" id="cs" required> I agree to be contacted about my case. Submitting this form does not create an attorney–client relationship.</label>
+        <button class="submit" type="submit">Review my case for free <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></button>
+        <p class="fine"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Your information is encrypted and never shared.</p>
+      </form>
+      <div class="ok" role="status" aria-live="polite" id="ok">
+        <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>Thank you, <span id="okname">we've got it</span>.</h3>
+        <p>An attorney will call <b id="okphone"></b> within 15 minutes. Keep any photos, medical bills and the police report handy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function setMenu(o){nav.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  b.addEventListener('click',function(){setMenu(!nav.classList.contains('open'));});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+
+  var form=document.getElementById('form');
+  var rules={
+    fn:function(v){return v.trim().length>=2;},
+    ph:function(v){return v.replace(/\D/g,'').length>=10;},
+    em:function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());},
+    ty:function(v){return !!v;},
+    wh:function(v){return !!v;}
+  };
+  function check(id){
+    var el=document.getElementById(id),ok=rules[id](el.value),f=el.closest('.f');
+    f.classList.toggle('bad',!ok);
+    el.setAttribute('aria-invalid',!ok);
+    if(!ok)el.setAttribute('aria-describedby',id+'-m');else el.removeAttribute('aria-describedby');
+    return ok;
+  }
+  Object.keys(rules).forEach(function(id){
+    var el=document.getElementById(id);
+    el.addEventListener('blur',function(){if(el.value)check(id);});
+    el.addEventListener('input',function(){if(el.closest('.f').classList.contains('bad'))check(id);});
+    el.addEventListener('change',function(){if(el.closest('.f').classList.contains('bad'))check(id);});
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var first=null;
+    Object.keys(rules).forEach(function(id){if(!check(id)&&!first)first=document.getElementById(id);});
+    var cs=document.getElementById('cs'),cw=document.getElementById('cs-wrap');
+    cw.classList.toggle('bad',!cs.checked);
+    if(!cs.checked&&!first)first=cs;
+    if(first){first.focus();return;}
+    document.getElementById('okname').textContent=document.getElementById('fn').value.trim().split(' ')[0];
+    document.getElementById('okphone').textContent=document.getElementById('ph').value.trim();
+    document.getElementById('card').classList.add('done');
+    document.getElementById('ok').setAttribute('tabindex','-1');
+    document.getElementById('ok').focus();
+  });
+})();
+</script>
+</body>
+</html>

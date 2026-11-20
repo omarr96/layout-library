@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerly — Invoicing that gets you paid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--ink:#111318;--muted:#5C6170;--line:#E6E6E0;--accent:#4F46E5;--accent-d:#3B33C9;--lime:#D9F99D}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%)}
+.hero::after{content:"";position:absolute;z-index:-1;width:720px;height:420px;left:50%;top:18%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(79,70,229,.16),transparent),radial-gradient(closest-side at 70% 60%,rgba(217,249,157,.55),transparent);filter:blur(30px);max-width:100vw}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(250,250,247,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:-1}
+.nav-in{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+.logo-mark span{width:12px;height:3px;background:var(--lime);border-radius:2px;box-shadow:0 -5px 0 var(--lime),0 5px 0 #fff}
+.links{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:var(--muted);margin-right:auto}
+.links a:hover,.links a:focus-visible{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:18px;font-size:14.5px;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 Manrope,sans-serif;border-radius:10px;padding:14px 22px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#262a33}
+.btn-sm{padding:10px 16px;font-size:14px}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 8px 24px -8px rgba(79,70,229,.6)}
+.btn-accent:hover{background:var(--accent-d);transform:translateY(-1px)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:#c9c9c0}
+.btn:focus-visible,.burger:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.burger{display:none;margin-left:auto;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:11px;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:.2s;content:""}
+.burger span{top:19px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+/* content */
+.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 24px 64px;max-width:980px;margin:0 auto}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border:1px solid var(--line);background:#fff;border-radius:99px;font-size:13.5px;font-weight:500;color:var(--muted);margin-bottom:28px}
+.pill b{background:var(--lime);color:#2b3a0a;font-size:12px;padding:3px 9px;border-radius:99px;font-weight:700}
+h1{font-size:clamp(40px,7.4vw,88px);line-height:1.02;letter-spacing:-.045em;font-weight:800}
+h1 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--accent)}
+.rot{display:inline-block;transition:opacity .3s,transform .3s}
+.rot.out{opacity:0;transform:translateY(12px)}
+.sub{margin:26px auto 0;max-width:600px;font-size:clamp(16px,1.6vw,19px);color:var(--muted)}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.note{margin-top:18px;font-size:13px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.note span::before{content:"✓ ";color:#16a34a;font-weight:700}
+.strip{width:100%;max-width:1080px;margin:0 auto;padding:0 24px 56px;text-align:center}
+.strip p{font-size:12.5px;text-transform:uppercase;letter-spacing:.14em;color:#8a8e99;font-weight:600;margin-bottom:22px}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 48px;color:#9a9ea8}
+.logos span{font-size:20px;font-weight:700;letter-spacing:-.02em;opacity:.85}
+.logos .s1{font-family:"Instrument Serif",serif;font-weight:400;font-size:24px;font-style:italic}
+.logos .s2{letter-spacing:.2em;font-size:15px;font-weight:800}
+.logos .s3{font-weight:500}
+.logos .s4{font-family:"Instrument Serif",serif;font-size:23px;font-weight:400}
+@media (max-width:860px){
+  .links,.nav-cta{display:none}
+  .burger{display:block}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 24px 24px;box-shadow:0 20px 40px -20px rgba(0,0,0,.2)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-weight:600}
+  .mmenu .btn{width:100%;margin-top:18px}
+  .main{padding-top:120px}
+}
+@media (max-width:480px){.ctas .btn{width:100%}.note{gap:8px 14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#" class="logo" aria-label="Ledgerly home"><span class="logo-mark"><span></span></span>Ledgerly</a>
+      <nav class="links" aria-label="Primary"><a href="#">Product</a><a href="#">Pricing</a><a href="#">Customers</a><a href="#">Changelog</a></nav>
+      <div class="nav-cta"><a href="#">Sign in</a><a href="#" class="btn btn-dark btn-sm">Start free</a></div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Product</a><a href="#">Pricing</a><a href="#">Customers</a><a href="#">Changelog</a><a href="#">Sign in</a>
+      <a href="#" class="btn btn-dark">Start free</a>
+    </div>
+  </header>
+
+  <div class="main">
+    <a href="#" class="pill"><b>New</b> Automatic late-payment reminders are live →</a>
+    <h1>Send invoices.<br>Get paid in <em class="rot" id="rot">days</em>,<br>not months.</h1>
+    <p class="sub">Ledgerly turns a two-minute invoice into money in the bank — with card &amp; bank payments, smart reminders and multi-currency built in. Made for freelancers and small studios.</p>
+    <div class="ctas">
+      <a href="#" class="btn btn-accent">Create your first invoice
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 5.5v5l4-2.5z" fill="currentColor"/></svg>
+        Watch 90-second tour</a>
+    </div>
+    <div class="note"><span>Free for 5 clients</span><span>No card required</span><span>Cancel anytime</span></div>
+  </div>
+
+  <div class="strip">
+    <p>Trusted by 18,000+ independent businesses</p>
+    <div class="logos" aria-label="Customer logos">
+      <span class="s1">Northfold</span><span class="s2">KILNWORK</span><span>Pebble&amp;Co</span><span class="s3">orbitdesk</span><span class="s4">Saltmarsh</span><span class="s2">VANTA LAB</span>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  b.addEventListener('click',function(){
+    var o=nav.classList.toggle('open');
+    b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('#mmenu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');b.setAttribute('aria-expanded','false');});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');b.setAttribute('aria-expanded','false');b.focus();}});
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var words=['days','hours','minutes','days'],i=0,el=document.getElementById('rot');
+  setInterval(function(){
+    if(document.hidden)return;
+    el.classList.add('out');
+    setTimeout(function(){i=(i+1)%3;el.textContent=words[i];el.classList.remove('out');},300);
+  },2600);
+})();
+</script>
+</body>
+</html>

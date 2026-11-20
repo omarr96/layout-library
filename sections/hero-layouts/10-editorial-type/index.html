@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halde Arkitekter — Buildings that listen to the land</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--concrete:#E6E2DA;--paper:#EFECE6;--char:#1E1E1C;--muted:#66625B;--rust:#B4502A;--line:rgba(30,30,28,.22)}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Archivo,system-ui,sans-serif;background:var(--concrete);color:var(--char);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:20px clamp(16px,3vw,40px);border-bottom:1px solid var(--line);position:relative;z-index:10;background:var(--concrete)}
+.logo{font-weight:800;font-stretch:125%;font-size:22px;letter-spacing:-.02em;text-transform:uppercase}
+.logo sup{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:10px;letter-spacing:.06em;margin-left:4px;vertical-align:top;position:relative;top:4px}
+.links{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.links a{position:relative}
+.links a::before{content:"[";opacity:0;margin-right:3px;transition:.2s}
+.links a::after{content:"]";opacity:0;margin-left:3px;transition:.2s}
+.links a:hover::before,.links a:hover::after,.links a[aria-current]::before,.links a[aria-current]::after{opacity:1;color:var(--rust)}
+.nav-r{justify-self:end;display:flex;align-items:center;gap:22px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--char);color:var(--concrete);padding:12px 18px;transition:.2s}
+.cta:hover{background:var(--rust)}
+.burger{display:none;background:none;border:1px solid var(--char);padding:10px 12px}
+.mmenu{display:none}
+
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:18px clamp(16px,3vw,40px) 0;color:var(--muted)}
+.meta span:last-child{text-align:right}
+.type{padding:clamp(10px,2vw,24px) clamp(16px,3vw,40px) 0;flex:1;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+h1{margin:0;font-weight:800;font-stretch:125%;text-transform:uppercase;line-height:.86;letter-spacing:-.035em}
+.ln{display:block;width:max-content;max-width:none;white-space:nowrap;font-size:11vw}
+.ln.r{margin-left:auto}
+.ln .o{color:transparent;-webkit-text-stroke:2px var(--char);font-weight:700}
+.dot{color:var(--rust)}
+.inset{display:inline-block;width:1.7em;height:.7em;vertical-align:.04em;margin:0 .08em;border-radius:999px;overflow:hidden;position:relative;background:#c9c3b8}
+.inset img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s,transform 1.2s;transform:scale(1.08)}
+.inset img.on{opacity:1;transform:none}
+
+.under{display:grid;grid-template-columns:1.1fr 1.4fr .9fr;gap:clamp(20px,3vw,48px);padding:28px clamp(16px,3vw,40px) 30px;align-items:start}
+.lede{font-size:18px;line-height:1.55;margin:0 0 20px;max-width:440px;font-weight:300}
+.lede b{font-weight:600}
+.under .cta{font-weight:600}
+.under .txt{display:inline-flex;align-items:center;gap:8px;margin-left:18px;border-bottom:1px solid var(--char);padding-bottom:2px}
+.projects{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.projects button{width:100%;display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:baseline;text-align:left;padding:13px 0;border:0;border-bottom:1px solid var(--line);background:none;transition:padding .3s,color .3s}
+.projects button b{font-weight:600;font-size:clamp(17px,1.5vw,21px);font-stretch:110%}
+.projects button:hover,.projects button[aria-pressed=true]{padding-left:10px}
+.projects button[aria-pressed=true] b{color:var(--rust)}
+.projects button[aria-pressed=true] .n{color:var(--rust)}
+.cap{border-left:1px solid var(--line);padding-left:20px}
+.cap p{margin:0 0 8px;color:var(--muted)}
+.cap strong{display:block;font-size:22px;font-weight:700;font-stretch:115%;line-height:1.15;margin-bottom:10px}
+.award{display:flex;gap:10px;align-items:center;margin-top:16px}
+.award i{width:34px;height:34px;border-radius:50%;border:1px solid var(--char);display:grid;place-items:center;font-style:normal;font-size:14px}
+
+.marquee{background:var(--rust);color:#FBEFE8;overflow:hidden;border-top:1px solid var(--char);padding:16px 0;position:relative}
+.track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marquee:hover .track,.marquee.paused .track{animation-play-state:paused}
+.group{display:flex;flex:none}
+.group span{font-weight:700;font-stretch:125%;text-transform:uppercase;font-size:clamp(18px,2vw,26px);letter-spacing:-.01em;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.group span::after{content:"✶";font-size:.8em;color:var(--char)}
+.mq-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--char);color:var(--concrete);border:0;width:34px;height:34px;display:grid;place-items:center;z-index:2}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+@media (max-width:1000px){
+  .nav{grid-template-columns:1fr auto}
+  .links,.nav-r .cta,.nav-r .loc{display:none}
+  .burger{display:block}
+  .mmenu{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--char);color:var(--concrete);padding:12px clamp(16px,3vw,40px) 26px;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .45s cubic-bezier(.7,0,.2,1),visibility .45s}
+  .mmenu.open{clip-path:inset(0);visibility:visible}
+  .mmenu a{font-weight:700;font-stretch:125%;text-transform:uppercase;font-size:30px;padding:10px 0;border-bottom:1px solid rgba(230,226,218,.15)}
+  .mmenu a.cta{background:var(--rust);font-size:14px;margin-top:18px;justify-content:center;border:0;font-stretch:100%;padding:16px}
+  .under{grid-template-columns:1fr 1fr}
+  .cap{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
+  .meta{grid-template-columns:1fr 1fr}
+  .meta span:nth-child(n+3){display:none}
+}
+@media (max-width:640px){
+  .under{grid-template-columns:1fr}
+  .under .txt{margin:16px 0 0;display:flex;width:max-content}
+  .ln .o{-webkit-text-stroke-width:1.2px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}.track{animation:none}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <header class="nav">
+    <a href="#" class="logo" aria-label="Halde Arkitekter home">Halde<sup>ARK</sup></a>
+    <ul class="links mono">
+      <li><a href="#" aria-current="page">Projects</a></li>
+      <li><a href="#">Practice</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <div class="nav-r mono">
+      <span class="loc">Oslo 59.91° N</span>
+      <a href="#" class="cta">Start a commission →</a>
+      <button class="burger mono" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu">Menu</button>
+    </div>
+    <nav class="mmenu" id="mmenu" aria-label="Mobile">
+      <a href="#">Projects</a><a href="#">Practice</a><a href="#">Research</a><a href="#">Journal</a>
+      <a href="#" class="cta mono">Start a commission →</a>
+    </nav>
+  </header>
+
+  <div class="meta mono" aria-hidden="true">
+    <span>(Est. 2009)</span><span>Architecture + Landscape</span><span>Oslo / Bergen</span><span>Index — 064 works</span>
+  </div>
+
+  <main class="type">
+    <h1 id="headline">
+      <span class="ln" data-fit>Buildings</span>
+      <span class="ln r" data-fit>that <span class="inset" id="inset" role="img" aria-label="Fjordlys Library, curved timber facade">
+        <img class="on" src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=900&q=70&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=70&auto=format&fit=crop" alt="" loading="lazy">
+      </span> <span class="o">listen</span></span>
+      <span class="ln" data-fit>to the land<span class="dot">.</span></span>
+    </h1>
+  </main>
+
+  <section class="under">
+    <div>
+      <p class="lede">Halde is a studio of <b>26 architects and landscape designers</b> making libraries, homes and public spaces shaped by light, timber and the ground they stand on.</p>
+      <a href="#" class="cta mono">View all projects →</a><a href="#" class="txt mono">Our process</a>
+    </div>
+    <ul class="projects" aria-label="Selected projects — choose one to preview">
+      <li><button aria-pressed="true" data-i="0"><span class="mono n">01</span><b>Fjordlys Library</b><span class="mono">Bergen · 2025</span></button></li>
+      <li><button aria-pressed="false" data-i="1"><span class="mono n">02</span><b>Kvarts Cultural Hall</b><span class="mono">Trondheim · 2023</span></button></li>
+      <li><button aria-pressed="false" data-i="2"><span class="mono n">03</span><b>Lysning House</b><span class="mono">Asker · 2024</span></button></li>
+    </ul>
+    <div class="cap" aria-live="polite">
+      <p class="mono" id="capK">Now showing — 01</p>
+      <strong id="capT">Fjordlys Library</strong>
+      <p id="capD" style="font-size:15px;line-height:1.5;text-transform:none;letter-spacing:0">A ribbon of charred-larch slats that bends with the harbour wind and floods the reading room with north light.</p>
+      <div class="award mono"><i aria-hidden="true">✶</i>Statens Byggeskikkpris 2025</div>
+    </div>
+  </section>
+
+  <div class="marquee" id="marquee" aria-label="Recent projects">
+    <div class="track">
+      <div class="group"><span>Fjordlys Library — Bergen</span><span>Kvarts Cultural Hall — Trondheim</span><span>Lysning House — Asker</span><span>Tidevann Housing — Stavanger</span><span>Mose Pavilion — Tromsø</span><span>Skifer School — Lillehammer</span></div>
+      <div class="group" aria-hidden="true"><span>Fjordlys Library — Bergen</span><span>Kvarts Cultural Hall — Trondheim</span><span>Lysning House — Asker</span><span>Tidevann Housing — Stavanger</span><span>Mose Pavilion — Tromsø</span><span>Skifer School — Lillehammer</span></div>
+    </div>
+    <button class="mq-btn" id="mqBtn" aria-label="Pause scrolling projects" aria-pressed="false"><svg width="10" height="12" fill="currentColor" aria-hidden="true"><rect width="3" height="12"/><rect x="7" width="3" height="12"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){menu.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');burger.textContent=o?'Close':'Menu'}
+  burger.addEventListener('click',function(e){e.stopPropagation();setMenu(!menu.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target))setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  // fit each headline line to the container width
+  var lines=document.querySelectorAll('[data-fit]'),box=document.querySelector('.type');
+  function fit(){
+    var cs=getComputedStyle(box),w=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    lines.forEach(function(l){
+      l.style.fontSize='100px';
+      var natural=l.getBoundingClientRect().width||1;
+      l.style.fontSize=Math.min(260,Math.floor(100*w/natural*0.995))+'px';
+    });
+  }
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fit,80)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  fit();
+
+  // project preview
+  var info=[
+    {t:'Fjordlys Library',a:'Fjordlys Library, curved timber facade',d:'A ribbon of charred-larch slats that bends with the harbour wind and floods the reading room with north light.'},
+    {t:'Kvarts Cultural Hall',a:'Kvarts Cultural Hall, faceted white facade against the sky',d:'Folded quartzite-white panels catch the low Arctic sun, turning a 900-seat hall into the city’s brightest landmark in winter.'},
+    {t:'Lysning House',a:'Lysning House, open-plan living room with large glazing',d:'A family home set into a birch clearing — one long room, one long window, and floors that step down with the slope.'}
+  ];
+  var imgs=document.querySelectorAll('#inset img'),inset=document.getElementById('inset'),btns=document.querySelectorAll('.projects button');
+  function pick(i){
+    imgs.forEach(function(im,k){im.classList.toggle('on',k===i)});
+    btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});
+    inset.setAttribute('aria-label',info[i].a);
+    document.getElementById('capK').textContent='Now showing — 0'+(i+1);
+    document.getElementById('capT').textContent=info[i].t;
+    document.getElementById('capD').textContent=info[i].d;
+  }
+  btns.forEach(function(b){
+    var i=+b.dataset.i;
+    b.addEventListener('click',function(){pick(i)});
+    b.addEventListener('mouseenter',function(){pick(i)});
+    b.addEventListener('focus',function(){pick(i)});
+  });
+
+  // marquee pause control
+  var mq=document.getElementById('marquee'),mb=document.getElementById('mqBtn');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){mq.classList.add('paused');mb.hidden=true}
+  mb.addEventListener('click',function(){
+    var p=mq.classList.toggle('paused');
+    mb.setAttribute('aria-pressed',p);mb.setAttribute('aria-label',p?'Play scrolling projects':'Pause scrolling projects');
+    mb.innerHTML=p?'<svg width="10" height="12" fill="currentColor" aria-hidden="true"><path d="M0 0l10 6-10 6z"/></svg>':'<svg width="10" height="12" fill="currentColor" aria-hidden="true"><rect width="3" height="12"/><rect x="7" width="3" height="12"/></svg>';
+  });
+  document.addEventListener('visibilitychange',function(){mq.style.animationPlayState='';mq.querySelector('.track').style.animationPlayState=document.hidden?'paused':''});
+})();
+</script>
+</body>
+</html>

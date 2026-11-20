@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fable &amp; Fold — Brand identity studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4F1EA;--ink:#121212;--lime:#D4F25A;--lilac:#C9B8FF;--tomato:#FF5A36;--card:#FFFFFF;--muted:#5C5A55;--r:28px}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Space Grotesk",system-ui,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+.serif{font-family:"Instrument Serif",serif;font-weight:400}
+
+.nav{max-width:1400px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:24px;position:relative;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.logo i{width:30px;height:30px;border-radius:50% 50% 50% 6px;background:var(--ink);display:grid;place-items:center;color:var(--lime);font-style:normal;font-family:"Instrument Serif",serif;font-size:20px}
+.links{display:flex;gap:6px;list-style:none;margin:0 auto;padding:6px;background:var(--card);border-radius:99px;border:1px solid rgba(18,18,18,.08)}
+.links a{display:block;padding:9px 18px;border-radius:99px;font-size:15px;font-weight:500;transition:.2s}
+.links a:hover,.links a.cur{background:var(--ink);color:var(--paper)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:99px;font-weight:600;font-size:15px;border:0;transition:.2s}
+.cta:hover{background:var(--tomato)}
+.cta .blink{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:bl 1.6s infinite}
+@keyframes bl{50%{opacity:.25}}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:0;background:var(--ink);color:var(--paper);place-items:center}
+.mmenu{display:none}
+
+.bento{max-width:1400px;margin:0 auto;padding:6px 24px 32px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:minmax(220px,auto) minmax(220px,auto) 228px;gap:14px}
+.tile{border-radius:var(--r);background:var(--card);position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.tile:hover{transform:translateY(-4px)}
+.t-head{grid-column:1/3;grid-row:1/3;padding:clamp(26px,3vw,42px);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(18,18,18,.2);padding:7px 12px;border-radius:99px;align-self:flex-start}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tomato)}
+h1{font-size:clamp(42px,4.9vw,74px);line-height:.98;letter-spacing:-.045em;font-weight:600;margin:20px 0 0}
+h1 .serif{font-style:italic;letter-spacing:-.01em;font-size:1.08em}
+h1 .hl{background:var(--lime);border-radius:14px;padding:0 .14em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.head-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.head-foot p{max-width:340px;margin:0;color:var(--muted);font-size:17px;line-height:1.55}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.ghost{display:inline-flex;align-items:center;padding:13px 20px;border-radius:99px;border:1.5px solid var(--ink);font-weight:600;font-size:15px;transition:.2s}
+.ghost:hover{background:var(--ink);color:var(--paper)}
+
+.t-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.t-img:hover img{transform:scale(1.05)}
+.t-img figcaption{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;background:rgba(255,255,255,.92);border-radius:16px;padding:10px 14px;font-size:14px}
+.t-img figcaption b{font-weight:600}
+.t-img figcaption span{color:var(--muted);font-size:13px}
+.t-tall{grid-column:3;grid-row:1/3;margin:0}
+.t-wide{grid-column:1;grid-row:3;margin:0}
+
+.t-stat{padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.t-stat.lilac{background:var(--lilac);grid-column:4;grid-row:1}
+.t-stat.lime{background:var(--lime);grid-column:4;grid-row:2}
+.t-stat .num{font-size:clamp(56px,5.6vw,88px);font-weight:600;letter-spacing:-.05em;line-height:1}
+.t-stat .num sup{font-size:.45em;vertical-align:top;position:relative;top:.2em}
+.t-stat p{margin:0;font-size:15px;line-height:1.45;max-width:220px}
+.t-stat .lbl{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+
+.t-quote{grid-column:2/4;grid-row:3;background:var(--ink);color:var(--paper);padding:28px 30px;display:flex;flex-direction:column;justify-content:space-between}
+.quotes{position:relative;flex:1;min-height:120px}
+.q{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;visibility:hidden}
+.q.on{opacity:1;transform:none;visibility:visible}
+.q blockquote{margin:0;font-family:"Instrument Serif",serif;font-size:clamp(22px,2vw,29px);line-height:1.22}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.who{display:flex;align-items:center;gap:12px;font-size:14px}
+.who img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.who small{display:block;color:rgba(244,241,234,.65);font-size:13px}
+.qdots{display:flex;gap:6px}
+.qdots button{width:28px;height:28px;border:0;background:none;padding:0;display:grid;place-items:center}
+.qdots button::before{content:"";width:8px;height:8px;border-radius:99px;background:rgba(244,241,234,.35);transition:.3s}
+.qdots button[aria-selected=true]::before{width:22px;background:var(--lime)}
+.stars{color:var(--lime);letter-spacing:2px;font-size:14px}
+
+.t-book{grid-column:4;grid-row:3;background:var(--tomato);color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.t-book h2{margin:0;font-size:30px;line-height:1.05;letter-spacing:-.03em;font-weight:600}
+.t-book h2 .serif{font-style:italic}
+.t-book .slots{font-size:14px;display:flex;align-items:center;gap:8px}
+.t-book .slots::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.3)}
+.arrowbtn{align-self:flex-end;width:56px;height:56px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .3s}
+.t-book:hover .arrowbtn{transform:rotate(-45deg)}
+
+.clients{max-width:1400px;margin:0 auto;padding:4px 24px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 40px;color:var(--muted);font-size:14px}
+.clients b{color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-.01em;opacity:.75}
+
+@media (max-width:1080px){
+  .links,.nav>.cta{display:none}
+  .burger{display:grid}
+  .mmenu{display:block;position:absolute;left:16px;right:16px;top:80px;z-index:20;background:var(--ink);color:var(--paper);border-radius:24px;padding:12px;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top right;transition:.25s}
+  .mmenu.open{opacity:1;visibility:visible;transform:none}
+  .mmenu a{display:block;padding:14px 16px;border-radius:14px;font-size:20px;font-weight:500}
+  .mmenu a:hover{background:rgba(255,255,255,.08)}
+  .mmenu .cta{background:var(--lime);color:var(--ink);justify-content:center;margin-top:8px;font-size:16px}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .t-head{grid-column:1/-1;grid-row:auto}
+  .t-tall{grid-column:1;grid-row:span 2;min-height:420px}
+  .t-stat.lilac,.t-stat.lime{grid-column:2;grid-row:auto;min-height:200px}
+  .t-wide{grid-column:1;grid-row:auto;min-height:240px}
+  .t-book{grid-column:2;grid-row:auto}
+  .t-quote{grid-column:1/-1;grid-row:auto;min-height:250px;order:1}
+}
+@media (max-width:600px){
+  .nav{padding:16px}
+  .bento{grid-template-columns:1fr;padding:4px 16px 24px;gap:12px}
+  .t-head,.t-tall,.t-stat.lilac,.t-stat.lime,.t-wide,.t-book,.t-quote{grid-column:1}
+  .t-tall{min-height:340px;grid-row:auto}
+  .t-stat.lilac,.t-stat.lime{min-height:170px}
+  .t-book{min-height:220px}
+  .t-quote{min-height:310px;padding:24px}
+  .head-foot{flex-direction:column;align-items:flex-start}
+  .clients{padding:4px 16px 32px;gap:10px 24px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a href="#" class="logo" aria-label="Fable and Fold home"><i>f</i>Fable &amp; Fold</a>
+  <ul class="links">
+    <li><a href="#" class="cur">Work</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Studio</a></li>
+    <li><a href="#">Journal</a></li>
+  </ul>
+  <a href="#" class="cta"><span class="blink" aria-hidden="true"></span>Start a project</a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg width="18" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h18M0 11h18"/></svg></button>
+  <nav class="mmenu" id="mmenu" aria-label="Mobile">
+    <a href="#">Work</a><a href="#">Services</a><a href="#">Studio</a><a href="#">Journal</a>
+    <a href="#" class="cta">Start a project</a>
+  </nav>
+</header>
+
+<main class="bento">
+  <section class="tile t-head">
+    <div>
+      <span class="tag">Brand identity · Naming · Packaging</span>
+      <h1>We make brands people <span class="serif">remember</span> to <span class="hl">love.</span></h1>
+    </div>
+    <div class="head-foot">
+      <p>An independent studio of 18 strategists, designers and writers in Lisbon &amp; Manchester — building identities for founders who refuse to blend in.</p>
+      <div class="btns">
+        <a href="#" class="cta">See our work</a>
+        <a href="#" class="ghost">How we work</a>
+      </div>
+    </div>
+  </section>
+
+  <figure class="tile t-img t-tall">
+    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=70&auto=format&fit=crop" alt="Colour swatches and a tablet showing a brand palette on a desk">
+    <figcaption><b>Orla Swim — rebrand</b><span>2026</span></figcaption>
+  </figure>
+
+  <div class="tile t-stat lilac">
+    <span class="lbl">Since 2014</span>
+    <div><div class="num"><span data-count="140">140</span><sup>+</sup></div><p>brands named, built or rebuilt — from seed-stage to FTSE 250.</p></div>
+  </div>
+  <div class="tile t-stat lime">
+    <span class="lbl">Measured recall</span>
+    <div><div class="num"><span data-count="3.4" data-dec="1">3.4</span><sup>×</sup></div><p>average lift in unaided brand recall, six months after launch.</p></div>
+  </div>
+
+  <figure class="tile t-img t-wide">
+    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&q=70&auto=format&fit=crop" alt="Designer sketching icons on a tablet with a stylus">
+    <figcaption><b>Kiln Coffee</b><span>Identity</span></figcaption>
+  </figure>
+
+  <section class="tile t-quote" aria-roledescription="carousel" aria-label="Client testimonials" id="quotes">
+    <div class="quotes">
+      <div class="q on" role="group" aria-roledescription="slide" aria-label="1 of 3">
+        <blockquote>“They renamed us, redrew us and somehow made us sound more like ourselves. Pre-orders tripled the week we launched.”</blockquote>
+        <div class="q-foot"><div class="who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=70&auto=format&fit=crop" alt="Portrait of Inês Barros"><div>Inês Barros<small>Founder, Orla Swim</small></div></div><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </div>
+      <div class="q" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+        <blockquote>“The only agency that pushed back on our brief — and they were right. Our packaging now does the selling.”</blockquote>
+        <div class="q-foot"><div class="who"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=70&auto=format&fit=crop" alt="Portrait of Daniel Okafor"><div>Daniel Okafor<small>CEO, Kiln Coffee</small></div></div><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </div>
+      <div class="q" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+        <blockquote>“Twelve weeks from napkin sketch to a brand our investors quote back to us. Worth every penny.”</blockquote>
+        <div class="q-foot"><div class="who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=70&auto=format&fit=crop" alt="Portrait of Hannah Lowe"><div>Hannah Lowe<small>Co-founder, Tallow Health</small></div></div><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </div>
+    </div>
+    <div class="qdots" role="tablist" aria-label="Choose testimonial">
+      <button role="tab" aria-selected="true" aria-label="Testimonial 1"></button>
+      <button role="tab" aria-selected="false" aria-label="Testimonial 2"></button>
+      <button role="tab" aria-selected="false" aria-label="Testimonial 3"></button>
+    </div>
+  </section>
+
+  <a href="#" class="tile t-book">
+    <div>
+      <p class="slots" style="margin:0 0 14px">2 project slots left for Q1</p>
+      <h2>Book a 30-min <span class="serif">intro</span> call</h2>
+    </div>
+    <span class="arrowbtn" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16 16 4M7 4h9v9"/></svg></span>
+  </a>
+</main>
+
+<div class="clients" aria-label="Selected clients"><span>Trusted by</span><b>Orla Swim</b><b>Kiln Coffee</b><b>Tallow Health</b><b>Northgate Bank</b><b>Mercer &amp; Pike</b></div>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){menu.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu')}
+  burger.addEventListener('click',function(e){e.stopPropagation();setMenu(!menu.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target))setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // count-up
+  if(!reduce){
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=null,D=1600;
+      el.textContent=(0).toFixed(dec);
+      function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,3);el.textContent=(end*e).toFixed(dec);if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    });
+  }
+
+  // testimonial rotator
+  var root=document.getElementById('quotes'),qs=root.querySelectorAll('.q'),dots=root.querySelectorAll('.qdots button');
+  var i=0,timer=null,hold=false;
+  function go(n){
+    i=(n+qs.length)%qs.length;
+    qs.forEach(function(q,k){q.classList.toggle('on',k===i);q.setAttribute('aria-hidden',k!==i)});
+    dots.forEach(function(d,k){d.setAttribute('aria-selected',k===i);d.tabIndex=k===i?0:-1});
+  }
+  function stop(){clearInterval(timer);timer=null}
+  function start(){stop();if(reduce||hold||document.hidden)return;timer=setInterval(function(){go(i+1)},5500)}
+  dots.forEach(function(d,k){
+    d.addEventListener('click',function(){go(k);start()});
+    d.addEventListener('keydown',function(e){
+      var s=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(s){e.preventDefault();go(i+s);dots[i].focus();start()}
+    });
+  });
+  root.addEventListener('mouseenter',function(){hold=true;stop()});
+  root.addEventListener('mouseleave',function(){hold=false;start()});
+  root.addEventListener('focusin',function(){hold=true;stop()});
+  root.addEventListener('focusout',function(){hold=false;start()});
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start()});
+  go(0);start();
+})();
+</script>
+</body>
+</html>

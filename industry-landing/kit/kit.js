@@ -32,7 +32,7 @@
   /* reveal + counters when they scroll into view */
   const count = el => {
     const end = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now(), dur = 1600;
-    const step = t => { const p = Math.min(1, (t - t0) / dur), v = end * (1 - Math.pow(1 - p, 3)); el.textContent = v.toFixed(dec) + (el.dataset.suffix || ''); if (p < 1) requestAnimationFrame(step); };
+    const step = t => { const p = Math.max(0, Math.min(1, (t - t0) / dur)), v = end * (1 - Math.pow(1 - p, 3)); el.textContent = v.toFixed(dec) + (el.dataset.suffix || ''); if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   };
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
