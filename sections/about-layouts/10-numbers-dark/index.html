@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northvale Facility Services — About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1416; --panel:#111E21; --panel-2:#16272B; --ink:#EAF2F1; --muted:#9DB0AE;
+    --mint:#3DDC97; --sky:#7FB2FF; --line:#22363A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  .wrap{position:relative;max-width:1240px;margin:0 auto;padding:112px 32px}
+  .wrap::before{content:"";position:absolute;right:0;top:40px;width:min(520px,100%);height:520px;border-radius:50%;background:radial-gradient(circle,rgba(61,220,151,.13),transparent 65%);pointer-events:none}
+  .grid{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(61,220,151,.18)}
+  h2{font-family:"Sora",sans-serif;font-weight:600;font-size:clamp(34px,3.9vw,52px);line-height:1.08;letter-spacing:-.025em;margin:18px 0 22px}
+  h2 span{color:var(--mint)}
+  .copy p{color:var(--muted);font-size:16.5px;margin-bottom:14px;max-width:520px}
+  .photo{position:relative;margin-top:30px;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--panel)}
+  .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+  .photo .live{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:8px;background:rgba(11,20,22,.82);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:13px;color:var(--ink)}
+  .photo .live i{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--mint);color:#06231A;font-weight:500;font-size:15.5px;text-decoration:none;padding:14px 24px;border-radius:10px;transition:background .2s}
+  .cta:hover,.cta:focus-visible{background:#6BE8B2}
+  a:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+
+  /* tiles */
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .tile{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:28px 26px 26px;overflow:hidden;transition:border-color .25s,transform .25s}
+  .tile:hover{border-color:#2F5A52;transform:translateY(-3px)}
+  .tile .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(61,220,151,.1);color:var(--mint);margin-bottom:26px}
+  .tile.alt .ic{background:rgba(127,178,255,.12);color:var(--sky)}
+  .num{font-family:"Sora",sans-serif;font-weight:700;font-size:clamp(40px,4.6vw,60px);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .num sup{font-size:.42em;vertical-align:.95em;margin-left:2px;color:var(--mint);letter-spacing:0}
+  .tile.alt .num sup{color:var(--sky)}
+  .tile h3{font-family:"DM Sans",sans-serif;font-size:16px;font-weight:500;margin:12px 0 4px}
+  .tile p{font-size:14px;color:var(--muted)}
+  .tile .meter{margin-top:18px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+  .tile .meter i{display:block;height:100%;width:0;background:var(--mint);transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+  .tile.alt .meter i{background:var(--sky)}
+  .on .tile .meter i{width:var(--w)}
+
+  /* certifications */
+  .certs{position:relative;margin-top:72px;padding-top:32px;border-top:1px solid var(--line);display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+  .certs h3{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);flex:none;width:150px;line-height:1.4}
+  .certs ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px;flex:1}
+  .cert{display:flex;align-items:center;gap:12px;padding:10px 16px 10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+  .cert svg{flex:none;color:var(--muted)}
+  .cert b{display:block;font-family:"Sora",sans-serif;font-size:14px;font-weight:600;line-height:1.2}
+  .cert span{font-size:12.5px;color:var(--muted)}
+
+  @media (max-width:1000px){
+    .grid{grid-template-columns:1fr;gap:56px}
+    .wrap::before{height:360px}
+  }
+  @media (max-width:600px){
+    .wrap{padding:72px 16px}
+    .tiles{grid-template-columns:1fr 1fr;gap:10px}
+    .tile{padding:20px 16px 18px;border-radius:14px}
+    .tile .ic{width:36px;height:36px;margin-bottom:16px}
+    .num{font-size:34px}
+    .tile h3{font-size:14.5px}
+    .tile p{font-size:13px}
+    .certs{margin-top:52px;gap:18px}
+    .certs h3{width:auto}
+    .cert{flex:1 1 100%}
+  }
+  @media (max-width:360px){ .tiles{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion:reduce){
+    .photo .live i{animation:none}
+    .tile,.tile .meter i{transition:none}
+  }
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="about-title">
+  <div class="grid">
+    <div class="copy">
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>About Northvale</span>
+      <h2 id="about-title">Clean, guarded and <span>quietly handled</span>, around the clock</h2>
+      <p>Northvale started in 2004 with one van and three night cleaners in Rotterdam's port district. Today we keep 640 offices, labs and warehouses clean and secure &mdash; with our own vetted staff, never agency cover.</p>
+      <p>One contract, one account manager, one monthly report covering cleaning audits, patrol logs and incident response times.</p>
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&q=70&auto=format&fit=crop" alt="Northvale cleaner in gloves and a face mask wiping down window shutters" loading="lazy">
+        <span class="live"><i aria-hidden="true"></i>212 sites staffed right now</span>
+      </div>
+      <a class="cta" href="#quote">Request a site survey
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="tiles" id="tiles">
+      <div class="tile">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+        <div class="num"><span data-to="640">640</span><sup>+</sup></div>
+        <h3>Sites under contract</h3>
+        <p>Offices, labs and logistics hubs across the Benelux.</p>
+        <div class="meter" aria-hidden="true"><i style="--w:82%"></i></div>
+      </div>
+      <div class="tile alt">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></div>
+        <div class="num"><span data-to="11">11</span><sup>min</sup></div>
+        <h3>Average alarm response</h3>
+        <p>Mobile patrols on the road 24/7, 365 days a year.</p>
+        <div class="meter" aria-hidden="true"><i style="--w:68%"></i></div>
+      </div>
+      <div class="tile alt">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg></div>
+        <div class="num"><span data-to="1850">1,850</span></div>
+        <h3>Vetted, employed staff</h3>
+        <p>Background-checked and trained in-house. No agency cover.</p>
+        <div class="meter" aria-hidden="true"><i style="--w:90%"></i></div>
+      </div>
+      <div class="tile">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div class="num"><span data-to="98.7" data-dec="1">98.7</span><sup>%</sup></div>
+        <h3>Audit pass rate</h3>
+        <p>Independent monthly cleaning and patrol audits, 2025.</p>
+        <div class="meter" aria-hidden="true"><i style="--w:98.7%"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="certs">
+    <h3>Certified &amp; accredited</h3>
+    <ul>
+      <li class="cert">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="16" cy="16" r="13"/><circle cx="16" cy="16" r="8.5"/><path d="M12 16.2l2.8 2.8 5.2-5.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>ISO 9001</b><span>Quality management</span></div>
+      </li>
+      <li class="cert">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M16 3 5 8v7c0 7 4.6 12 11 14 6.4-2 11-7 11-14V8L16 3z"/><path d="M11 16h10M16 11v10" stroke-linecap="round"/></svg>
+        <div><b>ISO 45001</b><span>Health &amp; safety</span></div>
+      </li>
+      <li class="cert">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c5 4 9 8 9 14a9 9 0 0 1-18 0c0-6 4-10 9-14z"/><path d="M16 29V15M16 20l-4-3M16 18l4-3" stroke-linecap="round"/></svg>
+        <div><b>GreenKey Clean</b><span>Eco-label products</span></div>
+      </li>
+      <li class="cert">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="13" width="20" height="15" rx="2"/><path d="M11 13V9a5 5 0 0 1 10 0v4" stroke-linecap="round"/><circle cx="16" cy="20" r="2"/></svg>
+        <div><b>SecureSite Gold</b><span>Licensed guarding</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+<script>
+  (function(){
+    var root = document.getElementById('tiles');
+    if (!root) return;
+    var nums = root.querySelectorAll('[data-to]');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fmt(v, dec){ return dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US'); }
+    function run(){
+      root.classList.add('on');
+      if (reduce) return;
+      var start = null, D = 1600;
+      function step(ts){
+        if (document.hidden){ requestAnimationFrame(step); return; }
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / D, 1), e = 1 - Math.pow(1 - p, 3);
+        nums.forEach(function(n){
+          var to = parseFloat(n.getAttribute('data-to')), dec = parseInt(n.getAttribute('data-dec') || '0', 10);
+          n.textContent = fmt(to * e, dec);
+        });
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (reduce || !('IntersectionObserver' in window)){ run(); return; }
+    nums.forEach(function(n){ n.textContent = fmt(0, parseInt(n.getAttribute('data-dec') || '0', 10)); });
+    var io = new IntersectionObserver(function(en){
+      if (en.some(function(x){ return x.isIntersecting; })){ io.disconnect(); run(); }
+    }, { threshold: 0.3 });
+    io.observe(root);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Hale — About us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3F5F8; --ink:#0F2A44; --muted:#4A5B6E; --teal:#16796B; --teal-l:#D8EEEA;
+    --line:#DCE2EA; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding:112px 32px}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:44px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+  h2{font-family:"Newsreader",serif;font-weight:400;font-size:clamp(34px,4vw,54px);line-height:1.08;letter-spacing:-.015em;margin-top:14px;max-width:640px}
+  h2 i{color:var(--teal)}
+
+  /* tablist */
+  .tabs{display:inline-flex;gap:4px;padding:5px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(15,42,68,.04)}
+  .tab{appearance:none;border:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--muted);padding:11px 20px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:background .2s,color .2s}
+  .tab svg{flex:none}
+  .tab:hover{color:var(--ink);background:var(--bg)}
+  .tab[aria-selected="true"]{background:var(--ink);color:#fff}
+  .tab:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+  /* panels */
+  .panel{display:grid;grid-template-columns:1fr 1.05fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(15,42,68,.35)}
+  .panel[hidden]{display:none}
+  .panel.in .txt,.panel.in .pic img{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  .panel.in .pic img{animation-name:fade}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:none}}
+  .txt{padding:56px 56px 52px}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--teal-l);padding:5px 12px;border-radius:999px}
+  h3{font-family:"Newsreader",serif;font-weight:500;font-size:32px;line-height:1.15;margin:18px 0 16px;letter-spacing:-.01em}
+  .txt p{color:var(--muted);font-size:16px;margin-bottom:14px}
+  .list{list-style:none;margin:24px 0 0;display:grid;gap:12px}
+  .list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--ink)}
+  .list svg{flex:none;margin-top:3px;color:var(--teal)}
+  .steps{list-style:none;counter-reset:s;margin-top:24px;display:grid;gap:0}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:14px 0;border-top:1px solid var(--line)}
+  .steps li::before{content:"0" counter(s);grid-row:1/3;font-family:"Newsreader",serif;font-size:24px;color:var(--teal);line-height:1.2}
+  .steps b{font-size:15.5px}
+  .steps span{font-size:14.5px;color:var(--muted)}
+  .stats{display:flex;gap:40px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+  .stats b{display:block;font-family:"Newsreader",serif;font-size:38px;font-weight:500;line-height:1}
+  .stats span{font-size:13.5px;color:var(--muted)}
+  .pic{position:relative;min-height:460px;background:#C9D3DE}
+  .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .pic .tag{position:absolute;left:24px;bottom:24px;background:rgba(255,255,255,.94);color:var(--ink);padding:12px 16px;border-radius:12px;font-size:13.5px;line-height:1.4;max-width:260px;box-shadow:0 10px 30px -12px rgba(15,42,68,.5)}
+  .pic .tag b{display:block;font-size:14.5px}
+  .quote{margin-top:26px;padding-left:18px;border-left:2px solid var(--teal);font-family:"Newsreader",serif;font-style:italic;font-size:19px;line-height:1.45;color:var(--ink)}
+  .quote cite{display:block;margin-top:8px;font-family:"Manrope",sans-serif;font-style:normal;font-size:13.5px;color:var(--muted)}
+
+  @media (max-width:960px){
+    .panel{grid-template-columns:1fr}
+    .pic{min-height:320px;order:-1}
+    .txt{padding:40px 36px}
+  }
+  @media (max-width:600px){
+    .wrap{padding:72px 16px}
+    .head{margin-bottom:28px}
+    .tabs{display:flex;width:100%}
+    .tab{flex:1;justify-content:center;padding:11px 8px;font-size:14px}
+    .tab svg{display:none}
+    .txt{padding:30px 22px 32px}
+    h3{font-size:27px}
+    .pic{min-height:240px}
+    .pic .tag{left:12px;bottom:12px;font-size:12.5px;padding:9px 12px;max-width:220px}
+    .stats{gap:28px}
+    .stats b{font-size:32px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .panel.in .txt,.panel.in .pic img{animation:none}
+  }
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="about-title">
+  <div class="head">
+    <div>
+      <span class="eyebrow">About Meridian Hale</span>
+      <h2 id="about-title">Advisers who stay until the <i>change actually sticks</i></h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="About Meridian Hale">
+      <button class="tab" role="tab" id="t-story" aria-controls="p-story" aria-selected="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM19 19v3H6"/></svg>Our story</button>
+      <button class="tab" role="tab" id="t-mission" aria-controls="p-mission" aria-selected="false" tabindex="-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Mission</button>
+      <button class="tab" role="tab" id="t-approach" aria-controls="p-approach" aria-selected="false" tabindex="-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Approach</button>
+    </div>
+  </div>
+
+  <div class="panel in" role="tabpanel" id="p-story" aria-labelledby="t-story" tabindex="0">
+    <div class="txt">
+      <span class="kicker">Est. 2009 · Leeds</span>
+      <h3>Started by two operators who were tired of slide decks</h3>
+      <p>Hannah Merriweather ran supply chains for a food manufacturer; Daniel Hale rebuilt finance teams after acquisitions. Both had paid for strategy reports that never left the boardroom.</p>
+      <p>So they built the firm they wanted to hire: small senior teams who work inside the business, alongside the people who will run the new way of working long after we leave.</p>
+      <div class="stats">
+        <div><b>160+</b><span>mid-market clients</span></div>
+        <div><b>41</b><span>senior advisers</span></div>
+        <div><b>82%</b><span>repeat engagements</span></div>
+      </div>
+    </div>
+    <div class="pic">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=70&auto=format&fit=crop" alt="Two colleagues high-fiving across a desk covered in laptops and printed reports">
+      <div class="tag"><b>First client, 2009</b>A 90-person bakery group in Harrogate &mdash; still with us.</div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-mission" aria-labelledby="t-mission" tabindex="0" hidden>
+    <div class="txt">
+      <span class="kicker">Why we exist</span>
+      <h3>Make good companies measurably easier to run</h3>
+      <p>Most of our clients are 50 to 2,000 people, profitable, and stretched. Our mission is to give them the operating discipline of a much bigger business without the bureaucracy that usually comes with it.</p>
+      <ul class="list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Every engagement has three numbers we commit to in writing</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Part of our fee is held back until those numbers move</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>We train an internal owner for each change we make</li>
+      </ul>
+      <blockquote class="quote">&ldquo;If the client can't run it without us in six months, we haven't finished the job.&rdquo;<cite>Hannah Merriweather, Co-founder</cite></blockquote>
+    </div>
+    <div class="pic">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=70&auto=format&fit=crop" alt="Team member pointing at sticky notes on a wall during a planning workshop" loading="lazy">
+      <div class="tag"><b>£38m</b>in operating savings confirmed by clients last year.</div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-approach" aria-labelledby="t-approach" tabindex="0" hidden>
+    <div class="txt">
+      <span class="kicker">How we work</span>
+      <h3>Twelve weeks, inside the business, on one problem</h3>
+      <p>We keep teams to three people and engagements to a single, clearly owned outcome.</p>
+      <ol class="steps">
+        <li><b>Shadow the work</b><span>Two weeks on the floor, in the finance office, on the calls.</span></li>
+        <li><b>Agree the numbers</b><span>Baseline, target and owner signed off by your leadership team.</span></li>
+        <li><b>Change, then hand over</b><span>Build the new process with your people, then step back and coach.</span></li>
+      </ol>
+    </div>
+    <div class="pic">
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=70&auto=format&fit=crop" alt="Adviser presenting to a seated team in a brick-walled open-plan office" loading="lazy">
+      <div class="tag"><b>Week 6 check-in</b>Every Friday, a one-page update your board can read in two minutes.</div>
+    </div>
+  </div>
+</section>
+<script>
+  (function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    function select(tab, focus){
+      tabs.forEach(function(t){
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        var p = document.getElementById(t.getAttribute('aria-controls'));
+        p.hidden = !on;
+        p.classList.toggle('in', on);
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){ select(tab, false); });
+      tab.addEventListener('keydown', function(e){
+        var n = null;
+        if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') n = tabs[0];
+        else if (e.key === 'End') n = tabs[tabs.length - 1];
+        if (n){ e.preventDefault(); select(n, true); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

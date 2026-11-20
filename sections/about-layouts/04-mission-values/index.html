@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mission &amp; values — Common Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6f1e9;--card:#ffffff;--ink:#12372a;--tx:#3d5a4d;--line:#c6dccd;--tomato:#e2583e;--tomato-d:#b83a23;--sun:#f4c24d;--leaf:#2f8a5b}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:17px/1.65 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mission{padding:112px 24px 120px}
+.wrap{max-width:1200px;margin:0 auto}
+.eyebrow{display:inline-block;font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--sun);padding:5px 14px;border-radius:99px}
+.statement{display:grid;grid-template-columns:1fr 300px;gap:72px;align-items:end;margin-top:28px}
+h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:clamp(34px,4.8vw,64px);line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin:0}
+h2 mark{background:none;color:var(--tomato);position:relative;white-space:nowrap}
+h2 mark::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.12em;background:var(--tomato);border-radius:4px;opacity:.28}
+.side figure{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:#c9dccf}
+.side img{width:100%;height:100%;object-fit:cover;display:block}
+.side figcaption{font-size:14px;margin-top:12px;line-height:1.45}
+.side figcaption b{color:var(--ink)}
+
+.sub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 40px;align-items:center;margin:56px 0 44px;padding-top:28px;border-top:2px solid var(--ink)}
+.sub h3{margin:0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--ink)}
+.sub p{margin:0;max-width:560px}
+
+.values{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.value{background:var(--card);border-radius:22px;padding:30px 26px 32px;border:1px solid var(--line);transition:transform .25s ease,box-shadow .25s ease}
+.value:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(18,55,42,.45)}
+.ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px}
+.ic svg{width:28px;height:28px}
+.v1 .ic{background:#fde3dc;color:var(--tomato-d)}
+.v2 .ic{background:#fdf0cc;color:#8a6408}
+.v3 .ic{background:#d6eddf;color:var(--leaf)}
+.v4 .ic{background:#dfe6f7;color:#3552a3}
+.value h4{margin:0 0 8px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:21px;color:var(--ink);letter-spacing:-.01em}
+.value p{margin:0;font-size:16px;line-height:1.55}
+.value small{display:block;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink);font-weight:600}
+
+.cta{margin-top:44px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;padding:14px 24px;border-radius:99px;transition:background .2s,color .2s}
+.btn svg{width:18px;height:18px}
+.btn.primary{background:var(--tomato-d);color:#fff}
+.btn.primary:hover{background:#9c2f1b}
+.btn.ghost{color:var(--ink);border:2px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+@media (max-width:1040px){
+  .values{grid-template-columns:repeat(2,1fr)}
+  .statement{grid-template-columns:1fr 260px;gap:40px}
+}
+@media (max-width:760px){
+  .statement{grid-template-columns:1fr;gap:32px}
+  .side{max-width:460px}
+}
+@media (max-width:560px){
+  .mission{padding:72px 16px 80px}
+  .values{grid-template-columns:1fr}
+  h2 mark{white-space:normal}
+  .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.value{transition:none}.value:hover{transform:none}}
+</style>
+</head>
+<body>
+<section class="mission" aria-labelledby="mission-title">
+  <div class="wrap">
+    <span class="eyebrow">Our mission</span>
+    <div class="statement">
+      <h2 id="mission-title">We rescue good food before it's wasted and get it onto the <mark>tables that need it</mark> — with <mark>dignity</mark>, not handouts.</h2>
+      <div class="side">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=900&q=70&auto=format&fit=crop" alt="Volunteers in a warehouse packing and stacking cardboard boxes of food" loading="lazy">
+          <figcaption><b>Saturday sort, Bristol depot.</b> 60 volunteers pack around 9 tonnes of surplus food every weekend.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>What we stand for</h3>
+      <p>Common Table has partnered with 310 community kitchens, schools and pantries since 2014. These four values decide every partnership, every hire and every pound we spend.</p>
+    </div>
+
+    <ul class="values">
+      <li class="value v1">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+        <h4>Dignity first</h4>
+        <p>Our pantries work like shops — people choose what they take. No forms at the door, no queues on the street.</p>
+        <small>92% of visitors say they feel respected</small>
+      </li>
+      <li class="value v2">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></div>
+        <h4>Nothing wasted</h4>
+        <p>What people can't eat goes to animal feed or compost. Last year, less than 1% of donated food went to landfill.</p>
+        <small>4,800 tonnes saved in 2024</small>
+      </li>
+      <li class="value v3">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M14.5 15.2A4.5 4.5 0 0 1 21 19"/></svg></div>
+        <h4>Led locally</h4>
+        <p>Each hub is run by people from the neighbourhood it serves. We fund, train and get out of the way.</p>
+        <small>38 hubs, 38 local leads</small>
+      </li>
+      <li class="value v4">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 15v-3M12 15V9M16 15v-5"/></svg></div>
+        <h4>Open books</h4>
+        <p>Every donation and every penny we spend is published quarterly. 88p of each £1 goes straight to food and delivery.</p>
+        <small>Audited annually since 2016</small>
+      </li>
+    </ul>
+
+    <div class="cta">
+      <a class="btn primary" href="#">Volunteer at a hub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn ghost" href="#">Read our 2024 impact report</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

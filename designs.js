@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "about-gallery",
+      "title": "About layouts · all 10",
+      "desc": "Gallery of 10 about sections, each a different layout.",
+      "tags": [
+        "About",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/about-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-01-story-stats",
+      "title": "About 01 · Marlowe & Daughters",
+      "desc": "Story + counters · family bakery · since 1987.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/01-story-stats/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-02-timeline",
+      "title": "About 02 · Holt & Ash Joinery",
+      "desc": "History timeline · furniture maker · 1979 to today.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/02-timeline/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-03-team-grid",
+      "title": "About 03 · Studio Parallel",
+      "desc": "Team grid · design studio · bios on hover or tap.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/03-team-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-04-mission-values",
+      "title": "About 04 · Common Table",
+      "desc": "Mission + values · food-rescue charity.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/04-mission-values/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-05-founder-letter",
+      "title": "About 05 · Maren Botanics",
+      "desc": "Founder letter · skincare brand · signature reveal.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/05-founder-letter/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-06-image-collage",
+      "title": "About 06 · Casa Albarrán",
+      "desc": "Photo collage · boutique hotel · rotating since-1998 badge.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/06-image-collage/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-07-tabs",
+      "title": "About 07 · Meridian Hale",
+      "desc": "Story / Mission / Approach tabs · consulting firm.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/07-tabs/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-08-big-type-minimal",
+      "title": "About 08 · Oskar Lindqvist Arkitekter",
+      "desc": "Big statement type · architecture studio · highlights sweep in.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/08-big-type-minimal/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-09-video-about",
+      "title": "About 09 · Ironbridge Civil",
+      "desc": "Wide video still + facts · civil engineering · mock player.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/09-video-about/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "about-10-numbers-dark",
+      "title": "About 10 · Northvale Facility Services",
+      "desc": "Dark stats + certifications · cleaning & security.",
+      "tags": [
+        "About"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/about-layouts/10-numbers-dark/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "logo-gallery",
       "title": "Client logo layouts · all 10",
       "desc": "Gallery of 10 client logo sections, each a different layout.",

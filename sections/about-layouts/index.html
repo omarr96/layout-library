@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #111113; --tx: #52525b; --mut: #8a8a93; --line: #e7e7ea; --soft: #f7f7f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+h1 { margin: 0; font-size: 34px; color: var(--ink); letter-spacing: -.025em; }
+.sub { margin: 8px 0 0; max-width: 680px; }
+.kit { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.kit span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; margin-top: 40px; }
+.card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .25s, transform .25s, border-color .25s; display: flex; flex-direction: column; }
+.card:hover { box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); transform: translateY(-3px); border-color: #d4d4d8; }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.b { padding: 16px 18px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.n { font-size: 13px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.b h3 { margin: 0; font-size: 16px; color: var(--ink); }
+.b p { margin: 4px 0 10px; font-size: 13.5px; }
+.sw { display: flex; gap: 5px; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 600px) { .wrap { padding: 36px 16px 60px; } .grid { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>About layouts</h1>
+  <p class="sub">Ten about sections, each a different layout for a different kind of business. Click one to open it full size.</p>
+  <div class="kit"><span>Story + stats</span><span>Timeline</span><span>Team grid</span><span>Mission & values</span><span>Founder letter</span><span>Photo collage</span><span>Tabs</span><span>Big type</span><span>Video</span><span>Dark numbers</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const T = [
+  ["01-story-stats", "Marlowe & Daughters", "Story + counters · family bakery · since 1987", ["#f6efe4", "#7a3e1d", "#e8b04b", "#ffffff"]],
+  ["02-timeline", "Holt & Ash Joinery", "History timeline · furniture maker · 1979 to today", ["#1f1a16", "#d0915a", "#9aa889", "#ffffff"]],
+  ["03-team-grid", "Studio Parallel", "Team grid · design studio · bios on hover or tap", ["#f4f3ef", "#121212", "#ff4f2e", "#ffffff"]],
+  ["04-mission-values", "Common Table", "Mission + values · food-rescue charity", ["#e6f1e9", "#12372a", "#e2583e", "#ffffff"]],
+  ["05-founder-letter", "Maren Botanics", "Founder letter · skincare brand · signature reveal", ["#f4e9e2", "#a2573f", "#3a2a26", "#ffffff"]],
+  ["06-image-collage", "Casa Albarrán", "Photo collage · boutique hotel · rotating since-1998 badge", ["#F4EFE6", "#2E3B33", "#A9552F", "#ffffff"]],
+  ["07-tabs", "Meridian Hale", "Story / Mission / Approach tabs · consulting firm", ["#F3F5F8", "#0F2A44", "#16796B", "#ffffff"]],
+  ["08-big-type-minimal", "Oskar Lindqvist Arkitekter", "Big statement type · architecture studio · highlights sweep in", ["#E9E6E1", "#161616", "#B4441C", "#ffffff"]],
+  ["09-video-about", "Ironbridge Civil", "Wide video still + facts · civil engineering · mock player", ["#F1EFEA", "#1B1F24", "#F2B705", "#ffffff"]],
+  ["10-numbers-dark", "Northvale Facility Services", "Dark stats + certifications · cleaning & security", ["#0B1416", "#3DDC97", "#7FB2FF", "#ffffff"]]
+];
+document.getElementById('grid').innerHTML = T.map(([f, n, d, c], i) => `<a class="card" href="${f}/index.html" target="_blank" rel="noopener">
+  <div class="shot"><iframe data-src="${f}/index.html" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></div>
+  <div class="b"><span class="n">${String(i + 1).padStart(2, '0')}</span><div><h3>${n}</h3><p>${d}</p><div class="sw">${c.map(x => `<i style="background:${x}"></i>`).join('')}</div></div></div></a>`).join('');
+const ro = new ResizeObserver(es => es.forEach(e => e.target.querySelector('iframe').style.transform = `scale(${e.contentRect.width / 1440})`));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const f = e.target.querySelector('iframe'); f.src = f.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); });
+</script>
+</body>
+</html>
