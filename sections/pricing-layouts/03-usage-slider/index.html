@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relaypost Usage Pricing</title>
+<meta name="description" content="Relaypost email and SMS API pricing: pay for what you send, with volume tiers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1020; --panel:#131A33; --panel-2:#1A2244; --ink:#E6EAF7; --muted:#9AA3C3; --line:#26305A;
+    --cyan:#38E1C6; --cyan-ink:#052A24; --amber:#FFB547;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .usage{padding:104px 24px 112px;position:relative;overflow:hidden}
+  .usage::before{content:"";position:absolute;right:-180px;top:-160px;width:640px;height:640px;background:radial-gradient(closest-side,rgba(56,225,198,.14),transparent);pointer-events:none}
+  .wrap{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:center;position:relative}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cyan);letter-spacing:.02em}
+  h2{font-size:clamp(34px,4.6vw,54px);line-height:1.04;letter-spacing:-.035em;margin:14px 0 18px;font-weight:700}
+  .lede{color:var(--muted);font-size:17.5px;margin:0 0 28px;max-width:470px}
+  .pts{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px}
+  .pts li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
+  .pts svg{flex:none;width:20px;height:20px;color:var(--cyan);margin-top:2px}
+  pre{margin:0;background:#070B17;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font:13px/1.6 "JetBrains Mono",monospace;color:#B9C2E3;overflow-x:auto;max-width:100%}
+  pre .k{color:var(--cyan)} pre .s{color:var(--amber)}
+  .calc{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+  .seg{display:inline-grid;grid-template-columns:1fr 1fr;background:#0D1328;border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;margin-bottom:26px}
+  .seg button{border:0;background:transparent;color:var(--muted);font:600 14.5px "Space Grotesk",sans-serif;padding:9px 18px;border-radius:9px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+  .seg svg{width:17px;height:17px}
+  .seg button[aria-pressed="true"]{background:var(--cyan);color:var(--cyan-ink)}
+  .seg button:focus-visible,input[type=range]:focus-visible,.go:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  .vol-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  label{font-size:14px;color:var(--muted);font-weight:500}
+  .vol{font-size:28px;font-weight:700;letter-spacing:-.02em}
+  .vol small{font-size:15px;color:var(--muted);font-weight:500;margin-left:6px}
+  .range-wrap{position:relative;margin:18px 0 8px;padding:0 2px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:linear-gradient(90deg,var(--cyan) 0 var(--p,40%),#2A3463 var(--p,40%) 100%);margin:0;cursor:pointer;display:block}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid var(--cyan);box-shadow:0 0 0 6px rgba(56,225,198,.18)}
+  input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:6px solid var(--cyan);box-shadow:0 0 0 6px rgba(56,225,198,.18)}
+  .ticks{position:relative;height:40px;margin:6px 13px 0;font:11.5px "JetBrains Mono",monospace;color:var(--muted)}
+  .ticks span{position:absolute;transform:translateX(-50%);top:0;white-space:nowrap;padding-top:10px}
+  .ticks span::before{content:"";position:absolute;left:50%;top:0;width:1px;height:7px;background:#3A4577}
+  .ticks span.bp{color:var(--amber)}
+  .ticks span.bp::before{background:var(--amber);height:9px}
+  .out{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;border-top:1px dashed var(--line);margin-top:14px;padding-top:24px}
+  .tier{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em}
+  .price{font-size:56px;font-weight:700;letter-spacing:-.045em;line-height:1;margin-top:6px}
+  .price small{font-size:17px;color:var(--muted);font-weight:500;letter-spacing:0}
+  .unit{color:var(--muted);font-size:14.5px;margin-top:8px;min-height:22px}
+  .go{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:var(--cyan-ink);text-decoration:none;font-weight:700;font-size:15.5px;padding:14px 20px;border-radius:12px;white-space:nowrap;transition:background .2s}
+  .go:hover{background:#6CF0DA}
+  .go svg{width:18px;height:18px}
+  .go.sales{background:var(--amber);color:#2A1A00}
+  .inc{list-style:none;margin:24px 0 0;padding:18px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:14.5px;color:#C7CEE8}
+  .inc li{display:flex;gap:8px;align-items:center}
+  .inc svg{width:16px;height:16px;color:var(--cyan);flex:none}
+  @media (max-width:960px){.wrap{grid-template-columns:1fr;gap:48px}.lede{max-width:none}}
+  @media (max-width:520px){
+    .usage{padding:64px 16px 80px}
+    .calc{padding:22px 18px}
+    .out{grid-template-columns:1fr}
+    .go{justify-content:center}
+    .price{font-size:46px}
+    .inc{grid-template-columns:1fr}
+    .ticks span:not(.bp){display:none}
+    .ticks span.bp{font-size:11px}
+    .ticks span.b8{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="usage" aria-labelledby="u-title">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">// usage-based pricing</span>
+      <h2 id="u-title">Pay per message.<br>Never per seat.</h2>
+      <p class="lede">Relaypost sends transactional email and SMS from one API. Pick your monthly volume — your rate drops automatically as you cross each tier.</p>
+      <ul class="pts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>First 3,000 emails every month are free</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Unused volume rolls over for one month</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Overage billed at your tier rate — no surprise jumps</li>
+      </ul>
+<pre aria-label="Example API request"><span class="k">curl</span> https://api.relaypost.dev/v2/send \
+  -d to=<span class="s">"ana@example.com"</span> \
+  -d template=<span class="s">"receipt"</span></pre>
+    </div>
+
+    <div class="calc">
+      <div class="seg" role="group" aria-label="Channel">
+        <button type="button" data-ch="email" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</button>
+        <button type="button" data-ch="sms" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"/></svg>SMS</button>
+      </div>
+      <div class="vol-row">
+        <label for="vol" id="vol-lbl">Emails per month</label>
+        <div class="vol" aria-live="polite"><span id="vol-out">100,000</span><small id="vol-unit">emails</small></div>
+      </div>
+      <div class="range-wrap">
+        <input type="range" id="vol" min="0" max="9" step="1" value="3" aria-valuetext="100,000 emails per month">
+      </div>
+      <div class="ticks" id="ticks" aria-hidden="true"></div>
+      <div class="out">
+        <div>
+          <div class="tier" id="tier">Scale tier</div>
+          <div class="price" id="price">$75<small>/mo</small></div>
+          <div class="unit" id="unit">$0.75 per 1,000 emails</div>
+        </div>
+        <a class="go" id="go" href="#signup">Start sending <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="inc" id="inc">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Dedicated sending IP</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>30-day log retention</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Inbound webhooks</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Priority support</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var data={
+    email:{unit:'emails',floor:'$0.30',label:'Emails per month',
+      steps:[10000,25000,50000,100000,250000,500000,1000000,2500000,5000000,null],
+      prices:[15,25,40,75,160,290,520,1150,2100,null],bps:[2,5,8]},
+    sms:{unit:'texts',floor:'$3.90',label:'SMS per month',
+      steps:[1000,5000,10000,25000,50000,100000,250000,500000,1000000,null],
+      prices:[9,40,75,175,325,600,1400,2600,4900,null],bps:[2,5,8]}
+  };
+  var tiers=[
+    {max:2,name:'Launch tier',inc:['Shared sending pool','7-day log retention','Inbound webhooks','Email support']},
+    {max:5,name:'Scale tier',inc:['Dedicated sending IP','30-day log retention','Inbound webhooks','Priority support']},
+    {max:8,name:'Volume tier',inc:['Multiple dedicated IPs','90-day log retention','Deliverability reviews','24/7 on-call support']},
+    {max:9,name:'Enterprise',inc:['Custom volume & SLA','Unlimited log retention','Single sign-on & audit','Named engineer']}
+  ];
+  var ch='email';
+  var r=document.getElementById('vol'),ticks=document.getElementById('ticks');
+  var $=function(id){return document.getElementById(id);};
+  var check='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  function short(n){if(n===null)return '5M+';return n>=1e6?(n/1e6)+'M':(n/1e3)+'k';}
+  function fmt(n){return n.toLocaleString('en-US');}
+  function buildTicks(){
+    var d=data[ch];ticks.innerHTML='';
+    d.steps.forEach(function(s,i){
+      var sp=document.createElement('span');
+      sp.style.left=(i/9*100)+'%';
+      sp.textContent=s===null?(short(d.steps[8])+'+'):short(s);
+      if(d.bps.indexOf(i)>-1||i===9)sp.className='bp'+(i===8?' b8':'');
+      ticks.appendChild(sp);
+    });
+  }
+  function render(){
+    var d=data[ch],i=+r.value,s=d.steps[i],p=d.prices[i];
+    var t=tiers.filter(function(x){return i<=x.max;})[0];
+    r.style.setProperty('--p',(i/9*100)+'%');
+    $('vol-lbl').textContent=d.label;
+    $('vol-unit').textContent=d.unit;
+    $('tier').textContent=t.name;
+    $('inc').innerHTML=t.inc.map(function(x){return '<li>'+check+'<span>'+x+'</span></li>';}).join('');
+    var go=$('go');
+    if(s===null){
+      $('vol-out').textContent='More than '+short(d.steps[8]);
+      r.setAttribute('aria-valuetext','More than '+fmt(d.steps[8])+' '+d.unit+' per month');
+      $('price').innerHTML='Custom';
+      $('unit').textContent='Volume pricing from '+d.floor+' per 1,000 '+d.unit;
+      go.classList.add('sales');go.href='#sales';
+      go.firstChild.nodeValue='Talk to sales ';
+    }else{
+      $('vol-out').textContent=fmt(s);
+      r.setAttribute('aria-valuetext',fmt(s)+' '+d.unit+' per month');
+      $('price').innerHTML='$'+fmt(p)+'<small>/mo</small>';
+      $('unit').textContent='$'+(p/s*1000).toFixed(2)+' per 1,000 '+d.unit;
+      go.classList.remove('sales');go.href='#signup';
+      go.firstChild.nodeValue='Start sending ';
+    }
+  }
+  document.querySelectorAll('.seg button').forEach(function(b){
+    b.addEventListener('click',function(){
+      ch=b.dataset.ch;
+      document.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+      buildTicks();render();
+    });
+  });
+  r.addEventListener('input',render);
+  buildTicks();render();
+})();
+</script>
+</body>
+</html>

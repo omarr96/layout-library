@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gleam &amp; Co. Packages</title>
+<meta name="description" content="Gleam & Co. mobile car detailing packages in Austin: Basic, Standard and Premium, with add-ons and online booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F3; --card:#FFFFFF; --ink:#1D1D1F; --muted:#615C55; --line:#E8E1D6;
+    --orange:#FF5A1F; --orange-ink:#B83A0B; --teal:#0F766E; --teal-soft:#E3F2EF;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .pk{padding:96px 24px 112px}
+  .wrap{max-width:1160px;margin:0 auto}
+  .cond{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase}
+  header{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end;margin-bottom:40px}
+  .eyebrow{display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:14px;letter-spacing:.12em;color:var(--orange-ink)}
+  .eyebrow svg{width:18px;height:18px}
+  h2{font-size:clamp(44px,6.4vw,78px);line-height:.92;margin:10px 0 0;font-weight:800;letter-spacing:-.01em}
+  h2 span{color:var(--orange)}
+  .lede{color:var(--muted);font-size:17.5px;margin:0}
+  fieldset{border:0;margin:0;padding:0;min-width:0}
+  legend{padding:0}
+  .sizes{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+  .sizes legend{float:left;font-weight:700;margin-right:10px;font-size:15px}
+  .chip{position:relative}
+  .chip input,.card input,.add input{position:absolute;opacity:0;pointer-events:none}
+  .chip span{display:inline-flex;gap:6px;align-items:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-weight:600;font-size:15px;cursor:pointer}
+  .chip small{color:var(--muted);font-weight:500}
+  .chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+  .chip input:checked+span small{color:#CFC8BD}
+  .chip input:focus-visible+span,.card input:focus-visible+.body,.add input:focus-visible+.box{outline:3px solid var(--orange);outline-offset:3px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{display:block;cursor:pointer;height:100%}
+  .card .body{height:100%;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:26px 24px 24px;position:relative;transition:border-color .2s,box-shadow .2s}
+  .card:hover .body{border-color:#D3C9B9}
+  .card input:checked+.body{border-color:var(--orange);box-shadow:0 18px 40px -22px rgba(255,90,31,.6)}
+  .radio{position:absolute;top:24px;right:22px;width:24px;height:24px;border-radius:50%;border:2px solid #CFC6B8;display:grid;place-items:center}
+  .card input:checked+.body .radio{border-color:var(--orange);background:var(--orange)}
+  .card input:checked+.body .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+  .card h3{font-size:30px;margin:0;font-weight:800;letter-spacing:.01em}
+  .time{color:var(--muted);font-size:14.5px;display:flex;gap:6px;align-items:center;margin-top:2px}
+  .time svg{width:15px;height:15px}
+  .from{margin:16px 0 4px;font-size:48px;font-weight:800;line-height:1}
+  .from small{font-family:"Barlow",sans-serif;font-size:14px;color:var(--muted);text-transform:none;font-weight:500;margin-left:4px;letter-spacing:0}
+  .tagl{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;background:var(--teal-soft);color:var(--teal);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+  .card ul{list-style:none;margin:18px 0 0;padding:16px 0 0;border-top:1px dashed var(--line);display:grid;gap:9px;font-size:15px}
+  .card li{display:flex;gap:9px}
+  .card li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;background:var(--teal);-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+  .card li{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+  .card li.plus{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")}
+  .card li.plus{font-weight:700}
+  .lower{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;margin-top:28px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 24px}
+  .panel h3{font-size:26px;margin:0 0 4px;font-weight:800}
+  .panel .sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+  .adds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .add{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;position:relative}
+  .add:hover{border-color:#D3C9B9}
+  .add:has(input:checked){border-color:var(--teal);background:#F6FBFA}
+  .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid #CFC6B8;display:grid;place-items:center;margin-top:1px}
+  .box::after{content:"";width:14px;height:14px;opacity:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/contain no-repeat}
+  .add input:checked+.box{background:var(--teal);border-color:var(--teal)}
+  .add input:checked+.box::after{opacity:1}
+  .add b{display:block;font-weight:600}
+  .add .ap{font-size:14px;color:var(--muted)}
+  .add.inc{opacity:.6;cursor:default}
+  .add.inc .ap{color:var(--teal);font-weight:700}
+  .sum{background:var(--ink);color:#F3EEE6;border-color:var(--ink);position:sticky;top:20px}
+  .sum h3{color:#fff}
+  .lines{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:15px;color:#CFC8BD}
+  .lines li{display:flex;justify-content:space-between;gap:12px}
+  .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #3A3833;margin-top:16px;padding-top:16px}
+  .total span:first-child{font-weight:600}
+  .total output{font-family:"Barlow Condensed",sans-serif;font-size:46px;font-weight:800;color:#fff;line-height:1}
+  .zip{margin-top:18px}
+  .zip label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+  .zip input{width:100%;font:500 16px "Barlow",sans-serif;padding:12px 14px;border-radius:12px;border:1.5px solid #4A4741;background:#2A2927;color:#fff}
+  .zip input:focus{outline:none;border-color:var(--orange)}
+  .zip input[aria-invalid="true"]{border-color:#FF8A65}
+  .err{color:#FFB39A;font-size:14px;margin:6px 0 0;min-height:20px}
+  .book{width:100%;margin-top:6px;border:0;background:var(--orange);color:#fff;font:800 22px "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:14px;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+  .book:hover{background:#FF7440}
+  .book:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .book svg{width:20px;height:20px}
+  .ok{display:none;margin-top:14px;background:#123B36;border:1px solid #1F6B62;color:#D5F5EF;border-radius:12px;padding:12px 14px;font-size:15px;gap:10px}
+  .ok.show{display:flex}
+  .ok svg{flex:none;width:20px;height:20px;color:#5EEAD4}
+  .small{font-size:13.5px;color:#A9A196;margin:12px 0 0}
+  @media (max-width:980px){
+    header{grid-template-columns:1fr;gap:16px}
+    .cards{grid-template-columns:1fr;max-width:560px}
+    .lower{grid-template-columns:1fr}
+    .sum{position:static}
+  }
+  @media (max-width:520px){
+    .pk{padding:64px 16px 80px}
+    .adds{grid-template-columns:1fr}
+    .sizes legend{float:none;width:100%;margin-bottom:4px}
+    .card .body{padding:22px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="pk" aria-labelledby="pk-title">
+  <div class="wrap">
+    <header>
+      <div>
+        <span class="eyebrow cond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5.5A2 2 0 0 1 9.4 10h5.2a2 2 0 0 1 1.9 1.5L18 17"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M12 3v3M8 4.5l1 2M16 4.5l-1 2"/></svg>Gleam &amp; Co. · Mobile detailing</span>
+        <h2 id="pk-title" class="cond">Pick a package.<br><span>We bring the shine.</span></h2>
+      </div>
+      <p class="lede">We come to your driveway or office lot anywhere in Austin with our own water and power. Choose a package, add extras, and see your price before you book.</p>
+    </header>
+
+    <form id="bk" novalidate>
+      <fieldset class="sizes">
+        <legend>Vehicle size</legend>
+        <label class="chip"><input type="radio" name="size" value="0" data-n="Sedan / coupe" checked><span>Sedan / coupe</span></label>
+        <label class="chip"><input type="radio" name="size" value="25" data-n="SUV / truck"><span>SUV / truck <small>+$25</small></span></label>
+        <label class="chip"><input type="radio" name="size" value="40" data-n="Minivan / 3-row"><span>Minivan / 3-row <small>+$40</small></span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Package</legend>
+        <div class="cards">
+          <label class="card"><input type="radio" name="pkg" value="89" data-n="Basic" data-lvl="1"><div class="body">
+            <span class="radio" aria-hidden="true"></span>
+            <h3 class="cond">Basic</h3>
+            <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 1.5 hours</div>
+            <div class="from cond">$89<small>from</small></div>
+            <ul>
+              <li>Two-bucket hand wash &amp; dry</li>
+              <li>Wheels, tires &amp; tire shine</li>
+              <li>Interior vacuum &amp; wipe-down</li>
+              <li>Streak-free glass, inside &amp; out</li>
+            </ul>
+          </div></label>
+          <label class="card"><input type="radio" name="pkg" value="169" data-n="Standard" data-lvl="2" checked><div class="body">
+            <span class="radio" aria-hidden="true"></span>
+            <span class="tagl cond">Most booked</span>
+            <h3 class="cond">Standard</h3>
+            <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 3 hours</div>
+            <div class="from cond">$169<small>from</small></div>
+            <ul>
+              <li class="plus">Everything in Basic</li>
+              <li>Clay bar decontamination</li>
+              <li>3-month paint sealant</li>
+              <li>Seat &amp; carpet shampoo</li>
+              <li>Leather clean &amp; condition</li>
+            </ul>
+          </div></label>
+          <label class="card"><input type="radio" name="pkg" value="289" data-n="Premium" data-lvl="3"><div class="body">
+            <span class="radio" aria-hidden="true"></span>
+            <h3 class="cond">Premium</h3>
+            <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 5 hours</div>
+            <div class="from cond">$289<small>from</small></div>
+            <ul>
+              <li class="plus">Everything in Standard</li>
+              <li>One-step machine polish</li>
+              <li>12-month ceramic coating</li>
+              <li>Engine bay &amp; headlight restore</li>
+              <li>Before &amp; after photo report</li>
+            </ul>
+          </div></label>
+        </div>
+      </fieldset>
+
+      <div class="lower">
+        <fieldset class="panel">
+          <legend class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Add-ons</legend>
+          <h3 class="cond" aria-hidden="true">Add-ons</h3>
+          <p class="sub">Tick anything extra — your total updates as you go.</p>
+          <div class="adds">
+            <label class="add"><input type="checkbox" name="add" value="35" data-n="Pet hair removal"><span class="box" aria-hidden="true"></span><span><b>Pet hair removal</b><span class="ap">+$35</span></span></label>
+            <label class="add"><input type="checkbox" name="add" value="45" data-n="Ozone odor treatment"><span class="box" aria-hidden="true"></span><span><b>Ozone odor treatment</b><span class="ap">+$45</span></span></label>
+            <label class="add" data-inc="3"><input type="checkbox" name="add" value="60" data-n="Headlight restoration"><span class="box" aria-hidden="true"></span><span><b>Headlight restoration</b><span class="ap">+$60</span></span></label>
+            <label class="add" data-inc="3"><input type="checkbox" name="add" value="40" data-n="Engine bay detail"><span class="box" aria-hidden="true"></span><span><b>Engine bay detail</b><span class="ap">+$40</span></span></label>
+            <label class="add"><input type="checkbox" name="add" value="20" data-n="Child seat deep clean"><span class="box" aria-hidden="true"></span><span><b>Child seat deep clean</b><span class="ap">+$20 each</span></span></label>
+            <label class="add"><input type="checkbox" name="add" value="55" data-n="Rain-repel glass coat"><span class="box" aria-hidden="true"></span><span><b>Rain-repel glass coat</b><span class="ap">+$55</span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="panel sum">
+          <h3 class="cond">Your detail</h3>
+          <ul class="lines" id="lines">
+            <li><span>Standard package</span><span>$169</span></li>
+            <li><span>Sedan / coupe</span><span>$0</span></li>
+          </ul>
+          <div class="total"><span>Estimated total</span><output id="total" for="bk" aria-live="polite">$169</output></div>
+          <div class="zip">
+            <label for="zipc">Your ZIP code</label>
+            <input id="zipc" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="e.g. 78704" aria-describedby="zip-err">
+            <p class="err" id="zip-err"></p>
+          </div>
+          <button class="book" type="submit">Book this detail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="ok" id="ok" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><span id="ok-t">Request received.</span></div>
+          <p class="small">Pay after the job. Free rescheduling up to 24 hours before.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<script>
+(function(){
+  var f=document.getElementById('bk'),lines=document.getElementById('lines'),tot=document.getElementById('total');
+  var zip=document.getElementById('zipc'),err=document.getElementById('zip-err'),ok=document.getElementById('ok');
+  function money(n){return '$'+n;}
+  function calc(){
+    var pkg=f.querySelector('input[name=pkg]:checked'),size=f.querySelector('input[name=size]:checked');
+    var lvl=+pkg.dataset.lvl,sum=+pkg.value+(+size.value);
+    var html='<li><span>'+pkg.dataset.n+' package</span><span>'+money(pkg.value)+'</span></li>';
+    html+='<li><span>'+size.dataset.n+'</span><span>'+(+size.value?'+'+money(size.value):'$0')+'</span></li>';
+    f.querySelectorAll('.add').forEach(function(l){
+      var cb=l.querySelector('input'),inc=l.dataset.inc&&lvl>=+l.dataset.inc;
+      l.classList.toggle('inc',!!inc);cb.disabled=!!inc;
+      var ap=l.querySelector('.ap');
+      if(!ap.dataset.orig)ap.dataset.orig=ap.textContent;
+      ap.textContent=inc?'Included in Premium':ap.dataset.orig;
+      if(inc)cb.checked=false;
+      if(cb.checked){sum+=+cb.value;html+='<li><span>'+cb.dataset.n+'</span><span>+'+money(cb.value)+'</span></li>';}
+    });
+    lines.innerHTML=html;tot.textContent=money(sum);
+    ok.classList.remove('show');
+    return sum;
+  }
+  f.addEventListener('change',function(e){if(e.target!==zip)calc();});
+  function validZip(){
+    var v=zip.value.trim();
+    if(!v){err.textContent='Enter your ZIP so we can check we cover your area.';}
+    else if(!/^\d{5}$/.test(v)){err.textContent='ZIP codes are 5 digits, like 78704.';}
+    else if(!/^78[67]\d\d$/.test(v)){err.textContent='Sorry — we only cover the Austin area (786xx–787xx) for now.';}
+    else{err.textContent='';zip.removeAttribute('aria-invalid');return true;}
+    zip.setAttribute('aria-invalid','true');return false;
+  }
+  zip.addEventListener('blur',function(){if(zip.value)validZip();});
+  zip.addEventListener('input',function(){if(zip.getAttribute('aria-invalid'))validZip();});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!validZip()){zip.focus();return;}
+    var total=calc(),pkg=f.querySelector('input[name=pkg]:checked').dataset.n;
+    document.getElementById('ok-t').textContent='Request sent: '+pkg+' detail, '+money(total)+'. We’ll text you within the hour to confirm a time slot.';
+    ok.classList.add('show');
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

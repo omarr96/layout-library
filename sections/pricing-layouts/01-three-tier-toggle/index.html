@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trellis Pricing</title>
+<meta name="description" content="Trellis project management pricing: Starter, Team and Business plans with monthly or yearly billing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EA; --card:#FFFDF8; --ink:#11281F; --muted:#56665E; --line:#E2DCCD;
+    --forest:#0E3B2E; --forest-2:#165440; --lime:#C6F36B; --lime-ink:#2F4A06;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .pricing{padding:96px 24px 112px}
+  .wrap{max-width:1160px;margin:0 auto}
+  header{text-align:center;max-width:640px;margin:0 auto 44px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--forest-2)}
+  .eyebrow svg{width:16px;height:16px}
+  h2{font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.035em;margin:14px 0 14px;font-weight:800}
+  .lede{color:var(--muted);font-size:18px;margin:0}
+  .billing{display:flex;align-items:center;justify-content:center;gap:14px;margin:32px 0 0;font-weight:600;font-size:15px;flex-wrap:wrap}
+  .billing .lbl{color:var(--muted);transition:color .2s}
+  .billing .lbl.on{color:var(--ink)}
+  .switch{position:relative;width:60px;height:34px;border-radius:999px;border:0;background:var(--forest);cursor:pointer;padding:0;flex:none}
+  .switch::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--lime);transition:transform .25s ease}
+  .switch[aria-checked="true"]::after{transform:translateX(26px)}
+  .switch:focus-visible{outline:3px solid var(--forest-2);outline-offset:3px}
+  .save{background:var(--lime);color:var(--lime-ink);font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;letter-spacing:.02em}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 30px 30px;display:flex;flex-direction:column;position:relative}
+  .plan h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .plan .for{margin:6px 0 22px;color:var(--muted);font-size:15px;min-height:46px}
+  .price{display:flex;align-items:baseline;gap:6px}
+  .amt{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .per{color:var(--muted);font-size:15px;font-weight:600}
+  .note{font-size:13.5px;color:var(--muted);margin:8px 0 24px;min-height:21px}
+  .note strong{color:var(--forest-2)}
+  .cta{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15.5px;padding:14px 18px;border-radius:14px;border:1.5px solid var(--forest);color:var(--forest);transition:background .2s,color .2s}
+  .cta:hover{background:var(--forest);color:#fff}
+  .cta:focus-visible{outline:3px solid var(--forest-2);outline-offset:3px}
+  .feats{list-style:none;margin:26px 0 0;padding:24px 0 0;border-top:1px solid var(--line);display:grid;gap:12px;font-size:15px}
+  .feats .head{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .feats li{display:flex;gap:10px;align-items:flex-start}
+  .feats svg{flex:none;width:20px;height:20px;margin-top:1px;color:var(--forest-2)}
+  .plan.pop{background:var(--forest);color:#EAF2EC;border-color:var(--forest);box-shadow:0 30px 60px -28px rgba(14,59,46,.6);transform:translateY(-12px)}
+  .plan.pop .for,.plan.pop .per,.plan.pop .note,.plan.pop .feats .head{color:#A9C2B6}
+  .plan.pop .note strong{color:var(--lime)}
+  .plan.pop .feats{border-color:rgba(255,255,255,.14)}
+  .plan.pop .feats svg{color:var(--lime)}
+  .plan.pop .cta{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+  .plan.pop .cta:hover{background:#D8FA95}
+  .plan.pop .cta:focus-visible{outline-color:var(--lime)}
+  .badge{position:absolute;top:-14px;left:30px;background:var(--lime);color:var(--lime-ink);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;display:inline-flex;gap:6px;align-items:center}
+  .badge svg{width:13px;height:13px}
+  .foot{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:44px;color:var(--muted);font-size:14.5px;font-weight:600}
+  .foot span{display:inline-flex;gap:8px;align-items:center}
+  .foot svg{width:18px;height:18px;color:var(--forest-2)}
+  .amt{transition:opacity .18s}
+  .amt.fade{opacity:.25}
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;gap:30px}
+    .plan.pop{transform:none}
+    .plan .for{min-height:0}
+  }
+  @media (max-width:480px){
+    .pricing{padding:64px 16px 80px}
+    .plan{padding:28px 22px 24px}
+    .amt{font-size:44px}
+    .lede{font-size:16.5px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="pricing" aria-labelledby="pricing-title">
+  <div class="wrap">
+    <header>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Trellis pricing</span>
+      <h2 id="pricing-title">Plans that grow with your roadmap</h2>
+      <p class="lede">Boards, timelines and sprint planning for teams who ship. Every plan starts with a 14-day trial of Team — no card needed.</p>
+      <div class="billing">
+        <span class="lbl on" id="lbl-m">Monthly</span>
+        <button class="switch" id="billing" role="switch" aria-checked="false" aria-labelledby="lbl-y"></button>
+        <span class="lbl" id="lbl-y">Yearly</span>
+        <span class="save">Save up to 20%</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <article class="plan" aria-labelledby="p1">
+        <h3 id="p1">Starter</h3>
+        <p class="for">For small crews getting their first projects off spreadsheets.</p>
+        <div class="price"><span class="amt" data-m="9" data-y="7">$9</span><span class="per">/ user / mo</span></div>
+        <p class="note" data-m="Billed monthly. Cancel anytime." data-y="$84 billed yearly · &lt;strong&gt;you save $24&lt;/strong&gt;">Billed monthly. Cancel anytime.</p>
+        <a class="cta" href="#start">Start with Starter</a>
+        <ul class="feats">
+          <li class="head">Includes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Up to 10 members</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Unlimited boards &amp; tasks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>List, board &amp; calendar views</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 GB file storage</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Email support, 2-day reply</li>
+        </ul>
+      </article>
+
+      <article class="plan pop" aria-labelledby="p2">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z"/></svg>Most popular</span>
+        <h3 id="p2">Team</h3>
+        <p class="for">For product teams running sprints across several projects.</p>
+        <div class="price"><span class="amt" data-m="19" data-y="15">$19</span><span class="per">/ user / mo</span></div>
+        <p class="note" data-m="Billed monthly. Cancel anytime." data-y="$180 billed yearly · &lt;strong&gt;you save $48&lt;/strong&gt;">Billed monthly. Cancel anytime.</p>
+        <a class="cta" href="#trial">Start 14-day free trial</a>
+        <ul class="feats">
+          <li class="head">Everything in Starter, plus</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Unlimited members &amp; guests</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Timelines &amp; dependencies</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sprint planning &amp; burndown</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>250 automation runs / month</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>100 GB storage · priority chat</li>
+        </ul>
+      </article>
+
+      <article class="plan" aria-labelledby="p3">
+        <h3 id="p3">Business</h3>
+        <p class="for">For departments that need portfolios, controls and audit trails.</p>
+        <div class="price"><span class="amt" data-m="32" data-y="26">$32</span><span class="per">/ user / mo</span></div>
+        <p class="note" data-m="Billed monthly. Cancel anytime." data-y="$312 billed yearly · &lt;strong&gt;you save $72&lt;/strong&gt;">Billed monthly. Cancel anytime.</p>
+        <a class="cta" href="#sales">Contact sales</a>
+        <ul class="feats">
+          <li class="head">Everything in Team, plus</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Portfolios &amp; workload view</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>SAML SSO &amp; SCIM provisioning</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Unlimited automations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Audit log &amp; 1-year history</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Dedicated success manager</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="foot">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>SOC 2 Type II</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>30-day money-back guarantee</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Nonprofits get 50% off</span>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var sw=document.getElementById('billing');
+  var lm=document.getElementById('lbl-m'), ly=document.getElementById('lbl-y');
+  var amts=document.querySelectorAll('.amt'), notes=document.querySelectorAll('.note');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function render(yearly){
+    var k=yearly?'y':'m';
+    sw.setAttribute('aria-checked',String(yearly));
+    lm.classList.toggle('on',!yearly); ly.classList.toggle('on',yearly);
+    amts.forEach(function(a){
+      if(reduce){a.textContent='$'+a.dataset[k];return;}
+      a.classList.add('fade');
+      setTimeout(function(){a.textContent='$'+a.dataset[k];a.classList.remove('fade');},160);
+    });
+    notes.forEach(function(n){n.innerHTML=n.dataset[k];});
+  }
+  sw.addEventListener('click',function(){render(sw.getAttribute('aria-checked')!=='true');});
+  lm.addEventListener('click',function(){render(false);});
+  ly.addEventListener('click',function(){render(true);});
+  lm.style.cursor=ly.style.cursor='pointer';
+})();
+</script>
+</body>
+</html>

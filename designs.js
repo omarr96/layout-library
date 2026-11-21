@@ -80,6 +80,103 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "pricing-gallery",
+      "title": "Pricing layouts · all 5",
+      "desc": "Gallery of 5 pricing sections, each a different layout.",
+      "tags": [
+        "Pricing",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/pricing-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "pricing-01-three-tier-toggle",
+      "title": "Pricing 01 · Trellis",
+      "desc": "3 plans with monthly/yearly switch · project-management app.",
+      "tags": [
+        "Pricing"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/pricing-layouts/01-three-tier-toggle/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "pricing-02-comparison-table",
+      "title": "Pricing 02 · Pagecraft",
+      "desc": "Full comparison table · website builder · plan picker on phone.",
+      "tags": [
+        "Pricing"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/pricing-layouts/02-comparison-table/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "pricing-03-usage-slider",
+      "title": "Pricing 03 · Relaypost",
+      "desc": "Usage slider, live price · email/SMS API · talk to sales.",
+      "tags": [
+        "Pricing"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/pricing-layouts/03-usage-slider/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "pricing-04-service-packages",
+      "title": "Pricing 04 · Gleam & Co.",
+      "desc": "Service packages + add-ons total · car detailing · book.",
+      "tags": [
+        "Pricing"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/pricing-layouts/04-service-packages/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "pricing-05-membership-cards",
+      "title": "Pricing 05 · Kiln",
+      "desc": "Membership cards with £/€/$ switch · yoga & strength studio.",
+      "tags": [
+        "Pricing"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/pricing-layouts/05-membership-cards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "about-gallery",
       "title": "About layouts · all 10",
       "desc": "Gallery of 10 about sections, each a different layout.",

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagecraft Plan Comparison</title>
+<meta name="description" content="Compare Pagecraft website builder plans: Free, Personal, Pro and Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFF; --card:#FFFFFF; --ink:#10153A; --muted:#5B6185; --line:#E6E6F2; --soft:#F3F1FF;
+    --violet:#6D4AFF; --violet-ink:#4A2BD6; --coral:#FF6B57;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .cmp-sec{padding:96px 24px 112px}
+  .wrap{max-width:1120px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:40px;flex-wrap:wrap}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--violet-ink)}
+  h2{font-weight:500;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-.03em;margin:12px 0 0;max-width:620px}
+  h2 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;color:var(--violet);letter-spacing:-.01em}
+  .lede{max-width:360px;color:var(--muted);margin:0;font-size:16.5px}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:20px;font-size:15px}
+  thead th{position:sticky;top:0;z-index:3;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:22px 18px 18px;text-align:left;vertical-align:bottom;border-bottom:1px solid var(--line)}
+  thead th:first-child{border-top-left-radius:20px}
+  thead th:last-child{border-top-right-radius:20px}
+  .pn{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--coral);color:#fff;padding:3px 8px;border-radius:999px}
+  .pp{margin:6px 0 14px;color:var(--muted);font-weight:500;font-size:14px}
+  .pp b{font-size:30px;color:var(--ink);letter-spacing:-.03em;font-weight:700;margin-right:2px}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14px;padding:10px 16px;border-radius:10px;border:1.5px solid var(--line);color:var(--ink);white-space:nowrap}
+  .btn:hover{border-color:var(--violet);color:var(--violet-ink)}
+  .btn.pri{background:var(--violet);border-color:var(--violet);color:#fff}
+  .btn.pri:hover{background:var(--violet-ink)}
+  .btn:focus-visible,.tipb:focus-visible,.pick button:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+  thead .hl,tbody td.c3{background:var(--soft)}
+  thead th.hl{background:rgba(243,241,255,.97)}
+  .intro{font-family:"Instrument Serif",serif;font-size:26px;font-weight:400;color:var(--muted);line-height:1.1}
+  .grp th{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--violet-ink);text-align:left;padding:26px 18px 10px;font-weight:700;border-bottom:1px solid var(--line)}
+  tbody tr:not(.grp) th{font-weight:500;text-align:left;padding:14px 18px;position:relative;width:34%}
+  tbody td{padding:14px 18px;color:var(--ink);font-weight:500}
+  tbody tr:not(.grp):not(:last-child) th,tbody tr:not(.grp):not(:last-child) td{border-bottom:1px solid var(--line)}
+  tbody:last-child tr:last-child td.c3{border-bottom-right-radius:0}
+  .y,.n{display:inline-block;width:22px;height:22px;border-radius:50%;vertical-align:middle}
+  .y{background:var(--violet) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+  .n{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A4A8C4' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M7 12h10'/%3E%3C/svg%3E") center/16px no-repeat}
+  .tipw{display:inline}
+  .tipb{width:20px;height:20px;border-radius:50%;border:1.5px solid #B9BCD6;background:#fff;color:var(--muted);font:700 11px/1 "DM Sans",sans-serif;cursor:help;padding:0;margin-left:4px;vertical-align:1px}
+  .tipb:hover{border-color:var(--violet);color:var(--violet)}
+  .tip{position:absolute;left:14px;top:calc(100% - 4px);z-index:5;width:min(280px,calc(100vw - 56px));background:var(--ink);color:#fff;font-size:13.5px;font-weight:400;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 12px 30px -10px rgba(16,21,58,.5);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility .15s}
+  .tipw:hover .tip,.tipb:focus+.tip{opacity:1;visibility:visible;transform:none}
+  .tipw.off .tip{opacity:0!important;visibility:hidden!important}
+  .pick{display:none}
+  @media (max-width:1024px) and (min-width:761px){.cw{display:none}.intro{font-size:22px}tbody tr:not(.grp) th{width:30%}thead th,tbody td,tbody tr:not(.grp) th{padding-left:14px;padding-right:14px}.btn{padding:9px 14px}}
+  .fine{margin:22px 0 0;color:var(--muted);font-size:14px;text-align:center}
+  .fine a{color:var(--violet-ink);font-weight:600}
+  @media (max-width:760px){
+    .cmp-sec{padding:64px 16px 80px}
+    .pick{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:#ECEBF7;padding:4px;border-radius:12px;margin-bottom:14px;position:sticky;top:8px;z-index:6}
+    .pick button{border:0;background:transparent;font:600 14px "DM Sans",sans-serif;color:var(--muted);padding:10px 4px;border-radius:9px;cursor:pointer}
+    .pick button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(16,21,58,.15)}
+    .pc{display:none}
+    .cmp[data-show="1"] .c1,.cmp[data-show="2"] .c2,.cmp[data-show="3"] .c3,.cmp[data-show="4"] .c4{display:table-cell}
+    thead th{top:62px;padding:16px 14px}
+    thead th:first-child{vertical-align:bottom}
+    .intro{font-size:20px}
+    tbody tr:not(.grp) th{width:56%;padding:13px 14px;font-size:14.5px}
+    tbody td{padding:13px 14px;font-size:14.5px}
+    .grp th{padding:22px 14px 8px}
+    thead th.pc{text-align:left}
+    tbody td.c3{background:transparent}
+    thead th.hl{background:rgba(255,255,255,.97)}
+  }
+  @media (max-width:760px){ .js-off .pc{display:table-cell} }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="cmp-sec" aria-labelledby="cmp-title">
+  <div class="wrap">
+    <header>
+      <div>
+        <span class="eyebrow">Compare plans</span>
+        <h2 id="cmp-title">Every feature, <em>side by side</em></h2>
+      </div>
+      <p class="lede">Start free, upgrade when your site needs a domain, a shop or a team. Prices shown billed yearly; monthly is 25% more.</p>
+    </header>
+
+    <div class="pick" role="group" aria-label="Choose a plan to view">
+      <button type="button" data-p="1" aria-pressed="false">Free</button>
+      <button type="button" data-p="2" aria-pressed="false">Personal</button>
+      <button type="button" data-p="3" aria-pressed="true">Pro</button>
+      <button type="button" data-p="4" aria-pressed="false">Studio</button>
+    </div>
+
+    <table class="cmp js-off" data-show="3">
+      <caption class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Pagecraft plan comparison</caption>
+      <thead>
+        <tr>
+          <th scope="col"><span class="intro">Pick the plan that fits your site.</span></th>
+          <th scope="col" class="pc c1"><div class="pn">Free</div><div class="pp"><b>$0</b>forever</div><a class="btn" href="#free">Start free</a></th>
+          <th scope="col" class="pc c2"><div class="pn">Personal</div><div class="pp"><b>$9</b>/mo</div><a class="btn" href="#personal"><span class="cw">Choose </span>Personal</a></th>
+          <th scope="col" class="pc c3 hl"><div class="pn">Pro <span class="tag">Popular</span></div><div class="pp"><b>$21</b>/mo</div><a class="btn pri" href="#pro"><span class="cw">Choose </span>Pro</a></th>
+          <th scope="col" class="pc c4"><div class="pn">Studio</div><div class="pp"><b>$45</b>/mo</div><a class="btn" href="#studio"><span class="cw">Choose </span>Studio</a></th>
+        </tr>
+      </thead>
+<tbody><tr class="grp"><th scope="colgroup" colspan="5">Sites & pages</th></tr>
+<tr><th scope="row">Websites</th><td class="pc c1">1</td><td class="pc c2">1</td><td class="pc c3">3</td><td class="pc c4">10</td></tr>
+<tr><th scope="row">Pages per site</th><td class="pc c1">5</td><td class="pc c2">Unlimited</td><td class="pc c3">Unlimited</td><td class="pc c4">Unlimited</td></tr>
+<tr><th scope="row">Custom domain <span class="tipw"><button type="button" class="tipb" aria-describedby="t4537" aria-label="More about Custom domain">i</button><span role="tooltip" id="t4537" class="tip">Connect a domain you own, or buy one through us. Pro and Studio include the first year free.</span></span></th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c3"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+<tr><th scope="row">Remove Pagecraft badge</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c3"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+<tr><th scope="row">Storage</th><td class="pc c1">500 MB</td><td class="pc c2">10 GB</td><td class="pc c3">50 GB</td><td class="pc c4">200 GB</td></tr>
+</tbody>
+<tbody><tr class="grp"><th scope="colgroup" colspan="5">Design & content</th></tr>
+<tr><th scope="row">Templates</th><td class="pc c1">40</td><td class="pc c2">300+</td><td class="pc c3">300+</td><td class="pc c4">300+</td></tr>
+<tr><th scope="row">Custom code blocks <span class="tipw"><button type="button" class="tipb" aria-describedby="t2489" aria-label="More about Custom code blocks">i</button><span role="tooltip" id="t2489" class="tip">Add your own HTML, CSS and JS snippets to any page or to the site header.</span></span></th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+<tr><th scope="row">Blog & CMS collections</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2">2</td><td class="pc c3">20</td><td class="pc c4">Unlimited</td></tr>
+<tr><th scope="row">AI copy assistant</th><td class="pc c1">20 / mo</td><td class="pc c2">200 / mo</td><td class="pc c3">Unlimited</td><td class="pc c4">Unlimited</td></tr>
+</tbody>
+<tbody><tr class="grp"><th scope="colgroup" colspan="5">Selling online</th></tr>
+<tr><th scope="row">Online store</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3"><span class="y" role="img" aria-label="Included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+<tr><th scope="row">Products</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3">500</td><td class="pc c4">Unlimited</td></tr>
+<tr><th scope="row">Transaction fee <span class="tipw"><button type="button" class="tipb" aria-describedby="t8734" aria-label="More about Transaction fee">i</button><span role="tooltip" id="t8734" class="tip">Charged on top of your payment processor's own fee. Studio has no Pagecraft fee at all.</span></span></th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3">1%</td><td class="pc c4">0%</td></tr>
+<tr><th scope="row">Memberships & gated pages</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+</tbody>
+<tbody><tr class="grp"><th scope="colgroup" colspan="5">Team & support</th></tr>
+<tr><th scope="row">Editors</th><td class="pc c1">1</td><td class="pc c2">2</td><td class="pc c3">5</td><td class="pc c4">Unlimited</td></tr>
+<tr><th scope="row">Client billing & handoff</th><td class="pc c1"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c2"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c3"><span class="n" role="img" aria-label="Not included"></span></td><td class="pc c4"><span class="y" role="img" aria-label="Included"></span></td></tr>
+<tr><th scope="row">Support</th><td class="pc c1">Help centre</td><td class="pc c2">Email</td><td class="pc c3">Priority chat</td><td class="pc c4">Phone + chat</td></tr>
+</tbody>
+
+    </table>
+    <p class="fine">All paid plans include SSL, daily backups and a 14-day refund window. <a href="#faq">Read billing FAQ</a></p>
+  </div>
+</section>
+<script>
+(function(){
+  var t=document.querySelector('.cmp'); t.classList.remove('js-off');
+  var btns=document.querySelectorAll('.pick button');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      t.setAttribute('data-show',b.dataset.p);
+      btns.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+    });
+  });
+  document.querySelectorAll('.tipw').forEach(function(w){
+    var btn=w.querySelector('.tipb');
+    btn.addEventListener('keydown',function(e){if(e.key==='Escape'){w.classList.add('off');}});
+    btn.addEventListener('blur',function(){w.classList.remove('off');});
+    w.addEventListener('mouseleave',function(){w.classList.remove('off');});
+    btn.addEventListener('click',function(){btn.focus();});
+  });
+})();
+</script>
+</body>
+</html>
