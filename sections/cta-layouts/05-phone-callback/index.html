@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightwater Plumbing — Request a callback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Saira+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#e7f0f9;
+    --navy:#0f2742;
+    --navy-2:#173a5f;
+    --yellow:#ffc629;
+    --red:#d93a2b;
+    --ink:#10202f;
+    --muted:#4f6275;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--sky)}
+  body{font-family:'Rubik',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 32px;-webkit-font-smoothing:antialiased}
+  .cta{width:100%;max-width:1180px;display:grid;grid-template-columns:1fr 1.05fr;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(15,39,66,.6)}
+  .left{background:var(--navy);color:#fff;padding:60px 54px;position:relative;overflow:hidden}
+  .left::after{content:"";position:absolute;right:-90px;bottom:-90px;width:300px;height:300px;border-radius:50%;border:40px solid rgba(255,198,41,.08)}
+  .live{display:inline-flex;align-items:center;gap:10px;background:rgba(217,58,43,.16);color:#ffb3aa;border:1px solid rgba(217,58,43,.5);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
+  .live i{width:8px;height:8px;border-radius:50%;background:#ff5a47;animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .left h2{font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,56px);line-height:.98;text-transform:uppercase;letter-spacing:.005em;margin:24px 0 16px}
+  .left h2 span{color:var(--yellow)}
+  .left > p{font-size:17px;line-height:1.6;color:#bcd0e4;max-width:40ch}
+  .emergency{position:relative;z-index:1;display:block;margin:34px 0 10px;text-decoration:none;color:#fff;background:var(--navy-2);border:2px solid var(--yellow);border-radius:18px;padding:22px 24px;transition:background .2s,transform .2s}
+  .emergency:hover{background:#1d4673;transform:translateY(-2px)}
+  .emergency small{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--yellow);letter-spacing:.06em;text-transform:uppercase}
+  .emergency small svg{width:18px;height:18px}
+  .emergency strong{display:block;font-family:'Saira Condensed',sans-serif;font-weight:800;font-size:clamp(40px,4.8vw,60px);line-height:1;letter-spacing:.01em;margin-top:8px;white-space:nowrap}
+  .emergency span{display:block;font-size:14px;color:#bcd0e4;margin-top:6px}
+  .left a:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+  .points{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin-top:30px;position:relative;z-index:1}
+  .points li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.4;color:#dbe6f1}
+  .points svg{flex:none;width:20px;height:20px;color:var(--yellow);margin-top:1px}
+  .right{background:#fff;padding:60px 54px}
+  .right h3{font-size:26px;font-weight:700;letter-spacing:-.015em}
+  .right .sub{font-size:16px;color:var(--muted);margin-top:8px;line-height:1.5}
+  form{margin-top:28px;display:grid;gap:20px}
+  .f label,.f legend{display:block;font-weight:600;font-size:15px;margin-bottom:8px;color:var(--ink)}
+  .f input,.f select{width:100%;font:400 16.5px 'Rubik',sans-serif;color:var(--ink);background:#f6f9fc;border:1.5px solid #c8d5e2;border-radius:12px;padding:14px 16px;transition:border-color .2s,box-shadow .2s;appearance:none}
+  .f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2742' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
+  .f input:focus,.f select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(15,39,66,.14);background:#fff}
+  .f input[aria-invalid="true"]{border-color:var(--red);background:#fff6f5}
+  .err{display:none;align-items:center;gap:6px;color:#b42318;font-size:14px;margin-top:7px}
+  .err.show{display:flex}
+  .err svg{width:16px;height:16px;flex:none}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  fieldset{border:0;min-width:0}
+  .times{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .times input{position:absolute;opacity:0;width:1px;height:1px}
+  .times label{display:flex;flex-direction:column;align-items:center;gap:2px;margin:0;cursor:pointer;border:1.5px solid #c8d5e2;border-radius:12px;padding:11px 6px;font-weight:600;font-size:15px;text-align:center;transition:all .15s}
+  .times label small{font-weight:400;font-size:12.5px;color:var(--muted)}
+  .times label:hover{border-color:var(--navy)}
+  .times input:checked + label{background:var(--navy);border-color:var(--navy);color:#fff}
+  .times input:checked + label small{color:#bcd0e4}
+  .times input:focus-visible + label{outline:3px solid var(--yellow);outline-offset:2px}
+  .submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;cursor:pointer;background:var(--yellow);color:var(--navy);font:700 17.5px 'Rubik',sans-serif;padding:18px;border-radius:14px;transition:background .2s,transform .2s}
+  .submit:hover{background:#ffd457;transform:translateY(-1px)}
+  .submit:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+  .submit svg{width:20px;height:20px}
+  .note{font-size:13.5px;color:var(--muted);text-align:center;line-height:1.5}
+  .done{display:none;text-align:center;padding:40px 10px}
+  .done.show{display:block}
+  .done .ic{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;background:#e5f6ec;color:#1b7a43;display:grid;place-items:center}
+  .done .ic svg{width:34px;height:34px}
+  .done h3{font-size:26px}
+  .done p{color:var(--muted);font-size:16.5px;line-height:1.55;margin-top:10px}
+  .done button{margin-top:22px;background:none;border:0;color:var(--navy);font:600 15px 'Rubik',sans-serif;text-decoration:underline;cursor:pointer}
+  @media (max-width:980px){
+    .cta{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    body{padding:32px 16px}
+    .left,.right{padding:36px 22px}
+    .points{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr}
+    .times{grid-template-columns:repeat(2,1fr)}
+    .emergency{padding:18px}
+  }
+  @media (prefers-reduced-motion:reduce){.live i{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="left">
+    <span class="live"><i aria-hidden="true"></i>Engineers on call now</span>
+    <h2 id="cta-title">Leak, no heat, <span>no hot water?</span></h2>
+    <p>Leave your number and a local engineer will call you back to talk it through and give you a fixed price before anyone visits.</p>
+    <a class="emergency" href="tel:+441615550199">
+      <small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>24/7 emergency line</small>
+      <strong>0161 555 0199</strong>
+      <span>Burst pipe or gas smell? Call now, don't wait for a callback.</span>
+    </a>
+    <ul class="points">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Average arrival 52 minutes across Greater Manchester</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/></svg>Fixed quotes, no call-out charge</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>Registered heating engineers, fully insured</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>4.9 from 1,860 local reviews</li>
+    </ul>
+  </div>
+
+  <div class="right">
+    <div id="form-wrap">
+      <h3>Request a callback</h3>
+      <p class="sub">Brightwater Plumbing &amp; Heating. We call back within 15 minutes, 7am to 10pm.</p>
+      <form id="cb" novalidate>
+        <div class="row">
+          <div class="f">
+            <label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name" required aria-describedby="name-err">
+            <p class="err" id="name-err" aria-live="polite"></p>
+          </div>
+          <div class="f">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="07700 900123" required aria-describedby="phone-err">
+            <p class="err" id="phone-err" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="f">
+          <label for="issue">What's the problem? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+          <select id="issue" name="issue">
+            <option>Leak or dripping pipe</option>
+            <option>Boiler or no heating</option>
+            <option>No hot water</option>
+            <option>Blocked drain or toilet</option>
+            <option>New bathroom or installation</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <fieldset class="f">
+          <legend>Best time to call</legend>
+          <div class="times">
+            <input type="radio" name="time" id="t1" value="as soon as possible" checked><label for="t1">ASAP<small>~15 min</small></label>
+            <input type="radio" name="time" id="t2" value="this morning"><label for="t2">Morning<small>7–12</small></label>
+            <input type="radio" name="time" id="t3" value="this afternoon"><label for="t3">Afternoon<small>12–5</small></label>
+            <input type="radio" name="time" id="t4" value="this evening"><label for="t4">Evening<small>5–10</small></label>
+          </div>
+        </fieldset>
+        <button class="submit" type="submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          Call me back</button>
+        <p class="note">We only use your number to arrange this job. No sales calls.</p>
+      </form>
+    </div>
+    <div class="done" id="done" role="status" tabindex="-1">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></div>
+      <h3>Thanks, we're on it</h3>
+      <p id="done-text"></p>
+      <button type="button" id="again">Request another callback</button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var form=document.getElementById('cb'),wrap=document.getElementById('form-wrap'),done=document.getElementById('done'),
+      txt=document.getElementById('done-text'),name=document.getElementById('name'),phone=document.getElementById('phone');
+  var icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>';
+  var rules={
+    name:function(v){return v.trim().length<2?'Please tell us your name.':'';},
+    phone:function(v){var d=v.replace(/[^\d]/g,'');if(!d)return 'We need a number to call you on.';
+      if(d.indexOf('44')===0)d='0'+d.slice(2);
+      return (d.length<10||d.length>11||d.charAt(0)!=='0')?'Enter a UK number, e.g. 07700 900123.':'';}
+  };
+  function validate(el){
+    var msg=rules[el.id](el.value),box=document.getElementById(el.id+'-err');
+    el.setAttribute('aria-invalid',msg?'true':'false');
+    box.innerHTML=msg?icon+'<span>'+msg+'</span>':'';box.classList.toggle('show',!!msg);
+    return !msg;
+  }
+  [name,phone].forEach(function(el){
+    el.addEventListener('blur',function(){if(el.value)validate(el);});
+    el.addEventListener('input',function(){if(el.getAttribute('aria-invalid')==='true')validate(el);});
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var a=validate(name),b=validate(phone);
+    if(!a){name.focus();return;} if(!b){phone.focus();return;}
+    var t=form.querySelector('input[name="time"]:checked').value;
+    txt.textContent='We’ll call '+name.value.trim().split(' ')[0]+' on '+phone.value.trim()+' '+t+
+      (t==='as soon as possible'?', usually within 15 minutes.':'.')+' Reference BW-'+(4800+Math.floor(Math.random()*900))+'.';
+    wrap.hidden=true;done.classList.add('show');done.focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    form.reset();[name,phone].forEach(function(el){el.removeAttribute('aria-invalid');});
+    done.classList.remove('show');wrap.hidden=false;name.focus();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Commons Dispatch — Newsletter sign-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ede1;
+    --paper-2:#ebe3d2;
+    --ink:#1c1a17;
+    --tomato:#d9402a;
+    --olive:#5f5d33;
+    --muted:#5c564b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper)}
+  body{font-family:'Work Sans',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 32px;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:1120px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);padding:18px 0 64px}
+  .rule{display:flex;justify-content:space-between;gap:16px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid var(--ink)}
+  .rule span:last-child{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:72px;margin-top:56px;align-items:start}
+  h2{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:.98;letter-spacing:-.025em}
+  h2 em{color:var(--tomato)}
+  .lede{font-size:18px;line-height:1.6;color:var(--muted);margin:24px 0 36px;max-width:52ch}
+  form{max-width:560px}
+  label.vh,.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .field{display:flex;background:#fffaf0;border:1.5px solid var(--ink);border-radius:4px;padding:6px;transition:box-shadow .2s}
+  .field:focus-within{box-shadow:5px 5px 0 var(--ink)}
+  .field.err{border-color:var(--tomato)}
+  .field.err:focus-within{box-shadow:5px 5px 0 var(--tomato)}
+  input{flex:1;min-width:0;border:0;background:transparent;font:500 17px 'Work Sans',sans-serif;color:var(--ink);padding:14px 14px}
+  input::placeholder{color:#8f8776}
+  input:focus{outline:none}
+  button{flex:none;border:0;cursor:pointer;background:var(--ink);color:var(--paper);font:600 16px 'Work Sans',sans-serif;padding:0 26px;border-radius:2px;display:inline-flex;align-items:center;gap:10px;transition:background .2s}
+  button:hover{background:var(--tomato)}
+  button:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+  button svg{width:18px;height:18px}
+  button[aria-busy="true"]{opacity:.7;cursor:progress}
+  .msg{min-height:24px;margin-top:12px;font-size:14.5px;color:var(--tomato);font-weight:500;display:flex;gap:8px;align-items:center}
+  .msg svg{width:17px;height:17px;flex:none}
+  .privacy{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--muted);margin-top:4px}
+  .privacy svg{width:18px;height:18px;flex:none;margin-top:1px;color:var(--olive)}
+  .privacy a{color:var(--ink)}
+  .success{display:none;max-width:560px;background:#fffaf0;border:1.5px solid var(--ink);box-shadow:5px 5px 0 var(--olive);padding:24px 26px;border-radius:4px}
+  .success.show{display:flex;gap:18px;align-items:flex-start}
+  .success .tick{flex:none;width:44px;height:44px;border-radius:50%;background:var(--olive);color:#fff;display:grid;place-items:center}
+  .success .tick svg{width:22px;height:22px}
+  .success h3{font-family:'Newsreader',serif;font-weight:600;font-size:24px;line-height:1.2}
+  .success p{font-size:15.5px;line-height:1.55;color:var(--muted);margin-top:6px}
+  .success b{color:var(--ink);word-break:break-all}
+  .count{display:flex;align-items:center;gap:14px;margin-top:36px;font-size:14.5px;color:var(--muted)}
+  .count strong{color:var(--ink)}
+  .dots{display:flex}
+  .dots i{width:30px;height:30px;border-radius:50%;border:2px solid var(--paper);margin-left:-8px;display:block}
+  .dots i:first-child{margin-left:0}
+  aside{background:var(--paper-2);border-left:1px solid var(--ink);padding:28px 30px}
+  aside h3{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);margin-bottom:6px}
+  ol{list-style:none}
+  li{padding:20px 0;border-bottom:1px solid rgba(28,26,23,.18)}
+  li:last-child{border-bottom:0;padding-bottom:4px}
+  li small{font-size:12.5px;font-weight:600;color:var(--tomato);letter-spacing:.06em;text-transform:uppercase}
+  li p{font-family:'Newsreader',serif;font-size:21px;line-height:1.25;margin-top:6px}
+  li span{display:block;font-size:13.5px;color:var(--muted);margin-top:6px}
+  @media (max-width:900px){
+    .grid{grid-template-columns:1fr;gap:48px}
+  }
+  @media (max-width:560px){
+    body{padding:40px 16px}
+    .rule{flex-direction:column;gap:4px}
+    .grid{margin-top:36px}
+    .field{flex-direction:column;padding:6px;gap:6px}
+    button{justify-content:center;padding:16px 20px}
+    aside{padding:22px 20px;border-left:0;border-top:1px solid var(--ink)}
+    li p{font-size:19px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="cta-title">
+  <div class="rule"><span>The Commons Dispatch</span><span>Every Sunday, 7am · Issue 212</span></div>
+  <div class="grid">
+    <div>
+      <h2 id="cta-title">The week in cities, <em>read in eleven minutes.</em></h2>
+      <p class="lede">One email every Sunday: the housing, transit and public-space stories worth your attention, with the context most headlines leave out. Written by two urban reporters, not an algorithm.</p>
+
+      <form id="signup" novalidate>
+        <label class="vh" for="email">Email address</label>
+        <div class="field" id="field">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-msg privacy" required>
+          <button type="submit" id="submit">Subscribe free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <p class="msg" id="email-msg" aria-live="polite"></p>
+        <p class="privacy" id="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <span>No ads, no tracking pixels, never sold or shared. One-click unsubscribe in every issue. <a href="#privacy">Privacy policy</a>.</span></p>
+      </form>
+
+      <div class="success" id="success" role="status" tabindex="-1">
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span>
+        <div><h3>Nearly there. Check your inbox.</h3><p>We sent a confirmation link to <b id="sent-to"></b>. Click it and your first issue arrives this Sunday.</p></div>
+      </div>
+
+      <div class="count">
+        <span class="dots" aria-hidden="true"><i style="background:#d9402a"></i><i style="background:#5f5d33"></i><i style="background:#c9a66b"></i><i style="background:#1c1a17"></i></span>
+        <span>Read by <strong>48,300</strong> planners, councillors and curious residents · 61% open rate</span>
+      </div>
+    </div>
+
+    <aside aria-labelledby="recent-title">
+      <h3 id="recent-title">Recent issues</h3>
+      <ol>
+        <li><small>No. 211 · Housing</small><p>Why Leeds approved 4,000 homes in a year and Bristol managed 900</p><span>9 min read</span></li>
+        <li><small>No. 210 · Transit</small><p>The quiet success of the night bus nobody wanted to fund</p><span>12 min read</span></li>
+        <li><small>No. 209 · Public space</small><p>What happened when one street removed every parking space</p><span>10 min read</span></li>
+      </ol>
+    </aside>
+  </div>
+</section>
+<script>
+(function(){
+  var form=document.getElementById('signup'),input=document.getElementById('email'),
+      field=document.getElementById('field'),msg=document.getElementById('email-msg'),
+      btn=document.getElementById('submit'),ok=document.getElementById('success'),sent=document.getElementById('sent-to');
+  var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>';
+  function check(){
+    var v=input.value.trim();
+    if(!v) return 'Please enter your email address.';
+    if(!re.test(v)) return 'That doesn’t look like a full email address, e.g. name@domain.com.';
+    return '';
+  }
+  function show(err){
+    field.classList.toggle('err',!!err);
+    input.setAttribute('aria-invalid',err?'true':'false');
+    msg.innerHTML=err?icon+'<span>'+err+'</span>':'';
+  }
+  input.addEventListener('input',function(){ if(field.classList.contains('err')) show(check()); });
+  input.addEventListener('blur',function(){ if(input.value.trim()) show(check()); });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=check(); show(err);
+    if(err){ input.focus(); return; }
+    btn.setAttribute('aria-busy','true'); btn.disabled=true;
+    btn.firstChild.nodeValue='Subscribing… ';
+    setTimeout(function(){
+      sent.textContent=input.value.trim();
+      form.hidden=true; ok.classList.add('show'); ok.focus();
+    },700);
+  });
+})();
+</script>
+</body>
+</html>

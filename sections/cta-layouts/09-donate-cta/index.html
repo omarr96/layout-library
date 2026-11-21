@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wellspring Water Trust — Donate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#F6EFE4;--forest:#1F4D3A;--ochre:#E3A72F;--clay:#B5532E;--ink:#1d2a24;--muted:#5d6a62;--line:#e3d8c6;--white:#fffdf9}
+*{box-sizing:border-box;margin:0;padding:0}
+.box>*{min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--sand);color:var(--ink);font-family:"Work Sans",system-ui,sans-serif;line-height:1.55;padding:96px 24px;overflow-x:hidden}
+.box{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(31,77,58,.45)}
+.story{background:var(--forest);color:#eef3ee;padding:56px;position:relative;overflow:hidden}
+.story .eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre)}
+h2{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(36px,4.4vw,54px);line-height:1.05;letter-spacing:-.015em;margin:16px 0 18px;position:relative}
+h2 em{font-style:italic;font-weight:500;color:var(--ochre)}
+.story p{color:#c9d8cf;font-size:17px;max-width:440px;position:relative}
+.appeal{margin-top:40px;position:relative;max-width:440px}
+.appeal .top{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#c9d8cf}
+.appeal .top b{font-family:Fraunces,serif;font-size:30px;color:#fff;font-weight:700}
+.bar{height:12px;border-radius:12px;background:rgba(255,255,255,.14);margin:12px 0 10px;overflow:hidden}
+.bar i{display:block;height:100%;width:74.6%;border-radius:12px;background:linear-gradient(90deg,var(--ochre),#f2c66b)}
+.appeal small{font-size:13px;color:#a9bfb2}
+.drops{position:absolute;right:-40px;bottom:-30px;width:300px;opacity:.16;pointer-events:none}
+.give{background:var(--white);padding:48px 52px}
+.give h3{font-family:Fraunces,Georgia,serif;font-size:26px;font-weight:700}
+.freq{display:grid;grid-template-columns:1fr 1fr;background:var(--sand);border-radius:999px;padding:5px;margin:22px 0 24px}
+.freq button{font:inherit;font-weight:600;font-size:15px;border:0;background:none;color:var(--muted);padding:11px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.freq button[aria-pressed=true]{background:var(--forest);color:#fff}
+.lbl{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
+.amts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.amt{font:inherit;font-family:Fraunces,serif;font-weight:700;font-size:22px;color:var(--ink);background:var(--white);border:2px solid var(--line);border-radius:16px;padding:14px 4px;cursor:pointer;transition:border-color .15s,background .15s}
+.amt:hover{border-color:#c9b89a}
+.amt[aria-pressed=true]{border-color:var(--forest);background:#e7efe9}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.other{margin-top:12px;display:flex;align-items:center;border:2px solid var(--line);border-radius:16px;padding:0 14px;background:var(--white)}
+.other:focus-within{border-color:var(--forest)}
+.other span{font-family:Fraunces,serif;font-weight:700;font-size:20px;color:var(--muted)}
+.other input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:17px;padding:14px 8px;color:var(--ink)}
+.other input:focus-visible{outline:none}
+.err{color:var(--clay);font-size:13px;min-height:20px;margin-top:6px}
+.impact{display:flex;gap:14px;align-items:flex-start;background:#fbf3e2;border-left:4px solid var(--ochre);border-radius:0 14px 14px 0;padding:14px 16px;margin:8px 0 20px}
+.impact svg{flex:none;width:26px;height:26px;color:var(--clay)}
+.impact p{font-size:15px}
+.impact b{color:var(--forest)}
+.ga{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);margin-bottom:22px;cursor:pointer}
+.ga input{width:20px;height:20px;accent-color:var(--forest);margin-top:2px;flex:none}
+.ga strong{color:var(--ink)}
+.go{width:100%;font:inherit;font-weight:700;font-size:17px;background:var(--clay);color:#fff;border:0;border-radius:999px;padding:17px;cursor:pointer;display:flex;gap:10px;align-items:center;justify-content:center;transition:background .2s}
+.go:hover{background:#9c4526}
+.go svg{width:20px;height:20px}
+.safe{display:flex;gap:8px;justify-content:center;align-items:center;font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+.safe svg{width:14px;height:14px;flex:none}
+.thanks{display:none;text-align:center;padding:40px 0}
+.thanks h3{font-size:30px;margin:16px 0 10px}
+.thanks p{color:var(--muted)}
+.thanks .ic{width:72px;height:72px;margin:0 auto;border-radius:50%;background:#e7efe9;color:var(--forest);display:grid;place-items:center}
+.give.sent form{display:none}.give.sent .thanks{display:block}
+@media (max-width:940px){.box{grid-template-columns:1fr}.story,.give{padding:44px 36px}}
+@media (max-width:520px){body{padding:48px 16px}.box{border-radius:24px}.story,.give{padding:32px 20px}.amts{grid-template-columns:repeat(2,1fr)}.drops{width:170px;right:-50px;bottom:-50px;opacity:.1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="box" aria-labelledby="give-title">
+  <div class="story">
+    <p class="eyebrow">Winter appeal · Northern Malawi</p>
+    <h2 id="give-title">Clean water is the first thing that <em>changes everything.</em></h2>
+    <p>In Mzimba district, girls walk an average of 6 km a day for water that often makes their families sick. A borehole fixes that in a week — and a village water committee keeps it running for decades.</p>
+    <div class="appeal">
+      <div class="top"><span><b>£186,420</b> raised</span><span>of £250,000</span></div>
+      <div class="bar" role="progressbar" aria-label="Appeal progress" aria-valuemin="0" aria-valuemax="250000" aria-valuenow="186420" aria-valuetext="£186,420 of £250,000"><i></i></div>
+      <small>2,318 supporters · 31 boreholes funded so far · Charity no. 1184207</small>
+    </div>
+    <svg class="drops" viewBox="0 0 200 200" fill="none" stroke="#fff" stroke-width="3" aria-hidden="true"><path d="M100 20c30 40 50 66 50 92a50 50 0 0 1-100 0c0-26 20-52 50-92z"/><path d="M100 50c20 27 33 44 33 62a33 33 0 0 1-66 0c0-18 13-35 33-62z"/><path d="M100 80c10 14 16 22 16 32a16 16 0 0 1-32 0c0-10 6-18 16-32z"/></svg>
+  </div>
+
+  <div class="give" id="give">
+    <form id="form" novalidate>
+      <h3>Choose your gift</h3>
+      <div class="freq" role="group" aria-label="Donation frequency">
+        <button type="button" data-f="once" aria-pressed="false">One-off</button>
+        <button type="button" data-f="monthly" aria-pressed="true">Monthly</button>
+      </div>
+      <span class="lbl" id="amt-label">Amount</span>
+      <div class="amts" id="amts" role="group" aria-labelledby="amt-label">
+        <button type="button" class="amt" data-v="5" aria-pressed="false">£5</button>
+        <button type="button" class="amt" data-v="10" aria-pressed="true">£10</button>
+        <button type="button" class="amt" data-v="20" aria-pressed="false">£20</button>
+        <button type="button" class="amt" data-v="40" aria-pressed="false">£40</button>
+      </div>
+      <label class="other" for="other"><span>£</span><input id="other" type="text" inputmode="decimal" placeholder="Other amount" aria-describedby="err" autocomplete="off"></label>
+      <p class="err" id="err" aria-live="polite"></p>
+      <div class="impact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C6 11.5 8 8 12 3z"/></svg><p id="impact" aria-live="polite"><b>£10 a month</b> gives one child safe water every day, all year.</p></div>
+      <label class="ga"><input type="checkbox" id="ga"><span><strong>Add Gift Aid (+25% at no cost to you).</strong> I'm a UK taxpayer and understand that if I pay less tax than the Gift Aid claimed, I'm responsible for the difference.</span></label>
+      <button type="submit" class="go" id="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg><span id="go-t">Give £10 monthly</span></button>
+      <p class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure payment · Cancel a monthly gift any time</p>
+    </form>
+    <div class="thanks" role="status" aria-live="polite">
+      <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 id="thanks-t">Thank you</h3>
+      <p id="thanks-p">You'll continue to secure checkout next.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var SETS={monthly:[5,10,20,40],once:[15,30,60,120]};
+  var IMPACT={
+    monthly:[[5,'covers water-quality testing for a whole village each quarter'],[10,'gives one child safe water every day, all year'],[20,'trains a village pump mechanic and stocks their spare parts'],[40,'keeps a borehole serving 250 people running for a year']],
+    once:[[15,'buys a hygiene kit for a family of five'],[30,'provides a household water filter that lasts three years'],[60,'pays for a classroom handwashing station'],[120,'funds a hand pump replacement head for a village well']]
+  };
+  var freq='monthly',amount=10,custom=false;
+  var fBtns=document.querySelectorAll('.freq button'),aBtns=[].slice.call(document.querySelectorAll('.amt')),
+      other=document.getElementById('other'),err=document.getElementById('err'),impact=document.getElementById('impact'),
+      goT=document.getElementById('go-t'),ga=document.getElementById('ga');
+  function money(v){return '£'+(v%1?v.toFixed(2):v.toLocaleString('en-GB'));}
+  function line(){
+    var list=IMPACT[freq],txt=list[0][1];
+    for(var i=0;i<list.length;i++){if(amount>=list[i][0])txt=list[i][1];}
+    if(amount>=list[list.length-1][0]*2)txt=txt+' — and more besides';
+    var lead=money(amount)+(freq==='monthly'?' a month':'');
+    var extra=ga.checked?' With Gift Aid, we receive '+money(Math.round(amount*125)/100)+'.':'';
+    impact.innerHTML='<b>'+lead+'</b> '+txt+'.'+extra;
+    goT.textContent='Give '+money(amount)+(freq==='monthly'?' monthly':' today');
+  }
+  function setFreq(f){
+    freq=f;fBtns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f));});
+    SETS[f].forEach(function(v,i){aBtns[i].dataset.v=v;aBtns[i].textContent='£'+v;});
+    if(!custom)pick(1);else line();
+  }
+  function pick(i){
+    custom=false;other.value='';err.textContent='';other.removeAttribute('aria-invalid');
+    amount=+aBtns[i].dataset.v;aBtns.forEach(function(b,j){b.setAttribute('aria-pressed',String(i===j));});line();
+  }
+  fBtns.forEach(function(b){b.addEventListener('click',function(){setFreq(b.dataset.f);});});
+  aBtns.forEach(function(b,i){b.addEventListener('click',function(){pick(i);});});
+  function check(){
+    var v=parseFloat(other.value.replace(/[£,\s]/g,''));
+    if(!other.value.trim()){return 'Enter an amount, or choose one above.';}
+    if(isNaN(v)||v<2)return 'The minimum gift is £2.';
+    if(v>10000)return 'For gifts over £10,000 please call us on 0161 496 0732.';
+    return '';
+  }
+  other.addEventListener('input',function(){
+    aBtns.forEach(function(b){b.setAttribute('aria-pressed','false');});custom=true;
+    var e=check();
+    if(!e){amount=Math.round(parseFloat(other.value.replace(/[£,\s]/g,''))*100)/100;err.textContent='';other.removeAttribute('aria-invalid');line();}
+  });
+  other.addEventListener('blur',function(){if(custom){var e=check();err.textContent=e;if(e)other.setAttribute('aria-invalid','true');}});
+  ga.addEventListener('change',line);
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(custom){var m=check();if(m){err.textContent=m;other.setAttribute('aria-invalid','true');other.focus();return;}}
+    document.getElementById('thanks-t').textContent='Thank you for giving '+money(amount)+(freq==='monthly'?' a month':'');
+    document.getElementById('thanks-p').textContent='Next you’ll enter payment details on our secure checkout.'+(ga.checked?' Gift Aid will be added.':'');
+    document.getElementById('give').classList.add('sent');
+  });
+  line();
+})();
+</script>
+</body>
+</html>

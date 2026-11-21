@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightwell Dental — Book a visit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAF2FB;--navy:#12324F;--teal:#1F8C83;--teal-l:#d5efec;--white:#fff;--muted:#53687c;--line:#d6e2ee}
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap>*{min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--navy);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;padding:96px 24px;overflow-x:hidden}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(38px,4.6vw,58px);line-height:1.05;letter-spacing:-.01em;margin:14px 0 18px}
+h2 em{color:var(--teal)}
+.lead{font-size:18px;color:var(--muted);max-width:460px}
+.points{list-style:none;margin:30px 0;display:grid;gap:16px}
+.points li{display:flex;gap:14px;align-items:flex-start}
+.points span{flex:none;width:40px;height:40px;border-radius:12px;background:var(--white);display:grid;place-items:center;color:var(--teal);box-shadow:0 1px 0 var(--line)}
+.points svg{width:20px;height:20px}
+.points b{display:block;font-size:16px}
+.points small{color:var(--muted);font-size:14px}
+.rev{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.stars{color:#e0a100;letter-spacing:2px;font-size:16px}
+.rev b{color:var(--navy)}
+.card{background:var(--white);border-radius:28px;padding:36px;box-shadow:0 30px 60px -30px rgba(18,50,79,.35)}
+.card h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:28px}
+.card .meta{font-size:14px;color:var(--muted);margin-top:2px}
+fieldset{border:0;margin-top:26px}
+legend{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.day,.slot{font:inherit;color:var(--navy);background:var(--bg);border:2px solid transparent;border-radius:16px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.day{padding:12px 4px;text-align:center;line-height:1.2}
+.day small{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.day b{display:block;font-size:24px;font-weight:700;margin:4px 0 2px}
+.day i{font-style:normal;font-size:11px;color:var(--teal);font-weight:600}
+.day:hover,.slot:hover:not(:disabled){border-color:#9cc9c4}
+.day[aria-pressed=true],.slot[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.day[aria-pressed=true] small,.day[aria-pressed=true] i{color:#b9d3ea}
+.day:focus-visible,.slot:focus-visible,.go:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slot{padding:11px 4px;font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+.slot:disabled{color:#9badbd;text-decoration:line-through;cursor:not-allowed;background:#f3f6fa}
+.hint{font-size:13px;color:var(--muted);margin-top:10px;min-height:20px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
+.sum{font-size:14px;color:var(--muted)}
+.sum b{display:block;color:var(--navy);font-size:16px}
+.go{background:var(--teal);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;font-size:16px;padding:15px 28px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:background .2s,opacity .2s}
+.go:hover:not(:disabled){background:#17736c}
+.go:disabled{opacity:.45;cursor:not-allowed}
+.go svg{width:18px;height:18px}
+.done{display:none;text-align:center;padding:20px 0}
+.done .tick{width:64px;height:64px;border-radius:50%;background:var(--teal-l);color:var(--teal);display:grid;place-items:center;margin:0 auto 16px}
+.done p{color:var(--muted);margin-top:8px}
+.done button{margin-top:18px;background:none;border:0;font:inherit;font-weight:600;color:var(--teal);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.card.booked form{display:none}.card.booked .done{display:block}
+@media (max-width:940px){.wrap{grid-template-columns:1fr;gap:44px}}
+@media (max-width:520px){body{padding:56px 16px}.card{padding:24px 16px;border-radius:22px}.days{gap:5px}.day{padding:10px 2px;border-radius:12px}.day b{font-size:20px}.day i{font-size:10px}.slots{grid-template-columns:repeat(3,1fr)}.foot{flex-direction:column;align-items:stretch}.go{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="wrap" aria-labelledby="book-title">
+  <div>
+    <p class="eyebrow">Brightwell Dental · Clapham North</p>
+    <h2 id="book-title">Book a visit in <em>under a minute.</em></h2>
+    <p class="lead">Check-ups, hygiene and clear-aligner consultations with a team that actually runs on time. New patients welcome — no referral needed.</p>
+    <ul class="points">
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>45-minute new-patient exam — £65</b><small>Includes X-rays, gum health check and a written plan.</small></div></li>
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18M7 3v4m10-4v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="m9 15 2 2 4-4"/></svg></span><div><b>Free changes up to 24 hours before</b><small>Move or cancel by text, no phone tag.</small></div></li>
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><div><b>Nervous patient? Tell us.</b><small>Longer slots, headphones and a stop signal you control.</small></div></li>
+    </ul>
+    <div class="rev"><span class="stars" aria-hidden="true">★★★★★</span><span><b>4.9</b> from 1,240 patient reviews</span></div>
+  </div>
+
+  <div class="card" id="card">
+    <form id="book" novalidate>
+      <h3>Choose a time</h3>
+      <p class="meta">New-patient exam · 45 min · Dr. Hana Okafor</p>
+      <fieldset>
+        <legend id="day-label">Day</legend>
+        <div class="days" id="days" role="group" aria-labelledby="day-label">
+          <button type="button" class="day" aria-pressed="false" data-i="0"><small>Mon</small><b>24</b><i>6 free</i></button>
+          <button type="button" class="day" aria-pressed="false" data-i="1"><small>Tue</small><b>25</b><i>3 free</i></button>
+          <button type="button" class="day" aria-pressed="false" data-i="2"><small>Wed</small><b>26</b><i>5 free</i></button>
+          <button type="button" class="day" aria-pressed="false" data-i="3"><small>Thu</small><b>27</b><i>2 free</i></button>
+          <button type="button" class="day" aria-pressed="false" data-i="4"><small>Fri</small><b>28</b><i>4 free</i></button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend id="slot-label">Time</legend>
+        <div class="slots" id="slots" role="group" aria-labelledby="slot-label"><button type="button" class="slot" aria-pressed="false">08:30</button><button type="button" class="slot" aria-pressed="false">09:15</button><button type="button" class="slot" aria-pressed="false">10:00</button><button type="button" class="slot" aria-pressed="false">11:30</button><button type="button" class="slot" aria-pressed="false">13:00</button><button type="button" class="slot" aria-pressed="false">14:15</button><button type="button" class="slot" aria-pressed="false">16:00</button><button type="button" class="slot" aria-pressed="false">17:30</button></div>
+        <p class="hint" id="hint" aria-live="polite">Pick a day to see open times.</p>
+      </fieldset>
+      <div class="foot">
+        <p class="sum" id="sum" aria-live="polite">Nothing selected yet<b>Select a day and time</b></p>
+        <button type="submit" class="go" id="go" disabled>Book this visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </form>
+    <div class="done" role="status" aria-live="polite">
+      <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 id="done-title">You're booked in</h3>
+      <p id="done-text">We've held your slot.</p>
+      <button type="button" id="again">Change time</button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var TIMES=['08:30','09:15','10:00','11:30','13:00','14:15','16:00','17:30'];
+  var dayBtns=[].slice.call(document.querySelectorAll('.day')),slotsEl=document.getElementById('slots'),
+      hint=document.getElementById('hint'),sum=document.getElementById('sum'),go=document.getElementById('go'),
+      card=document.getElementById('card'),days=[],selDay=null,selTime=null;
+  // Build the next 5 opening days (Mon–Sat) from today
+  slotsEl.innerHTML='';
+  var d=new Date();d.setHours(12,0,0,0);
+  while(days.length<5){d.setDate(d.getDate()+1);if(d.getDay()!==0)days.push(new Date(d));}
+  function taken(di,ti){return (((di+2)*(ti+3)+days[di].getDate())%7)<3;} // deterministic "booked" slots
+  function times(di){return TIMES.filter(function(t,ti){return !(days[di].getDay()===6&&ti>4);});}
+  dayBtns.forEach(function(b,i){
+    var dt=days[i],free=times(i).filter(function(t,ti){return !taken(i,ti);}).length;
+    b.querySelector('small').textContent=dt.toLocaleDateString('en-GB',{weekday:'short'});
+    b.querySelector('b').textContent=dt.getDate();
+    b.querySelector('i').textContent=free+' free';
+    b.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+', '+free+' times free');
+    b.addEventListener('click',function(){pickDay(i);});
+  });
+  function label(){return days[selDay].toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});}
+  function pickDay(i){
+    selDay=i;selTime=null;
+    dayBtns.forEach(function(b,j){b.setAttribute('aria-pressed',String(j===i));});
+    slotsEl.innerHTML='';
+    times(i).forEach(function(t,ti){
+      var s=document.createElement('button');s.type='button';s.className='slot';s.textContent=t;
+      s.setAttribute('aria-pressed','false');
+      if(taken(i,ti)){s.disabled=true;s.setAttribute('aria-label',t+', booked');}
+      s.addEventListener('click',function(){
+        selTime=t;[].forEach.call(slotsEl.children,function(c){c.setAttribute('aria-pressed',String(c===s));});update();
+      });
+      slotsEl.appendChild(s);
+    });
+    hint.textContent='Times shown are for '+label()+'. Crossed-out slots are taken.';
+    update();
+  }
+  function update(){
+    go.disabled=!(selDay!==null&&selTime);
+    if(selDay===null){sum.innerHTML='Nothing selected yet<b>Select a day and time</b>';}
+    else if(!selTime){sum.innerHTML=label()+'<b>Now pick a time</b>';}
+    else{sum.innerHTML=label()+'<b>'+selTime+' · 45 min · £65</b>';}
+  }
+  document.getElementById('book').addEventListener('submit',function(e){
+    e.preventDefault();if(go.disabled)return;
+    document.getElementById('done-text').textContent=label()+' at '+selTime+' with Dr. Hana Okafor. A confirmation text is on its way — reply C to cancel.';
+    card.classList.add('booked');document.getElementById('again').focus();
+  });
+  pickDay(0);
+  document.getElementById('again').addEventListener('click',function(){card.classList.remove('booked');go.focus();});
+})();
+</script>
+</body>
+</html>

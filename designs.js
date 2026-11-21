@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "cta-gallery",
+      "title": "Call to action layouts · all 10",
+      "desc": "Gallery of 10 call to action sections, each a different layout.",
+      "tags": [
+        "Call to action",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/cta-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-01-centered-band",
+      "title": "Call to action 01 · Shiftly",
+      "desc": "Centered colour band · staff-rota app · two buttons.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/01-centered-band/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-02-split-image",
+      "title": "Call to action 02 · Harbour & Finch",
+      "desc": "Text + photo card · estate agent · free valuation.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/02-split-image/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-03-email-capture",
+      "title": "Call to action 03 · The Commons Dispatch",
+      "desc": "Email signup · newsletter · validation + success.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/03-email-capture/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-04-gradient-glow",
+      "title": "Call to action 04 · Patchwise",
+      "desc": "Dark gradient glow · AI code review · copy install command.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/04-gradient-glow/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-05-phone-callback",
+      "title": "Call to action 05 · Brightwater Plumbing",
+      "desc": "Request a callback + 24/7 number · plumber.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/05-phone-callback/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-06-app-download",
+      "title": "Call to action 06 · Fernway",
+      "desc": "App download · mobile banking · QR code, text me a link.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/06-app-download/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-07-countdown-offer",
+      "title": "Call to action 07 · Halden & Co",
+      "desc": "Countdown offer · home goods sale · copy promo code.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/07-countdown-offer/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-08-booking-cta",
+      "title": "Call to action 08 · Brightwell Dental",
+      "desc": "Book a visit · dental clinic · day and time picks.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/08-booking-cta/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-09-donate-cta",
+      "title": "Call to action 09 · Wellspring Water Trust",
+      "desc": "Donate · water charity · amounts, monthly, Gift Aid.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/09-donate-cta/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "cta-10-minimal-type",
+      "title": "Call to action 10 · Østberg Field",
+      "desc": "Minimal big type · architecture studio · start a project.",
+      "tags": [
+        "Call to action"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/cta-layouts/10-minimal-type/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "partner-gallery",
       "title": "Partner logo layouts · all 10",
       "desc": "Gallery of 10 partner logo sections, each a different layout.",
