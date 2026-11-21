@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bastion Nine — Threat stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Martian+Mono:wght@400;500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090C; --panel:#0D1117; --ink:#E8ECEF; --muted:#8A96A3; --line:#1C232C;
+    --lime:#B4F03C; --red:#FF5C4D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"Martian Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0}
+  .stats{position:relative;overflow:hidden;padding:clamp(80px,10vw,148px) clamp(20px,5vw,64px)}
+  .stats::before{content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle at 1px 1px,#ffffff14 1px,transparent 0);background-size:22px 22px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 30%,transparent 80%);pointer-events:none}
+  .stats::after{content:"";position:absolute;width:640px;height:640px;right:-200px;top:-260px;background:radial-gradient(closest-side,#B4F03C1f,transparent);pointer-events:none}
+  .wrap{max-width:1280px;margin:0 auto;position:relative;z-index:1}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:clamp(48px,7vw,96px)}
+  .tag{display:inline-flex;align-items:center;gap:10px;color:var(--lime);border:1px solid #B4F03C44;padding:7px 12px;border-radius:2px;margin-bottom:24px}
+  .tag i{width:7px;height:7px;background:var(--lime);border-radius:50%;animation:blink 1.6s steps(2,start) infinite}
+  @keyframes blink{to{visibility:hidden}}
+  h2{font-family:"Big Shoulders Display",sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(40px,5.4vw,76px);line-height:.95;letter-spacing:.005em;max-width:760px}
+  h2 span{color:var(--lime)}
+  .top p{max-width:340px;color:var(--muted);font-size:16px;padding-top:8px}
+  .list{list-style:none;display:grid;grid-template-columns:1.25fr 1fr 1fr;border-top:1px solid var(--line)}
+  .list li{padding:28px clamp(16px,2.4vw,36px) 0 0;position:relative}
+  .list li + li{padding-left:clamp(16px,2.4vw,36px);border-left:1px solid var(--line)}
+  .k{color:var(--muted);display:flex;align-items:center;gap:8px}
+  .k b{color:var(--lime);font-weight:500}
+  .big{font-family:"Big Shoulders Display",sans-serif;font-weight:900;line-height:.82;letter-spacing:-.01em;margin:20px 0 22px;display:flex;align-items:flex-start;font-size:clamp(96px,13vw,200px);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .big small{font-size:.36em;font-weight:800;color:var(--lime);margin:.12em 0 0 .06em;line-height:1}
+  .list li:first-child .big{color:var(--lime);-webkit-text-stroke:0}
+  .list li:first-child .big small{color:var(--ink)}
+  .cap{font-size:17px;font-weight:600;max-width:30ch}
+  .det{color:var(--muted);font-size:14.5px;margin-top:6px;max-width:34ch}
+  .bar{height:3px;background:var(--line);margin-top:28px;position:relative;overflow:hidden}
+  .bar span{position:absolute;inset:0 auto 0 0;background:var(--lime)}
+  .strip{margin-top:clamp(48px,6vw,80px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--line);background:var(--panel);padding:18px 22px;border-radius:4px}
+  .strip .feed{display:flex;gap:24px;flex-wrap:wrap;color:var(--muted)}
+  .strip .feed em{font-style:normal;color:var(--ink)}
+  .strip .feed .r{color:var(--red)}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:#0A0D08;font-weight:600;text-decoration:none;padding:12px 18px;border-radius:2px;transition:box-shadow .2s}
+  .cta:hover,.cta:focus-visible{box-shadow:0 0 0 4px #B4F03C33,0 0 32px #B4F03C55}
+  .cta svg{width:16px;height:16px}
+  a:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+  @media (max-width:980px){
+    .list{grid-template-columns:1fr 1fr}
+    .list li:first-child{grid-column:1/-1;padding-bottom:32px;border-bottom:1px solid var(--line)}
+    .list li:nth-child(2){border-left:0;padding-left:0}
+  }
+  @media (max-width:560px){
+    .list{grid-template-columns:1fr}
+    .list li,.list li + li{padding:26px 0 28px;border-left:0;border-bottom:1px solid var(--line)}
+    .big{font-size:112px}
+    .list li:first-child .big{font-size:128px}
+  }
+  @media (prefers-reduced-motion:reduce){.tag i{animation:none}}
+</style>
+</head>
+<body>
+<section class="stats" aria-labelledby="t">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <p class="tag mono"><i aria-hidden="true"></i>SOC · 24/7 · 3 continents</p>
+        <h2 id="t">Attackers never sleep. <span>Neither does Bastion&nbsp;Nine.</span></h2>
+      </div>
+      <p>Managed detection and response for 1,900 organisations. Figures from our 2026 annual threat report, published 3 November.</p>
+    </div>
+
+    <ul class="list">
+      <li>
+        <p class="k mono"><b>[01]</b> Median time to contain</p>
+        <p class="big"><span class="count" data-to="7">7</span><small>MIN</small></p>
+        <p class="cap">From first alert to isolated endpoint.</p>
+        <p class="det">Industry median is 4 hours 38 minutes. Our analysts act, not just notify.</p>
+        <div class="bar" aria-hidden="true"><span style="width:3%"></span></div>
+      </li>
+      <li>
+        <p class="k mono"><b>[02]</b> Events triaged / day</p>
+        <p class="big"><span class="count" data-to="41">41</span><small>B</small></p>
+        <p class="cap">Telemetry signals correlated daily.</p>
+        <p class="det">Down to ~60 real incidents a human needs to see.</p>
+        <div class="bar" aria-hidden="true"><span style="width:88%"></span></div>
+      </li>
+      <li>
+        <p class="k mono"><b>[03]</b> Ransomware detonations</p>
+        <p class="big"><span class="count" data-to="0">0</span></p>
+        <p class="cap">Successful encryptions across all clients.</p>
+        <p class="det">For the third year running, with 2,314 attempts stopped.</p>
+        <div class="bar" aria-hidden="true"><span style="width:100%"></span></div>
+      </li>
+    </ul>
+
+    <div class="strip mono">
+      <div class="feed" aria-label="Recent activity">
+        <span>Last 24h: <em>18,442</em> blocked</span>
+        <span>Active campaigns: <em class="r">12</em></span>
+        <span>Analysts on shift: <em>64</em></span>
+      </div>
+      <a class="cta" href="#">Get the 2026 threat report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg></a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.count'));
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  function run(el){
+    var to=+el.dataset.to,dur=1200,t0=null;
+    if(to===0){
+      var n=99,id=setInterval(function(){n=Math.floor(n*.6);el.textContent=n;if(n<=0){clearInterval(id);el.textContent='0';}},70);
+      return;
+    }
+    var done=false;
+    setTimeout(function(){done=true;el.textContent=to;},dur+400);
+    function step(t){
+      if(done)return;
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,4);
+      el.textContent=Math.round(to*e);
+      if(p<1)requestAnimationFrame(step);else el.textContent=to;
+    }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){io.unobserve(en.target);run(en.target);}});
+  },{threshold:.5});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerline — By the numbers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --ink:#121417; --muted:#5E6470; --line:#E3E3DC; --accent:#2F6BFF; --accent-soft:#E6EDFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Onest",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .stats{padding:clamp(72px,10vw,136px) clamp(20px,5vw,64px)}
+  .wrap{max-width:1200px;margin:0 auto}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,72px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+  .eyebrow svg{width:14px;height:14px}
+  h2{font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:700;max-width:620px}
+  h2 em{font-style:normal;color:var(--accent)}
+  .head p{max-width:380px;color:var(--muted);font-size:17px}
+  .row{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stat{padding:40px clamp(16px,2.4vw,36px) 36px;position:relative}
+  .stat + .stat{border-left:1px solid var(--line)}
+  .stat:first-child{padding-left:0}
+  .num{display:flex;align-items:baseline;font-size:clamp(44px,5vw,72px);font-weight:800;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+  .num .unit{font-size:.5em;font-weight:700;margin-left:2px;color:var(--accent);letter-spacing:-.02em}
+  .num .pre{font-size:.5em;font-weight:700;margin-right:2px;color:var(--accent);align-self:flex-start;margin-top:.2em}
+  .label{margin-top:16px;font-weight:600;font-size:16px}
+  .sub{margin-top:4px;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;color:var(--muted);font-size:14px}
+  .foot a{color:var(--ink);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;border-bottom:1.5px solid var(--ink);padding-bottom:2px}
+  .foot a:hover,.foot a:focus-visible{color:var(--accent);border-color:var(--accent)}
+  .foot a svg{width:16px;height:16px;transition:transform .2s}
+  .foot a:hover svg{transform:translateX(3px)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#1DB36B;margin-right:8px;box-shadow:0 0 0 4px #1DB36B22}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+  @media (max-width:900px){
+    .row{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .stat:first-child{padding-left:clamp(16px,2.4vw,36px)}
+    .stat:nth-child(odd){padding-left:0;border-left:0}
+    .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  }
+  @media (max-width:520px){
+    .row{grid-template-columns:1fr}
+    .stat{padding:28px 0;border-left:0!important}
+    .stat + .stat{border-top:1px solid var(--line)}
+    .stat{display:grid;grid-template-columns:142px 1fr;column-gap:16px;align-items:center}
+    .num{grid-row:span 2;font-size:38px}
+    .label{margin-top:0}
+  }
+</style>
+</head>
+<body>
+<section class="stats" aria-labelledby="stats-title">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>Ledgerline in 2026</span>
+        <h2 id="stats-title">Finance teams close the books <em>4 days faster</em> on Ledgerline.</h2>
+      </div>
+      <p>Numbers from 6,800 companies running month-end, invoicing and spend control on one ledger — updated every quarter.</p>
+    </div>
+
+    <ul class="row">
+      <li class="stat">
+        <div class="num"><span class="pre">$</span><span class="count" data-to="38" data-dec="0">38</span><span class="unit">B</span></div>
+        <p class="label">Invoices processed</p>
+        <p class="sub">Across 41 currencies this year</p>
+      </li>
+      <li class="stat">
+        <div class="num"><span class="count" data-to="6800" data-dec="0">6,800</span><span class="unit">+</span></div>
+        <p class="label">Finance teams</p>
+        <p class="sub">From seed-stage to 2,000 staff</p>
+      </li>
+      <li class="stat">
+        <div class="num"><span class="count" data-to="4.3" data-dec="1">4.3</span><span class="unit">d</span></div>
+        <p class="label">Faster month-end close</p>
+        <p class="sub">Median, first 90 days</p>
+      </li>
+      <li class="stat">
+        <div class="num"><span class="count" data-to="99.98" data-dec="2">99.98</span><span class="unit">%</span></div>
+        <p class="label">Ledger uptime</p>
+        <p class="sub">Trailing 12 months, SOC 2 Type II</p>
+      </li>
+    </ul>
+
+    <div class="foot">
+      <span><span class="dot" aria-hidden="true"></span>Figures audited by an independent firm · Q3 2026</span>
+      <a href="#">Read the 2026 benchmark report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.count'));
+  if(!els.length||!('IntersectionObserver' in window))return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  function fmt(v,d){return v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function run(el){
+    var to=parseFloat(el.dataset.to),d=+el.dataset.dec||0,dur=1400,t0=null,done=false;
+    setTimeout(function(){done=true;el.textContent=fmt(to,d);},dur+400);
+    function step(t){
+      if(done)return;
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
+      el.textContent=fmt(to*e,d);
+      if(p<1)requestAnimationFrame(step);else el.textContent=fmt(to,d);
+    }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){io.unobserve(en.target);run(en.target);}
+    });
+  },{threshold:.5});
+  els.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top>window.innerHeight){el.textContent=fmt(0,+el.dataset.dec||0);}
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

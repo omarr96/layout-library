@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernlo — Growth timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f2ff;--card:#ffffff;--violet:#5b3df5;--violet-d:#3f24d1;--lime:#c6f432;--ink:#17142b;--mut:#5f5a7a;--line:#dcd6fb}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 "Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.section{max-width:1240px;margin:0 auto;padding:104px 32px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:64px}
+.kicker{font-family:"DM Mono",monospace;font-size:13px;color:var(--violet);letter-spacing:.04em}
+.kicker::before{content:"● ";color:var(--lime);-webkit-text-stroke:1px var(--ink)}
+h2{font-weight:700;font-size:clamp(36px,4.8vw,62px);line-height:1;letter-spacing:-.04em;margin:14px 0 0;max-width:640px}
+.top p{margin:0;max-width:380px;color:var(--mut)}
+.track{position:relative;padding-top:8px}
+.rail{position:absolute;left:6.25%;right:6.25%;top:118px;height:4px;background:var(--line);border-radius:4px}
+.rail i{position:absolute;left:0;top:0;bottom:0;width:var(--p,100%);background:var(--violet);border-radius:4px;transition:width .5s ease}
+.years{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));position:relative}
+.years button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;padding:0 4px 8px;border-radius:14px}
+.years button:focus-visible{outline:2px solid var(--violet);outline-offset:4px}
+.val{font-weight:700;font-size:clamp(20px,2.2vw,30px);letter-spacing:-.03em;line-height:1;height:62px;display:flex;align-items:flex-end;transition:color .2s,transform .2s;font-variant-numeric:tabular-nums}
+.unit{font-family:"DM Mono",monospace;font-size:11px;color:var(--mut);margin-top:6px;height:18px}
+.dot{width:20px;height:20px;border-radius:50%;background:var(--card);border:4px solid var(--line);margin:16px 0 14px;transition:background .2s,border-color .2s,transform .2s;position:relative;z-index:1}
+.yr{font-family:"DM Mono",monospace;font-size:14px;color:var(--mut)}
+.years .done .dot{border-color:var(--violet)}
+.years button:hover .val{color:var(--violet)}
+.years [aria-selected="true"] .dot{background:var(--lime);border-color:var(--ink);transform:scale(1.35)}
+.years [aria-selected="true"] .val{color:var(--violet);transform:translateY(-4px)}
+.years [aria-selected="true"] .yr{color:var(--ink);font-weight:500}
+.fc{font-size:10px;background:var(--lime);color:var(--ink);border-radius:4px;padding:1px 5px;margin-left:4px;font-family:"DM Mono",monospace}
+.panel{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr);gap:40px;align-items:center}
+.panel[hidden]{display:none}
+.panel h3{font-size:28px;letter-spacing:-.03em;line-height:1.1;margin:8px 0 10px}
+.panel .tagy{font-family:"DM Mono",monospace;font-size:13px;background:var(--ink);color:var(--lime);padding:3px 10px;border-radius:6px}
+.panel p{margin:0;color:var(--mut)}
+.metrics{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.metrics li{background:var(--bg);border-radius:16px;padding:18px 18px 16px}
+.metrics b{display:block;font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.metrics span{font-size:13px;color:var(--mut)}
+.metrics li:first-child{background:var(--violet);color:#fff}
+.metrics li:first-child span{color:#dcd5ff}
+.hint{font-family:"DM Mono",monospace;font-size:12px;color:var(--mut);margin-top:14px;text-align:center}
+@media (max-width:960px){.panel{grid-template-columns:minmax(0,1fr);gap:24px}}
+@media (max-width:760px){
+  .section{padding:64px 16px}
+  .top{margin-bottom:36px}
+  .track{padding:0}
+  .rail{left:9px;right:auto;top:10px;bottom:10px;width:4px;height:auto}
+  .rail i{width:auto;right:0;height:var(--p,100%);transition:height .5s ease}
+  .years{grid-template-columns:minmax(0,1fr);gap:6px}
+  .years button{display:grid;grid-template-columns:22px 56px minmax(0,1fr);grid-template-areas:"dot yr val" "dot yr unit";column-gap:14px;align-items:center;text-align:left;padding:8px 0}
+  .dot{grid-area:dot;margin:0;width:22px;height:22px}
+  .yr{grid-area:yr}
+  .val{grid-area:val;height:auto;font-size:24px}
+  .unit{grid-area:unit;margin:0;height:auto}
+  .years [aria-selected="true"] .val{transform:none}
+  .years [aria-selected="true"] .dot{transform:scale(1.15)}
+  .panel{padding:22px 18px;margin-top:28px}
+  .metrics{gap:8px}.metrics li{padding:12px 10px}.metrics b{font-size:20px}.metrics span{font-size:12px;display:block;line-height:1.3}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rail i,.dot,.val{transition:none}}
+</style>
+</head>
+<body>
+<section class="section" aria-labelledby="fe-title">
+  <div class="top">
+    <div>
+      <span class="kicker">fernlo / growth</span>
+      <h2 id="fe-title">From a garage in Leeds to 1.4M orders a year</h2>
+    </div>
+    <p>Fernlo sells plastic-free kitchen and home goods direct to customers. Here is how a two-person side project grew, one year at a time.</p>
+  </div>
+
+  <div class="track">
+    <div class="rail" aria-hidden="true"><i id="rail"></i></div>
+    <div class="years" role="tablist" aria-label="Orders per year">
+      <button role="tab" id="t2019" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">1.2k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2019</span></button>
+      <button role="tab" id="t2020" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">18k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2020</span></button>
+      <button role="tab" id="t2021" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">64k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2021</span></button>
+      <button role="tab" id="t2022" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">142k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2022</span></button>
+      <button role="tab" id="t2023" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">310k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2023</span></button>
+      <button role="tab" id="t2024" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">585k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2024</span></button>
+      <button role="tab" id="t2025" aria-controls="panel" aria-selected="false" tabindex="-1" class="done"><span class="val">920k</span><span class="unit">orders</span><span class="dot"></span><span class="yr">2025</span></button>
+      <button role="tab" id="t2026" aria-controls="panel" aria-selected="true" tabindex="0" class="done"><span class="val">1.4M</span><span class="unit">orders <span class="fc">fcst</span></span><span class="dot"></span><span class="yr">2026</span></button>
+    </div>
+  </div>
+
+  <div class="panel" id="panel" role="tabpanel" aria-labelledby="t2026" tabindex="0">
+    <div>
+      <span class="tagy" id="p-year">2026</span>
+      <h3 id="p-title">Opening in Germany and the Netherlands</h3>
+      <p id="p-text">EU fulfilment from a new Rotterdam warehouse cuts delivery to two days. Forecast based on January–October trading.</p>
+    </div>
+    <ul class="metrics">
+      <li><b id="m1">£38.6M</b><span>Revenue</span></li>
+      <li><b id="m2">61%</b><span id="m2l">Repeat customers</span></li>
+      <li><b id="m3">142</b><span>Team members</span></li>
+    </ul>
+  </div>
+  <p class="hint">Select a year or use ← → keys</p>
+</section>
+<script>
+(function(){
+  var D={
+    2019:["Three products and a garage","Two friends launch a refillable washing-up brush from a Leeds garage. Every order is packed by hand.","£34k","22%","2"],
+    2020:["Lockdown changes everything","Home cooking booms. Fernlo adds beeswax wraps and outgrows the garage by August.","£520k","31%","6"],
+    2021:["First warehouse and own courier deals","A 9,000 sq ft unit in Wakefield and next-day delivery across the UK mainland.","£1.9M","38%","17"],
+    2022:["Refill subscriptions launch","Customers subscribe to dish soap and laundry refills; subscriptions become 30% of orders.","£4.4M","46%","34"],
+    2023:["Series A and a range of 400 products","£9M raised to expand into cookware and storage made from recycled steel.","£9.1M","52%","61"],
+    2024:["Carbon-neutral delivery, nationwide","Electric van partners in 11 cities and the first B Corp certification for a UK homeware brand of its size.","£16.8M","57%","94"],
+    2025:["Profitable, and staying independent","The first full year of profit, with 2.3 million refills sent instead of new plastic bottles.","£25.3M","59%","118"],
+    2026:["Opening in Germany and the Netherlands","EU fulfilment from a new Rotterdam warehouse cuts delivery to two days. Forecast based on January–October trading.","£38.6M","61%","142"]
+  };
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var rail=document.getElementById("rail"),panel=document.getElementById("panel");
+  function select(i,focus){
+    tabs.forEach(function(t,j){
+      var on=j===i;
+      t.setAttribute("aria-selected",String(on));
+      t.tabIndex=on?0:-1;
+      t.classList.toggle("done",j<=i);
+    });
+    var y=tabs[i].id.slice(1),d=D[y];
+    document.getElementById("p-year").textContent=y==="2026"?"2026 · forecast":y;
+    document.getElementById("p-title").textContent=d[0];
+    document.getElementById("p-text").textContent=d[1];
+    document.getElementById("m1").textContent=d[2];
+    document.getElementById("m2").textContent=d[3];
+    document.getElementById("m3").textContent=d[4];
+    panel.setAttribute("aria-labelledby",tabs[i].id);
+    rail.style.setProperty("--p",(i/(tabs.length-1)*100)+"%");
+    if(focus)tabs[i].focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener("click",function(){select(i,false);});
+    t.addEventListener("keydown",function(e){
+      var k=e.key,n=null;
+      if(k==="ArrowRight"||k==="ArrowDown")n=(i+1)%tabs.length;
+      else if(k==="ArrowLeft"||k==="ArrowUp")n=(i-1+tabs.length)%tabs.length;
+      else if(k==="Home")n=0;else if(k==="End")n=tabs.length-1;
+      if(n!==null){e.preventDefault();select(n,true);}
+    });
+  });
+  document.getElementById("p-year").textContent="2026 · forecast";
+})();
+</script>
+</body>
+</html>

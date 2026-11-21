@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willowbrook Clinic — Care quality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,500;0,600;1,500&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF6F4; --card:#FFFFFF; --ink:#15302D; --muted:#55706C; --line:#D4E6E2;
+    --teal:#0F766E; --teal-soft:#CDE9E4; --coral:#E0654F; --coral-soft:#FBE1DB; --sky:#3D7FC1; --sky-soft:#DCE9F6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Lexend",system-ui,sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .stats{padding:clamp(72px,9vw,128px) clamp(20px,5vw,64px)}
+  .wrap{max-width:1160px;margin:0 auto}
+  .head{text-align:center;max-width:680px;margin:0 auto 36px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--teal);margin-bottom:16px}
+  .eyebrow svg{width:18px;height:18px}
+  h2{font-family:"Petrona",Georgia,serif;font-weight:600;font-size:clamp(32px,4vw,50px);line-height:1.1;letter-spacing:-.01em}
+  h2 em{font-weight:500;color:var(--teal)}
+  .head p{margin-top:16px;color:var(--muted);font-size:17px}
+  .seg{display:flex;justify-content:center;margin:0 auto 44px;gap:4px;background:var(--card);border:1px solid var(--line);padding:5px;border-radius:999px;width:max-content;max-width:100%}
+  .seg button{font:inherit;font-size:14px;font-weight:400;color:var(--muted);background:none;border:0;padding:9px 18px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+  .seg button:hover{color:var(--ink)}
+  .seg button[aria-pressed="true"]{background:var(--teal);color:#fff;font-weight:500}
+  .seg button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px 28px 30px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .ring{position:relative;width:180px;height:180px;margin-bottom:24px}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring .track{fill:none;stroke-width:12}
+  .ring .val{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.3s cubic-bezier(.22,.8,.24,1)}
+  .ring .center{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+  .pct{font-family:"Petrona",Georgia,serif;font-weight:600;font-size:46px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .pct small{font-size:.5em;margin-left:1px}
+  .bench{font-size:12px;color:var(--muted);margin-top:6px}
+  .c1 .track{stroke:var(--teal-soft)} .c1 .val{stroke:var(--teal)} .c1 .ico{color:var(--teal);background:var(--teal-soft)}
+  .c2 .track{stroke:var(--sky-soft)} .c2 .val{stroke:var(--sky)} .c2 .ico{color:var(--sky);background:var(--sky-soft)}
+  .c3 .track{stroke:var(--coral-soft)} .c3 .val{stroke:var(--coral)} .c3 .ico{color:#B6432F;background:var(--coral-soft)}
+  .ttl{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:500}
+  .ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center}
+  .ico svg{width:18px;height:18px}
+  .card p.d{color:var(--muted);font-size:14.5px;margin-top:8px;max-width:30ch}
+  .foot{margin-top:36px;display:flex;justify-content:center;align-items:center;gap:10px 28px;flex-wrap:wrap;font-size:14px;color:var(--muted);text-align:center}
+  .foot a{color:var(--teal);font-weight:500;text-decoration:underline;text-underline-offset:4px}
+  .foot a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+  .stars{display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+  .stars svg{width:16px;height:16px;color:#D99A1E}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.grid li:last-child{grid-column:1/-1;max-width:calc(50% - 12px);justify-self:center;width:100%}}
+  @media (max-width:600px){
+    .grid{grid-template-columns:1fr;gap:16px}
+    .grid li:last-child{max-width:none}
+    .card{display:grid;grid-template-columns:auto 1fr;text-align:left;column-gap:20px;padding:22px;align-items:center}
+    .ring{width:112px;height:112px;margin:0;grid-row:span 2}
+    .pct{font-size:30px}
+    .bench{display:none}
+    .card p.d{font-size:13.5px;margin-top:4px}
+    .ttl{font-size:16px}
+    .seg button{padding:8px 12px;font-size:13px}
+    .eyebrow{font-size:12px}
+  }
+  @media (prefers-reduced-motion:reduce){.ring .val{transition:none}}
+</style>
+</head>
+<body>
+<section class="stats" aria-labelledby="t">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.4 8.8 11 8.8 11s8.8-5.6 8.8-11z"/><path d="M7 12h3l1.5-3 2 6 1.5-3H17"/></svg>Willowbrook Family Clinic · Quality report 2026</p>
+      <h2 id="t">Care you can <em>measure</em> — and we publish every number.</h2>
+      <p>Independent patient surveys and appointment data from our two practices, January to October 2026.</p>
+    </div>
+
+    <div class="seg" role="group" aria-label="Choose practice">
+      <button type="button" aria-pressed="true" data-site="all">Both practices</button>
+      <button type="button" aria-pressed="false" data-site="north">Northgate</button>
+      <button type="button" aria-pressed="false" data-site="river">Riverside</button>
+    </div>
+
+    <ul class="grid" aria-live="polite">
+      <li class="card c1">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="13.07"/></svg>
+          <div class="center"><span class="pct"><span class="n" data-k="sat">96</span><small>%</small></span><span class="bench">National avg 82%</span></div>
+        </div>
+        <div>
+          <h3 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01"/></svg></span>Patient satisfaction</h3>
+          <p class="d">Rated their visit "good" or "very good" across <span class="m" data-k="satN">3,412</span> surveys.</p>
+        </div>
+      </li>
+      <li class="card c2">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="29.41"/></svg>
+          <div class="center"><span class="pct"><span class="n" data-k="ot">91</span><small>%</small></span><span class="bench">Seen within 10 min</span></div>
+        </div>
+        <div>
+          <h3 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></span>On-time appointments</h3>
+          <p class="d">Average wait in reception: <span class="m" data-k="wait">6 minutes</span>.</p>
+        </div>
+      </li>
+      <li class="card c3">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="19.6"/></svg>
+          <div class="center"><span class="pct"><span class="n" data-k="ret">94</span><small>%</small></span><span class="bench">Registered 3+ years</span></div>
+        </div>
+        <div>
+          <h3 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-3A3.5 3.5 0 0 0 7 18.5V20"/><circle cx="12" cy="8.5" r="3.5"/><path d="M20 20v-1a3 3 0 0 0-2-2.8M4 20v-1a3 3 0 0 1 2-2.8"/></svg></span>Patient retention</h3>
+          <p class="d">Families who stay with us year after year — <span class="m" data-k="fam">2,860</span> households.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="foot">
+      <span class="stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>4.9 / 5 from 1,208 online reviews</span>
+      <span>Rated "Outstanding" at last inspection</span>
+      <a href="#">Download full quality report (PDF)</a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var C=326.73;
+  var data={
+    all:{sat:96,ot:91,ret:94,satN:'3,412',wait:'6 minutes',fam:'2,860'},
+    north:{sat:97,ot:93,ret:95,satN:'1,874',wait:'5 minutes',fam:'1,590'},
+    river:{sat:94,ot:88,ret:92,satN:'1,538',wait:'8 minutes',fam:'1,270'}
+  };
+  var keys={sat:0,ot:1,ret:2};
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur={sat:96,ot:91,ret:94};
+
+  function animNum(el,from,to){
+    if(reduce||from===to){el.textContent=to;return;}
+    var t0=null,dur=1100,tok={};el._tok=tok;
+    setTimeout(function(){if(el._tok===tok){el._tok=null;el.textContent=to;}},dur+400);
+    function step(t){
+      if(el._tok!==tok)return;
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(from+(to-from)*e);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function apply(site,fromZero){
+    var d=data[site];
+    Object.keys(keys).forEach(function(k){
+      var card=cards[keys[k]];
+      card.querySelector('.val').setAttribute('stroke-dashoffset',(C*(1-d[k]/100)).toFixed(2));
+      animNum(card.querySelector('.n'),fromZero?0:cur[k],d[k]);
+      cur[k]=d[k];
+    });
+    [].forEach.call(document.querySelectorAll('.m'),function(m){m.textContent=d[m.dataset.k];});
+  }
+
+  [].forEach.call(document.querySelectorAll('.seg button'),function(b,i,all){
+    b.addEventListener('click',function(){
+      [].forEach.call(all,function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      apply(b.dataset.site,false);
+    });
+  });
+
+  if(reduce||!('IntersectionObserver' in window))return;
+  var grid=document.querySelector('.grid');
+  var started=false;
+  var vals=[].slice.call(document.querySelectorAll('.val'));
+  vals.forEach(function(v){v.style.transition='none';v.setAttribute('stroke-dashoffset',C);});
+  var io=new IntersectionObserver(function(es){
+    if(started||!es[0].isIntersecting)return;
+    started=true;io.disconnect();
+    void grid.offsetWidth;
+    vals.forEach(function(v){v.style.transition='';});
+    requestAnimationFrame(function(){
+      var site=document.querySelector('.seg [aria-pressed="true"]').dataset.site;
+      apply(site,true);
+    });
+  },{threshold:.35});
+  io.observe(grid);
+})();
+</script>
+</body>
+</html>

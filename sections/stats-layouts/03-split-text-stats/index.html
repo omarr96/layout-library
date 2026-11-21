@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marlowe &amp; Pike — Our record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4EFE6; --paper:#FBF8F2; --ink:#1E2A24; --muted:#5C655F; --line:#DCD3C3;
+    --green:#2F5D46; --brass:#9A7430; --brass-soft:#EFE3CB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"Young Serif",Georgia,serif;font-weight:400}
+  .stats{padding:clamp(72px,10vw,140px) clamp(20px,5vw,64px)}
+  .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,7vw,104px);align-items:center}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .eyebrow span{display:inline-block;width:6px;height:6px;background:var(--brass);transform:rotate(45deg)}
+  h2{font-size:clamp(34px,4.1vw,54px);line-height:1.08;letter-spacing:-.01em;margin-bottom:26px}
+  h2 i{font-style:italic;color:var(--green)}
+  .lede{font-size:18px;color:var(--ink);margin-bottom:16px}
+  .copy p.more{color:var(--muted);margin-bottom:32px}
+  .quote{border-left:2px solid var(--brass);padding:4px 0 4px 20px;margin-bottom:36px}
+  .quote p{font-size:17px;font-style:italic;color:var(--ink)}
+  .quote cite{display:flex;align-items:center;gap:12px;margin-top:14px;font-style:normal;font-size:14px;color:var(--muted)}
+  .quote cite b{color:var(--ink);font-weight:600}
+  .mono-av{width:36px;height:36px;border-radius:50%;background:var(--green);color:var(--paper);display:grid;place-items:center;font-size:14px;letter-spacing:.02em}
+  .actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;text-decoration:none;font-weight:600;padding:14px 22px;border-radius:4px;transition:background .2s}
+  .btn:hover,.btn:focus-visible{background:#234836}
+  .btn svg{width:18px;height:18px}
+  .link{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--brass)}
+  .link:hover{color:var(--green)}
+  a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  .board{background:var(--paper);border:1px solid var(--line);border-radius:6px;position:relative;box-shadow:0 30px 60px -40px #1E2A2455}
+  .board::before{content:"";position:absolute;inset:10px;border:1px solid var(--line);border-radius:3px;pointer-events:none}
+  .grid{list-style:none;display:grid;grid-template-columns:1fr 1fr;position:relative;padding:10px}
+  .grid li{padding:clamp(28px,3.4vw,48px);position:relative}
+  .grid li:nth-child(1),.grid li:nth-child(2){border-bottom:1px solid var(--line)}
+  .grid li:nth-child(odd){border-right:1px solid var(--line)}
+  .ix{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--brass);display:block;margin-bottom:18px}
+  .num{font-size:clamp(46px,5.2vw,72px);line-height:1;color:var(--ink);letter-spacing:-.02em;display:flex;align-items:baseline;gap:2px;font-variant-numeric:lining-nums}
+  .num sup,.num small{font-size:.45em;color:var(--green)}
+  .num sup{align-self:flex-start;margin-top:.15em}
+  .grid h3{font-size:16px;font-weight:700;margin-top:16px}
+  .grid p:not(.num){color:var(--muted);font-size:14.5px;margin-top:4px;max-width:28ch}
+  .seal{position:absolute;right:-22px;top:-26px;width:96px;height:96px;color:var(--brass);background:var(--bg);border-radius:50%;z-index:2}
+  .seal text{font-family:"Hanken Grotesk",sans-serif;font-size:9.2px;font-weight:700;letter-spacing:2.3px;fill:currentColor}
+  @media (max-width:960px){
+    .wrap{grid-template-columns:1fr}
+    .seal{right:12px;top:-52px}
+    .board{margin-top:28px}
+  }
+  @media (max-width:520px){
+    .grid li{padding:24px 18px}
+    .num{font-size:40px}
+    .grid p:not(.num){font-size:13.5px}
+    .seal{width:72px;height:72px;top:-48px;right:4px}
+    .board{margin-top:24px}
+  }
+  @media (max-width:360px){.grid{grid-template-columns:1fr}.grid li{border-right:0!important;border-bottom:1px solid var(--line)}.grid li:last-child{border-bottom:0}}
+</style>
+</head>
+<body>
+<section class="stats" aria-labelledby="t">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow"><span aria-hidden="true"></span>Marlowe &amp; Pike · Est. 1998</p>
+      <h2 id="t" class="serif">Advice measured in <i>outcomes</i>, not slide counts.</h2>
+      <p class="lede">We're a 140-person operations and strategy practice working with mid-market manufacturers, family-owned groups and the occasional public body.</p>
+      <p class="more">Every engagement closes with an audited benefits review twelve months later. These are the totals since we started tracking in 2014.</p>
+      <blockquote class="quote">
+        <p>"They found £4.1m in our supply chain we'd stopped looking for — and then stayed until it was banked."</p>
+        <cite><span class="mono-av serif" aria-hidden="true">HE</span><span><b>Helen Ekwueme</b><br>COO, Brannock Industrial Group</span></cite>
+      </blockquote>
+      <div class="actions">
+        <a class="btn" href="#">Talk to a partner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="link" href="#">Read 12 case studies</a>
+      </div>
+    </div>
+
+    <div class="board">
+      <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><path id="c" d="M50 50m-37 0a37 37 0 1 1 74 0a37 37 0 1 1-74 0"/></defs>
+        <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1"/>
+        <text><textPath href="#c">AUDITED RESULTS · 2014–2026 ·</textPath></text>
+        <path d="M40 51l7 7 14-15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <ul class="grid">
+        <li>
+          <span class="ix">01 — Value</span>
+          <p class="num serif"><sup>£</sup>612<small>m</small></p>
+          <h3>Client savings banked</h3>
+          <p>Verified at 12-month review, not projected.</p>
+        </li>
+        <li>
+          <span class="ix">02 — Return</span>
+          <p class="num serif">9.4<small>×</small></p>
+          <h3>Average return on fees</h3>
+          <p>Median across 380 closed engagements.</p>
+        </li>
+        <li>
+          <span class="ix">03 — Loyalty</span>
+          <p class="num serif">83<small>%</small></p>
+          <h3>Clients who come back</h3>
+          <p>For a second engagement within three years.</p>
+        </li>
+        <li>
+          <span class="ix">04 — Speed</span>
+          <p class="num serif">11<small>wks</small></p>
+          <h3>To first measurable gain</h3>
+          <p>From kick-off to the first number on the P&amp;L.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+</body>
+</html>

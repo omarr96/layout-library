@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "stats-gallery",
+      "title": "Stats layouts · all 10",
+      "desc": "Gallery of 10 stats sections, each a different layout.",
+      "tags": [
+        "Stats",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/stats-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-01-simple-row",
+      "title": "Stats 01 · Ledgerline",
+      "desc": "Simple number row · finance SaaS · count up on view.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/01-simple-row/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-02-counters-cards",
+      "title": "Stats 02 · Halyard Freight",
+      "desc": "Counting cards with trends · logistics.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/02-counters-cards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-03-split-text-stats",
+      "title": "Stats 03 · Marlowe & Pike",
+      "desc": "Text + 2×2 stats · consulting firm · audited seal.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/03-split-text-stats/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-04-dark-big-numbers",
+      "title": "Stats 04 · Bastion Nine",
+      "desc": "Dark oversized numbers · cybersecurity.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/04-dark-big-numbers/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-05-progress-rings",
+      "title": "Stats 05 · Willowbrook Family Clinic",
+      "desc": "Progress rings · healthcare clinic · switch practice.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/05-progress-rings/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-06-bar-chart",
+      "title": "Stats 06 · Northvale Capital",
+      "desc": "Bar chart · investment fund · yearly / quarterly.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/06-bar-chart/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-07-photo-overlay",
+      "title": "Stats 07 · Ironbridge Construction",
+      "desc": "Stats over a photo · construction.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/07-photo-overlay/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-08-impact-icons",
+      "title": "Stats 08 · Common Table Trust",
+      "desc": "Impact icons + total · non-profit.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/08-impact-icons/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-09-timeline-numbers",
+      "title": "Stats 09 · Fernlo",
+      "desc": "Growth timeline by year · e-commerce startup.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/09-timeline-numbers/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "stats-10-comparison-before-after",
+      "title": "Stats 10 · Hotpath",
+      "desc": "Before vs after metrics · web performance agency.",
+      "tags": [
+        "Stats"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/stats-layouts/10-comparison-before-after/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "cta-gallery",
       "title": "Call to action layouts · all 10",
       "desc": "Gallery of 10 call to action sections, each a different layout.",

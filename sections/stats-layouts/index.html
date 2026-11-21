@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stats Layouts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #111113; --tx: #52525b; --mut: #8a8a93; --line: #e7e7ea; --soft: #f7f7f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.6 Inter, system-ui, sans-serif; color: var(--tx); background: #fff; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 28px 80px; }
+h1 { margin: 0; font-size: 34px; color: var(--ink); letter-spacing: -.025em; }
+.sub { margin: 8px 0 0; max-width: 680px; }
+.kit { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.kit span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; margin-top: 40px; }
+.card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .25s, transform .25s, border-color .25s; display: flex; flex-direction: column; }
+.card:hover { box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); transform: translateY(-3px); border-color: #d4d4d8; }
+.shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--soft); border-bottom: 1px solid var(--line); }
+.shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.b { padding: 16px 18px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.n { font-size: 13px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.b h3 { margin: 0; font-size: 16px; color: var(--ink); }
+.b p { margin: 4px 0 10px; font-size: 13.5px; }
+.sw { display: flex; gap: 5px; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+@media (max-width: 600px) { .wrap { padding: 36px 16px 60px; } .grid { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Stats layouts</h1>
+  <p class="sub">Ten stats sections, each a different way to show numbers. Click one to open it full size.</p>
+  <div class="kit"><span>Number row</span><span>Counting cards</span><span>Text + grid</span><span>Dark numbers</span><span>Progress rings</span><span>Bar chart</span><span>Photo overlay</span><span>Impact icons</span><span>Timeline</span><span>Before / after</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const T = [
+  ["01-simple-row", "Ledgerline", "Simple number row · finance SaaS · count up on view", ["#FAFAF7", "#121417", "#2F6BFF", "#5E6470"]],
+  ["02-counters-cards", "Halyard Freight", "Counting cards with trends · logistics", ["#E9EEEC", "#10212B", "#E8601C", "#0F7A55"]],
+  ["03-split-text-stats", "Marlowe & Pike", "Text + 2×2 stats · consulting firm · audited seal", ["#F4EFE6", "#1E2A24", "#2F5D46", "#9A7430"]],
+  ["04-dark-big-numbers", "Bastion Nine", "Dark oversized numbers · cybersecurity", ["#07090C", "#E8ECEF", "#B4F03C", "#FF5C4D"]],
+  ["05-progress-rings", "Willowbrook Family Clinic", "Progress rings · healthcare clinic · switch practice", ["#EEF6F4", "#15302D", "#0F766E", "#E0654F"]],
+  ["06-bar-chart", "Northvale Capital", "Bar chart · investment fund · yearly / quarterly", ["#f6f1e7", "#12372a", "#c8963e", "#1d2421"]],
+  ["07-photo-overlay", "Ironbridge Construction", "Stats over a photo · construction", ["#111418", "#f2a20c", "#ffffff", "#c9ccd1"]],
+  ["08-impact-icons", "Common Table Trust", "Impact icons + total · non-profit", ["#fff7ec", "#d9603b", "#2f6b4f", "#22304a"]],
+  ["09-timeline-numbers", "Fernlo", "Growth timeline by year · e-commerce startup", ["#f4f2ff", "#5b3df5", "#c6f432", "#17142b"]],
+  ["10-comparison-before-after", "Hotpath", "Before vs after metrics · web performance agency", ["#0b1220", "#22c55e", "#f43f5e", "#94a3b8"]]
+];
+document.getElementById('grid').innerHTML = T.map(([f, n, d, c], i) => `<a class="card" href="${f}/index.html" target="_blank" rel="noopener">
+  <div class="shot"><iframe data-src="${f}/index.html" title="" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></div>
+  <div class="b"><span class="n">${String(i + 1).padStart(2, '0')}</span><div><h3>${n}</h3><p>${d}</p><div class="sw">${c.map(x => `<i style="background:${x}"></i>`).join('')}</div></div></div></a>`).join('');
+const ro = new ResizeObserver(es => es.forEach(e => e.target.querySelector('iframe').style.transform = `scale(${e.contentRect.width / 1440})`));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const f = e.target.querySelector('iframe'); f.src = f.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+document.querySelectorAll('.shot').forEach(s => { ro.observe(s); io.observe(s); });
+</script>
+</body>
+</html>
