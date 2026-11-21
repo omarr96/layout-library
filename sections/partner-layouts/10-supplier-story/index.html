@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearth &amp; Furrow Suppliers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f1e7;--ink:#2b2620;--tx:#5e554a;--line:#e3d9c7;--olive:#4a5a2a;--beet:#8c2f39;--card:#fffcf6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{font:16.5px/1.6 "Instrument Sans",system-ui,sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased}
+.sec{max-width:1280px;margin:0 auto;padding:104px 28px 112px}
+.head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 56px;align-items:end;margin-bottom:48px}
+.eyebrow{display:flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive)}
+.eyebrow svg{color:var(--olive)}
+h2{margin:14px 0 0;font:400 clamp(36px,4.6vw,58px)/1.06 "Libre Caslon Text",Georgia,serif;letter-spacing:-.02em;color:var(--ink)}
+h2 em{color:var(--beet)}
+.intro p{margin:0 0 14px}
+.miles{display:flex;align-items:baseline;gap:12px;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4}
+.miles b{font:700 34px/1 "Libre Caslon Text",serif;color:var(--olive);flex:none}
+.row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(43,38,32,.45)}
+.ph{position:relative;aspect-ratio:4/3;background:#ddd2bd;overflow:hidden}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.dist{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:99px;background:rgba(255,252,246,.94);color:var(--ink);font-size:12px;font-weight:600}
+.dist svg{color:var(--beet)}
+.body{display:flex;flex-direction:column;gap:6px;padding:16px 16px 18px;flex:1}
+.body h3{margin:0;font:400 20px/1.2 "Libre Caslon Text",serif;color:var(--ink)}
+.place{font-size:13.5px;color:var(--tx);display:flex;align-items:center;gap:5px}
+.supplies{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.supplies li{font-size:12.5px;font-weight:500;padding:3px 9px;border-radius:99px;background:#eef0e2;color:#3a4720}
+.quote{margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line);font:italic 400 14px/1.5 "Libre Caslon Text",serif;color:var(--ink);flex:1}
+.since{margin-top:12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--beet)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:36px}
+.foot p{margin:0;font-size:14.5px}
+.nav{display:none;gap:8px}
+.nav button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.nav button:disabled{opacity:.3;cursor:default}
+.nav button:not(:disabled):hover{background:var(--ink);color:var(--bg)}
+.link{color:var(--ink);font-weight:600;text-underline-offset:4px}
+.nav button:focus-visible,.link:focus-visible,.row:focus-visible{outline:3px solid var(--olive);outline-offset:3px}
+@media (max-width:1120px){
+  .head{grid-template-columns:minmax(0,1fr)}
+  .row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 28px;margin:0 -28px;padding:4px 28px 12px;scrollbar-width:none}
+  .row::-webkit-scrollbar{display:none}
+  .row>li{flex:0 0 280px;scroll-snap-align:start}
+  .js .nav{display:flex}
+}
+@media (max-width:560px){.sec{padding:64px 16px 72px}.row{margin:0 -16px;padding:4px 16px 12px;scroll-padding:0 16px}.row>li{flex-basis:78%}.head{margin-bottom:32px}.miles b{font-size:28px}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}.row{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="sup-title">
+  <div class="head">
+    <div>
+      <span class="eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9"/><path d="M12 13c-4 0-7-3-7-7 4 0 7 3 7 7zM12 11c0-4 3-7 7-7 0 4-3 7-7 7z"/></svg>Our growers &amp; makers</span>
+      <h2 id="sup-title">Everything on the plate <em>has a name</em> and an address.</h2>
+    </div>
+    <div class="intro">
+      <p>We change the menu every Thursday around what our five core suppliers pull from the ground, the dairy and the sea that week. No middlemen, just a van and a lot of early mornings.</p>
+      <div class="miles"><b>92%</b><span>of what we cook comes from within 40 miles of the Hearth &amp; Furrow kitchen.</span></div>
+    </div>
+  </div>
+
+  <ul class="row" id="row" aria-label="Our suppliers">
+    <li class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=700&q=70&auto=format&fit=crop" alt="Polytunnel of tomato vines and salad beds" loading="lazy" width="700" height="525"><span class="dist"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>6 miles</span></div>
+      <div class="body"><h3>Low Meadow Market Garden</h3><span class="place">Ruth &amp; Tom Ellery · Wye Valley</span>
+        <ul class="supplies"><li>Salad leaves</li><li>Heritage tomatoes</li><li>Herbs</li></ul>
+        <p class="quote">“We pick at five so it’s on your plate by seven.”</p><span class="since">Supplying since 2017</span></div>
+    </li>
+    <li class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=700&q=70&auto=format&fit=crop" alt="Two rounds of aged farmhouse cheese" loading="lazy" width="700" height="525"><span class="dist"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>18 miles</span></div>
+      <div class="body"><h3>Ashcombe Dairy</h3><span class="place">The Pryce family · Black Mountains</span>
+        <ul class="supplies"><li>Raw-milk cheddar</li><li>Cultured butter</li></ul>
+        <p class="quote">“Forty Jerseys, one cheese room, eighteen months of patience.”</p><span class="since">Supplying since 2015</span></div>
+    </li>
+    <li class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=700&q=70&auto=format&fit=crop" alt="Fresh whole sea bream on ice" loading="lazy" width="700" height="525"><span class="dist"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>38 miles</span></div>
+      <div class="body"><h3>Saltmarsh Day Boats</h3><span class="place">Skipper Jen Harrow · Severn estuary</span>
+        <ul class="supplies"><li>Line-caught bream</li><li>Mackerel</li><li>Crab</li></ul>
+        <p class="quote">“If the weather’s wrong, the fish just isn’t on the menu.”</p><span class="since">Supplying since 2019</span></div>
+    </li>
+    <li class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=700&q=70&auto=format&fit=crop" alt="Punnets of strawberries being picked from straw rows" loading="lazy" width="700" height="525"><span class="dist"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>11 miles</span></div>
+      <div class="body"><h3>Brambleford Fruit Farm</h3><span class="place">Amira Sayed · Golden Valley</span>
+        <ul class="supplies"><li>Strawberries</li><li>Rhubarb</li><li>Cider apples</li></ul>
+        <p class="quote">“Our June strawberries are the reason the pastry section exists.”</p><span class="since">Supplying since 2020</span></div>
+    </li>
+    <li class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=700&q=70&auto=format&fit=crop" alt="Tray of brown free-range eggs" loading="lazy" width="700" height="525"><span class="dist"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>3 miles</span></div>
+      <div class="body"><h3>Hollow Oak Hens</h3><span class="place">Gwen Talbot · Llanvair orchard</span>
+        <ul class="supplies"><li>Free-range eggs</li><li>Duck eggs</li></ul>
+        <p class="quote">“Six hundred hens under old apple trees. They do the weeding.”</p><span class="since">Supplying since 2014</span></div>
+    </li>
+  </ul>
+
+  <div class="foot">
+    <p>This week's menu features all five. <a class="link" href="#menu">See what's cooking</a></p>
+    <div class="nav" role="group" aria-label="Scroll suppliers">
+      <button type="button" id="prev" aria-label="Previous suppliers" aria-controls="row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <button type="button" id="next" aria-label="Next suppliers" aria-controls="row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var row=document.getElementById('row'),prev=document.getElementById('prev'),next=document.getElementById('next');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step(){var c=row.querySelector('li');return c?c.getBoundingClientRect().width+20:300}
+  function update(){
+    var max=row.scrollWidth-row.clientWidth-2;
+    prev.disabled=row.scrollLeft<=2;next.disabled=row.scrollLeft>=max;
+  }
+  prev.addEventListener('click',function(){row.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'})});
+  next.addEventListener('click',function(){row.scrollBy({left:step(),behavior:reduce?'auto':'smooth'})});
+  row.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
+</body>
+</html>

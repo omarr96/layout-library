@@ -80,6 +80,183 @@ window.DESIGNS = {
   "items": [
     {
       "cat": "section-layouts",
+      "slug": "partner-gallery",
+      "title": "Partner logo layouts · all 10",
+      "desc": "Gallery of 10 partner logo sections, each a different layout.",
+      "tags": [
+        "Partner logos",
+        "Gallery"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/partner-layouts/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-01-integrations-grid",
+      "title": "Partner logo 01 · Plotline",
+      "desc": "Integrations grid · productivity app · filter chips + search.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/01-integrations-grid/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-02-sponsors-tiers",
+      "title": "Partner logo 02 · Edgecase Summit",
+      "desc": "Sponsors by tier · tech conference · Platinum, Gold, Silver.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/02-sponsors-tiers/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-03-orbit",
+      "title": "Partner logo 03 · Quarry",
+      "desc": "Logos in orbit · data platform · slow turn, pause button.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/03-orbit/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-04-partner-cards",
+      "title": "Partner logo 04 · Fernway Partner Network",
+      "desc": "Partner cards with level badges · agency network.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/04-partner-cards/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-05-certified-badges",
+      "title": "Partner logo 05 · Harlow & Pike",
+      "desc": "Certification seals · accounting firm.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/05-certified-badges/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-06-logo-wall-dark",
+      "title": "Partner logo 06 · Ledgerline",
+      "desc": "Dark logo wall with glow · fintech infrastructure.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/06-logo-wall-dark/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-07-split-with-cta",
+      "title": "Partner logo 07 · Tidewell",
+      "desc": "Become a partner + logo grid · SaaS partner programme.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/07-split-with-cta/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-08-marquee-vertical",
+      "title": "Partner logo 08 · Northbound Freight",
+      "desc": "Vertical scrolling logo columns · logistics.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/08-marquee-vertical/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-09-map-partners",
+      "title": "Partner logo 09 · Wayfarer Collective",
+      "desc": "Dot map + region tabs · tour operator network.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/09-map-partners/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "partner-10-supplier-story",
+      "title": "Partner logo 10 · Hearth & Furrow",
+      "desc": "Supplier cards with photos · farm-to-table restaurant.",
+      "tags": [
+        "Partner logos"
+      ],
+      "date": "2026-11-20",
+      "pages": [
+        {
+          "label": "Section",
+          "href": "sections/partner-layouts/10-supplier-story/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "pricing-gallery",
       "title": "Pricing layouts · all 5",
       "desc": "Gallery of 5 pricing sections, each a different layout.",

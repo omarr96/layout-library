@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidewell Partner Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Gloock&family=Righteous&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6ee;--ink:#1c1917;--tx:#57524c;--line:#e9e0d2;--coral:#ff5a36;--coral-d:#d63f1e;--lilac:#cfc2ff;--card:#fff}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg)}
+body{font:17px/1.6 "Hanken Grotesk",system-ui,sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased}
+.sec{max-width:1240px;margin:0 auto;padding:110px 28px;display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
+.eyebrow{display:inline-block;padding:6px 12px;border-radius:99px;background:var(--lilac);color:#2b1d6b;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+h2{margin:20px 0 16px;font:400 clamp(38px,4.6vw,60px)/1.02 Gloock,Georgia,serif;letter-spacing:-.02em;color:var(--ink)}
+h2 span{color:var(--coral-d);white-space:nowrap}
+.lede{margin:0 0 28px;max-width:500px}
+.tabs{display:inline-flex;padding:4px;border-radius:12px;background:#f1e9dc;border:1px solid var(--line);margin-bottom:22px}
+.tabs button{font:600 14.5px/1 "Hanken Grotesk",sans-serif;border:0;background:none;color:var(--tx);padding:10px 16px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(28,25,23,.08),0 4px 12px -6px rgba(28,25,23,.25)}
+.tabs button:focus-visible,.btn:focus-visible,.link:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.ben{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.ben li{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start}
+.ben .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);color:var(--coral-d)}
+.ben strong{display:block;color:var(--ink);font-weight:700;font-size:16.5px;line-height:1.35}
+.ben p{margin:2px 0 0;font-size:15.5px;line-height:1.5}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:14px;background:var(--ink);color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 var(--coral);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--coral)}
+.link{color:var(--ink);font-weight:600;font-size:15.5px;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.panel{position:relative;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 30px 60px -40px rgba(28,25,23,.35)}
+.panel::before{content:"";position:absolute;width:120px;height:120px;right:-26px;top:-26px;border-radius:50%;background:var(--lilac);z-index:-1}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px}
+.ph h3{margin:0;font-size:15px;font-weight:700;color:var(--ink)}
+.ph span{font-size:13.5px}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grid li{position:relative;display:flex;align-items:center;justify-content:center;min-height:96px;padding:12px;border-radius:16px;background:#faf7f2;border:1px solid #f0e8db;color:#3d3833;transition:background .2s,border-color .2s}
+.grid li:hover{background:#fff;border-color:#e0d3c0}
+.tag{position:absolute;top:8px;right:8px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:#ffe4dc;color:#a3290f}
+.lg{display:inline-flex;align-items:center;gap:8px;font-size:18px;line-height:1;white-space:nowrap}
+.lg svg{width:24px;height:24px;flex:none}
+.stats{display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:20px;border-top:1px dashed var(--line)}
+.stats div{font-size:13.5px;line-height:1.35}
+.stats b{display:block;font:400 28px/1.1 Gloock,serif;color:var(--ink)}
+.note{position:absolute;left:-18px;bottom:-30px;transform:rotate(-4deg);font:600 22px/1 Caveat,cursive;color:var(--coral-d);background:var(--bg);padding:6px 12px;border-radius:8px}
+@media (max-width:980px){.sec{grid-template-columns:minmax(0,1fr);gap:64px;padding:80px 24px}.panel::before{display:none}}
+@media (max-width:560px){.sec{padding:60px 16px 72px}.panel{padding:18px;border-radius:20px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.grid li{min-height:78px;padding:10px 6px}.lg{zoom:.8}.ph{flex-direction:column;gap:2px}.lg svg{width:20px;height:20px}.stats b{font-size:23px}.tabs{display:flex}.tabs button{flex:1;padding:10px 8px}.note{left:8px;bottom:-26px;font-size:19px}.btn{width:100%;justify-content:center}h2 span{white-space:normal}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sec" aria-labelledby="pp-title">
+  <div>
+    <span class="eyebrow">Tidewell Partner Programme</span>
+    <h2 id="pp-title">Grow with us. <span>Earn 25% recurring.</span></h2>
+    <p class="lede">Resell, implement or integrate Tidewell's customer-support platform. Partners get revenue share for the life of every account, plus the people and tools to close faster.</p>
+
+    <div class="tabs" role="tablist" aria-label="Partner type">
+      <button role="tab" id="t-ag" aria-selected="true" aria-controls="p-ag">Agencies &amp; resellers</button>
+      <button role="tab" id="t-te" aria-selected="false" aria-controls="p-te" tabindex="-1">Technology partners</button>
+    </div>
+
+    <ul class="ben" role="tabpanel" id="p-ag" aria-labelledby="t-ag">
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><div><strong>25% revenue share, every month</strong><p>Paid on all seats you bring in for as long as the customer stays — no 12-month cap.</p></div></li>
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.8 2.7 2.6 3 5.2"/></svg></span><div><strong>A named partner manager</strong><p>Joint deal reviews, co-branded proposals and a direct line to solutions engineering.</p></div></li>
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h4"/></svg></span><div><strong>Free sandbox workspaces</strong><p>Five demo environments with sample data so you can pitch without touching production.</p></div></li>
+    </ul>
+    <ul class="ben" role="tabpanel" id="p-te" aria-labelledby="t-te" hidden>
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></span><div><strong>Listed in the Tidewell App Directory</strong><p>Reach 9,400 support teams who install an average of four integrations each.</p></div></li>
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></span><div><strong>Early API access</strong><p>Preview new endpoints and webhooks 60 days before public release, with a dedicated partner support queue.</p></div></li>
+      <li><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><strong>Co-marketing budget</strong><p>Launch webinars, case studies and up to $8,000 a year in matched campaign spend.</p></div></li>
+    </ul>
+
+    <div class="cta">
+      <a class="btn" href="#apply">Apply to become a partner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="link" href="#guide">Read the partner guide</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph"><h3>Already growing with Tidewell</h3><span>320 partners · 41 countries</span></div>
+    <ul class="grid" aria-label="Current partners">
+      <li><span class="tag">Elite</span><span class="lg" style="font-weight:800;letter-spacing:-.04em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12z" fill="#ff5a36"/><path d="M12 7l5 5-5 5-5-5z" fill="#fff"/></svg>Brightlane</span></li>
+      <li><span class="lg" style="font:400 19px/1 Gloock,serif">Marlowe&amp;Hale</span></li>
+      <li><span class="lg" style="font:400 19px/1 Righteous,sans-serif"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#1c1917"/><path d="M7 13c2 3 8 3 10 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>smilebox</span></li>
+      <li><span class="lg" style="font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:14px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V3h7a5 5 0 0 1 0 10H3" fill="none" stroke="#5a3fd6" stroke-width="3"/></svg>Pallisade</span></li>
+      <li><span class="tag">Elite</span><span class="lg" style="font-weight:700"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="9" height="9" rx="2" fill="#1c1917"/><rect x="13" y="2" width="9" height="9" rx="4.5" fill="#cfc2ff"/><rect x="2" y="13" width="9" height="9" rx="4.5" fill="#cfc2ff"/><rect x="13" y="13" width="9" height="9" rx="2" fill="#1c1917"/></svg>Quadrant</span></li>
+      <li><span class="lg" style="font:600 26px/1 Caveat,cursive;color:#a3290f">Fieldnote</span></li>
+      <li><span class="lg" style="font-weight:500;font-size:19px;letter-spacing:-.03em"><span>hello<b style="font-weight:800">desk</b>.io</span></span></li>
+      <li><span class="lg" style="font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.02em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18h20L16 6l-4 7-3-4z" fill="#2f6f5e"/></svg>Northpeak</span></li>
+      <li><span class="tag">Elite</span><span class="lg" style="font:italic 400 22px/1 Gloock,serif"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#ff5a36" stroke-width="3"/></svg>Orla</span></li>
+      <li><span class="lg" style="font-weight:700;font-size:17px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v16H4zM14 4h6v6h-6zM14 14h6v6h-6z" fill="#1c1917"/></svg>Stackwise</span></li>
+      <li><span class="lg" style="font-weight:400;letter-spacing:.3em;text-transform:lowercase;font-size:15px">k i n d r e d</span></li>
+      <li><span class="lg" style="font-weight:800;font-size:17px;letter-spacing:-.02em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#ffb020"/></svg>Voltline</span></li>
+    </ul>
+    <div class="stats">
+      <div><b>$4.2M</b>paid to partners in 2025</div>
+      <div><b>38 days</b>avg. time to first deal</div>
+      <div><b>4.8/5</b>partner satisfaction</div>
+    </div>
+    <span class="note" aria-hidden="true">you could be here →</span>
+  </div>
+</section>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function sel(t,focus){
+    tabs.forEach(function(b){var on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!on});
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){sel(b)});
+    b.addEventListener('keydown',function(e){
+      var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(e.key==='Home'){sel(tabs[0],1);e.preventDefault()}
+      else if(e.key==='End'){sel(tabs[tabs.length-1],1);e.preventDefault()}
+      else if(n){sel(tabs[(i+n+tabs.length)%tabs.length],1);e.preventDefault()}
+    });
+  });
+})();
+</script>
+</body>
+</html>
