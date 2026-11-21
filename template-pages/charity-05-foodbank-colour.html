@@ -1,0 +1,1084 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Premium care template check</title><meta name="description" content="Template check page for one vibe."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap"><style>:root {
+  --color-background: #FAF8F5;
+  --color-surface: #F0ECE6;
+  --color-text: #1A2233;
+  --color-muted: #525967;
+  --color-primary: #1F2E4D;
+  --color-on-primary: #FFFFFF;
+  --color-accent: #6a5534;
+  --color-border: #E2DCD3;
+  --color-primary-ink: #1F2E4D;
+  --color-accent-ink: #6a5534;
+  --color-primary-soft: #d9dadc;
+  --color-overlay: #0d111a;
+  --color-on-overlay: #FAF8F5;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 1.8rem + 4.2vw, 4.75rem);
+  --text-6xl: clamp(3.25rem, 2rem + 6vw, 6.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px #1A223314;
+  --shadow-md: 0 10px 30px #1A22331f;
+  --shadow-lg: 0 24px 60px #1A223329;
+  --width-content: 1200px;
+  --width-narrow: 760px;
+}
+
+/* Base (made by code from the tokens) */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-background); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+h1 { font-size: var(--text-5xl); } h2 { font-size: var(--text-4xl); } h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: inherit; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+[hidden] { display: none; }
+.container { width: 100%; max-width: var(--width-content); margin-inline: auto; padding-inline: var(--space-5); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.lead { font-size: var(--text-lg); color: var(--color-muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.t-header-foodbank-open-today{position:relative;z-index:50;background:var(--color-background);color:var(--color-text);font-family:var(--font-body);border-bottom:1px solid var(--color-border)}
+.t-header-foodbank-open-today__strip{background:var(--color-text);color:var(--color-background);font-size:var(--text-sm)}
+.t-header-foodbank-open-today__strip-in{display:flex;align-items:center;gap:var(--space-4);padding-block:var(--space-2)}
+.t-header-foodbank-open-today__status{display:inline-flex;align-items:center;gap:var(--space-2);font-weight:700;white-space:nowrap}
+.t-header-foodbank-open-today__dot{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-background);animation:t-header-foodbank-open-today-pulse 2.4s ease-in-out infinite}
+.t-header-foodbank-open-today__hours{color:color-mix(in srgb,var(--color-background) 82%,var(--color-text))}
+.t-header-foodbank-open-today__strip-link{margin-left:auto;font-weight:600;color:var(--color-background);text-underline-offset:var(--space-1);white-space:nowrap}
+.t-header-foodbank-open-today__bar{position:relative;display:flex;align-items:center;gap:var(--space-5);padding-block:var(--space-4)}
+.t-header-foodbank-open-today__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-text);min-width:0}
+.t-header-foodbank-open-today__mark{flex:none;display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border-radius:var(--radius-md);background:var(--color-primary);color:var(--color-on-primary)}
+.t-header-foodbank-open-today__names{display:flex;flex-direction:column;min-width:0}
+.t-header-foodbank-open-today__brand{font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);line-height:1.15}
+.t-header-foodbank-open-today__tagline{font-size:var(--text-xs);color:var(--color-muted);line-height:1.3}
+.t-header-foodbank-open-today__nav{display:flex;gap:var(--space-5);margin-left:auto}
+.t-header-foodbank-open-today__nav a{position:relative;padding:var(--space-1) 0;font-size:var(--text-sm);font-weight:600;color:var(--color-text);text-decoration:none;white-space:nowrap}
+.t-header-foodbank-open-today__nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:var(--radius-pill);background:var(--color-primary);transform:scaleX(0);transform-origin:left;transition:transform 220ms ease}
+.t-header-foodbank-open-today__nav a:hover::after{transform:scaleX(1)}
+.t-header-foodbank-open-today__actions{display:flex;gap:var(--space-2)}
+.t-header-foodbank-open-today__btn{padding:var(--space-2) var(--space-4);font-size:var(--text-sm);white-space:nowrap}
+.t-header-foodbank-open-today__menu{display:none;margin-left:auto}
+.t-header-foodbank-open-today__toggle{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;list-style:none}
+.t-header-foodbank-open-today__toggle::-webkit-details-marker{display:none}
+.t-header-foodbank-open-today__sheet{position:absolute;left:var(--space-4);right:var(--space-4);top:100%;display:flex;flex-direction:column;padding:var(--space-4);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.t-header-foodbank-open-today__menu:not([open]) .t-header-foodbank-open-today__sheet{display:none}
+.t-header-foodbank-open-today__sheet-link{padding:var(--space-3) var(--space-2);font-weight:600;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-border)}
+.t-header-foodbank-open-today__sheet-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-2);margin-top:var(--space-4)}
+@keyframes t-header-foodbank-open-today-pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+@media (max-width: 1024px){
+.t-header-foodbank-open-today__nav,.t-header-foodbank-open-today__actions{display:none}
+.t-header-foodbank-open-today__menu{display:block}
+}
+@media (max-width: 760px){
+.t-header-foodbank-open-today__strip-link{display:none}
+.t-header-foodbank-open-today__strip-in{flex-wrap:wrap;gap:var(--space-1) var(--space-3)}
+.t-header-foodbank-open-today__tagline{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+.t-header-foodbank-open-today__dot{animation:none}
+.t-header-foodbank-open-today__nav a::after{transition:none}
+}
+.t-hero-foodbank-two-doors{padding:var(--space-8) 0;background:var(--color-background);color:var(--color-text)}
+.t-hero-foodbank-two-doors__head{margin-bottom:var(--space-7)}
+.t-hero-foodbank-two-doors__title{margin:0;font-size:var(--text-5xl);line-height:1.02;letter-spacing:-0.025em;text-wrap:balance}
+.t-hero-foodbank-two-doors__lead{margin:var(--space-5) 0 0;max-width:52%;font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-hero-foodbank-two-doors__doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.t-hero-foodbank-two-doors__door{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;min-height:calc(var(--space-10) * 4.5);padding:var(--space-7);border-radius:var(--radius-lg);transition:transform 260ms ease;animation:t-hero-foodbank-two-doors-rise 600ms ease both}
+.t-hero-foodbank-two-doors__door:hover{transform:translateY(-2px)}
+.t-hero-foodbank-two-doors__door.is-need{background:var(--color-primary);color:var(--color-on-primary)}
+.t-hero-foodbank-two-doors__door.is-help{color:var(--color-on-overlay);background:var(--color-overlay);animation-delay:120ms}
+.t-hero-foodbank-two-doors__photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
+.t-hero-foodbank-two-doors__shade{position:absolute;inset:0;z-index:-1;background:var(--color-overlay);opacity:0.68}
+.t-hero-foodbank-two-doors__tag{display:flex;align-items:center;gap:var(--space-3);margin:0 0 auto;padding-bottom:var(--space-7);font-size:var(--text-sm);font-weight:600;letter-spacing:0.04em}
+.t-hero-foodbank-two-doors__tag-n{display:grid;place-items:center;width:var(--space-6);height:var(--space-6);border:1px solid currentColor;border-radius:var(--radius-pill);font-size:var(--text-xs)}
+.t-hero-foodbank-two-doors__door-title{margin:0 0 var(--space-3);font-size:var(--text-4xl);line-height:1;letter-spacing:-0.02em}
+.t-hero-foodbank-two-doors__door-text{margin:0 0 var(--space-5);max-width:88%;font-size:var(--text-lg);line-height:1.5}
+.t-hero-foodbank-two-doors__facts{list-style:none;margin:0 0 var(--space-6);padding:0;width:100%}
+.t-hero-foodbank-two-doors__facts li{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;border-top:1px solid color-mix(in srgb,var(--color-on-primary) 28%,transparent);font-weight:500}
+.t-hero-foodbank-two-doors__facts svg{flex:none}
+.t-hero-foodbank-two-doors__btn-inv{background:var(--color-on-primary);color:var(--color-primary)}
+.t-hero-foodbank-two-doors__chips{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:0 0 var(--space-6)}
+.t-hero-foodbank-two-doors__chip{padding:var(--space-2) var(--space-4);border:1px solid color-mix(in srgb,var(--color-on-overlay) 55%,transparent);border-radius:var(--radius-pill);color:var(--color-on-overlay);font-size:var(--text-sm);font-weight:600;text-decoration:none;transition:background-color 200ms ease}
+.t-hero-foodbank-two-doors__chip:hover{background:color-mix(in srgb,var(--color-on-overlay) 18%,transparent)}
+.t-hero-foodbank-two-doors__notes{list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-3) var(--space-7);margin:var(--space-6) 0 0;padding:0;font-size:var(--text-sm);font-weight:600}
+.t-hero-foodbank-two-doors__notes li{display:flex;align-items:center;gap:var(--space-2)}
+.t-hero-foodbank-two-doors__notes svg{flex:none;color:var(--color-primary-ink)}
+@keyframes t-hero-foodbank-two-doors-rise{from{opacity:0;transform:translateY(var(--space-4))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){
+.t-hero-foodbank-two-doors__lead{max-width:80%}
+.t-hero-foodbank-two-doors__door{padding:var(--space-6);min-height:calc(var(--space-10) * 4)}
+}
+@media (max-width: 760px){
+.t-hero-foodbank-two-doors{padding:var(--space-7) 0}
+.t-hero-foodbank-two-doors__doors{grid-template-columns:minmax(0,1fr)}
+.t-hero-foodbank-two-doors__door{min-height:0;padding:var(--space-5)}
+.t-hero-foodbank-two-doors__tag{padding-bottom:var(--space-8)}
+.t-hero-foodbank-two-doors__door-text,.t-hero-foodbank-two-doors__lead{max-width:100%}
+.t-hero-foodbank-two-doors__notes{flex-direction:column}
+}
+@media (prefers-reduced-motion: reduce){
+.t-hero-foodbank-two-doors__door{animation:none;transition:none}
+}
+.t-steps-foodbank-visit-and-hours{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-steps-foodbank-visit-and-hours__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:var(--space-8);align-items:start}
+.t-steps-foodbank-visit-and-hours__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-steps-foodbank-visit-and-hours__lead{margin:0 0 var(--space-7);max-width:90%;font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-steps-foodbank-visit-and-hours__steps{list-style:none;margin:0;padding:0}
+.t-steps-foodbank-visit-and-hours__step{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding-bottom:var(--space-7)}
+.t-steps-foodbank-visit-and-hours__step:last-child{padding-bottom:0}
+.t-steps-foodbank-visit-and-hours__step::before{content:"";position:absolute;top:var(--space-7);bottom:0;left:calc(var(--space-7) / 2);width:2px;margin-left:-1px;background:var(--color-border)}
+.t-steps-foodbank-visit-and-hours__step:last-child::before{display:none}
+.t-steps-foodbank-visit-and-hours__num{position:relative;display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700}
+.t-steps-foodbank-visit-and-hours__step-title{margin:var(--space-2) 0 var(--space-2);font-size:var(--text-2xl);line-height:1.15}
+.t-steps-foodbank-visit-and-hours__step-text{margin:0 0 var(--space-3);color:var(--color-muted);line-height:1.6}
+.t-steps-foodbank-visit-and-hours__pill{display:inline-block;padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-background);font-size:var(--text-sm);font-weight:600}
+.t-steps-foodbank-visit-and-hours__side{display:grid;gap:var(--space-4)}
+.t-steps-foodbank-visit-and-hours__card{padding:var(--space-6);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md)}
+.t-steps-foodbank-visit-and-hours__card-head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-4)}
+.t-steps-foodbank-visit-and-hours__card-title{margin:0;font-size:var(--text-xl)}
+.t-steps-foodbank-visit-and-hours__open{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background);font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em;text-transform:uppercase}
+.t-steps-foodbank-visit-and-hours__open-dot{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-background)}
+.t-steps-foodbank-visit-and-hours__hours{margin:0}
+.t-steps-foodbank-visit-and-hours__row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) var(--space-3);border-top:1px solid var(--color-border)}
+.t-steps-foodbank-visit-and-hours__row dt{font-weight:600}
+.t-steps-foodbank-visit-and-hours__row dd{margin:0;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.t-steps-foodbank-visit-and-hours__row-note{font-size:var(--text-xs);font-weight:600}
+.t-steps-foodbank-visit-and-hours__row.is-today{border-top-color:transparent;border-radius:var(--radius-md);background:var(--color-primary-soft);color:var(--color-text)}
+.t-steps-foodbank-visit-and-hours__row.is-today + .t-steps-foodbank-visit-and-hours__row{border-top-color:transparent}
+.t-steps-foodbank-visit-and-hours__row.is-closed{color:var(--color-muted)}
+.t-steps-foodbank-visit-and-hours__where{display:flex;align-items:flex-start;gap:var(--space-2);margin:var(--space-4) 0 0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-steps-foodbank-visit-and-hours__where svg{flex:none;margin-top:2px}
+.t-steps-foodbank-visit-and-hours__bring{padding:var(--space-6);border-radius:var(--radius-lg);background:var(--color-primary);color:var(--color-on-primary)}
+.t-steps-foodbank-visit-and-hours__bring-title{margin:0 0 var(--space-3);font-size:var(--text-xl)}
+.t-steps-foodbank-visit-and-hours__bring-list{list-style:none;margin:0 0 var(--space-4);padding:0;display:grid;gap:var(--space-2)}
+.t-steps-foodbank-visit-and-hours__bring-list li{display:flex;align-items:flex-start;gap:var(--space-3);line-height:1.45}
+.t-steps-foodbank-visit-and-hours__bring-list svg{flex:none;margin-top:2px}
+.t-steps-foodbank-visit-and-hours__bring-link{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--color-on-primary);font-weight:700;text-underline-offset:var(--space-1)}
+.t-steps-foodbank-visit-and-hours__bring-link svg{transition:transform 200ms ease}
+.t-steps-foodbank-visit-and-hours__bring-link:hover svg{transform:translateX(2px)}
+@media (max-width: 1024px){
+.t-steps-foodbank-visit-and-hours__grid{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}
+}
+@media (max-width: 760px){
+.t-steps-foodbank-visit-and-hours{padding:var(--space-8) 0}
+.t-steps-foodbank-visit-and-hours__lead{max-width:100%}
+.t-steps-foodbank-visit-and-hours__step{gap:var(--space-4)}
+.t-steps-foodbank-visit-and-hours__card,.t-steps-foodbank-visit-and-hours__bring{padding:var(--space-5)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-steps-foodbank-visit-and-hours__bring-link svg{transition:none}
+}
+.t-list-foodbank-most-needed{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-list-foodbank-most-needed__grid{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:var(--space-8);align-items:start}
+.t-list-foodbank-most-needed__intro{position:sticky;top:var(--space-7)}
+.t-list-foodbank-most-needed__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-list-foodbank-most-needed__lead{margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-list-foodbank-most-needed__actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4) var(--space-5);margin-bottom:var(--space-6)}
+.t-list-foodbank-most-needed__link{font-weight:600;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-list-foodbank-most-needed__rule{display:flex;align-items:flex-start;gap:var(--space-2);margin:0;padding-top:var(--space-4);border-top:1px solid var(--color-border);font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-most-needed__rule svg{flex:none;margin-top:2px}
+.t-list-foodbank-most-needed__sheet{position:relative;padding:var(--space-6) var(--space-6) var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);transform:rotate(0.4deg)}
+.t-list-foodbank-most-needed__sheet::before{content:"";position:absolute;top:calc(var(--space-3) * -1);left:50%;width:var(--space-9);height:var(--space-5);margin-left:calc(var(--space-9) / -2);border-radius:var(--radius-sm);background:color-mix(in srgb,var(--color-primary) 30%,var(--color-background));opacity:0.9;transform:rotate(-2deg)}
+.t-list-foodbank-most-needed__sheet-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);padding-bottom:var(--space-4);border-bottom:2px solid var(--color-text)}
+.t-list-foodbank-most-needed__sheet-title{margin:0;font-size:var(--text-2xl)}
+.t-list-foodbank-most-needed__updated{font-size:var(--text-sm);font-weight:600;white-space:nowrap}
+.t-list-foodbank-most-needed__list{list-style:none;margin:0;padding:0}
+.t-list-foodbank-most-needed__item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px dashed var(--color-border)}
+.t-list-foodbank-most-needed__box{width:var(--space-5);height:var(--space-5);border:2px solid var(--color-text);border-radius:var(--radius-sm);background:var(--color-background)}
+.t-list-foodbank-most-needed__what{display:flex;flex-direction:column;min-width:0}
+.t-list-foodbank-most-needed__name{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:600;line-height:1.25}
+.t-list-foodbank-most-needed__note{font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-most-needed__level{display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-2)}
+.t-list-foodbank-most-needed__level-text{font-size:var(--text-xs);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
+.t-list-foodbank-most-needed__item.is-1 .t-list-foodbank-most-needed__level-text{padding:0 var(--space-2);border-radius:var(--radius-sm);background:var(--color-text);color:var(--color-background)}
+.t-list-foodbank-most-needed__meter{display:block;width:var(--space-9);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-border);overflow:hidden}
+.t-list-foodbank-most-needed__fill{display:block;height:100%;border-radius:var(--radius-pill);background:var(--color-primary)}
+.t-list-foodbank-most-needed__item.is-1 .t-list-foodbank-most-needed__fill{width:10%}
+.t-list-foodbank-most-needed__item.is-2 .t-list-foodbank-most-needed__fill{width:28%}
+.t-list-foodbank-most-needed__item.is-3 .t-list-foodbank-most-needed__fill{width:46%}
+.t-list-foodbank-most-needed__plenty{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3);padding-top:var(--space-5)}
+.t-list-foodbank-most-needed__plenty-label{font-size:var(--text-sm);font-weight:600}
+.t-list-foodbank-most-needed__plenty-chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.t-list-foodbank-most-needed__chip{padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-background);font-size:var(--text-sm);color:var(--color-muted);text-decoration:line-through}
+@media (max-width: 1024px){
+.t-list-foodbank-most-needed__grid{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}
+.t-list-foodbank-most-needed__intro{position:static}
+}
+@media (max-width: 760px){
+.t-list-foodbank-most-needed{padding:var(--space-8) 0}
+.t-list-foodbank-most-needed__sheet{padding:var(--space-5) var(--space-4) var(--space-4);transform:none}
+.t-list-foodbank-most-needed__item{gap:var(--space-3)}
+.t-list-foodbank-most-needed__meter{width:var(--space-8)}
+}
+.t-features-foodbank-three-ways{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-features-foodbank-three-ways__head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,0.7fr);gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+.t-features-foodbank-three-ways__title{margin:0;font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-features-foodbank-three-ways__lead{margin:0 0 var(--space-1);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-features-foodbank-three-ways__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);grid-template-rows:repeat(2,auto);gap:var(--space-4)}
+.t-features-foodbank-three-ways__card{display:flex;flex-direction:column;align-items:flex-start;padding:var(--space-6);border-radius:var(--radius-lg);background:var(--color-background);border:1px solid var(--color-border);transition:transform 240ms ease,box-shadow 240ms ease}
+.t-features-foodbank-three-ways__card.is-food:hover,.t-features-foodbank-three-ways__card.is-time:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.t-features-foodbank-three-ways__card.is-money{grid-row:1 / span 2;padding:var(--space-7);background:var(--color-primary);border-color:transparent;color:var(--color-on-primary)}
+.t-features-foodbank-three-ways__label{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.t-features-foodbank-three-ways__icon{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border-radius:var(--radius-pill);background:var(--color-primary-soft);color:var(--color-text)}
+.t-features-foodbank-three-ways__card.is-money .t-features-foodbank-three-ways__icon{background:var(--color-on-primary);color:var(--color-primary)}
+.t-features-foodbank-three-ways__card-title{margin:0 0 var(--space-3);font-size:var(--text-2xl);line-height:1.15;letter-spacing:-0.01em;text-wrap:balance}
+.t-features-foodbank-three-ways__card.is-money .t-features-foodbank-three-ways__card-title{font-size:var(--text-3xl);margin-bottom:var(--space-6)}
+.t-features-foodbank-three-ways__text{margin:0 0 var(--space-5);color:var(--color-muted);line-height:1.6}
+.t-features-foodbank-three-ways__more{display:inline-flex;align-items:center;gap:var(--space-2);margin-top:auto;font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-features-foodbank-three-ways__more svg{transition:transform 200ms ease}
+.t-features-foodbank-three-ways__more:hover svg{transform:translateX(2px)}
+.t-features-foodbank-three-ways__picker{width:100%;margin-top:auto;padding-top:var(--space-5);border-top:1px solid color-mix(in srgb,var(--color-on-primary) 28%,transparent)}
+.t-features-foodbank-three-ways__picker-label{margin:0 0 var(--space-3);font-size:var(--text-sm);font-weight:600}
+.t-features-foodbank-three-ways__amounts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-2)}
+.t-features-foodbank-three-ways__amount{padding:var(--space-4) var(--space-2);border:1px solid color-mix(in srgb,var(--color-on-primary) 45%,transparent);border-radius:var(--radius-md);background:transparent;color:var(--color-on-primary);font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;line-height:1;cursor:pointer;transition:background-color 200ms ease,color 200ms ease,transform 200ms ease}
+.t-features-foodbank-three-ways__amount:hover{transform:translateY(-1px)}
+.t-features-foodbank-three-ways__amount.is-active{background:var(--color-on-primary);border-color:var(--color-on-primary);color:var(--color-primary)}
+.t-features-foodbank-three-ways__amount:focus-visible{outline:2px solid var(--color-on-primary);outline-offset:2px}
+.t-features-foodbank-three-ways__impact{margin-top:var(--space-4);min-height:calc(var(--space-7) + var(--space-3))}
+.t-features-foodbank-three-ways__impact-line{display:none;margin:0;font-size:var(--text-lg);line-height:1.45}
+.t-features-foodbank-three-ways__impact-line.is-active{display:block;animation:t-features-foodbank-three-ways-fade 300ms ease both}
+.t-features-foodbank-three-ways__money-foot{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4);margin-top:var(--space-5)}
+.t-features-foodbank-three-ways__btn-inv{background:var(--color-on-primary);color:var(--color-primary)}
+.t-features-foodbank-three-ways__secure{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm)}
+@keyframes t-features-foodbank-three-ways-fade{from{opacity:0}to{opacity:1}}
+@media (max-width: 1024px){
+.t-features-foodbank-three-ways__head{grid-template-columns:minmax(0,1fr);gap:var(--space-4)}
+.t-features-foodbank-three-ways__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.t-features-foodbank-three-ways__card.is-money{grid-row:auto;grid-column:1 / -1}
+}
+@media (max-width: 760px){
+.t-features-foodbank-three-ways{padding:var(--space-8) 0}
+.t-features-foodbank-three-ways__grid{grid-template-columns:minmax(0,1fr)}
+.t-features-foodbank-three-ways__card,.t-features-foodbank-three-ways__card.is-money{padding:var(--space-5)}
+.t-features-foodbank-three-ways__amount{font-size:var(--text-xl);padding:var(--space-3) var(--space-1)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-features-foodbank-three-ways__card,.t-features-foodbank-three-ways__amount,.t-features-foodbank-three-ways__more svg{transition:none}
+.t-features-foodbank-three-ways__impact-line.is-active{animation:none}
+}
+.t-list-foodbank-shift-timetable{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-list-foodbank-shift-timetable__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-6);margin-bottom:var(--space-6)}
+.t-list-foodbank-shift-timetable__title{margin:0 0 var(--space-3);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-list-foodbank-shift-timetable__lead{margin:0;font-size:var(--text-lg);color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__legend{flex:none;list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);margin:0;padding:0;font-size:var(--text-sm);font-weight:600}
+.t-list-foodbank-shift-timetable__legend li{display:flex;align-items:center;gap:var(--space-2);white-space:nowrap}
+.t-list-foodbank-shift-timetable__key{width:var(--space-4);height:var(--space-4);border-radius:var(--radius-sm);border:1px solid var(--color-border);background:var(--color-surface)}
+.t-list-foodbank-shift-timetable__key.is-urgent{background:var(--color-primary);border-color:var(--color-primary)}
+.t-list-foodbank-shift-timetable__key.is-full{background:transparent;border-style:dashed;border-color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__table{display:grid;gap:var(--space-2)}
+.t-list-foodbank-shift-timetable__row{display:grid;grid-template-columns:minmax(0,0.55fr) repeat(3,minmax(0,1fr));gap:var(--space-2)}
+.t-list-foodbank-shift-timetable__row.is-head{padding-bottom:var(--space-2);border-bottom:2px solid var(--color-text);margin-bottom:var(--space-2)}
+.t-list-foodbank-shift-timetable__corner{align-self:end;font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.t-list-foodbank-shift-timetable__col{display:flex;flex-direction:column;padding:0 var(--space-4)}
+.t-list-foodbank-shift-timetable__col-name{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;line-height:1.2}
+.t-list-foodbank-shift-timetable__col-note{font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__day{display:flex;flex-direction:column;justify-content:center;padding:var(--space-3) var(--space-3) var(--space-3) 0}
+.t-list-foodbank-shift-timetable__day-name{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;line-height:1.2}
+.t-list-foodbank-shift-timetable__day-note{font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__cell{display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-4);border:1px solid transparent;border-radius:var(--radius-md);background:var(--color-surface);transition:transform 200ms ease,box-shadow 200ms ease}
+.t-list-foodbank-shift-timetable__cell.is-open:hover,.t-list-foodbank-shift-timetable__cell.is-urgent:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.t-list-foodbank-shift-timetable__role{font-weight:700;line-height:1.3}
+.t-list-foodbank-shift-timetable__time{font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-1) var(--space-3);margin-top:auto;padding-top:var(--space-3);font-size:var(--text-sm)}
+.t-list-foodbank-shift-timetable__places{font-weight:600}
+.t-list-foodbank-shift-timetable__join{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1);white-space:nowrap}
+.t-list-foodbank-shift-timetable__cell.is-urgent{background:var(--color-primary);color:var(--color-on-primary)}
+.t-list-foodbank-shift-timetable__cell.is-urgent .t-list-foodbank-shift-timetable__time,.t-list-foodbank-shift-timetable__cell.is-urgent .t-list-foodbank-shift-timetable__join{color:var(--color-on-primary)}
+.t-list-foodbank-shift-timetable__cell.is-full{background:transparent;border:1px dashed var(--color-muted)}
+.t-list-foodbank-shift-timetable__cell.is-full .t-list-foodbank-shift-timetable__role,.t-list-foodbank-shift-timetable__cell.is-full .t-list-foodbank-shift-timetable__places{color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__cell.is-none{align-items:center;justify-content:center;background:transparent;border:1px dashed var(--color-border);font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-foodbank-shift-timetable__strip{display:flex;align-items:center;gap:var(--space-5);margin-top:var(--space-6);padding:var(--space-5) var(--space-6);border-radius:var(--radius-lg);background:var(--color-surface)}
+.t-list-foodbank-shift-timetable__strip-icon{flex:none;display:grid;place-items:center;width:var(--space-8);height:var(--space-8);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background)}
+.t-list-foodbank-shift-timetable__strip-text{flex:1;margin:0;line-height:1.5}
+@media (max-width: 1024px){
+.t-list-foodbank-shift-timetable__head{flex-direction:column;align-items:flex-start;gap:var(--space-4)}
+.t-list-foodbank-shift-timetable__cell{padding:var(--space-3)}
+.t-list-foodbank-shift-timetable__col{padding:0 var(--space-3)}
+.t-list-foodbank-shift-timetable__strip{flex-wrap:wrap}
+}
+@media (max-width: 760px){
+.t-list-foodbank-shift-timetable{padding:var(--space-8) 0}
+.t-list-foodbank-shift-timetable__row.is-head{display:none}
+.t-list-foodbank-shift-timetable__table{gap:var(--space-5)}
+.t-list-foodbank-shift-timetable__row{grid-template-columns:minmax(0,1fr)}
+.t-list-foodbank-shift-timetable__day{flex-direction:row;align-items:baseline;justify-content:space-between;padding:0 0 var(--space-2);border-bottom:2px solid var(--color-text)}
+.t-list-foodbank-shift-timetable__cell{padding:var(--space-4)}
+.t-list-foodbank-shift-timetable__cell.is-none{display:none}
+.t-list-foodbank-shift-timetable__strip{flex-direction:column;align-items:flex-start;padding:var(--space-5)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-list-foodbank-shift-timetable__cell{transition:none}
+}
+.t-stats-foodbank-impact-supporters{padding:var(--space-9) 0;background:var(--color-text);color:var(--color-background)}
+.t-stats-foodbank-impact-supporters__top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:var(--space-8);align-items:end}
+.t-stats-foodbank-impact-supporters__eyebrow{color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__big{margin:0;font-family:var(--font-heading);font-size:var(--text-6xl);font-weight:700;line-height:0.95;letter-spacing:-0.03em}
+.t-stats-foodbank-impact-supporters__title{margin:var(--space-3) 0 var(--space-4);font-size:var(--text-3xl);line-height:1.1;letter-spacing:-0.01em;text-wrap:balance}
+.t-stats-foodbank-impact-supporters__text{margin:0;max-width:85%;font-size:var(--text-lg);line-height:1.55;color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__chart{margin:0;padding:var(--space-5);border:1px solid color-mix(in srgb,var(--color-background) 22%,transparent);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-background) 6%,transparent)}
+.t-stats-foodbank-impact-supporters__chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-5);font-size:var(--text-sm)}
+.t-stats-foodbank-impact-supporters__chart-title{font-weight:700}
+.t-stats-foodbank-impact-supporters__chart-note{color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__bars{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end;gap:var(--space-2);height:calc(var(--space-9) * 2);border-bottom:1px solid color-mix(in srgb,var(--color-background) 30%,transparent)}
+.t-stats-foodbank-impact-supporters__bar{display:block;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:color-mix(in srgb,var(--color-background) 36%,var(--color-text));transform-origin:bottom;animation:t-stats-foodbank-impact-supporters-grow 700ms ease both}
+.t-stats-foodbank-impact-supporters__bar.is-m1{height:54%}
+.t-stats-foodbank-impact-supporters__bar.is-m2{height:48%}
+.t-stats-foodbank-impact-supporters__bar.is-m3{height:52%}
+.t-stats-foodbank-impact-supporters__bar.is-m4{height:46%}
+.t-stats-foodbank-impact-supporters__bar.is-m5{height:44%}
+.t-stats-foodbank-impact-supporters__bar.is-m6{height:50%}
+.t-stats-foodbank-impact-supporters__bar.is-m7{height:68%}
+.t-stats-foodbank-impact-supporters__bar.is-m8{height:74%}
+.t-stats-foodbank-impact-supporters__bar.is-m9{height:58%}
+.t-stats-foodbank-impact-supporters__bar.is-m10{height:62%}
+.t-stats-foodbank-impact-supporters__bar.is-m11{height:76%}
+.t-stats-foodbank-impact-supporters__bar.is-m12{height:100%;background:var(--color-background)}
+.t-stats-foodbank-impact-supporters__months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--space-2);margin-top:var(--space-2);font-size:var(--text-xs);font-weight:600;text-align:center;color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__stats{list-style:none;padding-inline:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-6);margin:var(--space-8) 0 0;padding-top:var(--space-6);border-top:1px solid color-mix(in srgb,var(--color-background) 30%,transparent)}
+.t-stats-foodbank-impact-supporters__stat{display:flex;flex-direction:column}
+.t-stats-foodbank-impact-supporters__num{margin:0;font-family:var(--font-heading);font-size:var(--text-4xl);font-weight:700;line-height:1;letter-spacing:-0.02em}
+.t-stats-foodbank-impact-supporters__label{margin-top:var(--space-2);font-weight:700}
+.t-stats-foodbank-impact-supporters__note{margin:var(--space-1) 0 0;font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__support{display:grid;grid-template-columns:minmax(0,0.3fr) minmax(0,1fr);align-items:center;gap:var(--space-6);margin-top:var(--space-8);padding:var(--space-5) var(--space-6);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-background) 8%,transparent)}
+.t-stats-foodbank-impact-supporters__support-label{margin:0;font-size:var(--text-sm);font-weight:600;line-height:1.4}
+.t-stats-foodbank-impact-supporters__marks{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;justify-items:start;gap:var(--space-4) var(--space-6);margin:0;padding:0}
+.t-stats-foodbank-impact-supporters__mark{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-lg);line-height:1.2;white-space:nowrap;color:color-mix(in srgb,var(--color-background) 88%,var(--color-text))}
+.t-stats-foodbank-impact-supporters__mark.is-a{font-family:var(--font-heading);font-style:italic;font-weight:700;font-size:var(--text-xl)}
+.t-stats-foodbank-impact-supporters__mark.is-b{font-size:var(--text-sm);font-weight:700;letter-spacing:0.18em;text-transform:uppercase}
+.t-stats-foodbank-impact-supporters__mark.is-c{font-weight:800;letter-spacing:-0.02em}
+.t-stats-foodbank-impact-supporters__mark.is-d{font-family:var(--font-heading);font-weight:400;font-size:var(--text-xl);letter-spacing:-0.01em}
+.t-stats-foodbank-impact-supporters__mark.is-e{font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:var(--text-base)}
+.t-stats-foodbank-impact-supporters__mark.is-f{font-family:var(--font-heading);font-weight:700;padding:var(--space-1) var(--space-3);border:1px solid currentColor;border-radius:var(--radius-pill);font-size:var(--text-base)}
+.t-stats-foodbank-impact-supporters__glyph{width:var(--space-4);height:var(--space-4);background:currentColor}
+.t-stats-foodbank-impact-supporters__glyph.is-square{border-radius:var(--radius-sm);transform:rotate(45deg) scale(0.8)}
+.t-stats-foodbank-impact-supporters__glyph.is-round{border-radius:var(--radius-pill)}
+@keyframes t-stats-foodbank-impact-supporters-grow{from{transform:scaleY(0.2);opacity:0}to{transform:none;opacity:1}}
+@media (max-width: 1024px){
+.t-stats-foodbank-impact-supporters__top{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}
+.t-stats-foodbank-impact-supporters__stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.t-stats-foodbank-impact-supporters__support{grid-template-columns:minmax(0,1fr);gap:var(--space-4)}
+}
+@media (max-width: 760px){
+.t-stats-foodbank-impact-supporters{padding:var(--space-8) 0}
+.t-stats-foodbank-impact-supporters__text{max-width:100%}
+.t-stats-foodbank-impact-supporters__chart{padding:var(--space-4)}
+.t-stats-foodbank-impact-supporters__bars,.t-stats-foodbank-impact-supporters__months{gap:var(--space-1)}
+.t-stats-foodbank-impact-supporters__bars{height:calc(var(--space-8) * 2)}
+.t-stats-foodbank-impact-supporters__stats{gap:var(--space-6) var(--space-4);margin-top:var(--space-7)}
+.t-stats-foodbank-impact-supporters__support{padding:var(--space-5);margin-top:var(--space-7)}
+.t-stats-foodbank-impact-supporters__marks{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.t-stats-foodbank-impact-supporters__mark{white-space:normal}
+}
+@media (prefers-reduced-motion: reduce){
+.t-stats-foodbank-impact-supporters__bar{animation:none}
+}
+.t-reviews-foodbank-table-stories{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-reviews-foodbank-table-stories__head{margin-bottom:var(--space-7);max-width:70%}
+.t-reviews-foodbank-table-stories__title{margin:0;font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-reviews-foodbank-table-stories__grid{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:var(--space-8);align-items:stretch}
+.t-reviews-foodbank-table-stories__lead-photo{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-lg);min-height:100%}
+.t-reviews-foodbank-table-stories__lead-photo img{width:100%;height:100%;aspect-ratio:4 / 5;object-fit:cover;transition:transform 600ms ease}
+.t-reviews-foodbank-table-stories__lead-photo:hover img{transform:scale(1.03)}
+.t-reviews-foodbank-table-stories__caption{position:absolute;left:var(--space-4);bottom:var(--space-4);padding:var(--space-2) var(--space-4);border-radius:var(--radius-pill);background:var(--color-overlay);color:var(--color-on-overlay);font-size:var(--text-sm);font-weight:600}
+.t-reviews-foodbank-table-stories__body{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-6)}
+.t-reviews-foodbank-table-stories__quote{margin:0}
+.t-reviews-foodbank-table-stories__mark{margin-bottom:var(--space-4);color:var(--color-primary-ink);opacity:0.9}
+.t-reviews-foodbank-table-stories__quote-text{margin:0 0 var(--space-5);font-family:var(--font-heading);font-size:var(--text-3xl);line-height:1.2;letter-spacing:-0.01em;text-wrap:balance}
+.t-reviews-foodbank-table-stories__by,.t-reviews-foodbank-table-stories__card-by{display:flex;flex-direction:column;margin:0}
+.t-reviews-foodbank-table-stories__name{font-weight:700}
+.t-reviews-foodbank-table-stories__role{font-size:var(--text-sm);color:var(--color-muted)}
+.t-reviews-foodbank-table-stories__small{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);padding-top:var(--space-6);border-top:1px solid var(--color-border)}
+.t-reviews-foodbank-table-stories__card{display:flex;flex-direction:column;padding:var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface);transition:transform 240ms ease}
+.t-reviews-foodbank-table-stories__card:hover{transform:translateY(-2px)}
+.t-reviews-foodbank-table-stories__card-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-4)}
+.t-reviews-foodbank-table-stories__avatar{width:var(--space-8);height:var(--space-8);border-radius:var(--radius-pill);object-fit:cover}
+.t-reviews-foodbank-table-stories__tag{padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-background);font-size:var(--text-xs);font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.t-reviews-foodbank-table-stories__card-quote{margin:0 0 var(--space-4);line-height:1.55}
+.t-reviews-foodbank-table-stories__card-by{margin-top:auto}
+.t-reviews-foodbank-table-stories__more{align-self:flex-start;display:inline-flex;align-items:center;gap:var(--space-2);font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-reviews-foodbank-table-stories__more svg{transition:transform 200ms ease}
+.t-reviews-foodbank-table-stories__more:hover svg{transform:translateX(2px)}
+@media (max-width: 1024px){
+.t-reviews-foodbank-table-stories__grid{gap:var(--space-6)}
+.t-reviews-foodbank-table-stories__small{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 760px){
+.t-reviews-foodbank-table-stories{padding:var(--space-8) 0}
+.t-reviews-foodbank-table-stories__head{max-width:100%;margin-bottom:var(--space-6)}
+.t-reviews-foodbank-table-stories__grid{grid-template-columns:minmax(0,1fr)}
+.t-reviews-foodbank-table-stories__lead-photo img{aspect-ratio:4 / 3}
+}
+@media (prefers-reduced-motion: reduce){
+.t-reviews-foodbank-table-stories__lead-photo img,.t-reviews-foodbank-table-stories__card,.t-reviews-foodbank-table-stories__more svg{transition:none}
+}
+.t-faq-foodbank-plain-answers{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-faq-foodbank-plain-answers__grid{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:var(--space-8);align-items:start}
+.t-faq-foodbank-plain-answers__intro{position:sticky;top:var(--space-7)}
+.t-faq-foodbank-plain-answers__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-faq-foodbank-plain-answers__lead{margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-faq-foodbank-plain-answers__help{display:grid;gap:var(--space-2);padding:var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-background)}
+.t-faq-foodbank-plain-answers__help-title{margin:0 0 var(--space-1);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700}
+.t-faq-foodbank-plain-answers__help-row{display:flex;align-items:center;gap:var(--space-3);font-weight:600;color:var(--color-text);text-decoration:none;overflow-wrap:anywhere}
+.t-faq-foodbank-plain-answers__help-row:hover{text-decoration:underline}
+.t-faq-foodbank-plain-answers__help-row svg{flex:none}
+.t-faq-foodbank-plain-answers__help-note{margin:var(--space-2) 0 0;padding-top:var(--space-3);border-top:1px solid var(--color-border);font-size:var(--text-sm);color:var(--color-muted)}
+.t-faq-foodbank-plain-answers__list{display:grid;gap:var(--space-7)}
+.t-faq-foodbank-plain-answers__group-title{margin:0 0 var(--space-3);padding-bottom:var(--space-3);border-bottom:2px solid var(--color-text);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.t-faq-foodbank-plain-answers__item{border-bottom:1px solid var(--color-border)}
+.t-faq-foodbank-plain-answers__q{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) 0;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:600;line-height:1.25;cursor:pointer;list-style:none}
+.t-faq-foodbank-plain-answers__q::-webkit-details-marker{display:none}
+.t-faq-foodbank-plain-answers__icon{flex:none;display:grid;place-items:center;width:var(--space-6);height:var(--space-6);border-radius:var(--radius-pill);background:var(--color-background);border:1px solid var(--color-border);transition:transform 240ms ease,background-color 240ms ease,color 240ms ease}
+.t-faq-foodbank-plain-answers__item[open] .t-faq-foodbank-plain-answers__icon{transform:rotate(45deg);background:var(--color-text);border-color:var(--color-text);color:var(--color-background)}
+.t-faq-foodbank-plain-answers__a{margin:0;padding:0 var(--space-8) var(--space-5) 0;line-height:1.65;color:var(--color-muted)}
+.t-faq-foodbank-plain-answers__item[open] .t-faq-foodbank-plain-answers__a{animation:t-faq-foodbank-plain-answers-in 280ms ease both}
+@keyframes t-faq-foodbank-plain-answers-in{from{opacity:0;transform:translateY(calc(var(--space-2) * -1))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){
+.t-faq-foodbank-plain-answers__grid{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}
+.t-faq-foodbank-plain-answers__intro{position:static}
+}
+@media (max-width: 760px){
+.t-faq-foodbank-plain-answers{padding:var(--space-8) 0}
+.t-faq-foodbank-plain-answers__q{font-size:var(--text-lg)}
+.t-faq-foodbank-plain-answers__a{padding-right:0}
+}
+@media (prefers-reduced-motion: reduce){
+.t-faq-foodbank-plain-answers__icon{transition:none}
+.t-faq-foodbank-plain-answers__item[open] .t-faq-foodbank-plain-answers__a{animation:none}
+}
+.t-contact-foodbank-dropoff-points{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-contact-foodbank-dropoff-points__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-6);margin-bottom:var(--space-7)}
+.t-contact-foodbank-dropoff-points__title{margin:0;max-width:calc(var(--space-10) * 6);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.t-contact-foodbank-dropoff-points__reach{list-style:none;display:grid;gap:var(--space-2);margin:0;padding:0}
+.t-contact-foodbank-dropoff-points__reach-link{display:flex;align-items:center;gap:var(--space-3);font-weight:600;color:var(--color-text);text-decoration:none;white-space:nowrap}
+.t-contact-foodbank-dropoff-points__reach-link:hover{text-decoration:underline}
+.t-contact-foodbank-dropoff-points__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:var(--space-7);align-items:stretch}
+.t-contact-foodbank-dropoff-points__main{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-border)}
+.t-contact-foodbank-dropoff-points__main-pin{flex:none;display:grid;place-items:center;width:var(--space-8);height:var(--space-8);border-radius:var(--radius-pill);background:var(--color-primary);color:var(--color-on-primary)}
+.t-contact-foodbank-dropoff-points__main-body{flex:1;min-width:0}
+.t-contact-foodbank-dropoff-points__main-label{margin:0;font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.t-contact-foodbank-dropoff-points__main-name{margin:var(--space-1) 0;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;line-height:1.2}
+.t-contact-foodbank-dropoff-points__main-note{margin:0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-contact-foodbank-dropoff-points__main-btn{flex:none}
+.t-contact-foodbank-dropoff-points__list-title{margin:var(--space-6) 0 0;padding-bottom:var(--space-3);border-bottom:2px solid var(--color-text);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.t-contact-foodbank-dropoff-points__points{list-style:none;margin:0;padding:0}
+.t-contact-foodbank-dropoff-points__point{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);align-items:center;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-border)}
+.t-contact-foodbank-dropoff-points__n{display:grid;place-items:center;width:var(--space-6);height:var(--space-6);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background);font-size:var(--text-sm);font-weight:700}
+.t-contact-foodbank-dropoff-points__where,.t-contact-foodbank-dropoff-points__when{display:flex;flex-direction:column;min-width:0}
+.t-contact-foodbank-dropoff-points__name{font-weight:700;line-height:1.3}
+.t-contact-foodbank-dropoff-points__addr,.t-contact-foodbank-dropoff-points__hours{font-size:var(--text-sm);color:var(--color-muted)}
+.t-contact-foodbank-dropoff-points__when{align-items:flex-end;text-align:right}
+.t-contact-foodbank-dropoff-points__takes{font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em;text-transform:uppercase}
+.t-contact-foodbank-dropoff-points__map{position:relative;display:flex;flex-direction:column;margin:0;min-height:calc(var(--space-10) * 4);overflow:hidden;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+.t-contact-foodbank-dropoff-points__canvas{position:absolute;inset:0;background-image:radial-gradient(var(--color-border) 1px,transparent 1px);background-size:var(--space-5) var(--space-5)}
+.t-contact-foodbank-dropoff-points__park{position:absolute;top:40%;left:44%;width:24%;height:20%;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-accent) 22%,transparent);transform:rotate(-6deg)}
+.t-contact-foodbank-dropoff-points__road{position:absolute;background:var(--color-background);box-shadow:0 0 0 1px var(--color-border)}
+.t-contact-foodbank-dropoff-points__road.is-a{top:27%;left:-10%;width:120%;height:var(--space-4);transform:rotate(-7deg)}
+.t-contact-foodbank-dropoff-points__road.is-b{top:70%;left:-10%;width:120%;height:var(--space-3);transform:rotate(5deg)}
+.t-contact-foodbank-dropoff-points__road.is-c{top:-10%;left:32%;width:var(--space-4);height:120%;transform:rotate(9deg)}
+.t-contact-foodbank-dropoff-points__road.is-d{top:-10%;left:76%;width:var(--space-3);height:120%;transform:rotate(-5deg)}
+.t-contact-foodbank-dropoff-points__pin{position:absolute;display:grid;place-items:center;width:var(--space-6);height:var(--space-6);margin:calc(var(--space-6) / -2) 0 0 calc(var(--space-6) / -2);border:2px solid var(--color-background);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background);font-size:var(--text-sm);font-weight:700;box-shadow:var(--shadow-md)}
+.t-contact-foodbank-dropoff-points__pin.is-1{top:22%;left:20%}
+.t-contact-foodbank-dropoff-points__pin.is-2{top:31%;left:62%}
+.t-contact-foodbank-dropoff-points__pin.is-3{top:63%;left:13%}
+.t-contact-foodbank-dropoff-points__pin.is-4{top:52%;left:56%}
+.t-contact-foodbank-dropoff-points__pin.is-5{top:66%;left:84%}
+.t-contact-foodbank-dropoff-points__pin.is-main{top:46%;left:33%;width:var(--space-7);height:var(--space-7);margin:calc(var(--space-7) / -2) 0 0 calc(var(--space-7) / -2);background:var(--color-primary);color:var(--color-on-primary);animation:t-contact-foodbank-dropoff-points-bob 3s ease-in-out infinite}
+.t-contact-foodbank-dropoff-points__map-tag{position:absolute;top:46%;left:33%;margin:var(--space-5) 0 0 calc(var(--space-7) * -1);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-text);color:var(--color-background);font-size:var(--text-xs);font-weight:700;white-space:nowrap}
+.t-contact-foodbank-dropoff-points__map-note{position:relative;display:flex;align-items:center;gap:var(--space-2);margin:auto var(--space-4) var(--space-4);padding:var(--space-3) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-background);font-size:var(--text-sm);font-weight:600}
+.t-contact-foodbank-dropoff-points__map-note svg{flex:none}
+@keyframes t-contact-foodbank-dropoff-points-bob{0%,100%{transform:none}50%{transform:translateY(calc(var(--space-1) * -1))}}
+@media (max-width: 1024px){
+.t-contact-foodbank-dropoff-points__grid{grid-template-columns:minmax(0,1fr)}
+.t-contact-foodbank-dropoff-points__map{min-height:calc(var(--space-10) * 3)}
+}
+@media (max-width: 760px){
+.t-contact-foodbank-dropoff-points{padding:var(--space-8) 0}
+.t-contact-foodbank-dropoff-points__head{flex-direction:column;align-items:flex-start;gap:var(--space-4);margin-bottom:var(--space-6)}
+.t-contact-foodbank-dropoff-points__main{flex-wrap:wrap}
+.t-contact-foodbank-dropoff-points__main-btn{width:100%}
+.t-contact-foodbank-dropoff-points__point{grid-template-columns:auto minmax(0,1fr);align-items:start;gap:var(--space-1) var(--space-3)}
+.t-contact-foodbank-dropoff-points__when{grid-column:2;align-items:flex-start;text-align:left}
+.t-contact-foodbank-dropoff-points__map{min-height:calc(var(--space-10) * 3.2)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-contact-foodbank-dropoff-points__pin.is-main{animation:none}
+}
+.t-footer-foodbank-two-doors{padding:var(--space-8) 0 var(--space-5);background:var(--color-text);color:var(--color-background);font-family:var(--font-body)}
+.t-footer-foodbank-two-doors__cta{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);padding-bottom:var(--space-7);border-bottom:1px solid color-mix(in srgb,var(--color-background) 24%,transparent)}
+.t-footer-foodbank-two-doors__line{margin:0;font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance}
+.t-footer-foodbank-two-doors__line-2{display:block;color:color-mix(in srgb,var(--color-background) 70%,var(--color-text))}
+.t-footer-foodbank-two-doors__btns{display:flex;flex-wrap:wrap;gap:var(--space-3);flex:none}
+.t-footer-foodbank-two-doors__btn-solid{background:var(--color-background);color:var(--color-text)}
+.t-footer-foodbank-two-doors__btn-line{border-color:color-mix(in srgb,var(--color-background) 50%,transparent);color:var(--color-background)}
+.t-footer-foodbank-two-doors__grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,0.8fr)) minmax(0,1.1fr);gap:var(--space-7);padding:var(--space-7) 0}
+.t-footer-foodbank-two-doors__logo{display:inline-flex;align-items:center;gap:var(--space-3);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;text-decoration:none}
+.t-footer-foodbank-two-doors__mark{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border-radius:var(--radius-md);background:var(--color-background);color:var(--color-text)}
+.t-footer-foodbank-two-doors__about{margin:var(--space-4) 0;max-width:90%;line-height:1.6;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-foodbank-two-doors__reach{display:flex;flex-direction:column;gap:var(--space-1);margin:0;font-weight:700}
+.t-footer-foodbank-two-doors__reach a{text-decoration:none}
+.t-footer-foodbank-two-doors__reach a:hover{text-decoration:underline}
+.t-footer-foodbank-two-doors__col{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2)}
+.t-footer-foodbank-two-doors__col-title{margin:0 0 var(--space-2);font-family:var(--font-body);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-foodbank-two-doors__col a{text-decoration:none;transition:opacity 200ms ease}
+.t-footer-foodbank-two-doors__col a:hover{text-decoration:underline}
+.t-footer-foodbank-two-doors__hours{list-style:none;width:100%;margin:0;padding:0}
+.t-footer-foodbank-two-doors__hours li{display:flex;justify-content:space-between;gap:var(--space-3);padding:var(--space-2) 0;border-bottom:1px solid color-mix(in srgb,var(--color-background) 20%,transparent);font-size:var(--text-sm)}
+.t-footer-foodbank-two-doors__hours li span:last-child{font-weight:700;white-space:nowrap}
+.t-footer-foodbank-two-doors__base{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3) var(--space-5);padding-top:var(--space-5);border-top:1px solid color-mix(in srgb,var(--color-background) 24%,transparent);font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-foodbank-two-doors__legal{margin:0}
+.t-footer-foodbank-two-doors__base-links{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5)}
+@media (max-width: 1024px){
+.t-footer-foodbank-two-doors__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.t-footer-foodbank-two-doors__brand{grid-column:1 / -1}
+.t-footer-foodbank-two-doors__cta{flex-direction:column;align-items:flex-start}
+}
+@media (max-width: 760px){
+.t-footer-foodbank-two-doors{padding-top:var(--space-7)}
+.t-footer-foodbank-two-doors__grid{gap:var(--space-6) var(--space-5)}
+.t-footer-foodbank-two-doors__col:last-child{grid-column:1 / -1}
+.t-footer-foodbank-two-doors__about{max-width:100%}
+}</style></head><body><main id="main"><header class="t-header-foodbank-open-today">
+  <div class="t-header-foodbank-open-today__strip">
+    <div class="container t-header-foodbank-open-today__strip-in">
+      <span class="t-header-foodbank-open-today__status"><span class="t-header-foodbank-open-today__dot" aria-hidden="true"></span><span data-slot="status">Open today</span></span>
+      <span class="t-header-foodbank-open-today__hours" data-slot="hours">10am to 2pm. No referral needed, just come in.</span>
+      <a href="#find-us" class="t-header-foodbank-open-today__strip-link" data-slot="strip-link">Call 017 00000000</a>
+    </div>
+  </div>
+  <div class="container t-header-foodbank-open-today__bar">
+    <a href="#top" class="t-header-foodbank-open-today__logo" aria-label="Home">
+      <span class="t-header-foodbank-open-today__mark"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16l-1.5 9h-13z"/><path d="M8 10l4-6 4 6"/></svg></span>
+      <span class="t-header-foodbank-open-today__names"><span class="t-header-foodbank-open-today__brand" data-slot="brand">Community Food Bank</span><span class="t-header-foodbank-open-today__tagline" data-slot="tagline">Run by neighbours, for neighbours</span></span>
+    </a>
+    <nav class="t-header-foodbank-open-today__nav" aria-label="Primary">
+      <a href="#get-help" data-slot="nav-1">Get help</a><a href="#needed" data-slot="nav-2">Most needed</a><a href="#give" data-slot="nav-3">Ways to give</a><a href="#volunteer" data-slot="nav-4">Volunteer</a><a href="#find-us" data-slot="nav-5">Find us</a>
+    </nav>
+    <div class="t-header-foodbank-open-today__actions">
+      <a href="#get-help" class="btn btn-ghost t-header-foodbank-open-today__btn" data-slot="cta-need">I need food</a>
+      <a href="#give" class="btn btn-primary t-header-foodbank-open-today__btn" data-slot="cta-give">Donate</a>
+    </div>
+    <details class="t-header-foodbank-open-today__menu">
+      <summary class="t-header-foodbank-open-today__toggle"><span class="sr-only" data-slot="menu-label">Menu</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>
+      <nav class="t-header-foodbank-open-today__sheet" aria-label="Mobile">
+        <a href="#get-help" class="t-header-foodbank-open-today__sheet-link" data-slot="m-nav-1">Get help</a><a href="#needed" class="t-header-foodbank-open-today__sheet-link" data-slot="m-nav-2">Most needed</a><a href="#give" class="t-header-foodbank-open-today__sheet-link" data-slot="m-nav-3">Ways to give</a><a href="#volunteer" class="t-header-foodbank-open-today__sheet-link" data-slot="m-nav-4">Volunteer</a><a href="#find-us" class="t-header-foodbank-open-today__sheet-link" data-slot="m-nav-5">Find us</a>
+        <div class="t-header-foodbank-open-today__sheet-btns">
+          <a href="#get-help" class="btn btn-ghost" data-slot="m-cta-need">I need food</a>
+          <a href="#give" class="btn btn-primary" data-slot="m-cta-give">Donate</a>
+        </div>
+      </nav>
+    </details>
+  </div>
+</header>
+<section class="t-hero-foodbank-two-doors">
+  <div class="container">
+    <div class="t-hero-foodbank-two-doors__head">
+      <p class="eyebrow" data-slot="eyebrow">Your neighbourhood food bank</p>
+      <h1 class="t-hero-foodbank-two-doors__title" data-slot="title">Food for anyone who needs it. Help from anyone who can.</h1>
+      <p class="t-hero-foodbank-two-doors__lead" data-slot="lead">Two doors, one community. Pick the one that fits you today. Plenty of people have walked through both.</p>
+    </div>
+    <div class="t-hero-foodbank-two-doors__doors">
+      <article class="t-hero-foodbank-two-doors__door is-need">
+        <p class="t-hero-foodbank-two-doors__tag"><span class="t-hero-foodbank-two-doors__tag-n" data-slot="need-number">01</span><span data-slot="need-tag">If things are tight</span></p>
+        <h2 class="t-hero-foodbank-two-doors__door-title" data-slot="need-title">I need food</h2>
+        <p class="t-hero-foodbank-two-doors__door-text" data-slot="need-text">Come as you are. We will make you a cup of tea and help you fill a bag.</p>
+        <ul class="t-hero-foodbank-two-doors__facts">
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="need-fact-1">Free food for anyone local who needs it</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="need-fact-2">No referral, no forms, no proof</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="need-fact-3">Open today, 10am to 2pm</span></li>
+        </ul>
+        <a href="#get-help" class="btn t-hero-foodbank-two-doors__btn-inv"><span data-slot="need-cta">How to get food</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="t-hero-foodbank-two-doors__door is-help">
+        <img class="t-hero-foodbank-two-doors__photo" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Volunteers packing food parcels at a long table" width="1200" height="1400" data-slot="help-photo">
+        <span class="t-hero-foodbank-two-doors__shade" aria-hidden="true"></span>
+        <p class="t-hero-foodbank-two-doors__tag"><span class="t-hero-foodbank-two-doors__tag-n" data-slot="help-number">02</span><span data-slot="help-tag">If you have something spare</span></p>
+        <h2 class="t-hero-foodbank-two-doors__door-title" data-slot="help-title">I want to help</h2>
+        <p class="t-hero-foodbank-two-doors__door-text" data-slot="help-text">A tin, a little money or two hours of your week. All of it ends up on a local table.</p>
+        <div class="t-hero-foodbank-two-doors__chips">
+          <a href="#needed" class="t-hero-foodbank-two-doors__chip" data-slot="help-chip-1">Give food</a>
+          <a href="#give" class="t-hero-foodbank-two-doors__chip" data-slot="help-chip-2">Give money</a>
+          <a href="#volunteer" class="t-hero-foodbank-two-doors__chip" data-slot="help-chip-3">Give time</a>
+        </div>
+        <a href="#give" class="btn btn-primary t-hero-foodbank-two-doors__btn-help"><span data-slot="help-cta">See ways to help</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+    <ul class="t-hero-foodbank-two-doors__notes">
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-slot="note-1">Private and never judged</span></li>
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span data-slot="note-2">Open five days a week</span></li>
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 14.5c1.8.9 3 2.9 3 5.5"/></svg><span data-slot="note-3">Run by 140 local volunteers</span></li>
+    </ul>
+  </div>
+</section>
+<section class="t-steps-foodbank-visit-and-hours">
+  <div class="container t-steps-foodbank-visit-and-hours__grid">
+    <div class="t-steps-foodbank-visit-and-hours__main">
+      <p class="eyebrow" data-slot="eyebrow">Get help</p>
+      <h2 class="t-steps-foodbank-visit-and-hours__title" data-slot="title">Getting food here is simple.</h2>
+      <p class="t-steps-foodbank-visit-and-hours__lead" data-slot="lead">Everyone hits a hard week. This is how a visit works, start to finish.</p>
+      <ol class="t-steps-foodbank-visit-and-hours__steps">
+        <li class="t-steps-foodbank-visit-and-hours__step">
+          <span class="t-steps-foodbank-visit-and-hours__num" data-slot="step-1-number">1</span>
+          <div class="t-steps-foodbank-visit-and-hours__step-body">
+            <h3 class="t-steps-foodbank-visit-and-hours__step-title" data-slot="step-1-title">Come along</h3>
+            <p class="t-steps-foodbank-visit-and-hours__step-text" data-slot="step-1-text">Walk in any time we are open. You do not need a voucher, a referral or an appointment.</p>
+            <span class="t-steps-foodbank-visit-and-hours__pill" data-slot="step-1-note">No booking</span>
+          </div>
+        </li><li class="t-steps-foodbank-visit-and-hours__step">
+          <span class="t-steps-foodbank-visit-and-hours__num" data-slot="step-2-number">2</span>
+          <div class="t-steps-foodbank-visit-and-hours__step-body">
+            <h3 class="t-steps-foodbank-visit-and-hours__step-title" data-slot="step-2-title">Have a quick chat</h3>
+            <p class="t-steps-foodbank-visit-and-hours__step-text" data-slot="step-2-text">A volunteer says hello and asks how many people you are feeding and what you cannot eat.</p>
+            <span class="t-steps-foodbank-visit-and-hours__pill" data-slot="step-2-note">About 5 minutes</span>
+          </div>
+        </li><li class="t-steps-foodbank-visit-and-hours__step">
+          <span class="t-steps-foodbank-visit-and-hours__num" data-slot="step-3-number">3</span>
+          <div class="t-steps-foodbank-visit-and-hours__step-body">
+            <h3 class="t-steps-foodbank-visit-and-hours__step-title" data-slot="step-3-title">Choose your food</h3>
+            <p class="t-steps-foodbank-visit-and-hours__step-text" data-slot="step-3-text">Pick what your household will really eat from the shelves, like a small shop. Then come back whenever you need to.</p>
+            <span class="t-steps-foodbank-visit-and-hours__pill" data-slot="step-3-note">Around 3 days of food</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <aside class="t-steps-foodbank-visit-and-hours__side">
+      <div class="t-steps-foodbank-visit-and-hours__card">
+        <div class="t-steps-foodbank-visit-and-hours__card-head">
+          <h3 class="t-steps-foodbank-visit-and-hours__card-title" data-slot="hours-title">Opening times</h3>
+          <span class="t-steps-foodbank-visit-and-hours__open"><span class="t-steps-foodbank-visit-and-hours__open-dot" aria-hidden="true"></span><span data-slot="hours-status">Open now</span></span>
+        </div>
+        <dl class="t-steps-foodbank-visit-and-hours__hours">
+          <div class="t-steps-foodbank-visit-and-hours__row "><dt data-slot="day-1">Monday</dt><dd><span data-slot="time-1">10am to 2pm</span></dd></div><div class="t-steps-foodbank-visit-and-hours__row "><dt data-slot="day-2">Tuesday</dt><dd><span data-slot="time-2">10am to 2pm</span></dd></div><div class="t-steps-foodbank-visit-and-hours__row is-today"><dt data-slot="day-3">Wednesday</dt><dd><span data-slot="time-3">4pm to 7pm</span><span class="t-steps-foodbank-visit-and-hours__row-note" data-slot="day-note-3">Evening session</span></dd></div><div class="t-steps-foodbank-visit-and-hours__row "><dt data-slot="day-4">Thursday</dt><dd><span data-slot="time-4">10am to 2pm</span></dd></div><div class="t-steps-foodbank-visit-and-hours__row "><dt data-slot="day-5">Friday</dt><dd><span data-slot="time-5">10am to 1pm</span></dd></div><div class="t-steps-foodbank-visit-and-hours__row is-closed"><dt data-slot="day-6">Weekend</dt><dd><span data-slot="time-6">Closed</span></dd></div>
+        </dl>
+        <p class="t-steps-foodbank-visit-and-hours__where"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span data-slot="where">The community hall, side entrance. Step-free.</span></p>
+      </div>
+      <div class="t-steps-foodbank-visit-and-hours__bring">
+        <h3 class="t-steps-foodbank-visit-and-hours__bring-title" data-slot="bring-title">What to bring</h3>
+        <ul class="t-steps-foodbank-visit-and-hours__bring-list">
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="bring-1">A bag or two, if you have them</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="bring-2">Nothing else. No ID and no proof of income</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="bring-3">Tell us about allergies, diets or a baby at home</span></li>
+        </ul>
+        <a href="#find-us" class="t-steps-foodbank-visit-and-hours__bring-link"><span data-slot="bring-link">Get directions</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="t-list-foodbank-most-needed">
+  <div class="container t-list-foodbank-most-needed__grid">
+    <div class="t-list-foodbank-most-needed__intro">
+      <p class="eyebrow" data-slot="eyebrow">Give food</p>
+      <h2 class="t-list-foodbank-most-needed__title" data-slot="title">Most needed this week</h2>
+      <p class="t-list-foodbank-most-needed__lead" data-slot="lead">Our shelves change every week. Buying one or two things from this list does more good than a bag of guesses.</p>
+      <div class="t-list-foodbank-most-needed__actions">
+        <a href="#find-us" class="btn btn-primary" data-slot="cta">Find a drop-off point</a>
+        <a href="#give" class="t-list-foodbank-most-needed__link" data-slot="link">Or give money instead</a>
+      </div>
+      <p class="t-list-foodbank-most-needed__rule"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v5M12 16v.5"/></svg><span data-slot="rule">In date, unopened and not home-made, please.</span></p>
+    </div>
+    <div class="t-list-foodbank-most-needed__sheet">
+      <div class="t-list-foodbank-most-needed__sheet-head">
+        <h3 class="t-list-foodbank-most-needed__sheet-title" data-slot="list-title">The shopping list</h3>
+        <span class="t-list-foodbank-most-needed__updated" data-slot="updated">Updated Monday</span>
+      </div>
+      <ul class="t-list-foodbank-most-needed__list">
+        <li class="t-list-foodbank-most-needed__item is-1">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-1-name">Tinned fish and meat</span><span class="t-list-foodbank-most-needed__note" data-slot="item-1-note">Tuna, sardines, ham, chicken</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-1-level">Very low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-1">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-2-name">Long-life milk</span><span class="t-list-foodbank-most-needed__note" data-slot="item-2-note">Dairy or plant, any size</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-2-level">Very low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-2">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-3-name">Breakfast cereal</span><span class="t-list-foodbank-most-needed__note" data-slot="item-3-note">Low sugar if you can</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-3-level">Low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-2">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-4-name">Cooking oil</span><span class="t-list-foodbank-most-needed__note" data-slot="item-4-note">Small bottles are best</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-4-level">Low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-2">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-5-name">Tinned fruit and veg</span><span class="t-list-foodbank-most-needed__note" data-slot="item-5-note">Ring-pull tins help a lot</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-5-level">Low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-3">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-6-name">Nappies, sizes 4 to 6</span><span class="t-list-foodbank-most-needed__note" data-slot="item-6-note">Baby wipes too</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-6-level">Running low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li><li class="t-list-foodbank-most-needed__item is-3">
+          <span class="t-list-foodbank-most-needed__box" aria-hidden="true"></span>
+          <span class="t-list-foodbank-most-needed__what"><span class="t-list-foodbank-most-needed__name" data-slot="item-7-name">Soap, shampoo, toothpaste</span><span class="t-list-foodbank-most-needed__note" data-slot="item-7-note">Full-size, unopened</span></span>
+          <span class="t-list-foodbank-most-needed__level"><span class="t-list-foodbank-most-needed__level-text" data-slot="item-7-level">Running low</span><span class="t-list-foodbank-most-needed__meter" aria-hidden="true"><span class="t-list-foodbank-most-needed__fill"></span></span></span>
+        </li>
+      </ul>
+      <div class="t-list-foodbank-most-needed__plenty">
+        <span class="t-list-foodbank-most-needed__plenty-label" data-slot="plenty-label">We have plenty of these for now</span>
+        <span class="t-list-foodbank-most-needed__plenty-chips"><span class="t-list-foodbank-most-needed__chip" data-slot="plenty-1">Pasta</span><span class="t-list-foodbank-most-needed__chip" data-slot="plenty-2">Baked beans</span><span class="t-list-foodbank-most-needed__chip" data-slot="plenty-3">Tea bags</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="t-features-foodbank-three-ways">
+  <div class="container">
+    <div class="t-features-foodbank-three-ways__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Ways to give</p>
+        <h2 class="t-features-foodbank-three-ways__title" data-slot="title">Food, money or time. Whatever you have spare.</h2>
+      </div>
+      <p class="t-features-foodbank-three-ways__lead" data-slot="lead">There is no small gift here. One tin, one hour or one coin all end up on a local table.</p>
+    </div>
+    <div class="t-features-foodbank-three-ways__grid">
+      <article class="t-features-foodbank-three-ways__card is-money">
+        <div class="t-features-foodbank-three-ways__label"><span class="t-features-foodbank-three-ways__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 14.5c.5 1 1.4 1.5 2.5 1.5 1.5 0 2.5-.8 2.5-2s-1-1.7-2.5-2-2.5-.8-2.5-2 1-2 2.5-2c1.1 0 2 .5 2.5 1.5M12 6.5v11"/></svg></span><span data-slot="money-label">Give money</span></div>
+        <h3 class="t-features-foodbank-three-ways__card-title" data-slot="money-title">Money lets us buy exactly what the shelves are missing.</h3>
+        <div class="t-features-foodbank-three-ways__picker">
+          <p class="t-features-foodbank-three-ways__picker-label" data-slot="picker-label">Choose an amount</p>
+          <div class="t-features-foodbank-three-ways__amounts">
+            <button type="button" class="t-features-foodbank-three-ways__amount" aria-pressed="false" data-slot="amount-1">$5</button><button type="button" class="t-features-foodbank-three-ways__amount is-active" aria-pressed="true" data-slot="amount-2">$10</button><button type="button" class="t-features-foodbank-three-ways__amount" aria-pressed="false" data-slot="amount-3">$25</button><button type="button" class="t-features-foodbank-three-ways__amount" aria-pressed="false" data-slot="amount-4">$50</button>
+          </div>
+          <div class="t-features-foodbank-three-ways__impact" data-states="tabs" aria-live="polite">
+            <p class="t-features-foodbank-three-ways__impact-line" data-state="amount-1"><strong data-slot="impact-1-amount">$5</strong> <span data-slot="impact-1-text">buys fresh fruit and veg for one family this week.</span></p><p class="t-features-foodbank-three-ways__impact-line is-active" data-state="amount-2"><strong data-slot="impact-2-amount">$10</strong> <span data-slot="impact-2-text">fills a full food parcel for a household of two.</span></p><p class="t-features-foodbank-three-ways__impact-line" data-state="amount-3"><strong data-slot="impact-3-amount">$25</strong> <span data-slot="impact-3-text">keeps our fridge van on the road for a day.</span></p><p class="t-features-foodbank-three-ways__impact-line" data-state="amount-4"><strong data-slot="impact-4-amount">$50</strong> <span data-slot="impact-4-text">stocks the baby shelf with nappies and milk for a week.</span></p>
+          </div>
+        </div>
+        <div class="t-features-foodbank-three-ways__money-foot">
+          <a href="#donate" class="btn t-features-foodbank-three-ways__btn-inv"><span data-slot="money-cta">Donate now</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="t-features-foodbank-three-ways__secure"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-slot="money-note">Secure. Give once or every month.</span></span>
+        </div>
+      </article>
+      <article class="t-features-foodbank-three-ways__card is-food">
+        <div class="t-features-foodbank-three-ways__label"><span class="t-features-foodbank-three-ways__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16l-1.5 9h-13z"/><path d="M8 10l4-6 4 6"/></svg></span><span data-slot="food-label">Give food</span></div>
+        <h3 class="t-features-foodbank-three-ways__card-title" data-slot="food-title">Add one or two things to your weekly shop.</h3>
+        <p class="t-features-foodbank-three-ways__text" data-slot="food-text">Leave them at any of our six drop-off points. We collect every evening.</p>
+        <a href="#needed" class="t-features-foodbank-three-ways__more"><span data-slot="food-link">See what we need this week</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="t-features-foodbank-three-ways__card is-time">
+        <div class="t-features-foodbank-three-ways__label"><span class="t-features-foodbank-three-ways__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span data-slot="time-label">Give time</span></div>
+        <h3 class="t-features-foodbank-three-ways__card-title" data-slot="time-title">Two hours a week keeps the doors open.</h3>
+        <p class="t-features-foodbank-three-ways__text" data-slot="time-text">Sort, serve, drive or just make the tea. No experience needed.</p>
+        <a href="#volunteer" class="t-features-foodbank-three-ways__more"><span data-slot="time-link">See open shifts</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="t-list-foodbank-shift-timetable">
+  <div class="container">
+    <div class="t-list-foodbank-shift-timetable__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Volunteer</p>
+        <h2 class="t-list-foodbank-shift-timetable__title" data-slot="title">Pick a shift that fits your week.</h2>
+        <p class="t-list-foodbank-shift-timetable__lead" data-slot="lead">Shifts are two or three hours. Come once, come weekly, bring a friend.</p>
+      </div>
+      <ul class="t-list-foodbank-shift-timetable__legend">
+        <li><span class="t-list-foodbank-shift-timetable__key is-urgent" aria-hidden="true"></span><span data-slot="legend-1">Help needed</span></li>
+        <li><span class="t-list-foodbank-shift-timetable__key is-open" aria-hidden="true"></span><span data-slot="legend-2">Places left</span></li>
+        <li><span class="t-list-foodbank-shift-timetable__key is-full" aria-hidden="true"></span><span data-slot="legend-3">Full</span></li>
+      </ul>
+    </div>
+    <div class="t-list-foodbank-shift-timetable__table">
+      <div class="t-list-foodbank-shift-timetable__row is-head">
+        <span class="t-list-foodbank-shift-timetable__corner" data-slot="week-label">This week</span>
+        <span class="t-list-foodbank-shift-timetable__col"><span class="t-list-foodbank-shift-timetable__col-name" data-slot="col-1-name">Morning</span><span class="t-list-foodbank-shift-timetable__col-note" data-slot="col-1-note">Sort and stock</span></span><span class="t-list-foodbank-shift-timetable__col"><span class="t-list-foodbank-shift-timetable__col-name" data-slot="col-2-name">Midday</span><span class="t-list-foodbank-shift-timetable__col-note" data-slot="col-2-note">Welcome and serve</span></span><span class="t-list-foodbank-shift-timetable__col"><span class="t-list-foodbank-shift-timetable__col-name" data-slot="col-3-name">Evening</span><span class="t-list-foodbank-shift-timetable__col-note" data-slot="col-3-note">Van collections</span></span>
+      </div>
+      <div class="t-list-foodbank-shift-timetable__row">
+          <div class="t-list-foodbank-shift-timetable__day"><span class="t-list-foodbank-shift-timetable__day-name" data-slot="day-1-name">Monday</span><span class="t-list-foodbank-shift-timetable__day-note" data-slot="day-1-note">Delivery day</span></div>
+          <div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d1-s1-role">Sort donations</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d1-s1-time">9am to 12pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d1-s1-places">3 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d1-s1-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-full">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d1-s2-role">Serve at the shelves</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d1-s2-time">12pm to 3pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d1-s2-places">Full</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d1-s2-link">Join the list</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d1-s3-role">Van collection</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d1-s3-time">5pm to 7pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d1-s3-places">1 place left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d1-s3-link">Sign up</a></span>
+          </div>
+        </div><div class="t-list-foodbank-shift-timetable__row">
+          <div class="t-list-foodbank-shift-timetable__day"><span class="t-list-foodbank-shift-timetable__day-name" data-slot="day-2-name">Tuesday</span><span class="t-list-foodbank-shift-timetable__day-note" data-slot="day-2-note">Open session</span></div>
+          <div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d2-s1-role">Stock the shelves</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d2-s1-time">9am to 12pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d2-s1-places">2 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d2-s1-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-urgent">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d2-s2-role">Welcome desk</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d2-s2-time">12pm to 3pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d2-s2-places">Help needed</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d2-s2-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-none"><span data-slot="d2-s3-none">No shift</span></div>
+        </div><div class="t-list-foodbank-shift-timetable__row">
+          <div class="t-list-foodbank-shift-timetable__day"><span class="t-list-foodbank-shift-timetable__day-name" data-slot="day-3-name">Wednesday</span><span class="t-list-foodbank-shift-timetable__day-note" data-slot="day-3-note">Evening session</span></div>
+          <div class="t-list-foodbank-shift-timetable__cell is-none"><span data-slot="d3-s1-none">No shift</span></div><div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d3-s2-role">Pack parcels</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d3-s2-time">1pm to 4pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d3-s2-places">4 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d3-s2-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-urgent">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d3-s3-role">Serve at the shelves</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d3-s3-time">4pm to 7pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d3-s3-places">Help needed</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d3-s3-link">Sign up</a></span>
+          </div>
+        </div><div class="t-list-foodbank-shift-timetable__row">
+          <div class="t-list-foodbank-shift-timetable__day"><span class="t-list-foodbank-shift-timetable__day-name" data-slot="day-4-name">Thursday</span><span class="t-list-foodbank-shift-timetable__day-note" data-slot="day-4-note">Open session</span></div>
+          <div class="t-list-foodbank-shift-timetable__cell is-full">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d4-s1-role">Sort donations</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d4-s1-time">9am to 12pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d4-s1-places">Full</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d4-s1-link">Join the list</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d4-s2-role">Tea and welcome</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d4-s2-time">12pm to 3pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d4-s2-places">2 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d4-s2-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d4-s3-role">Van collection</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d4-s3-time">5pm to 7pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d4-s3-places">2 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d4-s3-link">Sign up</a></span>
+          </div>
+        </div><div class="t-list-foodbank-shift-timetable__row">
+          <div class="t-list-foodbank-shift-timetable__day"><span class="t-list-foodbank-shift-timetable__day-name" data-slot="day-5-name">Friday</span><span class="t-list-foodbank-shift-timetable__day-note" data-slot="day-5-note">Open session</span></div>
+          <div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d5-s1-role">Stock the shelves</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d5-s1-time">9am to 12pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d5-s1-places">5 places left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d5-s1-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-open">
+            <span class="t-list-foodbank-shift-timetable__role" data-slot="d5-s2-role">Serve at the shelves</span>
+            <span class="t-list-foodbank-shift-timetable__time" data-slot="d5-s2-time">11am to 1pm</span>
+            <span class="t-list-foodbank-shift-timetable__foot"><span class="t-list-foodbank-shift-timetable__places" data-slot="d5-s2-places">1 place left</span><a href="#volunteer-form" class="t-list-foodbank-shift-timetable__join" data-slot="d5-s2-link">Sign up</a></span>
+          </div><div class="t-list-foodbank-shift-timetable__cell is-none"><span data-slot="d5-s3-none">No shift</span></div>
+        </div>
+    </div>
+    <div class="t-list-foodbank-shift-timetable__strip">
+      <span class="t-list-foodbank-shift-timetable__strip-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 14.5c1.8.9 3 2.9 3 5.5"/></svg></span>
+      <p class="t-list-foodbank-shift-timetable__strip-text"><strong data-slot="strip-title">New here?</strong> <span data-slot="strip-text">Your first shift is always alongside a buddy, and there is a welcome session on the first Saturday of each month.</span></p>
+      <a href="#volunteer-form" class="btn btn-primary" data-slot="strip-cta">Become a volunteer</a>
+    </div>
+  </div>
+</section>
+<section class="t-stats-foodbank-impact-supporters">
+  <div class="container">
+    <div class="t-stats-foodbank-impact-supporters__top">
+      <div class="t-stats-foodbank-impact-supporters__lede">
+        <p class="eyebrow t-stats-foodbank-impact-supporters__eyebrow" data-slot="eyebrow">Our impact last year</p>
+        <p class="t-stats-foodbank-impact-supporters__big" data-slot="big-number">12,480</p>
+        <h2 class="t-stats-foodbank-impact-supporters__title" data-slot="title">food parcels handed over, neighbour to neighbour.</h2>
+        <p class="t-stats-foodbank-impact-supporters__text" data-slot="text">Every one was packed by a volunteer and paid for by people who live here.</p>
+      </div>
+      <figure class="t-stats-foodbank-impact-supporters__chart">
+        <figcaption class="t-stats-foodbank-impact-supporters__chart-head"><span class="t-stats-foodbank-impact-supporters__chart-title" data-slot="chart-title">Parcels each month</span><span class="t-stats-foodbank-impact-supporters__chart-note" data-slot="chart-note">Busiest: December</span></figcaption>
+        <div class="t-stats-foodbank-impact-supporters__bars" aria-hidden="true"><span class="t-stats-foodbank-impact-supporters__bar is-m1"></span><span class="t-stats-foodbank-impact-supporters__bar is-m2"></span><span class="t-stats-foodbank-impact-supporters__bar is-m3"></span><span class="t-stats-foodbank-impact-supporters__bar is-m4"></span><span class="t-stats-foodbank-impact-supporters__bar is-m5"></span><span class="t-stats-foodbank-impact-supporters__bar is-m6"></span><span class="t-stats-foodbank-impact-supporters__bar is-m7"></span><span class="t-stats-foodbank-impact-supporters__bar is-m8"></span><span class="t-stats-foodbank-impact-supporters__bar is-m9"></span><span class="t-stats-foodbank-impact-supporters__bar is-m10"></span><span class="t-stats-foodbank-impact-supporters__bar is-m11"></span><span class="t-stats-foodbank-impact-supporters__bar is-m12"></span></div>
+        <div class="t-stats-foodbank-impact-supporters__months"><span data-slot="month-1">J</span><span data-slot="month-2">F</span><span data-slot="month-3">M</span><span data-slot="month-4">A</span><span data-slot="month-5">M</span><span data-slot="month-6">J</span><span data-slot="month-7">J</span><span data-slot="month-8">A</span><span data-slot="month-9">S</span><span data-slot="month-10">O</span><span data-slot="month-11">N</span><span data-slot="month-12">D</span></div>
+      </figure>
+    </div>
+    <ul class="t-stats-foodbank-impact-supporters__stats">
+      <li class="t-stats-foodbank-impact-supporters__stat"><span class="t-stats-foodbank-impact-supporters__num" data-slot="stat-1-number">4,300</span><span class="t-stats-foodbank-impact-supporters__label" data-slot="stat-1-label">households fed</span><span class="t-stats-foodbank-impact-supporters__note" data-slot="stat-1-note">One in nine homes nearby</span></li><li class="t-stats-foodbank-impact-supporters__stat"><span class="t-stats-foodbank-impact-supporters__num" data-slot="stat-2-number">86 t</span><span class="t-stats-foodbank-impact-supporters__label" data-slot="stat-2-label">of good food saved</span><span class="t-stats-foodbank-impact-supporters__note" data-slot="stat-2-note">Surplus that would have been binned</span></li><li class="t-stats-foodbank-impact-supporters__stat"><span class="t-stats-foodbank-impact-supporters__num" data-slot="stat-3-number">140</span><span class="t-stats-foodbank-impact-supporters__label" data-slot="stat-3-label">regular volunteers</span><span class="t-stats-foodbank-impact-supporters__note" data-slot="stat-3-note">Aged 16 to 84</span></li><li class="t-stats-foodbank-impact-supporters__stat"><span class="t-stats-foodbank-impact-supporters__num" data-slot="stat-4-number">92%</span><span class="t-stats-foodbank-impact-supporters__label" data-slot="stat-4-label">of gifts spent on food</span><span class="t-stats-foodbank-impact-supporters__note" data-slot="stat-4-note">The rest runs the hall and the van</span></li>
+    </ul>
+    <div class="t-stats-foodbank-impact-supporters__support">
+      <p class="t-stats-foodbank-impact-supporters__support-label" data-slot="support-label">Kept going by local supporters</p>
+      <ul class="t-stats-foodbank-impact-supporters__marks">
+        <li class="t-stats-foodbank-impact-supporters__mark is-a"><span data-slot="supporter-1">Corner Bakery</span></li><li class="t-stats-foodbank-impact-supporters__mark is-b"><span data-slot="supporter-2">Greengrocer &amp; Co</span></li><li class="t-stats-foodbank-impact-supporters__mark is-c"><span class="t-stats-foodbank-impact-supporters__glyph is-square" aria-hidden="true"></span><span data-slot="supporter-3">Housing Trust</span></li><li class="t-stats-foodbank-impact-supporters__mark is-d"><span data-slot="supporter-4">the credit union</span></li><li class="t-stats-foodbank-impact-supporters__mark is-e"><span class="t-stats-foodbank-impact-supporters__glyph is-round" aria-hidden="true"></span><span data-slot="supporter-5">Fresh Market</span></li><li class="t-stats-foodbank-impact-supporters__mark is-f"><span data-slot="supporter-6">Family Pharmacy</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="t-reviews-foodbank-table-stories">
+  <div class="container">
+    <div class="t-reviews-foodbank-table-stories__head">
+      <p class="eyebrow" data-slot="eyebrow">Stories</p>
+      <h2 class="t-reviews-foodbank-table-stories__title" data-slot="title">The people on both sides of the table.</h2>
+    </div>
+    <div class="t-reviews-foodbank-table-stories__grid">
+      <figure class="t-reviews-foodbank-table-stories__lead-photo">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A woman carrying a bag of groceries out of a community hall" width="1000" height="1250" data-slot="lead-photo">
+        <figcaption class="t-reviews-foodbank-table-stories__caption" data-slot="lead-tag">A visitor's story</figcaption>
+      </figure>
+      <div class="t-reviews-foodbank-table-stories__body">
+        <blockquote class="t-reviews-foodbank-table-stories__quote">
+          <svg class="t-reviews-foodbank-table-stories__mark" viewBox="0 0 48 36" width="48" height="36" fill="currentColor" aria-hidden="true"><path d="M0 36V21C0 9 6 2 18 0v7c-5 1.5-8 5-8 10h8v19zm26 0V21C26 9 32 2 44 0v7c-5 1.5-8 5-8 10h8v19z"/></svg>
+          <p class="t-reviews-foodbank-table-stories__quote-text" data-slot="lead-quote">I walked in embarrassed and walked out with a week of meals and a cup of tea. Nobody asked me to explain myself.</p>
+          <footer class="t-reviews-foodbank-table-stories__by"><span class="t-reviews-foodbank-table-stories__name" data-slot="lead-name">Name Surname</span><span class="t-reviews-foodbank-table-stories__role" data-slot="lead-role">Visited last winter, now helps on Fridays</span></footer>
+        </blockquote>
+        <div class="t-reviews-foodbank-table-stories__small">
+          <article class="t-reviews-foodbank-table-stories__card">
+            <div class="t-reviews-foodbank-table-stories__card-top"><img class="t-reviews-foodbank-table-stories__avatar" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Smiling volunteer in an apron beside food shelves" width="160" height="160" data-slot="story-1-photo"><span class="t-reviews-foodbank-table-stories__tag" data-slot="story-1-tag">A volunteer</span></div>
+            <p class="t-reviews-foodbank-table-stories__card-quote" data-slot="story-1-quote">I came to give two hours. Three years on, Tuesday is the best day of my week.</p>
+            <p class="t-reviews-foodbank-table-stories__card-by"><span class="t-reviews-foodbank-table-stories__name" data-slot="story-1-name">Name Surname</span><span class="t-reviews-foodbank-table-stories__role" data-slot="story-1-role">Tuesday welcome desk</span></p>
+          </article><article class="t-reviews-foodbank-table-stories__card">
+            <div class="t-reviews-foodbank-table-stories__card-top"><img class="t-reviews-foodbank-table-stories__avatar" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Shop owner holding a crate of fresh vegetables" width="160" height="160" data-slot="story-2-photo"><span class="t-reviews-foodbank-table-stories__tag" data-slot="story-2-tag">A supporter</span></div>
+            <p class="t-reviews-foodbank-table-stories__card-quote" data-slot="story-2-quote">We send our unsold bread every evening. It is gone by ten the next morning.</p>
+            <p class="t-reviews-foodbank-table-stories__card-by"><span class="t-reviews-foodbank-table-stories__name" data-slot="story-2-name">Name Surname</span><span class="t-reviews-foodbank-table-stories__role" data-slot="story-2-role">Local baker</span></p>
+          </article>
+        </div>
+        <a href="#stories" class="t-reviews-foodbank-table-stories__more"><span data-slot="more">Read more stories</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="t-faq-foodbank-plain-answers">
+  <div class="container t-faq-foodbank-plain-answers__grid">
+    <div class="t-faq-foodbank-plain-answers__intro">
+      <p class="eyebrow" data-slot="eyebrow">Good to know</p>
+      <h2 class="t-faq-foodbank-plain-answers__title" data-slot="title">Straight answers, no small print.</h2>
+      <p class="t-faq-foodbank-plain-answers__lead" data-slot="lead">The things people ask us most, whichever side of the table they are on.</p>
+      <div class="t-faq-foodbank-plain-answers__help">
+        <p class="t-faq-foodbank-plain-answers__help-title" data-slot="help-title">Rather ask a person?</p>
+        <a href="#call" class="t-faq-foodbank-plain-answers__help-row"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h3l1.5 5-2 1.5a12 12 0 0 0 6 6l1.5-2 5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg><span data-slot="help-phone">017 00000000</span></a>
+        <a href="#email" class="t-faq-foodbank-plain-answers__help-row"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><span data-slot="help-email">example@gmail.com</span></a>
+        <p class="t-faq-foodbank-plain-answers__help-note" data-slot="help-note">Phones are answered on weekdays, 9am to 4pm.</p>
+      </div>
+    </div>
+    <div class="t-faq-foodbank-plain-answers__list">
+      <div class="t-faq-foodbank-plain-answers__group"><h3 class="t-faq-foodbank-plain-answers__group-title" data-slot="group-1-title">Getting food</h3><details class="t-faq-foodbank-plain-answers__item" open>
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-1">Do I need a referral or a voucher?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-1">No. Anyone who lives locally can walk in when we are open. We ask your first name and how many people you are feeding, and that is all.</p>
+          </details><details class="t-faq-foodbank-plain-answers__item">
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-2">How often can I come?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-2">As often as you need to. Most people visit once a week for a while, then less as things get easier.</p>
+          </details><details class="t-faq-foodbank-plain-answers__item">
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-3">Will anyone find out I came?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-3">No. We never share names with anyone, and the entrance is at the side of the hall, away from the main road.</p>
+          </details></div><div class="t-faq-foodbank-plain-answers__group"><h3 class="t-faq-foodbank-plain-answers__group-title" data-slot="group-2-title">Giving and volunteering</h3><details class="t-faq-foodbank-plain-answers__item">
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-4">Is there anything you cannot accept?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-4">Opened packets, food past its use-by date, home-made food and alcohol. Everything else is welcome, including toiletries and pet food.</p>
+          </details><details class="t-faq-foodbank-plain-answers__item">
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-5">Where does my money go?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-5">Almost all of it goes straight on food. The rest keeps the lights on and the van running. Our accounts are open for anyone to read.</p>
+          </details><details class="t-faq-foodbank-plain-answers__item">
+            <summary class="t-faq-foodbank-plain-answers__q"><span data-slot="question-6">Can young people or work teams volunteer?</span><span class="t-faq-foodbank-plain-answers__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+            <p class="t-faq-foodbank-plain-answers__a" data-slot="answer-6">Yes. Volunteers aged 16 and over can sign up alone, younger helpers come with an adult, and we host a work team most Fridays.</p>
+          </details></div>
+    </div>
+  </div>
+</section>
+<section class="t-contact-foodbank-dropoff-points">
+  <div class="container">
+    <div class="t-contact-foodbank-dropoff-points__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Find us</p>
+        <h2 class="t-contact-foodbank-dropoff-points__title" data-slot="title">Come to the hall, or drop food off round the corner.</h2>
+      </div>
+      <ul class="t-contact-foodbank-dropoff-points__reach">
+        <li><a href="#call" class="t-contact-foodbank-dropoff-points__reach-link"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h3l1.5 5-2 1.5a12 12 0 0 0 6 6l1.5-2 5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg><span data-slot="phone">017 00000000</span></a></li>
+        <li><a href="#email" class="t-contact-foodbank-dropoff-points__reach-link"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><span data-slot="email">example@gmail.com</span></a></li>
+      </ul>
+    </div>
+    <div class="t-contact-foodbank-dropoff-points__grid">
+      <div class="t-contact-foodbank-dropoff-points__col">
+        <div class="t-contact-foodbank-dropoff-points__main">
+          <span class="t-contact-foodbank-dropoff-points__main-pin"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16l-1.5 9h-13z"/><path d="M8 10l4-6 4 6"/></svg></span>
+          <div class="t-contact-foodbank-dropoff-points__main-body">
+            <p class="t-contact-foodbank-dropoff-points__main-label" data-slot="main-label">Main hall, food and donations</p>
+            <p class="t-contact-foodbank-dropoff-points__main-name" data-slot="main-name">The Community Hall, Example Street</p>
+            <p class="t-contact-foodbank-dropoff-points__main-note" data-slot="main-note">Side entrance, step-free. Weekdays from 10am. Free parking behind the hall.</p>
+          </div>
+          <a href="#directions" class="btn btn-primary t-contact-foodbank-dropoff-points__main-btn" data-slot="main-cta">Directions</a>
+        </div>
+        <h3 class="t-contact-foodbank-dropoff-points__list-title" data-slot="list-title">Drop-off points</h3>
+        <ol class="t-contact-foodbank-dropoff-points__points">
+          <li class="t-contact-foodbank-dropoff-points__point">
+            <span class="t-contact-foodbank-dropoff-points__n" data-slot="point-1-number">1</span>
+            <span class="t-contact-foodbank-dropoff-points__where"><span class="t-contact-foodbank-dropoff-points__name" data-slot="point-1-name">Supermarket foyer</span><span class="t-contact-foodbank-dropoff-points__addr" data-slot="point-1-address">By the trolley bay, Example Road</span></span>
+            <span class="t-contact-foodbank-dropoff-points__when"><span class="t-contact-foodbank-dropoff-points__hours" data-slot="point-1-hours">Every day, 7am to 10pm</span><span class="t-contact-foodbank-dropoff-points__takes" data-slot="point-1-takes">Food and toiletries</span></span>
+          </li><li class="t-contact-foodbank-dropoff-points__point">
+            <span class="t-contact-foodbank-dropoff-points__n" data-slot="point-2-number">2</span>
+            <span class="t-contact-foodbank-dropoff-points__where"><span class="t-contact-foodbank-dropoff-points__name" data-slot="point-2-name">Library front desk</span><span class="t-contact-foodbank-dropoff-points__addr" data-slot="point-2-address">Example Square</span></span>
+            <span class="t-contact-foodbank-dropoff-points__when"><span class="t-contact-foodbank-dropoff-points__hours" data-slot="point-2-hours">Monday to Saturday, 9am to 5pm</span><span class="t-contact-foodbank-dropoff-points__takes" data-slot="point-2-takes">Food only</span></span>
+          </li><li class="t-contact-foodbank-dropoff-points__point">
+            <span class="t-contact-foodbank-dropoff-points__n" data-slot="point-3-number">3</span>
+            <span class="t-contact-foodbank-dropoff-points__where"><span class="t-contact-foodbank-dropoff-points__name" data-slot="point-3-name">Primary school office</span><span class="t-contact-foodbank-dropoff-points__addr" data-slot="point-3-address">Example Lane</span></span>
+            <span class="t-contact-foodbank-dropoff-points__when"><span class="t-contact-foodbank-dropoff-points__hours" data-slot="point-3-hours">Term time, 8am to 4pm</span><span class="t-contact-foodbank-dropoff-points__takes" data-slot="point-3-takes">Food only</span></span>
+          </li><li class="t-contact-foodbank-dropoff-points__point">
+            <span class="t-contact-foodbank-dropoff-points__n" data-slot="point-4-number">4</span>
+            <span class="t-contact-foodbank-dropoff-points__where"><span class="t-contact-foodbank-dropoff-points__name" data-slot="point-4-name">Sports centre reception</span><span class="t-contact-foodbank-dropoff-points__addr" data-slot="point-4-address">Example Park</span></span>
+            <span class="t-contact-foodbank-dropoff-points__when"><span class="t-contact-foodbank-dropoff-points__hours" data-slot="point-4-hours">Every day, 6am to 9pm</span><span class="t-contact-foodbank-dropoff-points__takes" data-slot="point-4-takes">Food and toiletries</span></span>
+          </li><li class="t-contact-foodbank-dropoff-points__point">
+            <span class="t-contact-foodbank-dropoff-points__n" data-slot="point-5-number">5</span>
+            <span class="t-contact-foodbank-dropoff-points__where"><span class="t-contact-foodbank-dropoff-points__name" data-slot="point-5-name">Corner shop counter</span><span class="t-contact-foodbank-dropoff-points__addr" data-slot="point-5-address">Example Avenue</span></span>
+            <span class="t-contact-foodbank-dropoff-points__when"><span class="t-contact-foodbank-dropoff-points__hours" data-slot="point-5-hours">Every day, 6am to 8pm</span><span class="t-contact-foodbank-dropoff-points__takes" data-slot="point-5-takes">Tins and packets</span></span>
+          </li>
+        </ol>
+      </div>
+      <figure class="t-contact-foodbank-dropoff-points__map">
+        <div class="t-contact-foodbank-dropoff-points__canvas" aria-hidden="true">
+          <span class="t-contact-foodbank-dropoff-points__park"></span>
+          <span class="t-contact-foodbank-dropoff-points__road is-a"></span><span class="t-contact-foodbank-dropoff-points__road is-b"></span><span class="t-contact-foodbank-dropoff-points__road is-c"></span><span class="t-contact-foodbank-dropoff-points__road is-d"></span>
+          <span class="t-contact-foodbank-dropoff-points__pin is-1">1</span><span class="t-contact-foodbank-dropoff-points__pin is-2">2</span><span class="t-contact-foodbank-dropoff-points__pin is-3">3</span><span class="t-contact-foodbank-dropoff-points__pin is-4">4</span><span class="t-contact-foodbank-dropoff-points__pin is-5">5</span>
+          <span class="t-contact-foodbank-dropoff-points__pin is-main"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16l-1.5 9h-13z"/><path d="M8 10l4-6 4 6"/></svg></span>
+        </div>
+        <span class="t-contact-foodbank-dropoff-points__map-tag" data-slot="map-tag">Main hall</span>
+        <figcaption class="t-contact-foodbank-dropoff-points__map-note"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span data-slot="map-note">We collect from every point each evening.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<footer class="t-footer-foodbank-two-doors">
+  <div class="container">
+    <div class="t-footer-foodbank-two-doors__cta">
+      <p class="t-footer-foodbank-two-doors__line"><span data-slot="line-1">Hungry today? Come in.</span> <span class="t-footer-foodbank-two-doors__line-2" data-slot="line-2">Something spare? Bring it.</span></p>
+      <div class="t-footer-foodbank-two-doors__btns">
+        <a href="#get-help" class="btn t-footer-foodbank-two-doors__btn-solid" data-slot="cta-need">I need food</a>
+        <a href="#give" class="btn t-footer-foodbank-two-doors__btn-line" data-slot="cta-give">I want to help</a>
+      </div>
+    </div>
+    <div class="t-footer-foodbank-two-doors__grid">
+      <div class="t-footer-foodbank-two-doors__brand">
+        <a href="#top" class="t-footer-foodbank-two-doors__logo" aria-label="Home"><span class="t-footer-foodbank-two-doors__mark"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16l-1.5 9h-13z"/><path d="M8 10l4-6 4 6"/></svg></span><span data-slot="brand">Community Food Bank</span></a>
+        <p class="t-footer-foodbank-two-doors__about" data-slot="about">A small local charity run by volunteers. Free food for anyone nearby who needs it, since 2012.</p>
+        <p class="t-footer-foodbank-two-doors__reach"><a href="#call" data-slot="phone">017 00000000</a><a href="#email" data-slot="email">example@gmail.com</a></p>
+      </div>
+      <nav class="t-footer-foodbank-two-doors__col" aria-label="Get help">
+        <h3 class="t-footer-foodbank-two-doors__col-title" data-slot="col-1-title">Get help</h3>
+        <a href="#get-help" data-slot="col-1-link-1">How a visit works</a><a href="#get-help" data-slot="col-1-link-2">Opening times</a><a href="#faq" data-slot="col-1-link-3">Common questions</a><a href="#find-us" data-slot="col-1-link-4">Find the hall</a>
+      </nav><nav class="t-footer-foodbank-two-doors__col" aria-label="Give">
+        <h3 class="t-footer-foodbank-two-doors__col-title" data-slot="col-2-title">Give</h3>
+        <a href="#needed" data-slot="col-2-link-1">Most-needed items</a><a href="#give" data-slot="col-2-link-2">Donate money</a><a href="#volunteer" data-slot="col-2-link-3">Volunteer shifts</a><a href="#find-us" data-slot="col-2-link-4">Drop-off points</a>
+      </nav>
+      <div class="t-footer-foodbank-two-doors__col">
+        <h3 class="t-footer-foodbank-two-doors__col-title" data-slot="hours-title">Open</h3>
+        <ul class="t-footer-foodbank-two-doors__hours">
+          <li><span data-slot="hours-1-day">Mon, Tue, Thu</span><span data-slot="hours-1-time">10am to 2pm</span></li><li><span data-slot="hours-2-day">Wednesday</span><span data-slot="hours-2-time">4pm to 7pm</span></li><li><span data-slot="hours-3-day">Friday</span><span data-slot="hours-3-time">10am to 1pm</span></li><li><span data-slot="hours-4-day">Weekend</span><span data-slot="hours-4-time">Closed</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-footer-foodbank-two-doors__base">
+      <p class="t-footer-foodbank-two-doors__legal" data-slot="legal">Community Food Bank. A registered local charity.</p>
+      <nav class="t-footer-foodbank-two-doors__base-links" aria-label="Legal">
+        <a href="#privacy" data-slot="base-link-1">Privacy</a>
+        <a href="#safeguarding" data-slot="base-link-2">Safeguarding</a>
+        <a href="#accounts" data-slot="base-link-3">Annual accounts</a>
+      </nav>
+    </div>
+  </div>
+</footer></main><script>(() => { const root = document.querySelector(".t-features-foodbank-three-ways"); if (!root) return;
+var btns = [].slice.call(root.querySelectorAll('.t-features-foodbank-three-ways__amount'));
+var lines = [].slice.call(root.querySelectorAll('.t-features-foodbank-three-ways__impact-line'));
+btns.forEach(function (btn, i) {
+  btn.addEventListener('click', function () {
+    btns.forEach(function (b, j) {
+      b.classList.toggle('is-active', j === i);
+      b.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+    });
+    lines.forEach(function (l, j) { l.classList.toggle('is-active', j === i); });
+  });
+});
+})();</script></body></html>

@@ -1,0 +1,933 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Premium care template check</title><meta name="description" content="Template check page for one vibe."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap"><style>:root {
+  --color-background: #FAF8F5;
+  --color-surface: #F0ECE6;
+  --color-text: #1A2233;
+  --color-muted: #525967;
+  --color-primary: #1F2E4D;
+  --color-on-primary: #FFFFFF;
+  --color-accent: #6a5534;
+  --color-border: #E2DCD3;
+  --color-primary-ink: #1F2E4D;
+  --color-accent-ink: #6a5534;
+  --color-primary-soft: #d9dadc;
+  --color-overlay: #0d111a;
+  --color-on-overlay: #FAF8F5;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 1.8rem + 4.2vw, 4.75rem);
+  --text-6xl: clamp(3.25rem, 2rem + 6vw, 6.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px #1A223314;
+  --shadow-md: 0 10px 30px #1A22331f;
+  --shadow-lg: 0 24px 60px #1A223329;
+  --width-content: 1200px;
+  --width-narrow: 760px;
+}
+
+/* Base (made by code from the tokens) */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-background); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+h1 { font-size: var(--text-5xl); } h2 { font-size: var(--text-4xl); } h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: inherit; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+[hidden] { display: none; }
+.container { width: 100%; max-width: var(--width-content); margin-inline: auto; padding-inline: var(--space-5); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.lead { font-size: var(--text-lg); color: var(--color-muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.t-header-relief-appeal-strip { position: relative; z-index: 50; background: var(--color-background); color: var(--color-text); border-bottom: 1px solid var(--color-border); font-family: var(--font-body); }
+.t-header-relief-appeal-strip__strip { background: var(--color-text); color: var(--color-background); font-size: var(--text-sm); }
+.t-header-relief-appeal-strip__strip-in { display: flex; align-items: center; justify-content: center; gap: var(--space-4); padding-block: var(--space-2); }
+.t-header-relief-appeal-strip__live { display: inline-flex; align-items: center; gap: var(--space-2); flex-shrink: 0; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent); color: var(--color-background); }
+.t-header-relief-appeal-strip__dot { width: var(--space-2); height: var(--space-2); border-radius: 50%; background: var(--color-background); animation: t-header-relief-appeal-strip-pulse 1.8s ease-in-out infinite; }
+.t-header-relief-appeal-strip__strip-text { color: var(--color-background); min-width: 0; }
+.t-header-relief-appeal-strip__strip-link { display: inline-flex; align-items: center; gap: var(--space-1); flex-shrink: 0; font-weight: 700; color: var(--color-background); text-decoration: underline; text-underline-offset: var(--space-1); white-space: nowrap; }
+.t-header-relief-appeal-strip__strip-link svg { transition: transform 200ms ease; }
+.t-header-relief-appeal-strip__strip-link:hover svg { transform: translateX(2px); }
+.t-header-relief-appeal-strip__bar { position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); padding-block: var(--space-4); }
+.t-header-relief-appeal-strip__logo { display: flex; align-items: center; gap: var(--space-3); color: var(--color-text); text-decoration: none; min-width: 0; }
+.t-header-relief-appeal-strip__mark { width: var(--space-7); height: var(--space-7); flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: var(--color-on-primary); }
+.t-header-relief-appeal-strip__brand { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.t-header-relief-appeal-strip__brand-name { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; white-space: nowrap; }
+.t-header-relief-appeal-strip__brand-line { font-size: var(--text-xs); color: var(--color-muted); letter-spacing: 0.04em; white-space: nowrap; }
+.t-header-relief-appeal-strip__nav { display: flex; gap: var(--space-6); }
+.t-header-relief-appeal-strip__nav a { position: relative; padding: var(--space-2) 0; font-size: var(--text-sm); font-weight: 600; color: var(--color-text); text-decoration: none; }
+.t-header-relief-appeal-strip__nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform 250ms ease; }
+.t-header-relief-appeal-strip__nav a:hover::after { transform: scaleX(1); }
+.t-header-relief-appeal-strip__actions { display: flex; align-items: center; gap: var(--space-3); }
+.t-header-relief-appeal-strip__donate { padding: var(--space-3) var(--space-5); white-space: nowrap; }
+.t-header-relief-appeal-strip__menu { display: none; }
+.t-header-relief-appeal-strip__toggle { list-style: none; cursor: pointer; width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); color: var(--color-text); }
+.t-header-relief-appeal-strip__toggle::-webkit-details-marker { display: none; }
+.t-header-relief-appeal-strip__menu:not([open]) .t-header-relief-appeal-strip__sheet { display: none; }
+.t-header-relief-appeal-strip__menu[open] .t-header-relief-appeal-strip__toggle { background: var(--color-surface); }
+.t-header-relief-appeal-strip__sheet { position: absolute; left: 0; right: 0; top: 100%; display: flex; flex-direction: column; background: var(--color-background); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-md); padding: var(--space-2) var(--space-5) var(--space-5); }
+.t-header-relief-appeal-strip__sheet a:not(.btn) { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); font-family: var(--font-heading); font-size: var(--text-lg); color: var(--color-text); text-decoration: none; }
+.t-header-relief-appeal-strip__sheet-btn { margin-top: var(--space-4); }
+@keyframes t-header-relief-appeal-strip-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.7); } }
+@media (max-width: 1024px) {
+  .t-header-relief-appeal-strip__nav { display: none; }
+  .t-header-relief-appeal-strip__menu { display: block; }
+}
+@media (max-width: 760px) {
+  .t-header-relief-appeal-strip__strip-in { justify-content: space-between; gap: var(--space-3); }
+  .t-header-relief-appeal-strip__strip-text { display: none; }
+  .t-header-relief-appeal-strip__brand-line { display: none; }
+  .t-header-relief-appeal-strip__bar { gap: var(--space-3); }
+  .t-header-relief-appeal-strip__logo { gap: var(--space-2); }
+  .t-header-relief-appeal-strip__mark { width: var(--space-6); height: var(--space-6); }
+  .t-header-relief-appeal-strip__brand-name { font-size: var(--text-lg); overflow: hidden; text-overflow: ellipsis; }
+  .t-header-relief-appeal-strip__actions { gap: var(--space-2); flex-shrink: 0; }
+  .t-header-relief-appeal-strip__toggle { width: calc(var(--space-6) + var(--space-2)); height: calc(var(--space-6) + var(--space-2)); }
+  .t-header-relief-appeal-strip__donate { padding: var(--space-2) var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-header-relief-appeal-strip__dot { animation: none; }
+  .t-header-relief-appeal-strip__strip-link svg, .t-header-relief-appeal-strip__nav a::after { transition: none; }
+}
+.t-hero-relief-donate-box { position: relative; overflow: hidden; background: var(--color-overlay); color: var(--color-on-overlay); padding: var(--space-9) 0; }
+.t-hero-relief-donate-box__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.t-hero-relief-donate-box__shade { position: absolute; inset: 0; background: var(--color-overlay); opacity: 0.72; }
+.t-hero-relief-donate-box__grid { position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-8); align-items: center; }
+.t-hero-relief-donate-box__copy { min-width: 0; animation: t-hero-relief-donate-box-rise 700ms ease both; }
+.t-hero-relief-donate-box__pill { display: inline-flex; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-5); padding: var(--space-2) var(--space-4); border-radius: var(--radius-pill); border: 1px solid color-mix(in srgb, var(--color-on-overlay) 40%, transparent); font-size: var(--text-sm); font-weight: 600; color: var(--color-on-overlay); }
+.t-hero-relief-donate-box__dot { width: var(--space-2); height: var(--space-2); border-radius: 50%; background: var(--color-on-overlay); animation: t-hero-relief-donate-box-pulse 1.8s ease-in-out infinite; }
+.t-hero-relief-donate-box__title { font-size: var(--text-5xl); line-height: 1.04; margin: 0 0 var(--space-5); color: var(--color-on-overlay); overflow-wrap: break-word; }
+.t-hero-relief-donate-box__lead { font-size: var(--text-lg); line-height: 1.6; margin: 0 0 var(--space-6); max-width: calc(var(--space-10) * 4.5); color: var(--color-on-overlay); }
+.t-hero-relief-donate-box__facts { list-style: none; margin: 0; padding: var(--space-5) 0 0; border-top: 1px solid color-mix(in srgb, var(--color-on-overlay) 30%, transparent); display: grid; gap: var(--space-3); }
+.t-hero-relief-donate-box__facts li { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-base); font-weight: 500; color: var(--color-on-overlay); }
+.t-hero-relief-donate-box__facts svg { flex-shrink: 0; }
+.t-hero-relief-donate-box__box { min-width: 0; background: var(--color-background); color: var(--color-text); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-lg); display: grid; gap: var(--space-4); animation: t-hero-relief-donate-box-rise 700ms 120ms ease both; }
+.t-hero-relief-donate-box__box-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.t-hero-relief-donate-box__box-title { font-size: var(--text-2xl); margin: 0; color: var(--color-text); }
+.t-hero-relief-donate-box__secure { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); }
+.t-hero-relief-donate-box__freq { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); padding: var(--space-1); border-radius: var(--radius-pill); background: var(--color-surface); border: 1px solid var(--color-border); }
+.t-hero-relief-donate-box__freq-btn { border: 0; cursor: pointer; padding: var(--space-2) var(--space-3); border-radius: var(--radius-pill); background: transparent; color: var(--color-text); font-size: var(--text-sm); font-weight: 600; transition: background-color 200ms ease, color 200ms ease; }
+.t-hero-relief-donate-box__freq-btn.is-active { background: var(--color-text); color: var(--color-background); }
+.t-hero-relief-donate-box__amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+.t-hero-relief-donate-box__amount { cursor: pointer; padding: var(--space-4) var(--space-1); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-background); color: var(--color-text); font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; line-height: 1; transition: transform 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
+.t-hero-relief-donate-box__amount:hover { transform: translateY(-2px); border-color: var(--color-text); }
+.t-hero-relief-donate-box__amount.is-active { background: var(--color-primary); color: var(--color-on-primary); border-color: var(--color-primary); }
+.t-hero-relief-donate-box__impact { display: none; margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--color-primary-soft); color: var(--color-text); font-size: var(--text-sm); line-height: 1.5; }
+.t-hero-relief-donate-box__impact.is-active { display: block; animation: t-hero-relief-donate-box-fade 300ms ease both; }
+.t-hero-relief-donate-box__other { display: grid; gap: var(--space-2); }
+.t-hero-relief-donate-box__other-label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+.t-hero-relief-donate-box__input { width: 100%; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-background); color: var(--color-text); font-size: var(--text-base); }
+.t-hero-relief-donate-box__give { width: 100%; padding: var(--space-4) var(--space-5); font-size: var(--text-lg); }
+.t-hero-relief-donate-box__note { display: none; margin: 0; text-align: center; font-size: var(--text-sm); color: var(--color-muted); }
+.t-hero-relief-donate-box__note.is-active { display: block; }
+@keyframes t-hero-relief-donate-box-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.7); } }
+@keyframes t-hero-relief-donate-box-rise { from { opacity: 0; transform: translateY(var(--space-4)); } to { opacity: 1; transform: none; } }
+@keyframes t-hero-relief-donate-box-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 1024px) {
+  .t-hero-relief-donate-box { padding: var(--space-8) 0; }
+  .t-hero-relief-donate-box__grid { grid-template-columns: 1fr; gap: var(--space-7); }
+  .t-hero-relief-donate-box__box { max-width: calc(var(--space-10) * 4); }
+}
+@media (max-width: 760px) {
+  .t-hero-relief-donate-box { padding: var(--space-7) 0; }
+  .t-hero-relief-donate-box__title { font-size: var(--text-4xl); }
+  .t-hero-relief-donate-box__box { padding: var(--space-5); }
+  .t-hero-relief-donate-box__amounts { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-hero-relief-donate-box__copy, .t-hero-relief-donate-box__box, .t-hero-relief-donate-box__dot, .t-hero-relief-donate-box__impact.is-active { animation: none; }
+  .t-hero-relief-donate-box__amount, .t-hero-relief-donate-box__freq-btn { transition: none; }
+}
+.t-list-relief-appeals-progress { padding: var(--space-9) 0; background: var(--color-background); color: var(--color-text); }
+.t-list-relief-appeals-progress__head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-7); }
+.t-list-relief-appeals-progress__title { font-size: var(--text-4xl); margin: 0; max-width: calc(var(--space-10) * 5); }
+.t-list-relief-appeals-progress__all { display: inline-flex; align-items: center; gap: var(--space-2); flex-shrink: 0; font-weight: 600; color: var(--color-text); text-decoration: underline; text-underline-offset: var(--space-1); padding-bottom: var(--space-2); }
+.t-list-relief-appeals-progress__all svg, .t-list-relief-appeals-progress__give svg { transition: transform 200ms ease; }
+.t-list-relief-appeals-progress__all:hover svg, .t-list-relief-appeals-progress__give:hover svg { transform: translateX(var(--space-1)); }
+.t-list-relief-appeals-progress__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-6); align-items: stretch; }
+.t-list-relief-appeals-progress__main { display: flex; flex-direction: column; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); }
+.t-list-relief-appeals-progress__media { position: relative; }
+.t-list-relief-appeals-progress__media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.t-list-relief-appeals-progress__urgent { position: absolute; top: var(--space-4); left: var(--space-4); display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--color-overlay); color: var(--color-on-overlay); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.t-list-relief-appeals-progress__dot { width: var(--space-2); height: var(--space-2); border-radius: 50%; background: var(--color-on-overlay); animation: t-list-relief-appeals-progress-pulse 1.8s ease-in-out infinite; }
+.t-list-relief-appeals-progress__main-body { display: flex; flex-direction: column; flex: 1; padding: var(--space-6); }
+.t-list-relief-appeals-progress__main-title { font-size: var(--text-3xl); margin: 0 0 var(--space-3); }
+.t-list-relief-appeals-progress__main-text { margin: 0 0 var(--space-5); color: var(--color-muted); font-size: var(--text-lg); }
+.t-list-relief-appeals-progress__track { height: var(--space-2); border-radius: var(--radius-pill); background: color-mix(in srgb, var(--color-text) 14%, transparent); overflow: hidden; }
+.t-list-relief-appeals-progress__main .t-list-relief-appeals-progress__track { height: var(--space-3); }
+.t-list-relief-appeals-progress__fill { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--color-primary); transform-origin: left; animation: t-list-relief-appeals-progress-grow 900ms ease both; }
+.t-list-relief-appeals-progress__fill.is-level-0 { width: 68%; }
+.t-list-relief-appeals-progress__fill.is-level-1 { width: 54%; }
+.t-list-relief-appeals-progress__fill.is-level-2 { width: 81%; }
+.t-list-relief-appeals-progress__fill.is-level-3 { width: 37%; }
+.t-list-relief-appeals-progress__figures { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-4); margin: var(--space-5) 0 var(--space-6); }
+.t-list-relief-appeals-progress__num { display: block; font-family: var(--font-heading); font-size: var(--text-2xl); line-height: 1.1; }
+.t-list-relief-appeals-progress__cap { display: block; font-size: var(--text-sm); color: var(--color-muted); }
+.t-list-relief-appeals-progress__main-btn { margin-top: auto; align-self: flex-start; }
+.t-list-relief-appeals-progress__rows { display: grid; gap: var(--space-4); }
+.t-list-relief-appeals-progress__row { display: flex; flex-direction: column; justify-content: center; padding: var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-background); transition: transform 200ms ease, box-shadow 200ms ease; }
+.t-list-relief-appeals-progress__row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.t-list-relief-appeals-progress__row-top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-3); }
+.t-list-relief-appeals-progress__tag { padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--color-primary-soft); color: var(--color-text); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.t-list-relief-appeals-progress__left { font-size: var(--text-sm); color: var(--color-muted); }
+.t-list-relief-appeals-progress__row-title { font-size: var(--text-xl); margin: 0 0 var(--space-1); }
+.t-list-relief-appeals-progress__row-text { margin: 0 0 var(--space-4); color: var(--color-muted); font-size: var(--text-sm); }
+.t-list-relief-appeals-progress__meta { display: flex; align-items: center; gap: var(--space-4); margin-top: var(--space-3); font-size: var(--text-sm); color: var(--color-muted); }
+.t-list-relief-appeals-progress__meta strong { color: var(--color-text); font-size: var(--text-base); }
+.t-list-relief-appeals-progress__give { margin-left: auto; display: inline-flex; align-items: center; gap: var(--space-1); font-weight: 700; color: var(--color-text); text-decoration: none; }
+@keyframes t-list-relief-appeals-progress-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.7); } }
+@keyframes t-list-relief-appeals-progress-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 1024px) {
+  .t-list-relief-appeals-progress__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .t-list-relief-appeals-progress { padding: var(--space-8) 0; }
+  .t-list-relief-appeals-progress__head { flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-6); }
+  .t-list-relief-appeals-progress__main-body { padding: var(--space-5); }
+  .t-list-relief-appeals-progress__figures { grid-template-columns: 1fr 1fr; }
+  .t-list-relief-appeals-progress__figures div:first-child { grid-column: 1 / -1; }
+  .t-list-relief-appeals-progress__main-btn { align-self: stretch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-list-relief-appeals-progress__dot, .t-list-relief-appeals-progress__fill { animation: none; }
+  .t-list-relief-appeals-progress__row, .t-list-relief-appeals-progress__all svg, .t-list-relief-appeals-progress__give svg { transition: none; }
+}
+.t-stats-relief-impact-ledger { padding: var(--space-9) 0; background: var(--color-text); color: var(--color-background); }
+.t-stats-relief-impact-ledger__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--space-8); align-items: center; }
+.t-stats-relief-impact-ledger__lead-col { min-width: 0; }
+.t-stats-relief-impact-ledger__eyebrow { margin: 0 0 var(--space-4); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-background); }
+.t-stats-relief-impact-ledger__big { display: block; font-family: var(--font-heading); font-size: var(--text-6xl); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: var(--space-4); color: var(--color-background); }
+.t-stats-relief-impact-ledger__title { font-size: var(--text-2xl); line-height: 1.25; margin: 0 0 var(--space-6); color: var(--color-background); max-width: calc(var(--space-10) * 3.5); }
+.t-stats-relief-impact-ledger__link { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; color: var(--color-background); text-decoration: underline; text-underline-offset: var(--space-1); }
+.t-stats-relief-impact-ledger__link svg { transition: transform 200ms ease; }
+.t-stats-relief-impact-ledger__link:hover svg { transform: translateX(var(--space-1)); }
+.t-stats-relief-impact-ledger__ledger { border-top: 1px solid color-mix(in srgb, var(--color-background) 30%, transparent); }
+.t-stats-relief-impact-ledger__item { display: grid; grid-template-columns: calc(var(--space-10) * 1.25) 1fr; gap: var(--space-5); align-items: baseline; padding: var(--space-5) 0; border-bottom: 1px solid color-mix(in srgb, var(--color-background) 30%, transparent); }
+.t-stats-relief-impact-ledger__num { font-family: var(--font-heading); font-size: var(--text-4xl); font-weight: 700; line-height: 1; color: var(--color-background); }
+.t-stats-relief-impact-ledger__label { font-family: var(--font-body); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0; margin: 0 0 var(--space-1); color: var(--color-background); }
+.t-stats-relief-impact-ledger__text { margin: 0; font-size: var(--text-sm); color: var(--color-background); opacity: 0.85; }
+@media (max-width: 1024px) {
+  .t-stats-relief-impact-ledger__grid { grid-template-columns: 1fr; gap: var(--space-7); }
+}
+@media (max-width: 760px) {
+  .t-stats-relief-impact-ledger { padding: var(--space-8) 0; }
+  .t-stats-relief-impact-ledger__item { grid-template-columns: calc(var(--space-9) * 1.1) 1fr; gap: var(--space-4); }
+  .t-stats-relief-impact-ledger__num { font-size: var(--text-3xl); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-stats-relief-impact-ledger__link svg { transition: none; }
+}
+.t-other-relief-money-split-bar { padding: var(--space-9) 0; background: var(--color-background); color: var(--color-text); }
+.t-other-relief-money-split-bar__head { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-7); align-items: end; margin-bottom: var(--space-7); }
+.t-other-relief-money-split-bar__title { font-size: var(--text-5xl); margin: 0; }
+.t-other-relief-money-split-bar__intro { margin: 0; font-size: var(--text-lg); color: var(--color-muted); }
+.t-other-relief-money-split-bar__bar { display: flex; gap: var(--space-1); height: calc(var(--space-8) + var(--space-5)); }
+.t-other-relief-money-split-bar__seg { min-width: 0; transform-origin: left; animation: t-other-relief-money-split-bar-grow 900ms ease both; }
+.t-other-relief-money-split-bar__seg.is-a { flex: 86 1 0; display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-6); border-radius: var(--radius-lg) var(--radius-sm) var(--radius-sm) var(--radius-lg); background: var(--color-primary); color: var(--color-on-primary); }
+.t-other-relief-money-split-bar__seg.is-a strong { font-family: var(--font-heading); font-size: var(--text-3xl); line-height: 1; }
+.t-other-relief-money-split-bar__seg.is-a span { font-size: var(--text-base); font-weight: 600; }
+.t-other-relief-money-split-bar__seg.is-b { flex: 9 1 0; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--color-primary) 50%, var(--color-background)); animation-delay: 150ms; }
+.t-other-relief-money-split-bar__seg.is-c { flex: 5 1 0; border-radius: var(--radius-sm) var(--radius-lg) var(--radius-lg) var(--radius-sm); background: color-mix(in srgb, var(--color-primary) 20%, var(--color-background)); border: 1px solid var(--color-border); animation-delay: 300ms; }
+.t-other-relief-money-split-bar__legend { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-6); margin-top: var(--space-6); }
+.t-other-relief-money-split-bar__key { padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.t-other-relief-money-split-bar__swatch { display: inline-block; width: var(--space-4); height: var(--space-4); border-radius: 50%; margin-right: var(--space-2); vertical-align: middle; }
+.t-other-relief-money-split-bar__swatch.is-a { background: var(--color-primary); }
+.t-other-relief-money-split-bar__swatch.is-b { background: color-mix(in srgb, var(--color-primary) 50%, var(--color-background)); }
+.t-other-relief-money-split-bar__swatch.is-c { background: color-mix(in srgb, var(--color-primary) 20%, var(--color-background)); border: 1px solid var(--color-border); }
+.t-other-relief-money-split-bar__pct { font-family: var(--font-heading); font-size: var(--text-3xl); line-height: 1; vertical-align: middle; }
+.t-other-relief-money-split-bar__key-title { font-family: var(--font-body); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0; margin: var(--space-3) 0 var(--space-1); }
+.t-other-relief-money-split-bar__key-text { margin: 0; font-size: var(--text-sm); color: var(--color-muted); }
+.t-other-relief-money-split-bar__audit { display: flex; align-items: center; gap: var(--space-4); margin-top: var(--space-7); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); }
+.t-other-relief-money-split-bar__audit-icon { flex-shrink: 0; width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: 50%; background: var(--color-background); color: var(--color-text); border: 1px solid var(--color-border); }
+.t-other-relief-money-split-bar__audit-text { margin: 0; flex: 1; min-width: 0; color: var(--color-text); }
+.t-other-relief-money-split-bar__audit-btn { flex-shrink: 0; white-space: nowrap; }
+@keyframes t-other-relief-money-split-bar-grow { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+@media (max-width: 1024px) {
+  .t-other-relief-money-split-bar__head { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+@media (max-width: 760px) {
+  .t-other-relief-money-split-bar { padding: var(--space-8) 0; }
+  .t-other-relief-money-split-bar__title { font-size: var(--text-4xl); }
+  .t-other-relief-money-split-bar__bar { height: calc(var(--space-8) + var(--space-6)); }
+  .t-other-relief-money-split-bar__seg.is-a { flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--space-1); padding: 0 var(--space-4); }
+  .t-other-relief-money-split-bar__seg.is-a span { font-size: var(--text-sm); line-height: 1.3; }
+  .t-other-relief-money-split-bar__legend { grid-template-columns: 1fr; gap: var(--space-5); }
+  .t-other-relief-money-split-bar__audit { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-other-relief-money-split-bar__seg { animation: none; }
+}
+.t-features-relief-programmes-rows { padding: var(--space-9) 0; background: var(--color-surface); color: var(--color-text); }
+.t-features-relief-programmes-rows__grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-8); align-items: center; }
+.t-features-relief-programmes-rows__figure { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; align-self: stretch; min-height: calc(var(--space-10) * 4); }
+.t-features-relief-programmes-rows__figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.t-features-relief-programmes-rows__caption { position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-4); display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-overlay); color: var(--color-on-overlay); }
+.t-features-relief-programmes-rows__caption strong { font-family: var(--font-heading); font-size: var(--text-4xl); line-height: 1; }
+.t-features-relief-programmes-rows__caption span { font-size: var(--text-sm); line-height: 1.4; }
+.t-features-relief-programmes-rows__content { min-width: 0; }
+.t-features-relief-programmes-rows__title { font-size: var(--text-4xl); margin: 0 0 var(--space-4); }
+.t-features-relief-programmes-rows__lead { margin: 0 0 var(--space-6); font-size: var(--text-lg); color: var(--color-muted); max-width: calc(var(--space-10) * 4.5); }
+.t-features-relief-programmes-rows__rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-border); }
+.t-features-relief-programmes-rows__row { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-5); align-items: center; padding: var(--space-5) 0; border-bottom: 1px solid var(--color-border); }
+.t-features-relief-programmes-rows__icon { width: calc(var(--space-7) + var(--space-2)); height: calc(var(--space-7) + var(--space-2)); display: grid; place-items: center; border-radius: 50%; background: var(--color-background); color: var(--color-text); border: 1px solid var(--color-border); transition: background-color 200ms ease, color 200ms ease; }
+.t-features-relief-programmes-rows__row:hover .t-features-relief-programmes-rows__icon { background: var(--color-primary); color: var(--color-on-primary); }
+.t-features-relief-programmes-rows__row-title { font-size: var(--text-xl); margin: 0 0 var(--space-1); }
+.t-features-relief-programmes-rows__row-text { margin: 0 0 var(--space-2); color: var(--color-muted); }
+.t-features-relief-programmes-rows__chip { display: inline-block; margin: 0; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--color-background); border: 1px solid var(--color-border); font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+.t-features-relief-programmes-rows__go { width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); color: var(--color-text); transition: transform 200ms ease, background-color 200ms ease; }
+.t-features-relief-programmes-rows__go:hover { transform: translateX(var(--space-1)); background: var(--color-background); }
+@media (max-width: 1024px) {
+  .t-features-relief-programmes-rows__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .t-features-relief-programmes-rows__figure { min-height: 0; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 760px) {
+  .t-features-relief-programmes-rows { padding: var(--space-8) 0; }
+  .t-features-relief-programmes-rows__figure { aspect-ratio: 4 / 3; }
+  .t-features-relief-programmes-rows__caption { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .t-features-relief-programmes-rows__caption strong { font-size: var(--text-3xl); }
+  .t-features-relief-programmes-rows__row { grid-template-columns: auto 1fr; gap: var(--space-4); align-items: start; }
+  .t-features-relief-programmes-rows__go { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-features-relief-programmes-rows__icon, .t-features-relief-programmes-rows__go { transition: none; }
+}
+.t-story-relief-field-quote { padding: var(--space-9) 0; background: var(--color-background); color: var(--color-text); overflow: hidden; }
+.t-story-relief-field-quote__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-9); align-items: center; }
+.t-story-relief-field-quote__copy { min-width: 0; }
+.t-story-relief-field-quote__mark { color: var(--color-primary); margin: var(--space-5) 0; }
+.t-story-relief-field-quote__quote { margin: 0 0 var(--space-5); font-family: var(--font-heading); font-size: var(--text-3xl); line-height: 1.25; letter-spacing: -0.01em; color: var(--color-text); }
+.t-story-relief-field-quote__by { display: flex; flex-direction: column; margin: 0 0 var(--space-6); padding-left: var(--space-4); border-left: 2px solid var(--color-primary); }
+.t-story-relief-field-quote__by strong { font-size: var(--text-lg); }
+.t-story-relief-field-quote__by span { font-size: var(--text-sm); color: var(--color-muted); }
+.t-story-relief-field-quote__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin: 0 0 var(--space-6); padding: var(--space-5) 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.t-story-relief-field-quote__facts dt { font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: 700; line-height: 1.1; }
+.t-story-relief-field-quote__facts dd { margin: var(--space-1) 0 0; font-size: var(--text-sm); color: var(--color-muted); }
+.t-story-relief-field-quote__link { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 700; color: var(--color-text); text-decoration: underline; text-underline-offset: var(--space-1); }
+.t-story-relief-field-quote__link svg { transition: transform 200ms ease; }
+.t-story-relief-field-quote__link:hover svg { transform: translateX(var(--space-1)); }
+.t-story-relief-field-quote__figure { position: relative; margin: 0; }
+.t-story-relief-field-quote__block { position: absolute; inset: 0; border-radius: var(--radius-lg); background: var(--color-primary-soft); transform: translate(var(--space-4), var(--space-4)); }
+.t-story-relief-field-quote__figure img { position: relative; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-lg); }
+.t-story-relief-field-quote__note { position: absolute; left: calc(var(--space-6) * -1); bottom: var(--space-6); max-width: 80%; display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--color-background); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); }
+.t-story-relief-field-quote__note-icon { flex-shrink: 0; width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: var(--color-on-primary); }
+.t-story-relief-field-quote__note-body { display: flex; flex-direction: column; font-size: var(--text-sm); line-height: 1.4; min-width: 0; }
+.t-story-relief-field-quote__note-body strong { font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; }
+@media (max-width: 1024px) {
+  .t-story-relief-field-quote__grid { grid-template-columns: 1fr; gap: var(--space-7); }
+  .t-story-relief-field-quote__figure { max-width: calc(var(--space-10) * 4); margin-left: var(--space-5); }
+}
+@media (max-width: 760px) {
+  .t-story-relief-field-quote { padding: var(--space-8) 0; }
+  .t-story-relief-field-quote__quote { font-size: var(--text-2xl); }
+  .t-story-relief-field-quote__facts { grid-template-columns: 1fr; gap: var(--space-3); }
+  .t-story-relief-field-quote__facts div { display: grid; grid-template-columns: calc(var(--space-8) + var(--space-4)) 1fr; align-items: baseline; gap: var(--space-3); }
+  .t-story-relief-field-quote__facts dd { margin: 0; }
+  .t-story-relief-field-quote__figure { margin-left: 0; margin-right: var(--space-4); }
+  .t-story-relief-field-quote__note { left: var(--space-3); right: var(--space-3); bottom: var(--space-3); max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-story-relief-field-quote__link svg { transition: none; }
+}
+.t-other-relief-ways-to-give { padding: var(--space-9) 0; background: var(--color-surface); color: var(--color-text); }
+.t-other-relief-ways-to-give__head { max-width: var(--width-narrow); margin-bottom: var(--space-7); }
+.t-other-relief-ways-to-give__title { font-size: var(--text-4xl); margin: 0; }
+.t-other-relief-ways-to-give__panel { display: grid; grid-template-columns: 1.25fr 1fr 1fr 1fr; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-background); overflow: hidden; }
+.t-other-relief-ways-to-give__way { position: relative; display: flex; flex-direction: column; min-width: 0; padding: var(--space-6); border-left: 1px solid var(--color-border); transition: background-color 200ms ease; }
+.t-other-relief-ways-to-give__way:first-child { border-left: 0; }
+.t-other-relief-ways-to-give__way:hover { background: var(--color-surface); }
+.t-other-relief-ways-to-give__way.is-featured, .t-other-relief-ways-to-give__way.is-featured:hover { background: var(--color-text); color: var(--color-background); }
+.t-other-relief-ways-to-give__n { position: absolute; top: var(--space-6); right: var(--space-6); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; color: var(--color-muted); }
+.t-other-relief-ways-to-give__way.is-featured .t-other-relief-ways-to-give__n { color: var(--color-background); }
+.t-other-relief-ways-to-give__icon { width: calc(var(--space-7) + var(--space-3)); height: calc(var(--space-7) + var(--space-3)); display: grid; place-items: center; border-radius: 50%; background: var(--color-primary-soft); color: var(--color-text); margin-bottom: var(--space-8); }
+.t-other-relief-ways-to-give__way.is-featured .t-other-relief-ways-to-give__icon { background: var(--color-background); color: var(--color-text); }
+.t-other-relief-ways-to-give__way-title { font-size: var(--text-2xl); margin: 0 0 var(--space-2); }
+.t-other-relief-ways-to-give__way-text { margin: 0 0 var(--space-5); color: var(--color-muted); }
+.t-other-relief-ways-to-give__way.is-featured .t-other-relief-ways-to-give__way-title, .t-other-relief-ways-to-give__way.is-featured .t-other-relief-ways-to-give__way-text { color: var(--color-background); }
+.t-other-relief-ways-to-give__link { margin-top: auto; display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 700; color: var(--color-text); text-decoration: underline; text-underline-offset: var(--space-1); }
+.t-other-relief-ways-to-give__way.is-featured .t-other-relief-ways-to-give__link { color: var(--color-background); }
+.t-other-relief-ways-to-give__link svg { flex-shrink: 0; transition: transform 200ms ease; }
+.t-other-relief-ways-to-give__link:hover svg { transform: translateX(var(--space-1)); }
+.t-other-relief-ways-to-give__foot { margin: var(--space-6) 0 0; color: var(--color-muted); }
+.t-other-relief-ways-to-give__foot a { color: var(--color-text); font-weight: 700; white-space: nowrap; }
+@media (max-width: 1024px) {
+  .t-other-relief-ways-to-give__panel { grid-template-columns: 1fr 1fr; }
+  .t-other-relief-ways-to-give__way:nth-child(3) { border-left: 0; }
+  .t-other-relief-ways-to-give__way:nth-child(n+3) { border-top: 1px solid var(--color-border); }
+  .t-other-relief-ways-to-give__icon { margin-bottom: var(--space-6); }
+}
+@media (max-width: 760px) {
+  .t-other-relief-ways-to-give { padding: var(--space-8) 0; }
+  .t-other-relief-ways-to-give__panel { grid-template-columns: 1fr; }
+  .t-other-relief-ways-to-give__way { border-left: 0; border-top: 1px solid var(--color-border); padding: var(--space-5); }
+  .t-other-relief-ways-to-give__way:first-child { border-top: 0; }
+  .t-other-relief-ways-to-give__n { top: var(--space-5); right: var(--space-5); }
+  .t-other-relief-ways-to-give__icon { margin-bottom: var(--space-5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-other-relief-ways-to-give__way, .t-other-relief-ways-to-give__link svg { transition: none; }
+}
+.t-logos-relief-trust-seals { padding: var(--space-9) 0; background: var(--color-background); color: var(--color-text); border-top: 1px solid var(--color-border); }
+.t-logos-relief-trust-seals__grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-8); align-items: center; }
+.t-logos-relief-trust-seals__copy { min-width: 0; }
+.t-logos-relief-trust-seals__title { font-size: var(--text-3xl); margin: 0 0 var(--space-3); }
+.t-logos-relief-trust-seals__text { margin: 0 0 var(--space-5); color: var(--color-muted); }
+.t-logos-relief-trust-seals__doc { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease; }
+.t-logos-relief-trust-seals__doc:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.t-logos-relief-trust-seals__doc > svg { flex-shrink: 0; }
+.t-logos-relief-trust-seals__doc-icon { flex-shrink: 0; width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: var(--radius-sm); background: var(--color-background); border: 1px solid var(--color-border); }
+.t-logos-relief-trust-seals__doc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
+.t-logos-relief-trust-seals__doc-body span { font-size: var(--text-sm); color: var(--color-muted); }
+.t-logos-relief-trust-seals__badges { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+.t-logos-relief-trust-seals__badge { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.t-logos-relief-trust-seals__seal { position: relative; width: calc(var(--space-9) + var(--space-2)); height: calc(var(--space-9) + var(--space-2)); display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--color-text); color: var(--color-text); margin-bottom: var(--space-4); transition: transform 300ms ease; }
+.t-logos-relief-trust-seals__seal::before { content: ""; position: absolute; inset: var(--space-1); border-radius: 50%; border: 1px dashed var(--color-text); opacity: 0.55; }
+.t-logos-relief-trust-seals__seal::after { content: ""; position: absolute; inset: var(--space-3); border-radius: 50%; background: var(--color-primary-soft); z-index: -1; }
+.t-logos-relief-trust-seals__seal svg { position: relative; }
+.t-logos-relief-trust-seals__badge { position: relative; z-index: 0; }
+.t-logos-relief-trust-seals__badge:hover .t-logos-relief-trust-seals__seal { transform: rotate(-6deg) scale(1.04); }
+.t-logos-relief-trust-seals__badge-title { font-family: var(--font-heading); font-size: var(--text-lg); line-height: 1.2; margin-bottom: var(--space-1); }
+.t-logos-relief-trust-seals__badge-text { font-size: var(--text-sm); color: var(--color-muted); line-height: 1.4; }
+@media (max-width: 1024px) {
+  .t-logos-relief-trust-seals__grid { grid-template-columns: 1fr; gap: var(--space-7); }
+}
+@media (max-width: 760px) {
+  .t-logos-relief-trust-seals { padding: var(--space-8) 0; }
+  .t-logos-relief-trust-seals__badges { grid-template-columns: 1fr 1fr; gap: var(--space-6) var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-logos-relief-trust-seals__seal, .t-logos-relief-trust-seals__doc { transition: none; }
+  .t-logos-relief-trust-seals__badge:hover .t-logos-relief-trust-seals__seal { transform: none; }
+}
+.t-faq-relief-giving-care-card { padding: var(--space-9) 0; background: var(--color-surface); color: var(--color-text); }
+.t-faq-relief-giving-care-card__grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-8); align-items: start; }
+.t-faq-relief-giving-care-card__side { min-width: 0; }
+.t-faq-relief-giving-care-card__title { font-size: var(--text-4xl); margin: 0 0 var(--space-6); }
+.t-faq-relief-giving-care-card__card { padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-text); color: var(--color-background); display: grid; gap: var(--space-3); }
+.t-faq-relief-giving-care-card__card-title { font-size: var(--text-xl); margin: 0; color: var(--color-background); }
+.t-faq-relief-giving-care-card__card-text { margin: 0 0 var(--space-2); font-size: var(--text-sm); color: var(--color-background); }
+.t-faq-relief-giving-care-card__contact { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid color-mix(in srgb, var(--color-background) 35%, transparent); color: var(--color-background); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; transition: background-color 200ms ease; }
+.t-faq-relief-giving-care-card__contact:hover { background: color-mix(in srgb, var(--color-background) 12%, transparent); }
+.t-faq-relief-giving-care-card__contact svg { flex-shrink: 0; }
+.t-faq-relief-giving-care-card__list { display: grid; gap: var(--space-3); min-width: 0; }
+.t-faq-relief-giving-care-card__item { border-radius: var(--radius-md); background: var(--color-background); border: 1px solid var(--color-border); }
+.t-faq-relief-giving-care-card__q { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 600; line-height: 1.3; color: var(--color-text); }
+.t-faq-relief-giving-care-card__q::-webkit-details-marker { display: none; }
+.t-faq-relief-giving-care-card__plus { position: relative; flex-shrink: 0; width: var(--space-6); height: var(--space-6); border-radius: 50%; border: 1px solid var(--color-border); transition: transform 250ms ease, background-color 200ms ease; }
+.t-faq-relief-giving-care-card__plus::before, .t-faq-relief-giving-care-card__plus::after { content: ""; position: absolute; top: 50%; left: 50%; width: var(--space-3); height: 2px; background: var(--color-text); transform: translate(-50%, -50%); }
+.t-faq-relief-giving-care-card__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.t-faq-relief-giving-care-card__item[open] .t-faq-relief-giving-care-card__plus { transform: rotate(45deg); background: var(--color-primary-soft); }
+.t-faq-relief-giving-care-card__a { margin: 0; padding: 0 var(--space-5) var(--space-5); color: var(--color-muted); max-width: calc(var(--space-10) * 5); }
+@media (max-width: 1024px) {
+  .t-faq-relief-giving-care-card__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .t-faq-relief-giving-care-card__side { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: end; }
+  .t-faq-relief-giving-care-card__title { margin: 0; }
+  .t-faq-relief-giving-care-card__side .eyebrow { grid-column: 1 / -1; margin: 0; }
+}
+@media (max-width: 760px) {
+  .t-faq-relief-giving-care-card { padding: var(--space-8) 0; }
+  .t-faq-relief-giving-care-card__side { grid-template-columns: 1fr; gap: var(--space-4); }
+  .t-faq-relief-giving-care-card__q { padding: var(--space-4); font-size: var(--text-lg); }
+  .t-faq-relief-giving-care-card__a { padding: 0 var(--space-4) var(--space-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-faq-relief-giving-care-card__plus, .t-faq-relief-giving-care-card__contact { transition: none; }
+}
+.t-footer-relief-newsletter-dark { padding: var(--space-8) 0 var(--space-6); background: var(--color-text); color: var(--color-background); font-family: var(--font-body); }
+.t-footer-relief-newsletter-dark__news { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-7); align-items: center; padding-bottom: var(--space-7); border-bottom: 1px solid color-mix(in srgb, var(--color-background) 28%, transparent); }
+.t-footer-relief-newsletter-dark__news-title { font-size: var(--text-4xl); margin: 0 0 var(--space-3); color: var(--color-background); }
+.t-footer-relief-newsletter-dark__news-text { margin: 0; font-size: var(--text-lg); color: var(--color-background); opacity: 0.85; }
+.t-footer-relief-newsletter-dark__form { display: flex; gap: var(--space-2); padding: var(--space-2); border-radius: var(--radius-pill); border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent); }
+.t-footer-relief-newsletter-dark__field { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding-left: var(--space-4); }
+.t-footer-relief-newsletter-dark__label { font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; color: var(--color-background); }
+.t-footer-relief-newsletter-dark__input { width: 100%; min-width: 0; padding: var(--space-1) 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-background); font-size: var(--text-base); }
+.t-footer-relief-newsletter-dark__submit { flex-shrink: 0; display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; padding: var(--space-3) var(--space-5); border: 0; border-radius: var(--radius-pill); background: var(--color-background); color: var(--color-text); font-weight: 700; white-space: nowrap; transition: transform 200ms ease; }
+.t-footer-relief-newsletter-dark__submit:hover { transform: translateY(-1px); }
+.t-footer-relief-newsletter-dark__main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--space-7); padding: var(--space-7) 0; }
+.t-footer-relief-newsletter-dark__brand-col { min-width: 0; }
+.t-footer-relief-newsletter-dark__logo { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: 700; color: var(--color-background); text-decoration: none; margin-bottom: var(--space-4); }
+.t-footer-relief-newsletter-dark__mark { width: var(--space-7); height: var(--space-7); display: grid; place-items: center; border-radius: 50%; background: var(--color-background); color: var(--color-text); }
+.t-footer-relief-newsletter-dark__about { margin: 0 0 var(--space-5); max-width: calc(var(--space-10) * 2.75); color: var(--color-background); opacity: 0.85; }
+.t-footer-relief-newsletter-dark__contact { display: grid; gap: var(--space-1); margin: 0; }
+.t-footer-relief-newsletter-dark__contact a { color: var(--color-background); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.t-footer-relief-newsletter-dark__col { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.t-footer-relief-newsletter-dark__col-title { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 var(--space-2); color: var(--color-background); }
+.t-footer-relief-newsletter-dark__col a { color: var(--color-background); text-decoration: none; opacity: 0.85; transition: opacity 200ms ease; }
+.t-footer-relief-newsletter-dark__col a:hover, .t-footer-relief-newsletter-dark__contact a:hover, .t-footer-relief-newsletter-dark__base-links a:hover { opacity: 1; text-decoration: underline; }
+.t-footer-relief-newsletter-dark__base { display: flex; align-items: center; gap: var(--space-5); padding-top: var(--space-5); border-top: 1px solid color-mix(in srgb, var(--color-background) 28%, transparent); font-size: var(--text-sm); }
+.t-footer-relief-newsletter-dark__legal { margin: 0; color: var(--color-background); opacity: 0.85; }
+.t-footer-relief-newsletter-dark__base-links { display: flex; gap: var(--space-5); margin-left: auto; }
+.t-footer-relief-newsletter-dark__base-links a { color: var(--color-background); opacity: 0.85; }
+.t-footer-relief-newsletter-dark__give { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-pill); border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent); color: var(--color-background); font-weight: 700; text-decoration: none; }
+@media (max-width: 1024px) {
+  .t-footer-relief-newsletter-dark__news { grid-template-columns: 1fr; gap: var(--space-5); }
+  .t-footer-relief-newsletter-dark__main { grid-template-columns: 1fr 1fr 1fr; }
+  .t-footer-relief-newsletter-dark__brand-col { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .t-footer-relief-newsletter-dark { padding-top: var(--space-7); }
+  .t-footer-relief-newsletter-dark__news-title { font-size: var(--text-3xl); }
+  .t-footer-relief-newsletter-dark__form { flex-direction: column; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-lg); }
+  .t-footer-relief-newsletter-dark__field { padding: var(--space-1) var(--space-2); }
+  .t-footer-relief-newsletter-dark__submit { justify-content: center; }
+  .t-footer-relief-newsletter-dark__main { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .t-footer-relief-newsletter-dark__base { flex-wrap: wrap; gap: var(--space-3) var(--space-5); }
+  .t-footer-relief-newsletter-dark__base-links { margin-left: 0; }
+  .t-footer-relief-newsletter-dark__give { margin-left: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-footer-relief-newsletter-dark__submit, .t-footer-relief-newsletter-dark__col a { transition: none; }
+}</style></head><body><main id="main"><header class="t-header-relief-appeal-strip">
+  <div class="t-header-relief-appeal-strip__strip">
+    <div class="container t-header-relief-appeal-strip__strip-in">
+      <span class="t-header-relief-appeal-strip__live"><span class="t-header-relief-appeal-strip__dot" aria-hidden="true"></span><span data-slot="strip-tag">Emergency appeal</span></span>
+      <span class="t-header-relief-appeal-strip__strip-text" data-slot="strip-text">Flood response: families need shelter and clean water today.</span>
+      <a href="#appeals" class="t-header-relief-appeal-strip__strip-link"><span data-slot="strip-link">Give now</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+  <div class="container t-header-relief-appeal-strip__bar">
+    <a href="#top" class="t-header-relief-appeal-strip__logo" aria-label="Home">
+      <span class="t-header-relief-appeal-strip__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c3 3.6 5.5 6.4 5.5 9.6a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-9.6z"/><path d="M9.5 13.5a2.5 2.5 0 0 0 2.5 2.5"/></svg></span>
+      <span class="t-header-relief-appeal-strip__brand"><span class="t-header-relief-appeal-strip__brand-name" data-slot="brand">Relief name</span><span class="t-header-relief-appeal-strip__brand-line" data-slot="brand-line">Aid where it is needed</span></span>
+    </a>
+    <nav class="t-header-relief-appeal-strip__nav" aria-label="Primary">
+      <a href="#appeals" data-slot="nav-1">Appeals</a>
+      <a href="#work" data-slot="nav-2">Our work</a>
+      <a href="#impact" data-slot="nav-3">Impact</a>
+      <a href="#give" data-slot="nav-4">Ways to give</a>
+      <a href="#about" data-slot="nav-5">About us</a>
+    </nav>
+    <div class="t-header-relief-appeal-strip__actions">
+      <a href="#donate" class="btn btn-primary t-header-relief-appeal-strip__donate"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span data-slot="cta">Donate</span></a>
+      <details class="t-header-relief-appeal-strip__menu">
+        <summary class="t-header-relief-appeal-strip__toggle"><span class="sr-only" data-slot="menu-label">Menu</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="t-header-relief-appeal-strip__sheet" aria-label="Mobile">
+          <a href="#appeals" data-slot="m-nav-1">Appeals</a>
+          <a href="#work" data-slot="m-nav-2">Our work</a>
+          <a href="#impact" data-slot="m-nav-3">Impact</a>
+          <a href="#give" data-slot="m-nav-4">Ways to give</a>
+          <a href="#about" data-slot="m-nav-5">About us</a>
+          <a href="#monthly" class="btn btn-ghost t-header-relief-appeal-strip__sheet-btn" data-slot="m-cta">Give monthly</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<section class="t-hero-relief-donate-box">
+  <img class="t-hero-relief-donate-box__photo" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Aid workers handing out supplies to families at a relief point" width="1600" height="1000" data-slot="photo">
+  <div class="t-hero-relief-donate-box__shade" aria-hidden="true"></div>
+  <div class="container t-hero-relief-donate-box__grid">
+    <div class="t-hero-relief-donate-box__copy">
+      <p class="t-hero-relief-donate-box__pill"><span class="t-hero-relief-donate-box__dot" aria-hidden="true"></span><span data-slot="pill">Emergency appeal: flood response</span></p>
+      <h1 class="t-hero-relief-donate-box__title" data-slot="title">Help families get through the next seven days.</h1>
+      <p class="t-hero-relief-donate-box__lead" data-slot="lead">Homes and crops are under water. Our teams are on the ground with shelter, food and clean water, and your gift keeps them moving.</p>
+      <ul class="t-hero-relief-donate-box__facts">
+        <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="fact-1">86% of every gift goes to programmes</span></li>
+        <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="fact-2">Teams on the ground within 48 hours</span></li>
+        <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-slot="fact-3">Independently audited every year</span></li>
+      </ul>
+    </div>
+    <form class="t-hero-relief-donate-box__box" action="#">
+      <div class="t-hero-relief-donate-box__box-head">
+        <h2 class="t-hero-relief-donate-box__box-title" data-slot="box-title">Make a gift today</h2>
+        <span class="t-hero-relief-donate-box__secure"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-slot="box-secure">Secure</span></span>
+      </div>
+      <div class="t-hero-relief-donate-box__freq" role="group" aria-label="Gift frequency">
+        <button type="button" class="t-hero-relief-donate-box__freq-btn is-active" aria-pressed="true" data-slot="freq-once">One-off</button>
+        <button type="button" class="t-hero-relief-donate-box__freq-btn" aria-pressed="false" data-slot="freq-monthly">Monthly</button>
+      </div>
+      <div class="t-hero-relief-donate-box__amounts" role="group" aria-label="Gift amount">
+        <button type="button" class="t-hero-relief-donate-box__amount" aria-pressed="false" data-slot="amount-1">$25</button><button type="button" class="t-hero-relief-donate-box__amount is-active" aria-pressed="true" data-slot="amount-2">$50</button><button type="button" class="t-hero-relief-donate-box__amount" aria-pressed="false" data-slot="amount-3">$100</button><button type="button" class="t-hero-relief-donate-box__amount" aria-pressed="false" data-slot="amount-4">$250</button>
+      </div>
+      <div class="t-hero-relief-donate-box__impacts" data-states="items">
+        <p class="t-hero-relief-donate-box__impact" data-state="gift-1"><strong data-slot="impact-1-amount">$25</strong> <span data-slot="impact-1-text">could give a family clean water for a month.</span></p><p class="t-hero-relief-donate-box__impact is-active" data-state="gift-2"><strong data-slot="impact-2-amount">$50</strong> <span data-slot="impact-2-text">could provide an emergency food parcel for a family.</span></p><p class="t-hero-relief-donate-box__impact" data-state="gift-3"><strong data-slot="impact-3-amount">$100</strong> <span data-slot="impact-3-text">could supply shelter kits for two families.</span></p><p class="t-hero-relief-donate-box__impact" data-state="gift-4"><strong data-slot="impact-4-amount">$250</strong> <span data-slot="impact-4-text">could keep a mobile clinic running for a day.</span></p>
+      </div>
+      <label class="t-hero-relief-donate-box__other"><span class="t-hero-relief-donate-box__other-label" data-slot="other-label">Or enter another amount</span><input class="t-hero-relief-donate-box__input" type="number" name="amount" min="1" inputmode="numeric"></label>
+      <button type="submit" class="btn btn-primary t-hero-relief-donate-box__give"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span data-slot="box-cta">Donate now</span></button>
+      <div class="t-hero-relief-donate-box__notes" data-states="items">
+        <p class="t-hero-relief-donate-box__note is-active" data-state="once" data-slot="note-once">A single gift, used where the need is greatest.</p>
+        <p class="t-hero-relief-donate-box__note" data-state="monthly" data-slot="note-monthly">A monthly gift you can change or stop at any time.</p>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="t-list-relief-appeals-progress">
+  <div class="container">
+    <div class="t-list-relief-appeals-progress__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Current appeals</p>
+        <h2 class="t-list-relief-appeals-progress__title" data-slot="title">Where help is needed most right now</h2>
+      </div>
+      <a href="#appeals" class="t-list-relief-appeals-progress__all"><span data-slot="all-link">See all appeals</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="t-list-relief-appeals-progress__grid">
+      <article class="t-list-relief-appeals-progress__main">
+        <div class="t-list-relief-appeals-progress__media">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Families collecting clean water at a relief point after a flood" width="1200" height="750" data-slot="main-photo">
+          <span class="t-list-relief-appeals-progress__urgent"><span class="t-list-relief-appeals-progress__dot" aria-hidden="true"></span><span data-slot="main-tag">Urgent</span></span>
+        </div>
+        <div class="t-list-relief-appeals-progress__main-body">
+          <h3 class="t-list-relief-appeals-progress__main-title" data-slot="main-title">Flood response appeal</h3>
+          <p class="t-list-relief-appeals-progress__main-text" data-slot="main-text">Shelter kits, food parcels and safe water for families who have lost their homes.</p>
+          <div class="t-list-relief-appeals-progress__track" aria-hidden="true"><span class="t-list-relief-appeals-progress__fill is-level-0"></span></div>
+          <div class="t-list-relief-appeals-progress__figures">
+            <div><strong class="t-list-relief-appeals-progress__num" data-slot="main-raised">$340k</strong><span class="t-list-relief-appeals-progress__cap" data-slot="main-raised-label">raised of $500k</span></div>
+            <div><strong class="t-list-relief-appeals-progress__num" data-slot="main-donors">4,120</strong><span class="t-list-relief-appeals-progress__cap" data-slot="main-donors-label">supporters</span></div>
+            <div><strong class="t-list-relief-appeals-progress__num" data-slot="main-days">12</strong><span class="t-list-relief-appeals-progress__cap" data-slot="main-days-label">days left</span></div>
+          </div>
+          <a href="#donate" class="btn btn-primary t-list-relief-appeals-progress__main-btn" data-slot="main-cta">Give to this appeal</a>
+        </div>
+      </article>
+      <div class="t-list-relief-appeals-progress__rows">
+        <article class="t-list-relief-appeals-progress__row">
+          <div class="t-list-relief-appeals-progress__row-top"><span class="t-list-relief-appeals-progress__tag" data-slot="row-1-tag">Water</span><span class="t-list-relief-appeals-progress__left" data-slot="row-1-left">21 days left</span></div>
+          <h3 class="t-list-relief-appeals-progress__row-title" data-slot="row-1-title">Clean water for dry-season villages</h3>
+          <p class="t-list-relief-appeals-progress__row-text" data-slot="row-1-text">Boreholes and repair teams for ten communities.</p>
+          <div class="t-list-relief-appeals-progress__track" aria-hidden="true"><span class="t-list-relief-appeals-progress__fill is-level-1"></span></div>
+          <div class="t-list-relief-appeals-progress__meta"><span><strong data-slot="row-1-pct">54%</strong> <span data-slot="row-1-pct-label">funded</span></span><span data-slot="row-1-goal">Goal $80k</span><a href="#donate" class="t-list-relief-appeals-progress__give"><span data-slot="row-1-link">Give</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </article>
+        <article class="t-list-relief-appeals-progress__row">
+          <div class="t-list-relief-appeals-progress__row-top"><span class="t-list-relief-appeals-progress__tag" data-slot="row-2-tag">Food</span><span class="t-list-relief-appeals-progress__left" data-slot="row-2-left">9 days left</span></div>
+          <h3 class="t-list-relief-appeals-progress__row-title" data-slot="row-2-title">Hunger relief programme</h3>
+          <p class="t-list-relief-appeals-progress__row-text" data-slot="row-2-text">Monthly food parcels through the lean season.</p>
+          <div class="t-list-relief-appeals-progress__track" aria-hidden="true"><span class="t-list-relief-appeals-progress__fill is-level-2"></span></div>
+          <div class="t-list-relief-appeals-progress__meta"><span><strong data-slot="row-2-pct">81%</strong> <span data-slot="row-2-pct-label">funded</span></span><span data-slot="row-2-goal">Goal $120k</span><a href="#donate" class="t-list-relief-appeals-progress__give"><span data-slot="row-2-link">Give</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </article>
+        <article class="t-list-relief-appeals-progress__row">
+          <div class="t-list-relief-appeals-progress__row-top"><span class="t-list-relief-appeals-progress__tag" data-slot="row-3-tag">Education</span><span class="t-list-relief-appeals-progress__left" data-slot="row-3-left">30 days left</span></div>
+          <h3 class="t-list-relief-appeals-progress__row-title" data-slot="row-3-title">Back to the classroom</h3>
+          <p class="t-list-relief-appeals-progress__row-text" data-slot="row-3-text">Temporary classrooms, books and teacher training.</p>
+          <div class="t-list-relief-appeals-progress__track" aria-hidden="true"><span class="t-list-relief-appeals-progress__fill is-level-3"></span></div>
+          <div class="t-list-relief-appeals-progress__meta"><span><strong data-slot="row-3-pct">37%</strong> <span data-slot="row-3-pct-label">funded</span></span><span data-slot="row-3-goal">Goal $60k</span><a href="#donate" class="t-list-relief-appeals-progress__give"><span data-slot="row-3-link">Give</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="t-stats-relief-impact-ledger">
+  <div class="container t-stats-relief-impact-ledger__grid">
+    <div class="t-stats-relief-impact-ledger__lead-col">
+      <p class="t-stats-relief-impact-ledger__eyebrow" data-slot="eyebrow">Our impact last year</p>
+      <strong class="t-stats-relief-impact-ledger__big" data-slot="big-number">2.4m</strong>
+      <h2 class="t-stats-relief-impact-ledger__title" data-slot="title">people reached with emergency aid, water, food and schooling.</h2>
+      <a href="#report" class="t-stats-relief-impact-ledger__link"><span data-slot="link">Read the impact report</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="t-stats-relief-impact-ledger__ledger">
+      <div class="t-stats-relief-impact-ledger__item"><strong class="t-stats-relief-impact-ledger__num" data-slot="stat-1-number">310</strong><div class="t-stats-relief-impact-ledger__item-body"><h3 class="t-stats-relief-impact-ledger__label" data-slot="stat-1-label">Water points built or repaired</h3><p class="t-stats-relief-impact-ledger__text" data-slot="stat-1-text">Safe water within a short walk for 180 villages.</p></div></div>
+      <div class="t-stats-relief-impact-ledger__item"><strong class="t-stats-relief-impact-ledger__num" data-slot="stat-2-number">5.6m</strong><div class="t-stats-relief-impact-ledger__item-body"><h3 class="t-stats-relief-impact-ledger__label" data-slot="stat-2-label">Meals provided</h3><p class="t-stats-relief-impact-ledger__text" data-slot="stat-2-text">Food parcels and school meals through the lean season.</p></div></div>
+      <div class="t-stats-relief-impact-ledger__item"><strong class="t-stats-relief-impact-ledger__num" data-slot="stat-3-number">42k</strong><div class="t-stats-relief-impact-ledger__item-body"><h3 class="t-stats-relief-impact-ledger__label" data-slot="stat-3-label">Children back in class</h3><p class="t-stats-relief-impact-ledger__text" data-slot="stat-3-text">Temporary classrooms, books and trained teachers.</p></div></div>
+      <div class="t-stats-relief-impact-ledger__item"><strong class="t-stats-relief-impact-ledger__num" data-slot="stat-4-number">48h</strong><div class="t-stats-relief-impact-ledger__item-body"><h3 class="t-stats-relief-impact-ledger__label" data-slot="stat-4-label">Average time to respond</h3><p class="t-stats-relief-impact-ledger__text" data-slot="stat-4-text">From first alert to a team on the ground.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="t-other-relief-money-split-bar">
+  <div class="container">
+    <div class="t-other-relief-money-split-bar__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Where your money goes</p>
+        <h2 class="t-other-relief-money-split-bar__title" data-slot="title">For every $1 you give</h2>
+      </div>
+      <p class="t-other-relief-money-split-bar__intro" data-slot="intro">We keep costs low and publish every figure, so you can see how far your gift travels.</p>
+    </div>
+    <div class="t-other-relief-money-split-bar__bar" role="img" aria-label="Spending split: programmes, fundraising and running costs">
+      <span class="t-other-relief-money-split-bar__seg is-a"><strong data-slot="bar-a-number">86c</strong><span data-slot="bar-a-label">goes straight to programmes</span></span>
+      <span class="t-other-relief-money-split-bar__seg is-b"></span>
+      <span class="t-other-relief-money-split-bar__seg is-c"></span>
+    </div>
+    <div class="t-other-relief-money-split-bar__legend">
+      <div class="t-other-relief-money-split-bar__key">
+        <span class="t-other-relief-money-split-bar__swatch is-a" aria-hidden="true"></span>
+        <strong class="t-other-relief-money-split-bar__pct" data-slot="key-1-number">86%</strong>
+        <h3 class="t-other-relief-money-split-bar__key-title" data-slot="key-1-title">Relief programmes</h3>
+        <p class="t-other-relief-money-split-bar__key-text" data-slot="key-1-text">Emergency aid, water, food and education delivered in the field.</p>
+      </div>
+      <div class="t-other-relief-money-split-bar__key">
+        <span class="t-other-relief-money-split-bar__swatch is-b" aria-hidden="true"></span>
+        <strong class="t-other-relief-money-split-bar__pct" data-slot="key-2-number">9%</strong>
+        <h3 class="t-other-relief-money-split-bar__key-title" data-slot="key-2-title">Raising the next gift</h3>
+        <p class="t-other-relief-money-split-bar__key-text" data-slot="key-2-text">Every $1 spent on fundraising brings in about $6 more.</p>
+      </div>
+      <div class="t-other-relief-money-split-bar__key">
+        <span class="t-other-relief-money-split-bar__swatch is-c" aria-hidden="true"></span>
+        <strong class="t-other-relief-money-split-bar__pct" data-slot="key-3-number">5%</strong>
+        <h3 class="t-other-relief-money-split-bar__key-title" data-slot="key-3-title">Running the charity</h3>
+        <p class="t-other-relief-money-split-bar__key-text" data-slot="key-3-text">Safeguarding, audit, finance and the systems that keep aid moving.</p>
+      </div>
+    </div>
+    <div class="t-other-relief-money-split-bar__audit">
+      <span class="t-other-relief-money-split-bar__audit-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <p class="t-other-relief-money-split-bar__audit-text"><strong data-slot="audit-title">Independently audited.</strong> <span data-slot="audit-text">Our accounts are checked every year and published in full.</span></p>
+      <a href="#accounts" class="btn btn-ghost t-other-relief-money-split-bar__audit-btn" data-slot="audit-cta">View the accounts</a>
+    </div>
+  </div>
+</section>
+<section class="t-features-relief-programmes-rows">
+  <div class="container t-features-relief-programmes-rows__grid">
+    <figure class="t-features-relief-programmes-rows__figure">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A field worker with children beside a newly repaired village water pump" width="900" height="1100" data-slot="photo">
+      <figcaption class="t-features-relief-programmes-rows__caption"><strong data-slot="caption-number">14</strong><span data-slot="caption-text">countries where our field teams work alongside local partners.</span></figcaption>
+    </figure>
+    <div class="t-features-relief-programmes-rows__content">
+      <p class="eyebrow" data-slot="eyebrow">Our programmes</p>
+      <h2 class="t-features-relief-programmes-rows__title" data-slot="title">Four ways your gift turns into help</h2>
+      <p class="t-features-relief-programmes-rows__lead" data-slot="lead">We respond when disaster strikes, then stay to rebuild what families need to stand on their own.</p>
+      <ul class="t-features-relief-programmes-rows__rows">
+        <li class="t-features-relief-programmes-rows__row">
+          <span class="t-features-relief-programmes-rows__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19 12 5l9 14z"/><path d="M12 5v14M9 19l3-5 3 5"/></svg></span>
+          <div class="t-features-relief-programmes-rows__body">
+            <h3 class="t-features-relief-programmes-rows__row-title" data-slot="item-1-title">Emergency aid</h3>
+            <p class="t-features-relief-programmes-rows__row-text" data-slot="item-1-text">Shelter, blankets and medical care in the first days of a crisis.</p>
+            <p class="t-features-relief-programmes-rows__chip" data-slot="item-1-chip">$40 gives one family a shelter kit</p>
+          </div>
+          <a href="#work" class="t-features-relief-programmes-rows__go"><span class="sr-only" data-slot="item-1-link">Read about emergency aid</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="t-features-relief-programmes-rows__row">
+          <span class="t-features-relief-programmes-rows__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c3 3.6 5.5 6.4 5.5 9.6a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-9.6z"/></svg></span>
+          <div class="t-features-relief-programmes-rows__body">
+            <h3 class="t-features-relief-programmes-rows__row-title" data-slot="item-2-title">Clean water</h3>
+            <p class="t-features-relief-programmes-rows__row-text" data-slot="item-2-text">Wells, pumps and hygiene training that last for years.</p>
+            <p class="t-features-relief-programmes-rows__chip" data-slot="item-2-chip">$25 gives a family safe water for a month</p>
+          </div>
+          <a href="#work" class="t-features-relief-programmes-rows__go"><span class="sr-only" data-slot="item-2-link">Read about clean water</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="t-features-relief-programmes-rows__row">
+          <span class="t-features-relief-programmes-rows__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M9 7c0-1 1-1 1-2M13 7c0-1 1-1 1-2M8 21h8"/></svg></span>
+          <div class="t-features-relief-programmes-rows__body">
+            <h3 class="t-features-relief-programmes-rows__row-title" data-slot="item-3-title">Food security</h3>
+            <p class="t-features-relief-programmes-rows__row-text" data-slot="item-3-text">Food parcels now, seeds and tools for the next harvest.</p>
+            <p class="t-features-relief-programmes-rows__chip" data-slot="item-3-chip">$50 feeds a family for a month</p>
+          </div>
+          <a href="#work" class="t-features-relief-programmes-rows__go"><span class="sr-only" data-slot="item-3-link">Read about food security</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="t-features-relief-programmes-rows__row">
+          <span class="t-features-relief-programmes-rows__icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2 2 0 0 1 6 4h5v15H6a2 2 0 0 0-2 1.5z"/><path d="M20 5.5A2 2 0 0 0 18 4h-5v15h5a2 2 0 0 1 2 1.5z"/></svg></span>
+          <div class="t-features-relief-programmes-rows__body">
+            <h3 class="t-features-relief-programmes-rows__row-title" data-slot="item-4-title">Education</h3>
+            <p class="t-features-relief-programmes-rows__row-text" data-slot="item-4-text">Classrooms, books and teachers for children out of school.</p>
+            <p class="t-features-relief-programmes-rows__chip" data-slot="item-4-chip">$15 gives a child a school kit</p>
+          </div>
+          <a href="#work" class="t-features-relief-programmes-rows__go"><span class="sr-only" data-slot="item-4-link">Read about education</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="t-story-relief-field-quote">
+  <div class="container t-story-relief-field-quote__grid">
+    <div class="t-story-relief-field-quote__copy">
+      <p class="eyebrow" data-slot="eyebrow">A story from the field</p>
+      <svg class="t-story-relief-field-quote__mark" viewBox="0 0 48 36" width="48" height="36" fill="currentColor" aria-hidden="true"><path d="M0 36V22C0 9 7 2 19 0v8c-6 1-9 5-9 11h9v17zm27 0V22C27 9 34 2 46 0v8c-6 1-9 5-9 11h9v17z"/></svg>
+      <blockquote class="t-story-relief-field-quote__quote" data-slot="quote">The well used to be a two hour walk. Now my daughters are in school by the time the sun is up.</blockquote>
+      <p class="t-story-relief-field-quote__by"><strong data-slot="name">Name Surname</strong><span data-slot="role">Mother of three, clean water project</span></p>
+      <dl class="t-story-relief-field-quote__facts">
+        <div><dt data-slot="fact-1-number">300</dt><dd data-slot="fact-1-label">households served by this water point</dd></div>
+        <div><dt data-slot="fact-2-number">2 hrs</dt><dd data-slot="fact-2-label">saved every day on collecting water</dd></div>
+        <div><dt data-slot="fact-3-number">6 wks</dt><dd data-slot="fact-3-label">from first survey to first water</dd></div>
+      </dl>
+      <a href="#stories" class="t-story-relief-field-quote__link"><span data-slot="link">Read the full story</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <figure class="t-story-relief-field-quote__figure">
+      <span class="t-story-relief-field-quote__block" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A mother and her daughters filling water containers at a village pump" width="900" height="1100" data-slot="photo">
+      <figcaption class="t-story-relief-field-quote__note">
+        <span class="t-story-relief-field-quote__note-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c3 3.6 5.5 6.4 5.5 9.6a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-9.6z"/></svg></span>
+        <span class="t-story-relief-field-quote__note-body"><strong data-slot="note-title">Field note</strong><span data-slot="note-text">Water point repaired and handed to the village committee.</span></span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+<section class="t-other-relief-ways-to-give">
+  <div class="container">
+    <div class="t-other-relief-ways-to-give__head">
+      <p class="eyebrow" data-slot="eyebrow">Ways to give</p>
+      <h2 class="t-other-relief-ways-to-give__title" data-slot="title">Choose the way of giving that suits you</h2>
+    </div>
+    <div class="t-other-relief-ways-to-give__panel">
+      <article class="t-other-relief-ways-to-give__way is-featured">
+        <span class="t-other-relief-ways-to-give__n" data-slot="way-1-number">01</span>
+        <span class="t-other-relief-ways-to-give__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg></span>
+        <h3 class="t-other-relief-ways-to-give__way-title" data-slot="way-1-title">Give monthly</h3>
+        <p class="t-other-relief-ways-to-give__way-text" data-slot="way-1-text">A steady gift lets us plan ahead and be ready before the next emergency.</p>
+        <a href="#give" class="t-other-relief-ways-to-give__link"><span data-slot="way-1-link">Start a monthly gift</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="t-other-relief-ways-to-give__way">
+        <span class="t-other-relief-ways-to-give__n" data-slot="way-2-number">02</span>
+        <span class="t-other-relief-ways-to-give__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></span>
+        <h3 class="t-other-relief-ways-to-give__way-title" data-slot="way-2-title">Fundraise</h3>
+        <p class="t-other-relief-ways-to-give__way-text" data-slot="way-2-text">Run, bake, walk or host. We send a pack and cheer you on.</p>
+        <a href="#give" class="t-other-relief-ways-to-give__link"><span data-slot="way-2-link">Get a fundraising pack</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="t-other-relief-ways-to-give__way">
+        <span class="t-other-relief-ways-to-give__n" data-slot="way-3-number">03</span>
+        <span class="t-other-relief-ways-to-give__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"/><path d="M5 19c3-5 6-8 10-10"/></svg></span>
+        <h3 class="t-other-relief-ways-to-give__way-title" data-slot="way-3-title">Leave a legacy</h3>
+        <p class="t-other-relief-ways-to-give__way-text" data-slot="way-3-text">A gift in your will can bring clean water for generations.</p>
+        <a href="#give" class="t-other-relief-ways-to-give__link"><span data-slot="way-3-link">Request the guide</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="t-other-relief-ways-to-give__way">
+        <span class="t-other-relief-ways-to-give__n" data-slot="way-4-number">04</span>
+        <span class="t-other-relief-ways-to-give__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 21v-4h4v4"/></svg></span>
+        <h3 class="t-other-relief-ways-to-give__way-title" data-slot="way-4-title">Corporate partners</h3>
+        <p class="t-other-relief-ways-to-give__way-text" data-slot="way-4-text">Match staff giving or sponsor a whole project as a company.</p>
+        <a href="#give" class="t-other-relief-ways-to-give__link"><span data-slot="way-4-link">Partner with us</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+    <p class="t-other-relief-ways-to-give__foot"><span data-slot="foot-text">Prefer to talk it through? Call supporter care on</span> <a href="#call" data-slot="foot-phone">017 00000000</a></p>
+  </div>
+</section>
+<section class="t-logos-relief-trust-seals">
+  <div class="container t-logos-relief-trust-seals__grid">
+    <div class="t-logos-relief-trust-seals__copy">
+      <p class="eyebrow" data-slot="eyebrow">Trust and transparency</p>
+      <h2 class="t-logos-relief-trust-seals__title" data-slot="title">Checked, audited and open about it</h2>
+      <p class="t-logos-relief-trust-seals__text" data-slot="text">We meet recognised standards for how a charity should be run, and we publish the proof.</p>
+      <a href="#report" class="t-logos-relief-trust-seals__doc">
+        <span class="t-logos-relief-trust-seals__doc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
+        <span class="t-logos-relief-trust-seals__doc-body"><strong data-slot="doc-title">Annual report and accounts</strong><span data-slot="doc-meta">Latest year, 48 pages</span></span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <ul class="t-logos-relief-trust-seals__badges">
+      <li class="t-logos-relief-trust-seals__badge">
+          <span class="t-logos-relief-trust-seals__seal"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <strong class="t-logos-relief-trust-seals__badge-title" data-slot="badge-1-title">Registered charity</strong>
+          <span class="t-logos-relief-trust-seals__badge-text" data-slot="badge-1-text">Listed with the national regulator</span>
+        </li>
+      <li class="t-logos-relief-trust-seals__badge">
+          <span class="t-logos-relief-trust-seals__seal"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
+          <strong class="t-logos-relief-trust-seals__badge-title" data-slot="badge-2-title">Audited accounts</strong>
+          <span class="t-logos-relief-trust-seals__badge-text" data-slot="badge-2-text">Independent audit every year</span>
+        </li>
+      <li class="t-logos-relief-trust-seals__badge">
+          <span class="t-logos-relief-trust-seals__seal"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l2.4  5 5.6 .8 -4 3.9 .9  5.5 -4.9 -2.6 -4.9  2.6 .9 -5.5 -4-3.9  5.6 -.8z"/></svg></span>
+          <strong class="t-logos-relief-trust-seals__badge-title" data-slot="badge-3-title">Fundraising standard</strong>
+          <span class="t-logos-relief-trust-seals__badge-text" data-slot="badge-3-text">We follow the fundraising code</span>
+        </li>
+      <li class="t-logos-relief-trust-seals__badge">
+          <span class="t-logos-relief-trust-seals__seal"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span>
+          <strong class="t-logos-relief-trust-seals__badge-title" data-slot="badge-4-title">Safeguarding assured</strong>
+          <span class="t-logos-relief-trust-seals__badge-text" data-slot="badge-4-text">Staff and partners vetted and trained</span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="t-faq-relief-giving-care-card">
+  <div class="container t-faq-relief-giving-care-card__grid">
+    <div class="t-faq-relief-giving-care-card__side">
+      <p class="eyebrow" data-slot="eyebrow">Questions about giving</p>
+      <h2 class="t-faq-relief-giving-care-card__title" data-slot="title">Straight answers before you give</h2>
+      <div class="t-faq-relief-giving-care-card__card">
+        <h3 class="t-faq-relief-giving-care-card__card-title" data-slot="card-title">Supporter care</h3>
+        <p class="t-faq-relief-giving-care-card__card-text" data-slot="card-text">A real person answers, Monday to Friday, 9am to 5pm.</p>
+        <a href="#call" class="t-faq-relief-giving-care-card__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-slot="card-phone">017 00000000</span></a>
+        <a href="#email" class="t-faq-relief-giving-care-card__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-slot="card-email">example@gmail.com</span></a>
+      </div>
+    </div>
+    <div class="t-faq-relief-giving-care-card__list">
+      <details class="t-faq-relief-giving-care-card__item" open>
+        <summary class="t-faq-relief-giving-care-card__q"><span data-slot="q-1">How much of my gift reaches people in need?</span><span class="t-faq-relief-giving-care-card__plus" aria-hidden="true"></span></summary>
+        <p class="t-faq-relief-giving-care-card__a" data-slot="a-1">86% of every gift goes to our programmes. The rest raises the next gift and keeps the charity safe and well run.</p>
+      </details><details class="t-faq-relief-giving-care-card__item">
+        <summary class="t-faq-relief-giving-care-card__q"><span data-slot="q-2">Can I choose where my gift is used?</span><span class="t-faq-relief-giving-care-card__plus" aria-hidden="true"></span></summary>
+        <p class="t-faq-relief-giving-care-card__a" data-slot="a-2">Yes. Give to a named appeal and it is spent on that appeal. General gifts go wherever the need is greatest.</p>
+      </details><details class="t-faq-relief-giving-care-card__item">
+        <summary class="t-faq-relief-giving-care-card__q"><span data-slot="q-3">Can I change or stop a monthly gift?</span><span class="t-faq-relief-giving-care-card__plus" aria-hidden="true"></span></summary>
+        <p class="t-faq-relief-giving-care-card__a" data-slot="a-3">At any time. Call or email supporter care and we will update it the same day.</p>
+      </details><details class="t-faq-relief-giving-care-card__item">
+        <summary class="t-faq-relief-giving-care-card__q"><span data-slot="q-4">Will I get a receipt for tax purposes?</span><span class="t-faq-relief-giving-care-card__plus" aria-hidden="true"></span></summary>
+        <p class="t-faq-relief-giving-care-card__a" data-slot="a-4">We email a receipt after every gift and a yearly summary for monthly supporters.</p>
+      </details><details class="t-faq-relief-giving-care-card__item">
+        <summary class="t-faq-relief-giving-care-card__q"><span data-slot="q-5">How do I know the aid arrives?</span><span class="t-faq-relief-giving-care-card__plus" aria-hidden="true"></span></summary>
+        <p class="t-faq-relief-giving-care-card__a" data-slot="a-5">Field teams report from each project, and independent auditors check our accounts every year.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<footer class="t-footer-relief-newsletter-dark">
+  <div class="container">
+    <div class="t-footer-relief-newsletter-dark__news">
+      <div class="t-footer-relief-newsletter-dark__news-copy">
+        <h2 class="t-footer-relief-newsletter-dark__news-title" data-slot="news-title">See what your gift does next.</h2>
+        <p class="t-footer-relief-newsletter-dark__news-text" data-slot="news-text">One short update a month from our field teams. No spam, leave any time.</p>
+      </div>
+      <form class="t-footer-relief-newsletter-dark__form" action="#">
+        <label class="t-footer-relief-newsletter-dark__field"><span class="t-footer-relief-newsletter-dark__label" data-slot="news-label">Email address</span><input class="t-footer-relief-newsletter-dark__input" type="email" name="email" autocomplete="email" required></label>
+        <button type="submit" class="t-footer-relief-newsletter-dark__submit"><span data-slot="news-cta">Sign me up</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+    <div class="t-footer-relief-newsletter-dark__main">
+      <div class="t-footer-relief-newsletter-dark__brand-col">
+        <a href="#top" class="t-footer-relief-newsletter-dark__logo"><span class="t-footer-relief-newsletter-dark__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c3 3.6 5.5 6.4 5.5 9.6a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6 5.5-9.6z"/></svg></span><span data-slot="brand">Relief name</span></a>
+        <p class="t-footer-relief-newsletter-dark__about" data-slot="about">Emergency aid, clean water, food and education for people facing crisis.</p>
+        <p class="t-footer-relief-newsletter-dark__contact"><a href="#call" data-slot="phone">017 00000000</a><a href="#email" data-slot="email">example@gmail.com</a></p>
+      </div>
+      <nav class="t-footer-relief-newsletter-dark__col" aria-label="Our work">
+        <h3 class="t-footer-relief-newsletter-dark__col-title" data-slot="col-1-title">Our work</h3>
+        <a href="#link" data-slot="col-1-link-1">Emergency aid</a><a href="#link" data-slot="col-1-link-2">Clean water</a><a href="#link" data-slot="col-1-link-3">Food security</a><a href="#link" data-slot="col-1-link-4">Education</a>
+      </nav>
+      <nav class="t-footer-relief-newsletter-dark__col" aria-label="Get involved">
+        <h3 class="t-footer-relief-newsletter-dark__col-title" data-slot="col-2-title">Get involved</h3>
+        <a href="#link" data-slot="col-2-link-1">Donate</a><a href="#link" data-slot="col-2-link-2">Give monthly</a><a href="#link" data-slot="col-2-link-3">Fundraise</a><a href="#link" data-slot="col-2-link-4">Leave a legacy</a>
+      </nav>
+      <nav class="t-footer-relief-newsletter-dark__col" aria-label="About">
+        <h3 class="t-footer-relief-newsletter-dark__col-title" data-slot="col-3-title">About</h3>
+        <a href="#link" data-slot="col-3-link-1">Who we are</a><a href="#link" data-slot="col-3-link-2">Annual report</a><a href="#link" data-slot="col-3-link-3">Safeguarding</a><a href="#link" data-slot="col-3-link-4">Contact us</a>
+      </nav>
+    </div>
+    <div class="t-footer-relief-newsletter-dark__base">
+      <p class="t-footer-relief-newsletter-dark__legal" data-slot="legal">Registered charity. Copyright 2026 Relief name.</p>
+      <div class="t-footer-relief-newsletter-dark__base-links">
+        <a href="#privacy" data-slot="base-link-1">Privacy</a>
+        <a href="#cookies" data-slot="base-link-2">Cookies</a>
+        <a href="#complaints" data-slot="base-link-3">Complaints</a>
+      </div>
+      <a href="#donate" class="t-footer-relief-newsletter-dark__give"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span data-slot="cta">Donate</span></a>
+    </div>
+  </div>
+</footer></main><script>(() => { const root = document.querySelector(".t-hero-relief-donate-box"); if (!root) return;
+var amounts = root.querySelectorAll('.t-hero-relief-donate-box__amount');
+var impacts = root.querySelectorAll('.t-hero-relief-donate-box__impact');
+var freqs = root.querySelectorAll('.t-hero-relief-donate-box__freq-btn');
+var notes = root.querySelectorAll('.t-hero-relief-donate-box__note');
+var input = root.querySelector('.t-hero-relief-donate-box__input');
+function pick(list, index, panels) {
+  list.forEach(function (el, i) {
+    el.classList.toggle('is-active', i === index);
+    el.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+  });
+  if (panels && index >= 0) panels.forEach(function (p, i) { p.classList.toggle('is-active', i === index); });
+}
+amounts.forEach(function (btn, i) {
+  btn.addEventListener('click', function () { pick(amounts, i, impacts); if (input) input.value = ''; });
+});
+freqs.forEach(function (btn, i) {
+  btn.addEventListener('click', function () { pick(freqs, i, notes); });
+});
+if (input) input.addEventListener('input', function () { if (input.value) pick(amounts, -1, null); });
+})();</script></body></html>

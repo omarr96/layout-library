@@ -52,6 +52,11 @@ window.DESIGNS = {
       "desc": "Order via WhatsApp or a form, no full store"
     },
     {
+      "id": "template-pages",
+      "name": "Template pages",
+      "desc": "Landing pages built from builder section templates, shown in three palettes"
+    },
+    {
       "id": "section-layouts",
       "name": "Sections layout",
       "desc": "Single sections in many layouts: heroes, FAQs and more"
@@ -83,6 +88,231 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "template-pages",
+      "slug": "tp-charity-01-church",
+      "title": "Charity · Church",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Charity",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/charity-01-church-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/charity-01-church-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/charity-01-church-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-charity-02-mosque",
+      "title": "Charity · Mosque / Islamic centre",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Charity",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/charity-02-mosque-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/charity-02-mosque-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/charity-02-mosque-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-charity-03-relief",
+      "title": "Charity · Humanitarian relief nonprofit",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Charity",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/charity-03-relief-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/charity-03-relief-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/charity-03-relief-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-charity-04-rescue",
+      "title": "Charity · Animal rescue & shelter",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Charity",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/charity-04-rescue-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/charity-04-rescue-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/charity-04-rescue-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-charity-05-foodbank",
+      "title": "Charity · Community food bank",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Charity",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/charity-05-foodbank-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/charity-05-foodbank-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/charity-05-foodbank-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-01-football",
+      "title": "Sports · Football club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-01-football-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-01-football-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-01-football-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-02-cricket",
+      "title": "Sports · Cricket club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-02-cricket-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-02-cricket-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-02-cricket-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-04-tennis",
+      "title": "Sports · Tennis club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-04-tennis-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-04-tennis-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-04-tennis-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-05-hockey",
+      "title": "Sports · Hockey club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-05-hockey-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-05-hockey-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-05-hockey-colour.html"
+        }
+      ]
+    },
     {
       "cat": "shop-landing",
       "slug": "shop-gallery",
@@ -2763,18 +2993,36 @@ window.DESIGNS = {
       "slug": "admissions-20",
       "title": "Spring 2027 admissions · 20 Dhaka universities",
       "desc": "Engineering & science undergraduate admissions at 20 private Dhaka universities: key dates with days left, CSE total cost chart, full comparison table, and a card per university with programs, fees, requirements, timeline and sources.",
-      "tags": ["Report", "Admissions", "Bangladesh"],
+      "tags": [
+        "Report",
+        "Admissions",
+        "Bangladesh"
+      ],
       "date": "2026-11-19",
-      "pages": [{"label": "20 universities", "href": "docs/admissions-20/index.html"}]
+      "pages": [
+        {
+          "label": "20 universities",
+          "href": "docs/admissions-20/index.html"
+        }
+      ]
     },
     {
       "cat": "docs",
       "slug": "admissions-8",
       "title": "Spring 2027 admissions · 8 private universities",
       "desc": "AIUB, IUB, EWU, DIU, UIU, NSU, IUBAT and ULAB: key dates with days left, CSE total cost chart, comparison table and a card per university.",
-      "tags": ["Report", "Admissions", "Bangladesh"],
+      "tags": [
+        "Report",
+        "Admissions",
+        "Bangladesh"
+      ],
       "date": "2026-11-19",
-      "pages": [{"label": "8 universities", "href": "docs/admissions-8/index.html"}]
+      "pages": [
+        {
+          "label": "8 universities",
+          "href": "docs/admissions-8/index.html"
+        }
+      ]
     },
     {
       "cat": "tools",
@@ -3071,18 +3319,35 @@ window.DESIGNS = {
       "slug": "design-system",
       "title": "Design system · Site design",
       "desc": "The Design page as a design system: live site preview with brand colour, accent, fonts, corners and spacing controls; colours grouped by job with a readability check; type specimen and scale; spacing bars, corners, shadows, layout width; live CSS with copy; undo and save to draft.",
-      "tags": ["Dashboard","Design system","Tokens"],
+      "tags": [
+        "Dashboard",
+        "Design system",
+        "Tokens"
+      ],
       "date": "2026-11-18",
-      "pages": [{"label": "Design system","href": "site-dashboard/design-system/index.html"}]
+      "pages": [
+        {
+          "label": "Design system",
+          "href": "site-dashboard/design-system/index.html"
+        }
+      ]
     },
     {
       "cat": "site-dashboard",
       "slug": "seo-title-template",
       "title": "SEO title template",
       "desc": "Page titles on Google: preset patterns, a tag-based pattern builder with drag to reorder, separator picker, Google preview per page, and every page's title with a length check.",
-      "tags": ["SEO","Settings"],
+      "tags": [
+        "SEO",
+        "Settings"
+      ],
       "date": "2026-11-18",
-      "pages": [{"label": "Title template","href": "site-dashboard/seo-title-template/index.html"}]
+      "pages": [
+        {
+          "label": "Title template",
+          "href": "site-dashboard/seo-title-template/index.html"
+        }
+      ]
     },
     {
       "cat": "site-dashboard",
