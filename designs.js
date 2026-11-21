@@ -265,6 +265,31 @@ window.DESIGNS = {
     },
     {
       "cat": "template-pages",
+      "slug": "tp-sports-03-basketball",
+      "title": "Sports · Basketball club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-03-basketball-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-03-basketball-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-03-basketball-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
       "slug": "tp-sports-04-tennis",
       "title": "Sports · Tennis club",
       "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",

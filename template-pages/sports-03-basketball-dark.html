@@ -1,0 +1,1123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dark bistro template check</title><meta name="description" content="Template check page for one vibe."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"><style>:root {
+  --color-background: #141211;
+  --color-surface: #1E1B19;
+  --color-text: #F3EDE4;
+  --color-muted: #B9AFA3;
+  --color-primary: #C9A15B;
+  --color-on-primary: #141211;
+  --color-accent: #db8258;
+  --color-border: #332E2A;
+  --color-primary-ink: #C9A15B;
+  --color-accent-ink: #db8258;
+  --color-primary-soft: #2f271c;
+  --color-overlay: #000000;
+  --color-on-overlay: #F3EDE4;
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 1.8rem + 4.2vw, 4.75rem);
+  --text-6xl: clamp(3.25rem, 2rem + 6vw, 6.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px #F3EDE414;
+  --shadow-md: 0 10px 30px #F3EDE41f;
+  --shadow-lg: 0 24px 60px #F3EDE429;
+  --width-content: 1200px;
+  --width-narrow: 760px;
+}
+
+/* Base (made by code from the tokens) */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-background); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+h1 { font-size: var(--text-5xl); } h2 { font-size: var(--text-4xl); } h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: inherit; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+[hidden] { display: none; }
+.container { width: 100%; max-width: var(--width-content); margin-inline: auto; padding-inline: var(--space-5); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.lead { font-size: var(--text-lg); color: var(--color-muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.t-header-basketball-score-ticker{position:sticky;top:0;z-index:50;background:var(--color-background);color:var(--color-text);border-bottom:2px solid var(--color-text)}
+.t-header-basketball-score-ticker__strip{background:var(--color-text);color:var(--color-background);font-size:var(--text-sm)}
+.t-header-basketball-score-ticker__strip-in{display:flex;align-items:center;gap:var(--space-6);padding-top:var(--space-2);padding-bottom:var(--space-2)}
+.t-header-basketball-score-ticker__result,.t-header-basketball-score-ticker__next{display:flex;align-items:center;gap:var(--space-2);margin:0;white-space:nowrap}
+.t-header-basketball-score-ticker__result em{font-style:normal;font-size:var(--text-xs);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0 var(--space-2);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-sm);transform:skewX(-10deg)}
+.t-header-basketball-score-ticker__result b{font-family:var(--font-heading);font-weight:800;font-variant-numeric:tabular-nums}
+.t-header-basketball-score-ticker__result i{width:var(--space-2);height:2px;background:currentColor}
+.t-header-basketball-score-ticker__next{padding-left:var(--space-6);border-left:1px solid color-mix(in srgb,var(--color-background) 35%,transparent)}
+.t-header-basketball-score-ticker__next span{font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-header-basketball-score-ticker__strip-link{margin-left:auto;font-weight:700;color:var(--color-background);text-underline-offset:var(--space-1)}
+.t-header-basketball-score-ticker__bar{display:flex;align-items:center;gap:var(--space-6);padding-top:var(--space-3);padding-bottom:var(--space-3)}
+.t-header-basketball-score-ticker__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-text)}
+.t-header-basketball-score-ticker__ball{position:relative;flex:none;width:var(--space-7);height:var(--space-7);border:2px solid currentColor;border-radius:50%;overflow:hidden;color:var(--color-primary-ink);background:linear-gradient(currentColor,currentColor) center / 2px 100% no-repeat,linear-gradient(currentColor,currentColor) center / 100% 2px no-repeat;transition:transform 400ms ease}
+.t-header-basketball-score-ticker__ball::before,.t-header-basketball-score-ticker__ball::after{content:"";position:absolute;inset:0;border:2px solid currentColor;border-radius:50%}
+.t-header-basketball-score-ticker__ball::before{transform:translateX(-68%)}
+.t-header-basketball-score-ticker__ball::after{transform:translateX(68%)}
+.t-header-basketball-score-ticker__logo:hover .t-header-basketball-score-ticker__ball{transform:rotate(90deg)}
+.t-header-basketball-score-ticker__name{display:flex;flex-direction:column;line-height:1.1}
+.t-header-basketball-score-ticker__name b{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-header-basketball-score-ticker__name small{font-size:var(--text-xs);color:var(--color-muted);letter-spacing:0.08em;text-transform:uppercase}
+.t-header-basketball-score-ticker__nav{display:flex;gap:var(--space-5);margin-left:auto}
+.t-header-basketball-score-ticker__nav a{position:relative;padding:var(--space-2) 0;text-decoration:none;font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text)}
+.t-header-basketball-score-ticker__nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--color-primary);transform:scaleX(0) skewX(-30deg);transform-origin:left;transition:transform 220ms ease}
+.t-header-basketball-score-ticker__nav a:hover::after{transform:scaleX(1) skewX(-30deg)}
+.t-header-basketball-score-ticker__cta{text-transform:uppercase;letter-spacing:0.06em;font-size:var(--text-sm)}
+.t-header-basketball-score-ticker__menu{display:none}
+.t-header-basketball-score-ticker__burger{display:flex;align-items:center;justify-content:center;padding:var(--space-2);border:2px solid var(--color-text);border-radius:var(--radius-md);cursor:pointer;list-style:none;color:var(--color-text)}
+.t-header-basketball-score-ticker__burger::-webkit-details-marker{display:none}
+.t-header-basketball-score-ticker__panel{position:absolute;left:0;right:0;top:100%;display:flex;flex-direction:column;padding:var(--space-3) var(--space-5) var(--space-5);background:var(--color-background);border-bottom:2px solid var(--color-text);box-shadow:var(--shadow-md)}
+.t-header-basketball-score-ticker__menu:not([open]) .t-header-basketball-score-ticker__panel{display:none}
+.t-header-basketball-score-ticker__panel a:not(.btn){padding:var(--space-3) 0;border-bottom:1px solid var(--color-border);text-decoration:none;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;text-transform:uppercase;color:var(--color-text)}
+.t-header-basketball-score-ticker__panel .btn{margin-top:var(--space-4)}
+@media (max-width: 1024px){
+.t-header-basketball-score-ticker__nav{display:none}
+.t-header-basketball-score-ticker__cta{margin-left:auto}
+.t-header-basketball-score-ticker__menu{display:block}
+}
+@media (max-width: 760px){
+.t-header-basketball-score-ticker__next,.t-header-basketball-score-ticker__strip-link{display:none}
+.t-header-basketball-score-ticker__strip-in{justify-content:center}
+.t-header-basketball-score-ticker__name small{display:none}
+.t-header-basketball-score-ticker__bar{gap:var(--space-3)}
+.t-header-basketball-score-ticker__ball{width:var(--space-6);height:var(--space-6)}
+.t-header-basketball-score-ticker__cta{display:none}
+.t-header-basketball-score-ticker__menu{margin-left:auto}
+.t-header-basketball-score-ticker__name b{white-space:nowrap}
+}
+@media (prefers-reduced-motion: reduce){
+.t-header-basketball-score-ticker__ball,.t-header-basketball-score-ticker__nav a::after{transition:none}
+}
+.t-hero-basketball-scoreboard{position:relative;isolation:isolate;overflow:hidden;padding:var(--space-9) 0;background:var(--color-overlay);color:var(--color-on-overlay)}
+.t-hero-basketball-scoreboard__media{position:absolute;inset:0;z-index:-2}
+.t-hero-basketball-scoreboard__media img{width:100%;height:100%;object-fit:cover}
+.t-hero-basketball-scoreboard__shade{position:absolute;inset:0;z-index:-1;background:var(--color-overlay);opacity:0.74}
+.t-hero-basketball-scoreboard__grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:var(--space-7);align-items:end;min-height:68vh}
+.t-hero-basketball-scoreboard__eyebrow{display:flex;align-items:center;gap:var(--space-3);margin:0 0 var(--space-4);font-size:var(--text-sm);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-on-overlay)}
+.t-hero-basketball-scoreboard__eyebrow i{width:var(--space-7);height:2px;background:currentColor}
+.t-hero-basketball-scoreboard__title{margin:0 0 var(--space-5);font-size:var(--text-6xl);font-weight:800;line-height:0.92;letter-spacing:-0.03em;text-transform:uppercase;color:var(--color-on-overlay);animation:t-hero-basketball-scoreboard-in 700ms ease both}
+.t-hero-basketball-scoreboard__lead{max-width:80%;margin:0;font-size:var(--text-lg);color:var(--color-on-overlay)}
+.t-hero-basketball-scoreboard__actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-5);margin-top:var(--space-6)}
+.t-hero-basketball-scoreboard__link{display:inline-flex;align-items:center;gap:var(--space-2);font-weight:700;color:var(--color-on-overlay);text-underline-offset:var(--space-1)}
+.t-hero-basketball-scoreboard__link svg{transition:transform 200ms ease}
+.t-hero-basketball-scoreboard__link:hover svg{transform:translateX(var(--space-1))}
+.t-hero-basketball-scoreboard__form{display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-7);font-size:var(--text-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-on-overlay)}
+.t-hero-basketball-scoreboard__form ul{display:flex;gap:var(--space-1);margin:0;padding:0;list-style:none}
+.t-hero-basketball-scoreboard__form li{display:grid;place-items:center;width:var(--space-6);height:var(--space-6);border:2px solid var(--color-on-overlay);border-radius:var(--radius-sm);font-family:var(--font-heading);font-size:var(--text-sm);font-weight:800;letter-spacing:0;transform:skewX(-8deg)}
+.t-hero-basketball-scoreboard__form li.is-win{background:var(--color-on-overlay);color:var(--color-overlay)}
+.t-hero-basketball-scoreboard__board{padding:var(--space-5);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);animation:t-hero-basketball-scoreboard-in 700ms 150ms ease both}
+.t-hero-basketball-scoreboard__board-head{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);font-size:var(--text-sm);color:var(--color-muted)}
+.t-hero-basketball-scoreboard__board-head em{font-style:normal;font-size:var(--text-xs);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:var(--space-1) var(--space-3);background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-sm);transform:skewX(-10deg)}
+.t-hero-basketball-scoreboard__score{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-3);align-items:center}
+.t-hero-basketball-scoreboard__team{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);text-align:center;min-width:0}
+.t-hero-basketball-scoreboard__team b{font-size:var(--text-sm);font-weight:700;line-height:1.2}
+.t-hero-basketball-scoreboard__crest{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border-radius:50%;background:var(--color-primary);color:var(--color-on-primary);font-family:var(--font-heading);font-size:var(--text-base);font-weight:800}
+.t-hero-basketball-scoreboard__crest.is-away{background:var(--color-surface);color:var(--color-text);border:2px solid var(--color-text)}
+.t-hero-basketball-scoreboard__digits{display:flex;align-items:center;gap:var(--space-2)}
+.t-hero-basketball-scoreboard__digits b{min-width:var(--space-8);padding:var(--space-2) var(--space-2);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-md);font-family:var(--font-heading);font-size:var(--text-4xl);font-weight:800;line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+.t-hero-basketball-scoreboard__digits b.is-away{background:var(--color-surface);color:var(--color-text);box-shadow:inset 0 0 0 2px var(--color-text)}
+.t-hero-basketball-scoreboard__digits i{width:var(--space-2);height:var(--space-4);background:radial-gradient(circle at 50% 20%,var(--color-text) 0 22%,transparent 24%),radial-gradient(circle at 50% 80%,var(--color-text) 0 22%,transparent 24%)}
+.t-hero-basketball-scoreboard__quarters{width:100%;margin-top:var(--space-4);border-collapse:collapse;font-size:var(--text-sm);font-variant-numeric:tabular-nums}
+.t-hero-basketball-scoreboard__quarters th,.t-hero-basketball-scoreboard__quarters td{padding:var(--space-2);text-align:center;border-bottom:1px solid var(--color-border)}
+.t-hero-basketball-scoreboard__quarters thead th{font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;color:var(--color-muted)}
+.t-hero-basketball-scoreboard__quarters tbody th{text-align:left;font-weight:800}
+.t-hero-basketball-scoreboard__next{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-4);padding:var(--space-4);background:var(--color-primary-soft);color:var(--color-text);border-radius:var(--radius-md)}
+.t-hero-basketball-scoreboard__next-info{display:flex;flex-direction:column;min-width:0;line-height:1.3}
+.t-hero-basketball-scoreboard__next-info span{font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase}
+.t-hero-basketball-scoreboard__next-info b{font-family:var(--font-heading);font-size:var(--text-base);font-weight:800}
+.t-hero-basketball-scoreboard__next-info small{font-size:var(--text-sm)}
+.t-hero-basketball-scoreboard__next .btn{flex:none}
+.t-hero-basketball-scoreboard__actions .btn-primary{border-color:var(--color-on-overlay)}
+@keyframes t-hero-basketball-scoreboard-in{from{opacity:0;transform:translateY(var(--space-4))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){
+.t-hero-basketball-scoreboard{padding:var(--space-8) 0}
+.t-hero-basketball-scoreboard__grid{grid-template-columns:1fr;gap:var(--space-7);min-height:0}
+.t-hero-basketball-scoreboard__board{max-width:var(--width-narrow);width:100%}
+}
+@media (max-width: 760px){
+.t-hero-basketball-scoreboard{padding:var(--space-7) 0}
+.t-hero-basketball-scoreboard__lead{max-width:100%}
+.t-hero-basketball-scoreboard__form{margin-top:var(--space-6)}
+.t-hero-basketball-scoreboard__board{padding:var(--space-4)}
+.t-hero-basketball-scoreboard__digits b{min-width:var(--space-7);font-size:var(--text-3xl)}
+.t-hero-basketball-scoreboard__next{flex-direction:column;align-items:stretch}
+}
+@media (prefers-reduced-motion: reduce){
+.t-hero-basketball-scoreboard__title,.t-hero-basketball-scoreboard__board{animation:none}
+.t-hero-basketball-scoreboard__link svg{transition:none}
+}
+.t-list-basketball-fixtures-results{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-list-basketball-fixtures-results__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-7);padding-bottom:var(--space-5);border-bottom:2px solid var(--color-text)}
+.t-list-basketball-fixtures-results__title{margin:0;font-size:var(--text-5xl);font-weight:800;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase}
+.t-list-basketball-fixtures-results__tabs{display:flex;gap:var(--space-1);padding:var(--space-1);border:2px solid var(--color-text);border-radius:var(--radius-pill)}
+.t-list-basketball-fixtures-results__tab{padding:var(--space-2) var(--space-5);border:0;border-radius:var(--radius-pill);background:transparent;color:var(--color-text);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background-color 200ms ease,color 200ms ease}
+.t-list-basketball-fixtures-results__tab.is-active{background:var(--color-text);color:var(--color-background)}
+.t-list-basketball-fixtures-results__grid{display:grid;grid-template-columns:1.7fr 1fr;gap:var(--space-7);align-items:start}
+.t-list-basketball-fixtures-results__panel{display:none;margin:0;padding:0;list-style:none}
+.t-list-basketball-fixtures-results__panel.is-active{display:grid;gap:var(--space-3);animation:t-list-basketball-fixtures-results-fade 350ms ease both}
+.t-list-basketball-fixtures-results__row{display:grid;grid-template-columns:auto 1fr auto auto auto;gap:var(--space-5);align-items:center;padding:var(--space-4) var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);transition:transform 200ms ease}
+.t-list-basketball-fixtures-results__row:hover{transform:translateX(var(--space-1))}
+.t-list-basketball-fixtures-results__row.is-next{border:2px solid var(--color-text);box-shadow:var(--space-1) var(--space-1) 0 var(--color-primary)}
+.t-list-basketball-fixtures-results__date{display:flex;flex-direction:column;align-items:center;margin:0;padding-right:var(--space-5);border-right:1px solid var(--color-border);line-height:1}
+.t-list-basketball-fixtures-results__date b{font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:800}
+.t-list-basketball-fixtures-results__date span{margin-top:var(--space-1);font-size:var(--text-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-muted)}
+.t-list-basketball-fixtures-results__match{min-width:0}
+.t-list-basketball-fixtures-results__match h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 var(--space-2);margin:0;font-size:var(--text-lg);font-weight:800;text-transform:uppercase;letter-spacing:0}
+.t-list-basketball-fixtures-results__match h3 i{font-family:var(--font-body);font-style:normal;font-size:var(--text-xs);font-weight:600;text-transform:lowercase;color:var(--color-muted)}
+.t-list-basketball-fixtures-results__match p{margin:var(--space-1) 0 0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-basketball-fixtures-results__when{display:flex;flex-direction:column;align-items:flex-end;margin:0;line-height:1.25}
+.t-list-basketball-fixtures-results__when b{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;font-variant-numeric:tabular-nums}
+.t-list-basketball-fixtures-results__when span{font-size:var(--text-xs);color:var(--color-muted)}
+.t-list-basketball-fixtures-results__final{display:flex;align-items:center;gap:var(--space-2);margin:0;font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;font-variant-numeric:tabular-nums}
+.t-list-basketball-fixtures-results__final i{width:var(--space-2);height:2px;background:currentColor}
+.t-list-basketball-fixtures-results__chip{min-width:var(--space-8);padding:var(--space-1) var(--space-3);border:1px solid var(--color-text);border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-align:center;transform:skewX(-8deg)}
+.t-list-basketball-fixtures-results__chip.is-home{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary)}
+.t-list-basketball-fixtures-results__go{font-size:var(--text-sm);font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-list-basketball-fixtures-results__table{padding:var(--space-5);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-lg)}
+.t-list-basketball-fixtures-results__table-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-3)}
+.t-list-basketball-fixtures-results__table-head h3{margin:0;font-size:var(--text-2xl);font-weight:800;text-transform:uppercase}
+.t-list-basketball-fixtures-results__table-head span{font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-list-basketball-fixtures-results__table table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.t-list-basketball-fixtures-results__table th,.t-list-basketball-fixtures-results__table td{padding:var(--space-3) var(--space-2);text-align:center;border-bottom:1px solid color-mix(in srgb,var(--color-background) 22%,transparent)}
+.t-list-basketball-fixtures-results__table thead th{font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-list-basketball-fixtures-results__table th:nth-child(2){text-align:left;width:60%}
+.t-list-basketball-fixtures-results__table tbody th{font-weight:600}
+.t-list-basketball-fixtures-results__table tbody td:first-child{font-family:var(--font-heading);font-weight:800}
+.t-list-basketball-fixtures-results__table tr.is-us th,.t-list-basketball-fixtures-results__table tr.is-us td{background:var(--color-background);color:var(--color-text);font-weight:800;border-bottom-color:transparent}
+.t-list-basketball-fixtures-results__table tr.is-us td:first-child{border-radius:var(--radius-sm) 0 0 var(--radius-sm)}
+.t-list-basketball-fixtures-results__table tr.is-us td:last-child{border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.t-list-basketball-fixtures-results__more{display:inline-flex;align-items:center;gap:var(--space-2);margin-top:var(--space-4);font-size:var(--text-sm);font-weight:700;color:var(--color-background);text-underline-offset:var(--space-1)}
+@keyframes t-list-basketball-fixtures-results-fade{from{opacity:0;transform:translateY(var(--space-2))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){
+.t-list-basketball-fixtures-results{padding:var(--space-8) 0}
+.t-list-basketball-fixtures-results__grid{grid-template-columns:1fr}
+}
+@media (max-width: 760px){
+.t-list-basketball-fixtures-results__head{flex-direction:column;align-items:flex-start}
+.t-list-basketball-fixtures-results__tabs{width:100%}
+.t-list-basketball-fixtures-results__tab{flex:1}
+.t-list-basketball-fixtures-results__row{grid-template-columns:auto 1fr auto;gap:var(--space-3) var(--space-4);padding:var(--space-4)}
+.t-list-basketball-fixtures-results__date{padding-right:var(--space-4)}
+.t-list-basketball-fixtures-results__when,.t-list-basketball-fixtures-results__final{grid-column:2;grid-row:2;flex-direction:row;align-items:baseline;gap:var(--space-2)}
+.t-list-basketball-fixtures-results__final{align-items:center}
+.t-list-basketball-fixtures-results__chip{grid-column:3;grid-row:1}
+.t-list-basketball-fixtures-results__go{grid-column:3;grid-row:2;text-align:right}
+.t-list-basketball-fixtures-results__date{grid-row:1 / span 2}
+}
+@media (prefers-reduced-motion: reduce){
+.t-list-basketball-fixtures-results__panel.is-active{animation:none}
+.t-list-basketball-fixtures-results__row,.t-list-basketball-fixtures-results__tab{transition:none}
+}
+.t-team-basketball-roster-filter{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-team-basketball-roster-filter__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-7)}
+.t-team-basketball-roster-filter__title{margin:0;font-size:var(--text-5xl);font-weight:800;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase}
+.t-team-basketball-roster-filter__filters{display:flex;flex:none;flex-wrap:wrap;gap:var(--space-2)}
+.t-team-basketball-roster-filter__filter{padding:var(--space-2) var(--space-4);border:2px solid var(--color-text);border-radius:var(--radius-pill);background:transparent;color:var(--color-text);font-size:var(--text-sm);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background-color 200ms ease,color 200ms ease,transform 200ms ease}
+.t-team-basketball-roster-filter__filter:hover{transform:translateY(-2px)}
+.t-team-basketball-roster-filter__filter.is-active{background:var(--color-text);color:var(--color-background)}
+.t-team-basketball-roster-filter__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5);margin:0;padding:0;list-style:none}
+.t-team-basketball-roster-filter__card{position:relative;display:flex;flex-direction:column;background:var(--color-background);border:2px solid var(--color-text);border-radius:var(--radius-lg);overflow:hidden;transition:transform 250ms ease,box-shadow 250ms ease}
+.t-team-basketball-roster-filter__card:hover{transform:translate(calc(var(--space-1) * -1),calc(var(--space-1) * -1));box-shadow:var(--space-2) var(--space-2) 0 var(--color-primary)}
+.t-team-basketball-roster-filter__card.is-hidden{display:none}
+.t-team-basketball-roster-filter__photo{aspect-ratio:4/5;background:var(--color-surface);overflow:hidden}
+.t-team-basketball-roster-filter__photo img{width:100%;height:100%;object-fit:cover;transition:transform 500ms ease}
+.t-team-basketball-roster-filter__card:hover .t-team-basketball-roster-filter__photo img{transform:scale(1.05)}
+.t-team-basketball-roster-filter__num{position:absolute;top:0;left:0;min-width:var(--space-8);padding:var(--space-2) var(--space-3);background:var(--color-primary);color:var(--color-on-primary);border-radius:0 0 var(--radius-lg) 0;font-family:var(--font-heading);font-size:var(--text-4xl);font-weight:800;line-height:1;letter-spacing:-0.03em;text-align:center;font-variant-numeric:tabular-nums}
+.t-team-basketball-roster-filter__info{padding:var(--space-4);border-top:2px solid var(--color-text)}
+.t-team-basketball-roster-filter__info h3{margin:0 0 var(--space-2);font-size:var(--text-xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-team-basketball-roster-filter__info p{display:flex;justify-content:space-between;gap:var(--space-3);margin:0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-team-basketball-roster-filter__info p span:last-child{font-weight:700;color:var(--color-text);white-space:nowrap}
+.t-team-basketball-roster-filter__foot{margin:var(--space-7) 0 0;color:var(--color-muted)}
+.t-team-basketball-roster-filter__foot a{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+@media (max-width: 1024px){
+.t-team-basketball-roster-filter{padding:var(--space-8) 0}
+.t-team-basketball-roster-filter__grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width: 760px){
+.t-team-basketball-roster-filter__head{flex-direction:column;align-items:flex-start}
+.t-team-basketball-roster-filter__grid{grid-template-columns:repeat(2,1fr);gap:var(--space-3)}
+.t-team-basketball-roster-filter__num{min-width:var(--space-7);font-size:var(--text-2xl);border-radius:0 0 var(--radius-md) 0}
+.t-team-basketball-roster-filter__info{padding:var(--space-3)}
+.t-team-basketball-roster-filter__info h3{font-size:var(--text-base)}
+.t-team-basketball-roster-filter__info p{flex-direction:column;gap:0}
+.t-team-basketball-roster-filter__filter{padding:var(--space-2) var(--space-3)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-team-basketball-roster-filter__card,.t-team-basketball-roster-filter__photo img,.t-team-basketball-roster-filter__filter{transition:none}
+}
+.t-stats-basketball-leaders-bars{position:relative;overflow:hidden;padding:var(--space-9) 0;background:var(--color-text);color:var(--color-background)}
+.t-stats-basketball-leaders-bars::before{content:"";position:absolute;right:calc(var(--space-10) * -1);top:50%;width:calc(var(--space-10) * 4);aspect-ratio:1/1;border:2px solid color-mix(in srgb,var(--color-background) 16%,transparent);border-radius:50%;transform:translateY(-50%);box-shadow:0 0 0 var(--space-9) color-mix(in srgb,var(--color-background) 4%,transparent)}
+.t-stats-basketball-leaders-bars::after{content:"";position:absolute;left:0;right:0;top:0;height:var(--space-2);background:repeating-linear-gradient(-45deg,var(--color-background) 0 var(--space-3),transparent var(--space-3) var(--space-5))}
+.t-stats-basketball-leaders-bars .container{position:relative}
+.t-stats-basketball-leaders-bars__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-8)}
+.t-stats-basketball-leaders-bars__title{margin:0;font-size:var(--text-6xl);font-weight:800;line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--color-background)}
+.t-stats-basketball-leaders-bars__note{display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1);margin:0;font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-stats-basketball-leaders-bars__note a{font-weight:700;color:var(--color-background);text-underline-offset:var(--space-1)}
+.t-stats-basketball-leaders-bars__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-7)}
+.t-stats-basketball-leaders-bars__col{padding-top:var(--space-5);border-top:2px solid var(--color-background)}
+.t-stats-basketball-leaders-bars__label{margin:0 0 var(--space-4);font-size:var(--text-sm);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-stats-basketball-leaders-bars__big{display:flex;align-items:flex-end;gap:var(--space-4);margin:0 0 var(--space-6)}
+.t-stats-basketball-leaders-bars__big b{font-family:var(--font-heading);font-size:var(--text-6xl);font-weight:800;line-height:0.85;letter-spacing:-0.04em;font-variant-numeric:tabular-nums}
+.t-stats-basketball-leaders-bars__big span{display:flex;flex-direction:column;gap:var(--space-1);padding-bottom:var(--space-1);line-height:1.2}
+.t-stats-basketball-leaders-bars__big em{align-self:flex-start;font-style:normal;font-size:var(--text-xs);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0 var(--space-2);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-sm);transform:skewX(-10deg)}
+.t-stats-basketball-leaders-bars__big strong{font-weight:700}
+.t-stats-basketball-leaders-bars__rows{display:grid;gap:var(--space-3);margin:0;padding:0;list-style:none}
+.t-stats-basketball-leaders-bars__line{display:grid;grid-template-columns:1fr auto;gap:var(--space-1) var(--space-3);align-items:center;font-size:var(--text-sm)}
+.t-stats-basketball-leaders-bars__who{color:color-mix(in srgb,var(--color-background) 85%,var(--color-text))}
+.t-stats-basketball-leaders-bars__line b{font-family:var(--font-heading);font-weight:800;font-variant-numeric:tabular-nums}
+.t-stats-basketball-leaders-bars__bar{grid-column:1 / -1;grid-row:2;height:var(--space-2);border-radius:var(--radius-pill);background:color-mix(in srgb,var(--color-background) 16%,transparent);overflow:hidden}
+.t-stats-basketball-leaders-bars__bar i{display:block;height:100%;border-radius:var(--radius-pill);background:color-mix(in srgb,var(--color-background) 55%,var(--color-text));transform-origin:left;animation:t-stats-basketball-leaders-bars-grow 900ms ease both}
+.t-stats-basketball-leaders-bars__line.is-top .t-stats-basketball-leaders-bars__who{font-weight:700;color:var(--color-background)}
+.t-stats-basketball-leaders-bars__line.is-top .t-stats-basketball-leaders-bars__bar i{background:var(--color-background)}
+.t-stats-basketball-leaders-bars__bar.is-w-39 i{width:39%}
+.t-stats-basketball-leaders-bars__bar.is-w-45 i{width:45%}
+.t-stats-basketball-leaders-bars__bar.is-w-50 i{width:50%}
+.t-stats-basketball-leaders-bars__bar.is-w-58 i{width:58%}
+.t-stats-basketball-leaders-bars__bar.is-w-65 i{width:65%}
+.t-stats-basketball-leaders-bars__bar.is-w-67 i{width:67%}
+.t-stats-basketball-leaders-bars__bar.is-w-74 i{width:74%}
+.t-stats-basketball-leaders-bars__bar.is-w-77 i{width:77%}
+.t-stats-basketball-leaders-bars__bar.is-w-100 i{width:100%}
+@keyframes t-stats-basketball-leaders-bars-grow{from{transform:scaleX(0)}to{transform:none}}
+@media (max-width: 1024px){
+.t-stats-basketball-leaders-bars{padding:var(--space-8) 0}
+.t-stats-basketball-leaders-bars__cols{gap:var(--space-5)}
+.t-stats-basketball-leaders-bars__big{flex-direction:column;align-items:flex-start;gap:var(--space-3)}
+}
+@media (max-width: 760px){
+.t-stats-basketball-leaders-bars__head{flex-direction:column;align-items:flex-start;margin-bottom:var(--space-7)}
+.t-stats-basketball-leaders-bars__note{align-items:flex-start}
+.t-stats-basketball-leaders-bars__cols{grid-template-columns:1fr;gap:var(--space-7)}
+.t-stats-basketball-leaders-bars__big{flex-direction:row;align-items:flex-end}
+}
+@media (prefers-reduced-motion: reduce){
+.t-stats-basketball-leaders-bars__bar i{animation:none}
+}
+.t-features-basketball-programmes{position:relative;padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-features-basketball-programmes__grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:var(--space-8);align-items:start}
+.t-features-basketball-programmes__intro{position:sticky;top:var(--space-10)}
+.t-features-basketball-programmes__title{margin:0 0 var(--space-5);font-size:var(--text-4xl);font-weight:800;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase}
+.t-features-basketball-programmes__points{display:grid;gap:var(--space-3);margin:var(--space-6) 0;padding:0;list-style:none;font-weight:600}
+.t-features-basketball-programmes__points li{display:flex;align-items:center;gap:var(--space-3)}
+.t-features-basketball-programmes__points svg{flex:none;padding:var(--space-1);width:var(--space-6);height:var(--space-6);background:var(--color-text);color:var(--color-background);border-radius:50%}
+.t-features-basketball-programmes__ladder{display:grid;gap:var(--space-4);margin:0;padding:0;list-style:none}
+.t-features-basketball-programmes__step{position:relative;display:grid;grid-template-columns:auto 1fr;gap:var(--space-2) var(--space-5);padding:var(--space-5);background:var(--color-surface);border:2px solid var(--color-text);border-radius:var(--radius-lg);transition:transform 250ms ease,box-shadow 250ms ease}
+.t-features-basketball-programmes__step:hover{transform:translate(calc(var(--space-1) * -1),calc(var(--space-1) * -1));box-shadow:var(--space-2) var(--space-2) 0 var(--color-primary)}
+.t-features-basketball-programmes__step.is-level-2{margin-left:var(--space-5)}
+.t-features-basketball-programmes__step.is-level-3{margin-left:var(--space-7)}
+.t-features-basketball-programmes__step.is-level-4{margin-left:0;background:var(--color-background);border-style:dashed}
+.t-features-basketball-programmes__no{grid-row:1 / span 2;font-family:var(--font-heading);font-size:var(--text-5xl);font-weight:800;line-height:0.85;letter-spacing:-0.04em;color:var(--color-primary-ink)}
+.t-features-basketball-programmes__ages{display:inline-block;margin:0 0 var(--space-2);padding:0 var(--space-3);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;letter-spacing:0.1em;text-transform:uppercase;transform:skewX(-8deg)}
+.t-features-basketball-programmes__body h3{margin:0 0 var(--space-2);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-features-basketball-programmes__text{margin:0;color:var(--color-muted)}
+.t-features-basketball-programmes__meta{grid-column:2;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin:var(--space-3) 0 0;padding-top:var(--space-3);border-top:1px solid var(--color-border)}
+.t-features-basketball-programmes__meta dt{font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-muted)}
+.t-features-basketball-programmes__meta dd{margin:0;font-size:var(--text-sm);font-weight:700}
+.t-features-basketball-programmes__meter{position:absolute;top:var(--space-5);right:var(--space-5);display:flex;align-items:flex-end;gap:2px;height:var(--space-5)}
+.t-features-basketball-programmes__meter i{width:var(--space-1);height:40%;border-radius:1px;background:var(--color-border)}
+.t-features-basketball-programmes__meter i:nth-child(2){height:60%}
+.t-features-basketball-programmes__meter i:nth-child(3){height:80%}
+.t-features-basketball-programmes__meter i:nth-child(4){height:100%}
+.t-features-basketball-programmes__step.is-level-1 .t-features-basketball-programmes__meter i:nth-child(-n+1),.t-features-basketball-programmes__step.is-level-2 .t-features-basketball-programmes__meter i:nth-child(-n+2),.t-features-basketball-programmes__step.is-level-3 .t-features-basketball-programmes__meter i:nth-child(-n+4),.t-features-basketball-programmes__step.is-level-4 .t-features-basketball-programmes__meter i:nth-child(-n+2){background:var(--color-text)}
+@media (max-width: 1024px){
+.t-features-basketball-programmes{padding:var(--space-8) 0}
+.t-features-basketball-programmes__grid{grid-template-columns:1fr;gap:var(--space-7)}
+.t-features-basketball-programmes__intro{position:static}
+}
+@media (max-width: 760px){
+.t-features-basketball-programmes__step{grid-template-columns:1fr;padding:var(--space-4)}
+.t-features-basketball-programmes__step.is-level-2,.t-features-basketball-programmes__step.is-level-3{margin-left:0}
+.t-features-basketball-programmes__no{grid-row:auto;font-size:var(--text-4xl)}
+.t-features-basketball-programmes__meta{grid-column:1;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+.t-features-basketball-programmes__meter{top:var(--space-4);right:var(--space-4)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-features-basketball-programmes__step{transition:none}
+}
+.t-list-basketball-camp-tickets{position:relative;padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text);background-image:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--color-text) 5%,transparent) 0 2px,transparent 2px var(--space-4))}
+.t-list-basketball-camp-tickets__head{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+.t-list-basketball-camp-tickets__title{margin:0;font-size:var(--text-6xl);font-weight:800;line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase}
+.t-list-basketball-camp-tickets__lead{margin:0;font-size:var(--text-lg);color:var(--color-text)}
+.t-list-basketball-camp-tickets__tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);margin:0;padding:0;list-style:none}
+.t-list-basketball-camp-tickets__ticket{display:flex;flex-direction:column;background:var(--color-background);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;transition:transform 250ms ease}
+.t-list-basketball-camp-tickets__ticket:hover{transform:translateY(calc(var(--space-2) * -1)) rotate(-1deg)}
+.t-list-basketball-camp-tickets__stub{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-3);padding:var(--space-5);background:var(--color-text);color:var(--color-background);border-bottom:2px dashed var(--color-background)}
+.t-list-basketball-camp-tickets__stub::before,.t-list-basketball-camp-tickets__stub::after{content:"";position:absolute;bottom:calc(var(--space-3) * -1);width:var(--space-5);height:var(--space-5);border-radius:50%;background:var(--color-surface)}
+.t-list-basketball-camp-tickets__stub::before{left:calc(var(--space-3) * -1)}
+.t-list-basketball-camp-tickets__stub::after{right:calc(var(--space-3) * -1)}
+.t-list-basketball-camp-tickets__date{display:grid;grid-template-columns:auto auto;align-items:end;column-gap:var(--space-2);margin:0;line-height:1}
+.t-list-basketball-camp-tickets__date span{grid-column:1 / -1;margin-bottom:var(--space-2);font-size:var(--text-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase}
+.t-list-basketball-camp-tickets__date b{font-family:var(--font-heading);font-size:var(--text-6xl);font-weight:800;line-height:0.8;letter-spacing:-0.04em}
+.t-list-basketball-camp-tickets__date em{font-style:normal;font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase}
+.t-list-basketball-camp-tickets__ages{margin:0;padding:var(--space-1) var(--space-3);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;transform:skewX(-8deg)}
+.t-list-basketball-camp-tickets__body{display:flex;flex-direction:column;flex:1;padding:var(--space-5)}
+.t-list-basketball-camp-tickets__body h3{margin:0 0 var(--space-2);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-list-basketball-camp-tickets__text{margin:0 0 var(--space-4);color:var(--color-muted)}
+.t-list-basketball-camp-tickets__when{display:flex;align-items:center;gap:var(--space-2);margin:0 0 var(--space-4);font-size:var(--text-sm);font-weight:600}
+.t-list-basketball-camp-tickets__when svg{flex:none}
+.t-list-basketball-camp-tickets__places{display:grid;gap:var(--space-2);margin-top:auto;font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.t-list-basketball-camp-tickets__bar{height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-text);overflow:hidden;display:flex;justify-content:flex-end}
+.t-list-basketball-camp-tickets__bar i{display:block;height:100%;background:var(--color-surface);box-shadow:inset 0 0 0 1px var(--color-text);border-radius:0 var(--radius-pill) var(--radius-pill) 0}
+.t-list-basketball-camp-tickets__bar.is-w-10 i{width:10%}
+.t-list-basketball-camp-tickets__bar.is-w-25 i{width:25%}
+.t-list-basketball-camp-tickets__bar.is-w-45 i{width:45%}
+.t-list-basketball-camp-tickets__buy{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)}
+.t-list-basketball-camp-tickets__price{display:flex;flex-direction:column;margin:0;line-height:1.1}
+.t-list-basketball-camp-tickets__price b{font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:800}
+.t-list-basketball-camp-tickets__price span{font-size:var(--text-xs);color:var(--color-muted)}
+.t-list-basketball-camp-tickets__note{margin:var(--space-6) 0 0;color:var(--color-text)}
+.t-list-basketball-camp-tickets__note a{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+@media (max-width: 1024px){
+.t-list-basketball-camp-tickets{padding:var(--space-8) 0}
+.t-list-basketball-camp-tickets__tickets{grid-template-columns:1fr 1fr}
+.t-list-basketball-camp-tickets__date b{font-size:var(--text-5xl)}
+}
+@media (max-width: 760px){
+.t-list-basketball-camp-tickets__head{grid-template-columns:1fr;gap:var(--space-4)}
+.t-list-basketball-camp-tickets__tickets{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+.t-list-basketball-camp-tickets__ticket{transition:none}
+}
+.t-other-basketball-court-hire{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-other-basketball-court-hire__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-7);padding-bottom:var(--space-5);border-bottom:2px solid var(--color-text)}
+.t-other-basketball-court-hire__title{margin:0;font-size:var(--text-5xl);font-weight:800;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase}
+.t-other-basketball-court-hire__legend{display:flex;flex:none;flex-wrap:wrap;gap:var(--space-4);margin:0;padding:0;list-style:none;font-size:var(--text-sm);font-weight:600}
+.t-other-basketball-court-hire__legend li{display:flex;align-items:center;gap:var(--space-2)}
+.t-other-basketball-court-hire__legend i{width:var(--space-4);height:var(--space-4);border-radius:var(--radius-sm);border:2px solid var(--color-text)}
+.t-other-basketball-court-hire__legend .is-open i{background:var(--color-primary);border-color:var(--color-primary)}
+.t-other-basketball-court-hire__legend .is-club i{background:var(--color-text)}
+.t-other-basketball-court-hire__legend .is-hire i{border-style:dashed}
+.t-other-basketball-court-hire__grid{display:grid;grid-template-columns:1.6fr 1fr;gap:var(--space-7);align-items:start}
+.t-other-basketball-court-hire__week{display:grid;margin:0;padding:0;list-style:none}
+.t-other-basketball-court-hire__day{display:grid;grid-template-columns:var(--space-8) 1fr;gap:var(--space-4);align-items:center;padding:var(--space-3) 0;border-bottom:1px solid var(--color-border)}
+.t-other-basketball-court-hire__day:first-child{padding-top:0}
+.t-other-basketball-court-hire__name{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-other-basketball-court-hire__day.is-today .t-other-basketball-court-hire__name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:var(--space-1)}
+.t-other-basketball-court-hire__slots{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2)}
+.t-other-basketball-court-hire__slot{display:flex;flex-direction:column;margin:0;padding:var(--space-2) var(--space-3);border:2px solid var(--color-text);border-radius:var(--radius-md);line-height:1.25;transition:transform 200ms ease}
+.t-other-basketball-court-hire__slot:hover{transform:translateY(-2px)}
+.t-other-basketball-court-hire__slot b{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;font-variant-numeric:tabular-nums}
+.t-other-basketball-court-hire__slot span{font-size:var(--text-xs);font-weight:600;letter-spacing:0.04em}
+.t-other-basketball-court-hire__slot.is-open{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary)}
+.t-other-basketball-court-hire__slot.is-club{background:var(--color-text);color:var(--color-background)}
+.t-other-basketball-court-hire__slot.is-hire{border-style:dashed;background:var(--color-surface);color:var(--color-text)}
+.t-other-basketball-court-hire__side{display:grid;gap:var(--space-5)}
+.t-other-basketball-court-hire__photo{aspect-ratio:3/2;border-radius:var(--radius-lg);overflow:hidden;background:var(--color-surface);border:2px solid var(--color-text)}
+.t-other-basketball-court-hire__photo img{width:100%;height:100%;object-fit:cover}
+.t-other-basketball-court-hire__rates{padding:var(--space-5);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-lg)}
+.t-other-basketball-court-hire__rates h3{margin:0 0 var(--space-3);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase}
+.t-other-basketball-court-hire__rates dl{margin:0}
+.t-other-basketball-court-hire__rates dl div{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px solid color-mix(in srgb,var(--color-background) 22%,transparent)}
+.t-other-basketball-court-hire__rates dt{font-weight:600}
+.t-other-basketball-court-hire__rates dd{display:flex;align-items:baseline;gap:var(--space-2);margin:0}
+.t-other-basketball-court-hire__rates dd b{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800}
+.t-other-basketball-court-hire__rates dd span{font-size:var(--text-xs);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-other-basketball-court-hire__rates p{margin:var(--space-4) 0;font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 85%,var(--color-text))}
+.t-other-basketball-court-hire__book{display:flex;align-items:center;justify-content:center;padding:var(--space-3) var(--space-5);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-pill);font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:0.06em;font-size:var(--text-sm);transition:transform 200ms ease}
+.t-other-basketball-court-hire__book:hover{transform:translateY(-2px)}
+@media (max-width: 1024px){
+.t-other-basketball-court-hire{padding:var(--space-8) 0}
+.t-other-basketball-court-hire__grid{grid-template-columns:1fr}
+.t-other-basketball-court-hire__side{grid-template-columns:1fr 1fr;align-items:stretch}
+.t-other-basketball-court-hire__photo{aspect-ratio:auto}
+}
+@media (max-width: 760px){
+.t-other-basketball-court-hire__head{flex-direction:column;align-items:flex-start}
+.t-other-basketball-court-hire__day{grid-template-columns:1fr;gap:var(--space-2);padding:var(--space-4) 0}
+.t-other-basketball-court-hire__slots{gap:var(--space-1)}
+.t-other-basketball-court-hire__slot{padding:var(--space-2)}
+.t-other-basketball-court-hire__slot b{font-size:var(--text-base)}
+.t-other-basketball-court-hire__side{grid-template-columns:1fr}
+.t-other-basketball-court-hire__photo{aspect-ratio:3/2}
+}
+@media (prefers-reduced-motion: reduce){
+.t-other-basketball-court-hire__slot,.t-other-basketball-court-hire__book{transition:none}
+}
+.t-pricing-basketball-membership{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-pricing-basketball-membership__head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-8)}
+.t-pricing-basketball-membership__title{margin:0;font-size:var(--text-6xl);font-weight:800;line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase}
+.t-pricing-basketball-membership__switch{display:flex;flex:none;gap:var(--space-1);padding:var(--space-1);background:var(--color-background);border:2px solid var(--color-text);border-radius:var(--radius-pill)}
+.t-pricing-basketball-membership__switch-btn{white-space:nowrap;display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border:0;border-radius:var(--radius-pill);background:transparent;color:var(--color-text);font-size:var(--text-sm);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background-color 200ms ease,color 200ms ease}
+.t-pricing-basketball-membership__switch-btn em{font-style:normal;font-size:var(--text-xs);letter-spacing:0.04em;padding:0 var(--space-2);border:1px solid currentColor;border-radius:var(--radius-pill);text-transform:none}
+.t-pricing-basketball-membership__switch-btn.is-active{background:var(--color-text);color:var(--color-background)}
+.t-pricing-basketball-membership__plans{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:var(--space-5);align-items:center}
+.t-pricing-basketball-membership__plan{position:relative;display:flex;flex-direction:column;padding:var(--space-6);background:var(--color-background);border:2px solid var(--color-text);border-radius:var(--radius-lg);overflow:hidden;transition:transform 250ms ease}
+.t-pricing-basketball-membership__plan:hover{transform:translateY(calc(var(--space-1) * -1))}
+.t-pricing-basketball-membership__plan.is-featured{padding:var(--space-7) var(--space-6);background:var(--color-text);color:var(--color-background);box-shadow:var(--shadow-lg)}
+.t-pricing-basketball-membership__jersey{position:absolute;top:calc(var(--space-5) * -1);right:var(--space-3);font-family:var(--font-heading);font-size:var(--text-6xl);font-weight:800;line-height:1;letter-spacing:-0.04em;color:color-mix(in srgb,var(--color-text) 9%,transparent);transform:scale(1.8);transform-origin:top right;pointer-events:none}
+.t-pricing-basketball-membership__plan > :not(.t-pricing-basketball-membership__jersey){position:relative}
+.t-pricing-basketball-membership__plan.is-featured .t-pricing-basketball-membership__jersey{color:color-mix(in srgb,var(--color-background) 12%,transparent)}
+.t-pricing-basketball-membership__badge{align-self:flex-start;margin-bottom:var(--space-4);padding:var(--space-1) var(--space-3);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;transform:skewX(-10deg)}
+.t-pricing-basketball-membership__plan h3{position:relative;margin:0;font-size:var(--text-3xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.t-pricing-basketball-membership__who{position:relative;margin:var(--space-1) 0 0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-pricing-basketball-membership__plan.is-featured .t-pricing-basketball-membership__who{color:color-mix(in srgb,var(--color-background) 82%,var(--color-text))}
+.t-pricing-basketball-membership__price{margin:var(--space-5) 0;padding:var(--space-4) 0;border-top:2px solid currentColor;border-bottom:1px solid var(--color-border)}
+.t-pricing-basketball-membership__plan.is-featured .t-pricing-basketball-membership__price{border-bottom-color:color-mix(in srgb,var(--color-background) 25%,transparent)}
+.t-pricing-basketball-membership__amount{display:flex;align-items:baseline;gap:var(--space-2);margin:0}
+.t-pricing-basketball-membership__amount b{font-family:var(--font-heading);font-size:var(--text-5xl);font-weight:800;line-height:1;letter-spacing:-0.03em}
+.t-pricing-basketball-membership__amount span{font-size:var(--text-sm);font-weight:600}
+.t-pricing-basketball-membership__amount.is-season{display:none}
+.t-pricing-basketball-membership.is-season .t-pricing-basketball-membership__amount.is-season{display:flex;animation:t-pricing-basketball-membership-flip 300ms ease both}
+.t-pricing-basketball-membership.is-season .t-pricing-basketball-membership__amount.is-monthly{display:none}
+.t-pricing-basketball-membership__list{display:grid;gap:var(--space-3);margin:0 0 var(--space-6);padding:0;list-style:none}
+.t-pricing-basketball-membership__list li{display:flex;align-items:flex-start;gap:var(--space-3)}
+.t-pricing-basketball-membership__list svg{flex:none;margin-top:var(--space-1)}
+.t-pricing-basketball-membership__ghost{margin-top:auto;border:2px solid var(--color-text);text-transform:uppercase;letter-spacing:0.06em;font-size:var(--text-sm)}
+.t-pricing-basketball-membership__cta{display:flex;align-items:center;justify-content:center;margin-top:auto;padding:var(--space-3) var(--space-5);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:transform 200ms ease}
+.t-pricing-basketball-membership__cta:hover{transform:translateY(-2px)}
+.t-pricing-basketball-membership__note{max-width:var(--width-narrow);margin:var(--space-7) auto 0;text-align:center;color:var(--color-muted)}
+@keyframes t-pricing-basketball-membership-flip{from{opacity:0;transform:translateY(var(--space-2))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){
+.t-pricing-basketball-membership{padding:var(--space-8) 0}
+.t-pricing-basketball-membership__plans{grid-template-columns:1fr;max-width:var(--width-narrow);margin-inline:auto}
+.t-pricing-basketball-membership__plan.is-featured{padding:var(--space-6)}
+}
+@media (max-width: 760px){
+.t-pricing-basketball-membership__head{flex-direction:column;align-items:flex-start}
+.t-pricing-basketball-membership__switch{width:100%}
+.t-pricing-basketball-membership__switch-btn{flex:1;flex-direction:column;justify-content:center;gap:var(--space-1);padding:var(--space-2) var(--space-3)}
+.t-pricing-basketball-membership__plan,.t-pricing-basketball-membership__plan.is-featured{padding:var(--space-5)}
+}
+@media (prefers-reduced-motion: reduce){
+.t-pricing-basketball-membership__plan,.t-pricing-basketball-membership__cta,.t-pricing-basketball-membership__switch-btn{transition:none}
+.t-pricing-basketball-membership.is-season .t-pricing-basketball-membership__amount.is-season{animation:none}
+}
+.t-contact-basketball-free-trial{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-contact-basketball-free-trial__grid::before{content:"";position:absolute;left:calc(var(--space-10) * -1.5);bottom:calc(var(--space-10) * -2);width:calc(var(--space-10) * 4.5);aspect-ratio:1/1;border:2px solid color-mix(in srgb,var(--color-background) 18%,transparent);border-radius:50%;box-shadow:inset 0 0 0 var(--space-9) color-mix(in srgb,var(--color-background) 4%,transparent)}
+.t-contact-basketball-free-trial__grid{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);align-items:center;padding:var(--space-8);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-lg)}
+.t-contact-basketball-free-trial__info,.t-contact-basketball-free-trial__form{position:relative}
+.t-contact-basketball-free-trial__eyebrow{margin:0 0 var(--space-3);font-size:var(--text-sm);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-contact-basketball-free-trial__title{margin:0 0 var(--space-5);font-size:var(--text-5xl);font-weight:800;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;color:var(--color-background)}
+.t-contact-basketball-free-trial__lead{margin:0;font-size:var(--text-lg);color:color-mix(in srgb,var(--color-background) 88%,var(--color-text))}
+.t-contact-basketball-free-trial__details{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin:var(--space-7) 0 0;padding:var(--space-6) 0 0;border-top:2px solid var(--color-background);list-style:none}
+.t-contact-basketball-free-trial__details li{display:flex;gap:var(--space-3);align-items:flex-start}
+.t-contact-basketball-free-trial__details svg{flex:none;margin-top:var(--space-1)}
+.t-contact-basketball-free-trial__details div{display:flex;flex-direction:column;min-width:0;line-height:1.4}
+.t-contact-basketball-free-trial__details b{font-size:var(--text-xs);letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-contact-basketball-free-trial__details a,.t-contact-basketball-free-trial__details span{font-weight:600;color:var(--color-background);overflow-wrap:anywhere}
+.t-contact-basketball-free-trial__form{display:grid;gap:var(--space-4);padding:var(--space-6);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-lg);box-shadow:var(--space-3) var(--space-3) 0 color-mix(in srgb,var(--color-background) 30%,var(--color-primary))}
+.t-contact-basketball-free-trial__form h3{margin:0;font-size:var(--text-3xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.02em}
+.t-contact-basketball-free-trial__pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+.t-contact-basketball-free-trial__field{display:grid;gap:var(--space-2);font-size:var(--text-sm);font-weight:700}
+.t-contact-basketball-free-trial__field input,.t-contact-basketball-free-trial__field select,.t-contact-basketball-free-trial__field textarea{width:100%;padding:var(--space-3);background:var(--color-surface);color:var(--color-text);border:2px solid var(--color-text);border-radius:var(--radius-md);font-weight:400;font-size:var(--text-base)}
+.t-contact-basketball-free-trial__field textarea{resize:vertical}
+.t-contact-basketball-free-trial__levels{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:0;padding:0;border:0;min-width:0}
+.t-contact-basketball-free-trial__levels legend{margin-bottom:var(--space-2);padding:0;font-size:var(--text-sm);font-weight:700}
+.t-contact-basketball-free-trial__levels label{position:relative;cursor:pointer}
+.t-contact-basketball-free-trial__levels input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.t-contact-basketball-free-trial__levels span{display:block;padding:var(--space-2) var(--space-4);border:2px solid var(--color-text);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:600;transition:background-color 200ms ease,color 200ms ease}
+.t-contact-basketball-free-trial__levels input:checked + span{background:var(--color-text);color:var(--color-background)}
+.t-contact-basketball-free-trial__levels input:focus-visible + span{outline:2px solid var(--color-accent);outline-offset:2px}
+.t-contact-basketball-free-trial__send{width:100%;text-transform:uppercase;letter-spacing:0.06em}
+.t-contact-basketball-free-trial__small{margin:0;font-size:var(--text-sm);text-align:center;color:var(--color-muted)}
+@media (max-width: 1024px){
+.t-contact-basketball-free-trial{padding:var(--space-8) 0}
+.t-contact-basketball-free-trial__grid{grid-template-columns:1fr;gap:var(--space-7);padding:var(--space-7)}
+}
+@media (max-width: 760px){
+.t-contact-basketball-free-trial{padding:var(--space-7) 0}
+.t-contact-basketball-free-trial__grid{padding:var(--space-6) var(--space-4)}
+.t-contact-basketball-free-trial__details{grid-template-columns:1fr;gap:var(--space-4)}
+.t-contact-basketball-free-trial__form{padding:var(--space-5);box-shadow:var(--space-2) var(--space-2) 0 color-mix(in srgb,var(--color-background) 30%,var(--color-primary))}
+.t-contact-basketball-free-trial__pair{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+.t-contact-basketball-free-trial__levels span{transition:none}
+}
+.t-footer-basketball-sponsors{position:relative;overflow:hidden;padding:var(--space-8) 0 var(--space-6);background:var(--color-text);color:var(--color-background)}
+.t-footer-basketball-sponsors::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--space-2);background:repeating-linear-gradient(-45deg,var(--color-background) 0 var(--space-3),transparent var(--space-3) var(--space-5))}
+.t-footer-basketball-sponsors__partners{display:flex;align-items:center;gap:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid color-mix(in srgb,var(--color-background) 22%,transparent)}
+.t-footer-basketball-sponsors__partners p{flex:none;margin:0;font-size:var(--text-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-basketball-sponsors__partners ul{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-4) var(--space-6);flex:1;margin:0;padding:0;list-style:none}
+.t-footer-basketball-sponsors__partners li{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;letter-spacing:-0.01em;color:var(--color-background);transition:transform 200ms ease}
+.t-footer-basketball-sponsors__partners li:hover{transform:translateY(-2px)}
+.t-footer-basketball-sponsors__partners li.is-b{font-family:var(--font-body);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-size:var(--text-base)}
+.t-footer-basketball-sponsors__partners li.is-c{font-style:italic}
+.t-footer-basketball-sponsors__partners li.is-d{font-weight:500;letter-spacing:0.02em}
+.t-footer-basketball-sponsors__partners i{flex:none;width:var(--space-5);height:var(--space-5);border:2px solid currentColor;border-radius:50%}
+.t-footer-basketball-sponsors__partners li.is-b i{border-radius:var(--radius-sm);transform:rotate(45deg) scale(0.8)}
+.t-footer-basketball-sponsors__partners li.is-c i{border-radius:var(--radius-sm);background:currentColor;transform:skewX(-12deg)}
+.t-footer-basketball-sponsors__partners li.is-d i{border-radius:50% 50% 0 50%}
+.t-footer-basketball-sponsors__shout{margin:var(--space-7) 0;font-family:var(--font-heading);font-size:var(--text-6xl);font-weight:800;line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;color:var(--color-background)}
+.t-footer-basketball-sponsors__cols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:var(--space-7);padding-top:var(--space-6);border-top:2px solid var(--color-background)}
+.t-footer-basketball-sponsors__logo{display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-background)}
+.t-footer-basketball-sponsors__logo b{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.01em}
+.t-footer-basketball-sponsors__ball{position:relative;flex:none;width:var(--space-7);height:var(--space-7);border:2px solid currentColor;border-radius:50%;overflow:hidden;background:linear-gradient(currentColor,currentColor) center / 2px 100% no-repeat,linear-gradient(currentColor,currentColor) center / 100% 2px no-repeat}
+.t-footer-basketball-sponsors__ball::before,.t-footer-basketball-sponsors__ball::after{content:"";position:absolute;inset:0;border:2px solid currentColor;border-radius:50%}
+.t-footer-basketball-sponsors__ball::before{transform:translateX(-68%)}
+.t-footer-basketball-sponsors__ball::after{transform:translateX(68%)}
+.t-footer-basketball-sponsors__brand p{max-width:85%;margin:var(--space-4) 0 var(--space-5);color:color-mix(in srgb,var(--color-background) 82%,var(--color-text))}
+.t-footer-basketball-sponsors__join{display:inline-flex;padding:var(--space-3) var(--space-5);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:transform 200ms ease}
+.t-footer-basketball-sponsors__join:hover{transform:translateY(-2px)}
+.t-footer-basketball-sponsors__col{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2)}
+.t-footer-basketball-sponsors__col h3{margin:0 0 var(--space-2);font-family:var(--font-body);font-size:var(--text-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-basketball-sponsors__col a,.t-footer-basketball-sponsors__col p{margin:0;color:var(--color-background);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
+.t-footer-basketball-sponsors__col a:hover{text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-footer-basketball-sponsors__base{display:flex;align-items:center;gap:var(--space-5);margin-top:var(--space-7);padding-top:var(--space-5);border-top:1px solid color-mix(in srgb,var(--color-background) 22%,transparent);font-size:var(--text-sm)}
+.t-footer-basketball-sponsors__base p{margin:0;color:color-mix(in srgb,var(--color-background) 82%,var(--color-text))}
+.t-footer-basketball-sponsors__legal{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-left:auto}
+.t-footer-basketball-sponsors__legal a{color:var(--color-background);text-underline-offset:var(--space-1)}
+.t-footer-basketball-sponsors__social{display:flex;gap:var(--space-2)}
+.t-footer-basketball-sponsors__social a{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border:1px solid color-mix(in srgb,var(--color-background) 40%,transparent);border-radius:50%;color:var(--color-background);transition:transform 200ms ease,background-color 200ms ease,color 200ms ease}
+.t-footer-basketball-sponsors__social a:hover{transform:translateY(-2px);background:var(--color-background);color:var(--color-text)}
+@media (max-width: 1024px){
+.t-footer-basketball-sponsors__partners{flex-direction:column;align-items:flex-start;gap:var(--space-4)}
+.t-footer-basketball-sponsors__partners ul{justify-content:flex-start}
+.t-footer-basketball-sponsors__cols{grid-template-columns:1fr 1fr 1fr;gap:var(--space-6)}
+.t-footer-basketball-sponsors__brand{grid-column:1 / -1}
+}
+@media (max-width: 760px){
+.t-footer-basketball-sponsors{padding-top:var(--space-7)}
+.t-footer-basketball-sponsors__partners li{font-size:var(--text-lg)}
+.t-footer-basketball-sponsors__shout{margin:var(--space-6) 0}
+.t-footer-basketball-sponsors__cols{grid-template-columns:1fr 1fr}
+.t-footer-basketball-sponsors__col:last-child{grid-column:1 / -1}
+.t-footer-basketball-sponsors__base{flex-direction:column;align-items:flex-start;gap:var(--space-4)}
+.t-footer-basketball-sponsors__legal{margin-left:0}
+}
+@media (prefers-reduced-motion: reduce){
+.t-footer-basketball-sponsors__partners li,.t-footer-basketball-sponsors__join,.t-footer-basketball-sponsors__social a{transition:none}
+}</style></head><body><main id="main"><header class="t-header-basketball-score-ticker">
+  <div class="t-header-basketball-score-ticker__strip">
+    <div class="container t-header-basketball-score-ticker__strip-in">
+      <p class="t-header-basketball-score-ticker__result"><em data-slot="strip-status">Final</em><span data-slot="strip-home">Home Club</span><b data-slot="strip-home-score">84</b><i aria-hidden="true"></i><b data-slot="strip-away-score">79</b><span data-slot="strip-away">Away Club</span></p>
+      <p class="t-header-basketball-score-ticker__next"><span data-slot="strip-next-label">Next game</span><b data-slot="strip-next-date">Sat 28 Nov</b><b data-slot="strip-next-time">19:30</b></p>
+      <a href="#tickets" class="t-header-basketball-score-ticker__strip-link" data-slot="strip-link">Get tickets</a>
+    </div>
+  </div>
+  <div class="container t-header-basketball-score-ticker__bar">
+    <a href="#" class="t-header-basketball-score-ticker__logo"><span class="t-header-basketball-score-ticker__ball" aria-hidden="true"></span><span class="t-header-basketball-score-ticker__name"><b data-slot="logo">Club Name</b><small data-slot="logo-sub">Basketball club and academy</small></span></a>
+    <nav class="t-header-basketball-score-ticker__nav" aria-label="Main">
+      <a href="#schedule" data-slot="link-1">Schedule</a>
+      <a href="#roster" data-slot="link-2">Roster</a>
+      <a href="#academy" data-slot="link-3">Academy</a>
+      <a href="#camps" data-slot="link-4">Camps</a>
+      <a href="#court" data-slot="link-5">Court hire</a>
+    </nav>
+    <a href="#join" class="btn btn-primary t-header-basketball-score-ticker__cta" data-slot="cta">Join the club</a>
+    <details class="t-header-basketball-score-ticker__menu">
+      <summary class="t-header-basketball-score-ticker__burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></summary>
+      <div class="t-header-basketball-score-ticker__panel">
+        <a href="#schedule" data-slot="menu-link-1">Schedule</a>
+        <a href="#roster" data-slot="menu-link-2">Roster</a>
+        <a href="#academy" data-slot="menu-link-3">Academy</a>
+        <a href="#camps" data-slot="menu-link-4">Camps</a>
+        <a href="#court" data-slot="menu-link-5">Court hire</a>
+        <a href="#join" class="btn btn-primary" data-slot="menu-cta">Join the club</a>
+      </div>
+    </details>
+  </div>
+</header>
+<section class="t-hero-basketball-scoreboard">
+  <div class="t-hero-basketball-scoreboard__media"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A player driving to the basket under bright indoor court lights" width="1920" height="1200" data-slot="photo"></div>
+  <div class="t-hero-basketball-scoreboard__shade" aria-hidden="true"></div>
+  <div class="container t-hero-basketball-scoreboard__grid">
+    <div class="t-hero-basketball-scoreboard__copy">
+      <p class="t-hero-basketball-scoreboard__eyebrow"><i aria-hidden="true"></i><span data-slot="eyebrow">Club and academy · New season</span></p>
+      <h1 class="t-hero-basketball-scoreboard__title" data-slot="heading">Play loud. Play together.</h1>
+      <p class="t-hero-basketball-scoreboard__lead" data-slot="text">Senior teams, a full youth academy and open gym every week. One club for every age and every level.</p>
+      <div class="t-hero-basketball-scoreboard__actions">
+        <a href="#join" class="btn btn-primary" data-slot="cta-primary">Book a free trial</a>
+        <a href="#schedule" class="t-hero-basketball-scoreboard__link"><span data-slot="cta-secondary">See the schedule</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="t-hero-basketball-scoreboard__form">
+        <span data-slot="form-label">Last five</span>
+        <ul>
+          <li class="is-win" data-slot="form-1">W</li>
+          <li class="is-win" data-slot="form-2">W</li>
+          <li data-slot="form-3">L</li>
+          <li class="is-win" data-slot="form-4">W</li>
+          <li class="is-win" data-slot="form-5">W</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="t-hero-basketball-scoreboard__board">
+      <div class="t-hero-basketball-scoreboard__board-head"><em data-slot="board-status">Final</em><span data-slot="board-label">Last game · Division One</span></div>
+      <div class="t-hero-basketball-scoreboard__score">
+        <div class="t-hero-basketball-scoreboard__team"><span class="t-hero-basketball-scoreboard__crest" data-slot="home-abbr">HC</span><b data-slot="home-name">Home Club</b></div>
+        <div class="t-hero-basketball-scoreboard__digits"><b data-slot="home-score">84</b><i aria-hidden="true"></i><b class="is-away" data-slot="away-score">79</b></div>
+        <div class="t-hero-basketball-scoreboard__team"><span class="t-hero-basketball-scoreboard__crest is-away" data-slot="away-abbr">AC</span><b data-slot="away-name">Away Club</b></div>
+      </div>
+      <table class="t-hero-basketball-scoreboard__quarters">
+        <thead><tr><th><span class="sr-only" data-slot="q-team-label">Team</span></th><th data-slot="q-1-label">Q1</th><th data-slot="q-2-label">Q2</th><th data-slot="q-3-label">Q3</th><th data-slot="q-4-label">Q4</th></tr></thead>
+        <tbody>
+          <tr><th data-slot="q-home">HC</th><td data-slot="q-home-1">21</td><td data-slot="q-home-2">18</td><td data-slot="q-home-3">24</td><td data-slot="q-home-4">21</td></tr>
+          <tr><th data-slot="q-away">AC</th><td data-slot="q-away-1">17</td><td data-slot="q-away-2">22</td><td data-slot="q-away-3">19</td><td data-slot="q-away-4">21</td></tr>
+        </tbody>
+      </table>
+      <div class="t-hero-basketball-scoreboard__next">
+        <div class="t-hero-basketball-scoreboard__next-info"><span data-slot="next-label">Next game</span><b data-slot="next-match">Home Club vs Away Club</b><small data-slot="next-when">Sat 28 Nov · Tip-off 19:30 · Main court</small></div>
+        <a href="#tickets" class="btn btn-primary" data-slot="next-cta">Get tickets</a>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="t-list-basketball-fixtures-results">
+  <div class="container">
+    <div class="t-list-basketball-fixtures-results__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Senior team · This season</p>
+        <h2 class="t-list-basketball-fixtures-results__title" data-slot="heading">Schedule and results</h2>
+      </div>
+      <div class="t-list-basketball-fixtures-results__tabs" role="tablist" aria-label="Games">
+        <button class="t-list-basketball-fixtures-results__tab is-active" type="button" role="tab" aria-selected="true" data-slot="tab-1">Upcoming</button>
+        <button class="t-list-basketball-fixtures-results__tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-slot="tab-2">Results</button>
+      </div>
+    </div>
+    <div class="t-list-basketball-fixtures-results__grid">
+      <div class="t-list-basketball-fixtures-results__panels" data-states="tabs">
+        <ul class="t-list-basketball-fixtures-results__panel is-active" role="tabpanel" data-state="upcoming">
+          <li class="t-list-basketball-fixtures-results__row is-next"><p class="t-list-basketball-fixtures-results__date"><b data-slot="up-1-day">28</b><span data-slot="up-1-month">Nov</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="up-1-home">Home Club</span><i data-slot="up-1-vs">vs</i><span data-slot="up-1-away">Away Club</span></h3><p data-slot="up-1-meta">Division One · Round 9</p></div><p class="t-list-basketball-fixtures-results__when"><b data-slot="up-1-time">19:30</b><span data-slot="up-1-venue">Main court</span></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="up-1-side">Home</span><a href="#tickets" class="t-list-basketball-fixtures-results__go" data-slot="up-1-link">Tickets</a></li>
+          <li class="t-list-basketball-fixtures-results__row"><p class="t-list-basketball-fixtures-results__date"><b data-slot="up-2-day">05</b><span data-slot="up-2-month">Dec</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="up-2-home">Rival Club</span><i data-slot="up-2-vs">vs</i><span data-slot="up-2-away">Home Club</span></h3><p data-slot="up-2-meta">Division One · Round 10</p></div><p class="t-list-basketball-fixtures-results__when"><b data-slot="up-2-time">18:00</b><span data-slot="up-2-venue">Away gym</span></p><span class="t-list-basketball-fixtures-results__chip" data-slot="up-2-side">Away</span><a href="#tickets" class="t-list-basketball-fixtures-results__go" data-slot="up-2-link">Tickets</a></li>
+          <li class="t-list-basketball-fixtures-results__row"><p class="t-list-basketball-fixtures-results__date"><b data-slot="up-3-day">12</b><span data-slot="up-3-month">Dec</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="up-3-home">Home Club</span><i data-slot="up-3-vs">vs</i><span data-slot="up-3-away">City Club</span></h3><p data-slot="up-3-meta">Cup · Quarter final</p></div><p class="t-list-basketball-fixtures-results__when"><b data-slot="up-3-time">19:30</b><span data-slot="up-3-venue">Main court</span></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="up-3-side">Home</span><a href="#tickets" class="t-list-basketball-fixtures-results__go" data-slot="up-3-link">Tickets</a></li>
+          <li class="t-list-basketball-fixtures-results__row"><p class="t-list-basketball-fixtures-results__date"><b data-slot="up-4-day">19</b><span data-slot="up-4-month">Dec</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="up-4-home">Home Club</span><i data-slot="up-4-vs">vs</i><span data-slot="up-4-away">North Club</span></h3><p data-slot="up-4-meta">Division One · Round 11</p></div><p class="t-list-basketball-fixtures-results__when"><b data-slot="up-4-time">17:00</b><span data-slot="up-4-venue">Main court</span></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="up-4-side">Home</span><a href="#tickets" class="t-list-basketball-fixtures-results__go" data-slot="up-4-link">Tickets</a></li>
+        </ul>
+        <ul class="t-list-basketball-fixtures-results__panel" role="tabpanel" data-state="results">
+          <li class="t-list-basketball-fixtures-results__row is-result"><p class="t-list-basketball-fixtures-results__date"><b data-slot="res-1-day">21</b><span data-slot="res-1-month">Nov</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="res-1-home">Home Club</span><i data-slot="res-1-vs">vs</i><span data-slot="res-1-away">Away Club</span></h3><p data-slot="res-1-meta">Division One · Round 8</p></div><p class="t-list-basketball-fixtures-results__final"><b data-slot="res-1-home-score">84</b><i aria-hidden="true"></i><b data-slot="res-1-away-score">79</b></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="res-1-outcome">Win</span><a href="#report" class="t-list-basketball-fixtures-results__go" data-slot="res-1-link">Report</a></li>
+          <li class="t-list-basketball-fixtures-results__row is-result"><p class="t-list-basketball-fixtures-results__date"><b data-slot="res-2-day">14</b><span data-slot="res-2-month">Nov</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="res-2-home">Rival Club</span><i data-slot="res-2-vs">vs</i><span data-slot="res-2-away">Home Club</span></h3><p data-slot="res-2-meta">Division One · Round 7</p></div><p class="t-list-basketball-fixtures-results__final"><b data-slot="res-2-home-score">71</b><i aria-hidden="true"></i><b data-slot="res-2-away-score">88</b></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="res-2-outcome">Win</span><a href="#report" class="t-list-basketball-fixtures-results__go" data-slot="res-2-link">Report</a></li>
+          <li class="t-list-basketball-fixtures-results__row is-result"><p class="t-list-basketball-fixtures-results__date"><b data-slot="res-3-day">07</b><span data-slot="res-3-month">Nov</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="res-3-home">Home Club</span><i data-slot="res-3-vs">vs</i><span data-slot="res-3-away">City Club</span></h3><p data-slot="res-3-meta">Division One · Round 6</p></div><p class="t-list-basketball-fixtures-results__final"><b data-slot="res-3-home-score">66</b><i aria-hidden="true"></i><b data-slot="res-3-away-score">70</b></p><span class="t-list-basketball-fixtures-results__chip" data-slot="res-3-outcome">Loss</span><a href="#report" class="t-list-basketball-fixtures-results__go" data-slot="res-3-link">Report</a></li>
+          <li class="t-list-basketball-fixtures-results__row is-result"><p class="t-list-basketball-fixtures-results__date"><b data-slot="res-4-day">31</b><span data-slot="res-4-month">Oct</span></p><div class="t-list-basketball-fixtures-results__match"><h3><span data-slot="res-4-home">North Club</span><i data-slot="res-4-vs">vs</i><span data-slot="res-4-away">Home Club</span></h3><p data-slot="res-4-meta">Division One · Round 5</p></div><p class="t-list-basketball-fixtures-results__final"><b data-slot="res-4-home-score">59</b><i aria-hidden="true"></i><b data-slot="res-4-away-score">77</b></p><span class="t-list-basketball-fixtures-results__chip is-home" data-slot="res-4-outcome">Win</span><a href="#report" class="t-list-basketball-fixtures-results__go" data-slot="res-4-link">Report</a></li>
+        </ul>
+      </div>
+      <aside class="t-list-basketball-fixtures-results__table">
+        <div class="t-list-basketball-fixtures-results__table-head"><h3 data-slot="table-title">Standings</h3><span data-slot="table-note">Division One</span></div>
+        <table>
+          <thead><tr><th data-slot="col-pos">Pos</th><th data-slot="col-team">Team</th><th data-slot="col-won">W</th><th data-slot="col-lost">L</th></tr></thead>
+          <tbody>
+            <tr><td data-slot="pos-1">1</td><th data-slot="team-1">City Club</th><td data-slot="won-1">7</td><td data-slot="lost-1">1</td></tr>
+            <tr class="is-us"><td data-slot="pos-2">2</td><th data-slot="team-2">Home Club</th><td data-slot="won-2">6</td><td data-slot="lost-2">2</td></tr>
+            <tr><td data-slot="pos-3">3</td><th data-slot="team-3">Rival Club</th><td data-slot="won-3">5</td><td data-slot="lost-3">3</td></tr>
+            <tr><td data-slot="pos-4">4</td><th data-slot="team-4">Away Club</th><td data-slot="won-4">4</td><td data-slot="lost-4">4</td></tr>
+            <tr><td data-slot="pos-5">5</td><th data-slot="team-5">North Club</th><td data-slot="won-5">2</td><td data-slot="lost-5">6</td></tr>
+          </tbody>
+        </table>
+        <a href="#table" class="t-list-basketball-fixtures-results__more"><span data-slot="table-link">Full league table</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="t-team-basketball-roster-filter">
+  <div class="container">
+    <div class="t-team-basketball-roster-filter__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Senior team</p>
+        <h2 class="t-team-basketball-roster-filter__title" data-slot="heading">Meet the roster</h2>
+      </div>
+      <div class="t-team-basketball-roster-filter__filters" role="group" aria-label="Filter by position">
+        <button class="t-team-basketball-roster-filter__filter is-active" type="button" data-filter="all" aria-pressed="true" data-slot="filter-all">All</button>
+        <button class="t-team-basketball-roster-filter__filter" type="button" data-filter="guard" aria-pressed="false" data-slot="filter-guards">Guards</button>
+        <button class="t-team-basketball-roster-filter__filter" type="button" data-filter="forward" aria-pressed="false" data-slot="filter-forwards">Forwards</button>
+        <button class="t-team-basketball-roster-filter__filter" type="button" data-filter="centre" aria-pressed="false" data-slot="filter-centres">Centres</button>
+      </div>
+    </div>
+    <ul class="t-team-basketball-roster-filter__grid">
+      <li class="t-team-basketball-roster-filter__card" data-pos="guard"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A guard bringing the ball up the court" width="600" height="750" data-slot="player-1-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-1-number">4</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-1-name">Name Surname</h3><p><span data-slot="player-1-position">Point guard</span><span data-slot="player-1-height">185 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="guard"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A guard taking a jump shot in training" width="600" height="750" data-slot="player-2-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-2-number">7</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-2-name">Name Surname</h3><p><span data-slot="player-2-position">Shooting guard</span><span data-slot="player-2-height">191 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="forward"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A forward holding the ball before a game" width="600" height="750" data-slot="player-3-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-3-number">11</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-3-name">Name Surname</h3><p><span data-slot="player-3-position">Small forward</span><span data-slot="player-3-height">198 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="centre"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A centre standing under the basket" width="600" height="750" data-slot="player-4-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-4-number">15</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-4-name">Name Surname</h3><p><span data-slot="player-4-position">Centre</span><span data-slot="player-4-height">208 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="forward"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A forward warming up on the court" width="600" height="750" data-slot="player-5-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-5-number">21</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-5-name">Name Surname</h3><p><span data-slot="player-5-position">Power forward</span><span data-slot="player-5-height">203 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="guard"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A guard smiling in the team kit" width="600" height="750" data-slot="player-6-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-6-number">23</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-6-name">Name Surname</h3><p><span data-slot="player-6-position">Point guard</span><span data-slot="player-6-height">183 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="centre"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A centre reaching for a rebound" width="600" height="750" data-slot="player-7-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-7-number">32</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-7-name">Name Surname</h3><p><span data-slot="player-7-position">Centre</span><span data-slot="player-7-height">211 cm</span></p></div></li>
+      <li class="t-team-basketball-roster-filter__card" data-pos="forward"><div class="t-team-basketball-roster-filter__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A forward dribbling at speed" width="600" height="750" data-slot="player-8-photo"></div><b class="t-team-basketball-roster-filter__num" data-slot="player-8-number">44</b><div class="t-team-basketball-roster-filter__info"><h3 data-slot="player-8-name">Name Surname</h3><p><span data-slot="player-8-position">Small forward</span><span data-slot="player-8-height">196 cm</span></p></div></li>
+    </ul>
+    <p class="t-team-basketball-roster-filter__foot"><span data-slot="foot-text">Coaching staff and the full squad list are on the team page.</span> <a href="#team" data-slot="foot-link">See the full team</a></p>
+  </div>
+</section>
+<section class="t-stats-basketball-leaders-bars">
+  <div class="container">
+    <div class="t-stats-basketball-leaders-bars__head">
+      <h2 class="t-stats-basketball-leaders-bars__title" data-slot="heading">Stat leaders</h2>
+      <p class="t-stats-basketball-leaders-bars__note"><span data-slot="note">Regular season · After 8 games</span><a href="#stats" data-slot="link">All player stats</a></p>
+    </div>
+    <div class="t-stats-basketball-leaders-bars__cols">
+      <article class="t-stats-basketball-leaders-bars__col">
+        <p class="t-stats-basketball-leaders-bars__label" data-slot="cat-1-label">Points per game</p>
+        <p class="t-stats-basketball-leaders-bars__big"><b data-slot="cat-1-top-value">24.6</b><span><em data-slot="cat-1-top-rank">Leader</em><strong data-slot="cat-1-top-name">Name Surname</strong></span></p>
+        <ol class="t-stats-basketball-leaders-bars__rows">
+          <li class="t-stats-basketball-leaders-bars__line is-top"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-1-row-1-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-100" aria-hidden="true"><i></i></span><b data-slot="cat-1-row-1-value">24.6</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-1-row-2-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-74" aria-hidden="true"><i></i></span><b data-slot="cat-1-row-2-value">18.2</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-1-row-3-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-65" aria-hidden="true"><i></i></span><b data-slot="cat-1-row-3-value">15.9</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-1-row-4-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-50" aria-hidden="true"><i></i></span><b data-slot="cat-1-row-4-value">12.4</b></li>
+        </ol>
+      </article>
+      <article class="t-stats-basketball-leaders-bars__col">
+        <p class="t-stats-basketball-leaders-bars__label" data-slot="cat-2-label">Rebounds per game</p>
+        <p class="t-stats-basketball-leaders-bars__big"><b data-slot="cat-2-top-value">11.3</b><span><em data-slot="cat-2-top-rank">Leader</em><strong data-slot="cat-2-top-name">Name Surname</strong></span></p>
+        <ol class="t-stats-basketball-leaders-bars__rows">
+          <li class="t-stats-basketball-leaders-bars__line is-top"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-2-row-1-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-100" aria-hidden="true"><i></i></span><b data-slot="cat-2-row-1-value">11.3</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-2-row-2-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-77" aria-hidden="true"><i></i></span><b data-slot="cat-2-row-2-value">8.7</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-2-row-3-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-58" aria-hidden="true"><i></i></span><b data-slot="cat-2-row-3-value">6.5</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-2-row-4-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-45" aria-hidden="true"><i></i></span><b data-slot="cat-2-row-4-value">5.1</b></li>
+        </ol>
+      </article>
+      <article class="t-stats-basketball-leaders-bars__col">
+        <p class="t-stats-basketball-leaders-bars__label" data-slot="cat-3-label">Assists per game</p>
+        <p class="t-stats-basketball-leaders-bars__big"><b data-slot="cat-3-top-value">8.4</b><span><em data-slot="cat-3-top-rank">Leader</em><strong data-slot="cat-3-top-name">Name Surname</strong></span></p>
+        <ol class="t-stats-basketball-leaders-bars__rows">
+          <li class="t-stats-basketball-leaders-bars__line is-top"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-3-row-1-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-100" aria-hidden="true"><i></i></span><b data-slot="cat-3-row-1-value">8.4</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-3-row-2-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-67" aria-hidden="true"><i></i></span><b data-slot="cat-3-row-2-value">5.6</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-3-row-3-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-50" aria-hidden="true"><i></i></span><b data-slot="cat-3-row-3-value">4.2</b></li>
+          <li class="t-stats-basketball-leaders-bars__line"><span class="t-stats-basketball-leaders-bars__who" data-slot="cat-3-row-4-name">Name Surname</span><span class="t-stats-basketball-leaders-bars__bar is-w-39" aria-hidden="true"><i></i></span><b data-slot="cat-3-row-4-value">3.3</b></li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="t-features-basketball-programmes">
+  <div class="container t-features-basketball-programmes__grid">
+    <div class="t-features-basketball-programmes__intro">
+      <p class="eyebrow" data-slot="eyebrow">Training academy</p>
+      <h2 class="t-features-basketball-programmes__title" data-slot="heading">A pathway for every player</h2>
+      <p class="lead" data-slot="text">Four programmes, one way of playing. Start where you are and move up when you are ready.</p>
+      <ul class="t-features-basketball-programmes__points">
+        <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="point-1">Licensed coaches at every session</span></li>
+        <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="point-2">Small groups, lots of touches</span></li>
+        <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="point-3">First session is always free</span></li>
+      </ul>
+      <a href="#join" class="btn btn-primary" data-slot="cta">Book a free trial</a>
+    </div>
+    <ol class="t-features-basketball-programmes__ladder">
+      <li class="t-features-basketball-programmes__step is-level-1">
+        <b class="t-features-basketball-programmes__no" data-slot="programme-1-number">01</b>
+        <div class="t-features-basketball-programmes__body"><p class="t-features-basketball-programmes__ages" data-slot="programme-1-ages">Ages 6 to 9</p><h3 data-slot="programme-1-name">Mini hoops</h3><p class="t-features-basketball-programmes__text" data-slot="programme-1-text">First touches of the ball: games, footwork and fun on lowered baskets.</p></div>
+        <dl class="t-features-basketball-programmes__meta"><div><dt data-slot="programme-1-level-label">Level</dt><dd data-slot="programme-1-level">Beginner</dd></div><div><dt data-slot="programme-1-sessions-label">Training</dt><dd data-slot="programme-1-sessions">2 sessions a week</dd></div><div><dt data-slot="programme-1-days-label">Days</dt><dd data-slot="programme-1-days">Sat and Wed</dd></div></dl>
+        <span class="t-features-basketball-programmes__meter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </li>
+      <li class="t-features-basketball-programmes__step is-level-2">
+        <b class="t-features-basketball-programmes__no" data-slot="programme-2-number">02</b>
+        <div class="t-features-basketball-programmes__body"><p class="t-features-basketball-programmes__ages" data-slot="programme-2-ages">Ages 10 to 13</p><h3 data-slot="programme-2-name">Junior academy</h3><p class="t-features-basketball-programmes__text" data-slot="programme-2-text">Shooting form, passing and team play, with small-sided games every session.</p></div>
+        <dl class="t-features-basketball-programmes__meta"><div><dt data-slot="programme-2-level-label">Level</dt><dd data-slot="programme-2-level">Beginner to club</dd></div><div><dt data-slot="programme-2-sessions-label">Training</dt><dd data-slot="programme-2-sessions">3 sessions a week</dd></div><div><dt data-slot="programme-2-days-label">Days</dt><dd data-slot="programme-2-days">Mon, Wed, Sat</dd></div></dl>
+        <span class="t-features-basketball-programmes__meter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </li>
+      <li class="t-features-basketball-programmes__step is-level-3">
+        <b class="t-features-basketball-programmes__no" data-slot="programme-3-number">03</b>
+        <div class="t-features-basketball-programmes__body"><p class="t-features-basketball-programmes__ages" data-slot="programme-3-ages">Ages 14 to 17</p><h3 data-slot="programme-3-name">Youth performance</h3><p class="t-features-basketball-programmes__text" data-slot="programme-3-text">Position work, strength and league games for players aiming at the senior teams.</p></div>
+        <dl class="t-features-basketball-programmes__meta"><div><dt data-slot="programme-3-level-label">Level</dt><dd data-slot="programme-3-level">Club to elite</dd></div><div><dt data-slot="programme-3-sessions-label">Training</dt><dd data-slot="programme-3-sessions">4 sessions a week</dd></div><div><dt data-slot="programme-3-days-label">Days</dt><dd data-slot="programme-3-days">Mon to Thu</dd></div></dl>
+        <span class="t-features-basketball-programmes__meter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </li>
+      <li class="t-features-basketball-programmes__step is-level-4">
+        <b class="t-features-basketball-programmes__no" data-slot="programme-4-number">04</b>
+        <div class="t-features-basketball-programmes__body"><p class="t-features-basketball-programmes__ages" data-slot="programme-4-ages">Ages 18 and over</p><h3 data-slot="programme-4-name">Adult skills</h3><p class="t-features-basketball-programmes__text" data-slot="programme-4-text">Fundamentals and scrimmage for returning players and complete beginners.</p></div>
+        <dl class="t-features-basketball-programmes__meta"><div><dt data-slot="programme-4-level-label">Level</dt><dd data-slot="programme-4-level">All levels</dd></div><div><dt data-slot="programme-4-sessions-label">Training</dt><dd data-slot="programme-4-sessions">1 session a week</dd></div><div><dt data-slot="programme-4-days-label">Days</dt><dd data-slot="programme-4-days">Tuesday evening</dd></div></dl>
+        <span class="t-features-basketball-programmes__meter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="t-list-basketball-camp-tickets">
+  <div class="container">
+    <div class="t-list-basketball-camp-tickets__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Holiday camps</p>
+        <h2 class="t-list-basketball-camp-tickets__title" data-slot="heading">Skills camps</h2>
+      </div>
+      <p class="t-list-basketball-camp-tickets__lead" data-slot="text">Short, focused camps in the school holidays. Open to members and non-members.</p>
+    </div>
+    <ul class="t-list-basketball-camp-tickets__tickets">
+      <li class="t-list-basketball-camp-tickets__ticket">
+        <div class="t-list-basketball-camp-tickets__stub"><p class="t-list-basketball-camp-tickets__date"><span data-slot="camp-1-starts">Starts</span><b data-slot="camp-1-day">14</b><em data-slot="camp-1-month">Jul</em></p><p class="t-list-basketball-camp-tickets__ages" data-slot="camp-1-ages">Ages 8 to 12</p></div>
+        <div class="t-list-basketball-camp-tickets__body">
+          <h3 data-slot="camp-1-name">Summer skills camp</h3>
+          <p class="t-list-basketball-camp-tickets__text" data-slot="camp-1-text">Five days of shooting, handles and game play.</p>
+          <p class="t-list-basketball-camp-tickets__when"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-slot="camp-1-when">Mon to Fri · 09:00 to 15:00</span></p>
+          <div class="t-list-basketball-camp-tickets__places"><span class="t-list-basketball-camp-tickets__bar is-w-25" aria-hidden="true"><i></i></span><span data-slot="camp-1-places">6 places left</span></div>
+          <div class="t-list-basketball-camp-tickets__buy"><p class="t-list-basketball-camp-tickets__price"><b data-slot="camp-1-price">$180</b><span data-slot="camp-1-price-note">per player</span></p><a href="#signup" class="btn btn-primary" data-slot="camp-1-cta">Sign up</a></div>
+        </div>
+      </li>
+      <li class="t-list-basketball-camp-tickets__ticket">
+        <div class="t-list-basketball-camp-tickets__stub"><p class="t-list-basketball-camp-tickets__date"><span data-slot="camp-2-starts">Starts</span><b data-slot="camp-2-day">28</b><em data-slot="camp-2-month">Jul</em></p><p class="t-list-basketball-camp-tickets__ages" data-slot="camp-2-ages">Ages 12 to 16</p></div>
+        <div class="t-list-basketball-camp-tickets__body">
+          <h3 data-slot="camp-2-name">Shooting lab</h3>
+          <p class="t-list-basketball-camp-tickets__text" data-slot="camp-2-text">Three days on form, footwork and range with video feedback.</p>
+          <p class="t-list-basketball-camp-tickets__when"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-slot="camp-2-when">Mon to Wed · 10:00 to 14:00</span></p>
+          <div class="t-list-basketball-camp-tickets__places"><span class="t-list-basketball-camp-tickets__bar is-w-45" aria-hidden="true"><i></i></span><span data-slot="camp-2-places">11 places left</span></div>
+          <div class="t-list-basketball-camp-tickets__buy"><p class="t-list-basketball-camp-tickets__price"><b data-slot="camp-2-price">$120</b><span data-slot="camp-2-price-note">per player</span></p><a href="#signup" class="btn btn-primary" data-slot="camp-2-cta">Sign up</a></div>
+        </div>
+      </li>
+      <li class="t-list-basketball-camp-tickets__ticket">
+        <div class="t-list-basketball-camp-tickets__stub"><p class="t-list-basketball-camp-tickets__date"><span data-slot="camp-3-starts">Starts</span><b data-slot="camp-3-day">11</b><em data-slot="camp-3-month">Aug</em></p><p class="t-list-basketball-camp-tickets__ages" data-slot="camp-3-ages">Ages 14 to 17</p></div>
+        <div class="t-list-basketball-camp-tickets__body">
+          <h3 data-slot="camp-3-name">Elite guard camp</h3>
+          <p class="t-list-basketball-camp-tickets__text" data-slot="camp-3-text">Decision making, pick and roll and pressure defence.</p>
+          <p class="t-list-basketball-camp-tickets__when"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-slot="camp-3-when">Mon to Thu · 09:00 to 13:00</span></p>
+          <div class="t-list-basketball-camp-tickets__places"><span class="t-list-basketball-camp-tickets__bar is-w-10" aria-hidden="true"><i></i></span><span data-slot="camp-3-places">Almost full</span></div>
+          <div class="t-list-basketball-camp-tickets__buy"><p class="t-list-basketball-camp-tickets__price"><b data-slot="camp-3-price">$160</b><span data-slot="camp-3-price-note">per player</span></p><a href="#signup" class="btn btn-primary" data-slot="camp-3-cta">Sign up</a></div>
+        </div>
+      </li>
+    </ul>
+    <p class="t-list-basketball-camp-tickets__note"><span data-slot="note">Second child from the same family gets a reduced price on every camp.</span> <a href="#camps" data-slot="note-link">See all camp dates</a></p>
+  </div>
+</section>
+<section class="t-other-basketball-court-hire">
+  <div class="container">
+    <div class="t-other-basketball-court-hire__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">The gym</p>
+        <h2 class="t-other-basketball-court-hire__title" data-slot="heading">Open gym and court hire</h2>
+      </div>
+      <ul class="t-other-basketball-court-hire__legend">
+        <li class="is-open"><i aria-hidden="true"></i><span data-slot="legend-1">Open gym</span></li>
+        <li class="is-club"><i aria-hidden="true"></i><span data-slot="legend-2">Club sessions</span></li>
+        <li class="is-hire"><i aria-hidden="true"></i><span data-slot="legend-3">Free to hire</span></li>
+      </ul>
+    </div>
+    <div class="t-other-basketball-court-hire__grid">
+      <ul class="t-other-basketball-court-hire__week">
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-1-name">Mon</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-1-slot-1-time">06:30</b><span data-slot="day-1-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-1-slot-2-time">16:00</b><span data-slot="day-1-slot-2-name">Academy training</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-1-slot-3-time">20:30</b><span data-slot="day-1-slot-3-name">Court hire</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-2-name">Tue</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-2-slot-1-time">06:30</b><span data-slot="day-2-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-2-slot-2-time">17:00</b><span data-slot="day-2-slot-2-name">Senior training</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-2-slot-3-time">20:30</b><span data-slot="day-2-slot-3-name">Court hire</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-3-name">Wed</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-3-slot-1-time">06:30</b><span data-slot="day-3-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-3-slot-2-time">16:00</b><span data-slot="day-3-slot-2-name">Academy training</span></p><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-3-slot-3-time">20:00</b><span data-slot="day-3-slot-3-name">Open gym</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-4-name">Thu</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-4-slot-1-time">06:30</b><span data-slot="day-4-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-4-slot-2-time">17:00</b><span data-slot="day-4-slot-2-name">Senior training</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-4-slot-3-time">20:30</b><span data-slot="day-4-slot-3-name">Court hire</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-5-name">Fri</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-5-slot-1-time">06:30</b><span data-slot="day-5-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-5-slot-2-time">15:00</b><span data-slot="day-5-slot-2-name">Court hire</span></p><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-5-slot-3-time">19:00</b><span data-slot="day-5-slot-3-name">Late run</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day is-today"><b class="t-other-basketball-court-hire__name" data-slot="day-6-name">Sat</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-6-slot-1-time">09:00</b><span data-slot="day-6-slot-1-name">Mini hoops</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-6-slot-2-time">13:00</b><span data-slot="day-6-slot-2-name">Court hire</span></p><p class="t-other-basketball-court-hire__slot is-club"><b data-slot="day-6-slot-3-time">19:30</b><span data-slot="day-6-slot-3-name">Game night</span></p></div></li>
+        <li class="t-other-basketball-court-hire__day"><b class="t-other-basketball-court-hire__name" data-slot="day-7-name">Sun</b><div class="t-other-basketball-court-hire__slots"><p class="t-other-basketball-court-hire__slot is-open"><b data-slot="day-7-slot-1-time">10:00</b><span data-slot="day-7-slot-1-name">Open gym</span></p><p class="t-other-basketball-court-hire__slot is-hire"><b data-slot="day-7-slot-2-time">14:00</b><span data-slot="day-7-slot-2-name">Court hire</span></p></div></li>
+      </ul>
+      <aside class="t-other-basketball-court-hire__side">
+        <div class="t-other-basketball-court-hire__photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="An empty indoor basketball court with polished wooden floor" width="900" height="600" data-slot="photo"></div>
+        <div class="t-other-basketball-court-hire__rates">
+          <h3 data-slot="rates-title">Hire the court</h3>
+          <dl>
+            <div><dt data-slot="rate-1-name">Full court</dt><dd><b data-slot="rate-1-price">$60</b><span data-slot="rate-1-unit">per hour</span></dd></div>
+            <div><dt data-slot="rate-2-name">Half court</dt><dd><b data-slot="rate-2-price">$35</b><span data-slot="rate-2-unit">per hour</span></dd></div>
+            <div><dt data-slot="rate-3-name">Open gym drop-in</dt><dd><b data-slot="rate-3-price">$5</b><span data-slot="rate-3-unit">per visit</span></dd></div>
+          </dl>
+          <p data-slot="rates-note">Balls, bibs and scoreboard included. Members get open gym free.</p>
+          <a href="#hire" class="t-other-basketball-court-hire__book" data-slot="rates-cta">Book a court</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="t-pricing-basketball-membership">
+  <div class="container">
+    <div class="t-pricing-basketball-membership__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Membership</p>
+        <h2 class="t-pricing-basketball-membership__title" data-slot="heading">Pick your squad</h2>
+      </div>
+      <div class="t-pricing-basketball-membership__switch" role="group" aria-label="Billing period">
+        <button class="t-pricing-basketball-membership__switch-btn is-active" type="button" aria-pressed="true" data-slot="switch-monthly">Monthly</button>
+        <button class="t-pricing-basketball-membership__switch-btn" type="button" aria-pressed="false"><span data-slot="switch-season">Full season</span><em data-slot="switch-save">2 months free</em></button>
+      </div>
+    </div>
+    <div class="t-pricing-basketball-membership__plans">
+      <article class="t-pricing-basketball-membership__plan">
+        <b class="t-pricing-basketball-membership__jersey" aria-hidden="true" data-slot="plan-1-mark">1</b>
+        <h3 data-slot="plan-1-name">Junior</h3>
+        <p class="t-pricing-basketball-membership__who" data-slot="plan-1-who">Ages 6 to 17</p>
+        <div class="t-pricing-basketball-membership__price" data-states="items">
+          <p class="t-pricing-basketball-membership__amount is-monthly" data-state="monthly"><b data-slot="plan-1-price-monthly">$29</b><span data-slot="plan-1-unit-monthly">per month</span></p>
+          <p class="t-pricing-basketball-membership__amount is-season" data-state="season"><b data-slot="plan-1-price-season">$290</b><span data-slot="plan-1-unit-season">per season</span></p>
+        </div>
+        <ul class="t-pricing-basketball-membership__list">
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-1-item-1">Two academy sessions a week</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-1-item-2">Club training top</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-1-item-3">Free open gym on Sundays</span></li>
+        </ul>
+        <a href="#join" class="btn btn-ghost t-pricing-basketball-membership__ghost" data-slot="plan-1-cta">Join as a junior</a>
+      </article>
+      <article class="t-pricing-basketball-membership__plan is-featured">
+        <b class="t-pricing-basketball-membership__jersey" aria-hidden="true" data-slot="plan-2-mark">2</b>
+        <span class="t-pricing-basketball-membership__badge" data-slot="plan-2-badge">Most popular</span>
+        <h3 data-slot="plan-2-name">Player</h3>
+        <p class="t-pricing-basketball-membership__who" data-slot="plan-2-who">Adults and seniors</p>
+        <div class="t-pricing-basketball-membership__price" data-states="items">
+          <p class="t-pricing-basketball-membership__amount is-monthly" data-state="monthly"><b data-slot="plan-2-price-monthly">$45</b><span data-slot="plan-2-unit-monthly">per month</span></p>
+          <p class="t-pricing-basketball-membership__amount is-season" data-state="season"><b data-slot="plan-2-price-season">$450</b><span data-slot="plan-2-unit-season">per season</span></p>
+        </div>
+        <ul class="t-pricing-basketball-membership__list">
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-2-item-1">Unlimited team training</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-2-item-2">Open gym every day</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-2-item-3">League registration included</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-2-item-4">Two tickets to every home game</span></li>
+        </ul>
+        <a href="#join" class="t-pricing-basketball-membership__cta" data-slot="plan-2-cta">Join as a player</a>
+      </article>
+      <article class="t-pricing-basketball-membership__plan">
+        <b class="t-pricing-basketball-membership__jersey" aria-hidden="true" data-slot="plan-3-mark">3</b>
+        <h3 data-slot="plan-3-name">Family</h3>
+        <p class="t-pricing-basketball-membership__who" data-slot="plan-3-who">Up to four people</p>
+        <div class="t-pricing-basketball-membership__price" data-states="items">
+          <p class="t-pricing-basketball-membership__amount is-monthly" data-state="monthly"><b data-slot="plan-3-price-monthly">$79</b><span data-slot="plan-3-unit-monthly">per month</span></p>
+          <p class="t-pricing-basketball-membership__amount is-season" data-state="season"><b data-slot="plan-3-price-season">$790</b><span data-slot="plan-3-unit-season">per season</span></p>
+        </div>
+        <ul class="t-pricing-basketball-membership__list">
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-3-item-1">Everything in Player for adults</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-3-item-2">Academy places for children</span></li>
+          <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span data-slot="plan-3-item-3">One free skills camp a year</span></li>
+        </ul>
+        <a href="#join" class="btn btn-ghost t-pricing-basketball-membership__ghost" data-slot="plan-3-cta">Join as a family</a>
+      </article>
+    </div>
+    <p class="t-pricing-basketball-membership__note" data-slot="note">No joining fee. Pause or cancel a monthly membership at any time. Hardship places are available: just ask.</p>
+  </div>
+</section>
+<section class="t-contact-basketball-free-trial">
+  <div class="container"><div class="t-contact-basketball-free-trial__grid">
+    <div class="t-contact-basketball-free-trial__info">
+      <p class="t-contact-basketball-free-trial__eyebrow" data-slot="eyebrow">Contact and trials</p>
+      <h2 class="t-contact-basketball-free-trial__title" data-slot="heading">Your first session is on us</h2>
+      <p class="t-contact-basketball-free-trial__lead" data-slot="text">Tell us who is playing and we will find the right group. Bring trainers and water: we have the rest.</p>
+      <ul class="t-contact-basketball-free-trial__details">
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b data-slot="place-label">Home court</b><span data-slot="place">Sports hall, 12 Street Name, City</span></div></li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><div><b data-slot="phone-label">Club office</b><a href="#call" data-slot="phone">017 00000000</a></div></li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><b data-slot="email-label">Email</b><a href="#email" data-slot="email">example@gmail.com</a></div></li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b data-slot="hours-label">Office hours</b><span data-slot="hours">Weekdays, 10:00 to 18:00</span></div></li>
+      </ul>
+    </div>
+    <form class="t-contact-basketball-free-trial__form" action="#">
+      <h3 data-slot="form-title">Book a free trial</h3>
+      <div class="t-contact-basketball-free-trial__pair">
+        <label class="t-contact-basketball-free-trial__field"><span data-slot="name-label">Player name</span><input type="text" name="name" autocomplete="name" required></label>
+        <label class="t-contact-basketball-free-trial__field"><span data-slot="age-label">Age group</span>
+          <select name="group">
+            <option data-slot="group-1">Ages 6 to 9</option>
+            <option data-slot="group-2">Ages 10 to 13</option>
+            <option data-slot="group-3">Ages 14 to 17</option>
+            <option data-slot="group-4">Adult</option>
+          </select>
+        </label>
+      </div>
+      <label class="t-contact-basketball-free-trial__field"><span data-slot="email-field-label">Email</span><input type="email" name="email" autocomplete="email" required></label>
+      <fieldset class="t-contact-basketball-free-trial__levels">
+        <legend data-slot="level-label">Playing level</legend>
+        <label><input type="radio" name="level" value="new" checked><span data-slot="level-1">New to the game</span></label>
+        <label><input type="radio" name="level" value="some"><span data-slot="level-2">Played a bit</span></label>
+        <label><input type="radio" name="level" value="club"><span data-slot="level-3">Club player</span></label>
+      </fieldset>
+      <label class="t-contact-basketball-free-trial__field"><span data-slot="message-label">Anything we should know?</span><textarea name="message" rows="3"></textarea></label>
+      <button type="submit" class="btn btn-primary t-contact-basketball-free-trial__send" data-slot="send">Request my trial</button>
+      <p class="t-contact-basketball-free-trial__small" data-slot="form-note">We reply within two working days.</p>
+    </form>
+  </div></div>
+</section>
+<footer class="t-footer-basketball-sponsors">
+  <div class="container">
+    <div class="t-footer-basketball-sponsors__partners">
+      <p data-slot="partners-label">Club partners</p>
+      <ul>
+        <li><i aria-hidden="true"></i><span data-slot="partner-1">City Motors</span></li>
+        <li class="is-b"><i aria-hidden="true"></i><span data-slot="partner-2">Local Bank</span></li>
+        <li class="is-c"><i aria-hidden="true"></i><span data-slot="partner-3">Sports Shop</span></li>
+        <li class="is-d"><i aria-hidden="true"></i><span data-slot="partner-4">Print Studio</span></li>
+        <li class="is-b"><i aria-hidden="true"></i><span data-slot="partner-5">Corner Cafe</span></li>
+      </ul>
+    </div>
+    <p class="t-footer-basketball-sponsors__shout" data-slot="shout">Defend home court.</p>
+    <div class="t-footer-basketball-sponsors__cols">
+      <div class="t-footer-basketball-sponsors__brand">
+        <a href="#" class="t-footer-basketball-sponsors__logo"><span class="t-footer-basketball-sponsors__ball" aria-hidden="true"></span><b data-slot="logo">Club Name</b></a>
+        <p data-slot="about">A community basketball club and training academy for every age and level.</p>
+        <a href="#join" class="t-footer-basketball-sponsors__join" data-slot="cta">Join the club</a>
+      </div>
+      <nav class="t-footer-basketball-sponsors__col" aria-label="Club">
+        <h3 data-slot="col-1-title">Club</h3>
+        <a href="#schedule" data-slot="col-1-link-1">Schedule</a>
+        <a href="#results" data-slot="col-1-link-2">Results</a>
+        <a href="#roster" data-slot="col-1-link-3">Roster</a>
+        <a href="#tickets" data-slot="col-1-link-4">Tickets</a>
+      </nav>
+      <nav class="t-footer-basketball-sponsors__col" aria-label="Train">
+        <h3 data-slot="col-2-title">Train</h3>
+        <a href="#academy" data-slot="col-2-link-1">Academy</a>
+        <a href="#camps" data-slot="col-2-link-2">Skills camps</a>
+        <a href="#court" data-slot="col-2-link-3">Open gym</a>
+        <a href="#hire" data-slot="col-2-link-4">Court hire</a>
+      </nav>
+      <div class="t-footer-basketball-sponsors__col">
+        <h3 data-slot="col-3-title">Find us</h3>
+        <p data-slot="address">Sports hall, 12 Street Name, City</p>
+        <a href="#call" data-slot="phone">017 00000000</a>
+        <a href="#email" data-slot="email">example@gmail.com</a>
+      </div>
+    </div>
+    <div class="t-footer-basketball-sponsors__base">
+      <p data-slot="copyright">© Club Name. All rights reserved.</p>
+      <div class="t-footer-basketball-sponsors__legal"><a href="#privacy" data-slot="legal-1">Privacy</a><a href="#safeguarding" data-slot="legal-2">Safeguarding</a><a href="#conduct" data-slot="legal-3">Code of conduct</a></div>
+      <div class="t-footer-basketball-sponsors__social">
+        <a href="#social-1" aria-label="Photo feed"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/></svg></a>
+        <a href="#social-2" aria-label="Video channel"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></a>
+        <a href="#social-3" aria-label="Community group"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer></main><script>(() => { const root = document.querySelector(".t-list-basketball-fixtures-results"); if (!root) return;
+var tabs = Array.prototype.slice.call(root.querySelectorAll('.t-list-basketball-fixtures-results__tab'));
+var panels = Array.prototype.slice.call(root.querySelectorAll('.t-list-basketball-fixtures-results__panel'));
+function pick(n, focus) {
+  tabs.forEach(function (t, i) {
+    var on = i === n;
+    t.classList.toggle('is-active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.tabIndex = on ? 0 : -1;
+    if (panels[i]) panels[i].classList.toggle('is-active', on);
+  });
+  if (focus) tabs[n].focus();
+}
+tabs.forEach(function (tab, i) {
+  tab.addEventListener('click', function () { pick(i, false); });
+  tab.addEventListener('keydown', function (e) {
+    var n = -1;
+    if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+    if (n > -1) { e.preventDefault(); pick(n, true); }
+  });
+});
+})();
+(() => { const root = document.querySelector(".t-team-basketball-roster-filter"); if (!root) return;
+var buttons = Array.prototype.slice.call(root.querySelectorAll('.t-team-basketball-roster-filter__filter'));
+var cards = Array.prototype.slice.call(root.querySelectorAll('.t-team-basketball-roster-filter__card'));
+buttons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    var kind = button.getAttribute('data-filter');
+    buttons.forEach(function (other) {
+      var on = other === button;
+      other.classList.toggle('is-active', on);
+      other.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    cards.forEach(function (card) {
+      card.classList.toggle('is-hidden', kind !== 'all' && card.getAttribute('data-pos') !== kind);
+    });
+  });
+});
+})();
+(() => { const root = document.querySelector(".t-pricing-basketball-membership"); if (!root) return;
+var buttons = Array.prototype.slice.call(root.querySelectorAll('.t-pricing-basketball-membership__switch-btn'));
+buttons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    root.classList.toggle('is-season', index === 1);
+    buttons.forEach(function (other, i) {
+      other.classList.toggle('is-active', i === index);
+      other.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+    });
+  });
+});
+})();</script></body></html>
