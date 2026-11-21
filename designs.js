@@ -57,6 +57,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "shop-landing",
+      "name": "Shop landing pages",
+      "desc": "Calm product shop pages with very little animation"
+    },
+    {
       "id": "industry-landing",
       "name": "Industry landing pages",
       "desc": "One landing page per industry, with a shared kit"
@@ -78,6 +83,121 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "shop-landing",
+      "slug": "shop-gallery",
+      "title": "All 5 shop pages",
+      "desc": "Gallery of the five calm shop landing pages.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "shop-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "shop-landing",
+      "slug": "shop-01-skincare",
+      "title": "Pellume · Skincare",
+      "desc": "Skin-type filter, AM/PM routine sets, ingredient spotlight, patch-test note.",
+      "tags": [
+        "Skincare"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "shop-landing/01-skincare/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "shop-landing",
+      "slug": "shop-02-pharmacy",
+      "title": "Larkmoor Pharmacy · Online pharmacy",
+      "desc": "Medicine search, categories, prescription upload card, ask a pharmacist, safety notes.",
+      "tags": [
+        "Pharmacy"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "shop-landing/02-pharmacy/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "shop-landing",
+      "slug": "shop-03-herbal",
+      "title": "Mossgate Herbary · Herbal products",
+      "desc": "Shop by herb and type, field to jar, growers, herb glossary, disclaimer.",
+      "tags": [
+        "Herbal"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "shop-landing/03-herbal/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "shop-landing",
+      "slug": "shop-04-honey-farm",
+      "title": "Bramblecomb Farm · Honey & farm shop",
+      "desc": "Honey by season, harvest calendar, farm box subscription, farm-gate hours.",
+      "tags": [
+        "Honey",
+        "Farm"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "shop-landing/04-honey-farm/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "shop-landing",
+      "slug": "shop-05-flower-shop",
+      "title": "Pell & Primrose · Flower shop",
+      "desc": "Bouquet sizes, occasions, card message, postcode check, subscriptions.",
+      "tags": [
+        "Florist"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "shop-landing/05-flower-shop/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-dashboard",
+      "slug": "form-emails",
+      "title": "Site settings · Form emails",
+      "desc": "Sending address (Zejify or your own domain with DNS records), per-form recipients, reply-to, subject, format, thank-you email, live preview and recent deliveries.",
+      "tags": [
+        "Settings",
+        "Forms",
+        "Email"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "site-dashboard/form-emails/index.html"
+        }
+      ]
+    },
     {
       "cat": "section-layouts",
       "slug": "stats-gallery",

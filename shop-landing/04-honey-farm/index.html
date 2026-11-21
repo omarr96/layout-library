@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bramblecomb Farm — Raw Honey, Eggs &amp; Farm Boxes</title>
+<meta name="description" content="Raw honey from our own hives, cut comb, beeswax candles, free-range eggs and farm boxes from a family farm in Herefordshire.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--c:#FBF6EC;--p:#FFFDF8;--s:#F3E7CF;--l:#E4D5B7;--i:#2B1D12;--m:#5F4E3E;--h:#E0A22E;--a:#8A5009;--d:#7A4608;--g:#4F5D3A;--r:14px;--sh:0 8px 24px rgba(43,29,18,.09);--se:"Fraunces",Georgia,serif;--sa:"Work Sans",system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--c);color:var(--i);font:16px/1.6 var(--sa);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--se);font-weight:600;line-height:1.15;margin:0 0 .5em}
+h2{font-size:clamp(1.75rem,3.2vw,2.6rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+.plain{list-style:none;margin:0;padding:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--i);color:#fff;padding:10px 14px;border-radius:8px;z-index:100}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--a);outline-offset:2px}
+.eyebrow{display:block;font:600 .78rem/1 var(--sa);letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:14px}
+.lead{font-size:1.08rem;color:var(--m);max-width:60ch}
+.small{font-size:.86rem;color:var(--m)}
+section{padding:88px 0}
+.alt{background:var(--s)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 .95rem/1 var(--sa);padding:14px 22px;border-radius:99px;border:1.5px solid var(--i);background:var(--i);color:var(--c);cursor:pointer;text-decoration:none;transition:.2s}
+.btn:hover{transform:translateY(-1px);background:var(--d);border-color:var(--d)}
+.ghost{background:none;color:var(--i)}
+.ghost:hover{color:var(--c)}
+.hon{background:var(--h);border-color:var(--h);color:var(--i)}
+.hon:hover{background:#EDB44A;border-color:#EDB44A}
+.announce{background:var(--i);color:#F5E9D2;font-size:.85rem;text-align:center;padding:9px 16px}
+.announce b{color:var(--h)}
+header{position:sticky;top:0;z-index:50}
+header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(251,246,236,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--l)}
+.hdr{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.25rem/1 var(--se);white-space:nowrap}
+.logo small{display:block;font:500 .66rem/1 var(--sa);letter-spacing:.16em;text-transform:uppercase;color:var(--m);margin-top:4px}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:500;font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--h);color:var(--d)}
+.acts{display:flex;gap:6px}
+.ib{position:relative;width:44px;height:44px;border-radius:50%;border:0;background:none;color:var(--i);display:grid;place-items:center;cursor:pointer}
+.ib:hover{background:var(--s)}
+svg.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+svg.t{stroke-width:1.8}
+.ib svg{width:22px;height:22px}
+.cnt{position:absolute;top:3px;right:1px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--d);color:#fff;font:600 .7rem/19px var(--sa)}
+.burger,.mnav,.sbar{display:none}
+.sbar.open{display:block;border-top:1px solid var(--l);padding:12px 0}
+.sbar form{display:flex;gap:10px}
+input[type=search],input[type=email]{flex:1;min-width:0;width:100%;font:inherit;padding:12px 18px;border:2px solid var(--l);border-radius:99px;background:var(--p);color:var(--i)}
+input:focus{outline:none;border-color:var(--a)}
+.hero{padding:56px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.2vw,4.3rem);margin-bottom:20px}
+.hero em{color:var(--a)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 36px}
+.facts{display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--l)}
+.facts b{display:block;font:600 1.6rem/1.1 var(--se)}
+.facts span{font-size:.85rem;color:var(--m)}
+.hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px 24px 140px 24px}
+.trust{background:var(--p);border-block:1px solid var(--l);padding:26px 0}
+.trust ul{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.trust li{display:flex;gap:14px;align-items:center}
+.trust svg{flex:none;width:38px;height:38px;padding:8px;border-radius:50%;background:var(--s);color:var(--d)}
+.trust span,.people span{display:block;font-size:.86rem;color:var(--m)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 .88rem/1 var(--sa);padding:10px 16px;border-radius:99px;border:1.5px solid var(--l);background:var(--p);color:var(--i);cursor:pointer}
+.chip:hover{border-color:var(--a)}
+.chip[aria-pressed=true]{background:var(--i);color:var(--c);border-color:var(--i)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card,.panel,.people li{background:var(--p);border:1px solid var(--l);border-radius:var(--r)}
+.card{overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.card[hidden]{display:none}
+.media{position:relative;overflow:hidden;aspect-ratio:1;background:var(--s)}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.card:hover .media img{transform:scale(1.03)}
+.badge{position:absolute;top:12px;left:12px;background:var(--p);font:600 .72rem/1 var(--sa);padding:7px 10px;border-radius:99px}
+.badge.new{background:var(--g);color:#fff}
+.cb{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:1.12rem}
+.notes{font-size:.86rem;color:var(--m);margin:0}
+.meta{font-size:.78rem;color:var(--g);font-weight:600}
+.sizes,.opts{display:flex;gap:6px;flex-wrap:wrap;border:0;padding:0;margin:0}
+.sizes label,.opt{position:relative;cursor:pointer}
+.sizes input,.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.sizes span{display:block;font-size:.8rem;font-weight:500;padding:6px 10px;border-radius:6px;border:1.5px solid var(--l);background:var(--c)}
+.sizes input:checked+span{background:var(--i);border-color:var(--i);color:var(--c)}
+.sizes input:focus-visible+span,.opt input:focus-visible+span{outline:3px solid var(--a);outline-offset:2px}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px}
+.price{font:600 1.2rem/1 var(--se)}
+.price small{font-family:var(--sa)}
+.add{padding:10px 14px;font-size:.85rem}
+.nores{display:none;padding:28px;text-align:center;color:var(--m);border:1px dashed var(--l);border-radius:var(--r)}
+.nores.show{display:block}
+.cal{background:var(--p);border-radius:var(--r);border:1px solid var(--l);padding:22px;overflow-x:auto}
+.cal table{width:100%;min-width:640px;border-spacing:4px 6px}
+.cal thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.cal tbody th{text-align:left;font-size:.9rem;font-weight:500;white-space:nowrap;padding-right:8px}
+.cal td{height:22px;border-radius:4px;background:#F2ECE0}
+.cal thead td{background:none}
+.cal .h,.key .h{background:var(--h)}.cal .s,.key .s{background:#EFD08F}.cal .g,.key .g{background:var(--g)}
+.key{display:flex;gap:20px;flex-wrap:wrap;font-size:.84rem;color:var(--m);margin-top:16px}
+.key i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.pics{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.pics img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r)}
+.pics img+img{margin-top:48px}
+.people{display:grid;gap:14px;margin-top:28px}
+.people li{padding:16px}
+.box{background:var(--g);color:#EEF0E4}
+.box h2{color:#fff}
+.box .eyebrow{color:#F3D58F}
+.box .lead{color:#E3E6D6}
+.box-img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:var(--r)}
+.incl{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:18px;font-size:.92rem}
+.incl li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--h);margin-right:9px;vertical-align:2px}
+.bform{background:var(--p);color:var(--i);border-radius:var(--r);padding:26px;margin-top:24px}
+.bform fieldset{border:0;padding:0;margin:0 0 18px}
+.bform legend{font-weight:600;font-size:.9rem;margin-bottom:10px;padding:0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt span{display:block;border:1.5px solid var(--l);border-radius:8px;padding:12px 14px;font-size:.9rem}
+.opt b{display:block}
+.opt input:checked+span{border-color:var(--g);background:#E6EAD9}
+.total{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--l);padding-top:18px}
+.total .price{font-size:1.6rem}
+.bundle{display:grid;grid-template-columns:1fr 1fr;border-radius:20px;overflow:hidden;background:var(--i);color:#E8DAC0}
+.bundle img{width:100%;height:100%;min-height:360px;object-fit:cover}
+.bundle>div{padding:48px}
+.bundle h2,.bundle .price{color:#fff}
+.bundle .eyebrow{color:var(--h)}
+.bundle .price{font-size:1.8rem}
+.was{text-decoration:line-through;color:#C9B89C;margin-left:10px;font:1rem var(--sa)}
+.visit{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.panel{padding:26px}
+.panel h3{display:flex;align-items:center;gap:10px}
+.panel h3 svg{width:22px;height:22px;color:var(--d)}
+.panel img,.map{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;margin-bottom:14px;border:1px solid var(--l)}
+.hours{width:100%;border-collapse:collapse;font-size:.94rem}
+.hours th,.hours td{padding:8px 0;border-bottom:1px solid var(--l)}
+.hours th{text-align:left;font-weight:500}
+.hours td{text-align:right;color:var(--m)}
+address{font-style:normal;margin-bottom:12px}
+.reviews{background:var(--p);border-block:1px solid var(--l)}
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rev{background:var(--c);border-radius:var(--r);padding:26px;margin:0;display:flex;flex-direction:column}
+.stars{color:var(--a);letter-spacing:2px;margin-bottom:12px}
+.rev blockquote{margin:0 0 18px;font:500 1.06rem/1.5 var(--se)}
+.rev figcaption{margin-top:auto;font-size:.88rem;color:var(--m)}
+.rev figcaption b{color:var(--i);display:block}
+.faq{grid-template-columns:.8fr 1.2fr;align-items:start}
+.qa{border-bottom:1px solid var(--l)}
+.qa:first-child{border-top:1px solid var(--l)}
+.qa h3{margin:0}
+.q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;padding:20px 0;font:600 1.04rem/1.4 var(--sa);color:var(--i);text-align:left;cursor:pointer}
+.q:hover{color:var(--d)}
+.q i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--s);display:grid;place-items:center;font-style:normal;transition:transform .2s}
+.q[aria-expanded=true] i{transform:rotate(45deg)}
+.qa div{padding:0 0 20px;color:var(--m);max-width:62ch}
+.news{background:var(--h);padding:72px 0}
+.news p{margin:0;color:#3D2A15}
+.news form{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.news .field{flex:1;min-width:220px}
+.news .btn{min-height:54px}
+.news label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px}
+.news input{border-color:transparent}
+.news input:focus{border-color:var(--i)}
+.news input[aria-invalid=true]{border-color:#8A1F0B}
+.msg{flex-basis:100%;margin:6px 0 0;font-weight:500;min-height:1.4em}
+.msg.err{color:#7A1A08}
+footer{background:var(--i);color:#D9CBB2;padding:64px 0 28px;font-size:.92rem}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:44px}
+footer .logo{color:#fff;margin-bottom:14px}
+footer .logo small{color:#BFAF92}
+footer h4{font:600 .8rem/1 var(--sa);letter-spacing:.14em;text-transform:uppercase;color:var(--h);margin-bottom:16px}
+footer ul{display:grid;gap:9px}
+footer a{text-decoration:none;color:#E8DCC6}
+footer a:hover{color:var(--h)}
+.fb{border-top:1px solid #4A3A2B;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem;color:#BFAF92}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);background:var(--i);color:var(--c);padding:13px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:.92rem;opacity:0;pointer-events:none;transition:.2s;z-index:80;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast::before{content:"✓ ";color:var(--h);font-weight:700}
+@media (max-width:1080px){.grid{grid-template-columns:repeat(3,1fr)}.nav{gap:18px}.visit{grid-template-columns:1fr 1fr}.visit .panel:last-child{grid-column:1/-1}}
+@media (max-width:900px){section{padding:68px 0}.nav{display:none}.burger{display:grid}.acts{margin-left:auto}.mnav.open{display:block;border-top:1px solid var(--l);padding:8px 0 16px}.mnav a{display:block;padding:12px 0;text-decoration:none;font-weight:500;font-size:1.05rem;border-bottom:1px solid var(--l)}.hero-grid,.two{grid-template-columns:1fr;gap:40px}.hero-img,.pics{max-width:560px}.trust ul,.grid,.revs,.fg{grid-template-columns:1fr 1fr}.bundle{grid-template-columns:1fr}.bundle img{min-height:0;aspect-ratio:16/9}}
+@media (max-width:600px){.wrap{padding:0 16px}section{padding:56px 0}.hdr{height:64px;gap:12px}.logo{font-size:1.1rem}.hero{padding:32px 0 52px}.hero-img{border-radius:18px 18px 90px 18px}.trust ul,.opts,.incl,.visit,.revs,.fg{grid-template-columns:1fr}.grid{gap:12px}.cb{padding:12px}.card h3{font-size:1rem}.notes{display:none}.buy{flex-direction:column;align-items:stretch}.bundle>div{padding:30px 22px}.pics img+img{margin-top:28px}.news .btn{width:100%}.ctas .btn{flex:1 1 auto}.facts{gap:22px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="announce"><b>Farm gate open Thu–Sun</b> · Free UK delivery over £40</div>
+
+<header>
+<div class="wrap hdr">
+<a href="#" class="logo" aria-label="Bramblecomb Farm home"><svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><symbol id="lg" viewBox="0 0 40 40"><path d="M20 2l15.6 9v18L20 38 4.4 29V11z" fill="#E0A22E"/><path d="M20 10l8.7 5v10L20 30l-8.7-5V15z" fill="none" stroke="#2B1D12" stroke-width="2"/><circle cx="20" cy="20" r="3.2" fill="#2B1D12"/></symbol><use href="#lg"/></svg><span>Bramblecomb<small>Farm &amp; Apiary</small></span></a>
+<nav class="nav" aria-label="Main"><a href="#shop">Shop</a><a href="#calendar">Harvest</a><a href="#family">Our family</a><a href="#farm-box">Farm box</a><a href="#visit">Visit</a><a href="#faq">FAQ</a></nav>
+<div class="acts">
+<button class="ib" id="sBtn" aria-expanded="false" aria-controls="sBar" aria-label="Search products"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+<button class="ib" id="cartBtn" aria-label="Basket, 0 items"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cnt" id="cnt" aria-hidden="true">0</span></button>
+<button class="ib burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div>
+</div>
+<div class="sbar" id="sBar"><form class="wrap" role="search" id="sForm"><label for="q" class="sr-only">Search the farm shop</label><input id="q" type="search" placeholder="Search honey, comb, candles, eggs…" autocomplete="off"><button class="btn add" type="submit">Search</button></form></div>
+<nav class="mnav" id="mnav" aria-label="Mobile"><div class="wrap"><a href="#shop">Shop</a><a href="#calendar">Harvest calendar</a><a href="#family">Our family</a><a href="#farm-box">Farm box</a><a href="#visit">Visit the farm</a><a href="#faq">FAQ</a></div></nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+<div class="wrap hero-grid">
+<div>
+<span class="eyebrow">Family farm · Herefordshire, since 1961</span>
+<h1 id="hero-h">Raw honey from our hives, <em>straight to your table.</em></h1>
+<p class="lead">Cold-extracted, never heated, never blended. We jar each harvest by hand on the farm, alongside cut comb, rolled beeswax candles, eggs from our hens and a box of whatever the fields gave us this week.</p>
+<div class="ctas"><a href="#shop" class="btn">Shop the honey</a><a href="#farm-box" class="btn ghost">Start a farm box</a></div>
+<ul class="plain facts"><li><b>64</b><span>hives</span></li><li><b>4</b><span>honeys a year</span></li><li><b>4.9/5</b><span>1,280 reviews</span></li></ul>
+</div>
+<img class="hero-img" src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=1200&q=70&auto=format&fit=crop" alt="Golden raw honey being drizzled into a glass jar tied with twine" fetchpriority="high">
+</div>
+</section>
+
+<div class="trust"><ul class="plain wrap">
+<li><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>Free delivery over £40</b><span>Dispatched Mon &amp; Wed, 2–3 days</span></div></li>
+<li><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6"/><path d="M4 4v4h4"/></svg><div><b>30-day happy-jar promise</b><span>Not for you? We'll refund it</span></div></li>
+<li><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg><div><b>Secure checkout</b><span>Cards, Apple Pay, PayPal</span></div></li>
+<li><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Plastic-free packing</b><span>Paper, wool and card only</span></div></li>
+</ul></div>
+
+<section id="shop" aria-labelledby="shop-h">
+<div class="wrap">
+<div class="sec-head">
+<div><span class="eyebrow">The farm shop</span><h2 id="shop-h">This season's jars &amp; baskets</h2><p class="lead">Each honey tastes of a different month on the farm. The flavour notes are ours; the bees did the rest.</p></div>
+<div class="chips" role="group" aria-label="Filter products"><button class="chip" aria-pressed="true" data-f="all">All</button><button class="chip" aria-pressed="false" data-f="honey">Honey</button><button class="chip" aria-pressed="false" data-f="wax">Beeswax</button><button class="chip" aria-pressed="false" data-f="farm">Eggs &amp; veg</button></div>
+</div>
+<div class="grid" id="grid">
+<article class="card" data-c="honey"><div class="media"><img src="https://images.unsplash.com/photo-1587049352824-f7e128d4ebe5?w=1200&q=70&auto=format&fit=crop" alt="Light golden wildflower honey in a jar with a wooden dipper" loading="lazy"><span class="badge">Bestseller</span></div><div class="cb"><span class="meta">Jun – Aug harvest</span><h3>Summer Wildflower Honey</h3><p class="notes">Bramble, clover and meadowsweet. Soft, floral, a hint of lemon.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s1" data-p="6.50" checked><span>227g</span></label><label><input type="radio" name="s1" data-p="8.75"><span>340g</span></label><label><input type="radio" name="s1" data-p="10.95"><span>454g</span></label></fieldset><div class="buy"><span class="price">£6.50</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="honey"><div class="media"><img src="https://images.unsplash.com/photo-1605880980331-20a711b27338?w=1200&q=70&auto=format&fit=crop" alt="Amber heather honey in a plain glass jar on a wooden table" loading="lazy"><span class="badge new">New season</span></div><div class="cb"><span class="meta">Aug – Sep harvest</span><h3>Black Mountain Heather Honey</h3><p class="notes">From hives we move up to the moor. Bold, toffee-ish, slightly bitter finish.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s2" data-p="9.50" checked><span>227g</span></label><label><input type="radio" name="s2" data-p="12.95"><span>340g</span></label></fieldset><div class="buy"><span class="price">£9.50</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="honey"><div class="media"><img src="https://images.unsplash.com/photo-1654515722385-c684c5331c04?w=1200&q=70&auto=format&fit=crop" alt="Honey dripping from a wooden dipper into a bowl" loading="lazy"></div><div class="cb"><span class="meta">Apr – May harvest</span><h3>Orchard Blossom Honey</h3><p class="notes">Apple, cherry and hawthorn. Pale, creamy-set and gentle.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s3" data-p="6.95" checked><span>227g</span></label><label><input type="radio" name="s3" data-p="9.25"><span>340g</span></label></fieldset><div class="buy"><span class="price">£6.95</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="honey"><div class="media"><img src="https://images.unsplash.com/photo-1642067958050-bfba120a57e2?w=1200&q=70&auto=format&fit=crop" alt="Close-up of capped honeycomb filled with golden honey" loading="lazy"><span class="badge">Limited</span></div><div class="cb"><span class="meta">Jul – Sep, while it lasts</span><h3>Cut Comb Honey</h3><p class="notes">Whole comb straight from the frame. Chewy wax, floral honey.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s4" data-p="11.50" checked><span>200g</span></label><label><input type="radio" name="s4" data-p="19.95"><span>400g</span></label></fieldset><div class="buy"><span class="price">£11.50</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="wax"><div class="media"><img src="https://images.unsplash.com/photo-1668086682339-f14262879c18?w=1200&q=70&auto=format&fit=crop" alt="Lit rolled beeswax pillar candle with a honeycomb texture" loading="lazy"></div><div class="cb"><span class="meta">Hand-rolled · 30–40 hr burn</span><h3>Rolled Beeswax Pillar</h3><p class="notes">Pure wax from our own cappings. Smells faintly of honey when lit.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s5" data-p="8.00" checked><span>7cm</span></label><label><input type="radio" name="s5" data-p="12.50"><span>12cm</span></label></fieldset><div class="buy"><span class="price">£8.00</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="wax"><div class="media"><img src="https://images.unsplash.com/photo-1732117924212-39bfaec174c9?w=1200&q=70&auto=format&fit=crop" alt="Slim yellow beeswax taper candle burning in a brass holder" loading="lazy"></div><div class="cb"><span class="meta">8 hr burn each</span><h3>Beeswax Dinner Tapers</h3><p class="notes">Slow, clean and drip-resistant. Fits standard holders.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s6" data-p="7.50" checked><span>Pair</span></label><label><input type="radio" name="s6" data-p="19.50"><span>Box of 6</span></label></fieldset><div class="buy"><span class="price">£7.50</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="farm"><div class="media"><img src="https://images.unsplash.com/photo-1598965675045-45c5e72c7d05?w=1200&q=70&auto=format&fit=crop" alt="Brown and cream free-range eggs nestled in straw" loading="lazy"></div><div class="cb"><span class="meta">Laid this week · local delivery</span><h3>Free-range Mixed Eggs</h3><p class="notes">From our 240 hens in the orchard. Deep orange yolks.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s7" data-p="2.40" checked><span>6</span></label><label><input type="radio" name="s7" data-p="4.40"><span>12</span></label></fieldset><div class="buy"><span class="price">£2.40</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+<article class="card" data-c="farm"><div class="media"><img src="https://images.unsplash.com/photo-1635450370155-d6a650322fa5?w=1200&q=70&auto=format&fit=crop" alt="Wooden crates of red cabbage, celeriac, beetroot and sweet potatoes" loading="lazy"></div><div class="cb"><span class="meta">Picked the morning it ships</span><h3>One-off Veg Box</h3><p class="notes">7–9 seasonal vegetables from our fields and two neighbours'.</p><fieldset class="sizes"><legend class="sr-only">Size</legend><label><input type="radio" name="s8" data-p="18.00" checked><span>Small</span></label><label><input type="radio" name="s8" data-p="26.00"><span>Large</span></label></fieldset><div class="buy"><span class="price">£18.00</span><button class="btn add" type="button">Add to basket</button></div></div></article>
+</div>
+<p class="nores" id="nores" role="status">Nothing matches that search. Try “honey” or “candle”.</p>
+</div>
+</section>
+
+<section id="calendar" class="alt" aria-labelledby="cal-h">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Harvest calendar</span><h2 id="cal-h">What comes off the farm, month by month</h2></div><p class="lead">Honey sells out when it sells out. Join the Hive Letter and we'll tell you the day each harvest is jarred.</p></div>
+<div class="cal" role="region" aria-label="Harvest calendar, scrolls sideways on small screens" tabindex="0">
+<table><caption class="sr-only">Harvest calendar by month</caption><thead><tr><td></td><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr></thead><tbody>
+<tr><th scope=row>Orchard blossom honey<span class="sr-only">: harvest Apr–May, in stock Jun–Dec</span></th><td></td><td></td><td></td><td class=h></td><td class=h></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td></tr>
+<tr><th scope=row>Summer wildflower honey<span class="sr-only">: harvest Jun–Aug, in stock Sep–Mar</span></th><td class=s></td><td class=s></td><td class=s></td><td></td><td></td><td class=h></td><td class=h></td><td class=h></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td></tr>
+<tr><th scope=row>Lime blossom honey<span class="sr-only">: harvest Jul, in stock Aug–Dec</span></th><td></td><td></td><td></td><td></td><td></td><td></td><td class=h></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td></tr>
+<tr><th scope=row>Heather honey<span class="sr-only">: harvest Aug–Sep, in stock Oct–Feb</span></th><td class=s></td><td class=s></td><td></td><td></td><td></td><td></td><td></td><td class=h></td><td class=h></td><td class=s></td><td class=s></td><td class=s></td></tr>
+<tr><th scope=row>Cut comb<span class="sr-only">: cut Jul–Sep, last stock Oct</span></th><td></td><td></td><td></td><td></td><td></td><td></td><td class=h></td><td class=h></td><td class=h></td><td class=s></td><td></td><td></td></tr>
+<tr><th scope=row>Beeswax candles<span class="sr-only">: in stock all year</span></th><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td><td class=s></td></tr>
+<tr><th scope=row>Free-range eggs<span class="sr-only">: fresh all year</span></th><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td></tr>
+<tr><th scope=row>Farm box veg<span class="sr-only">: fresh May–Nov</span></th><td></td><td></td><td></td><td></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td class=g></td><td></td></tr>
+</tbody></table>
+<div class="key"><span><i class="h"></i>Harvest &amp; jarring</span><span><i class="s"></i>From stock</span><span><i class="g"></i>Fresh from the field</span></div>
+</div>
+</div>
+</section>
+
+<section id="family" aria-labelledby="fam-h">
+<div class="wrap two">
+<div class="pics">
+<img src="https://images.unsplash.com/photo-1602867693070-f9db4f42463a?w=1200&q=70&auto=format&fit=crop" alt="Beekeeper in a white suit holding up a frame of capped comb covered in bees" loading="lazy">
+<img src="https://images.unsplash.com/photo-1476554123255-b0ff6b30dcd8?w=1200&q=70&auto=format&fit=crop" alt="A family walking through a golden field towards an old wooden barn" loading="lazy">
+</div>
+<div>
+<span class="eyebrow">Meet the beekeepers</span>
+<h2 id="fam-h">Three generations, sixty-four hives, one kitchen table</h2>
+<p class="lead">Grandad Tom kept four hives behind the dairy in 1961. The cows are long gone, the hives now sit on three wildflower meadows, and we still label every jar at the same table.</p>
+<ul class="plain people">
+<li><b>Rhian Ashdown, head beekeeper</b><span>Checks every hive weekly from April to September and decides when each honey is ready.</span></li>
+<li><b>Mark Ashdown, fields &amp; hens</b><span>Grows the farm-box veg and looks after 240 hens in the old orchard.</span></li>
+<li><b>Elsie Ashdown, candles &amp; farm gate</b><span>Rolls every candle by hand and runs the shop at weekends.</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="farm-box" class="box" aria-labelledby="box-h">
+<div class="wrap two">
+<div>
+<img class="box-img" src="https://images.unsplash.com/photo-1602574237777-fef4326708cb?w=1200&q=70&auto=format&fit=crop" alt="Freshly picked heritage carrots, leeks and greens in wicker baskets" loading="lazy">
+<ul class="plain incl"><li>7–9 seasonal vegetables</li><li>Half dozen free-range eggs</li><li>A 227g jar of honey monthly</li><li>Skip, pause or cancel any time</li></ul>
+</div>
+<div>
+<span class="eyebrow">Farm box subscription</span>
+<h2 id="box-h">The farm, delivered on your schedule</h2>
+<p class="lead">Packed Tuesday, at your door Thursday, within 40 miles of the farm. Pick a size and how often, then change it whenever you like.</p>
+<form class="bform" id="bform">
+<fieldset><legend>Box size</legend><div class="opts">
+<label class="opt"><input type="radio" name="bs" value="Small" data-p="22" checked><span><b>Small · £22</b>1–2 people</span></label>
+<label class="opt"><input type="radio" name="bs" value="Family" data-p="32"><span><b>Family · £32</b>3–5 people</span></label>
+</div></fieldset>
+<fieldset><legend>How often</legend><div class="opts">
+<label class="opt"><input type="radio" name="bf" value="Weekly" data-o=".1" checked><span><b>Weekly</b>Save 10% per box</span></label>
+<label class="opt"><input type="radio" name="bf" value="Fortnightly" data-o="0"><span><b>Fortnightly</b>Every other Thursday</span></label>
+</div></fieldset>
+<div class="total"><div><span class="price" id="bp">£19.80</span> <span class="small" id="bper">per weekly box</span></div><button class="btn" type="submit">Start my farm box</button></div>
+</form>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="bundle-h">
+<div class="wrap"><div class="bundle">
+<img src="https://images.unsplash.com/photo-1573697610008-4c72b4e9508f?w=1200&q=70&auto=format&fit=crop" alt="A piece of honeycomb and a wooden dipper on a pale wooden board" loading="lazy">
+<div>
+<span class="eyebrow">Gift box</span>
+<h2 id="bundle-h">The Four Seasons Tasting Box</h2>
+<p>A year on the farm in four small jars. Taste them side by side, palest to darkest, and you'll never call it “just honey” again.</p>
+<ul><li>4 × 113g jars: orchard blossom, wildflower, lime &amp; heather</li><li>Olive-wood dipper and a tasting card</li><li>Recycled kraft box with a handwritten tag</li></ul>
+<div class="buy"><span class="price">£24.00<span class="was">£28.50</span></span><button class="btn hon add" type="button" data-n="Four Seasons Tasting Box">Add gift box</button></div>
+</div>
+</div></div>
+</section>
+
+<section id="visit" class="alt" aria-labelledby="visit-h">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Visit the farm</span><h2 id="visit-h">Come to the farm gate</h2></div><p class="lead">Free parking in the yard, dogs welcome on leads, and the kettle's usually on.</p></div>
+<div class="visit">
+<div class="panel">
+<h3><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Farm-gate hours</h3>
+<img src="https://images.unsplash.com/photo-1576501161309-37635f837061?w=1200&q=70&auto=format&fit=crop" alt="Wooden farm shop sign on a brick wall" loading="lazy">
+<table class="hours"><caption class="sr-only">Farm shop opening hours</caption>
+<tr><th scope="row">Mon – Wed</th><td>Closed (we're in the hives)</td></tr>
+<tr><th scope="row">Thu – Fri</th><td>10:00 – 17:00</td></tr>
+<tr><th scope="row">Saturday</th><td>09:00 – 17:00</td></tr>
+<tr><th scope="row">Sunday</th><td>10:00 – 15:00</td></tr>
+</table>
+<p class="small" style="margin:14px 0 0">Egg honesty box open daily, 8:00 – 19:00.</p>
+</div>
+<div class="panel">
+<h3><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Find us</h3>
+<svg class="map" viewBox="0 0 320 200" role="img" aria-label="Map: the farm is on Bramble Lane, one mile west of Kingsmoor off the B4520" font-family="Work Sans,sans-serif"><rect width="320" height="200" fill="#EEF0E2"/><path d="M40 30h50v34H40zM190 120h70v50h-70z" fill="#C9D3B0"/><path d="M0 130C60 120 90 70 160 80S260 50 320 40" fill="none" stroke="#fff" stroke-width="10"/><path d="M118 90C110 110 95 140 70 160" stroke="#fff" stroke-width="6" fill="none"/><rect x="232" y="24" width="64" height="36" rx="6" fill="#DDD3BC"/><text x="264" y="46" font-size="10" text-anchor="middle" fill="#5F4E3E">Kingsmoor</text><text x="196" y="100" font-size="9" fill="#5F4E3E">B4520</text><circle cx="70" cy="160" r="14" fill="#E0A22E"/><circle cx="70" cy="160" r="5" fill="#2B1D12"/><text x="92" y="172" font-size="11" font-weight="600" fill="#2B1D12">Bramblecomb Farm</text></svg>
+<address>Bramblecomb Farm, Bramble Lane<br>Kingsmoor, Herefordshire HR3 9QX</address>
+<p class="small" style="margin:0">Follow the brown “Farm Shop” signs from the B4520, then 400m down the lane to the yard.</p>
+</div>
+<div class="panel">
+<h3><svg class="i t" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>Hive walks</h3>
+<img src="https://images.unsplash.com/photo-1586779161164-d89795b07b71?w=1200&q=70&auto=format&fit=crop" alt="Gloved beekeeper lifting a frame of comb out of a hive in a meadow" loading="lazy">
+<p>Suit up and open a hive with Rhian, then taste four honeys in the barn. 90 minutes, ages 8+, suits provided.</p>
+<p class="small">Saturdays 10:30, May–September · max 10 people</p>
+<div class="buy"><span class="price">£16 <small class="small">per adult</small></span><button class="btn add" type="button" data-n="Hive walk ticket">Book a place</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="reviews" aria-labelledby="rev-h">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Reviews</span><h2 id="rev-h">From the people who eat it</h2></div><p class="lead">4.9 out of 5 from 1,280 verified reviews.</p></div>
+<div class="revs">
+<figure class="rev"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“The heather honey is unlike anything from a supermarket. Almost jelly-like, tastes of toffee and smoke. Six jars ordered for Christmas.”</blockquote><figcaption><b>Hannah P., Bristol</b>Black Mountain Heather Honey</figcaption></figure>
+<figure class="rev"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“We've had the family box fortnightly for a year. The veg keeps far longer than shop stuff and the kids fight over the eggs.”</blockquote><figcaption><b>Owen &amp; Cerys D., Hay-on-Wye</b>Farm box subscriber</figcaption></figure>
+<figure class="rev"><div class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</div><blockquote>“Did the hive walk for my dad's 70th and Rhian was brilliant with him. Only wish it was longer! The pillar candle smells gorgeous.”</blockquote><figcaption><b>Priya S., Worcester</b>Hive walk &amp; beeswax pillar</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section id="faq" aria-labelledby="faq-h">
+<div class="wrap two faq">
+<div><span class="eyebrow">Questions</span><h2 id="faq-h">Good to know</h2><p class="lead">Can't find it here? Ring the farm on 01432 860 417 (Thu–Sun) or email hello@bramblecomb.example.</p></div>
+<div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a1">My honey has gone cloudy and set. Is it OK?<i aria-hidden="true">+</i></button></h3><div id="a1" hidden><p>Yes, that's a sign it's raw. All real honey crystallises in time. Stand the jar in warm (not hot) water for 15 minutes to soften it, or enjoy it set on toast.</p></div></div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a2">What does “raw” mean on your labels?<i aria-hidden="true">+</i></button></h3><div id="a2" hidden><p>We extract the honey cold, pass it through a coarse sieve to remove wax, and jar it. It's never heated above hive temperature (around 35°C) and never fine-filtered, so the pollen stays in.</p></div></div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a3">Where do you deliver eggs and farm boxes?<i aria-hidden="true">+</i></button></h3><div id="a3" hidden><p>Fresh boxes and eggs go out in our own van within 40 miles of the farm (Hereford, Leominster, Hay, Ledbury and around). Honey, comb and candles post anywhere in the UK.</p></div></div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a4">Can I pause or cancel my farm box?<i aria-hidden="true">+</i></button></h3><div id="a4" hidden><p>Any time, from your account or by replying to the Sunday reminder email. Changes made before Sunday midnight apply to that week's box.</p></div></div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a5">Is honey safe for babies?<i aria-hidden="true">+</i></button></h3><div id="a5" hidden><p>No. UK health advice is not to give honey to babies under 12 months old. It's printed on every jar too.</p></div></div>
+<div class="qa"><h3><button class="q" aria-expanded="false" aria-controls="a6">Do you do wedding favours or wholesale?<i aria-hidden="true">+</i></button></h3><div id="a6" hidden><p>Yes: 45g favour jars from 50 units, and cases of 12 for cafés and delis. Email us with dates and quantities and Elsie will send a price list.</p></div></div>
+
+</div>
+</div>
+</section>
+
+<section class="news" aria-labelledby="news-h">
+<div class="wrap two">
+<div><h2 id="news-h">The Hive Letter</h2><p>One email a month: what's flowering, when each honey is jarred, and first pick of the cut comb. Unsubscribe in one click.</p></div>
+<form id="nf" novalidate>
+<div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="msg" required></div>
+<button class="btn" type="submit">Sign me up</button>
+<p class="msg" id="msg" role="status"></p>
+</form>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="fg">
+<div><a href="#" class="logo" aria-label="Bramblecomb Farm home"><svg width="36" height="36" aria-hidden="true"><use href="#lg"/></svg><span>Bramblecomb<small>Farm &amp; Apiary</small></span></a><p>Raw honey, beeswax and farm food from the Ashdown family, Herefordshire.</p></div>
+<div><h4>Shop</h4><ul class="plain"><li><a href="#shop">All honey</a></li><li><a href="#shop">Cut comb</a></li><li><a href="#shop">Beeswax candles</a></li><li><a href="#farm-box">Farm box</a></li><li><a href="#bundle-h">Gift boxes</a></li></ul></div>
+<div><h4>Farm</h4><ul class="plain"><li><a href="#family">Our family</a></li><li><a href="#calendar">Harvest calendar</a></li><li><a href="#visit">Hive walks</a></li><li><a href="#faq">Delivery &amp; returns</a></li></ul></div>
+<div><h4>Contact</h4><ul class="plain"><li>Bramble Lane, Kingsmoor<br>Herefordshire HR3 9QX</li><li><a href="tel:+441432860417">01432 860 417</a></li><li><a href="mailto:hello@bramblecomb.example">hello@bramblecomb.example</a></li></ul></div>
+</div>
+<div class="fb"><span>© 2026 Bramblecomb Farm Ltd (fictional demo brand). Honey is not suitable for infants under 12 months.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a></span></div>
+</div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return(c||document).querySelector(s)},$$=function(s,c){return[].slice.call((c||document).querySelectorAll(s))};
+var gbp=function(n){return"£"+n.toFixed(2)},n=0,tt,cnt=$("#cnt"),cart=$("#cartBtn"),toast=$("#toast");
+function say(t){toast.textContent=t;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("show")},2600)}
+function add(label){n++;cnt.textContent=n;cart.setAttribute("aria-label","Basket, "+n+(n==1?" item":" items"));say(label+" added to your basket")}
+cart.addEventListener("click",function(){say(n?"You have "+n+(n==1?" item":" items")+" in your basket (demo)":"Your basket is empty")});
+
+$$(".card").forEach(function(c){
+var pr=$(".price",c);
+$$("input",c).forEach(function(r){r.addEventListener("change",function(){pr.textContent=gbp(+r.dataset.p)})});
+$(".add",c).addEventListener("click",function(){add($("h3",c).textContent+" ("+$("input:checked+span",c).textContent+")")});
+});
+$$(".add[data-n]").forEach(function(b){b.addEventListener("click",function(){add(b.dataset.n)})});
+
+var cards=$$("#grid .card"),cat="all",qv="",q=$("#q");
+function filter(){
+var shown=0;
+cards.forEach(function(c){var ok=(cat=="all"||c.dataset.c==cat)&&(!qv||c.textContent.toLowerCase().indexOf(qv)>-1);c.hidden=!ok;if(ok)shown++});
+$("#nores").classList.toggle("show",!shown);
+}
+$$(".chip").forEach(function(ch){ch.addEventListener("click",function(){
+$$(".chip").forEach(function(o){o.setAttribute("aria-pressed","false")});
+ch.setAttribute("aria-pressed","true");cat=ch.dataset.f;filter();
+})});
+$("#sBtn").addEventListener("click",function(){var o=$("#sBar").classList.toggle("open");this.setAttribute("aria-expanded",o);if(o)q.focus()});
+q.addEventListener("input",function(){qv=q.value.trim().toLowerCase();filter()});
+$("#sForm").addEventListener("submit",function(e){e.preventDefault();filter();$("#shop").scrollIntoView()});
+
+var bg=$("#burger"),mn=$("#mnav");
+function menu(o){mn.classList.toggle("open",o);bg.setAttribute("aria-expanded",o);bg.setAttribute("aria-label",o?"Close menu":"Open menu")}
+bg.addEventListener("click",function(){menu(!mn.classList.contains("open"))});
+$$("#mnav a").forEach(function(a){a.addEventListener("click",function(){menu(false)})});
+
+var bf=$("#bform");
+function box(){
+var s=$("[name=bs]:checked",bf),f=$("[name=bf]:checked",bf),p=s.dataset.p*(1-f.dataset.o);
+$("#bp").textContent=gbp(p);$("#bper").textContent="per "+f.value.toLowerCase()+" box";
+return s.value+" farm box, "+f.value.toLowerCase();
+}
+bf.addEventListener("change",box);
+bf.addEventListener("submit",function(e){e.preventDefault();add(box())});
+
+$$(".q").forEach(function(b){b.addEventListener("click",function(){
+var o=b.getAttribute("aria-expanded")=="true";
+b.setAttribute("aria-expanded",!o);document.getElementById(b.getAttribute("aria-controls")).hidden=o;
+})});
+
+var nf=$("#nf"),em=$("#email"),msg=$("#msg");
+function fail(t){em.setAttribute("aria-invalid","true");msg.className="msg err";msg.textContent=t;em.focus()}
+nf.addEventListener("submit",function(e){
+e.preventDefault();var v=em.value.trim();
+if(!v)return fail("Please enter your email address.");
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))return fail("That doesn't look like an email address. Check for typos?");
+em.removeAttribute("aria-invalid");msg.className="msg";
+msg.textContent="Thank you! Check "+v+" to confirm, and look out for the next Hive Letter.";nf.reset();
+});
+em.addEventListener("input",function(){if(em.hasAttribute("aria-invalid")){em.removeAttribute("aria-invalid");msg.textContent=""}});
+})();
+</script>
+</body>
+</html>
