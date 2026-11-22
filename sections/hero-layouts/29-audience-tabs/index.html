@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learnloft — Learning that adapts to every classroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFF9F0;--ink:#14213D;--muted:#55607A;--line:#EADFCF;--orange:#FF7A1A;--teal:#0E9F8B;--blue:#3B5BDB;--butter:#FFD166;--sky:#DDEBFF;--acc:var(--orange);--acc-soft:#FFE6D2}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Lexend,system-ui,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.hero{position:relative;min-height:100svh;overflow:hidden;transition:background .5s}
+.hero[data-aud=students]{--acc:var(--orange);--acc-soft:#FFE6D2}
+.hero[data-aud=teachers]{--acc:var(--teal);--acc-soft:#D3F2EC}
+.hero[data-aud=schools]{--acc:var(--blue);--acc-soft:#DCE4FF}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.55;mask-image:radial-gradient(circle at 75% 40%,#000 0,transparent 65%);-webkit-mask-image:radial-gradient(circle at 75% 40%,#000 0,transparent 65%);pointer-events:none}
+.blob{position:absolute;width:520px;height:520px;border-radius:50%;background:var(--acc-soft);right:-120px;top:120px;filter:blur(10px);transition:background .6s;pointer-events:none}
+
+.nav{position:relative;z-index:20;max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;letter-spacing:-.02em}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--ink);display:grid;place-items:center;position:relative}
+.logo i::before{content:"";width:14px;height:14px;border-radius:3px 3px 3px 10px;background:var(--acc);transition:background .5s}
+.links{display:flex;gap:28px;list-style:none;margin:0 auto 0 0;padding:0;font-size:15px;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.signin{font-size:15px;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 20px;font-weight:600;font-size:15px;transition:transform .2s,background .3s,box-shadow .2s}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{transform:translateY(-2px)}
+.btn-acc{background:var(--acc);color:#fff;box-shadow:0 10px 24px -10px var(--acc)}
+.hero[data-aud=students] .btn-acc{background:#E5620A}
+.btn-acc:hover{transform:translateY(-2px)}
+.btn-line{border:1.5px solid var(--ink);background:transparent}
+.btn-line:hover{background:var(--ink);color:#fff}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--ink);background:#fff;place-items:center}
+.mmenu{display:none}
+
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:28px 24px 56px}
+.tabbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tabbar>span{font-size:14px;color:var(--muted);font-weight:500}
+.tabs{display:inline-flex;gap:4px;padding:5px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px -16px rgba(20,33,61,.3);max-width:100%;overflow-x:auto;scrollbar-width:none}
+.tab{display:flex;align-items:center;gap:8px;border:0;background:none;padding:10px 16px;border-radius:12px;font-size:15px;font-weight:600;color:var(--muted);white-space:nowrap;transition:background .25s,color .25s}
+.tab svg{flex:none}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected=true]{background:var(--ink);color:#fff}
+
+.panel{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;padding-top:40px}
+.panel[hidden]{display:none}
+.panel .txt>*,.panel .vis{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+.panel .txt>*:nth-child(2){animation-delay:.05s}.panel .txt>*:nth-child(3){animation-delay:.1s}.panel .txt>*:nth-child(4){animation-delay:.15s}.panel .txt>*:nth-child(5){animation-delay:.2s}
+.panel .vis{animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--acc-soft);padding:7px 12px;border-radius:99px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc)}
+h1{font-size:clamp(38px,4.8vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700;margin:20px 0 18px}
+h1 mark{color:inherit;background:linear-gradient(transparent 58%,var(--acc-soft) 58%,var(--acc-soft) 92%,transparent 92%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .06em}
+.sub{font-size:18px;line-height:1.6;color:var(--muted);max-width:520px;margin:0 0 22px;font-weight:400}
+.checks{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.45}
+.checks li::before{content:"";flex:none;width:22px;height:22px;border-radius:7px;margin-top:-1px;background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 5l3.5 3.5L11 1.5'/%3E%3C/svg%3E") center no-repeat}
+.hero[data-aud=students] .checks li::before{background-color:#E5620A}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctas small{font-size:13px;color:var(--muted);flex-basis:100%;margin-top:4px}
+
+.vis{position:relative;display:flex;justify-content:center;padding:24px 0}
+.card{position:relative;width:100%;max-width:470px;background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(20,33,61,.45);padding:22px}
+.card-h{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.card-h b{display:block;font-size:16px}
+.card-h small{color:var(--muted);font-size:13px}
+.av{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-weight:700;color:#fff;flex:none}
+.pill{margin-left:auto;font-size:12px;font-weight:600;padding:6px 10px;border-radius:99px;background:var(--acc-soft);white-space:nowrap}
+.float{position:absolute;z-index:2;background:var(--ink);color:#fff;border-radius:16px;padding:10px 14px;font-size:13px;display:flex;gap:10px;align-items:center;box-shadow:0 20px 40px -18px rgba(20,33,61,.7);animation:bob 5s ease-in-out infinite}
+.float b{display:block;font-size:15px}
+.float .dot{width:30px;height:30px;border-radius:10px;background:var(--butter);color:var(--ink);display:grid;place-items:center;font-weight:800}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.f1{top:0;right:-6px}.lite{background:#fff;color:var(--ink);border:1px solid var(--line)}
+
+.xp{display:flex;align-items:center;gap:14px;background:var(--paper);border-radius:16px;padding:12px 14px;margin-bottom:14px}
+.ring{--p:68;width:54px;height:54px;border-radius:50%;background:conic-gradient(#E5620A calc(var(--p)*1%),#F1E6D6 0);display:grid;place-items:center;flex:none}
+.ring span{width:42px;height:42px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:13px;font-weight:700}
+.xp p{margin:0;font-size:13px;color:var(--muted)}
+.xp b{font-size:15px}
+.streak{margin-left:auto;text-align:center;font-size:12px;color:var(--muted)}
+.streak b{display:block;font-size:20px;color:#E5620A}
+.q{border:1.5px solid var(--line);border-radius:18px;padding:16px}
+.q .lbl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.q p{margin:6px 0 12px;font-size:16px;font-weight:600;line-height:1.4}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:11px 10px;font-size:15px;font-weight:600;text-align:left;transition:.2s}
+.opt:hover{border-color:var(--ink)}
+.opt.right{background:#D3F2EC;border-color:var(--teal);color:#0A6B5E}
+.opt.wrong{background:#FFE3DE;border-color:#E2553F;color:#A33322}
+.qfb{min-height:20px;margin:10px 0 0;font-size:13px;color:var(--muted)}
+
+.assign{background:var(--paper);border-radius:16px;padding:14px;margin-bottom:14px}
+.assign-top{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:10px}
+.assign-top b{color:var(--ink);font-size:15px}
+.dist{display:flex;align-items:flex-end;gap:6px;height:64px}
+.dist i{flex:1;border-radius:6px 6px 3px 3px;background:#BFE8E0}
+.dist i.hi{background:var(--teal)}
+.dist-l{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
+.roster{display:grid;gap:2px}
+.st{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid #F2EADF;font-size:14px}
+.st:last-child{border:0}
+.st .av{width:32px;height:32px;border-radius:10px;font-size:12px}
+.st>span:not(.av){flex:1}
+.tag{font-style:normal;font-size:11.5px;font-weight:600;padding:4px 9px;border-radius:99px}
+.ok{background:#D3F2EC;color:#0A6B5E}.help{background:#FFE3DE;color:#A33322}.mid{background:#FFF1C9;color:#7A5600}
+
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.kpi{background:var(--paper);border-radius:14px;padding:12px}
+.kpi small{display:block;font-size:11.5px;color:var(--muted);line-height:1.3}
+.kpi b{display:block;font-size:21px;letter-spacing:-.02em;margin-top:4px}
+.kpi em{font-style:normal;font-size:11.5px;color:#0A6B5E;font-weight:600}
+.camp{display:grid;gap:9px}
+.camp div{display:grid;grid-template-columns:118px 1fr 36px;align-items:center;gap:10px;font-size:13px}
+.camp .bar{height:10px;border-radius:99px;background:#EEF1FB;overflow:hidden}
+.camp .bar i{display:block;height:100%;border-radius:99px;background:var(--blue);transform-origin:left;animation:grow 1s cubic-bezier(.2,.8,.2,1) both .3s}
+@keyframes grow{from{transform:scaleX(0)}}
+.camp b{text-align:right;font-size:13px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.badges span{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:5px 10px;color:var(--muted)}
+
+.trust{display:flex;align-items:center;gap:14px 32px;flex-wrap:wrap;margin-top:52px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.trust strong{color:var(--ink)}
+.trust ul{display:flex;gap:28px;flex-wrap:wrap;list-style:none;margin:0;padding:0;font-weight:700;color:#8790A6;letter-spacing:-.01em;font-size:16px}
+
+@media (max-width:1020px){
+.links,.signin,.nav>.btn{display:none}
+.burger{display:grid}
+.mmenu{display:flex;flex-direction:column;position:absolute;top:76px;left:16px;right:16px;z-index:30;background:#fff;border:1px solid var(--line);border-radius:20px;padding:10px;box-shadow:0 30px 60px -24px rgba(20,33,61,.45);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s}
+.mmenu.open{opacity:1;visibility:visible;transform:none}
+.mmenu a{padding:14px 16px;border-radius:12px;font-weight:500}
+.mmenu a:hover{background:var(--paper)}
+.mmenu .btn{margin-top:6px;color:#fff}
+.panel{grid-template-columns:1fr;gap:28px}
+.vis{max-width:520px;width:100%;margin:0 auto}
+.blob{top:auto;bottom:-120px}
+}
+@media (max-width:560px){
+.wrap{padding:16px 16px 40px}
+.nav{padding:16px}
+.tabbar>span{display:none}
+.tabs{display:flex;width:100%}
+.tab{flex:1;justify-content:center;padding:10px 8px;font-size:14px}
+.tab svg{display:none}
+.panel{padding-top:28px}
+.sub{font-size:16.5px}
+.ctas .btn{flex:1 1 100%}
+.card{padding:16px;border-radius:22px}
+.kpi b{font-size:17px}
+.camp div{grid-template-columns:92px 1fr 34px;font-size:12px}
+.float{display:none}
+.trust ul{gap:18px;font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<main class="hero" id="hero" data-aud="students">
+<div class="blob" aria-hidden="true"></div>
+<header class="nav">
+<a href="#" class="logo" aria-label="Learnloft home"><i aria-hidden="true"></i>Learnloft</a>
+<ul class="links">
+<li><a href="#">Platform</a></li>
+<li><a href="#">Subjects</a></li>
+<li><a href="#">Research</a></li>
+<li><a href="#">Pricing</a></li>
+</ul>
+<a href="#" class="signin">Sign in</a>
+<a href="#" class="btn btn-ink">Book a demo</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg width="20" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20"/></svg></button>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+<a href="#">Platform</a><a href="#">Subjects</a><a href="#">Research</a><a href="#">Pricing</a><a href="#">Sign in</a>
+<a href="#" class="btn btn-ink">Book a demo</a>
+</nav>
+</header>
+
+<div class="wrap">
+<div class="tabbar">
+<span id="tabs-lbl">I'm here as</span>
+<div class="tabs" role="tablist" aria-labelledby="tabs-lbl">
+<button class="tab" role="tab" id="t-students" aria-controls="p-students" aria-selected="true" data-aud="students"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>For students</button>
+<button class="tab" role="tab" id="t-teachers" aria-controls="p-teachers" aria-selected="false" tabindex="-1" data-aud="teachers"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>For teachers</button>
+<button class="tab" role="tab" id="t-schools" aria-controls="p-schools" aria-selected="false" tabindex="-1" data-aud="schools"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-5h4v5"/></svg>For schools</button>
+</div>
+</div>
+
+<section class="panel" role="tabpanel" id="p-students" aria-labelledby="t-students" tabindex="0">
+<div class="txt">
+<span class="eyebrow">Ages 11–18 · Maths, science &amp; English</span>
+<h1>Practice that feels like <mark>levelling up.</mark></h1>
+<p class="sub">Learnloft builds a ten-minute daily quest from exactly what you got wrong last time, then explains it the way you understand best: worked steps, a quick sketch or a 40-second clip.</p>
+<ul class="checks">
+<li>Hints that nudge, never just hand you the answer</li>
+<li>Streaks, XP and weekly leagues with your classmates</li>
+<li>Exam mode with timed past-paper questions</li>
+</ul>
+<div class="ctas">
+<a href="#" class="btn btn-acc">Start learning free</a>
+<a href="#" class="btn btn-line">Join with a class code</a>
+<small>Free for students, forever. Works on any phone or Chromebook.</small>
+</div>
+</div>
+<div class="vis">
+<div class="float f1" aria-hidden="true"><span class="dot">+40</span><span><b>XP earned</b>Quest complete</span></div>
+<div class="card" aria-label="Example student quest">
+<div class="card-h"><span class="av" style="background:#E5620A" aria-hidden="true">AR</span><div><b>Hi, Amara</b><small>Year 9 · Algebra quest</small></div><span class="pill">Question 4 of 6</span></div>
+<div class="xp">
+<div class="ring" style="--p:68"><span>68%</span></div>
+<div><p>Linear equations mastery</p><b>Level 7 · 1,240 XP</b></div>
+<div class="streak"><b>23</b>day streak</div>
+</div>
+<div class="q">
+<span class="lbl">Try it</span>
+<p id="qtext">Solve for x:&nbsp; 3x + 7 = 22</p>
+<div class="opts" role="group" aria-labelledby="qtext">
+<button class="opt" data-ok="0">x = 4</button>
+<button class="opt" data-ok="1">x = 5</button>
+<button class="opt" data-ok="0">x = 7</button>
+<button class="opt" data-ok="0">x = 9.6</button>
+</div>
+<p class="qfb" id="qfb" role="status" aria-live="polite">Pick an answer to see a hint.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="panel" role="tabpanel" id="p-teachers" aria-labelledby="t-teachers" tabindex="0" hidden>
+<div class="txt">
+<span class="eyebrow">Built with 1,200 classroom teachers</span>
+<h1>Mark less. <mark>Teach more.</mark></h1>
+<p class="sub">Set a quiz in two minutes from our 60,000 curriculum-aligned questions. Learnloft marks it, spots the misconception behind each wrong answer and tells you who needs you on Monday.</p>
+<ul class="checks">
+<li>Auto-marking with written feedback in your tone</li>
+<li>Misconception heatmaps for every class and topic</li>
+<li>One-click differentiation for SEN and stretch groups</li>
+</ul>
+<div class="ctas">
+<a href="#" class="btn btn-acc">Create a free teacher account</a>
+<a href="#" class="btn btn-line">See a sample report</a>
+<small>Teachers save an average of 4.5 hours of marking a week.</small>
+</div>
+</div>
+<div class="vis">
+<div class="float f1" aria-hidden="true"><span class="dot">4h</span><span><b>Saved this week</b>Auto-marked 112 scripts</span></div>
+<div class="card" aria-label="Example teacher class dashboard">
+<div class="card-h"><span class="av" style="background:var(--teal)" aria-hidden="true">9B</span><div><b>Biology · Period 3</b><small>Ms. Okafor · 28 students</small></div><span class="pill">Live</span></div>
+<div class="assign">
+<div class="assign-top"><span><b>Cell division quiz</b><br>26 of 28 submitted</span><span style="text-align:right"><b>74%</b><br>class average</span></div>
+<div class="dist" aria-hidden="true"><i style="height:18%"></i><i style="height:30%"></i><i style="height:52%"></i><i class="hi" style="height:100%"></i><i class="hi" style="height:84%"></i><i style="height:40%"></i></div>
+<div class="dist-l" aria-hidden="true"><span>0–40%</span><span>score spread</span><span>90–100%</span></div>
+</div>
+<div class="roster">
+<div class="st"><span class="av" style="background:#7C5CFF" aria-hidden="true">JL</span><span>Jonah Lee</span><em class="tag help">Mixes up mitosis phases</em></div>
+<div class="st"><span class="av" style="background:#E5620A" aria-hidden="true">PS</span><span>Priya Shah</span><em class="tag ok">Mastered</em></div>
+<div class="st"><span class="av" style="background:#3B5BDB" aria-hidden="true">TM</span><span>Theo Martin</span><em class="tag mid">Needs one more try</em></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="panel" role="tabpanel" id="p-schools" aria-labelledby="t-schools" tabindex="0" hidden>
+<div class="txt">
+<span class="eyebrow">For trusts, districts &amp; school leaders</span>
+<h1>See progress <mark>trust-wide.</mark></h1>
+<p class="sub">Roll Learnloft out to every classroom in a week. Rosters sync overnight, staff sign in with the accounts they already have, and leaders get one honest view of progress.</p>
+<ul class="checks">
+<li>Single sign-on and nightly roster sync with your MIS</li>
+<li>Trust-wide mastery dashboards and termly impact reports</li>
+<li>GDPR and FERPA-ready, with data hosted in your region</li>
+</ul>
+<div class="ctas">
+<a href="#" class="btn btn-acc">Talk to our schools team</a>
+<a href="#" class="btn btn-line">Download the impact study</a>
+<small>Site licences from £3.20 per student per year.</small>
+</div>
+</div>
+<div class="vis">
+<div class="float f1 lite" aria-hidden="true"><span class="dot">+18</span><span><b>Points of mastery</b>Average after one year</span></div>
+<div class="card" aria-label="Example school leadership dashboard">
+<div class="card-h"><span class="av" style="background:var(--blue)" aria-hidden="true">RT</span><div><b>Riverside Learning Trust</b><small>Autumn term · 6 schools</small></div><span class="pill">Synced 06:00</span></div>
+<div class="kpis">
+<div class="kpi"><small>Active learners</small><b>12,480</b><em>▲ 9%</em></div>
+<div class="kpi"><small>Avg. mastery</small><b>78%</b><em>▲ 6 pts</em></div>
+<div class="kpi"><small>Staff hours saved</small><b>1,920</b><em>per month</em></div>
+</div>
+<div class="camp" aria-label="Mastery by campus">
+<div><span>Riverside High</span><span class="bar"><i style="width:84%"></i></span><b>84%</b></div>
+<div><span>Elm Park Academy</span><span class="bar"><i style="width:79%"></i></span><b>79%</b></div>
+<div><span>Northgate School</span><span class="bar"><i style="width:73%"></i></span><b>73%</b></div>
+<div><span>Harbour Primary</span><span class="bar"><i style="width:68%"></i></span><b>68%</b></div>
+</div>
+<div class="badges"><span>SSO</span><span>Roster sync</span><span>GDPR</span><span>FERPA</span><span>WCAG 2.2 AA</span></div>
+</div>
+</div>
+</section>
+
+<div class="trust">
+<span><strong>4,800 schools</strong> and 2.1 million learners use Learnloft</span>
+<ul aria-label="Partner schools">
+<li>Oakridge</li><li>St. Bridget's</li><li>Hollins Trust</li><li>Brookvale</li><li>Kestrel MAT</li>
+</ul>
+</div>
+</div>
+</main>
+
+<script>
+(function(){
+var burger=document.getElementById('burger'),menu=document.getElementById('mmenu');
+burger.addEventListener('click',function(){
+var open=menu.classList.toggle('open');
+burger.setAttribute('aria-expanded',open);
+burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.focus();}});
+document.addEventListener('click',function(e){if(menu.classList.contains('open')&&!menu.contains(e.target)&&!burger.contains(e.target)){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+
+var hero=document.getElementById('hero');
+var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+function select(tab,focus){
+tabs.forEach(function(t){
+var on=t===tab;
+t.setAttribute('aria-selected',on);
+t.tabIndex=on?0:-1;
+document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+});
+hero.setAttribute('data-aud',tab.dataset.aud);
+if(focus)tab.focus();
+try{history.replaceState(null,'','#'+tab.dataset.aud);}catch(e){}
+}
+tabs.forEach(function(t,i){
+t.addEventListener('click',function(){select(t);});
+t.addEventListener('keydown',function(e){
+var n=null;
+if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];
+else if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+else if(e.key==='Home')n=tabs[0];
+else if(e.key==='End')n=tabs[tabs.length-1];
+if(n){e.preventDefault();select(n,true);}
+});
+});
+var start=location.hash.slice(1);
+tabs.forEach(function(t){if(t.dataset.aud===start)select(t);});
+
+var fb=document.getElementById('qfb');
+[].forEach.call(document.querySelectorAll('.opt'),function(b,_,all){
+b.addEventListener('click',function(){
+[].forEach.call(document.querySelectorAll('.opt'),function(o){o.classList.remove('right','wrong');});
+if(b.dataset.ok==='1'){b.classList.add('right');fb.textContent='Correct! Subtract 7 from both sides, then divide by 3. +40 XP';}
+else{b.classList.add('wrong');fb.textContent='Not quite. Hint: first take 7 away from both sides.';}
+});
+});
+})();
+</script>
+</body>
+</html>

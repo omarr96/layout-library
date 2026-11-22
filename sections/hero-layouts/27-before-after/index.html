@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel &amp; Oak — Kitchen remodelling, designed and built in six weeks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4EFE6;--paper:#FBF8F2;--forest:#1F3A33;--forest-d:#152923;--brass:#B9813A;--brass-l:#E9D3AE;--ink:#1B2420;--muted:#5A6560;--line:#DED5C5}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Schibsted Grotesk",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2.5px solid var(--brass);outline-offset:3px}
+.serif{font-family:"Young Serif",Georgia,serif;font-weight:400}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(244,239,230,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(31,58,51,.08);z-index:-1}
+.nav-in{max-width:1280px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:11px;font-family:"Young Serif",serif;font-size:21px;color:var(--forest);letter-spacing:-.01em}
+.logo small{display:block;font:600 10.5px "Schibsted Grotesk",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-top:2px}
+.links{display:flex;gap:30px;margin-right:auto;font-weight:500;font-size:15px;color:var(--muted)}
+.links a:hover{color:var(--forest)}
+.tel{font-weight:600;font-size:15px;color:var(--forest)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;font:600 15.5px "Schibsted Grotesk",sans-serif;padding:15px 26px;border-radius:6px;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-dark{background:var(--forest);color:#fff}
+.btn-dark:hover{background:var(--forest-d);transform:translateY(-1px)}
+.btn-ghost{color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--line);background:transparent}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--forest)}
+.btn-sm{padding:11px 18px;font-size:14.5px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:6px;background:var(--forest);cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{content:"";position:absolute;left:13px;width:18px;height:2px;background:#fff;transition:.2s}
+.burger span{top:21px}.burger span::before{left:0;top:-6px}.burger span::after{left:0;top:6px}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+
+/* hero */
+.hero{max-width:1280px;margin:0 auto;padding:132px 32px 72px;display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:center;min-height:100svh}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.eyebrow::before{content:"";width:28px;height:1.5px;background:var(--brass)}
+h1{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:clamp(40px,5vw,68px);line-height:1.04;letter-spacing:-.02em;color:var(--forest);margin:22px 0 22px}
+h1 em{font-style:normal;color:var(--brass)}
+.lead{font-size:18px;color:var(--muted);max-width:500px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 40px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0;border-top:1px solid var(--line);padding-top:24px;max-width:520px}
+.facts div{padding-right:28px;margin-right:28px;border-right:1px solid var(--line)}
+.facts div:last-child{border:0;margin:0;padding:0}
+.facts b{display:block;font-family:"Young Serif",serif;font-weight:400;font-size:30px;color:var(--forest);line-height:1.1}
+.facts span{font-size:13.5px;color:var(--muted)}
+.trust{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:14px;color:var(--muted)}
+.trust .st{color:var(--brass);letter-spacing:2px}
+
+/* compare */
+.visual{position:relative}
+.frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:5/4.1;background:#cbbfa9;box-shadow:0 50px 90px -50px rgba(21,41,35,.6);touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:ew-resize;--pos:50%}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.before img{filter:sepia(.42) saturate(.7) brightness(.9) contrast(.95)}
+.before,.after{position:absolute;inset:0}
+.tag{position:absolute;top:18px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;border-radius:4px;transition:opacity .25s;pointer-events:none;z-index:3}
+.tag-b{left:18px;background:rgba(27,36,32,.78);color:#F4EFE6}
+.tag-a{right:18px;background:rgba(251,248,242,.94);color:var(--forest)}
+.divider{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#fff;z-index:2;pointer-events:none;box-shadow:0 0 14px rgba(0,0,0,.25)}
+.handle{position:absolute;top:50%;left:var(--pos);width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:#fff;color:var(--forest);display:grid;place-items:center;z-index:4;cursor:grab;box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .15s}
+.handle:hover,.frame.drag .handle{transform:scale(1.08)}
+.frame.drag .handle{cursor:grabbing}
+.handle:focus-visible{outline:3px solid var(--brass);outline-offset:4px}
+.hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(27,36,32,.72);color:#fff;font-size:13px;font-weight:500;padding:7px 14px;border-radius:99px;z-index:3;pointer-events:none;transition:opacity .4s;white-space:nowrap}
+.frame.used .hint{opacity:0}
+.caption{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-top:18px;font-size:14px;color:var(--muted)}
+.caption>div:first-child{flex:none}
+.caption b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+.caption .scope{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.caption .scope span{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:4px;background:var(--paper);border:1px solid var(--line);color:var(--forest)}
+.quote{position:absolute;left:-36px;bottom:110px;z-index:5;background:var(--paper);border-radius:10px;padding:16px 18px;box-shadow:0 24px 50px -24px rgba(21,41,35,.5);width:212px;border-top:3px solid var(--brass)}
+.quote small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.quote b{display:block;font-family:"Young Serif",serif;font-weight:400;font-size:28px;color:var(--forest);line-height:1.15;margin:4px 0 6px}
+.quote p{font-size:13px;color:var(--muted);line-height:1.4}
+.quote p i{font-style:normal;white-space:nowrap;color:#2E7D4F;font-weight:700}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;gap:56px;padding-top:120px;min-height:0}
+  .visual{max-width:720px;width:100%;margin:0 auto}
+  .quote{left:-14px}
+}
+@media (max-width:900px){
+  .links,.tel,.nav-in>.btn{display:none}
+  .burger{display:block}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:var(--paper);padding:6px 32px 24px;box-shadow:0 24px 40px -24px rgba(21,41,35,.4)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--forest)}
+  .mmenu .btn{width:100%;margin-top:18px;border:0;color:#fff}
+}
+@media (max-width:600px){
+  .nav-in{padding:14px 18px}
+  .mmenu{padding:6px 18px 22px}
+  .hero{padding:100px 18px 56px;gap:40px}
+  .lead{font-size:16.5px}
+  .ctas .btn{width:100%}
+  .facts{grid-template-columns:repeat(3,1fr)}
+  .facts div{padding-right:12px;margin-right:12px}
+  .facts b{font-size:24px}
+  .facts span{font-size:12.5px;display:block;line-height:1.35}
+  .frame{aspect-ratio:4/4.3;border-radius:10px}
+  .handle{width:46px;height:46px;margin:-23px 0 0 -23px}
+  .visual{display:flex;flex-direction:column}
+  .frame{order:1}.quote{order:2}.caption{order:3}
+  .quote{position:relative;left:auto;bottom:auto;width:auto;margin:-30px 14px 0;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .quote b{font-size:24px;margin:0}
+  .quote p{max-width:140px;text-align:right}
+  .caption{flex-direction:column;align-items:flex-start}
+  .caption .scope{justify-content:flex-start}
+  .tag{top:12px}.tag-b{left:12px}.tag-a{right:12px}
+  .hint{bottom:46px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo" aria-label="Kestrel and Oak Kitchens home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="6" fill="#1F3A33"/><path d="M9 25V12l8-5 8 5v13" fill="none" stroke="#E9D3AE" stroke-width="2"/><path d="M13 25v-7h8v7" fill="none" stroke="#B9813A" stroke-width="2"/></svg>
+      <span>Kestrel &amp; Oak<small>Kitchens · Denver</small></span>
+    </a>
+    <nav class="links" aria-label="Primary"><a href="#">Kitchens</a><a href="#">Bathrooms</a><a href="#">Projects</a><a href="#">Our process</a><a href="#">Reviews</a></nav>
+    <a class="tel" href="tel:+13035550148">(303) 555-0148</a>
+    <a href="#visit" class="btn btn-dark btn-sm">Book a design visit</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+  <div class="mmenu" id="mmenu"><a href="#">Kitchens</a><a href="#">Bathrooms</a><a href="#">Projects</a><a href="#">Our process</a><a href="#">Reviews</a><a href="tel:+13035550148">Call (303) 555-0148</a><a href="#visit" class="btn btn-dark">Book a design visit</a></div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div>
+    <span class="eyebrow">Design · Build · 10-year warranty</span>
+    <h1 id="h1">The kitchen you keep pinning, <em>built in six weeks.</em></h1>
+    <p class="lead">One team designs, quotes and builds your new kitchen — cabinetry made in our Englewood workshop, a fixed price before we lift a tile, and a site lead who texts you every evening.</p>
+    <div class="ctas" id="visit">
+      <a href="#" class="btn btn-dark">Book a free design visit
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></a>
+      <a href="#" class="btn btn-ghost">See 140+ finished kitchens</a>
+    </div>
+    <div class="facts">
+      <div><b>6 wks</b><span>average build time</span></div>
+      <div><b>$0</b><span>over quote, 2025 avg.</span></div>
+      <div><b>10 yr</b><span>workmanship warranty</span></div>
+    </div>
+    <p class="trust"><span class="st" aria-hidden="true">★★★★★</span><span><b style="color:var(--ink)">4.9/5</b> from 380 verified homeowners</span></p>
+  </div>
+
+  <div class="visual">
+    <div class="quote">
+      <div><small>Fixed quote</small><b>$48,200</b></div>
+      <p>Final invoice: $48,200 — <i>$0 over</i></p>
+    </div>
+    <div class="frame" id="frame">
+      <div class="after"><img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1800&q=70&auto=format&fit=crop" alt="After: bright white shaker kitchen with marble waterfall island, hexagon tile backsplash and professional range"></div>
+      <div class="before"><img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1800&q=70&auto=format&fit=crop" alt="Before: dated, cramped kitchen with dark lower cabinets, worn butcher-block counters and open plate rack"></div>
+      <span class="tag tag-b" id="tagB">Before</span>
+      <span class="tag tag-a" id="tagA">After</span>
+      <div class="divider" aria-hidden="true"></div>
+      <div class="handle" id="handle" role="slider" tabindex="0" aria-label="Before and after comparison: move left to reveal more of the after photo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% before, 50% after">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M10 7l-6 6 6 6M16 7l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="hint" aria-hidden="true">Drag to compare</span>
+    </div>
+    <div class="caption">
+      <div><b>The Alvarez kitchen, Park Hill</b>Gutted to studs and rebuilt in 5½ weeks</div>
+      <div class="scope" aria-label="Project scope"><span>Custom cabinetry</span><span>Quartzite island</span><span>New electrics</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),burger=document.getElementById('burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  burger.addEventListener('click',function(){setMenu(!nav.classList.contains('open'));});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);burger.focus();}});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)setMenu(false);});
+
+  var frame=document.getElementById('frame'),handle=document.getElementById('handle'),tagB=document.getElementById('tagB'),tagA=document.getElementById('tagA');
+  var pos=50,dragging=false,introTimer=null;
+  function set(p){
+    pos=Math.max(0,Math.min(100,p));
+    frame.style.setProperty('--pos',pos+'%');
+    var r=Math.round(pos);
+    handle.setAttribute('aria-valuenow',r);
+    handle.setAttribute('aria-valuetext',r+'% before, '+(100-r)+'% after');
+    tagB.style.opacity=pos<14?0:1;
+    tagA.style.opacity=pos>86?0:1;
+  }
+  function used(){frame.classList.add('used');if(introTimer){clearInterval(introTimer);introTimer=null;}}
+  function fromEvent(e){var b=frame.getBoundingClientRect();return (e.clientX-b.left)/b.width*100;}
+  frame.addEventListener('pointerdown',function(e){
+    if(e.button!==undefined&&e.button!==0)return;
+    dragging=true;used();frame.classList.add('drag');
+    try{frame.setPointerCapture(e.pointerId);}catch(err){}
+    set(fromEvent(e));
+    if(e.target!==handle)handle.focus({preventScroll:true});
+  });
+  frame.addEventListener('pointermove',function(e){if(dragging)set(fromEvent(e));});
+  function end(){dragging=false;frame.classList.remove('drag');}
+  frame.addEventListener('pointerup',end);
+  frame.addEventListener('pointercancel',end);
+  handle.addEventListener('keydown',function(e){
+    var step=e.shiftKey?10:2,n=null;
+    switch(e.key){
+      case 'ArrowLeft':case 'ArrowDown':n=pos-step;break;
+      case 'ArrowRight':case 'ArrowUp':n=pos+step;break;
+      case 'PageDown':n=pos-10;break;
+      case 'PageUp':n=pos+10;break;
+      case 'Home':n=0;break;
+      case 'End':n=100;break;
+    }
+    if(n!==null){e.preventDefault();used();set(n);}
+  });
+  set(50);
+
+  // gentle intro sweep to show the slider is interactive
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    var t0=null,dur=2200;
+    setTimeout(function(){
+      function step(ts){
+        if(frame.classList.contains('used'))return;
+        if(!t0)t0=ts;
+        var k=Math.min(1,(ts-t0)/dur);
+        set(50+Math.sin(k*Math.PI*2)*18*(1-k*.4)*(k<1?1:0));
+        if(k<1)requestAnimationFrame(step);else set(50);
+      }
+      requestAnimationFrame(step);
+    },900);
+  }
+})();
+</script>
+</body>
+</html>

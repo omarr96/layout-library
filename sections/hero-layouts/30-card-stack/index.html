@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wagtail &amp; Whiskers Rescue — Adopt a dog or cat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF3E6;--sand:#F1E2C8;--forest:#1F3A2E;--moss:#3F6B4F;--gold:#F2A93B;--clay:#C8532F;--ink:#1D2420;--muted:#5D6660}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Onest,system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.serif{font-family:"Young Serif",Georgia,serif;font-weight:400}
+.hero{position:relative;min-height:100svh;overflow:hidden}
+.hero::before{content:"";position:absolute;width:760px;height:760px;right:-180px;top:40px;border-radius:50%;background:var(--sand);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(31,58,46,.12) 1.2px,transparent 1.2px);background-size:22px 22px;mask-image:linear-gradient(90deg,#000,transparent 55%);-webkit-mask-image:linear-gradient(90deg,#000,transparent 55%)}
+
+.nav{position:relative;z-index:20;max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Young Serif",serif;font-size:21px;line-height:1.05}
+.logo span{white-space:nowrap}
+.logo small{display:block;font-family:Onest,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);font-weight:600}
+.logo i{width:40px;height:40px;border-radius:50%;background:var(--forest);display:grid;place-items:center;flex:none}
+.links{display:flex;gap:28px;list-style:none;margin:0 auto 0 0;padding:0;font-size:15px;font-weight:500}
+.links a{position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--clay);transform:scaleX(0);transition:.25s}
+.links a:hover::after{transform:none}
+.donate{font-weight:600;font-size:15px;display:flex;align-items:center;gap:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:99px;padding:14px 22px;font-weight:600;font-size:15.5px;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-forest{background:var(--forest);color:#fff}
+.btn-forest:hover{background:var(--moss)}
+.btn-line{border:1.5px solid var(--forest);color:var(--forest);background:transparent}
+.btn-line:hover{background:var(--forest);color:#fff}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:0;background:var(--forest);color:#fff;place-items:center}
+.mmenu{display:none}
+
+.grid{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:36px 24px 64px;display:grid;grid-template-columns:1fr minmax(0,500px);gap:64px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--moss)}
+.kicker b{background:var(--gold);color:var(--ink);border-radius:99px;padding:4px 10px;font-size:12.5px}
+h1{font-family:"Young Serif",serif;font-weight:400;font-size:clamp(42px,5.4vw,80px);line-height:1.02;letter-spacing:-.025em;margin:20px 0 22px;color:var(--forest)}
+h1 em{font-style:normal;color:var(--clay);position:relative;white-space:nowrap}
+h1 em svg{position:absolute;left:0;bottom:-.12em;width:100%;height:.28em}
+.sub{font-size:18px;line-height:1.6;color:var(--muted);max-width:500px;margin:0 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:26px;border-top:1px solid rgba(31,58,46,.15);max-width:640px}
+.stats b{display:block;font-family:"Young Serif",serif;font-weight:400;font-size:34px;color:var(--forest);line-height:1}
+.stats span{font-size:14px;color:var(--muted)}
+
+/* stack */
+.deck{display:flex;flex-direction:column;align-items:center;gap:22px}
+.stack{position:relative;width:100%;max-width:400px;margin-top:44px;aspect-ratio:4/5.15;outline:none;touch-action:pan-y}
+.stack:focus-visible{outline:3px solid var(--clay);outline-offset:10px;border-radius:30px}
+.pet{position:absolute;inset:0;border-radius:28px;overflow:hidden;background:#ddd;box-shadow:0 30px 60px -30px rgba(31,58,46,.55);transform-origin:50% 0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;user-select:none;-webkit-user-select:none;will-change:transform}
+.pet.top{cursor:grab}
+.pet.drag{transition:none;cursor:grabbing}
+.pet img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.pet::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(14,26,20,.88) 100%)}
+.info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px;color:#fff}
+.info h2{font-family:"Young Serif",serif;font-weight:400;font-size:34px;margin:0;line-height:1;display:flex;align-items:baseline;gap:10px}
+.info h2 small{font-family:Onest,sans-serif;font-size:15px;opacity:.85}
+.info p{margin:8px 0 12px;font-size:14.5px;opacity:.92}
+.facts{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.facts li{font-size:12.5px;font-weight:600;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28)}
+.type{position:absolute;z-index:2;top:16px;left:16px;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:99px;background:#fff;color:var(--forest)}
+.wait{position:absolute;z-index:2;top:16px;right:16px;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:99px;background:var(--gold);color:var(--ink)}
+.pet .type,.pet .wait,.pet .info{transition:opacity .3s}
+.pet:not(.top) .type,.pet:not(.top) .wait,.pet:not(.top) .info{opacity:0}
+.stamp{position:absolute;z-index:3;top:64px;font-weight:800;font-size:22px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:3px solid;border-radius:10px;opacity:0;pointer-events:none}
+.stamp.yes{left:20px;color:#7BE3A6;transform:rotate(-12deg)}
+.stamp.no{right:20px;color:#fff;transform:rotate(12deg)}
+
+.ctrl{display:flex;align-items:center;gap:14px}
+.round{width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(31,58,46,.25);background:#fff;display:grid;place-items:center;transition:.2s}
+.round:hover{border-color:var(--forest);transform:translateY(-2px)}
+.meet{background:var(--clay);color:#fff;padding:15px 24px;min-width:190px}
+.meet:hover{background:#B04425}
+.meet .heart{transition:transform .3s}
+.meet[aria-pressed=true] .heart{transform:scale(1.25)}
+.meet[aria-pressed=true] .heart path{fill:#fff}
+.count{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:center}
+.hint{font-size:13px;color:var(--muted);margin:-8px 0 0;display:flex;align-items:center;gap:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media (max-width:1000px){
+  .links,.donate,.nav>.btn{display:none}
+  .burger{display:grid}
+  .mmenu{display:flex;flex-direction:column;position:absolute;top:80px;left:16px;right:16px;z-index:30;background:#fff;border-radius:22px;padding:10px;box-shadow:0 30px 60px -24px rgba(31,58,46,.5);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s}
+  .mmenu.open{opacity:1;visibility:visible;transform:none}
+  .mmenu a{padding:14px 16px;border-radius:14px;font-weight:500}
+  .mmenu a:hover{background:var(--cream)}
+  .mmenu .btn{margin-top:6px;color:#fff}
+  .grid{grid-template-columns:1fr;gap:48px;padding-top:20px}
+  .hero::before{width:600px;height:600px;top:auto;bottom:-160px;right:-200px}
+}
+@media (max-width:560px){
+  .nav{padding:16px}
+  .grid{padding:12px 16px 48px}
+  .sub{font-size:16.5px}
+  .ctas .btn{flex:1 1 100%}
+  .stats{gap:22px}
+  .stats b{font-size:28px}
+  .stack{max-width:320px}
+  .info{padding:18px}
+  .info h2{font-size:28px}
+  .meet{min-width:0;padding:15px 18px}
+  .ctrl{gap:10px}
+  .round{width:48px;height:48px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<main class="hero">
+  <header class="nav">
+    <a href="#" class="logo" aria-label="Wagtail and Whiskers Rescue home"><i aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="#F2A93B"><circle cx="6" cy="9" r="2.3"/><circle cx="10" cy="5" r="2.3"/><circle cx="14.5" cy="5" r="2.3"/><circle cx="18.5" cy="9" r="2.3"/><path d="M12 11c-3.2 0-6 3.6-6 6.3 0 1.8 1.4 2.7 3 2.7 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.7C18 14.6 15.2 11 12 11z"/></svg></i><span>Wagtail &amp; Whiskers<small>Rescue · Portland</small></span></a>
+    <ul class="links">
+      <li><a href="#">Adopt</a></li>
+      <li><a href="#">Foster</a></li>
+      <li><a href="#">Volunteer</a></li>
+      <li><a href="#">Our story</a></li>
+    </ul>
+    <a href="#" class="donate"><svg width="16" height="16" viewBox="0 0 24 24" fill="#C8532F" aria-hidden="true"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21z"/></svg>Donate</a>
+    <a href="#" class="btn btn-forest">Visit the shelter</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg width="20" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20"/></svg></button>
+    <nav class="mmenu" id="mmenu" aria-label="Mobile">
+      <a href="#">Adopt</a><a href="#">Foster</a><a href="#">Volunteer</a><a href="#">Our story</a><a href="#">Donate</a>
+      <a href="#" class="btn btn-forest">Visit the shelter</a>
+    </nav>
+  </header>
+
+  <div class="grid">
+    <section>
+      <span class="kicker"><b>48 pets</b> looking for a home this week</span>
+      <h1>Your new best friend is <em>already here.<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9C50 2 120 2 198 7" fill="none" stroke="#F2A93B" stroke-width="4" stroke-linecap="round"/></svg></em></h1>
+      <p class="sub">Every dog and cat at Wagtail &amp; Whiskers is vaccinated, microchipped and spayed or neutered before going home. Swipe through who's waiting, then come say hello. Walk-ins welcome, Wednesday to Sunday.</p>
+      <div class="ctas">
+        <a href="#" class="btn btn-forest">See all adoptable pets <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#" class="btn btn-line">Foster for a month</a>
+      </div>
+      <div class="stats">
+        <div><b>1,284</b><span>adoptions since 2019</span></div>
+        <div><b>$95</b><span>adoption fee, all-inclusive</span></div>
+        <div><b>0</b><span>animals ever euthanised for space</span></div>
+      </div>
+    </section>
+
+    <section class="deck" aria-roledescription="carousel" aria-label="Pets waiting for adoption">
+      <div class="stack" id="stack" tabindex="0" aria-describedby="hint"></div>
+      <div class="ctrl">
+        <button class="round" id="prev" aria-label="Previous pet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="btn meet" id="meet" aria-pressed="false"><svg class="heart" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21z" fill="none" stroke="#fff" stroke-width="2"/></svg><span id="meetTxt">Meet Biscuit</span></button>
+        <button class="round" id="next" aria-label="Next pet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="hint" id="hint"><span class="count" id="count">1 / 6</span> Swipe right to save, left to skip</p>
+      <p class="sr" id="live" aria-live="polite"></p>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+  var burger=document.getElementById('burger'),menu=document.getElementById('mmenu');
+  burger.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.focus();}});
+
+  var U='https://images.unsplash.com/photo-',Q='?w=900&q=70&auto=format&fit=crop';
+  var pets=[
+    {n:'Biscuit',a:'2 yrs',t:'Dog',w:'12 days',img:'1543466835-00a7907e9de1',alt:'Smiling beagle with a black collar',d:'Beagle mix · Male · 11 kg',f:['Good with kids','House-trained','Loves car rides']},
+    {n:'Mochi',a:'4 yrs',t:'Cat',w:'31 days',img:'1514888286974-6c03e2ca1dba',alt:'Black and white cat resting its paws on a ledge',d:'Domestic shorthair · Female',f:['Lap cat','OK with calm dogs','Indoor only']},
+    {n:'Juniper',a:'1 yr',t:'Dog',w:'5 days',img:'1587300003388-59208cc962cb',alt:'Happy Australian shepherd on a beach',d:'Aussie shepherd mix · Female · 18 kg',f:['High energy','Knows sit & stay','Needs a yard']},
+    {n:'Pepper',a:'6 yrs',t:'Cat',w:'64 days',img:'1574158622682-e40e69881006',alt:'Tabby cat with green eyes looking up against a blue sky',d:'Tabby · Male · Senior-ish',f:['Chatty','Bonded with people','Good with cats']},
+    {n:'Pip',a:'3 yrs',t:'Dog',w:'19 days',img:'1561037404-61cd46aa615b',alt:'Jack Russell terrier portrait on a pink background',d:'Jack Russell terrier · Male · 7 kg',f:['Apartment-friendly','Leash-trained','Only pet home']},
+    {n:'Rusty',a:'5 yrs',t:'Dog',w:'42 days',img:'1530281700549-e82e7bf110d6',alt:'Red retriever running through the sea foam',d:'Retriever mix · Male · 24 kg',f:['Loves water','Great with dogs','Gentle giant']}
+  ];
+  var stack=document.getElementById('stack'),live=document.getElementById('live'),count=document.getElementById('count'),meet=document.getElementById('meet'),meetTxt=document.getElementById('meetTxt');
+  var saved={},reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,busy=false;
+  var els=pets.map(function(p,i){
+    var el=document.createElement('article');
+    el.className='pet';el.setAttribute('aria-roledescription','slide');el.setAttribute('aria-label',(i+1)+' of '+pets.length+': '+p.n);
+    el.innerHTML='<img src="'+U+p.img+Q+'" alt="'+p.alt+'" draggable="false"'+(i>2?' loading="lazy"':'')+'>'+
+      '<span class="type">'+p.t+'</span><span class="wait">Waiting '+p.w+'</span>'+
+      '<span class="stamp yes" aria-hidden="true">♥ Saved</span><span class="stamp no" aria-hidden="true">Next</span>'+
+      '<div class="info"><h2>'+p.n+' <small>'+p.a+'</small></h2><p>'+p.d+'</p><ul class="facts">'+p.f.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>';
+    el._i=i;stack.appendChild(el);return el;
+  });
+  var order=els.slice();
+
+  function layout(){
+    order.forEach(function(el,k){
+      el.style.zIndex=order.length-k;
+      el.style.transform=k<3?'translateY('+(-k*22)+'px) scale('+(1-k*.06)+') rotate('+(k===1?3:k===2?-2.5:0)+'deg)':'translateY(-44px) scale(.88)';
+      el.style.opacity=k<3?1:0;
+      el.classList.toggle('top',k===0);
+      el.setAttribute('aria-hidden',k===0?'false':'true');
+    });
+    var p=pets[order[0]._i];
+    count.textContent=(order[0]._i+1)+' / '+pets.length;
+    meetTxt.textContent=(saved[p.n]?'Saved ':'Meet ')+p.n;
+    meet.setAttribute('aria-pressed',!!saved[p.n]);
+    live.textContent=p.n+', '+p.a+' '+p.t.toLowerCase()+'. '+p.d;
+  }
+  function stamps(el,dx){
+    var s=el.querySelectorAll('.stamp');
+    s[0].style.opacity=Math.max(0,Math.min(1,dx/100));
+    s[1].style.opacity=Math.max(0,Math.min(1,-dx/100));
+  }
+  function flyOut(dir){
+    if(busy)return;busy=true;
+    var el=order[0];
+    el.classList.remove('drag');
+    el.style.transform='translate('+(dir*130)+'%,-30px) rotate('+(dir*22)+'deg)';
+    el.style.opacity=reduce?0:1;
+    setTimeout(function(){
+      stamps(el,0);
+      order.push(order.shift());
+      el.style.transition='none';el.style.opacity=0;
+      layout();
+      el.style.opacity=0;
+      el.offsetWidth;el.style.transition='';
+      busy=false;
+    },reduce?0:380);
+  }
+  function back(){
+    if(busy)return;busy=true;
+    var el=order.pop();order.unshift(el);
+    el.style.transition='none';
+    el.style.transform='translate(-130%,-30px) rotate(-22deg)';el.style.opacity=1;el.style.zIndex=99;
+    el.offsetWidth;el.style.transition='';
+    layout();
+    setTimeout(function(){busy=false;},reduce?0:380);
+  }
+  document.getElementById('next').addEventListener('click',function(){flyOut(-1);});
+  document.getElementById('prev').addEventListener('click',back);
+  meet.addEventListener('click',function(){
+    var p=pets[order[0]._i];saved[p.n]=!saved[p.n];
+    layout();
+    live.textContent=saved[p.n]?p.n+' added to your meet-and-greet list.':p.n+' removed from your list.';
+  });
+  stack.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();flyOut(1);}
+    else if(e.key==='ArrowLeft'){e.preventDefault();back();}
+  });
+
+  var sx=0,sy=0,dx=0,active=null;
+  stack.addEventListener('pointerdown',function(e){
+    if(busy||!e.target.closest('.pet.top'))return;
+    active=order[0];sx=e.clientX;sy=e.clientY;dx=0;
+    active.classList.add('drag');try{stack.setPointerCapture(e.pointerId);}catch(err){}
+  });
+  stack.addEventListener('pointermove',function(e){
+    if(!active)return;
+    dx=e.clientX-sx;var dy=(e.clientY-sy)*.25;
+    active.style.transform='translate('+dx+'px,'+dy+'px) rotate('+(dx/18)+'deg)';
+    stamps(active,dx);
+  });
+  function end(){
+    if(!active)return;
+    var el=active;active=null;el.classList.remove('drag');
+    if(Math.abs(dx)>110){if(dx>0){var p=pets[el._i];saved[p.n]=true;}flyOut(dx>0?1:-1);if(dx>0)live.textContent=pets[el._i].n+' added to your meet-and-greet list.';}
+    else{stamps(el,0);layout();}
+  }
+  stack.addEventListener('pointerup',end);
+  stack.addEventListener('pointercancel',end);
+  layout();
+})();
+</script>
+</body>
+</html>

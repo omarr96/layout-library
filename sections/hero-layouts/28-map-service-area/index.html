@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernly — Trusted home cleaning across Bristol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;600;700;800&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F3FF;--card:#fff;--violet:#5B3FD9;--violet-d:#4429B8;--lilac:#E7E0FF;--lemon:#FFE45C;--ink:#1D1640;--muted:#5C5680;--mint:#14865E;--mint-l:#DDF5EA;--rose:#B4233F;--line:#E2DCF7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Onest,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.g{font-family:Gabarito,system-ui,sans-serif}
+
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(246,243,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:-1}
+.nav-in{max-width:1280px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:38px}
+.logo{display:flex;align-items:center;gap:10px;font:800 24px Gabarito,sans-serif;letter-spacing:-.02em;color:var(--ink)}
+.links{display:flex;gap:28px;margin-right:auto;font-size:15.5px;color:var(--muted)}
+.links a:hover{color:var(--violet)}
+.login{font-weight:700;font-size:15.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;cursor:pointer;font:700 16px Gabarito,sans-serif;padding:15px 24px;border-radius:14px;transition:background .2s,transform .2s}
+.btn-v{background:var(--violet);color:#fff}
+.btn-v:hover{background:var(--violet-d);transform:translateY(-1px)}
+.btn-y{background:var(--lemon);color:var(--ink)}
+.btn-y:hover{transform:translateY(-1px);background:#FFDC2E}
+.btn-sm{padding:11px 18px;font-size:15px;border-radius:12px}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:14px;border:0;background:var(--lilac);cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{content:"";position:absolute;left:14px;width:18px;height:2.2px;border-radius:2px;background:var(--ink);transition:.2s}
+.burger span{top:22px}.burger span::before{left:0;top:-6px}.burger span::after{left:0;top:6px}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+
+.hero{max-width:1280px;margin:0 auto;padding:124px 32px 72px;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;min-height:100svh}
+.pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 14px 6px 6px;font-size:14px;font-weight:700;color:var(--violet)}
+.pill i{font-style:normal;background:var(--lemon);color:var(--ink);border-radius:99px;padding:3px 10px;font-size:12.5px}
+h1{font:800 clamp(40px,5.2vw,70px)/1.02 Gabarito,sans-serif;letter-spacing:-.035em;margin:22px 0 20px}
+h1 span{position:relative;color:var(--violet);white-space:nowrap}
+h1 span::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.26em;background:var(--lemon);z-index:-1;border-radius:4px}
+.lead{font-size:18.5px;color:var(--muted);max-width:520px}
+
+.check{margin-top:32px;background:var(--card);border-radius:22px;padding:22px;box-shadow:0 30px 60px -36px rgba(45,25,130,.45);max-width:540px;border:1px solid var(--line)}
+.check label{display:block;font:700 16px Gabarito,sans-serif;margin-bottom:10px}
+.row{display:flex;gap:10px}
+.field{flex:1;display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;padding:0 14px;background:#FBFAFF;transition:border-color .2s}
+.field:focus-within{border-color:var(--violet)}
+.field.err{border-color:var(--rose)}
+.field input{flex:1;min-width:0;border:0;background:transparent;font:700 17px Onest,sans-serif;color:var(--ink);padding:14px 0;text-transform:uppercase;letter-spacing:.04em}
+.field input::placeholder{text-transform:none;letter-spacing:0;color:#8C86AD;font-weight:400}
+.field input:focus{outline:none}
+.help{font-size:13.5px;color:var(--muted);margin-top:10px}
+.help button{background:none;border:0;font:inherit;color:var(--violet);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:0}
+.msg{font-size:14px;color:var(--rose);font-weight:700;margin-top:8px}
+.result{margin-top:16px;border-radius:16px;padding:16px 18px;display:none;animation:rise .35s ease}
+.result.show{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+.result.ok{background:var(--mint-l)}
+.result.no{background:#FFF6CC}
+.result h2{font:700 17px Gabarito,sans-serif;display:flex;align-items:center;gap:8px}
+.result p{font-size:14.5px;color:#3A3460;margin-top:4px}
+.slot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;background:#fff;border-radius:12px;padding:12px 14px}
+.slot b{font-family:Gabarito,sans-serif;font-size:16px}
+.slot small{display:block;color:var(--muted);font-size:13px}
+.wl{display:flex;gap:8px;margin-top:12px}
+.wl input{flex:1;min-width:0;border:2px solid #EBDD8C;border-radius:12px;padding:11px 12px;font:16px Onest,sans-serif;background:#fff}
+.wl input:focus{outline:none;border-color:var(--ink)}
+.wl input.err{border-color:var(--rose)}
+.perks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:14.5px;color:var(--muted)}
+.perks span{display:flex;align-items:center;gap:7px}
+.perks svg{flex:none}
+
+/* map */
+.mapcard{position:relative;border-radius:30px;background:#EFEAFF;overflow:hidden;aspect-ratio:1/0.96;box-shadow:0 40px 80px -50px rgba(45,25,130,.6);border:1px solid var(--line)}
+.mapcard svg.map{position:absolute;inset:0;width:100%;height:100%}
+.ring{transform-origin:300px 285px;animation:pulse 3.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.92);opacity:.55}100%{transform:scale(1.18);opacity:0}}
+.cl{animation:bob 4s ease-in-out infinite}
+.cl:nth-of-type(2n){animation-delay:-1.3s}.cl:nth-of-type(3n){animation-delay:-2.6s}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.you{opacity:0;transition:opacity .2s}
+.you.show{opacity:1}
+.you.show .drop{animation:drop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes drop{from{transform:translateY(-40px)}}
+.area-lbl{font:700 12px Gabarito,sans-serif;fill:#4B4470;letter-spacing:.02em;stroke:#EFEAFF;stroke-width:4px;stroke-linejoin:round;paint-order:stroke}
+.chip{position:absolute;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 18px 40px -20px rgba(45,25,130,.45);font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.chip b{display:block;font:700 16px Gabarito,sans-serif;color:var(--ink);line-height:1.2}
+.chip-1{left:18px;top:18px}
+.chip-2{right:18px;bottom:18px}
+.dot{width:10px;height:10px;border-radius:50%;background:#22C08A;box-shadow:0 0 0 5px rgba(34,192,138,.2);flex:none}
+.avs{display:flex}
+.avs span{width:30px;height:30px;border-radius:50%;border:2px solid #fff;margin-left:-8px;display:grid;place-items:center;font:700 11px Gabarito,sans-serif;color:#fff}
+.avs span:first-child{margin-left:0}
+.legend{position:absolute;left:18px;bottom:18px;background:rgba(255,255,255,.9);border-radius:12px;padding:9px 12px;font-size:12.5px;color:var(--muted);display:grid;gap:5px}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:50%;flex:none}
+
+@media (max-width:1080px){
+  .hero{grid-template-columns:1fr;padding-top:116px;min-height:0;gap:48px}
+  .mapwrap{max-width:680px;width:100%;margin:0 auto}
+}
+@media (max-width:900px){
+  .links,.login,.nav-in>.btn{display:none}
+  .burger{display:block}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:#fff;padding:6px 32px 24px;box-shadow:0 24px 40px -24px rgba(45,25,130,.35)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+  .mmenu .btn{width:100%;margin-top:18px;border:0}
+}
+@media (max-width:600px){
+  .nav-in{padding:14px 18px}
+  .mmenu{padding:6px 18px 22px}
+  .hero{padding:98px 18px 56px}
+  .lead{font-size:16.5px}
+  .check{padding:18px;border-radius:18px}
+  .row{flex-direction:column}
+  .row .btn{width:100%}
+  .wl{flex-direction:column}
+  .mapcard{aspect-ratio:1/1.08;border-radius:22px}
+  .chip{padding:9px 11px;font-size:12px;border-radius:12px}
+  .chip b{font-size:14px}
+  .chip-1{left:10px;top:10px}
+  .chip-2{right:10px;bottom:10px}
+  .avs{display:none}
+  .legend{display:none}
+  .area-lbl{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){.ring,.cl,.you.show .drop,.result{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo" aria-label="Fernly home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="11" fill="#5B3FD9"/><path d="M11 24c0-8 4-13 12-14-1 8-5 12-12 14z" fill="#FFE45C"/><path d="M11 24l7-8" stroke="#5B3FD9" stroke-width="1.6" stroke-linecap="round"/></svg>Fernly</a>
+    <nav class="links" aria-label="Primary"><a href="#">Regular cleans</a><a href="#">Deep cleans</a><a href="#">End of tenancy</a><a href="#">Prices</a><a href="#">Join our team</a></nav>
+    <a href="#" class="login">Log in</a>
+    <a href="#check" class="btn btn-v btn-sm">Get a price</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+  <div class="mmenu" id="mmenu"><a href="#">Regular cleans</a><a href="#">Deep cleans</a><a href="#">End of tenancy</a><a href="#">Prices</a><a href="#">Join our team</a><a href="#">Log in</a><a href="#check" class="btn btn-v">Get a price</a></div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div>
+    <span class="pill"><i>New</i>Now cleaning in Bishopston &amp; Westbury</span>
+    <h1 id="h1">Come home to a <span>spotless</span> house, every week.</h1>
+    <p class="lead">Vetted, insured cleaners who bring their own eco-friendly kit — and the same friendly face every visit. From £19/hr, no contracts, skip or pause anytime.</p>
+
+    <form class="check" id="check" novalidate>
+      <label for="pc">Check if we cover your area</label>
+      <div class="row">
+        <div class="field" id="field">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z" stroke="#5B3FD9" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="#5B3FD9"/></svg>
+          <input id="pc" name="postcode" type="text" inputmode="text" autocomplete="postal-code" placeholder="Enter your postcode, e.g. BS8 1TH" aria-describedby="pchelp pcmsg" maxlength="9">
+        </div>
+        <button class="btn btn-v" type="submit">Check my area</button>
+      </div>
+      <p class="msg" id="pcmsg" role="alert" hidden></p>
+      <p class="help" id="pchelp">Try <button type="button" data-try="BS6 5QA">BS6 5QA</button> (Redland) or <button type="button" data-try="BS16 3JP">BS16 3JP</button> (Fishponds).</p>
+      <div class="result" id="result" aria-live="polite"></div>
+    </form>
+
+    <div class="perks">
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#14865E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>DBS-checked &amp; insured</span>
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#14865E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Re-clean free within 48h</span>
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#14865E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>4.9★ from 2,100+ homes</span>
+    </div>
+  </div>
+
+  <div class="mapwrap">
+    <div class="mapcard">
+      <svg class="map" viewBox="0 0 600 576" role="img" aria-labelledby="maptitle">
+        <title id="maptitle">Stylised map of Bristol showing Fernly's service area: a circle covering postcodes BS1 to BS9, with cleaners based across Clifton, Redland, Bedminster and Easton</title>
+        <rect width="600" height="576" fill="#EFEAFF"/>
+        <!-- parks -->
+        <path d="M168 150c30-26 86-22 104 4 14 22-6 52-40 58-40 6-86-34-64-62z" fill="#D5EFDD"/>
+        <path d="M410 120c26-10 58 4 60 26 2 20-30 30-52 24-22-6-30-40-8-50z" fill="#D5EFDD"/>
+        <path d="M250 430c20-14 60-10 66 12 6 20-26 34-48 30-24-4-36-30-18-42z" fill="#D5EFDD"/>
+        <path d="M460 360c18-8 44 0 46 18s-22 30-40 24-24-34-6-42z" fill="#D5EFDD"/>
+        <!-- minor roads -->
+        <g stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85">
+          <path d="M40 210L560 250"/><path d="M60 420L560 380"/><path d="M140 40L200 540"/><path d="M420 30L380 560"/>
+          <path d="M260 20L330 560"/><path d="M30 120L580 160"/><path d="M20 500L580 470"/><path d="M500 40L540 560"/>
+          <path d="M80 300L300 120"/><path d="M320 470L560 300"/>
+        </g>
+        <!-- main roads -->
+        <g stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round">
+          <path d="M300 285L330 20"/><path d="M300 285L580 210"/><path d="M300 285L470 560"/><path d="M300 285L40 330"/><path d="M300 285L110 40"/>
+        </g>
+        <g stroke="#D9D0FA" stroke-width="9" fill="none" stroke-linecap="round" opacity=".55">
+          <path d="M300 285L330 20"/><path d="M300 285L580 210"/>
+        </g>
+        <!-- river Avon + harbour -->
+        <path d="M-10 250C60 262 120 330 190 318S260 300 300 310s70 18 120 2 90-60 190-40" fill="none" stroke="#C7DBFF" stroke-width="22" stroke-linecap="round"/>
+        <path d="M-10 250C60 262 120 330 190 318S260 300 300 310s70 18 120 2 90-60 190-40" fill="none" stroke="#B4CEFF" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <!-- service area -->
+        <circle class="ring" cx="300" cy="285" r="178" fill="none" stroke="#5B3FD9" stroke-width="3"/>
+        <circle cx="300" cy="285" r="178" fill="rgba(91,63,217,.1)" stroke="#5B3FD9" stroke-width="2.5" stroke-dasharray="10 8"/>
+        <!-- area labels -->
+        <g class="area-lbl" text-anchor="middle">
+          <text x="214" y="236">CLIFTON</text><text x="300" y="176">REDLAND</text><text x="338" y="122">BISHOPSTON</text>
+          <text x="200" y="146">WESTBURY</text><text x="282" y="368">BEDMINSTER</text><text x="412" y="252">EASTON</text>
+          <text x="308" y="270">CENTRE</text><text x="392" y="372">KNOWLE</text><text x="512" y="196" fill="#8C86AD">FISHPONDS</text>
+        </g>
+        <!-- cleaner pins -->
+        <g fill="#5B3FD9">
+          <g class="cl"><path d="M236 214c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="249" cy="213" r="5" fill="#FFE45C"/></g>
+          <g class="cl"><path d="M318 158c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="331" cy="157" r="5" fill="#FFE45C"/></g>
+          <g class="cl"><path d="M240 330c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="253" cy="329" r="5" fill="#FFE45C"/></g>
+          <g class="cl"><path d="M398 210c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="411" cy="209" r="5" fill="#FFE45C"/></g>
+          <g class="cl"><path d="M352 316c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="365" cy="315" r="5" fill="#FFE45C"/></g>
+          <g class="cl"><path d="M182 168c0-8 6-14 13-14s13 6 13 14c0 10-13 22-13 22s-13-12-13-22z"/><circle cx="195" cy="167" r="5" fill="#FFE45C"/></g>
+        </g>
+        <!-- HQ -->
+        <circle cx="300" cy="285" r="9" fill="#1D1640"/><circle cx="300" cy="285" r="4" fill="#FFE45C"/>
+        <!-- "you" pin, positioned by script -->
+        <g class="you" id="you" transform="translate(0 0)">
+          <g class="drop">
+            <ellipse cx="0" cy="2" rx="10" ry="3.5" fill="rgba(29,22,64,.25)"/>
+            <path d="M-17 -30c0-11 8-19 17-19s17 8 17 19c0 13-17 30-17 30S-17-17-17-30z" fill="#1D1640"/>
+            <circle cx="0" cy="-30" r="7" fill="#FFE45C"/>
+            <rect x="-22" y="-76" width="44" height="22" rx="11" fill="#1D1640"/>
+            <text x="0" y="-60.5" text-anchor="middle" font-family="Gabarito,sans-serif" font-weight="700" font-size="12" fill="#fff">You</text>
+          </g>
+        </g>
+      </svg>
+
+      <div class="chip chip-1"><span class="dot" aria-hidden="true"></span><div><b>34 cleaners nearby</b>Covering BS1 – BS9</div></div>
+      <div class="chip chip-2">
+        <div class="avs" aria-hidden="true"><span style="background:#5B3FD9">PK</span><span style="background:#E0457B">MO</span><span style="background:#14865E">JL</span></div>
+        <div><b>Next slot: <span id="nextChip">Tue</span></b>Booked in under 60 secs</div>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:rgba(91,63,217,.25);border:2px dashed #5B3FD9"></i>Service area</span>
+        <span><i style="background:#5B3FD9"></i>Fernly cleaner</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),burger=document.getElementById('burger'),menu=document.getElementById('mmenu');
+  function setMenu(o){nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  burger.addEventListener('click',function(){setMenu(!nav.classList.contains('open'));});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);burger.focus();}});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)setMenu(false);});
+
+  // outcode -> [area, x, y, covered, cleaner]
+  var AREAS={
+    BS1:['Bristol city centre',304,292,1,'Priya'],BS2:['St Pauls',340,256,1,'Marta'],BS3:['Bedminster',276,350,1,'Joel'],
+    BS4:['Knowle',392,356,1,'Aisha'],BS5:['Easton',418,268,1,'Tom'],BS6:['Redland',298,196,1,'Priya'],
+    BS7:['Bishopston',336,134,1,'Marta'],BS8:['Clifton',222,256,1,'Joel'],BS9:['Westbury-on-Trym',196,150,1,'Aisha'],
+    BS10:['Henleaze North',236,60,0],BS11:['Avonmouth',70,150,0],BS13:['Hartcliffe',250,500,0],BS14:['Whitchurch',370,500,0],
+    BS15:['Kingswood',530,300,0],BS16:['Fishponds',478,168,0],BS34:['Filton',360,40,0]
+  };
+  var DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var TIMES=['9:00–12:00','10:00–13:00','13:00–16:00','14:00–17:00'];
+  function nextSlot(seed){
+    var d=new Date();d.setHours(0,0,0,0);
+    var add=1+(seed%3);d.setDate(d.getDate()+add);
+    if(d.getDay()===0)d.setDate(d.getDate()+1);
+    return {label:DAYS[d.getDay()]+' '+d.getDate()+' '+MONTHS[d.getMonth()],short:DAYS[d.getDay()]+' '+TIMES[seed%TIMES.length].split('–')[0],time:TIMES[seed%TIMES.length]};
+  }
+  document.getElementById('nextChip').textContent=nextSlot(1).short;
+
+  var form=document.getElementById('check'),input=document.getElementById('pc'),field=document.getElementById('field'),
+      msg=document.getElementById('pcmsg'),result=document.getElementById('result'),you=document.getElementById('you');
+  var RE=/^([A-Z]{1,2}\d[A-Z\d]?)\s*(\d[A-Z]{2})?$/;
+
+  function err(t){msg.textContent=t;msg.hidden=false;field.classList.add('err');input.setAttribute('aria-invalid','true');result.className='result';you.classList.remove('show');input.focus();}
+  function clearErr(){msg.hidden=true;field.classList.remove('err');input.removeAttribute('aria-invalid');}
+  input.addEventListener('input',clearErr);
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function dropPin(x,y){
+    you.classList.remove('show');you.setAttribute('transform','translate('+x+' '+y+')');
+    void you.getBoundingClientRect();you.classList.add('show');
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=input.value.trim().toUpperCase().replace(/\s+/g,' ');
+    if(!v)return err('Please enter your postcode.');
+    var m=v.match(RE);
+    if(!m)return err('That doesn’t look like a UK postcode — try something like BS8 1TH.');
+    clearErr();
+    var out=m[1],full=m[2]?out+' '+m[2]:out,a=AREAS[out];
+    if(a&&a[3]){
+      var seed=out.charCodeAt(out.length-1)+(m[2]?m[2].charCodeAt(0):0),s=nextSlot(seed);
+      dropPin(a[1],a[2]);
+      result.className='result ok show';
+      result.innerHTML='<h2><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#14865E"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>Yes, we cover '+esc(full)+'!</h2>'+
+        '<p>'+a[4]+' and 3 other cleaners work in '+a[0]+'.</p>'+
+        '<div class="slot"><div><small>Next free slot</small><b>'+s.label+', '+s.time+'</b></div><a href="#" class="btn btn-v btn-sm">Book this slot</a></div>';
+    }else{
+      if(a)dropPin(a[1],a[2]);else you.classList.remove('show');
+      var where=a?a[0]+' ('+out+')':esc(full);
+      result.className='result no show';
+      result.innerHTML='<h2>We’re not in '+where+' just yet</h2>'+
+        '<p>'+(a?'It’s next on our list for spring. ':'We currently clean across Bristol only. ')+'Join the waitlist and we’ll email you first — with 20% off your first clean.</p>'+
+        '<div class="wl" id="wl"><label for="wlmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email for the waitlist</label>'+
+        '<input id="wlmail" type="email" autocomplete="email" placeholder="you@email.com"><button type="button" class="btn btn-y btn-sm" id="wlbtn">Join waitlist</button></div>'+
+        '<p class="msg" id="wlmsg" role="alert" hidden></p>';
+      var wlbtn=document.getElementById('wlbtn'),wlmail=document.getElementById('wlmail'),wlmsg=document.getElementById('wlmsg');
+      function join(){
+        var ev=wlmail.value.trim();
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){wlmsg.textContent='Please enter a valid email address.';wlmsg.hidden=false;wlmail.classList.add('err');wlmail.setAttribute('aria-invalid','true');wlmail.focus();return;}
+        var pos=18+(out.charCodeAt(out.length-1)%40);
+        document.getElementById('wl').outerHTML='<p style="margin-top:10px;font-weight:700;color:#1D1640">You’re #'+pos+' on the '+esc(out)+' waitlist. We’ve sent a confirmation to '+esc(ev)+'.</p>';
+        wlmsg.hidden=true;
+      }
+      wlbtn.addEventListener('click',join);
+      wlmail.addEventListener('keydown',function(k){if(k.key==='Enter'){k.preventDefault();join();}});
+      wlmail.addEventListener('input',function(){wlmsg.hidden=true;wlmail.classList.remove('err');wlmail.removeAttribute('aria-invalid');});
+    }
+  });
+
+  document.querySelectorAll('[data-try]').forEach(function(b){
+    b.addEventListener('click',function(){input.value=b.getAttribute('data-try');clearErr();form.requestSubmit?form.requestSubmit():form.dispatchEvent(new Event('submit',{cancelable:true}));});
+  });
+})();
+</script>
+</body>
+</html>

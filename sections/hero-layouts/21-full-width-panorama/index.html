@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnway Treks — Guided treks to the far side of the map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#10201B;--forest-2:#1A2F28;--amber:#F0A44B;--amber-d:#DC8E31;--bone:#F3EEE4;--mist:#B9C4BE;--line:rgba(243,238,228,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--bone);color:var(--forest);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.hero{position:relative;isolation:isolate}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;color:var(--bone);transition:color .25s}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(16,32,27,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .3s;border-bottom:1px solid var(--line)}
+.nav.solid::before,.nav.open::before{opacity:1}
+.nav-in{display:flex;align-items:center;gap:36px;padding:18px clamp(20px,4vw,56px)}
+.logo{display:flex;align-items:center;gap:10px;font:900 24px/1 "Big Shoulders Display",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.logo svg{width:30px;height:30px}
+.links{display:flex;gap:30px;font-size:15px;font-weight:500;margin-right:auto}
+.links a{opacity:.85;position:relative;padding:4px 0}
+.links a:hover,.links a:focus-visible{opacity:1}
+.links a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--amber);transition:right .25s}
+.links a:hover::after{right:0}
+.nav-cta{display:flex;align-items:center;gap:22px;font-size:15px;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 15px/1 "Hanken Grotesk",sans-serif;border-radius:999px;padding:16px 26px;border:1.5px solid transparent;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.btn-amber{background:var(--amber);color:var(--forest)}
+.btn-amber:hover{background:var(--amber-d);transform:translateY(-1px)}
+.btn-line{border-color:rgba(243,238,228,.5);color:var(--bone)}
+.btn-line:hover{border-color:var(--bone);background:rgba(243,238,228,.08)}
+.btn-sm{padding:11px 18px;font-size:14px}
+a:focus-visible,.btn:focus-visible,.burger:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(243,238,228,.45);background:transparent;cursor:pointer;position:relative;color:var(--bone)}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:12px;width:17px;height:2px;background:currentColor;border-radius:2px;transition:.2s;content:""}
+.burger span{top:20px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+/* panorama band */
+.pano{position:relative;width:100%;height:min(88svh,860px);min-height:600px;overflow:hidden;background:var(--forest);color:var(--bone)}
+.pano img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 58%;transform:scale(1.08);animation:drift 38s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.08) translateX(-1.6%)}to{transform:scale(1.08) translateX(1.6%)}}
+.pano::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,32,27,.55) 0%,rgba(16,32,27,0) 22%),linear-gradient(15deg,rgba(16,32,27,.94) 0%,rgba(16,32,27,.7) 30%,rgba(16,32,27,0) 62%)}
+.coords{position:absolute;z-index:2;right:clamp(20px,4vw,56px);top:110px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px;color:rgba(243,238,228,.82)}
+.coords i{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 rgba(240,164,75,.6);animation:ping 2.4s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 12px rgba(240,164,75,0)}100%{box-shadow:0 0 0 0 rgba(240,164,75,0)}}
+.content{position:absolute;z-index:2;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(36px,6vh,64px);display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.copy{max-width:700px}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+.eyebrow::before{content:"";width:34px;height:2px;background:currentColor}
+h1{font:900 clamp(56px,8.6vw,128px)/.88 "Big Shoulders Display",sans-serif;text-transform:uppercase;letter-spacing:-.005em}
+h1 span{color:transparent;-webkit-text-stroke:2px var(--bone)}
+.sub{margin-top:22px;max-width:520px;font-size:clamp(16px,1.4vw,18.5px);color:rgba(243,238,228,.86)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.depart{flex:none;width:300px;background:rgba(243,238,228,.96);color:var(--forest);border-radius:18px;padding:20px 20px 18px;box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
+.depart-top{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5d6b64}
+.tag{background:var(--forest);color:var(--amber);padding:4px 9px;border-radius:99px;letter-spacing:.06em}
+.depart h2{font:800 28px/1 "Big Shoulders Display",sans-serif;text-transform:uppercase;margin:12px 0 4px}
+.depart p{font-size:14px;color:#46534d}
+.spots{margin-top:14px;display:flex;gap:4px}
+.spots i{flex:1;height:6px;border-radius:3px;background:var(--forest)}
+.spots i.free{background:#d7d0c2}
+.depart-foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:13px;color:#46534d}
+.depart-foot b{font-size:19px;color:var(--forest)}
+.depart a{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid #ddd5c6;font-weight:700;font-size:14px}
+.depart a:hover{color:var(--amber-d)}
+/* info bar */
+.info{background:var(--forest);color:var(--bone);border-top:3px solid var(--amber)}
+.info ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.info li{display:flex;align-items:center;gap:14px;padding:22px clamp(20px,3vw,40px);border-right:1px solid var(--line);font-size:14.5px;line-height:1.35}
+.info li:last-child{border-right:0}
+.info svg{flex:none;width:38px;height:38px;padding:8px;border-radius:50%;background:rgba(240,164,75,.14);color:var(--amber)}
+.info b{display:block;font-size:15.5px;font-weight:700}
+.info span{color:var(--mist);font-size:13.5px}
+@media (max-width:1100px){
+  .info ul{grid-template-columns:repeat(2,1fr)}
+  .info li:nth-child(2){border-right:0}
+  .info li:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .depart{width:270px}
+}
+@media (max-width:900px){
+  .links,.nav-cta{display:none}
+  .burger{display:block}
+  .nav-in{padding:14px 20px}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:var(--forest);border-bottom:3px solid var(--amber);padding:6px 20px 24px}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:15px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:17px}
+  .mmenu .btn{display:flex;width:100%;margin-top:18px;border:0;padding:16px 26px}
+  .pano{height:auto;min-height:max(680px,100svh);display:flex;flex-direction:column;justify-content:flex-end}
+  .content{position:relative;left:auto;right:auto;bottom:auto;padding:150px 20px 40px;flex-direction:column;align-items:stretch;gap:28px}
+  .depart{width:100%;max-width:420px}
+  .coords{top:84px}
+  .pano::before{background:linear-gradient(180deg,rgba(16,32,27,.5) 0%,rgba(16,32,27,.25) 18%,rgba(16,32,27,.55) 38%,rgba(16,32,27,.9) 62%,rgba(16,32,27,.96) 100%)}
+}
+@media (max-width:560px){
+  .info ul{grid-template-columns:1fr}
+  .info li{border-right:0;border-bottom:1px solid var(--line)}
+  .info li:last-child{border-bottom:0}
+  .ctas .btn{flex:1 1 100%}
+  h1 span{-webkit-text-stroke-width:1.5px}
+  .coords{display:none}
+  .pano img{object-position:58% 0;height:62svh;min-height:420px;bottom:auto}
+  .content{padding-top:max(300px,46svh)}
+  .pano::before{background:linear-gradient(180deg,rgba(16,32,27,.5) 0,rgba(16,32,27,.1) 110px,rgba(16,32,27,.35) 30svh,rgba(16,32,27,.94) calc(46svh + 20px),#10201B calc(62svh + 0px))}
+  h1{font-size:60px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.pano img{transform:none}}
+</style>
+</head>
+<body>
+<section class="hero" aria-label="Cairnway Treks">
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#" class="logo" aria-label="Cairnway Treks home">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 27 13 9l6 10 3-5 7 13z" fill="#F0A44B"/><path d="M13 9l3.2 5.4-2.6 1.6L11 13.6z" fill="#F3EEE4"/></svg>
+        Cairnway</a>
+      <nav class="links" aria-label="Primary"><a href="#">Treks</a><a href="#">Regions</a><a href="#">Our guides</a><a href="#">Journal</a></nav>
+      <div class="nav-cta"><a href="#">Talk to a planner</a><a href="#" class="btn btn-amber btn-sm">Book a trek</a></div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Treks</a><a href="#">Regions</a><a href="#">Our guides</a><a href="#">Journal</a><a href="#">Talk to a planner</a>
+      <a href="#" class="btn btn-amber">Book a trek</a>
+    </div>
+  </header>
+
+  <div class="pano">
+    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1800&q=70&auto=format&fit=crop" alt="Two trekkers with backpacks walking a trail toward snow-capped granite peaks in Patagonia" fetchpriority="high">
+    <p class="coords"><i aria-hidden="true"></i>Torres del Paine · 50.94° S, 72.99° W</p>
+    <div class="content">
+      <div class="copy">
+        <p class="eyebrow">Guided treks since 2011</p>
+        <h1>Walk where<br>the <span>road</span> ends</h1>
+        <p class="sub">Small-group treks through Patagonia, the Himalaya and the high Alps — led by local mountain guides, with every hut, permit and porter sorted before you lace up.</p>
+        <div class="ctas">
+          <a href="#" class="btn btn-amber">Find your trek
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" class="btn btn-line">See 2027 departures</a>
+        </div>
+      </div>
+      <aside class="depart" aria-label="Next departure">
+        <div class="depart-top"><span>Next departure</span><span class="tag">Grade 3</span></div>
+        <h2>The Paine W Circuit</h2>
+        <p>9 days · 14 Jan 2027 · 78 km on foot</p>
+        <div class="spots" role="img" aria-label="8 of 12 places booked, 4 left"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="free"></i><i class="free"></i><i class="free"></i><i class="free"></i></div>
+        <div class="depart-foot"><span>4 of 12 places left</span><span>from <b>$3,480</b></span></div>
+        <a href="#">Reserve a place <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </div>
+
+  <div class="info">
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.8.2 5 2.6 5 5.8"/></svg><p><b>Max 12 trekkers</b><span>Two guides on every group</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><p><b>IFMGA-certified guides</b><span>Wilderness first responders</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-11 4 6 2-3 6 8z"/><path d="M3 19h18"/></svg><p><b>46 routes, 14 countries</b><span>Grade 2 rambles to grade 5 passes</span></p></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg><p><b>Carbon-balanced trips</b><span>1% of fares to trail restoration</span></p></li>
+    </ul>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function close(){nav.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu');}
+  b.addEventListener('click',function(){
+    var o=nav.classList.toggle('open');
+    b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('#mmenu a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){close();b.focus();}});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)close();});
+  function onScroll(){nav.classList.toggle('solid',window.scrollY>40);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>

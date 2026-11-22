@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hartwell &amp; Rowe — Chartered accountants &amp; tax advisers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F6F3EC;--ink:#1B1F3B;--muted:#5D6078;--rule:rgba(27,31,59,.075);--line:#DCD6C8;--ox:#9E2B25;--ox-d:#84221D;--gold:#B8893A}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Geist,system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;isolation:isolate;overflow:hidden}
+/* ledger paper: faint ruled lines + a red margin rule */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(180deg,transparent 0 35px,var(--rule) 35px 36px);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 70%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 70%,transparent 100%)}
+.hero::after{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:max(24px,calc(50% - 640px));width:1px;background:rgba(158,43,37,.22);box-shadow:5px 0 0 rgba(158,43,37,.12)}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,72px)}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(246,243,236,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .25s}
+.nav.solid::before,.nav.open::before{opacity:1}
+.nav-in{display:flex;align-items:center;gap:40px;padding-top:20px;padding-bottom:20px}
+.logo{display:flex;align-items:baseline;gap:10px;font:500 23px/1 Newsreader,serif;letter-spacing:-.01em}
+.logo b{font-weight:500;font-style:italic;color:var(--ox)}
+.logo small{font:500 10.5px/1 "Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-left:10px;border-left:1px solid var(--line)}
+.links{display:flex;gap:30px;font-size:14.5px;color:var(--muted);margin-right:auto}
+.links a:hover,.links a:focus-visible{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500}
+.nav-cta .tel{font-family:"Geist Mono",monospace;font-size:13.5px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 15.5px/1 Geist,sans-serif;padding:17px 26px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--ox)}
+.btn-ink svg{transition:transform .2s}
+.btn-ink:hover svg{transform:translateX(3px)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:rgba(27,31,59,.06)}
+.btn-sm{padding:11px 18px;font-size:14px}
+a:focus-visible,.btn:focus-visible,.burger:focus-visible{outline:2px solid var(--ox);outline-offset:3px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--ink);border-radius:4px;background:transparent;cursor:pointer;position:relative}
+.burger span,.burger span::before,.burger span::after{position:absolute;left:12px;width:18px;height:1.5px;background:var(--ink);transition:.2s;content:""}
+.burger span{top:21px}.burger span::before{top:-6px;left:0}.burger span::after{top:6px;left:0}
+.nav.open .burger span{background:transparent}.nav.open .burger span::before{top:0;transform:rotate(45deg)}.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+/* content */
+.main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0 72px;align-items:start;align-content:center;padding-top:150px;padding-bottom:56px}
+h1{grid-column:1/-1;margin:30px 0 0}
+.kicker{grid-column:1/-1;display:flex;align-items:center;gap:14px;font:500 12px/1 "Geist Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.kicker i{font-style:normal;color:var(--ox)}
+.kicker::after{content:"";flex:1;max-width:220px;height:1px;background:var(--line)}
+h1{font:400 clamp(48px,7.6vw,118px)/.98 Newsreader,serif;letter-spacing:-.035em}
+h1 em{font-style:italic;color:var(--ox)}
+.rot{position:relative;display:inline-block;vertical-align:bottom;overflow:hidden;padding:0 .04em .12em;margin-bottom:-.12em;transition:width .55s cubic-bezier(.6,0,.2,1)}
+.rot span{display:inline-block;font-style:italic;color:var(--ox);white-space:nowrap;transition:transform .55s cubic-bezier(.6,0,.2,1),opacity .45s,filter .45s}
+.rot span.out{transform:translateY(-70%);opacity:0;filter:blur(4px)}
+.rot span.in{transform:translateY(70%);opacity:0;filter:blur(4px);transition:none}
+.rot::after{content:"";position:absolute;left:.04em;right:.04em;bottom:.1em;height:.06em;background:var(--gold);opacity:.6;border-radius:2px}
+.sizer{position:absolute;visibility:hidden;white-space:nowrap;font-style:italic}
+.lede{margin-top:34px;max-width:580px;font-size:clamp(17px,1.5vw,19.5px);color:var(--muted)}
+.lede strong{color:var(--ink);font-weight:500}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.fine{margin-top:16px;font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.fine::before{content:"";width:7px;height:7px;border-radius:50%;background:#3C8C5A}
+/* side note: deadline */
+.note{margin-top:40px;border-top:2px solid var(--ink);padding-top:18px;font-size:14.5px}
+.note h2{font:500 11.5px/1 "Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.note .big{color:var(--ink);display:flex;align-items:baseline;gap:10px;margin:14px 0 6px;font:400 92px/.9 Newsreader,serif;letter-spacing:-.04em}
+.big small{font:500 13px/1.2 Geist,sans-serif;letter-spacing:0;color:var(--muted)}
+.note p{color:var(--muted)}
+.note p b{color:var(--ink);font-weight:500}
+.note ul{list-style:none;margin-top:18px;border-top:1px solid var(--line)}
+.note li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.note li span:last-child{font-family:"Geist Mono",monospace;font-size:12.5px;color:var(--muted)}
+/* proof */
+.proof{border-top:1px solid var(--line)}
+.proof-in{display:grid;grid-template-columns:repeat(3,1fr) 1.35fr;gap:0}
+.stat{padding:28px 28px 30px 0;border-right:1px solid var(--line)}
+.stat+.stat{padding-left:28px}
+.stat b{display:block;font:400 clamp(34px,3.4vw,46px)/1 Newsreader,serif;letter-spacing:-.03em}
+.stat b sup{font-size:.45em;color:var(--ox);vertical-align:.9em;margin-left:2px}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--muted)}
+.clients{padding:28px 0 30px 32px;font-size:13px;color:var(--muted)}
+.clients p{font:500 11.5px/1 "Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.clients ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;font:italic 400 19px/1.3 Newsreader,serif;color:var(--ink)}
+.clients li:not(:last-child)::after{content:"·";margin-left:18px;color:var(--gold);font-style:normal}
+@media (max-width:1100px){
+  .main{grid-template-columns:1fr;align-items:start}
+  .note{margin-top:48px}
+  .note{max-width:560px;display:grid;grid-template-columns:auto 1fr;gap:0 28px;align-items:end}
+  .note h2,.note ul{grid-column:1/-1}
+  .proof-in{grid-template-columns:repeat(3,1fr)}
+  .clients{grid-column:1/-1;border-top:1px solid var(--line);padding-left:0}
+  .stat:nth-child(3){border-right:0}
+}
+@media (max-width:900px){
+  .links,.nav-cta{display:none}
+  .burger{display:block}
+  .nav-in{padding-top:14px;padding-bottom:14px}
+  .mmenu{position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:2px solid var(--ink);padding:4px 24px 24px;box-shadow:0 24px 40px -24px rgba(27,31,59,.35)}
+  .nav.open .mmenu{display:block}
+  .mmenu a{display:block;padding:15px 0;border-bottom:1px solid var(--line);font-size:17px}
+  .mmenu .btn{display:flex;width:100%;margin-top:18px;border:0;padding:17px}
+  .main{padding-top:128px}
+}
+@media (max-width:600px){
+  .logo small{display:none}
+  h1{font-size:46px}
+  .hero::before{opacity:.6}
+  .ctas .btn{flex:1 1 100%}
+  .note{display:block}
+  .big{font-size:76px}
+  .proof-in{grid-template-columns:1fr 1fr}
+  .stat{padding:22px 16px 22px 0}
+  .stat+.stat{padding-left:16px}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(3){grid-column:1/-1;border-top:1px solid var(--line);padding-left:0}
+  .clients ul{font-size:17px;gap:4px 14px}
+  .clients li:not(:last-child)::after{margin-left:14px}
+  .hero::after{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="hero" aria-label="Hartwell &amp; Rowe">
+  <header class="nav" id="nav">
+    <div class="wrap nav-in">
+      <a href="#" class="logo" aria-label="Hartwell and Rowe home">Hartwell <b>&amp;</b> Rowe <small>Est. 1998</small></a>
+      <nav class="links" aria-label="Primary"><a href="#">Services</a><a href="#">Fixed fees</a><a href="#">Who we help</a><a href="#">Tax guides</a></nav>
+      <div class="nav-cta"><a href="tel:+442079460731" class="tel">020 7946 0731</a><a href="#" class="btn btn-ink btn-sm">Client portal</a></div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+    <div class="mmenu" id="mmenu">
+      <a href="#">Services</a><a href="#">Fixed fees</a><a href="#">Who we help</a><a href="#">Tax guides</a><a href="tel:+442079460731">Call 020 7946 0731</a>
+      <a href="#" class="btn btn-ink">Client portal</a>
+    </div>
+  </header>
+
+  <div class="wrap main">
+    <p class="kicker"><i>§</i> Chartered accountants &amp; tax advisers · London &amp; remote</p>
+    <h1>Calm books and<br>fewer tax surprises<br>for <span class="sr">founders, landlords, freelancers and family firms.</span><span class="rot" id="rot" aria-hidden="true"><span>founders.</span></span></h1>
+    <div class="body">
+      <p class="lede">We keep your accounts, payroll and returns on time and explain every number in plain English. <strong>Fixed monthly fees, one named accountant</strong>, and a reply within one working day.</p>
+      <div class="ctas">
+        <a href="#" class="btn btn-ink">Book a free 30-minute review
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" class="btn btn-ghost">See fixed-fee pricing</a>
+      </div>
+      <p class="fine">Taking on new clients for the 2026/27 tax year</p>
+    </div>
+    <aside class="note" aria-label="Next filing deadline">
+      <h2>Next deadline</h2>
+      <p class="big"><span id="days">70</span><small>days<br>to go</small></p>
+      <p><b>Self Assessment</b> returns and payment due <b>31 January 2027</b>. Send us your records by 5 January and we file for you.</p>
+      <ul>
+        <li><span>VAT return (Q3)</span><span>07 Feb</span></li>
+        <li><span>Corporation tax</span><span>01 Apr</span></li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="proof">
+    <div class="wrap proof-in">
+      <div class="stat"><b>£2.8m</b><span>tax legitimately saved for clients last year</span></div>
+      <div class="stat"><b>1,240</b><span>businesses &amp; households on our books</span></div>
+      <div class="stat"><b>4.9<sup>/5</sup></b><span>from 380 verified client reviews</span></div>
+      <div class="clients">
+        <p>Keeping the books for</p>
+        <ul><li>Marlow Bakehouse</li><li>Fenwick Studio</li><li>Oakridge Dental</li><li>Halcyon Lettings</li><li>Brightwater Coffee</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function close(){nav.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu');}
+  b.addEventListener('click',function(){
+    var o=nav.classList.toggle('open');
+    b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('#mmenu a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){close();b.focus();}});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)close();});
+  function onScroll(){nav.classList.toggle('solid',window.scrollY>30);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // live day count to the next 31 January Self Assessment deadline
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var due=new Date(today.getFullYear(),0,31);if(today>due)due=new Date(today.getFullYear()+1,0,31);
+  var d=Math.round((due-today)/864e5);
+  document.getElementById('days').textContent=d;
+
+  // rotating word
+  var rot=document.getElementById('rot'),cur=rot.firstElementChild;
+  var words=['founders.','landlords.','freelancers.','family firms.'],i=0;
+  var sizer=document.createElement('span');sizer.className='sizer';rot.parentNode.appendChild(sizer);
+  function w(t){sizer.textContent=t;return sizer.getBoundingClientRect().width;}
+  function pad(){return parseFloat(getComputedStyle(rot).paddingLeft)*2;}
+  function fit(){rot.style.width=Math.ceil(w(cur.textContent)+pad())+'px';}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);else fit();
+  window.addEventListener('resize',fit);
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  setInterval(function(){
+    if(document.hidden)return;
+    i=(i+1)%words.length;
+    cur.classList.add('out');
+    var nx=document.createElement('span');nx.textContent=words[i];nx.className='in';
+    nx.style.position='absolute';nx.style.left='.04em';nx.style.top='0';
+    rot.appendChild(nx);
+    rot.style.width=Math.ceil(w(words[i])+pad())+'px';
+    void nx.offsetWidth;nx.classList.remove('in');
+    setTimeout(function(){cur.remove();nx.style.position='';nx.style.left='';nx.style.top='';cur=nx;},560);
+  },2800);
+})();
+</script>
+</body>
+</html>

@@ -2556,8 +2556,8 @@ window.DESIGNS = {
     {
       "cat": "section-layouts",
       "slug": "hero-gallery",
-      "title": "Hero layouts · all 20",
-      "desc": "Gallery of 20 hero sections, each a different layout for a different business.",
+      "title": "Hero layouts · all 30",
+      "desc": "Gallery of 30 hero sections, each a different layout for a different business.",
       "tags": [
         "Hero",
         "Gallery"
@@ -2887,6 +2887,166 @@ window.DESIGNS = {
         {
           "label": "Hero",
           "href": "sections/hero-layouts/20-accordion-panels/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-21-full-width-panorama",
+      "title": "Hero 21 · Cairnway Treks",
+      "desc": "Full-width panorama · guided treks · next-departure card, info bar.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/21-full-width-panorama/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-22-content-only",
+      "title": "Hero 22 · Hartwell & Rowe",
+      "desc": "Content only, no photos · accounting & tax · rotating word, deadline countdown.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/22-content-only/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-23-rtl-arabic",
+      "title": "Hero 23 · ABAQ · عَبَق",
+      "desc": "RTL Arabic · oud & perfume house · product slider, add to bag.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/23-rtl-arabic/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-24-bg-slider-vertical",
+      "title": "Hero 24 · Azurine",
+      "desc": "Vertical background slider · yacht charter · numbered side nav, line reveal.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/24-bg-slider-vertical/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-25-half-image-half-content",
+      "title": "Hero 25 · Ember & Rye",
+      "desc": "Half full-screen image, half content · bakery & roastery · menu tabs, open now.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/25-half-image-half-content/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-26-scrolling-columns",
+      "title": "Hero 26 · Forkcast",
+      "desc": "Scrolling photo columns · meal-planning app · pause, grocery list.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/26-scrolling-columns/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-27-before-after",
+      "title": "Hero 27 · Kestrel & Oak Kitchens",
+      "desc": "Before/after slider · kitchen remodelling · drag or keyboard.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/27-before-after/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-28-map-service-area",
+      "title": "Hero 28 · Fernly",
+      "desc": "Map + postcode check · home cleaning · covered or waitlist result.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/28-map-service-area/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-29-audience-tabs",
+      "title": "Hero 29 · Learnloft",
+      "desc": "Audience tabs · edtech · students, teachers, schools.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/29-audience-tabs/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "hero-30-card-stack",
+      "title": "Hero 30 · Wagtail & Whiskers",
+      "desc": "Swipeable card stack · pet adoption · swipe to save or skip.",
+      "tags": [
+        "Hero"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/hero-layouts/30-card-stack/index.html"
         }
       ]
     },
