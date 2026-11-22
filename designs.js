@@ -340,6 +340,31 @@ window.DESIGNS = {
     },
     {
       "cat": "template-pages",
+      "slug": "tp-sports-06-volleyball",
+      "title": "Sports · Volleyball club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-06-volleyball-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-06-volleyball-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-06-volleyball-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
       "slug": "tp-sports-07-tabletennis",
       "title": "Sports · Table tennis club",
       "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
