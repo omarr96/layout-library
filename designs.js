@@ -62,6 +62,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "rtl-landing",
+      "name": "RTL landing pages",
+      "desc": "Right-to-left landing pages in Arabic, Hebrew, Persian and Urdu"
+    },
+    {
       "id": "shop-landing",
       "name": "Shop landing pages",
       "desc": "Calm product shop pages with very little animation"
@@ -88,6 +93,112 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-gallery",
+      "title": "All 5 RTL pages",
+      "desc": "Gallery of the five right-to-left landing pages.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "rtl-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-01-arabic-coffee",
+      "title": "Samar · Arabic coffee roastery",
+      "desc": "Saudi coffee beside pour-over, origins carousel, roast filter, brew-ratio calculator, subscription picker, branches.",
+      "tags": [
+        "Arabic",
+        "RTL",
+        "Coffee"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "rtl-landing/01-arabic-coffee/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-02-arabic-clinic",
+      "title": "Sakina Clinics · Arabic family clinic",
+      "desc": "Specialty tabs, visit journey, doctors, 4-step booking widget, insurers, reviews slider, hours.",
+      "tags": [
+        "Arabic",
+        "RTL",
+        "Clinic"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "rtl-landing/02-arabic-clinic/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-03-hebrew-saas",
+      "title": "Keshev · Hebrew SaaS",
+      "desc": "Shared inbox for small businesses: live UI mockup, feature tabs, integrations, pricing toggle in ₪.",
+      "tags": [
+        "Hebrew",
+        "RTL",
+        "SaaS"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "rtl-landing/03-hebrew-saas/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-04-persian-carpets",
+      "title": "Gereh-khaneh · Persian rug workshop",
+      "desc": "Rug collection filter, room-size helper, weaving process slider, repairs, custom order form. Persian digits.",
+      "tags": [
+        "Persian",
+        "RTL",
+        "Shop"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "rtl-landing/04-persian-carpets/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "rtl-landing",
+      "slug": "rtl-05-urdu-academy",
+      "title": "Takhti · Urdu tutoring academy",
+      "desc": "Course filter, weekly timetable, teachers, parent report card, fee toggle, free trial class form.",
+      "tags": [
+        "Urdu",
+        "RTL",
+        "Education"
+      ],
+      "date": "2026-11-22",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "rtl-landing/05-urdu-academy/index.html"
+        }
+      ]
+    },
     {
       "cat": "template-pages",
       "slug": "tp-charity-01-church",

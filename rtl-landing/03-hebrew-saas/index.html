@@ -1,0 +1,899 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>קשב — תיבת פניות אחת לכל הצוות</title>
+<meta name="description" content="קשב מרכזת וואטסאפ, אימייל וצ'אט מהאתר בתיבה משותפת אחת, כדי שעסקים קטנים יענו מהר יותר ולא יפספסו אף לקוח.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F2EC;--paper:#FFFFFF;--soft:#E9E6DC;--line:#D9D4C6;--ink:#111A17;--mute:#55605B;--acc:#FF5A2C;--acc2:#FFB199;--grn:#0E6B55;--grn-l:#D7EBE3;--r:16px;--sh:0 1px 0 rgba(17,26,23,.04),0 18px 40px -18px rgba(17,26,23,.25);--sa:"Rubik","Heebo",system-ui,sans-serif;--se:"Frank Ruhl Libre","David",Georgia,serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sa);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-weight:600;line-height:1.2;margin:0 0 .5em}
+h2{font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:0}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+.serif{font-family:var(--se);font-weight:500}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:24px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;z-index:100}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:500;color:var(--grn);margin-bottom:16px}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.lead{font-size:1.15rem;color:var(--mute);max-width:56ch}
+section{padding:104px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 1rem/1 var(--sa);padding:15px 24px;border-radius:12px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.acc{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.btn.acc:hover{background:#FF7550}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(-4px)}
+
+/* nav */
+header{position:sticky;top:0;z-index:50}
+header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(244,242,236,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled::before{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;gap:32px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.45rem}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--ink);display:grid;place-items:center;position:relative}
+.logo-mark::after{content:"";position:absolute;inset-block-start:6px;inset-inline-end:6px;width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.links{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.links a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--mute);font-weight:500;font-size:.97rem}
+.links a:hover,.links a.active{color:var(--ink);background:var(--soft)}
+.nav-end{margin-inline-start:auto;display:flex;align-items:center;gap:10px}
+.nav-end .login{text-decoration:none;font-weight:500;padding:8px 12px}
+.nav-end .btn{padding:11px 18px;font-size:.95rem}
+.burger{display:none;width:44px;height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;place-items:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.2s}
+.burger span::before,.burger span::after{content:"";position:absolute;inset-inline-start:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mmenu{display:none}
+
+/* hero */
+.hero{padding:64px 0 88px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.6rem);line-height:1.08;font-weight:700;margin-bottom:22px}
+.hero h1 .serif{color:var(--grn);font-weight:700}
+.hero h1 mark{background:none;color:inherit;position:relative;white-space:nowrap}
+.hero h1 mark::after{content:"";position:absolute;inset-inline:0;bottom:.06em;height:.16em;background:var(--acc);z-index:-1;border-radius:4px}
+.signup{display:flex;gap:8px;margin-top:30px;max-width:500px;flex-wrap:wrap}
+.field{flex:1 1 240px;position:relative}
+.field input{width:100%;height:54px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);padding-inline:16px;font:inherit;font-size:1rem;color:var(--ink);text-align:end}
+.field input::placeholder{color:#8B938F}
+.field input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(255,90,44,.25)}
+.field input[aria-invalid="true"]{border-color:#C2341B}
+.signup .btn{height:54px}
+.msg{flex-basis:100%;font-size:.92rem;min-height:1.4em;margin:2px 0 0}
+.msg.err{color:#B3301A}
+.msg.ok{color:var(--grn);font-weight:500}
+.trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:.9rem;color:var(--mute);list-style:none;padding:0}
+.trust li::before{content:"✓";color:var(--grn);font-weight:700;margin-inline-end:6px}
+
+/* app mockup */
+.app{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh);overflow:hidden;font-size:14px;line-height:1.5;position:relative}
+.app-top{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--soft);background:#FBFAF7}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.app-search{flex:1;max-width:260px;height:30px;border-radius:8px;background:var(--soft);display:flex;align-items:center;padding-inline:10px;color:#7B8480;font-size:12.5px}
+.app-me{margin-inline-start:auto;display:flex}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:12px;color:var(--ink);flex:none}
+.app-me .av{border:2px solid #fff;margin-inline-start:-8px}
+.app-body{display:grid;grid-template-columns:40% 1fr;height:430px}
+.clist{border-inline-end:1px solid var(--soft);overflow:hidden;display:flex;flex-direction:column}
+.cfilter{display:flex;gap:6px;padding:12px;border-bottom:1px solid var(--soft)}
+.cfilter span{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--mute)}
+.cfilter span.on{background:var(--ink);color:#fff}
+.citems{list-style:none;margin:0;padding:0}
+.ci{display:grid;grid-template-columns:auto 1fr auto;gap:10px;padding:11px 12px;border-bottom:1px solid var(--soft);align-items:start;position:relative}
+.ci.sel{background:#FFF4EF}
+.ci.sel::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:var(--acc)}
+.ci b{display:block;font-weight:600;font-size:13.5px}
+.ci p{margin:0;color:var(--mute);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.ci .meta{text-align:end;font-size:11.5px;color:#7B8480;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.ci .mid{min-width:0}
+.ch{width:18px;height:18px;border-radius:5px;display:inline-grid;place-items:center;color:#fff}
+.ch svg{width:11px;height:11px}
+.ch.wa{background:#1F9D6B}.ch.em{background:#3D5A80}.ch.wc{background:var(--acc)}
+.new{font-size:10.5px;font-weight:600;background:var(--acc);color:var(--ink);padding:1px 7px;border-radius:99px}
+.ci.enter{animation:slide .5s ease}
+@keyframes slide{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+.conv{display:flex;flex-direction:column;min-width:0}
+.conv-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--soft)}
+.conv-h b{font-size:14px}
+.conv-h small{display:block;color:var(--mute);font-size:12px}
+.assign{margin-inline-start:auto;font-size:12px;background:var(--grn-l);color:var(--grn);padding:4px 10px;border-radius:99px;font-weight:500;white-space:nowrap}
+.bubbles{flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(17,26,23,.025) 23px 24px)}
+.bb{max-width:78%;padding:9px 13px;border-radius:14px;font-size:13.5px}
+.bb.in{align-self:flex-start;background:var(--soft);border-start-start-radius:4px}
+.bb.out{align-self:flex-end;background:var(--ink);color:#fff;border-start-end-radius:4px}
+.bb.note{align-self:center;background:#FFF6D6;color:#5C4A00;font-size:12.5px;border:1px dashed #E3C55A}
+.bb time{display:block;font-size:10.5px;opacity:.65;margin-top:2px}
+.composer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--soft)}
+.composer span{flex:1;height:36px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;padding-inline:12px;color:#8B938F;font-size:12.5px}
+.composer i{width:36px;height:36px;border-radius:10px;background:var(--acc);display:grid;place-items:center;font-style:normal;font-weight:700}
+.float{position:absolute;inset-block-end:-18px;inset-inline-end:-18px;background:var(--grn);color:#fff;border-radius:14px;padding:12px 16px;font-size:13px;box-shadow:var(--sh);display:flex;gap:10px;align-items:center}
+.float b{font-size:20px;font-weight:700}
+.hero-visual{position:relative;padding-block-end:18px}
+
+/* logos */
+.logos{padding:36px 0;border-block:1px solid var(--line)}
+.logos .wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between}
+.logos p{margin:0;color:var(--mute);font-size:.95rem;max-width:18ch}
+.logos ul{display:flex;gap:40px;flex-wrap:wrap;list-style:none;margin:0;padding:0;align-items:center}
+.logos li{font-size:1.25rem;color:#6A726E;font-weight:600;display:flex;align-items:center;gap:8px}
+.logos li.s{font-family:var(--se);font-weight:700;font-size:1.4rem}
+.logos li.l{font-weight:400}
+.logos li svg{width:22px;height:22px}
+
+/* features with tabs */
+.feat-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:48px}
+.feat-head p{margin:0}
+.feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.tabs{display:flex;flex-direction:column;gap:8px}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px;border-radius:var(--r);border:1.5px solid transparent;text-align:start;transition:background .2s,border-color .2s}
+.tab:hover{background:var(--soft)}
+.tab:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.tab[aria-selected="true"]{background:var(--paper);border-color:var(--ink);box-shadow:var(--sh)}
+.tab .ic{width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center}
+.tab[aria-selected="true"] .ic{background:var(--acc)}
+.tab .ic svg{width:22px;height:22px}
+.tab b{display:block;font-size:1.12rem;font-weight:600;margin-bottom:2px}
+.tab span{color:var(--mute);font-size:.97rem;display:block}
+.stage{background:var(--grn);border-radius:24px;padding:36px;min-height:460px;display:grid;place-items:center;position:relative;overflow:hidden}
+.stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.panel{width:100%;max-width:480px;position:relative}
+.panel[hidden]{display:none}
+.panel.show{animation:rise .45s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{background:var(--paper);border-radius:16px;padding:18px;box-shadow:0 20px 40px -20px rgba(0,0,0,.45);font-size:14px;line-height:1.5}
+.card+.card{margin-top:12px}
+.row{display:flex;align-items:center;gap:10px}
+.row+.row{margin-top:10px}
+.pill{font-size:12px;padding:3px 10px;border-radius:99px;background:var(--soft);font-weight:500}
+.pill.o{background:#FFE3D9;color:#8A2A0E}.pill.g{background:var(--grn-l);color:var(--grn)}.pill.b{background:#DDE5F0;color:#2C4466}
+.grow{flex:1;min-width:0}
+.mut{color:var(--mute);font-size:12.5px}
+.kbd{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:var(--soft);padding:2px 7px;border-radius:6px;direction:ltr;unicode-bidi:isolate}
+.bars{display:flex;align-items:flex-end;gap:10px;height:130px;margin-top:14px}
+.bars i{flex:1;background:var(--soft);border-radius:6px 6px 2px 2px;position:relative}
+.bars i.hi{background:var(--acc)}
+.bars-l{display:flex;gap:10px;margin-top:6px}.bars-l span{flex:1;text-align:center;font-size:11.5px;color:var(--mute)}
+.big{font-size:2rem;font-weight:700;line-height:1}
+
+/* before/after */
+.ba{background:var(--ink);color:#EDEAE2}
+.ba h2{color:#fff;max-width:20ch}
+.ba .lead{color:#AEB6B2}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;border-radius:24px;overflow:hidden}
+.ba-col{padding:36px;background:#1A2521}
+.ba-col.after{background:#203029}
+.ba-col h3{display:flex;align-items:center;gap:10px;font-size:1.3rem;color:#fff}
+.ba-col ul{list-style:none;margin:20px 0 0;padding:0}
+.ba-col li{padding:14px 0;border-top:1px solid rgba(255,255,255,.1);display:flex;gap:12px}
+.ba-col li::before{content:"✕";color:#FF8A6A;font-weight:700;flex:none}
+.ba-col.after li::before{content:"✓";color:#7ED6B2}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.stat b{display:block;font-family:var(--se);font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--acc);font-weight:700}
+.stat span{color:#AEB6B2}
+
+/* how */
+.steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;inset-inline:8%;top:31px;border-top:2px dashed var(--line)}
+.step{position:relative}
+.step .n{width:64px;height:64px;border-radius:50%;background:var(--bg);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--se);font-size:1.8rem;font-weight:700;margin-bottom:20px;position:relative}
+.step:last-child .n{background:var(--acc);border-color:var(--acc)}
+.step p{color:var(--mute);margin:0}
+.step .t{display:inline-block;margin-top:14px;font-size:.88rem;font-weight:500;color:var(--grn);background:var(--grn-l);padding:3px 12px;border-radius:99px}
+
+/* integrations */
+.integ{background:var(--paper);border-block:1px solid var(--line)}
+.int-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center}
+.hero-grid>*,.feat>*,.int-grid>*,.faq-grid>*,.cta-box>*,.t-grid>*{min-width:0}
+.hub{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;grid-auto-flow:dense}
+.ti{aspect-ratio:1;border-radius:18px;border:1.5px solid var(--line);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:10px;font-size:.88rem;font-weight:500;transition:transform .2s,border-color .2s}
+.ti{overflow-wrap:anywhere}
+.ti:hover{transform:translateY(-3px);border-color:var(--ink)}
+.ti svg{width:28px;height:28px}
+.ti.core{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;background:var(--ink);color:#fff;border-color:var(--ink);font-size:1.6rem;font-weight:700}
+.ti.core .logo-mark{width:64px;height:64px;border-radius:18px;background:var(--acc)}
+.ti.core .logo-mark::after{background:var(--ink);width:14px;height:14px;inset-block-start:10px;inset-inline-end:10px}
+.ti.core small{font-size:.85rem;font-weight:400;color:#AEB6B2}
+.int-list{list-style:none;padding:0;margin:24px 0 0}
+.int-list li{padding:12px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}
+.int-list li span{color:var(--mute)}
+
+/* pricing */
+.p-head{text-align:center;max-width:640px;margin:0 auto 40px}
+.p-head .lead{margin-inline:auto}
+.toggle{display:inline-flex;align-items:center;gap:14px;margin-top:8px;font-weight:500}
+.sw{all:unset;cursor:pointer;width:56px;height:30px;border-radius:99px;background:var(--ink);position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:4px;inset-inline-start:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:inset-inline-start .25s}
+.sw[aria-checked="true"]::after{inset-inline-start:30px}
+.sw:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.save{font-size:.85rem;background:var(--acc);padding:3px 10px;border-radius:99px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:32px;display:flex;flex-direction:column}
+.plan.pop{background:var(--ink);color:#fff;border-color:var(--ink);position:relative}
+.plan.pop .mut,.plan.pop li{color:#C9D0CC}
+.badge{position:absolute;top:-13px;inset-inline-start:28px;background:var(--acc);color:var(--ink);font-size:.85rem;font-weight:600;padding:4px 14px;border-radius:99px}
+.plan h3{font-size:1.35rem;margin-bottom:4px}
+.price{display:flex;align-items:baseline;gap:8px;margin:22px 0 4px}
+.price .amt{font-size:3.2rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.price .cur{font-size:1.5rem;font-weight:600}
+.per{font-size:.9rem;min-height:2.8em}
+.plan ul{list-style:none;padding:0;margin:20px 0 28px;flex:1}
+.plan li{padding:7px 0;padding-inline-start:26px;position:relative;color:var(--mute)}
+.plan li::before{content:"✓";font-weight:700;color:var(--grn);position:absolute;inset-inline-start:0}
+.plan.pop li::before{color:var(--acc)}
+.plan .btn{width:100%}
+.plan.pop .btn.acc{border-color:var(--acc)}
+.p-note{text-align:center;color:var(--mute);font-size:.92rem;margin-top:24px}
+
+/* testimonials */
+.t-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;margin-top:48px}
+.t-big{position:relative;border-radius:24px;overflow:hidden;min-height:520px;display:flex;align-items:flex-end;color:#fff}
+.t-big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.t-big::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,16,14,.92) 10%,rgba(10,16,14,.45) 55%,rgba(10,16,14,.1))}
+.t-big blockquote{position:relative;z-index:1;margin:0;padding:36px}
+.t-big p{font-family:var(--se);font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.45;font-weight:500}
+.t-big cite{font-style:normal;color:#D4DAD7}
+.t-big cite b{color:#fff;display:block}
+.t-side{display:grid;gap:20px}
+.t-card{background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:28px;margin:0;display:flex;flex-direction:column}
+.t-card p{font-size:1.08rem;flex:1}
+.who{display:flex;align-items:center;gap:12px}
+.who img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.who b{display:block;line-height:1.3}
+.who span{font-size:.9rem;color:var(--mute)}
+.stars{color:var(--acc);letter-spacing:2px;margin-bottom:10px;direction:ltr;unicode-bidi:isolate}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq-grid aside{position:sticky;top:110px}
+.acc{border-top:1.5px solid var(--ink)}
+.q{border-bottom:1px solid var(--line)}
+.q h3{margin:0;font-size:1.1rem}
+.q button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-weight:500;text-align:start}
+.q button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.pm{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);flex:none;position:relative;transition:background .2s,transform .3s}
+.pm::before,.pm::after{content:"";position:absolute;inset:0;margin:auto;width:12px;height:2px;background:var(--ink)}
+.pm::after{transform:rotate(90deg);transition:transform .3s}
+.q button[aria-expanded="true"] .pm{background:var(--acc);border-color:var(--acc)}
+.q button[aria-expanded="true"] .pm::after{transform:rotate(0)}
+.ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.ans.open{grid-template-rows:1fr}
+.ans>div{overflow:hidden}
+.ans p{color:var(--mute);margin:0;padding-block-end:22px;max-width:62ch}
+
+/* final cta */
+.cta{padding:0 0 104px}
+.cta-box{background:var(--acc);border-radius:32px;padding:72px 56px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;inset-inline-start:-80px;bottom:-120px;width:320px;height:320px;border-radius:50%;border:56px solid rgba(17,26,23,.07)}
+.cta-box h2{font-size:clamp(2rem,4.2vw,3.4rem);position:relative}
+.cta-box p{position:relative;font-size:1.1rem}
+.cta-box .signup{margin:0;position:relative}
+.cta-box .field input{border-color:transparent}
+.cta-box .msg.err{color:#5A1405;font-weight:500}
+.cta-box .msg.ok{color:var(--ink)}
+
+/* footer */
+footer{background:var(--ink);color:#C9D0CC;padding:72px 0 32px;font-size:.95rem}
+.f-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+footer .logo{color:#fff;margin-bottom:14px}
+footer .logo-mark{background:var(--acc)}
+footer .logo-mark::after{background:var(--ink)}
+footer h4{color:#fff;font-size:1rem;margin:0 0 14px;font-weight:600}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{padding:4px 0}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+.f-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:.88rem;color:#8E9894}
+.ltr{direction:ltr;unicode-bidi:isolate}
+
+/* responsive */
+@media (max-width:1080px){
+  .links{display:none}
+  .burger{display:grid}
+  .nav-end .login{display:none}
+  .mmenu{position:fixed;inset-inline:0;top:72px;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 24px 24px;box-shadow:0 20px 30px -20px rgba(0,0,0,.25)}
+  .mmenu.open{display:block}
+  .mmenu a{display:block;padding:14px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:1.1rem}
+  .mmenu .btn{margin-top:18px;width:100%;border-bottom:0}
+  .hero-grid,.feat,.int-grid,.faq-grid,.cta-box{grid-template-columns:1fr}
+  .feat-head{grid-template-columns:1fr;gap:12px}
+  .plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+  .plan.pop{order:-1}
+  .t-grid{grid-template-columns:1fr}
+  .faq-grid aside{position:static}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  section{padding:72px 0}
+  .wrap{padding-inline:16px}
+  .nav{gap:12px}
+  .nav-end .btn{display:none}
+  .hero{padding:40px 0 64px}
+  .app-body{grid-template-columns:1fr;height:auto}
+  .conv{display:none}
+  .clist{border-inline-end:0}
+  .app-search{display:none}
+  .float{inset-inline-end:8px;inset-block-end:-10px}
+  .stage{padding:20px;min-height:0}
+  .ba-grid{grid-template-columns:1fr}
+  .ba-col{padding:24px}
+  .stats{grid-template-columns:1fr;gap:20px}
+  .steps{grid-template-columns:1fr}
+  .steps::before{inset-inline:auto;inset-inline-start:31px;top:0;bottom:0;border-top:0;border-inline-start:2px dashed var(--line)}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:16px}
+  .step .n{margin:0}
+  .hub{gap:8px}
+  .ti{font-size:.78rem;border-radius:14px;padding:6px}
+  .ti svg{width:24px;height:24px}
+  .ti.core{grid-column:span 4;grid-row:auto;padding:24px;flex-direction:row}
+  .int-list li{flex-direction:column;gap:2px}
+  .t-big{min-height:460px}
+  .t-big blockquote{padding:24px}
+  .cta-box{padding:44px 22px;border-radius:24px}
+  .logos ul{gap:22px}
+  .f-grid{grid-template-columns:1fr}
+  .plan{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+
+<header id="top">
+  <nav class="wrap nav" aria-label="ניווט ראשי">
+    <a class="logo" href="#top" aria-label="קשב, לעמוד הבית"><span class="logo-mark" aria-hidden="true"></span>קשב</a>
+    <ul class="links">
+      <li><a href="#features">מה יש בפנים</a></li>
+      <li><a href="#how">איך זה עובד</a></li>
+      <li><a href="#integrations">חיבורים</a></li>
+      <li><a href="#pricing">מחירים</a></li>
+      <li><a href="#faq">שאלות</a></li>
+    </ul>
+    <div class="nav-end">
+      <a class="login" href="#signup-final">כניסה</a>
+      <a class="btn" href="#signup-final">לנסות חינם</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="פתיחת תפריט"><span></span></button>
+    </div>
+  </nav>
+  <div class="mmenu" id="mmenu">
+    <a href="#features">מה יש בפנים</a>
+    <a href="#how">איך זה עובד</a>
+    <a href="#integrations">חיבורים</a>
+    <a href="#pricing">מחירים</a>
+    <a href="#faq">שאלות</a>
+    <a class="btn acc" href="#signup-final">לנסות 14 יום חינם</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">וואטסאפ, אימייל וצ'אט — במקום אחד</span>
+      <h1>כל הלקוחות שלכם.<br><mark>תיבה אחת.</mark> <span class="serif">אפס פספוסים.</span></h1>
+      <p class="lead">קשב מרכזת את כל הפניות לתיבה משותפת שכל הצוות רואה. מי עונה, למי, ומתי — ברור לכולם. בלי לשלוח צילומי מסך בקבוצה, בלי "מישהו ענה לה?".</p>
+      <form class="signup" novalidate data-form>
+        <div class="field">
+          <label class="sr-only" for="email-hero">אימייל עבודה</label>
+          <input id="email-hero" type="email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@business.co.il" aria-describedby="msg-hero">
+        </div>
+        <button class="btn" type="submit">מתחילים חינם <span class="arr" aria-hidden="true">←</span></button>
+        <p class="msg" id="msg-hero" role="status" aria-live="polite"></p>
+      </form>
+      <ul class="trust">
+        <li>14 יום ניסיון</li>
+        <li>בלי כרטיס אשראי</li>
+        <li>הקמה ב־10 דקות</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual">
+      <div class="app" role="img" aria-label="תצוגה של מסך קשב: רשימת שיחות מוואטסאפ, אימייל וצ'אט, ושיחה פתוחה עם לקוחה">
+        <div class="app-top" aria-hidden="true">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="app-search">חיפוש לקוח, הזמנה או מילה…</div>
+          <div class="app-me"><span class="av" style="background:#FFD3C4">נ</span><span class="av" style="background:#CFE6DC">ע</span><span class="av" style="background:#DCE3EE">י</span></div>
+        </div>
+        <div class="app-body" aria-hidden="true">
+          <div class="clist">
+            <div class="cfilter"><span class="on">הכול <bdi>12</bdi></span><span>שלי <bdi>4</bdi></span><span>לא שויכו</span></div>
+            <ul class="citems" id="citems">
+              <li class="ci sel"><span class="av" style="background:#FFD3C4">ד</span><div class="mid"><b>דנה כהן</b><p>היי, ההזמנה שלי עוד לא הגיעה…</p></div><div class="meta"><bdi>09:42</bdi><span class="ch wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></span></div></li>
+              <li class="ci"><span class="av" style="background:#DCE3EE">ר</span><div class="mid"><b>רועי אברהם</b><p>בקשה להצעת מחיר ל־20 יחידות</p></div><div class="meta"><bdi>09:31</bdi><span class="ch em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg></span></div></li>
+              <li class="ci"><span class="av" style="background:#CFE6DC">מ</span><div class="mid"><b>מיכל ש.</b><p>אפשר לקבוע תור ליום חמישי?</p></div><div class="meta"><bdi>09:18</bdi><span class="ch wc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v12H8l-4 4z"/></svg></span></div></li>
+              <li class="ci"><span class="av" style="background:#F2E6C2">א</span><div class="mid"><b>אבי לוי</b><p>תודה רבה, קיבלתי!</p></div><div class="meta"><bdi>08:57</bdi><span class="ch wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></span></div></li>
+              <li class="ci"><span class="av" style="background:#E7DDF0">ש</span><div class="mid"><b>שירן גבאי</b><p>החשבונית צריכה להיות על שם החברה</p></div><div class="meta"><bdi>08:40</bdi><span class="ch em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg></span></div></li>
+            </ul>
+          </div>
+          <div class="conv">
+            <div class="conv-h"><span class="av" style="background:#FFD3C4">ד</span><div><b>דנה כהן</b><small>וואטסאפ · לקוחה מ־<bdi>2024</bdi></small></div><span class="assign">שויך לנועה</span></div>
+            <div class="bubbles">
+              <div class="bb in">היי, הזמנתי ביום ראשון ועוד לא קיבלתי כלום 😕<time><bdi>09:42</bdi></time></div>
+              <div class="bb note">הערה פנימית מיונתן: המשלוח יצא אתמול, מספר מעקב בכרטיס</div>
+              <div class="bb out">היי דנה! בדקתי — החבילה יצאה אתמול ותגיע עד מחר בצהריים. שלחתי לך קישור למעקב 🙏<time><bdi>09:44</bdi></time></div>
+              <div class="bb in">וואו, איזה מהר. תודה!<time><bdi>09:45</bdi></time></div>
+            </div>
+            <div class="composer"><span>כתבו תשובה, או הקלידו / לתשובה שמורה</span><i>←</i></div>
+          </div>
+        </div>
+      </div>
+      <div class="float" aria-hidden="true"><b><bdi>3</bdi> דק׳</b><span>זמן תגובה ממוצע<br>היום</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos" aria-label="עסקים שעובדים עם קשב">
+  <div class="wrap">
+    <p>יותר מ־<bdi>1,800</bdi> עסקים קטנים כבר עונים מהר יותר</p>
+    <ul>
+      <li class="s">מאפיית שקד</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>גלגל ירוק</li>
+      <li class="l">סטודיו נוגה</li>
+      <li class="s">בית הבד</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20 12 4l8 16z"/></svg>קליניקת אורן</li>
+      <li class="l">ציפור כחולה</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="feat-head">
+      <div><span class="tag">מה יש בפנים</span><h2>כל מה שצוות קטן צריך. <span class="serif">שום דבר שלא.</span></h2></div>
+      <p class="lead">לא עוד מערכת ענקית עם 200 הגדרות. ארבעה דברים שעושים את ההבדל בין לקוח מתוסכל ללקוח שחוזר.</p>
+    </div>
+    <div class="feat">
+      <div class="tabs" role="tablist" aria-label="יכולות" aria-orientation="vertical">
+        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h5l2 3h4l2-3h5M3 13l3-8h12l3 8v6H3z"/></svg></span>
+          <span><b>תיבה משותפת</b><span>כל הערוצים בזרם אחד, עם היסטוריה מלאה לכל לקוח.</span></span>
+        </button>
+        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11l2 2 4-4"/></svg></span>
+          <span><b>שיוך ותגיות</b><span>כל פנייה מקבלת אחראי. אף אחד לא עונה פעמיים.</span></span>
+        </button>
+        <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <span><b>תשובות שמורות</b><span>שאלות שחוזרות על עצמן? עונים בשתי הקשות.</span></span>
+        </button>
+        <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          <span><b>דוחות פשוטים</b><span>כמה פניות, כמה מהר, ומי מחזיק את הצוות על הכתפיים.</span></span>
+        </button>
+      </div>
+
+      <div class="stage">
+        <div class="panel show" id="p1" role="tabpanel" aria-labelledby="t1" tabindex="0">
+          <div class="card">
+            <div class="row"><span class="ch wa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></span><b class="grow">דנה כהן</b><span class="mut">וואטסאפ · <bdi>09:42</bdi></span></div>
+            <p class="mut" style="margin:8px 0 0">ההזמנה שלי עוד לא הגיעה…</p>
+          </div>
+          <div class="card">
+            <div class="row"><span class="ch em" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg></span><b class="grow">דנה כהן</b><span class="mut">אימייל · אתמול</span></div>
+            <p class="mut" style="margin:8px 0 0">מצרפת את פרטי ההזמנה <bdi>#4821</bdi></p>
+          </div>
+          <div class="card">
+            <div class="row"><span class="ch wc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v12H8l-4 4z"/></svg></span><b class="grow">דנה כהן</b><span class="mut">צ'אט באתר · לפני שבוע</span></div>
+            <p class="mut" style="margin:8px 0 0">יש את זה גם במידה M?</p>
+          </div>
+          <p style="color:#E3F1EB;margin:16px 0 0;font-size:.95rem">שלוש שיחות, שלושה ערוצים — כרטיס לקוח אחד.</p>
+        </div>
+
+        <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" tabindex="0" hidden>
+          <div class="card">
+            <div class="row"><b class="grow">רועי אברהם — הצעת מחיר</b><span class="pill o">דחוף</span></div>
+            <div class="row"><span class="mut grow">אחראי/ת</span><span class="av" style="background:#CFE6DC;width:26px;height:26px">ע</span><b>עומר</b></div>
+            <div class="row"><span class="mut grow">תגיות</span><span class="pill b">סיטונאות</span><span class="pill g">לקוח חוזר</span></div>
+          </div>
+          <div class="card">
+            <div class="row"><span class="av" style="background:#FFD3C4;width:26px;height:26px">נ</span><span class="grow"><b>נועה</b> <span class="mut">מקלידה תשובה…</span></span></div>
+            <p class="mut" style="margin:8px 0 0">עומר רואה שנועה כבר בטיפול — ולא עונה במקביל.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" tabindex="0" hidden>
+          <div class="card">
+            <div class="row"><span class="kbd">/משלוח</span><span class="grow"><b>זמני משלוח</b></span></div>
+            <p class="mut" style="margin:6px 0 0">היי {שם}! משלוחים יוצאים תוך יום עסקים ומגיעים עד <bdi>3</bdi> ימים…</p>
+          </div>
+          <div class="card">
+            <div class="row"><span class="kbd">/החזרה</span><span class="grow"><b>מדיניות החזרות</b></span></div>
+            <p class="mut" style="margin:6px 0 0">אפשר להחזיר תוך <bdi>14</bdi> יום עם קבלה, בלי שאלות…</p>
+          </div>
+          <div class="card">
+            <div class="row"><span class="kbd">/שעות</span><span class="grow"><b>שעות פתיחה</b></span><span class="pill g">בשימוש <bdi>212</bdi> פעם</span></div>
+          </div>
+        </div>
+
+        <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4" tabindex="0" hidden>
+          <div class="card">
+            <div class="row"><span class="grow"><span class="mut">פניות השבוע</span><br><span class="big"><bdi>342</bdi></span></span><span class="pill g">↑ <bdi>18%</bdi></span></div>
+            <div class="bars" aria-hidden="true"><i style="height:45%"></i><i style="height:62%"></i><i style="height:58%"></i><i class="hi" style="height:92%"></i><i style="height:70%"></i><i style="height:38%"></i></div>
+            <div class="bars-l" aria-hidden="true"><span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span></div>
+          </div>
+          <div class="card">
+            <div class="row"><span class="grow mut">זמן תגובה ראשונה</span><b><bdi>3</bdi> דק׳</b></div>
+            <div class="row"><span class="grow mut">נסגרו בלי העברה</span><b><bdi>87%</bdi></b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="ba">
+  <div class="wrap">
+    <span class="tag" style="color:#7ED6B2">למה בכלל</span>
+    <h2>הטלפון של הבעלים הוא לא <span class="serif">מוקד שירות.</span></h2>
+    <p class="lead">רוב העסקים הקטנים מנהלים את השירות מטלפון אחד, שלוש אפליקציות ותקווה. ככה זה נראה לפני ואחרי.</p>
+    <div class="ba-grid">
+      <div class="ba-col">
+        <h3>בלי קשב</h3>
+        <ul>
+          <li>הוואטסאפ העסקי פתוח רק בטלפון של מישהו אחד</li>
+          <li>מיילים נקברים מתחת לחשבוניות ולניוזלטרים</li>
+          <li>שני עובדים עונים לאותה לקוחה, כל אחד משהו אחר</li>
+          <li>לקוח כתב ביום שישי — מישהו ראה את זה ביום ראשון</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <h3>עם קשב</h3>
+        <ul>
+          <li>כל הצוות עונה מאותו מספר, מכל מחשב או נייד</li>
+          <li>כל פנייה נכנסת לתור, עם סטטוס ואחראי</li>
+          <li>רואים מי מטפל — ואת כל ההיסטוריה של הלקוח</li>
+          <li>מענה אוטומטי בסופ״ש, ותזכורת ביום ראשון בבוקר</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b><bdi>×4</bdi></b><span>תגובה מהירה יותר בחודש הראשון, בממוצע</span></div>
+      <div class="stat"><b><bdi>0</bdi></b><span>פניות שנשכחו — כל שיחה פתוחה עד שמישהו סוגר אותה</span></div>
+      <div class="stat"><b><bdi>6</bdi> ש׳</b><span>שבועיות שהצוות חוסך על חיפוש, העתקה והעברה</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <span class="tag">איך זה עובד</span>
+    <h2>שלושה צעדים, <span class="serif">קפה אחד.</span></h2>
+    <p class="lead">לא צריך איש IT ולא צריך להחליף מספר. אפשר להתחיל עוד היום ולענות ללקוח הראשון לפני הצהריים.</p>
+    <ol class="steps">
+      <li class="step"><span class="n" aria-hidden="true">1</span><div><h3>מחברים ערוצים</h3><p>סורקים קוד QR לוואטסאפ העסקי, מעבירים את תיבת המייל, ומדביקים שורת קוד אחת באתר לצ'אט.</p><span class="t">כ־5 דקות</span></div></li>
+      <li class="step"><span class="n" aria-hidden="true">2</span><div><h3>מזמינים את הצוות</h3><p>כל אחד נכנס עם המייל שלו. מגדירים מי מקבל מה — מכירות, משלוחים, תורים.</p><span class="t">כ־3 דקות</span></div></li>
+      <li class="step"><span class="n" aria-hidden="true">3</span><div><h3>עונים ביחד</h3><p>הפניות זורמות לתיבה המשותפת. משייכים, עונים, סוגרים — והלקוח פשוט מרגיש שמקשיבים לו.</p><span class="t">מהיום</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="integ" id="integrations">
+  <div class="wrap int-grid">
+    <div>
+      <span class="tag">חיבורים</span>
+      <h2>מתחבר למה <span class="serif">שכבר עובד לכם.</span></h2>
+      <p class="lead">הערוצים שהלקוחות משתמשים בהם, והכלים שאתם כבר משלמים עליהם.</p>
+      <ul class="int-list">
+        <li><b>ערוצי שיחה</b><span>וואטסאפ, אימייל, צ'אט, אינסטגרם, SMS</span></li>
+        <li><b>חנות ותשלומים</b><span>פרטי הזמנה ותשלום ליד כל שיחה</span></li>
+        <li><b>יומן ותורים</b><span>קביעת תור מתוך השיחה</span></li>
+        <li><b>למפתחים</b><span><bdi>API</bdi> פתוח ו־<bdi>Webhooks</bdi></span></li>
+      </ul>
+    </div>
+    <div class="hub">
+      <div class="ti core"><span class="logo-mark" aria-hidden="true"></span><span>קשב<br><small>הכול נכנס לכאן</small></span></div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="#1F9D6B" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>וואטסאפ</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="#3D5A80" stroke-width="2" aria-hidden="true"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg>אימייל</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="#FF5A2C" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z"/></svg>צ'אט לאתר</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="#B0306A" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>אינסטגרם</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg><bdi>SMS</bdi></div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18l-2 13H5zM8 7a4 4 0 0 1 8 0"/></svg>חנות אונליין</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>יומן תורים</div>
+      <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg><bdi>API</bdi></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="tag">מחירים</span>
+      <h2>משלמים לפי צוות, <span class="serif">לא לפי הודעה.</span></h2>
+      <p class="lead">כל המחירים בשקלים, לפני מע״מ. מבטלים מתי שרוצים.</p>
+      <div class="toggle">
+        <span id="lbl-m">חודשי</span>
+        <button class="sw" id="billing" type="button" role="switch" aria-checked="false" aria-labelledby="lbl-y"></button>
+        <span id="lbl-y">שנתי</span>
+        <span class="save">חודשיים במתנה</span>
+      </div>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3>ניצן</h3>
+        <p class="mut">לעסק של אדם אחד שרוצה סדר.</p>
+        <div class="price"><span dir="ltr"><span class="cur">₪</span><span class="amt" data-m="0" data-y="0">0</span></span></div>
+        <p class="per mut" data-m="לתמיד, למשתמש אחד" data-y="לתמיד, למשתמש אחד">לתמיד, למשתמש אחד</p>
+        <ul>
+          <li>ערוץ אחד (וואטסאפ או אימייל)</li>
+          <li>היסטוריית שיחות של <bdi>30</bdi> יום</li>
+          <li><bdi>10</bdi> תשובות שמורות</li>
+        </ul>
+        <a class="btn ghost" href="#signup-final">פותחים חשבון</a>
+      </article>
+      <article class="plan pop">
+        <span class="badge">הכי נבחר</span>
+        <h3>צוות</h3>
+        <p class="mut">לעסקים של <bdi>2–10</bdi> אנשים.</p>
+        <div class="price"><span dir="ltr"><span class="cur">₪</span><span class="amt" data-m="59" data-y="49">59</span></span></div>
+        <p class="per mut" data-m="למשתמש לחודש, בחיוב חודשי" data-y="למשתמש לחודש, בחיוב שנתי (₪588)">למשתמש לחודש, בחיוב חודשי</p>
+        <ul>
+          <li>כל הערוצים, ללא הגבלה</li>
+          <li>שיוך, תגיות והערות פנימיות</li>
+          <li>תשובות שמורות ומענה אוטומטי</li>
+          <li>דוחות שבועיים במייל</li>
+        </ul>
+        <a class="btn acc" href="#signup-final">14 יום חינם <span class="arr" aria-hidden="true">←</span></a>
+      </article>
+      <article class="plan">
+        <h3>עסק</h3>
+        <p class="mut">לכמה סניפים או צוותים.</p>
+        <div class="price"><span dir="ltr"><span class="cur">₪</span><span class="amt" data-m="99" data-y="82">99</span></span></div>
+        <p class="per mut" data-m="למשתמש לחודש, בחיוב חודשי" data-y="למשתמש לחודש, בחיוב שנתי (₪984)">למשתמש לחודש, בחיוב חודשי</p>
+        <ul>
+          <li>כל מה שבצוות, ועוד</li>
+          <li>כמה מספרי וואטסאפ ותיבות</li>
+          <li>הרשאות לפי צוות וסניף</li>
+          <li>ליווי אישי בהקמה</li>
+        </ul>
+        <a class="btn ghost" href="#signup-final">דברו איתנו</a>
+      </article>
+    </div>
+    <p class="p-note">עמותה או עסק בשנה הראשונה? כתבו לנו ונעשה לכם מחיר.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="tag">מה אומרים</span>
+    <h2>עסקים קטנים, <span class="serif">שקט גדול.</span></h2>
+    <div class="t-grid">
+      <figure class="t-big" style="margin:0">
+        <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=1600&q=70&auto=format&fit=crop" alt="בעל עסק מגיש מאפה ללקוח ליד הדלפק" loading="lazy">
+        <blockquote>
+          <p>"היו ימים שהטלפון שלי לא הפסיק לרטוט, ועדיין פספסתי הזמנות. היום כל הצוות עונה, ואני סוף סוף אופה בשקט."</p>
+          <cite><b>יואב מזרחי</b>בעלים, מאפיית שקד · חיפה</cite>
+        </blockquote>
+      </figure>
+      <div class="t-side">
+        <figure class="t-card">
+          <div class="stars" aria-label="5 מתוך 5 כוכבים">★★★★★</div>
+          <p>"עברנו מקבוצת וואטסאפ של 'מי לוקח את זה?' לתור מסודר. הלקוחות שמו לב תוך שבוע."</p>
+          <figcaption class="who"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=70&auto=format&fit=crop" alt="תמונה של רחל בן דוד" loading="lazy"><span><b>רחל בן דוד</b><span>מנהלת תפעול, סטודיו נוגה</span></span></figcaption>
+        </figure>
+        <figure class="t-card">
+          <div class="stars" aria-label="5 מתוך 5 כוכבים">★★★★★</div>
+          <p>"התשובות השמורות לבד חוסכות לי שעה ביום. ההקמה לקחה פחות זמן מהקפה של הבוקר."</p>
+          <figcaption class="who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=70&auto=format&fit=crop" alt="תמונה של איתי גולן" loading="lazy"><span><b>איתי גולן</b><span>מייסד, גלגל ירוק · תל אביב</span></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <aside>
+      <span class="tag">שאלות</span>
+      <h2>לפני <span class="serif">שמתחילים.</span></h2>
+      <p class="lead">לא מצאתם תשובה? כתבו לנו בצ'אט — כן, אנחנו עונים מתוך קשב.</p>
+      <p style="margin-top:24px"><b>טלפון:</b> <a href="tel:+97235550142" class="ltr">03-555-0142</a><br><b>מייל:</b> <a href="mailto:shalom@keshev.example" class="ltr">shalom@keshev.example</a></p>
+    </aside>
+    <div class="acc">
+      <div class="q"><h3><button type="button" aria-expanded="true" aria-controls="a1" id="q1">צריך להחליף את מספר הוואטסאפ העסקי?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans open" id="a1" role="region" aria-labelledby="q1"><div><p>לא. מחברים את המספר הקיים דרך חשבון וואטסאפ עסקי, והלקוחות ממשיכים לכתוב לאותו מספר בדיוק. ההבדל היחיד: עכשיו כל הצוות יכול לענות.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a2" id="q2">כמה זמן לוקחת ההקמה?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>לרוב העסקים — פחות מ־15 דקות. אם תרצו, נקבע שיחת הקמה של חצי שעה ונעשה את זה יחד איתכם.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a3" id="q3">אפשר לעבוד מהנייד?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>כן. יש אפליקציה לאנדרואיד ולאייפון עם התראות, כך שאפשר לענות גם מהמחסן, מהרכב או מהבית.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a4" id="q4">איפה נשמר המידע של הלקוחות שלי?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>המידע מוצפן ונשמר בשרתים באירופה. אפשר לייצא הכול בכל רגע, והמידע שלכם לא משמש לשום מטרה אחרת.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a5" id="q5">מה קורה בסוף תקופת הניסיון?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>שום דבר אוטומטי. לא ביקשנו כרטיס אשראי, אז לא יהיה חיוב. תבחרו מסלול, או שהחשבון יעבור לתוכנית החינמית.</p></div></div></div>
+      <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a6" id="q6">יש חשבונית מס כחוק?<span class="pm" aria-hidden="true"></span></button></h3><div class="ans" id="a6" role="region" aria-labelledby="q6"><div><p>כמובן. חשבונית מס/קבלה נשלחת אוטומטית במייל בכל חיוב, על שם העסק ועם מספר העוסק שלכם.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="signup-final">
+  <div class="wrap">
+    <div class="cta-box">
+      <div>
+        <h2>הלקוח הבא כבר כותב לכם. <span class="serif">בואו לא נפספס אותו.</span></h2>
+        <p>14 יום של כל היכולות, בלי כרטיס אשראי ובלי התחייבות.</p>
+      </div>
+      <form class="signup" novalidate data-form>
+        <div class="field">
+          <label class="sr-only" for="email-final">אימייל עבודה</label>
+          <input id="email-final" type="email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@business.co.il" aria-describedby="msg-final">
+        </div>
+        <button class="btn" type="submit">פותחים חשבון <span class="arr" aria-hidden="true">←</span></button>
+        <p class="msg" id="msg-final" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>קשב</a>
+        <p>תיבת פניות משותפת לעסקים קטנים. נבנתה בתל אביב, בשביל מי שעונה ללקוחות בעצמו.</p>
+      </div>
+      <div><h4>מוצר</h4><ul><li><a href="#features">יכולות</a></li><li><a href="#integrations">חיבורים</a></li><li><a href="#pricing">מחירים</a></li><li><a href="#how">איך זה עובד</a></li></ul></div>
+      <div><h4>חברה</h4><ul><li><a href="#top">עלינו</a></li><li><a href="#top">משרות</a></li><li><a href="#top">בלוג</a></li><li><a href="#top">נגישות</a></li></ul></div>
+      <div><h4>צרו קשר</h4><ul><li><a href="tel:+97235550142" class="ltr">03-555-0142</a></li><li><a href="mailto:shalom@keshev.example" class="ltr">shalom@keshev.example</a></li><li>א׳–ה׳, <bdi>9:00–18:00</bdi></li></ul></div>
+    </div>
+    <div class="f-bot">
+      <span>© <bdi>2026</bdi> קשב בע״מ. כל הזכויות שמורות.</span>
+      <span><a href="#top">תנאי שימוש</a> · <a href="#top">מדיניות פרטיות</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header = document.querySelector('header');
+
+  /* header border on scroll */
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* mobile menu */
+  var burger = document.querySelector('.burger'), menu = document.getElementById('mmenu');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 1080) setMenu(false); });
+
+  /* active nav link */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.links a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    navLinks.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
+  }
+
+  /* feature tabs */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function selectTab(t, focus){
+    tabs.forEach(function(x){
+      var on = x === t, p = document.getElementById(x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      p.hidden = !on;
+      p.classList.toggle('show', on);
+    });
+    if (focus) t.focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(t); });
+    t.addEventListener('keydown', function(e){
+      var n = null;
+      /* RTL: left arrow moves forward, right arrow moves back; up/down for vertical list */
+      if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowUp' || e.key === 'ArrowRight') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === 'Home') n = tabs[0];
+      if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); selectTab(n, true); }
+    });
+  });
+
+  /* pricing toggle */
+  var sw = document.getElementById('billing');
+  sw.addEventListener('click', function(){
+    var yearly = sw.getAttribute('aria-checked') !== 'true';
+    sw.setAttribute('aria-checked', yearly ? 'true' : 'false');
+    var key = yearly ? 'y' : 'm';
+    document.querySelectorAll('.amt, .per').forEach(function(el){ el.textContent = el.getAttribute('data-' + key); });
+  });
+
+  /* FAQ accordion */
+  document.querySelectorAll('.q button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.getElementById(b.getAttribute('aria-controls')).classList.toggle('open', open);
+    });
+  });
+
+  /* email sign-up forms (no network) */
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  document.querySelectorAll('[data-form]').forEach(function(f){
+    var input = f.querySelector('input'), msg = f.querySelector('.msg');
+    function fail(text){ msg.textContent = text; msg.className = 'msg err'; input.setAttribute('aria-invalid', 'true'); input.focus(); }
+    input.addEventListener('input', function(){ if (input.getAttribute('aria-invalid')) { input.removeAttribute('aria-invalid'); msg.textContent = ''; msg.className = 'msg'; } });
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = input.value.trim();
+      if (!v) return fail('צריך כתובת מייל כדי להתחיל.');
+      if (!re.test(v)) return fail('נראה שחסר משהו בכתובת. בדקו שוב?');
+      input.removeAttribute('aria-invalid');
+      msg.className = 'msg ok';
+      msg.textContent = 'מעולה! שלחנו קישור הפעלה ל־' + '⁨' + v + '⁩' + '. בודקים את המייל?';
+      f.querySelector('button').disabled = true;
+      input.disabled = true;
+    });
+  });
+
+  /* live incoming conversations in hero mockup */
+  var list = document.getElementById('citems');
+  var waIcon = '<span class="ch wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></span>';
+  var emIcon = '<span class="ch em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg></span>';
+  var wcIcon = '<span class="ch wc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v12H8l-4 4z"/></svg></span>';
+  var incoming = [
+    ['ת', '#E7DDF0', 'תמר ויס', 'יש לכם משלוח לאילת?', wcIcon],
+    ['ג', '#F2E6C2', 'גיל נחום', 'שלחתי צילום של הקבלה', waIcon],
+    ['ל', '#DCE3EE', 'ליאת פרץ', 'שינוי כתובת למשלוח', emIcon],
+    ['ב', '#CFE6DC', 'בועז קליין', 'אתם פתוחים בחול המועד?', waIcon]
+  ];
+  var idx = 0, clock = 9 * 60 + 46, timer = null;
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function addOne(){
+    var d = incoming[idx % incoming.length]; idx++; clock += 1 + (idx % 3);
+    var li = document.createElement('li');
+    li.className = 'ci enter';
+    li.innerHTML = '<span class="av" style="background:' + d[1] + '">' + d[0] + '</span><div class="mid"><b>' + d[2] + '</b><p>' + d[3] + '</p></div><div class="meta"><span class="new">חדש</span><bdi>' + pad(Math.floor(clock / 60)) + ':' + pad(clock % 60) + '</bdi>' + d[4] + '</div>';
+    var sel = list.querySelector('.ci.sel');
+    list.insertBefore(li, list.firstChild);
+    while (list.children.length > 5) {
+      var last = list.lastElementChild;
+      if (last === sel) last = last.previousElementSibling;
+      list.removeChild(last);
+    }
+    list.querySelectorAll('.new').forEach(function(n, k){ if (k > 0) n.remove(); });
+  }
+  function start(){ if (!timer && !reduce) timer = setInterval(addOne, 5200); }
+  function stop(){ clearInterval(timer); timer = null; }
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  start();
+})();
+</script>
+</body>
+</html>
