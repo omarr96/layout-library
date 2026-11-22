@@ -339,6 +339,106 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "template-pages",
+      "slug": "tp-sports-07-tabletennis",
+      "title": "Sports · Table tennis club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-07-tabletennis-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-07-tabletennis-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-07-tabletennis-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-08-baseball",
+      "title": "Sports · Baseball club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-08-baseball-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-08-baseball-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-08-baseball-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-09-rugby",
+      "title": "Sports · Rugby club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-09-rugby-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-09-rugby-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-09-rugby-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-sports-10-golf",
+      "title": "Sports · Golf club",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Sports",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/sports-10-golf-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/sports-10-golf-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/sports-10-golf-colour.html"
+        }
+      ]
+    },
+    {
       "cat": "shop-landing",
       "slug": "shop-gallery",
       "title": "All 5 shop pages",
