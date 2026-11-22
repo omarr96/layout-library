@@ -215,6 +215,56 @@ window.DESIGNS = {
     },
     {
       "cat": "template-pages",
+      "slug": "tp-education-01-school",
+      "title": "Education · Private school",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Education",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/education-01-school-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/education-01-school-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/education-01-school-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
+      "slug": "tp-education-02-university",
+      "title": "Education · University",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Education",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/education-02-university-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/education-02-university-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/education-02-university-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
       "slug": "tp-sports-01-football",
       "title": "Sports · Football club",
       "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",

@@ -1,0 +1,903 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Coastal warm template check</title><meta name="description" content="Template check page for one vibe."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap"><style>:root {
+  --color-background: #FBF7F0;
+  --color-surface: #F2E9DC;
+  --color-text: #2A2420;
+  --color-muted: #60564d;
+  --color-primary: #a24b26;
+  --color-on-primary: #FFFFFF;
+  --color-accent: #2a6468;
+  --color-border: #E6D9C6;
+  --color-primary-ink: #a24b26;
+  --color-accent-ink: #2a6468;
+  --color-primary-soft: #eeddd2;
+  --color-overlay: #151210;
+  --color-on-overlay: #FBF7F0;
+  --font-heading: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 1.8rem + 4.2vw, 4.75rem);
+  --text-6xl: clamp(3.25rem, 2rem + 6vw, 6.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px #2A242014;
+  --shadow-md: 0 10px 30px #2A24201f;
+  --shadow-lg: 0 24px 60px #2A242029;
+  --width-content: 1200px;
+  --width-narrow: 760px;
+}
+
+/* Base (made by code from the tokens) */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-background); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+h1 { font-size: var(--text-5xl); } h2 { font-size: var(--text-4xl); } h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: inherit; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+[hidden] { display: none; }
+.container { width: 100%; max-width: var(--width-content); margin-inline: auto; padding-inline: var(--space-5); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.lead { font-size: var(--text-lg); color: var(--color-muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.t-header-university-admissions{position:sticky;top:0;z-index:50;background:var(--color-background);color:var(--color-text);border-bottom:1px solid var(--color-border)}
+.t-header-university-admissions__util{background:var(--color-text);color:var(--color-background);font-size:var(--text-sm)}
+.t-header-university-admissions__util-in{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);padding-top:var(--space-2);padding-bottom:var(--space-2)}
+.t-header-university-admissions__aud{display:flex;gap:var(--space-5)}
+.t-header-university-admissions__aud a{color:var(--color-background);text-decoration:none;opacity:0.85;transition:opacity 200ms ease}
+.t-header-university-admissions__aud a:hover{opacity:1;text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-header-university-admissions__notice{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-2) var(--space-3);margin:0}
+.t-header-university-admissions__notice a{color:var(--color-background);font-weight:700;text-underline-offset:var(--space-1)}
+.t-header-university-admissions__dot{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-background);animation:t-header-university-admissions-pulse 2.6s ease-in-out infinite}
+@keyframes t-header-university-admissions-pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+.t-header-university-admissions__bar{position:relative;display:flex;align-items:center;gap:var(--space-6);padding-top:var(--space-4);padding-bottom:var(--space-4)}
+.t-header-university-admissions__logo{display:flex;align-items:center;gap:var(--space-3);color:var(--color-text);text-decoration:none}
+.t-header-university-admissions__crest{display:flex;color:var(--color-primary-ink)}
+.t-header-university-admissions__crest svg{width:var(--space-7);height:var(--space-7)}
+.t-header-university-admissions__name{display:flex;flex-direction:column;line-height:1.15}
+.t-header-university-admissions__name b{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;letter-spacing:-0.01em}
+.t-header-university-admissions__name small{font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;color:var(--color-muted)}
+.t-header-university-admissions__nav{display:flex;gap:var(--space-6);margin-left:auto}
+.t-header-university-admissions__nav a{position:relative;padding:var(--space-2) 0;color:var(--color-text);text-decoration:none;font-weight:500}
+.t-header-university-admissions__nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 250ms ease}
+.t-header-university-admissions__nav a:hover::after{transform:scaleX(1)}
+.t-header-university-admissions__menu{display:none;margin-left:auto}
+.t-header-university-admissions__burger{display:flex;align-items:center;justify-content:center;padding:var(--space-2);border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;list-style:none;color:var(--color-text)}
+.t-header-university-admissions__burger::-webkit-details-marker{display:none}
+.t-header-university-admissions__menu:not([open]) .t-header-university-admissions__panel{display:none}
+.t-header-university-admissions__panel{position:absolute;left:0;right:0;top:100%;display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-4) var(--space-5) var(--space-5);background:var(--color-background);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-md)}
+.t-header-university-admissions__panel a:not(.btn){padding:var(--space-3) 0;border-bottom:1px solid var(--color-border);color:var(--color-text);text-decoration:none;font-family:var(--font-heading);font-size:var(--text-xl)}
+.t-header-university-admissions__panel .btn{margin-top:var(--space-4)}
+@media (max-width: 1024px){.t-header-university-admissions__nav,.t-header-university-admissions__cta{display:none}.t-header-university-admissions__menu{display:block}}
+@media (max-width: 760px){.t-header-university-admissions__aud{display:none}.t-header-university-admissions__util-in{justify-content:center;text-align:center}.t-header-university-admissions__notice{justify-content:center}}
+@media (prefers-reduced-motion: reduce){.t-header-university-admissions__dot{animation:none}.t-header-university-admissions__nav a::after{transition:none}}
+.t-hero-university-course-search{padding:var(--space-8) 0 var(--space-9);background:var(--color-background);color:var(--color-text);overflow:hidden}
+.t-hero-university-course-search__grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:var(--space-8);align-items:center}
+.t-hero-university-course-search__copy{min-width:0;animation:t-hero-university-course-search-in 700ms ease both}
+.t-hero-university-course-search__title{font-size:var(--text-6xl);line-height:1;letter-spacing:-0.03em;margin:0 0 var(--space-5)}
+.t-hero-university-course-search__lead{max-width:var(--width-narrow);margin-bottom:var(--space-6)}
+.t-hero-university-course-search__search{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-pill);box-shadow:var(--shadow-sm)}
+.t-hero-university-course-search__icon{display:flex;padding-left:var(--space-3);color:var(--color-muted)}
+.t-hero-university-course-search__field{display:flex;align-items:center;flex:1;min-width:0}
+.t-hero-university-course-search__input{flex:1;min-width:0;width:100%;padding:var(--space-3) var(--space-2);background:transparent;border:0;color:var(--color-text)}
+.t-hero-university-course-search__input::placeholder{color:var(--color-muted)}
+.t-hero-university-course-search__input:focus{outline:none}
+.t-hero-university-course-search__select{padding:var(--space-3) var(--space-3);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-pill);color:var(--color-text)}
+.t-hero-university-course-search__go{flex:none}
+.t-hero-university-course-search__search:focus-within{border-color:var(--color-text)}
+.t-hero-university-course-search__popular{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-4);margin:var(--space-4) 0 var(--space-6);font-size:var(--text-sm);color:var(--color-muted)}
+.t-hero-university-course-search__popular a{color:var(--color-text);font-weight:600;text-underline-offset:var(--space-1)}
+.t-hero-university-course-search__actions{display:flex;flex-wrap:wrap;gap:var(--space-3)}
+.t-hero-university-course-search__media{position:relative;margin:0;min-width:0;animation:t-hero-university-course-search-in 900ms ease 150ms both}
+.t-hero-university-course-search__media img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius-lg)}
+.t-hero-university-course-search__badge{position:absolute;top:var(--space-5);left:calc(var(--space-6) * -1);display:flex;flex-direction:column;margin:0;padding:var(--space-4) var(--space-5);background:var(--color-background);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-md);line-height:1.2}
+.t-hero-university-course-search__badge b{font-family:var(--font-heading);font-size:var(--text-2xl)}
+.t-hero-university-course-search__badge span{font-size:var(--text-sm);color:var(--color-muted)}
+.t-hero-university-course-search__card{position:absolute;left:var(--space-4);right:var(--space-4);bottom:var(--space-4);display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-5);background:color-mix(in srgb, var(--color-overlay) 78%, transparent);color:var(--color-on-overlay);border-radius:var(--radius-md);backdrop-filter:blur(var(--space-1))}
+.t-hero-university-course-search__card-label{font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-hero-university-course-search__card-date{font-family:var(--font-heading);font-size:var(--text-2xl)}
+.t-hero-university-course-search__card-text{font-size:var(--text-sm)}
+.t-hero-university-course-search__facts{display:grid;grid-template-columns:repeat(3,1fr);margin:var(--space-8) 0 0;padding:0;list-style:none;border-top:2px solid var(--color-text)}
+.t-hero-university-course-search__facts li{display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-5) var(--space-5) 0 0}
+.t-hero-university-course-search__facts li + li{padding-left:var(--space-5);border-left:1px solid var(--color-border)}
+.t-hero-university-course-search__facts b{font-family:var(--font-heading);font-size:var(--text-3xl);line-height:1.1}
+.t-hero-university-course-search__facts span{color:var(--color-muted)}
+@keyframes t-hero-university-course-search-in{from{opacity:0;transform:translateY(var(--space-4))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){.t-hero-university-course-search__grid{grid-template-columns:1fr}.t-hero-university-course-search__media{max-width:var(--width-narrow)}.t-hero-university-course-search__badge{left:var(--space-4)}.t-hero-university-course-search__media img{aspect-ratio:4/3}}
+@media (max-width: 760px){.t-hero-university-course-search{padding:var(--space-6) 0 var(--space-8)}.t-hero-university-course-search__search{flex-wrap:wrap;border-radius:var(--radius-lg)}.t-hero-university-course-search__field{flex:1 1 100%}.t-hero-university-course-search__select{flex:1 1 auto}.t-hero-university-course-search__go{flex:1 1 auto}.t-hero-university-course-search__media img{aspect-ratio:4/5}.t-hero-university-course-search__facts{grid-template-columns:1fr}.t-hero-university-course-search__facts li,.t-hero-university-course-search__facts li + li{padding:var(--space-4) 0;border-left:0;border-bottom:1px solid var(--color-border)}}
+@media (prefers-reduced-motion: reduce){.t-hero-university-course-search__copy,.t-hero-university-course-search__media{animation:none}}
+.t-features-university-faculties{padding:var(--space-10) 0;background:var(--color-background);color:var(--color-text)}
+.t-features-university-faculties__head{display:grid;grid-template-columns:1.1fr 0.9fr;gap:var(--space-8);align-items:end;margin-bottom:var(--space-8)}
+.t-features-university-faculties__title{font-size:var(--text-5xl);letter-spacing:-0.02em;margin:0}
+.t-features-university-faculties__intro .lead{margin-bottom:var(--space-4)}
+.t-features-university-faculties__all{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-features-university-faculties__grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:auto auto;gap:var(--space-5)}
+.t-features-university-faculties__feature{position:relative;grid-row:span 2;display:flex;min-height:100%;overflow:hidden;border-radius:var(--radius-lg);color:var(--color-on-overlay);text-decoration:none}
+.t-features-university-faculties__feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 600ms ease}
+.t-features-university-faculties__feature:hover img{transform:scale(1.04)}
+.t-features-university-faculties__feature-body{position:relative;align-self:flex-end;display:flex;flex-direction:column;gap:var(--space-2);width:100%;margin:var(--space-4);padding:var(--space-5);background:color-mix(in srgb, var(--color-overlay) 75%, transparent);border-radius:var(--radius-md)}
+.t-features-university-faculties__feature-tag{font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-features-university-faculties__feature-name{font-family:var(--font-heading);font-size:var(--text-3xl);line-height:1.1}
+.t-features-university-faculties__feature-text{font-size:var(--text-sm)}
+.t-features-university-faculties__feature-meta,.t-features-university-faculties__meta{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-2);font-weight:700}
+.t-features-university-faculties__feature-meta svg,.t-features-university-faculties__meta svg{transition:transform 250ms ease}
+.t-features-university-faculties__feature:hover .t-features-university-faculties__feature-meta svg,.t-features-university-faculties__tile:hover .t-features-university-faculties__meta svg{transform:translateX(var(--space-1))}
+.t-features-university-faculties__tile{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5) var(--space-5) var(--space-5);border-top:2px solid var(--color-text);background:var(--color-surface);border-radius:0 0 var(--radius-md) var(--radius-md);color:var(--color-text);text-decoration:none;transition:transform 250ms ease, box-shadow 250ms ease}
+.t-features-university-faculties__tile:hover{transform:translateY(calc(var(--space-1) * -1));box-shadow:var(--shadow-md)}
+.t-features-university-faculties__num{font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-muted)}
+.t-features-university-faculties__tile-name{font-size:var(--text-2xl);margin:0}
+.t-features-university-faculties__subjects{margin:0;color:var(--color-muted);font-size:var(--text-sm)}
+.t-features-university-faculties__meta{margin-top:auto;padding-top:var(--space-4)}
+@media (max-width: 1024px){.t-features-university-faculties__head{grid-template-columns:1fr;gap:var(--space-5)}.t-features-university-faculties__grid{grid-template-columns:1fr 1fr}.t-features-university-faculties__feature{grid-column:span 2;grid-row:auto;min-height:0;aspect-ratio:16/9}}
+@media (max-width: 760px){.t-features-university-faculties{padding:var(--space-8) 0}.t-features-university-faculties__grid{grid-template-columns:1fr}.t-features-university-faculties__feature{grid-column:auto;aspect-ratio:auto}.t-features-university-faculties__feature-body{margin:var(--space-3);margin-top:var(--space-10)}}
+@media (prefers-reduced-motion: reduce){.t-features-university-faculties__feature img,.t-features-university-faculties__tile,.t-features-university-faculties__feature-meta svg,.t-features-university-faculties__meta svg{transition:none}}
+.t-list-university-course-finder{padding:var(--space-10) 0;background:var(--color-surface);color:var(--color-text)}
+.t-list-university-course-finder__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-7)}
+.t-list-university-course-finder__title{font-size:var(--text-4xl);margin:0;letter-spacing:-0.02em}
+.t-list-university-course-finder__chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.t-list-university-course-finder__chip{padding:var(--space-2) var(--space-4);border:1px solid var(--color-text);border-radius:var(--radius-pill);background:transparent;color:var(--color-text);font-weight:600;cursor:pointer;transition:background-color 200ms ease, color 200ms ease}
+.t-list-university-course-finder__chip:hover{background:color-mix(in srgb, var(--color-text) 8%, transparent)}
+.t-list-university-course-finder__chip.is-active{background:var(--color-text);color:var(--color-background)}
+.t-list-university-course-finder__labels,.t-list-university-course-finder__row{display:grid;grid-template-columns:1.1fr 2.2fr 1.6fr 2fr auto;gap:var(--space-5);align-items:center}
+.t-list-university-course-finder__labels{padding:0 0 var(--space-3);border-bottom:2px solid var(--color-text);font-size:var(--text-xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-muted);font-weight:700}
+.t-list-university-course-finder__list{margin:0;padding:0;list-style:none}
+.t-list-university-course-finder__row{padding:var(--space-5) 0;border-bottom:1px solid var(--color-border);transition:background-color 200ms ease;animation:t-list-university-course-finder-fade 400ms ease both}
+.t-list-university-course-finder__row:hover{background:color-mix(in srgb, var(--color-background) 60%, transparent)}
+.t-list-university-course-finder__row.is-hidden{display:none}
+.t-list-university-course-finder__level span{display:inline-block;padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-background);font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
+.t-list-university-course-finder__row[data-level="pg"] .t-list-university-course-finder__level span{background:var(--color-text);color:var(--color-background);border-color:var(--color-text)}
+.t-list-university-course-finder__course{display:flex;flex-direction:column}
+.t-list-university-course-finder__course b{font-family:var(--font-heading);font-size:var(--text-2xl);line-height:1.15}
+.t-list-university-course-finder__course span{color:var(--color-muted);font-size:var(--text-sm)}
+.t-list-university-course-finder__cell{display:flex;flex-direction:column}
+.t-list-university-course-finder__cell-label{display:none;font-size:var(--text-xs);letter-spacing:0.12em;text-transform:uppercase;color:var(--color-muted);font-weight:700}
+.t-list-university-course-finder__view{display:inline-flex;align-items:center;gap:var(--space-2);color:var(--color-text);font-weight:700;text-decoration:none}
+.t-list-university-course-finder__view svg{transition:transform 200ms ease}
+.t-list-university-course-finder__row:hover .t-list-university-course-finder__view svg{transform:translateX(var(--space-1))}
+.t-list-university-course-finder__foot{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:var(--space-6) 0 0;color:var(--color-muted)}
+.t-list-university-course-finder__foot a{color:var(--color-text);font-weight:700;text-underline-offset:var(--space-1)}
+@keyframes t-list-university-course-finder-fade{from{opacity:0}to{opacity:1}}
+@media (max-width: 1024px){.t-list-university-course-finder__labels,.t-list-university-course-finder__row{grid-template-columns:1fr 1fr}.t-list-university-course-finder__labels{display:none}.t-list-university-course-finder__row{gap:var(--space-3) var(--space-5)}.t-list-university-course-finder__course{grid-column:1 / -1;order:-1}.t-list-university-course-finder__level{grid-column:1 / -1;order:-2}.t-list-university-course-finder__cell-label{display:block}.t-list-university-course-finder__view{grid-column:1 / -1}}
+@media (max-width: 760px){.t-list-university-course-finder{padding:var(--space-8) 0}.t-list-university-course-finder__labels,.t-list-university-course-finder__row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){.t-list-university-course-finder__row{animation:none}.t-list-university-course-finder__view svg{transition:none}}
+.t-stats-university-outcomes{padding:var(--space-10) 0 var(--space-8);background:var(--color-text);color:var(--color-background)}
+.t-stats-university-outcomes__grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:var(--space-9);align-items:start}
+.t-stats-university-outcomes__eyebrow{margin:0 0 var(--space-3);font-size:var(--text-sm);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-stats-university-outcomes__title{font-size:var(--text-4xl);letter-spacing:-0.02em;margin:0 0 var(--space-4)}
+.t-stats-university-outcomes__lead{font-size:var(--text-lg);color:color-mix(in srgb, var(--color-background) 82%, var(--color-text));margin-bottom:var(--space-7)}
+.t-stats-university-outcomes__ranks{display:grid;gap:var(--space-4)}
+.t-stats-university-outcomes__ranks-title{margin:0;font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-stats-university-outcomes__rank{display:grid;grid-template-columns:1fr auto;gap:var(--space-2) var(--space-4);align-items:center}
+.t-stats-university-outcomes__rank-name{font-weight:600}
+.t-stats-university-outcomes__rank-pos{font-family:var(--font-heading);font-size:var(--text-lg)}
+.t-stats-university-outcomes__bar{grid-column:1 / -1;height:var(--space-2);border-radius:var(--radius-pill);background:color-mix(in srgb, var(--color-background) 18%, transparent);overflow:hidden}
+.t-stats-university-outcomes__fill{display:block;height:100%;width:100%;border-radius:var(--radius-pill);background:var(--color-background);transform-origin:left;animation:t-stats-university-outcomes-grow 1.2s ease both}
+.t-stats-university-outcomes__fill--1{transform:scaleX(0.96)}.t-stats-university-outcomes__fill--2{transform:scaleX(0.9)}.t-stats-university-outcomes__fill--3{transform:scaleX(0.82)}.t-stats-university-outcomes__fill--4{transform:scaleX(0.74)}
+@keyframes t-stats-university-outcomes-grow{from{transform:scaleX(0)}}
+.t-stats-university-outcomes__stats{display:grid;grid-template-columns:1fr 1fr;margin:0;border-top:1px solid color-mix(in srgb, var(--color-background) 30%, transparent)}
+.t-stats-university-outcomes__stat{padding:var(--space-6) var(--space-5) var(--space-6) 0;border-bottom:1px solid color-mix(in srgb, var(--color-background) 30%, transparent)}
+.t-stats-university-outcomes__stat:nth-child(even){padding-left:var(--space-6);border-left:1px solid color-mix(in srgb, var(--color-background) 30%, transparent)}
+.t-stats-university-outcomes__stat dt{font-family:var(--font-heading);font-size:var(--text-5xl);line-height:1;letter-spacing:-0.02em;margin-bottom:var(--space-3)}
+.t-stats-university-outcomes__stat dd{margin:0;color:color-mix(in srgb, var(--color-background) 82%, var(--color-text))}
+.t-stats-university-outcomes__note{margin-top:var(--space-7);margin-bottom:0;font-size:var(--text-sm);color:color-mix(in srgb, var(--color-background) 82%, var(--color-text))}
+@media (max-width: 1024px){.t-stats-university-outcomes__grid{grid-template-columns:1fr;gap:var(--space-8)}}
+@media (max-width: 760px){.t-stats-university-outcomes{padding:var(--space-8) 0 var(--space-7)}.t-stats-university-outcomes__stats{grid-template-columns:1fr}.t-stats-university-outcomes__stat,.t-stats-university-outcomes__stat:nth-child(even){padding:var(--space-5) 0;border-left:0}}
+@media (prefers-reduced-motion: reduce){.t-stats-university-outcomes__fill{animation:none}}
+.t-gallery-university-campus-life{padding:var(--space-10) 0;background:var(--color-background);color:var(--color-text)}
+.t-gallery-university-campus-life__head{max-width:var(--width-narrow);margin-bottom:var(--space-7)}
+.t-gallery-university-campus-life__title{font-size:var(--text-5xl);letter-spacing:-0.02em;margin:0 0 var(--space-4)}
+.t-gallery-university-campus-life__mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:calc(var(--space-10) * 1.75);gap:var(--space-4);grid-template-areas:"a a b c" "a a d d" "e f f g"}
+.t-gallery-university-campus-life__a{grid-area:a}.t-gallery-university-campus-life__b{grid-area:b}.t-gallery-university-campus-life__clubs{grid-area:c}.t-gallery-university-campus-life__quote{grid-area:d}.t-gallery-university-campus-life__e{grid-area:e}.t-gallery-university-campus-life__f{grid-area:f}.t-gallery-university-campus-life__g{grid-area:g}
+.t-gallery-university-campus-life__ph{position:relative;margin:0;overflow:hidden;border-radius:var(--radius-lg)}
+.t-gallery-university-campus-life__ph img{width:100%;height:100%;object-fit:cover;transition:transform 600ms ease}
+.t-gallery-university-campus-life__ph:hover img{transform:scale(1.05)}
+.t-gallery-university-campus-life__ph figcaption{position:absolute;left:var(--space-3);bottom:var(--space-3);padding:var(--space-1) var(--space-3);background:color-mix(in srgb, var(--color-overlay) 78%, transparent);color:var(--color-on-overlay);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:600}
+.t-gallery-university-campus-life__clubs{display:flex;flex-direction:column;justify-content:flex-end;gap:var(--space-2);padding:var(--space-5);background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-lg)}
+.t-gallery-university-campus-life__clubs b{font-family:var(--font-heading);font-size:var(--text-5xl);line-height:1}
+.t-gallery-university-campus-life__quote{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-3);margin:0;padding:var(--space-5) var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+.t-gallery-university-campus-life__quote svg{color:var(--color-muted)}
+.t-gallery-university-campus-life__quote p{margin:0;font-family:var(--font-heading);font-size:var(--text-xl);line-height:1.35}
+.t-gallery-university-campus-life__who{display:flex;align-items:center;gap:var(--space-3)}
+.t-gallery-university-campus-life__who img{width:var(--space-7);height:var(--space-7);border-radius:var(--radius-pill);object-fit:cover}
+.t-gallery-university-campus-life__who > span{display:flex;flex-direction:column;line-height:1.3}
+.t-gallery-university-campus-life__who > span span{font-size:var(--text-sm);color:var(--color-muted)}
+@media (max-width: 1024px){.t-gallery-university-campus-life__mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:auto;grid-template-areas:"a a" "b c" "d d" "e g" "f f"}.t-gallery-university-campus-life__ph{aspect-ratio:4/3}.t-gallery-university-campus-life__a{aspect-ratio:16/10}.t-gallery-university-campus-life__f{aspect-ratio:16/9}}
+@media (max-width: 760px){.t-gallery-university-campus-life{padding:var(--space-8) 0}.t-gallery-university-campus-life__mosaic{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d" "e" "f" "g"}.t-gallery-university-campus-life__ph,.t-gallery-university-campus-life__a,.t-gallery-university-campus-life__f{aspect-ratio:4/3}.t-gallery-university-campus-life__quote{padding:var(--space-5)}}
+@media (prefers-reduced-motion: reduce){.t-gallery-university-campus-life__ph img{transition:none}}
+.t-pricing-university-accommodation{padding:var(--space-10) 0;background:var(--color-surface);color:var(--color-text)}
+.t-pricing-university-accommodation__head{display:grid;grid-template-columns:1.2fr 0.8fr;gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+.t-pricing-university-accommodation__title{font-size:var(--text-4xl);letter-spacing:-0.02em;margin:0}
+.t-pricing-university-accommodation__lead{margin:0}
+.t-pricing-university-accommodation__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);align-items:start}
+.t-pricing-university-accommodation__room{display:flex;flex-direction:column;overflow:hidden;background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:transform 250ms ease, box-shadow 250ms ease}
+.t-pricing-university-accommodation__room:hover{transform:translateY(calc(var(--space-1) * -1));box-shadow:var(--shadow-lg)}
+.t-pricing-university-accommodation__room.is-featured{border:2px solid var(--color-text);box-shadow:var(--shadow-md)}
+.t-pricing-university-accommodation__img{position:relative}
+.t-pricing-university-accommodation__img img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.t-pricing-university-accommodation__flag{position:absolute;top:var(--space-3);left:var(--space-3);padding:var(--space-1) var(--space-3);background:var(--color-background);color:var(--color-text);border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;box-shadow:var(--shadow-sm)}
+.t-pricing-university-accommodation__body{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5) var(--space-5) var(--space-6)}
+.t-pricing-university-accommodation__name{font-size:var(--text-2xl);margin:0}
+.t-pricing-university-accommodation__sub{margin:0;color:var(--color-muted);font-size:var(--text-sm)}
+.t-pricing-university-accommodation__price{display:flex;align-items:baseline;gap:var(--space-2);margin:var(--space-3) 0;padding:var(--space-3) 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+.t-pricing-university-accommodation__price b{font-family:var(--font-heading);font-size:var(--text-4xl);line-height:1}
+.t-pricing-university-accommodation__price span{color:var(--color-muted)}
+.t-pricing-university-accommodation__feats{display:grid;gap:var(--space-2);margin:0 0 var(--space-5);padding:0;list-style:none}
+.t-pricing-university-accommodation__feats li{display:flex;align-items:flex-start;gap:var(--space-2)}
+.t-pricing-university-accommodation__feats svg{flex:none;margin-top:var(--space-1);color:var(--color-text)}
+.t-pricing-university-accommodation__body .btn{margin-top:auto;align-self:flex-start}
+.t-pricing-university-accommodation__guarantee{display:flex;align-items:center;gap:var(--space-4);margin:var(--space-6) 0 0;padding:var(--space-4) var(--space-5);background:var(--color-background);border:1px dashed var(--color-border);border-radius:var(--radius-md)}
+.t-pricing-university-accommodation__guarantee svg{flex:none}
+@media (max-width: 1024px){.t-pricing-university-accommodation__head{grid-template-columns:1fr;gap:var(--space-4)}.t-pricing-university-accommodation__grid{grid-template-columns:1fr 1fr}.t-pricing-university-accommodation__room.is-featured{order:-1;grid-column:span 2}.t-pricing-university-accommodation__room.is-featured .t-pricing-university-accommodation__img img{aspect-ratio:16/9}}
+@media (max-width: 760px){.t-pricing-university-accommodation{padding:var(--space-8) 0}.t-pricing-university-accommodation__grid{grid-template-columns:1fr}.t-pricing-university-accommodation__room.is-featured{grid-column:auto}.t-pricing-university-accommodation__room.is-featured .t-pricing-university-accommodation__img img{aspect-ratio:4/3}.t-pricing-university-accommodation__guarantee{align-items:flex-start}}
+@media (prefers-reduced-motion: reduce){.t-pricing-university-accommodation__room{transition:none}}
+.t-other-university-funding-tabs{padding:var(--space-10) 0;background:var(--color-background);color:var(--color-text)}
+.t-other-university-funding-tabs__head{display:grid;grid-template-columns:1fr auto;grid-template-areas:"eye eye" "title tabs";gap:0 var(--space-6);align-items:end;margin-bottom:var(--space-7)}
+.t-other-university-funding-tabs__head .eyebrow{grid-area:eye}
+.t-other-university-funding-tabs__title{grid-area:title;font-size:var(--text-4xl);letter-spacing:-0.02em;margin:0}
+.t-other-university-funding-tabs__tabs{grid-area:tabs;display:flex;padding:var(--space-1);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-pill)}
+.t-other-university-funding-tabs__tab{padding:var(--space-2) var(--space-5);border:0;border-radius:var(--radius-pill);background:transparent;color:var(--color-text);font-weight:600;cursor:pointer;transition:background-color 200ms ease, color 200ms ease}
+.t-other-university-funding-tabs__tab.is-active{background:var(--color-text);color:var(--color-background)}
+.t-other-university-funding-tabs__panel{display:grid;grid-template-columns:0.85fr 1.15fr;gap:var(--space-6);align-items:start;animation:t-other-university-funding-tabs-fade 400ms ease both}
+.t-other-university-funding-tabs__panel:not(.is-active){display:none}
+.t-other-university-funding-tabs__fee{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-top:2px solid var(--color-text);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.t-other-university-funding-tabs__fee-label{font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--color-muted)}
+.t-other-university-funding-tabs__fee-value{font-family:var(--font-heading);font-size:var(--text-5xl);line-height:1;letter-spacing:-0.02em}
+.t-other-university-funding-tabs__fee-unit{color:var(--color-muted)}
+.t-other-university-funding-tabs__fee-text{margin:var(--space-3) 0}
+.t-other-university-funding-tabs__fee .btn{align-self:flex-start;margin-top:var(--space-3)}
+.t-other-university-funding-tabs__support{display:grid;gap:var(--space-2);margin:var(--space-4) 0 0;padding:0;list-style:none}
+.t-other-university-funding-tabs__support li{display:flex;gap:var(--space-2);align-items:flex-start}
+.t-other-university-funding-tabs__support svg{flex:none;margin-top:var(--space-1)}
+.t-other-university-funding-tabs__awards-title{font-size:var(--text-xl);margin:0 0 var(--space-3)}
+.t-other-university-funding-tabs__list{margin:0;padding:0;list-style:none;border-top:1px solid var(--color-border)}
+.t-other-university-funding-tabs__award{display:flex;justify-content:space-between;gap:var(--space-5);padding:var(--space-5) 0;border-bottom:1px solid var(--color-border);transition:background-color 200ms ease}
+.t-other-university-funding-tabs__award-main,.t-other-university-funding-tabs__award-side{display:flex;flex-direction:column;gap:var(--space-1)}
+.t-other-university-funding-tabs__award-main b{font-family:var(--font-heading);font-size:var(--text-xl)}
+.t-other-university-funding-tabs__award-main span{color:var(--color-muted)}
+.t-other-university-funding-tabs__award-side{align-items:flex-end;text-align:right;flex:none}
+.t-other-university-funding-tabs__award-side b{font-size:var(--text-lg)}
+.t-other-university-funding-tabs__award-side span{font-size:var(--text-sm);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-surface);border:1px solid var(--color-border)}
+@keyframes t-other-university-funding-tabs-fade{from{opacity:0;transform:translateY(var(--space-2))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){.t-other-university-funding-tabs__panel{grid-template-columns:1fr}}
+@media (max-width: 760px){.t-other-university-funding-tabs{padding:var(--space-8) 0}.t-other-university-funding-tabs__head{grid-template-columns:1fr;grid-template-areas:"eye" "title" "tabs";gap:var(--space-4)}.t-other-university-funding-tabs__tabs{justify-self:start;max-width:100%}.t-other-university-funding-tabs__tabs{width:100%}.t-other-university-funding-tabs__tab{flex:1;padding:var(--space-2) var(--space-3);white-space:nowrap;font-size:var(--text-sm)}.t-other-university-funding-tabs__award{flex-direction:column;gap:var(--space-3)}.t-other-university-funding-tabs__award-side{align-items:flex-start;text-align:left}.t-other-university-funding-tabs__fee{padding:var(--space-5)}}
+@media (prefers-reduced-motion: reduce){.t-other-university-funding-tabs__panel{animation:none}}
+.t-steps-university-how-to-apply{padding:var(--space-10) 0;background:var(--color-background);color:var(--color-text)}
+.t-steps-university-how-to-apply__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--space-8);align-items:start}
+.t-steps-university-how-to-apply__title{font-size:var(--text-4xl);letter-spacing:-0.02em;margin:0 0 var(--space-7)}
+.t-steps-university-how-to-apply__steps{position:relative;display:grid;gap:var(--space-6);margin:0;padding:0;list-style:none}
+.t-steps-university-how-to-apply__steps::before{content:"";position:absolute;left:calc(var(--space-8) / 2 - 1px);top:var(--space-5);bottom:var(--space-6);width:2px;background:var(--color-border)}
+.t-steps-university-how-to-apply__step{position:relative;display:grid;grid-template-columns:var(--space-8) 1fr;gap:var(--space-5);align-items:start}
+.t-steps-university-how-to-apply__n{display:flex;align-items:center;justify-content:center;width:var(--space-8);height:var(--space-8);border-radius:var(--radius-pill);background:var(--color-background);border:2px solid var(--color-text);font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;transition:background-color 250ms ease, color 250ms ease}
+.t-steps-university-how-to-apply__step:hover .t-steps-university-how-to-apply__n{background:var(--color-text);color:var(--color-background)}
+.t-steps-university-how-to-apply__step-body{padding-top:var(--space-2)}
+.t-steps-university-how-to-apply__when{display:inline-block;margin-bottom:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-surface);border:1px solid var(--color-border);font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.t-steps-university-how-to-apply__step h3{font-size:var(--text-2xl);margin:0 0 var(--space-1)}
+.t-steps-university-how-to-apply__step p{margin:0;color:var(--color-muted)}
+.t-steps-university-how-to-apply__pg{margin:var(--space-7) 0 0;padding-top:var(--space-5);border-top:1px solid var(--color-border);color:var(--color-muted)}
+.t-steps-university-how-to-apply__pg b{color:var(--color-text)}
+.t-steps-university-how-to-apply__pg a{color:var(--color-text);font-weight:700;text-underline-offset:var(--space-1)}
+.t-steps-university-how-to-apply__events{position:sticky;top:var(--space-9);padding:var(--space-6);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-lg)}
+.t-steps-university-how-to-apply__events-eyebrow{margin:0 0 var(--space-2);font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-steps-university-how-to-apply__events-title{font-size:var(--text-2xl);margin:0 0 var(--space-5)}
+.t-steps-university-how-to-apply__list{margin:0 0 var(--space-5);padding:0;list-style:none}
+.t-steps-university-how-to-apply__event{display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-top:1px solid color-mix(in srgb, var(--color-background) 25%, transparent)}
+.t-steps-university-how-to-apply__date{display:flex;flex-direction:column;align-items:center;justify-content:center;width:var(--space-8);padding:var(--space-2) 0;background:var(--color-background);color:var(--color-text);border-radius:var(--radius-md);line-height:1.1}
+.t-steps-university-how-to-apply__date b{font-family:var(--font-heading);font-size:var(--text-2xl)}
+.t-steps-university-how-to-apply__date span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.1em;font-weight:700}
+.t-steps-university-how-to-apply__event-body{display:flex;flex-direction:column;min-width:0}
+.t-steps-university-how-to-apply__event-body span{font-size:var(--text-sm);color:color-mix(in srgb, var(--color-background) 82%, var(--color-text))}
+.t-steps-university-how-to-apply__book{color:var(--color-background);font-weight:700;text-underline-offset:var(--space-1)}
+.t-steps-university-how-to-apply__all{width:100%;background:var(--color-background);color:var(--color-text)}
+@media (max-width: 1024px){.t-steps-university-how-to-apply__grid{grid-template-columns:1fr}.t-steps-university-how-to-apply__events{position:static}}
+@media (max-width: 760px){.t-steps-university-how-to-apply{padding:var(--space-8) 0}.t-steps-university-how-to-apply__steps::before{left:calc(var(--space-7) / 2 - 1px)}.t-steps-university-how-to-apply__step{grid-template-columns:var(--space-7) 1fr;gap:var(--space-4)}.t-steps-university-how-to-apply__n{width:var(--space-7);height:var(--space-7);font-size:var(--text-xl)}.t-steps-university-how-to-apply__events{padding:var(--space-5)}.t-steps-university-how-to-apply__event{grid-template-columns:auto 1fr;}.t-steps-university-how-to-apply__book{grid-column:2}}
+@media (prefers-reduced-motion: reduce){.t-steps-university-how-to-apply__n{transition:none}}
+.t-faq-university-admissions{padding:var(--space-10) 0;background:var(--color-surface);color:var(--color-text)}
+.t-faq-university-admissions__grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:var(--space-9);align-items:start}
+.t-faq-university-admissions__side{position:sticky;top:var(--space-9)}
+.t-faq-university-admissions__title{font-size:var(--text-4xl);letter-spacing:-0.02em;margin:0 0 var(--space-6)}
+.t-faq-university-admissions__card{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+.t-faq-university-admissions__card-title{margin:0;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700}
+.t-faq-university-admissions__card-text{margin:0 0 var(--space-2);color:var(--color-muted);font-size:var(--text-sm)}
+.t-faq-university-admissions__line{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) 0;color:var(--color-text);font-weight:600;text-decoration:none}
+.t-faq-university-admissions__line:hover span{text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-faq-university-admissions__list{border-top:2px solid var(--color-text)}
+.t-faq-university-admissions__item{border-bottom:1px solid var(--color-border)}
+.t-faq-university-admissions__q{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);padding:var(--space-5) 0;cursor:pointer;list-style:none;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:600;line-height:1.3}
+.t-faq-university-admissions__q::-webkit-details-marker{display:none}
+.t-faq-university-admissions__plus{position:relative;flex:none;width:var(--space-6);height:var(--space-6);border:1px solid var(--color-border);border-radius:var(--radius-pill);transition:transform 250ms ease, background-color 250ms ease}
+.t-faq-university-admissions__plus::before,.t-faq-university-admissions__plus::after{content:"";position:absolute;left:50%;top:50%;width:var(--space-3);height:2px;background:currentColor;transform:translate(-50%,-50%)}
+.t-faq-university-admissions__plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.t-faq-university-admissions__item[open] .t-faq-university-admissions__plus{transform:rotate(45deg);background:var(--color-background)}
+.t-faq-university-admissions__item:not([open]) .t-faq-university-admissions__a{display:none}
+.t-faq-university-admissions__a{margin:0;padding:0 var(--space-8) var(--space-5) 0;color:var(--color-muted);animation:t-faq-university-admissions-fade 300ms ease both}
+@keyframes t-faq-university-admissions-fade{from{opacity:0}to{opacity:1}}
+@media (max-width: 1024px){.t-faq-university-admissions__grid{grid-template-columns:1fr;gap:var(--space-7)}.t-faq-university-admissions__side{position:static}}
+@media (max-width: 760px){.t-faq-university-admissions{padding:var(--space-8) 0}.t-faq-university-admissions__q{font-size:var(--text-lg)}.t-faq-university-admissions__a{padding-right:0}}
+@media (prefers-reduced-motion: reduce){.t-faq-university-admissions__plus{transition:none}.t-faq-university-admissions__a{animation:none}}
+.t-footer-university-columns{padding:var(--space-9) 0 var(--space-6);background:var(--color-text);color:var(--color-background)}
+.t-footer-university-columns__top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-6);padding-bottom:var(--space-8);border-bottom:1px solid color-mix(in srgb, var(--color-background) 25%, transparent)}
+.t-footer-university-columns__big{margin:0;max-width:calc(var(--space-10) * 6);font-family:var(--font-heading);font-size:var(--text-6xl);line-height:1;letter-spacing:-0.03em}
+.t-footer-university-columns__actions{display:flex;flex-wrap:wrap;gap:var(--space-3)}
+.t-footer-university-columns__btn-solid{background:var(--color-background);color:var(--color-text)}
+.t-footer-university-columns__btn-line{background:transparent;color:var(--color-background);border-color:color-mix(in srgb, var(--color-background) 60%, transparent)}
+.t-footer-university-columns__main{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:var(--space-6);padding:var(--space-8) 0}
+.t-footer-university-columns__brand{display:flex;flex-direction:column;gap:var(--space-2);align-items:flex-start}
+.t-footer-university-columns__logo{display:flex;align-items:center;gap:var(--space-3);color:var(--color-background);text-decoration:none;margin-bottom:var(--space-2)}
+.t-footer-university-columns__crest{display:flex}
+.t-footer-university-columns__crest svg{width:var(--space-7);height:var(--space-7)}
+.t-footer-university-columns__logo b{font-family:var(--font-heading);font-size:var(--text-2xl);white-space:nowrap}
+.t-footer-university-columns__addr{margin:0;color:color-mix(in srgb, var(--color-background) 82%, var(--color-text))}
+.t-footer-university-columns__contact{color:var(--color-background);text-decoration:none;font-weight:600}
+.t-footer-university-columns__contact:hover{text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-footer-university-columns__social{display:flex;gap:var(--space-2);margin-top:var(--space-3)}
+.t-footer-university-columns__social a{display:flex;align-items:center;justify-content:center;width:var(--space-7);height:var(--space-7);border:1px solid color-mix(in srgb, var(--color-background) 35%, transparent);border-radius:var(--radius-pill);color:var(--color-background);transition:background-color 200ms ease, color 200ms ease}
+.t-footer-university-columns__social a:hover{background:var(--color-background);color:var(--color-text)}
+.t-footer-university-columns__col{display:flex;flex-direction:column;gap:var(--space-2)}
+.t-footer-university-columns__col-title{margin:0 0 var(--space-2);font-size:var(--text-xs);letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.t-footer-university-columns__col a{color:color-mix(in srgb, var(--color-background) 82%, var(--color-text));text-decoration:none;transition:color 200ms ease}
+.t-footer-university-columns__col a:hover{color:var(--color-background);text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-footer-university-columns__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-4);padding-top:var(--space-5);border-top:1px solid color-mix(in srgb, var(--color-background) 25%, transparent);font-size:var(--text-sm);color:color-mix(in srgb, var(--color-background) 82%, var(--color-text))}
+.t-footer-university-columns__bottom p{margin:0}
+.t-footer-university-columns__legal{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5)}
+.t-footer-university-columns__legal a{color:inherit;text-decoration:none}
+.t-footer-university-columns__legal a:hover{text-decoration:underline}
+@media (max-width: 1024px){.t-footer-university-columns__main{grid-template-columns:repeat(4,1fr)}.t-footer-university-columns__brand{grid-column:1 / -1}}
+@media (max-width: 760px){.t-footer-university-columns{padding:var(--space-8) 0 var(--space-6)}.t-footer-university-columns__main{grid-template-columns:1fr 1fr;gap:var(--space-6) var(--space-5)}}
+@media (prefers-reduced-motion: reduce){.t-footer-university-columns__social a,.t-footer-university-columns__col a{transition:none}}</style></head><body><main id="main"><header class="t-header-university-admissions">
+  <div class="t-header-university-admissions__util">
+    <div class="container t-header-university-admissions__util-in">
+      <nav class="t-header-university-admissions__aud" aria-label="Audiences">
+        <a href="#undergraduate" data-slot="aud-1">Undergraduate</a>
+        <a href="#postgraduate" data-slot="aud-2">Postgraduate</a>
+        <a href="#international" data-slot="aud-3">International</a>
+        <a href="#students" data-slot="aud-4">Current students</a>
+      </nav>
+      <p class="t-header-university-admissions__notice"><span class="t-header-university-admissions__dot" aria-hidden="true"></span><span data-slot="notice">Next open day: Saturday 14 March</span><a href="#open-days" data-slot="notice-link">Book a place</a></p>
+    </div>
+  </div>
+  <div class="container t-header-university-admissions__bar">
+    <a href="#" class="t-header-university-admissions__logo"><span class="t-header-university-admissions__crest"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/><path d="M11 13h10M11 18h10M16 9v14"/></svg></span><span class="t-header-university-admissions__name"><b data-slot="logo">University Name</b><small data-slot="logo-sub">Admissions</small></span></a>
+    <nav class="t-header-university-admissions__nav" aria-label="Main">
+      <a href="#courses" data-slot="link-1">Courses</a>
+      <a href="#faculties" data-slot="link-2">Faculties</a>
+      <a href="#campus" data-slot="link-3">Campus life</a>
+      <a href="#funding" data-slot="link-4">Fees and funding</a>
+      <a href="#apply" data-slot="link-5">How to apply</a>
+    </nav>
+    <a href="#apply" class="btn btn-primary t-header-university-admissions__cta" data-slot="cta">Apply now</a>
+    <details class="t-header-university-admissions__menu">
+      <summary class="t-header-university-admissions__burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="t-header-university-admissions__panel">
+        <a href="#courses" data-slot="menu-link-1">Courses</a>
+        <a href="#faculties" data-slot="menu-link-2">Faculties</a>
+        <a href="#campus" data-slot="menu-link-3">Campus life</a>
+        <a href="#funding" data-slot="menu-link-4">Fees and funding</a>
+        <a href="#apply" data-slot="menu-link-5">How to apply</a>
+        <a href="#apply" class="btn btn-primary" data-slot="menu-cta">Apply now</a>
+      </div>
+    </details>
+  </div>
+</header>
+<section class="t-hero-university-course-search">
+  <div class="container t-hero-university-course-search__grid">
+    <div class="t-hero-university-course-search__copy">
+      <p class="eyebrow" data-slot="eyebrow">Undergraduate and postgraduate admissions</p>
+      <h1 class="t-hero-university-course-search__title" data-slot="title">Find the course that shapes your future.</h1>
+      <p class="lead t-hero-university-course-search__lead" data-slot="lead">Over two hundred degrees taught by people who lead their fields, on a campus built for curious minds.</p>
+      <form class="t-hero-university-course-search__search" action="#" role="search">
+        <label class="t-hero-university-course-search__field"><span class="sr-only" data-slot="search-label">Search courses</span>
+        <span class="t-hero-university-course-search__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span>
+        <input class="t-hero-university-course-search__input" type="search" name="q" placeholder="Search a subject, e.g. History"></label>
+        <select class="t-hero-university-course-search__select" name="level" aria-label="Study level">
+          <option data-slot="level-1">Undergraduate</option>
+          <option data-slot="level-2">Postgraduate</option>
+          <option data-slot="level-3">Short courses</option>
+        </select>
+        <button class="btn btn-primary t-hero-university-course-search__go" type="submit" data-slot="search-button">Search</button>
+      </form>
+      <p class="t-hero-university-course-search__popular"><span data-slot="popular-label">Popular:</span>
+        <a href="#courses" data-slot="popular-1">Law</a>
+        <a href="#courses" data-slot="popular-2">Nursing</a>
+        <a href="#courses" data-slot="popular-3">Computer science</a>
+        <a href="#courses" data-slot="popular-4">Architecture</a>
+      </p>
+      <div class="t-hero-university-course-search__actions">
+        <a href="#apply" class="btn btn-primary" data-slot="cta-primary">Apply now</a>
+        <a href="#open-days" class="btn btn-ghost" data-slot="cta-secondary">Book an open day</a>
+      </div>
+    </div>
+    <figure class="t-hero-university-course-search__media">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Students walking across a sunny university quad between stone buildings" width="1200" height="1500" data-slot="image">
+      <p class="t-hero-university-course-search__badge"><b data-slot="badge-value">Top 20</b><span data-slot="badge-text">for student satisfaction</span></p>
+      <figcaption class="t-hero-university-course-search__card">
+        <span class="t-hero-university-course-search__card-label" data-slot="card-label">Open day</span>
+        <b class="t-hero-university-course-search__card-date" data-slot="card-date">Saturday 14 March</b>
+        <span class="t-hero-university-course-search__card-text" data-slot="card-text">Campus tours, subject talks and time with current students.</span>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="container">
+    <ul class="t-hero-university-course-search__facts">
+      <li><b data-slot="fact-1-value">Over 200</b><span data-slot="fact-1-label">undergraduate and postgraduate courses</span></li>
+      <li><b data-slot="fact-2-value">94%</b><span data-slot="fact-2-label">of graduates in work or study</span></li>
+      <li><b data-slot="fact-3-value">140 countries</b><span data-slot="fact-3-label">represented on campus</span></li>
+    </ul>
+  </div>
+</section>
+<section class="t-features-university-faculties" id="faculties">
+  <div class="container">
+    <div class="t-features-university-faculties__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Faculties and subjects</p>
+        <h2 class="t-features-university-faculties__title" data-slot="title">Five faculties, one curious community.</h2>
+      </div>
+      <div class="t-features-university-faculties__intro">
+        <p class="lead" data-slot="lead">Study one subject in depth or combine two. Every faculty shares the same library, labs and teaching standards.</p>
+        <a href="#courses" class="t-features-university-faculties__all" data-slot="all-link">Browse all subjects</a>
+      </div>
+    </div>
+    <div class="t-features-university-faculties__grid">
+      <a href="#courses" class="t-features-university-faculties__feature">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Students working together at a lab bench in a bright science building" width="1200" height="1400" data-slot="feature-image">
+        <span class="t-features-university-faculties__feature-body">
+          <span class="t-features-university-faculties__feature-tag" data-slot="feature-tag">01 · Featured faculty</span>
+          <b class="t-features-university-faculties__feature-name" data-slot="feature-name">Science and Engineering</b>
+          <span class="t-features-university-faculties__feature-text" data-slot="feature-subjects">Physics, Chemistry, Civil engineering, Computer science, Mathematics</span>
+          <span class="t-features-university-faculties__feature-meta"><span data-slot="feature-count">52 courses</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+      </a>
+      <a href="#courses" class="t-features-university-faculties__tile">
+        <span class="t-features-university-faculties__num" data-slot="faculty-2-number">02</span>
+        <h3 class="t-features-university-faculties__tile-name" data-slot="faculty-2-name">Arts and Humanities</h3>
+        <p class="t-features-university-faculties__subjects" data-slot="faculty-2-subjects">History, English, Philosophy, Music</p>
+        <span class="t-features-university-faculties__meta"><span data-slot="faculty-2-count">38 courses</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="#courses" class="t-features-university-faculties__tile">
+        <span class="t-features-university-faculties__num" data-slot="faculty-3-number">03</span>
+        <h3 class="t-features-university-faculties__tile-name" data-slot="faculty-3-name">Business and Law</h3>
+        <p class="t-features-university-faculties__subjects" data-slot="faculty-3-subjects">Law, Economics, Management, Finance</p>
+        <span class="t-features-university-faculties__meta"><span data-slot="faculty-3-count">31 courses</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="#courses" class="t-features-university-faculties__tile">
+        <span class="t-features-university-faculties__num" data-slot="faculty-4-number">04</span>
+        <h3 class="t-features-university-faculties__tile-name" data-slot="faculty-4-name">Health and Life Sciences</h3>
+        <p class="t-features-university-faculties__subjects" data-slot="faculty-4-subjects">Nursing, Medicine, Psychology, Biology</p>
+        <span class="t-features-university-faculties__meta"><span data-slot="faculty-4-count">44 courses</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="#courses" class="t-features-university-faculties__tile">
+        <span class="t-features-university-faculties__num" data-slot="faculty-5-number">05</span>
+        <h3 class="t-features-university-faculties__tile-name" data-slot="faculty-5-name">Social Sciences</h3>
+        <p class="t-features-university-faculties__subjects" data-slot="faculty-5-subjects">Politics, Sociology, Education, Geography</p>
+        <span class="t-features-university-faculties__meta"><span data-slot="faculty-5-count">27 courses</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="t-list-university-course-finder" id="courses">
+  <div class="container">
+    <div class="t-list-university-course-finder__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Featured courses</p>
+        <h2 class="t-list-university-course-finder__title" data-slot="title">Courses starting this September</h2>
+      </div>
+      <div class="t-list-university-course-finder__chips" role="group" aria-label="Filter by level">
+        <button type="button" class="t-list-university-course-finder__chip is-active" data-filter="all" aria-pressed="true" data-slot="chip-all">All levels</button>
+        <button type="button" class="t-list-university-course-finder__chip" data-filter="ug" aria-pressed="false" data-slot="chip-ug">Undergraduate</button>
+        <button type="button" class="t-list-university-course-finder__chip" data-filter="pg" aria-pressed="false" data-slot="chip-pg">Postgraduate</button>
+      </div>
+    </div>
+    <div class="t-list-university-course-finder__labels" aria-hidden="true">
+      <span data-slot="label-level">Level</span><span data-slot="label-course">Course</span><span data-slot="label-duration">Duration</span><span data-slot="label-entry">Entry requirements</span><span></span>
+    </div>
+    <ul class="t-list-university-course-finder__list">
+      <li class="t-list-university-course-finder__row" data-level="ug">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-1-level">Undergraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-1-title">History</b><span data-slot="course-1-award">BA (Hons)</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-1-duration-label">Duration</span><span data-slot="course-1-duration">3 years full time</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-1-entry-label">Entry</span><span data-slot="course-1-entry">AAB to ABB at A level</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-1-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="t-list-university-course-finder__row" data-level="ug">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-2-level">Undergraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-2-title">Computer science</b><span data-slot="course-2-award">BSc (Hons)</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-2-duration-label">Duration</span><span data-slot="course-2-duration">3 or 4 years with placement</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-2-entry-label">Entry</span><span data-slot="course-2-entry">AAA including Maths</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-2-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="t-list-university-course-finder__row" data-level="ug">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-3-level">Undergraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-3-title">Adult nursing</b><span data-slot="course-3-award">BSc (Hons)</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-3-duration-label">Duration</span><span data-slot="course-3-duration">3 years full time</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-3-entry-label">Entry</span><span data-slot="course-3-entry">BBB plus an interview</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-3-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="t-list-university-course-finder__row" data-level="pg">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-4-level">Postgraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-4-title">Architecture</b><span data-slot="course-4-award">MArch</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-4-duration-label">Duration</span><span data-slot="course-4-duration">2 years full time</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-4-entry-label">Entry</span><span data-slot="course-4-entry">A good first degree in architecture</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-4-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="t-list-university-course-finder__row" data-level="pg">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-5-level">Postgraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-5-title">Data science</b><span data-slot="course-5-award">MSc</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-5-duration-label">Duration</span><span data-slot="course-5-duration">1 year full time</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-5-entry-label">Entry</span><span data-slot="course-5-entry">A 2:1 in a numerate subject</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-5-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="t-list-university-course-finder__row" data-level="pg">
+        <span class="t-list-university-course-finder__level"><span data-slot="course-6-level">Postgraduate</span></span>
+        <span class="t-list-university-course-finder__course"><b data-slot="course-6-title">International law</b><span data-slot="course-6-award">LLM</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-6-duration-label">Duration</span><span data-slot="course-6-duration">1 year full time or 2 part time</span></span>
+        <span class="t-list-university-course-finder__cell"><span class="t-list-university-course-finder__cell-label" data-slot="course-6-entry-label">Entry</span><span data-slot="course-6-entry">A 2:1 in law or a related subject</span></span>
+        <a href="#courses" class="t-list-university-course-finder__view" aria-label="View course"><span data-slot="course-6-link">View</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+    </ul>
+    <p class="t-list-university-course-finder__foot"><span data-slot="foot-text">Can't see your subject?</span><a href="#courses" data-slot="foot-link">Search all courses</a></p>
+  </div>
+</section>
+<section class="t-stats-university-outcomes">
+  <div class="container t-stats-university-outcomes__grid">
+    <div class="t-stats-university-outcomes__intro">
+      <p class="t-stats-university-outcomes__eyebrow" data-slot="eyebrow">Rankings and outcomes</p>
+      <h2 class="t-stats-university-outcomes__title" data-slot="title">Results that follow you after graduation.</h2>
+      <p class="t-stats-university-outcomes__lead" data-slot="lead">Our graduates move into work, research and further study faster than the national average.</p>
+      <div class="t-stats-university-outcomes__ranks">
+        <p class="t-stats-university-outcomes__ranks-title" data-slot="ranks-title">Subject rankings</p>
+        <div class="t-stats-university-outcomes__rank"><span class="t-stats-university-outcomes__rank-name" data-slot="rank-1-name">Law</span><span class="t-stats-university-outcomes__rank-pos" data-slot="rank-1-pos">3rd</span><span class="t-stats-university-outcomes__bar"><i class="t-stats-university-outcomes__fill t-stats-university-outcomes__fill--1"></i></span></div>
+        <div class="t-stats-university-outcomes__rank"><span class="t-stats-university-outcomes__rank-name" data-slot="rank-2-name">Architecture</span><span class="t-stats-university-outcomes__rank-pos" data-slot="rank-2-pos">5th</span><span class="t-stats-university-outcomes__bar"><i class="t-stats-university-outcomes__fill t-stats-university-outcomes__fill--2"></i></span></div>
+        <div class="t-stats-university-outcomes__rank"><span class="t-stats-university-outcomes__rank-name" data-slot="rank-3-name">Nursing</span><span class="t-stats-university-outcomes__rank-pos" data-slot="rank-3-pos">8th</span><span class="t-stats-university-outcomes__bar"><i class="t-stats-university-outcomes__fill t-stats-university-outcomes__fill--3"></i></span></div>
+        <div class="t-stats-university-outcomes__rank"><span class="t-stats-university-outcomes__rank-name" data-slot="rank-4-name">History</span><span class="t-stats-university-outcomes__rank-pos" data-slot="rank-4-pos">12th</span><span class="t-stats-university-outcomes__bar"><i class="t-stats-university-outcomes__fill t-stats-university-outcomes__fill--4"></i></span></div>
+      </div>
+    </div>
+    <dl class="t-stats-university-outcomes__stats">
+      <div class="t-stats-university-outcomes__stat"><dt data-slot="stat-1-value">94%</dt><dd data-slot="stat-1-label">of graduates in work or further study within fifteen months</dd></div>
+      <div class="t-stats-university-outcomes__stat"><dt data-slot="stat-2-value">4.6/5</dt><dd data-slot="stat-2-label">overall student satisfaction in the national survey</dd></div>
+      <div class="t-stats-university-outcomes__stat"><dt data-slot="stat-3-value">Top 20</dt><dd data-slot="stat-3-label">for teaching quality in the national league tables</dd></div>
+      <div class="t-stats-university-outcomes__stat"><dt data-slot="stat-4-value">£31k</dt><dd data-slot="stat-4-label">average graduate starting salary</dd></div>
+    </dl>
+  </div>
+  <p class="container t-stats-university-outcomes__note" data-slot="note">Figures from the most recent national graduate and student surveys.</p>
+</section>
+<section class="t-gallery-university-campus-life" id="campus">
+  <div class="container">
+    <div class="t-gallery-university-campus-life__head">
+      <p class="eyebrow" data-slot="eyebrow">Campus life</p>
+      <h2 class="t-gallery-university-campus-life__title" data-slot="title">A campus that feels like a small city.</h2>
+      <p class="lead" data-slot="lead">Libraries open late, sport every day of the week and a students' union run by students.</p>
+    </div>
+    <div class="t-gallery-university-campus-life__mosaic">
+      <figure class="t-gallery-university-campus-life__ph t-gallery-university-campus-life__a"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A tall reading room in a university library with students at long wooden tables" width="1200" height="1200" data-slot="photo-1"><figcaption data-slot="caption-1">The main library</figcaption></figure>
+      <figure class="t-gallery-university-campus-life__ph t-gallery-university-campus-life__b"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Students playing a team sport on a green campus pitch" width="800" height="600" data-slot="photo-2"><figcaption data-slot="caption-2">Sports centre</figcaption></figure>
+      <div class="t-gallery-university-campus-life__clubs"><b data-slot="clubs-value">300+</b><span data-slot="clubs-label">clubs and societies to join in your first week</span></div>
+      <blockquote class="t-gallery-university-campus-life__quote">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 22c0-6 2-10 7-12M18 22c0-6 2-10 7-12"/></svg>
+        <p data-slot="quote">I came for the course and stayed for the people. My first year felt like home by October.</p>
+        <footer class="t-gallery-university-campus-life__who">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Portrait of a smiling student" width="160" height="160" data-slot="quote-avatar">
+          <span><b data-slot="quote-name">Student Name</b><span data-slot="quote-role">Psychology, second year</span></span>
+        </footer>
+      </blockquote>
+      <figure class="t-gallery-university-campus-life__ph t-gallery-university-campus-life__e"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Friends talking on the steps outside a students' union building" width="800" height="600" data-slot="photo-3"><figcaption data-slot="caption-3">Students' union</figcaption></figure>
+      <figure class="t-gallery-university-campus-life__ph t-gallery-university-campus-life__f"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Wide view of a green campus lawn with modern teaching buildings behind" width="1400" height="700" data-slot="photo-4"><figcaption data-slot="caption-4">The green, between lectures</figcaption></figure>
+      <figure class="t-gallery-university-campus-life__ph t-gallery-university-campus-life__g"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Students rehearsing on a small theatre stage" width="800" height="600" data-slot="photo-5"><figcaption data-slot="caption-5">Arts centre</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="t-pricing-university-accommodation" id="accommodation">
+  <div class="container">
+    <div class="t-pricing-university-accommodation__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Accommodation</p>
+        <h2 class="t-pricing-university-accommodation__title" data-slot="title">Halls and homes, a short walk from lectures.</h2>
+      </div>
+      <p class="lead t-pricing-university-accommodation__lead" data-slot="lead">Prices are per person, per week, with bills, Wi-Fi and contents insurance included.</p>
+    </div>
+    <div class="t-pricing-university-accommodation__grid">
+      <article class="t-pricing-university-accommodation__room">
+        <div class="t-pricing-university-accommodation__img"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Standard room photo: a bright student bedroom with a desk by the window" width="900" height="675" data-slot="room-1-image"></div>
+        <div class="t-pricing-university-accommodation__body">
+          <h3 class="t-pricing-university-accommodation__name" data-slot="room-1-name">Shared flat room</h3>
+          <p class="t-pricing-university-accommodation__sub" data-slot="room-1-sub">Shared bathroom and kitchen for six</p>
+          <p class="t-pricing-university-accommodation__price"><b data-slot="room-1-price">£135</b><span data-slot="room-1-unit">per week</span></p>
+          <ul class="t-pricing-university-accommodation__feats"><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-1-feature-1">Bills and Wi-Fi included</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-1-feature-2">40-week contract</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-1-feature-3">Ten minutes to campus</span></li></ul>
+          <a href="#accommodation" class="btn btn-ghost" data-slot="room-1-cta">View rooms</a>
+        </div>
+      </article>
+      <article class="t-pricing-university-accommodation__room is-featured">
+        <div class="t-pricing-university-accommodation__img"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A student en-suite bedroom with a double bed, desk and shelves" width="900" height="675" data-slot="room-2-image"><span class="t-pricing-university-accommodation__flag" data-slot="room-2-flag">Most popular</span></div>
+        <div class="t-pricing-university-accommodation__body">
+          <h3 class="t-pricing-university-accommodation__name" data-slot="room-2-name">En-suite room</h3>
+          <p class="t-pricing-university-accommodation__sub" data-slot="room-2-sub">Private bathroom, shared kitchen for five</p>
+          <p class="t-pricing-university-accommodation__price"><b data-slot="room-2-price">£168</b><span data-slot="room-2-unit">per week</span></p>
+          <ul class="t-pricing-university-accommodation__feats"><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-2-feature-1">Bills and Wi-Fi included</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-2-feature-2">40 or 51 week contract</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-2-feature-3">On campus, next to the library</span></li></ul>
+          <a href="#accommodation" class="btn btn-primary" data-slot="room-2-cta">View rooms</a>
+        </div>
+      </article>
+      <article class="t-pricing-university-accommodation__room">
+        <div class="t-pricing-university-accommodation__img"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="A compact studio flat with a kitchenette and a sofa bed" width="900" height="675" data-slot="room-3-image"></div>
+        <div class="t-pricing-university-accommodation__body">
+          <h3 class="t-pricing-university-accommodation__name" data-slot="room-3-name">Studio</h3>
+          <p class="t-pricing-university-accommodation__sub" data-slot="room-3-sub">Your own kitchen and bathroom</p>
+          <p class="t-pricing-university-accommodation__price"><b data-slot="room-3-price">£215</b><span data-slot="room-3-unit">per week</span></p>
+          <ul class="t-pricing-university-accommodation__feats"><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-3-feature-1">Bills and Wi-Fi included</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-3-feature-2">51-week contract</span></li><li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="room-3-feature-3">Quiet block for postgraduates</span></li></ul>
+          <a href="#accommodation" class="btn btn-ghost" data-slot="room-3-cta">View rooms</a>
+        </div>
+      </article>
+    </div>
+    <p class="t-pricing-university-accommodation__guarantee"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b data-slot="guarantee-title">Room guarantee.</b> <span data-slot="guarantee-text">Every first-year student who applies by the end of June is offered a place in halls.</span></span></p>
+  </div>
+</section>
+<section class="t-other-university-funding-tabs" id="funding">
+  <div class="container">
+    <div class="t-other-university-funding-tabs__head">
+      <p class="eyebrow" data-slot="eyebrow">Fees and funding</p>
+      <h2 class="t-other-university-funding-tabs__title" data-slot="title">Fund your degree with confidence.</h2>
+      <div class="t-other-university-funding-tabs__tabs" role="tablist" aria-label="Student type">
+        <button type="button" role="tab" class="t-other-university-funding-tabs__tab is-active" aria-selected="true" data-slot="tab-1">Home students</button>
+        <button type="button" role="tab" class="t-other-university-funding-tabs__tab" aria-selected="false" tabindex="-1" data-slot="tab-2">International students</button>
+      </div>
+    </div>
+    <div class="t-other-university-funding-tabs__panels" data-states="tabs">
+      <div class="t-other-university-funding-tabs__panel is-active" data-state="home" role="tabpanel">
+        <div class="t-other-university-funding-tabs__fee">
+          <span class="t-other-university-funding-tabs__fee-label" data-slot="home-fee-label">Undergraduate tuition fee</span>
+          <b class="t-other-university-funding-tabs__fee-value" data-slot="home-fee-value">£9,250</b>
+          <span class="t-other-university-funding-tabs__fee-unit" data-slot="home-fee-unit">per year of study</span>
+          <p class="t-other-university-funding-tabs__fee-text" data-slot="home-fee-text">Pay nothing up front: a government tuition loan covers the full fee, and you repay only once you earn above the threshold.</p>
+          <a href="#funding" class="btn btn-primary" data-slot="home-fee-cta">See all fees</a>
+        </div>
+        <div class="t-other-university-funding-tabs__awards">
+          <h3 class="t-other-university-funding-tabs__awards-title" data-slot="home-awards-title">Scholarships and bursaries</h3>
+          <ul class="t-other-university-funding-tabs__list">
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="home-award-1-name">Excellence scholarship</b><span data-slot="home-award-1-who">For students with top grades at entry</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="home-award-1-value">£3,000 a year</b><span data-slot="home-award-1-deadline">Apply by 31 March</span></span>
+            </li>
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="home-award-2-name">Access bursary</b><span data-slot="home-award-2-who">For students from lower-income homes</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="home-award-2-value">£1,500 a year</b><span data-slot="home-award-2-deadline">No deadline</span></span>
+            </li>
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="home-award-3-name">Sports scholarship</b><span data-slot="home-award-3-who">For athletes competing at national level</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="home-award-3-value">£2,000 a year</b><span data-slot="home-award-3-deadline">Apply by 30 April</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-other-university-funding-tabs__panel" data-state="international" role="tabpanel">
+        <div class="t-other-university-funding-tabs__fee">
+          <span class="t-other-university-funding-tabs__fee-label" data-slot="intl-fee-label">International tuition fee</span>
+          <b class="t-other-university-funding-tabs__fee-value" data-slot="intl-fee-value">From £17,500</b>
+          <span class="t-other-university-funding-tabs__fee-unit" data-slot="intl-fee-unit">per year of study</span>
+          <ul class="t-other-university-funding-tabs__support">
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="intl-support-1">Visa and immigration advice</span></li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="intl-support-2">Airport welcome in arrivals week</span></li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-slot="intl-support-3">Free English language classes</span></li>
+          </ul>
+          <a href="#international" class="btn btn-primary" data-slot="intl-fee-cta">International guide</a>
+        </div>
+        <div class="t-other-university-funding-tabs__awards">
+          <h3 class="t-other-university-funding-tabs__awards-title" data-slot="intl-awards-title">Scholarships for international students</h3>
+          <ul class="t-other-university-funding-tabs__list">
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="intl-award-1-name">International merit award</b><span data-slot="intl-award-1-who">For all eligible overseas applicants</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="intl-award-1-value">£4,000 off fees</b><span data-slot="intl-award-1-deadline">Automatic</span></span>
+            </li>
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="intl-award-2-name">Global leaders scholarship</b><span data-slot="intl-award-2-who">For students with a strong record of leadership</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="intl-award-2-value">£8,000 a year</b><span data-slot="intl-award-2-deadline">Apply by 28 February</span></span>
+            </li>
+            <li class="t-other-university-funding-tabs__award">
+              <span class="t-other-university-funding-tabs__award-main"><b data-slot="intl-award-3-name">Early deposit discount</b><span data-slot="intl-award-3-who">Pay your deposit within four weeks of your offer</span></span>
+              <span class="t-other-university-funding-tabs__award-side"><b data-slot="intl-award-3-value">£1,000 off fees</b><span data-slot="intl-award-3-deadline">Within 4 weeks</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="t-steps-university-how-to-apply" id="apply">
+  <div class="container t-steps-university-how-to-apply__grid">
+    <div class="t-steps-university-how-to-apply__main">
+      <p class="eyebrow" data-slot="eyebrow">How to apply</p>
+      <h2 class="t-steps-university-how-to-apply__title" data-slot="title">Four steps from first look to first day.</h2>
+      <ol class="t-steps-university-how-to-apply__steps">
+        <li class="t-steps-university-how-to-apply__step">
+          <span class="t-steps-university-how-to-apply__n" data-slot="step-1-number">1</span>
+          <div class="t-steps-university-how-to-apply__step-body">
+            <span class="t-steps-university-how-to-apply__when" data-slot="step-1-deadline">Any time</span>
+            <h3 data-slot="step-1-title">Choose your course</h3>
+            <p data-slot="step-1-text">Explore courses, check entry requirements and come to an open day.</p>
+          </div>
+        </li>
+        <li class="t-steps-university-how-to-apply__step">
+          <span class="t-steps-university-how-to-apply__n" data-slot="step-2-number">2</span>
+          <div class="t-steps-university-how-to-apply__step-body">
+            <span class="t-steps-university-how-to-apply__when" data-slot="step-2-deadline">Deadline 29 January</span>
+            <h3 data-slot="step-2-title">Send your application</h3>
+            <p data-slot="step-2-text">Apply online through the national admissions service, with a personal statement.</p>
+          </div>
+        </li>
+        <li class="t-steps-university-how-to-apply__step">
+          <span class="t-steps-university-how-to-apply__n" data-slot="step-3-number">3</span>
+          <div class="t-steps-university-how-to-apply__step-body">
+            <span class="t-steps-university-how-to-apply__when" data-slot="step-3-deadline">February to April</span>
+            <h3 data-slot="step-3-title">Interview or portfolio</h3>
+            <p data-slot="step-3-text">Some courses ask to meet you or see your work before making an offer.</p>
+          </div>
+        </li>
+        <li class="t-steps-university-how-to-apply__step">
+          <span class="t-steps-university-how-to-apply__n" data-slot="step-4-number">4</span>
+          <div class="t-steps-university-how-to-apply__step-body">
+            <span class="t-steps-university-how-to-apply__when" data-slot="step-4-deadline">Reply by early May</span>
+            <h3 data-slot="step-4-title">Accept your offer</h3>
+            <p data-slot="step-4-text">Reply to your offer, then apply for halls and student finance.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="t-steps-university-how-to-apply__pg"><b data-slot="pg-title">Applying for a master's?</b> <span data-slot="pg-text">Postgraduate applications go straight to us, all year round.</span> <a href="#apply" data-slot="pg-link">Postgraduate guide</a></p>
+    </div>
+    <aside class="t-steps-university-how-to-apply__events" id="open-days">
+      <p class="t-steps-university-how-to-apply__events-eyebrow" data-slot="events-eyebrow">Open days and events</p>
+      <h3 class="t-steps-university-how-to-apply__events-title" data-slot="events-title">Come and see for yourself</h3>
+      <ul class="t-steps-university-how-to-apply__list">
+          <li class="t-steps-university-how-to-apply__event">
+            <span class="t-steps-university-how-to-apply__date"><b data-slot="event-1-day">14</b><span data-slot="event-1-month">Mar</span></span>
+            <span class="t-steps-university-how-to-apply__event-body"><b data-slot="event-1-title">Undergraduate open day</b><span data-slot="event-1-meta">Main campus, 10am to 3pm</span></span>
+            <a href="#open-days" class="t-steps-university-how-to-apply__book" data-slot="event-1-link">Book</a>
+          </li>
+          <li class="t-steps-university-how-to-apply__event">
+            <span class="t-steps-university-how-to-apply__date"><b data-slot="event-2-day">2</b><span data-slot="event-2-month">Apr</span></span>
+            <span class="t-steps-university-how-to-apply__event-body"><b data-slot="event-2-title">Postgraduate evening</b><span data-slot="event-2-meta">Online, 6pm to 8pm</span></span>
+            <a href="#open-days" class="t-steps-university-how-to-apply__book" data-slot="event-2-link">Book</a>
+          </li>
+          <li class="t-steps-university-how-to-apply__event">
+            <span class="t-steps-university-how-to-apply__date"><b data-slot="event-3-day">20</b><span data-slot="event-3-month">Jun</span></span>
+            <span class="t-steps-university-how-to-apply__event-body"><b data-slot="event-3-title">Summer campus tour</b><span data-slot="event-3-meta">Main campus, 11am to 1pm</span></span>
+            <a href="#open-days" class="t-steps-university-how-to-apply__book" data-slot="event-3-link">Book</a>
+          </li>
+      </ul>
+      <a href="#open-days" class="btn t-steps-university-how-to-apply__all" data-slot="events-cta">See all events</a>
+    </aside>
+  </div>
+</section>
+<section class="t-faq-university-admissions">
+  <div class="container t-faq-university-admissions__grid">
+    <div class="t-faq-university-admissions__side">
+      <p class="eyebrow" data-slot="eyebrow">Questions</p>
+      <h2 class="t-faq-university-admissions__title" data-slot="title">Everything applicants ask us.</h2>
+      <div class="t-faq-university-admissions__card">
+        <p class="t-faq-university-admissions__card-title" data-slot="card-title">Talk to the admissions team</p>
+        <p class="t-faq-university-admissions__card-text" data-slot="card-text">Monday to Friday, 9am to 5pm. We reply to emails within two working days.</p>
+        <a href="#" class="t-faq-university-admissions__line"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 2 7a2 2 0 0 1 2-2"/></svg><span data-slot="card-phone">017 00000000</span></a>
+        <a href="#" class="t-faq-university-admissions__line"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-slot="card-email">example@gmail.com</span></a>
+      </div>
+    </div>
+    <div class="t-faq-university-admissions__list">
+        <details class="t-faq-university-admissions__item" open>
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-1">What grades do I need?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-1">Each course page lists its typical offer. We also look at your personal statement and reference, not only grades.</p>
+        </details>
+        <details class="t-faq-university-admissions__item">
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-2">Can I apply without A levels?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-2">Yes. We accept a wide range of qualifications, and many courses offer a foundation year route.</p>
+        </details>
+        <details class="t-faq-university-admissions__item">
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-3">When will I hear back?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-3">Most applicants hear from us within six weeks. Courses with interviews can take a little longer.</p>
+        </details>
+        <details class="t-faq-university-admissions__item">
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-4">Is accommodation guaranteed?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-4">First-year students who apply for halls by the end of June are guaranteed a room.</p>
+        </details>
+        <details class="t-faq-university-admissions__item">
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-5">Do you offer part-time study?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-5">Many postgraduate courses can be studied part time, and some undergraduate courses too.</p>
+        </details>
+        <details class="t-faq-university-admissions__item">
+          <summary class="t-faq-university-admissions__q"><span data-slot="q-6">Can I visit if I miss an open day?</span><i class="t-faq-university-admissions__plus" aria-hidden="true"></i></summary>
+          <p class="t-faq-university-admissions__a" data-slot="a-6">Yes. Book a self-guided campus tour on most weekdays, or join a virtual tour online.</p>
+        </details>
+    </div>
+  </div>
+</section>
+<footer class="t-footer-university-columns">
+  <div class="container">
+    <div class="t-footer-university-columns__top">
+      <p class="t-footer-university-columns__big" data-slot="big">Your future starts here.</p>
+      <div class="t-footer-university-columns__actions">
+        <a href="#apply" class="btn t-footer-university-columns__btn-solid" data-slot="cta-primary">Apply now</a>
+        <a href="#open-days" class="btn t-footer-university-columns__btn-line" data-slot="cta-secondary">Book an open day</a>
+      </div>
+    </div>
+    <div class="t-footer-university-columns__main">
+      <div class="t-footer-university-columns__brand">
+        <a href="#" class="t-footer-university-columns__logo"><span class="t-footer-university-columns__crest"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/><path d="M11 13h10M11 18h10M16 9v14"/></svg></span><b data-slot="logo">University Name</b></a>
+        <p class="t-footer-university-columns__addr" data-slot="address">Main campus, University Road, City Name</p>
+        <a href="#" class="t-footer-university-columns__contact" data-slot="phone">017 00000000</a>
+        <a href="#" class="t-footer-university-columns__contact" data-slot="email">example@gmail.com</a>
+        <div class="t-footer-university-columns__social"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 10v6M8 7.5v.5M12 16v-6M12 13c0-2 4-3 4 0v3"/></svg></a></div>
+      </div>
+      <nav class="t-footer-university-columns__col" aria-label="Study"><p class="t-footer-university-columns__col-title" data-slot="col-1-title">Study</p><a href="#" data-slot="col-1-link-1">Undergraduate</a><a href="#" data-slot="col-1-link-2">Postgraduate</a><a href="#" data-slot="col-1-link-3">Short courses</a><a href="#" data-slot="col-1-link-4">Online learning</a><a href="#" data-slot="col-1-link-5">Foundation years</a></nav>
+      <nav class="t-footer-university-columns__col" aria-label="Apply"><p class="t-footer-university-columns__col-title" data-slot="col-2-title">Apply</p><a href="#" data-slot="col-2-link-1">How to apply</a><a href="#" data-slot="col-2-link-2">Entry requirements</a><a href="#" data-slot="col-2-link-3">Fees and funding</a><a href="#" data-slot="col-2-link-4">Scholarships</a><a href="#" data-slot="col-2-link-5">International</a></nav>
+      <nav class="t-footer-university-columns__col" aria-label="Campus"><p class="t-footer-university-columns__col-title" data-slot="col-3-title">Campus</p><a href="#" data-slot="col-3-link-1">Accommodation</a><a href="#" data-slot="col-3-link-2">Campus life</a><a href="#" data-slot="col-3-link-3">Sport</a><a href="#" data-slot="col-3-link-4">Libraries</a><a href="#" data-slot="col-3-link-5">Maps and travel</a></nav>
+      <nav class="t-footer-university-columns__col" aria-label="About"><p class="t-footer-university-columns__col-title" data-slot="col-4-title">About</p><a href="#" data-slot="col-4-link-1">Faculties</a><a href="#" data-slot="col-4-link-2">Research</a><a href="#" data-slot="col-4-link-3">News</a><a href="#" data-slot="col-4-link-4">Jobs</a><a href="#" data-slot="col-4-link-5">Contact us</a></nav>
+    </div>
+    <div class="t-footer-university-columns__bottom">
+      <p data-slot="copyright">© University Name. All rights reserved.</p>
+      <nav class="t-footer-university-columns__legal" aria-label="Legal">
+        <a href="#" data-slot="legal-1">Privacy</a>
+        <a href="#" data-slot="legal-2">Cookies</a>
+        <a href="#" data-slot="legal-3">Accessibility</a>
+        <a href="#" data-slot="legal-4">Freedom of information</a>
+      </nav>
+    </div>
+  </div>
+</footer></main><script>(() => { const root = document.querySelector(".t-list-university-course-finder"); if (!root) return;
+var chips = Array.prototype.slice.call(root.querySelectorAll('.t-list-university-course-finder__chip'));
+var rows = Array.prototype.slice.call(root.querySelectorAll('.t-list-university-course-finder__row'));
+chips.forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    var f = chip.getAttribute('data-filter');
+    chips.forEach(function (c) {
+      var on = c === chip;
+      c.classList.toggle('is-active', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    rows.forEach(function (r) {
+      r.classList.toggle('is-hidden', f !== 'all' && r.getAttribute('data-level') !== f);
+    });
+  });
+});
+})();
+(() => { const root = document.querySelector(".t-other-university-funding-tabs"); if (!root) return;
+var tabs = Array.prototype.slice.call(root.querySelectorAll('.t-other-university-funding-tabs__tab'));
+var panels = Array.prototype.slice.call(root.querySelectorAll('.t-other-university-funding-tabs__panel'));
+function pick(n, focus) {
+  tabs.forEach(function (t, i) {
+    var on = i === n;
+    t.classList.toggle('is-active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.tabIndex = on ? 0 : -1;
+    if (panels[i]) panels[i].classList.toggle('is-active', on);
+  });
+  if (focus) tabs[n].focus();
+}
+tabs.forEach(function (tab, i) {
+  tab.addEventListener('click', function () { pick(i, false); });
+  tab.addEventListener('keydown', function (e) {
+    var n = -1;
+    if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+    if (n > -1) { e.preventDefault(); pick(n, true); }
+  });
+});
+})();</script></body></html>
