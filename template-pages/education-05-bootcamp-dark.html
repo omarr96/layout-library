@@ -1,0 +1,984 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dark bistro template check</title><meta name="description" content="Template check page for one vibe."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"><style>:root {
+  --color-background: #141211;
+  --color-surface: #1E1B19;
+  --color-text: #F3EDE4;
+  --color-muted: #B9AFA3;
+  --color-primary: #C9A15B;
+  --color-on-primary: #141211;
+  --color-accent: #db8258;
+  --color-border: #332E2A;
+  --color-primary-ink: #C9A15B;
+  --color-accent-ink: #db8258;
+  --color-primary-soft: #2f271c;
+  --color-overlay: #000000;
+  --color-on-overlay: #F3EDE4;
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 1.8rem + 4.2vw, 4.75rem);
+  --text-6xl: clamp(3.25rem, 2rem + 6vw, 6.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px #F3EDE414;
+  --shadow-md: 0 10px 30px #F3EDE41f;
+  --shadow-lg: 0 24px 60px #F3EDE429;
+  --width-content: 1200px;
+  --width-narrow: 760px;
+}
+
+/* Base (made by code from the tokens) */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-background); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+h1 { font-size: var(--text-5xl); } h2 { font-size: var(--text-4xl); } h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: inherit; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+[hidden] { display: none; }
+.container { width: 100%; max-width: var(--width-content); margin-inline: auto; padding-inline: var(--space-5); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.lead { font-size: var(--text-lg); color: var(--color-muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.t-header-bootcamp-cohort-bar{position:relative;z-index:50;background:var(--color-background);color:var(--color-text);font-family:var(--font-body);border-bottom:1px solid var(--color-border)}
+.t-header-bootcamp-cohort-bar__strip{background:var(--color-text);color:var(--color-background);font-size:var(--text-sm)}
+.t-header-bootcamp-cohort-bar__strip-in{display:flex;align-items:center;gap:var(--space-3);padding-block:var(--space-2);min-width:0}
+.t-header-bootcamp-cohort-bar__live{flex:none;width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-background);box-shadow:0 0 0 var(--space-1) color-mix(in srgb,var(--color-background) 25%,transparent);animation:t-header-bootcamp-cohort-bar-blink 2.4s ease-in-out infinite}
+.t-header-bootcamp-cohort-bar__strip-text{font-weight:700;white-space:nowrap}
+.t-header-bootcamp-cohort-bar__seats{padding:0 var(--space-2);border:1px solid color-mix(in srgb,var(--color-background) 40%,transparent);border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
+.t-header-bootcamp-cohort-bar__strip-link{margin-left:auto;font-weight:600;color:var(--color-background);text-underline-offset:var(--space-1);white-space:nowrap}
+.t-header-bootcamp-cohort-bar__strip-link:hover{text-decoration-thickness:2px}
+.t-header-bootcamp-cohort-bar__bar{position:relative;display:flex;align-items:center;gap:var(--space-6);padding-block:var(--space-4)}
+.t-header-bootcamp-cohort-bar__logo{display:flex;align-items:center;gap:var(--space-3);color:var(--color-text);text-decoration:none;min-width:0}
+.t-header-bootcamp-cohort-bar__mark{flex:none;display:grid;place-items:center;width:calc(var(--space-6) + var(--space-1));height:calc(var(--space-6) + var(--space-1));border-radius:var(--radius-sm);background:var(--color-text);color:var(--color-background)}
+.t-header-bootcamp-cohort-bar__brand{font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-header-bootcamp-cohort-bar__nav{display:flex;gap:var(--space-5);margin-left:auto}
+.t-header-bootcamp-cohort-bar__nav a{position:relative;padding-block:var(--space-1);font-size:var(--text-sm);font-weight:600;color:var(--color-text);text-decoration:none}
+.t-header-bootcamp-cohort-bar__nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 200ms ease}
+.t-header-bootcamp-cohort-bar__nav a:hover::after{transform:scaleX(1)}
+.t-header-bootcamp-cohort-bar__actions{display:flex;gap:var(--space-3)}
+.t-header-bootcamp-cohort-bar__btn{padding:var(--space-2) var(--space-4);font-size:var(--text-sm)}
+.t-header-bootcamp-cohort-bar__menu{display:none;margin-left:auto}
+.t-header-bootcamp-cohort-bar__toggle{display:grid;place-items:center;width:var(--space-7);height:var(--space-7);border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;list-style:none}
+.t-header-bootcamp-cohort-bar__toggle::-webkit-details-marker{display:none}
+.t-header-bootcamp-cohort-bar__menu[open] .t-header-bootcamp-cohort-bar__toggle{background:var(--color-text);color:var(--color-background);border-color:var(--color-text)}
+.t-header-bootcamp-cohort-bar__menu:not([open]) .t-header-bootcamp-cohort-bar__sheet{display:none}
+.t-header-bootcamp-cohort-bar__sheet{position:absolute;left:var(--space-5);right:var(--space-5);top:100%;display:flex;flex-direction:column;padding:var(--space-3) var(--space-5) var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg)}
+.t-header-bootcamp-cohort-bar__sheet-link{padding:var(--space-3) 0;border-bottom:1px solid var(--color-border);font-weight:600;color:var(--color-text);text-decoration:none}
+.t-header-bootcamp-cohort-bar__sheet-btns{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+@keyframes t-header-bootcamp-cohort-bar-blink{0%,100%{opacity:1}50%{opacity:0.35}}
+@media (max-width: 1024px){.t-header-bootcamp-cohort-bar__nav,.t-header-bootcamp-cohort-bar__actions{display:none}.t-header-bootcamp-cohort-bar__menu{display:block}}
+@media (max-width: 760px){.t-header-bootcamp-cohort-bar__seats{display:none}.t-header-bootcamp-cohort-bar__strip-link{display:none}.t-header-bootcamp-cohort-bar__strip-in{justify-content:center}}
+@media (prefers-reduced-motion: reduce){.t-header-bootcamp-cohort-bar__live{animation:none}.t-header-bootcamp-cohort-bar__nav a::after{transition:none}}
+.t-hero-bootcamp-terminal-launch{position:relative;overflow:hidden;padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-hero-bootcamp-terminal-launch__grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--color-border) 1px,transparent 1px),linear-gradient(90deg,var(--color-border) 1px,transparent 1px);background-size:var(--space-8) var(--space-8);opacity:0.55;-webkit-mask-image:radial-gradient(circle at 20% 30%,currentColor,transparent 70%);mask-image:radial-gradient(circle at 20% 30%,currentColor,transparent 70%);pointer-events:none}
+.t-hero-bootcamp-terminal-launch__in{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:var(--space-8);align-items:center}
+.t-hero-bootcamp-terminal-launch__tag{display:inline-flex;align-items:center;gap:var(--space-2);margin:0 0 var(--space-5);padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:var(--text-sm);font-weight:600}
+.t-hero-bootcamp-terminal-launch__tag-dot{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-accent)}
+.t-hero-bootcamp-terminal-launch__title{margin:0 0 var(--space-5);font-size:var(--text-5xl);line-height:1;letter-spacing:-0.035em;text-wrap:balance}
+.t-hero-bootcamp-terminal-launch__title-em{color:var(--color-primary-ink)}
+.t-hero-bootcamp-terminal-launch__lead{max-width:calc(var(--space-10) * 4.5);margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.6;color:var(--color-muted)}
+.t-hero-bootcamp-terminal-launch__actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-7)}
+.t-hero-bootcamp-terminal-launch__cta{padding:var(--space-3) var(--space-6)}
+.t-hero-bootcamp-terminal-launch__ticket{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);overflow:hidden}
+.t-hero-bootcamp-terminal-launch__cell{padding:var(--space-4) var(--space-5);border-left:1px dashed var(--color-border)}
+.t-hero-bootcamp-terminal-launch__cell:first-child{border-left:0}
+.t-hero-bootcamp-terminal-launch__cell dt{margin-bottom:var(--space-1);font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-muted)}
+.t-hero-bootcamp-terminal-launch__cell dd{margin:0;font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;line-height:1.25}
+.t-hero-bootcamp-terminal-launch__visual{position:relative;padding-bottom:var(--space-7)}
+.t-hero-bootcamp-terminal-launch__photo{overflow:hidden;border-radius:var(--radius-lg);aspect-ratio:6 / 7;box-shadow:var(--shadow-lg)}
+.t-hero-bootcamp-terminal-launch__photo img{width:100%;height:100%;object-fit:cover}
+.t-hero-bootcamp-terminal-launch__term{position:absolute;left:calc(var(--space-8) * -1);bottom:0;width:78%;background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);overflow:hidden;animation:t-hero-bootcamp-terminal-launch-rise 700ms ease both 150ms}
+.t-hero-bootcamp-terminal-launch__term-bar{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--color-border);background:var(--color-background)}
+.t-hero-bootcamp-terminal-launch__dots{display:flex;gap:var(--space-1)}
+.t-hero-bootcamp-terminal-launch__dots i{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-border)}
+.t-hero-bootcamp-terminal-launch__dots i:first-child{background:var(--color-accent)}
+.t-hero-bootcamp-terminal-launch__term-name{font-size:var(--text-xs);font-weight:600;color:var(--color-muted);letter-spacing:0.04em}
+.t-hero-bootcamp-terminal-launch__lines{list-style:none;margin:0;padding:var(--space-4) var(--space-5);display:grid;gap:var(--space-2);font-size:var(--text-sm);line-height:1.4}
+.t-hero-bootcamp-terminal-launch__line{display:flex;align-items:center;gap:var(--space-2)}
+.t-hero-bootcamp-terminal-launch__line::before{flex:none;width:var(--space-4);font-weight:700}
+.t-hero-bootcamp-terminal-launch__line.is-cmd::before{content:"›";color:var(--color-primary-ink)}
+.t-hero-bootcamp-terminal-launch__line.is-cmd{font-weight:700}
+.t-hero-bootcamp-terminal-launch__line.is-ok::before{content:"✓";color:var(--color-accent-ink)}
+.t-hero-bootcamp-terminal-launch__line.is-ok{color:var(--color-muted)}
+.t-hero-bootcamp-terminal-launch__caret{width:var(--space-2);height:var(--space-4);background:var(--color-text);animation:t-hero-bootcamp-terminal-launch-caret 1.1s steps(1) infinite}
+.t-hero-bootcamp-terminal-launch__badge{position:absolute;top:var(--space-5);right:calc(var(--space-5) * -1);display:flex;flex-direction:column;max-width:calc(var(--space-10) * 1.4);padding:var(--space-4);background:var(--color-text);color:var(--color-background);border-radius:var(--radius-md);box-shadow:var(--shadow-md)}
+.t-hero-bootcamp-terminal-launch__badge-num{font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:800;line-height:1}
+.t-hero-bootcamp-terminal-launch__badge-text{margin-top:var(--space-1);font-size:var(--text-xs);line-height:1.35}
+@keyframes t-hero-bootcamp-terminal-launch-rise{from{opacity:0;transform:translateY(var(--space-4))}to{opacity:1;transform:none}}
+@keyframes t-hero-bootcamp-terminal-launch-caret{0%,100%{opacity:1}50%{opacity:0}}
+@media (max-width: 1024px){.t-hero-bootcamp-terminal-launch__in{grid-template-columns:minmax(0,1fr)}.t-hero-bootcamp-terminal-launch__visual{max-width:calc(var(--space-10) * 4.5);margin-inline:auto;width:100%}.t-hero-bootcamp-terminal-launch__term{left:calc(var(--space-6) * -1)}}
+@media (max-width: 760px){.t-hero-bootcamp-terminal-launch{padding:var(--space-7) 0}.t-hero-bootcamp-terminal-launch__ticket{grid-template-columns:minmax(0,1fr)}.t-hero-bootcamp-terminal-launch__cell{border-left:0;border-top:1px dashed var(--color-border);display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);padding:var(--space-3) var(--space-4)}.t-hero-bootcamp-terminal-launch__cell:first-child{border-top:0}.t-hero-bootcamp-terminal-launch__cell dt{margin:0}.t-hero-bootcamp-terminal-launch__cell dd{font-size:var(--text-base);text-align:right}.t-hero-bootcamp-terminal-launch__actions{margin-bottom:var(--space-6)}.t-hero-bootcamp-terminal-launch__actions .btn{flex:1 1 auto}.t-hero-bootcamp-terminal-launch__visual{padding-bottom:0}.t-hero-bootcamp-terminal-launch__photo{aspect-ratio:4 / 3}.t-hero-bootcamp-terminal-launch__term{position:relative;left:auto;bottom:auto;width:auto;margin:calc(var(--space-7) * -1) var(--space-4) 0}.t-hero-bootcamp-terminal-launch__badge{right:var(--space-3);top:var(--space-3)}}
+@media (prefers-reduced-motion: reduce){.t-hero-bootcamp-terminal-launch__term{animation:none}.t-hero-bootcamp-terminal-launch__caret{animation:none}}
+.t-pricing-bootcamp-programme-tabs{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-pricing-bootcamp-programme-tabs__head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+.t-pricing-bootcamp-programme-tabs__title{margin:0;font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em;text-wrap:balance}
+.t-pricing-bootcamp-programme-tabs__lead{margin:0;font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-pricing-bootcamp-programme-tabs__tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3);margin-bottom:var(--space-4)}
+.t-pricing-bootcamp-programme-tabs__tab{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--space-3);padding:var(--space-4) var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-background);color:var(--color-text);text-align:left;cursor:pointer;transition:transform 200ms ease,background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.t-pricing-bootcamp-programme-tabs__tab:hover{transform:translateY(-2px);border-color:var(--color-text)}
+.t-pricing-bootcamp-programme-tabs__tab-num{font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;opacity:0.7}
+.t-pricing-bootcamp-programme-tabs__tab-name{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;line-height:1.2}
+.t-pricing-bootcamp-programme-tabs__tab-len{font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);border:1px solid currentColor;white-space:nowrap}
+.t-pricing-bootcamp-programme-tabs__tab.is-active{background:var(--color-text);color:var(--color-background);border-color:var(--color-text);box-shadow:var(--shadow-md)}
+.t-pricing-bootcamp-programme-tabs__tab.is-active .t-pricing-bootcamp-programme-tabs__tab-num{opacity:1}
+.t-pricing-bootcamp-programme-tabs__panel{display:none;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:var(--space-6);padding:var(--space-6);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+.t-pricing-bootcamp-programme-tabs__panel.is-active{display:grid;animation:t-pricing-bootcamp-programme-tabs-in 300ms ease both}
+.t-pricing-bootcamp-programme-tabs__name{margin:0 0 var(--space-3);font-size:var(--text-3xl);letter-spacing:-0.02em}
+.t-pricing-bootcamp-programme-tabs__desc{margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted);max-width:calc(var(--space-10) * 4.5)}
+.t-pricing-bootcamp-programme-tabs__sub{margin:0 0 var(--space-3);font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-muted)}
+.t-pricing-bootcamp-programme-tabs__chips{display:flex;flex-wrap:wrap;gap:var(--space-2);list-style:none;margin:0 0 var(--space-6);padding:0}
+.t-pricing-bootcamp-programme-tabs__chips li{padding:var(--space-1) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);font-size:var(--text-sm);font-weight:600}
+.t-pricing-bootcamp-programme-tabs__chips li::before{content:"#";margin-right:var(--space-1);color:var(--color-muted)}
+.t-pricing-bootcamp-programme-tabs__roles{margin:0;font-weight:600;line-height:1.5}
+.t-pricing-bootcamp-programme-tabs__sheet{display:flex;flex-direction:column;gap:var(--space-5);padding:var(--space-5);border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-border)}
+.t-pricing-bootcamp-programme-tabs__spec{margin:0}
+.t-pricing-bootcamp-programme-tabs__row{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px dashed var(--color-border)}
+.t-pricing-bootcamp-programme-tabs__row dt{font-size:var(--text-sm);color:var(--color-muted)}
+.t-pricing-bootcamp-programme-tabs__row dd{margin:0;font-size:var(--text-sm);font-weight:700;text-align:right}
+.t-pricing-bootcamp-programme-tabs__price{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:0 var(--space-3)}
+.t-pricing-bootcamp-programme-tabs__price-label{font-size:var(--text-sm);color:var(--color-muted)}
+.t-pricing-bootcamp-programme-tabs__price-num{grid-row:span 2;font-family:var(--font-heading);font-size:var(--text-4xl);font-weight:800;letter-spacing:-0.03em;line-height:1}
+.t-pricing-bootcamp-programme-tabs__price-note{font-size:var(--text-sm);font-weight:600}
+.t-pricing-bootcamp-programme-tabs__btns{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4)}
+.t-pricing-bootcamp-programme-tabs__btns .btn{flex:1 1 auto}
+.t-pricing-bootcamp-programme-tabs__link{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+@keyframes t-pricing-bootcamp-programme-tabs-in{from{opacity:0;transform:translateY(var(--space-2))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){.t-pricing-bootcamp-programme-tabs__head{grid-template-columns:minmax(0,1fr);gap:var(--space-4)}.t-pricing-bootcamp-programme-tabs__panel{grid-template-columns:minmax(0,1fr)}}
+@media (max-width: 760px){.t-pricing-bootcamp-programme-tabs{padding:var(--space-8) 0}.t-pricing-bootcamp-programme-tabs__tabs{grid-template-columns:minmax(0,1fr);gap:var(--space-2)}.t-pricing-bootcamp-programme-tabs__tab{padding:var(--space-3) var(--space-4)}.t-pricing-bootcamp-programme-tabs__panel{padding:var(--space-5) var(--space-4)}.t-pricing-bootcamp-programme-tabs__sheet{padding:var(--space-4)}}
+@media (prefers-reduced-motion: reduce){.t-pricing-bootcamp-programme-tabs__panel.is-active{animation:none}.t-pricing-bootcamp-programme-tabs__tab{transition:none}.t-pricing-bootcamp-programme-tabs__tab:hover{transform:none}}
+.t-list-bootcamp-week-timeline{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-list-bootcamp-week-timeline__in{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.4fr);gap:var(--space-8);align-items:start}
+.t-list-bootcamp-week-timeline__intro{position:sticky;top:var(--space-6)}
+.t-list-bootcamp-week-timeline__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em;text-wrap:balance}
+.t-list-bootcamp-week-timeline__lead{margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-list-bootcamp-week-timeline__weeks{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:var(--space-1);max-width:calc(var(--space-10) * 2.5);margin-bottom:var(--space-2)}
+.t-list-bootcamp-week-timeline__weeks i{aspect-ratio:1;border-radius:var(--radius-sm);background:var(--color-text);transition:transform 200ms ease}
+.t-list-bootcamp-week-timeline__weeks i:hover{transform:scale(1.15)}
+.t-list-bootcamp-week-timeline__weeks i.is-a{opacity:0.25}
+.t-list-bootcamp-week-timeline__weeks i.is-b{opacity:0.45}
+.t-list-bootcamp-week-timeline__weeks i.is-c{opacity:0.65}
+.t-list-bootcamp-week-timeline__weeks i.is-d{opacity:0.85}
+.t-list-bootcamp-week-timeline__weeks i.is-e{background:var(--color-accent)}
+.t-list-bootcamp-week-timeline__weeks-note{margin:0 0 var(--space-6);font-size:var(--text-sm);color:var(--color-muted)}
+.t-list-bootcamp-week-timeline__list{position:relative;list-style:none;margin:0;padding:0 0 0 var(--space-7)}
+.t-list-bootcamp-week-timeline__list::before{content:"";position:absolute;left:calc(var(--space-3) - 1px);top:var(--space-6);bottom:var(--space-6);width:2px;background:repeating-linear-gradient(to bottom,var(--color-border) 0 var(--space-2),transparent var(--space-2) var(--space-3))}
+.t-list-bootcamp-week-timeline__phase{position:relative;display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:var(--space-3) var(--space-5);padding:var(--space-5);margin-bottom:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);transition:transform 200ms ease,box-shadow 200ms ease}
+.t-list-bootcamp-week-timeline__phase:hover{transform:translateX(var(--space-1));box-shadow:var(--shadow-md)}
+.t-list-bootcamp-week-timeline__node{position:absolute;left:calc(var(--space-7) * -1);top:var(--space-6);width:var(--space-5);height:var(--space-5);border-radius:var(--radius-pill);background:var(--color-background);border:2px solid var(--color-text)}
+.t-list-bootcamp-week-timeline__node::after{content:"";position:absolute;inset:var(--space-1);border-radius:var(--radius-pill);background:var(--color-text)}
+.t-list-bootcamp-week-timeline__phase.is-last .t-list-bootcamp-week-timeline__node{border-color:var(--color-accent)}
+.t-list-bootcamp-week-timeline__phase.is-last .t-list-bootcamp-week-timeline__node::after{background:var(--color-accent)}
+.t-list-bootcamp-week-timeline__when{grid-row:span 2}
+.t-list-bootcamp-week-timeline__weeks-label{display:inline-block;margin-bottom:var(--space-2);padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);background:var(--color-text);color:var(--color-background);font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
+.t-list-bootcamp-week-timeline__name{margin:0;font-size:var(--text-2xl);letter-spacing:-0.015em}
+.t-list-bootcamp-week-timeline__topics{display:flex;flex-wrap:wrap;gap:var(--space-2);list-style:none;margin:0;padding:0}
+.t-list-bootcamp-week-timeline__topics li{padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);border:1px solid var(--color-border);background:var(--color-background);font-size:var(--text-sm);font-weight:600}
+.t-list-bootcamp-week-timeline__ship{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-1) var(--space-2);margin:0;padding-top:var(--space-3);border-top:1px dashed var(--color-border);font-size:var(--text-sm);font-weight:600}
+.t-list-bootcamp-week-timeline__ship-label{font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-muted)}
+.t-list-bootcamp-week-timeline__ship-label::before{content:"→ ";color:var(--color-text)}
+@media (max-width: 1024px){.t-list-bootcamp-week-timeline__in{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}.t-list-bootcamp-week-timeline__intro{position:static}}
+@media (max-width: 760px){.t-list-bootcamp-week-timeline{padding:var(--space-8) 0}.t-list-bootcamp-week-timeline__list{padding-left:var(--space-6)}.t-list-bootcamp-week-timeline__node{left:calc(var(--space-6) * -1);width:var(--space-4);height:var(--space-4)}.t-list-bootcamp-week-timeline__node::after{inset:2px}.t-list-bootcamp-week-timeline__list::before{left:calc(var(--space-2) - 1px)}.t-list-bootcamp-week-timeline__phase{grid-template-columns:minmax(0,1fr);padding:var(--space-4)}.t-list-bootcamp-week-timeline__when{grid-row:auto}}
+@media (prefers-reduced-motion: reduce){.t-list-bootcamp-week-timeline__phase,.t-list-bootcamp-week-timeline__weeks i{transition:none}.t-list-bootcamp-week-timeline__phase:hover{transform:none}}
+.t-stats-bootcamp-outcomes-partners{padding:var(--space-9) 0;background:var(--color-text);color:var(--color-background)}
+.t-stats-bootcamp-outcomes-partners__head{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+.t-stats-bootcamp-outcomes-partners__eyebrow{margin:0 0 var(--space-3);font-size:var(--text-sm);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-bootcamp-outcomes-partners__title{margin:0;font-size:var(--text-5xl);line-height:1;letter-spacing:-0.035em;text-wrap:balance}
+.t-stats-bootcamp-outcomes-partners__note{margin:0;padding-left:var(--space-4);border-left:2px solid color-mix(in srgb,var(--color-background) 40%,transparent);font-size:var(--text-sm);line-height:1.5;color:color-mix(in srgb,var(--color-background) 78%,var(--color-text))}
+.t-stats-bootcamp-outcomes-partners__board{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--space-5);margin-bottom:var(--space-8)}
+.t-stats-bootcamp-outcomes-partners__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:color-mix(in srgb,var(--color-background) 18%,transparent);border:1px solid color-mix(in srgb,var(--color-background) 18%,transparent);border-radius:var(--radius-lg);overflow:hidden}
+.t-stats-bootcamp-outcomes-partners__stat{display:flex;flex-direction:column;justify-content:flex-end;gap:var(--space-2);padding:var(--space-5);background:var(--color-text);min-width:0}
+.t-stats-bootcamp-outcomes-partners__stat.is-big{grid-column:1 / -1;padding:var(--space-6)}
+.t-stats-bootcamp-outcomes-partners__num{font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:800;line-height:1;letter-spacing:-0.03em}
+.t-stats-bootcamp-outcomes-partners__stat.is-big .t-stats-bootcamp-outcomes-partners__num{font-size:var(--text-6xl);letter-spacing:-0.05em}
+.t-stats-bootcamp-outcomes-partners__label{font-size:var(--text-sm);line-height:1.4;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-stats-bootcamp-outcomes-partners__roles{padding:var(--space-6);border:1px solid color-mix(in srgb,var(--color-background) 18%,transparent);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-background) 5%,var(--color-text))}
+.t-stats-bootcamp-outcomes-partners__roles-title{margin:0 0 var(--space-5);font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700}
+.t-stats-bootcamp-outcomes-partners__bars{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-4)}
+.t-stats-bootcamp-outcomes-partners__bar-head{display:flex;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-2);font-size:var(--text-sm);font-weight:600}
+.t-stats-bootcamp-outcomes-partners__bar-val{font-weight:800}
+.t-stats-bootcamp-outcomes-partners__track{display:block;height:var(--space-2);border-radius:var(--radius-pill);background:color-mix(in srgb,var(--color-background) 14%,transparent);overflow:hidden}
+.t-stats-bootcamp-outcomes-partners__fill{display:block;height:100%;border-radius:var(--radius-pill);background:var(--color-background);transform-origin:left;animation:t-stats-bootcamp-outcomes-partners-grow 900ms ease both 200ms}
+.t-stats-bootcamp-outcomes-partners__bar.is-1 .t-stats-bootcamp-outcomes-partners__fill{width:100%}
+.t-stats-bootcamp-outcomes-partners__bar.is-2 .t-stats-bootcamp-outcomes-partners__fill{width:70%;opacity:0.85}
+.t-stats-bootcamp-outcomes-partners__bar.is-3 .t-stats-bootcamp-outcomes-partners__fill{width:56%;opacity:0.75}
+.t-stats-bootcamp-outcomes-partners__bar.is-4 .t-stats-bootcamp-outcomes-partners__fill{width:44%;opacity:0.65}
+.t-stats-bootcamp-outcomes-partners__bar.is-5 .t-stats-bootcamp-outcomes-partners__fill{width:24%;opacity:0.55}
+.t-stats-bootcamp-outcomes-partners__partners{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--space-6);padding-top:var(--space-6);border-top:1px solid color-mix(in srgb,var(--color-background) 18%,transparent)}
+.t-stats-bootcamp-outcomes-partners__partners-title{margin:0;font-size:var(--text-sm);font-weight:600;color:color-mix(in srgb,var(--color-background) 78%,var(--color-text));white-space:nowrap}
+.t-stats-bootcamp-outcomes-partners__logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--space-4);list-style:none;margin:0;padding:0}
+.t-stats-bootcamp-outcomes-partners__logo{display:flex;align-items:center;justify-content:center;gap:var(--space-2);font-size:var(--text-lg);font-weight:700;color:color-mix(in srgb,var(--color-background) 85%,var(--color-text));transition:color 200ms ease,transform 200ms ease}
+.t-stats-bootcamp-outcomes-partners__logo:hover{color:var(--color-background);transform:translateY(-2px)}
+.t-stats-bootcamp-outcomes-partners__logo svg{flex:none}
+.t-stats-bootcamp-outcomes-partners__logo.is-a{font-family:var(--font-heading);letter-spacing:-0.02em}
+.t-stats-bootcamp-outcomes-partners__logo.is-b{font-style:italic}
+.t-stats-bootcamp-outcomes-partners__logo.is-c{font-weight:800;letter-spacing:-0.04em}
+.t-stats-bootcamp-outcomes-partners__logo.is-d{font-size:var(--text-sm);letter-spacing:0.2em}
+.t-stats-bootcamp-outcomes-partners__logo.is-e{font-family:var(--font-heading);font-weight:500}
+.t-stats-bootcamp-outcomes-partners__logo.is-f{font-weight:600;letter-spacing:0.02em}
+@keyframes t-stats-bootcamp-outcomes-partners-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width: 1024px){.t-stats-bootcamp-outcomes-partners__head,.t-stats-bootcamp-outcomes-partners__board{grid-template-columns:minmax(0,1fr)}.t-stats-bootcamp-outcomes-partners__partners{grid-template-columns:minmax(0,1fr)}.t-stats-bootcamp-outcomes-partners__logos{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-5) var(--space-4)}.t-stats-bootcamp-outcomes-partners__logo{justify-content:flex-start}}
+@media (max-width: 760px){.t-stats-bootcamp-outcomes-partners{padding:var(--space-8) 0}.t-stats-bootcamp-outcomes-partners__stats{grid-template-columns:repeat(2,minmax(0,1fr))}.t-stats-bootcamp-outcomes-partners__stat{padding:var(--space-4)}.t-stats-bootcamp-outcomes-partners__stat.is-big{padding:var(--space-5)}.t-stats-bootcamp-outcomes-partners__stat:last-child{grid-column:1 / -1}.t-stats-bootcamp-outcomes-partners__roles{padding:var(--space-5)}.t-stats-bootcamp-outcomes-partners__logos{grid-template-columns:repeat(2,minmax(0,1fr))}.t-stats-bootcamp-outcomes-partners__logo{font-size:var(--text-base)}}
+@media (prefers-reduced-motion: reduce){.t-stats-bootcamp-outcomes-partners__fill{animation:none}.t-stats-bootcamp-outcomes-partners__logo{transition:none}}
+.t-showcase-bootcamp-student-projects{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-showcase-bootcamp-student-projects__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-4) var(--space-6);margin-bottom:var(--space-7)}
+.t-showcase-bootcamp-student-projects__title{margin:0;font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em}
+.t-showcase-bootcamp-student-projects__all{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-showcase-bootcamp-student-projects__grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-rows:auto auto;gap:var(--space-5)}
+.t-showcase-bootcamp-student-projects__card{display:flex;flex-direction:column;background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;transition:transform 250ms ease,box-shadow 250ms ease}
+.t-showcase-bootcamp-student-projects__card:hover{transform:translateY(calc(var(--space-1) * -1));box-shadow:var(--shadow-lg)}
+.t-showcase-bootcamp-student-projects__card.is-featured{grid-row:span 2}
+.t-showcase-bootcamp-student-projects__window{margin:var(--space-4) var(--space-4) 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--color-surface)}
+.t-showcase-bootcamp-student-projects__chrome{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--color-border)}
+.t-showcase-bootcamp-student-projects__dots{display:flex;gap:var(--space-1)}
+.t-showcase-bootcamp-student-projects__dots i{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-border)}
+.t-showcase-bootcamp-student-projects__url{flex:1;min-width:0;padding:0 var(--space-3);border-radius:var(--radius-pill);background:var(--color-background);font-size:var(--text-xs);font-weight:600;color:var(--color-muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-showcase-bootcamp-student-projects__shot{aspect-ratio:16 / 10;overflow:hidden}
+.t-showcase-bootcamp-student-projects__shot img{width:100%;height:100%;object-fit:cover;transition:transform 400ms ease}
+.t-showcase-bootcamp-student-projects__card:hover .t-showcase-bootcamp-student-projects__shot img{transform:scale(1.03)}
+.t-showcase-bootcamp-student-projects__card.is-featured .t-showcase-bootcamp-student-projects__window{flex:1 1 auto;display:flex;flex-direction:column}
+.t-showcase-bootcamp-student-projects__card.is-featured .t-showcase-bootcamp-student-projects__shot{flex:1 1 auto;aspect-ratio:auto;min-height:calc(var(--space-10) * 2.5)}
+.t-showcase-bootcamp-student-projects__body{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5)}
+.t-showcase-bootcamp-student-projects__meta{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.t-showcase-bootcamp-student-projects__track{padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);background:var(--color-text);color:var(--color-background);font-size:var(--text-xs);font-weight:700;letter-spacing:0.04em}
+.t-showcase-bootcamp-student-projects__team{padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);border:1px solid var(--color-border);font-size:var(--text-xs);font-weight:600}
+.t-showcase-bootcamp-student-projects__name{margin:var(--space-1) 0 0;font-size:var(--text-xl);line-height:1.2}
+.t-showcase-bootcamp-student-projects__card.is-featured .t-showcase-bootcamp-student-projects__name{font-size:var(--text-3xl);letter-spacing:-0.02em}
+.t-showcase-bootcamp-student-projects__desc{margin:0;line-height:1.55;color:var(--color-muted)}
+.t-showcase-bootcamp-student-projects__maker{margin:0;font-size:var(--text-sm);color:var(--color-muted)}
+.t-showcase-bootcamp-student-projects__stack{display:flex;flex-wrap:wrap;gap:var(--space-2);list-style:none;margin:var(--space-2) 0 0;padding:0}
+.t-showcase-bootcamp-student-projects__stack li{font-size:var(--text-sm);font-weight:600}
+.t-showcase-bootcamp-student-projects__stack li::before{content:"‹›";margin-right:var(--space-1);color:var(--color-muted)}
+@media (max-width: 1024px){.t-showcase-bootcamp-student-projects__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.t-showcase-bootcamp-student-projects__card.is-featured{grid-column:1 / -1;grid-row:auto}.t-showcase-bootcamp-student-projects__card.is-featured .t-showcase-bootcamp-student-projects__shot{aspect-ratio:16 / 10;min-height:0}}
+@media (max-width: 760px){.t-showcase-bootcamp-student-projects{padding:var(--space-8) 0}.t-showcase-bootcamp-student-projects__grid{grid-template-columns:minmax(0,1fr)}.t-showcase-bootcamp-student-projects__window{margin:var(--space-3) var(--space-3) 0}.t-showcase-bootcamp-student-projects__body{padding:var(--space-4)}}
+@media (prefers-reduced-motion: reduce){.t-showcase-bootcamp-student-projects__card,.t-showcase-bootcamp-student-projects__shot img{transition:none}.t-showcase-bootcamp-student-projects__card:hover{transform:none}.t-showcase-bootcamp-student-projects__card:hover .t-showcase-bootcamp-student-projects__shot img{transform:none}}
+.t-reviews-bootcamp-career-diff{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-reviews-bootcamp-career-diff__title{margin:0 0 var(--space-7);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em;max-width:calc(var(--space-10) * 6)}
+.t-reviews-bootcamp-career-diff__layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:var(--space-6);align-items:stretch}
+.t-reviews-bootcamp-career-diff__feature{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1fr);margin:0;border-radius:var(--radius-lg);overflow:hidden;background:var(--color-text);color:var(--color-background)}
+.t-reviews-bootcamp-career-diff__portrait{min-height:100%}
+.t-reviews-bootcamp-career-diff__portrait img{width:100%;height:100%;object-fit:cover}
+.t-reviews-bootcamp-career-diff__quote-box{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-5);padding:var(--space-6)}
+.t-reviews-bootcamp-career-diff__mark{opacity:0.6}
+.t-reviews-bootcamp-career-diff__quote{margin:0;font-family:var(--font-heading);font-size:var(--text-2xl);line-height:1.3;letter-spacing:-0.01em}
+.t-reviews-bootcamp-career-diff__who{display:flex;flex-direction:column;padding-top:var(--space-4);border-top:1px solid color-mix(in srgb,var(--color-background) 25%,transparent)}
+.t-reviews-bootcamp-career-diff__who-name{font-weight:700}
+.t-reviews-bootcamp-career-diff__who-role{font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-reviews-bootcamp-career-diff__diffs{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-3)}
+.t-reviews-bootcamp-career-diff__diff{padding:var(--space-4) var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);transition:transform 200ms ease,box-shadow 200ms ease}
+.t-reviews-bootcamp-career-diff__diff:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.t-reviews-bootcamp-career-diff__diff-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-2);margin-bottom:var(--space-3)}
+.t-reviews-bootcamp-career-diff__diff-name{font-weight:700}
+.t-reviews-bootcamp-career-diff__diff-time{font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-muted)}
+.t-reviews-bootcamp-career-diff__line{display:flex;align-items:center;gap:var(--space-3);margin:0;padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);font-weight:600}
+.t-reviews-bootcamp-career-diff__line::before{flex:none;width:var(--space-3);font-weight:800}
+.t-reviews-bootcamp-career-diff__line.is-old{color:var(--color-muted)}
+.t-reviews-bootcamp-career-diff__line.is-old span{text-decoration:line-through;text-decoration-thickness:1px}
+.t-reviews-bootcamp-career-diff__line.is-old::before{content:"−"}
+.t-reviews-bootcamp-career-diff__line.is-new{margin-top:var(--space-1);background:color-mix(in srgb,var(--color-accent) 14%,var(--color-background));color:var(--color-text)}
+.t-reviews-bootcamp-career-diff__line.is-new::before{content:"+"}
+.t-reviews-bootcamp-career-diff__diff-quote{margin:var(--space-3) 0 0;font-size:var(--text-sm);line-height:1.5;color:var(--color-muted)}
+@media (max-width: 1024px){.t-reviews-bootcamp-career-diff__layout{grid-template-columns:minmax(0,1fr)}}
+@media (max-width: 760px){.t-reviews-bootcamp-career-diff{padding:var(--space-8) 0}.t-reviews-bootcamp-career-diff__feature{grid-template-columns:minmax(0,1fr)}.t-reviews-bootcamp-career-diff__portrait{aspect-ratio:4 / 3;min-height:0}.t-reviews-bootcamp-career-diff__quote-box{padding:var(--space-5)}.t-reviews-bootcamp-career-diff__diff{padding:var(--space-4)}}
+@media (prefers-reduced-motion: reduce){.t-reviews-bootcamp-career-diff__diff{transition:none}.t-reviews-bootcamp-career-diff__diff:hover{transform:none}}
+.t-pricing-bootcamp-financing-ways{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-pricing-bootcamp-financing-ways__head{max-width:calc(var(--space-10) * 6);margin:0 auto var(--space-7);text-align:center}
+.t-pricing-bootcamp-financing-ways__title{margin:0 0 var(--space-3);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em;text-wrap:balance}
+.t-pricing-bootcamp-financing-ways__lead{margin:0;font-size:var(--text-lg);color:var(--color-muted)}
+.t-pricing-bootcamp-financing-ways__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);gap:var(--space-4);align-items:center}
+.t-pricing-bootcamp-financing-ways__opt{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-6);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:transform 200ms ease,box-shadow 200ms ease}
+.t-pricing-bootcamp-financing-ways__opt:hover{transform:translateY(calc(var(--space-1) * -1));box-shadow:var(--shadow-md)}
+.t-pricing-bootcamp-financing-ways__opt.is-main{padding:var(--space-7) var(--space-6);background:var(--color-text);color:var(--color-background);border-color:var(--color-text);box-shadow:var(--shadow-lg)}
+.t-pricing-bootcamp-financing-ways__opt-tag{align-self:flex-start;margin:0;padding:var(--space-1) var(--space-2);border:1px solid currentColor;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__opt-tag{background:var(--color-background);color:var(--color-text);border-color:var(--color-background)}
+.t-pricing-bootcamp-financing-ways__opt-name{margin:0;font-size:var(--text-2xl);letter-spacing:-0.015em}
+.t-pricing-bootcamp-financing-ways__amount{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-2);margin:var(--space-2) 0 0}
+.t-pricing-bootcamp-financing-ways__big{font-family:var(--font-heading);font-size:var(--text-5xl);font-weight:800;line-height:1;letter-spacing:-0.04em}
+.t-pricing-bootcamp-financing-ways__per{font-size:var(--text-sm);font-weight:600;color:var(--color-muted)}
+.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__per,.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__save,.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__list li{color:color-mix(in srgb,var(--color-background) 82%,var(--color-text))}
+.t-pricing-bootcamp-financing-ways__save{margin:0;font-size:var(--text-sm);font-weight:700}
+.t-pricing-bootcamp-financing-ways__list{list-style:none;margin:var(--space-2) 0 var(--space-3);padding:var(--space-4) 0 0;border-top:1px dashed var(--color-border);display:grid;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-muted)}
+.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__list{border-top-color:color-mix(in srgb,var(--color-background) 30%,transparent)}
+.t-pricing-bootcamp-financing-ways__list li{display:flex;gap:var(--space-2)}
+.t-pricing-bootcamp-financing-ways__list li::before{content:"›";font-weight:800;color:var(--color-text)}
+.t-pricing-bootcamp-financing-ways__opt.is-main .t-pricing-bootcamp-financing-ways__list li::before{color:var(--color-background)}
+.t-pricing-bootcamp-financing-ways__btn{margin-top:auto}
+.t-pricing-bootcamp-financing-ways__btn-main{background:var(--color-background);color:var(--color-text)}
+.t-pricing-bootcamp-financing-ways__picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-1);padding:var(--space-1);margin-top:var(--space-2);border-radius:var(--radius-md);background:color-mix(in srgb,var(--color-background) 12%,var(--color-text))}
+.t-pricing-bootcamp-financing-ways__len{padding:var(--space-2) var(--space-1);border:0;border-radius:var(--radius-sm);background:transparent;color:var(--color-background);font-size:var(--text-sm);font-weight:700;cursor:pointer;transition:background-color 200ms ease,color 200ms ease}
+.t-pricing-bootcamp-financing-ways__len:hover{background:color-mix(in srgb,var(--color-background) 20%,var(--color-text))}
+.t-pricing-bootcamp-financing-ways__len.is-active{background:var(--color-background);color:var(--color-text)}
+.t-pricing-bootcamp-financing-ways__res{display:none}
+.t-pricing-bootcamp-financing-ways__res.is-active{display:flex;animation:t-pricing-bootcamp-financing-ways-in 250ms ease both}
+.t-pricing-bootcamp-financing-ways__extras{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-3) var(--space-6);margin-top:var(--space-7)}
+.t-pricing-bootcamp-financing-ways__extra{display:flex;align-items:center;gap:var(--space-2);margin:0;font-weight:600}
+.t-pricing-bootcamp-financing-ways__extra svg{flex:none}
+@keyframes t-pricing-bootcamp-financing-ways-in{from{opacity:0;transform:translateY(var(--space-1))}to{opacity:1;transform:none}}
+@media (max-width: 1024px){.t-pricing-bootcamp-financing-ways__grid{grid-template-columns:minmax(0,1fr);max-width:calc(var(--space-10) * 4.5);margin-inline:auto}.t-pricing-bootcamp-financing-ways__opt.is-main{order:-1;padding:var(--space-6)}}
+@media (max-width: 760px){.t-pricing-bootcamp-financing-ways{padding:var(--space-8) 0}.t-pricing-bootcamp-financing-ways__opt,.t-pricing-bootcamp-financing-ways__opt.is-main{padding:var(--space-5)}.t-pricing-bootcamp-financing-ways__extras{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion: reduce){.t-pricing-bootcamp-financing-ways__opt{transition:none}.t-pricing-bootcamp-financing-ways__opt:hover{transform:none}.t-pricing-bootcamp-financing-ways__res.is-active{animation:none}}
+.t-faq-bootcamp-help-prompt{padding:var(--space-9) 0;background:var(--color-background);color:var(--color-text)}
+.t-faq-bootcamp-help-prompt__in{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.3fr);gap:var(--space-8);align-items:start}
+.t-faq-bootcamp-help-prompt__side{position:sticky;top:var(--space-6)}
+.t-faq-bootcamp-help-prompt__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em}
+.t-faq-bootcamp-help-prompt__lead{margin:0 0 var(--space-6);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-faq-bootcamp-help-prompt__help{border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);overflow:hidden;box-shadow:var(--shadow-sm)}
+.t-faq-bootcamp-help-prompt__help-bar{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-4);border-bottom:1px solid var(--color-border);background:var(--color-background)}
+.t-faq-bootcamp-help-prompt__dots{display:flex;gap:var(--space-1)}
+.t-faq-bootcamp-help-prompt__dots i{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-border)}
+.t-faq-bootcamp-help-prompt__help-name{font-size:var(--text-xs);font-weight:600;color:var(--color-muted);letter-spacing:0.04em}
+.t-faq-bootcamp-help-prompt__help-body{display:grid;gap:var(--space-2);padding:var(--space-5)}
+.t-faq-bootcamp-help-prompt__help-line{margin:0 0 var(--space-2);font-weight:700}
+.t-faq-bootcamp-help-prompt__help-line::before{content:"› ";color:var(--color-primary-ink)}
+.t-faq-bootcamp-help-prompt__help-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-1) var(--space-3);margin:0;padding-bottom:var(--space-2);border-bottom:1px dashed var(--color-border);font-size:var(--text-sm)}
+.t-faq-bootcamp-help-prompt__help-key{color:var(--color-muted)}
+.t-faq-bootcamp-help-prompt__help-row a{font-weight:700;color:var(--color-text);text-underline-offset:var(--space-1)}
+.t-faq-bootcamp-help-prompt__help-row span:last-child{font-weight:700}
+.t-faq-bootcamp-help-prompt__help-btn{margin-top:var(--space-3)}
+.t-faq-bootcamp-help-prompt__list{border-top:2px solid var(--color-text)}
+.t-faq-bootcamp-help-prompt__item{border-bottom:1px solid var(--color-border)}
+.t-faq-bootcamp-help-prompt__q{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-5) 0;font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;line-height:1.3;cursor:pointer;list-style:none;transition:color 200ms ease}
+.t-faq-bootcamp-help-prompt__q::-webkit-details-marker{display:none}
+.t-faq-bootcamp-help-prompt__q:hover{color:var(--color-primary-ink)}
+.t-faq-bootcamp-help-prompt__icon{position:relative;flex:none;width:var(--space-6);height:var(--space-6);border:1px solid var(--color-border);border-radius:var(--radius-sm);transition:transform 250ms ease,background-color 250ms ease}
+.t-faq-bootcamp-help-prompt__icon::before,.t-faq-bootcamp-help-prompt__icon::after{content:"";position:absolute;left:50%;top:50%;width:var(--space-3);height:2px;margin:-1px 0 0 calc(var(--space-3) / -2);background:currentColor}
+.t-faq-bootcamp-help-prompt__icon::after{transform:rotate(90deg);transition:transform 250ms ease}
+.t-faq-bootcamp-help-prompt__item[open] .t-faq-bootcamp-help-prompt__icon{background:var(--color-text);color:var(--color-background);border-color:var(--color-text)}
+.t-faq-bootcamp-help-prompt__item[open] .t-faq-bootcamp-help-prompt__icon::after{transform:rotate(0deg)}
+.t-faq-bootcamp-help-prompt__item:not([open]) .t-faq-bootcamp-help-prompt__a{display:none}
+.t-faq-bootcamp-help-prompt__a{padding:0 var(--space-8) var(--space-5) 0}
+.t-faq-bootcamp-help-prompt__a p{margin:0;line-height:1.6;color:var(--color-muted)}
+@media (max-width: 1024px){.t-faq-bootcamp-help-prompt__in{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}.t-faq-bootcamp-help-prompt__side{position:static}}
+@media (max-width: 760px){.t-faq-bootcamp-help-prompt{padding:var(--space-8) 0}.t-faq-bootcamp-help-prompt__q{font-size:var(--text-lg);padding:var(--space-4) 0}.t-faq-bootcamp-help-prompt__a{padding-right:0}.t-faq-bootcamp-help-prompt__help-body{padding:var(--space-4)}}
+@media (prefers-reduced-motion: reduce){.t-faq-bootcamp-help-prompt__icon,.t-faq-bootcamp-help-prompt__icon::after,.t-faq-bootcamp-help-prompt__q{transition:none}}
+.t-contact-bootcamp-apply-steps{padding:var(--space-9) 0;background:var(--color-surface);color:var(--color-text)}
+.t-contact-bootcamp-apply-steps__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:var(--space-8);align-items:start}
+.t-contact-bootcamp-apply-steps__title{margin:0 0 var(--space-4);font-size:var(--text-4xl);line-height:1.05;letter-spacing:-0.025em}
+.t-contact-bootcamp-apply-steps__lead{margin:0 0 var(--space-7);font-size:var(--text-lg);line-height:1.55;color:var(--color-muted)}
+.t-contact-bootcamp-apply-steps__steps{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:var(--space-5)}
+.t-contact-bootcamp-apply-steps__steps::before{content:"";position:absolute;left:calc(var(--space-5) - 1px);top:var(--space-5);bottom:var(--space-5);width:2px;background:var(--color-border)}
+.t-contact-bootcamp-apply-steps__step{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-4);align-items:start}
+.t-contact-bootcamp-apply-steps__num{display:grid;place-items:center;width:calc(var(--space-5) * 2);height:calc(var(--space-5) * 2);border-radius:var(--radius-md);background:var(--color-background);border:2px solid var(--color-text);font-size:var(--text-sm);font-weight:800;transition:transform 200ms ease}
+.t-contact-bootcamp-apply-steps__step:first-child .t-contact-bootcamp-apply-steps__num{background:var(--color-text);color:var(--color-background)}
+.t-contact-bootcamp-apply-steps__step:hover .t-contact-bootcamp-apply-steps__num{transform:rotate(-4deg) scale(1.05)}
+.t-contact-bootcamp-apply-steps__step-title{margin:var(--space-1) 0 var(--space-1);font-size:var(--text-xl)}
+.t-contact-bootcamp-apply-steps__step-text{margin:0;line-height:1.5;color:var(--color-muted)}
+.t-contact-bootcamp-apply-steps__form{display:grid;gap:var(--space-5);padding:var(--space-6);background:var(--color-background);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.t-contact-bootcamp-apply-steps__form-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-2);padding-bottom:var(--space-4);border-bottom:1px dashed var(--color-border)}
+.t-contact-bootcamp-apply-steps__form-title{margin:0;font-size:var(--text-2xl)}
+.t-contact-bootcamp-apply-steps__form-tag{padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);border:1px solid var(--color-border);font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
+.t-contact-bootcamp-apply-steps__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.t-contact-bootcamp-apply-steps__field{display:grid;gap:var(--space-2);min-width:0}
+.t-contact-bootcamp-apply-steps__group{min-width:0;margin:0;padding:0;border:0}
+.t-contact-bootcamp-apply-steps__label{display:block;padding:0;margin-bottom:var(--space-2);font-size:var(--text-sm);font-weight:700}
+.t-contact-bootcamp-apply-steps__field .t-contact-bootcamp-apply-steps__label{margin:0}
+.t-contact-bootcamp-apply-steps__input{width:100%;padding:var(--space-3) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:var(--font-body);font-size:var(--text-base);transition:border-color 200ms ease,background-color 200ms ease}
+.t-contact-bootcamp-apply-steps__input:focus{outline:2px solid var(--color-text);outline-offset:1px;background:var(--color-background)}
+.t-contact-bootcamp-apply-steps__field textarea{resize:vertical}
+.t-contact-bootcamp-apply-steps__choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2)}
+.t-contact-bootcamp-apply-steps__choices.is-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.t-contact-bootcamp-apply-steps__choice{position:relative;display:flex;cursor:pointer}
+.t-contact-bootcamp-apply-steps__choice input{position:absolute;opacity:0;width:1px;height:1px}
+.t-contact-bootcamp-apply-steps__choice span{flex:1;padding:var(--space-3) var(--space-2);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);font-size:var(--text-sm);font-weight:700;text-align:center;line-height:1.25;transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.t-contact-bootcamp-apply-steps__choice:hover span{border-color:var(--color-text)}
+.t-contact-bootcamp-apply-steps__choice input:checked + span{background:var(--color-text);color:var(--color-background);border-color:var(--color-text)}
+.t-contact-bootcamp-apply-steps__choice input:focus-visible + span{outline:2px solid var(--color-accent);outline-offset:2px}
+.t-contact-bootcamp-apply-steps__submit{justify-self:stretch;padding:var(--space-4) var(--space-6)}
+.t-contact-bootcamp-apply-steps__fine{margin:0;font-size:var(--text-sm);color:var(--color-muted);text-align:center}
+@media (max-width: 1024px){.t-contact-bootcamp-apply-steps__in{grid-template-columns:minmax(0,1fr);gap:var(--space-7)}}
+@media (max-width: 760px){.t-contact-bootcamp-apply-steps{padding:var(--space-8) 0}.t-contact-bootcamp-apply-steps__form{padding:var(--space-5) var(--space-4)}.t-contact-bootcamp-apply-steps__pair{grid-template-columns:minmax(0,1fr)}.t-contact-bootcamp-apply-steps__choices{grid-template-columns:minmax(0,1fr)}.t-contact-bootcamp-apply-steps__choices.is-two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion: reduce){.t-contact-bootcamp-apply-steps__num,.t-contact-bootcamp-apply-steps__input,.t-contact-bootcamp-apply-steps__choice span{transition:none}.t-contact-bootcamp-apply-steps__step:hover .t-contact-bootcamp-apply-steps__num{transform:none}}
+.t-footer-bootcamp-command-line{padding:var(--space-9) 0 var(--space-6);background:var(--color-text);color:var(--color-background);font-family:var(--font-body)}
+.t-footer-bootcamp-command-line__top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:var(--space-7);align-items:end;padding-bottom:var(--space-8);margin-bottom:var(--space-7);border-bottom:1px solid color-mix(in srgb,var(--color-background) 20%,transparent)}
+.t-footer-bootcamp-command-line__line{margin:0;font-size:var(--text-5xl);line-height:1;letter-spacing:-0.035em;text-wrap:balance}
+.t-footer-bootcamp-command-line__cta{display:grid;gap:var(--space-3)}
+.t-footer-bootcamp-command-line__prompt{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-4) var(--space-5);border-radius:var(--radius-md);background:var(--color-background);color:var(--color-text);font-size:var(--text-lg);font-weight:700;text-decoration:none;transition:transform 200ms ease,box-shadow 200ms ease}
+.t-footer-bootcamp-command-line__prompt:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.t-footer-bootcamp-command-line__prompt-sign{font-size:var(--text-2xl);line-height:1}
+.t-footer-bootcamp-command-line__prompt-sign::before{content:"›"}
+.t-footer-bootcamp-command-line__caret{width:var(--space-2);height:var(--space-5);margin-left:auto;background:var(--color-text);animation:t-footer-bootcamp-command-line-caret 1.1s steps(1) infinite}
+.t-footer-bootcamp-command-line__next{margin:0;font-size:var(--text-sm);color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-bootcamp-command-line__cols{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:var(--space-6);margin-bottom:var(--space-8)}
+.t-footer-bootcamp-command-line__logo{display:inline-flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);color:var(--color-background);text-decoration:none}
+.t-footer-bootcamp-command-line__mark{display:grid;place-items:center;width:calc(var(--space-6) + var(--space-1));height:calc(var(--space-6) + var(--space-1));border-radius:var(--radius-sm);background:var(--color-background);color:var(--color-text)}
+.t-footer-bootcamp-command-line__brand{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700}
+.t-footer-bootcamp-command-line__about{margin:0;max-width:calc(var(--space-10) * 3);font-size:var(--text-sm);line-height:1.6;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-bootcamp-command-line__col{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.t-footer-bootcamp-command-line__col-title{margin:0 0 var(--space-2);font-size:var(--text-xs);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb,var(--color-background) 75%,var(--color-text))}
+.t-footer-bootcamp-command-line__col a,.t-footer-bootcamp-command-line__plain{font-size:var(--text-sm);color:var(--color-background);text-decoration:none;overflow-wrap:anywhere}
+.t-footer-bootcamp-command-line__col a:hover{text-decoration:underline;text-underline-offset:var(--space-1)}
+.t-footer-bootcamp-command-line__bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3) var(--space-6);padding-top:var(--space-5);border-top:1px solid color-mix(in srgb,var(--color-background) 20%,transparent);font-size:var(--text-sm)}
+.t-footer-bootcamp-command-line__copy{margin:0;color:color-mix(in srgb,var(--color-background) 80%,var(--color-text))}
+.t-footer-bootcamp-command-line__status{display:inline-flex;align-items:center;gap:var(--space-2);margin:0;padding:var(--space-1) var(--space-3);border:1px solid color-mix(in srgb,var(--color-background) 30%,transparent);border-radius:var(--radius-pill);font-weight:600}
+.t-footer-bootcamp-command-line__dot{width:var(--space-2);height:var(--space-2);border-radius:var(--radius-pill);background:var(--color-background);animation:t-footer-bootcamp-command-line-pulse 2.4s ease-in-out infinite}
+.t-footer-bootcamp-command-line__legal{display:flex;gap:var(--space-5)}
+.t-footer-bootcamp-command-line__legal a{color:var(--color-background);text-decoration:none}
+.t-footer-bootcamp-command-line__legal a:hover{text-decoration:underline}
+@keyframes t-footer-bootcamp-command-line-caret{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes t-footer-bootcamp-command-line-pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+@media (max-width: 1024px){.t-footer-bootcamp-command-line__top{grid-template-columns:minmax(0,1fr)}.t-footer-bootcamp-command-line__cols{grid-template-columns:repeat(3,minmax(0,1fr))}.t-footer-bootcamp-command-line__brand-col{grid-column:1 / -1}}
+@media (max-width: 760px){.t-footer-bootcamp-command-line{padding-top:var(--space-8)}.t-footer-bootcamp-command-line__cols{grid-template-columns:repeat(2,minmax(0,1fr))}.t-footer-bootcamp-command-line__prompt{font-size:var(--text-base);padding:var(--space-3) var(--space-4)}.t-footer-bootcamp-command-line__bottom{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion: reduce){.t-footer-bootcamp-command-line__caret,.t-footer-bootcamp-command-line__dot{animation:none}.t-footer-bootcamp-command-line__prompt{transition:none}}</style></head><body><main id="main"><header class="t-header-bootcamp-cohort-bar">
+  <div class="t-header-bootcamp-cohort-bar__strip">
+    <div class="container t-header-bootcamp-cohort-bar__strip-in">
+      <span class="t-header-bootcamp-cohort-bar__live" aria-hidden="true"></span>
+      <span class="t-header-bootcamp-cohort-bar__strip-text" data-slot="strip-text">Next cohort starts 12 January</span>
+      <span class="t-header-bootcamp-cohort-bar__seats" data-slot="strip-seats">Few seats left</span>
+      <a href="#apply" class="t-header-bootcamp-cohort-bar__strip-link" data-slot="strip-link">Apply before 15 December</a>
+    </div>
+  </div>
+  <div class="container t-header-bootcamp-cohort-bar__bar">
+    <a href="#top" class="t-header-bootcamp-cohort-bar__logo" aria-label="Home">
+      <span class="t-header-bootcamp-cohort-bar__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l5 5-5 5"/><path d="M13 17h6"/></svg></span>
+      <span class="t-header-bootcamp-cohort-bar__brand" data-slot="brand">Bootcamp Name</span>
+    </a>
+    <nav class="t-header-bootcamp-cohort-bar__nav" aria-label="Primary">
+      <a href="#programmes" data-slot="nav-1">Programmes</a>
+      <a href="#curriculum" data-slot="nav-2">Curriculum</a>
+      <a href="#outcomes" data-slot="nav-3">Outcomes</a>
+      <a href="#financing" data-slot="nav-4">Financing</a>
+      <a href="#faq" data-slot="nav-5">FAQ</a>
+    </nav>
+    <div class="t-header-bootcamp-cohort-bar__actions">
+      <a href="#syllabus" class="btn btn-ghost t-header-bootcamp-cohort-bar__btn" data-slot="cta-syllabus">Download syllabus</a>
+      <a href="#apply" class="btn btn-primary t-header-bootcamp-cohort-bar__btn" data-slot="cta-apply">Apply now</a>
+    </div>
+    <details class="t-header-bootcamp-cohort-bar__menu">
+      <summary class="t-header-bootcamp-cohort-bar__toggle"><span class="sr-only" data-slot="menu-label">Menu</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h10"/></svg></summary>
+      <nav class="t-header-bootcamp-cohort-bar__sheet" aria-label="Mobile">
+        <a href="#programmes" class="t-header-bootcamp-cohort-bar__sheet-link" data-slot="m-nav-1">Programmes</a>
+        <a href="#curriculum" class="t-header-bootcamp-cohort-bar__sheet-link" data-slot="m-nav-2">Curriculum</a>
+        <a href="#outcomes" class="t-header-bootcamp-cohort-bar__sheet-link" data-slot="m-nav-3">Outcomes</a>
+        <a href="#financing" class="t-header-bootcamp-cohort-bar__sheet-link" data-slot="m-nav-4">Financing</a>
+        <a href="#faq" class="t-header-bootcamp-cohort-bar__sheet-link" data-slot="m-nav-5">FAQ</a>
+        <div class="t-header-bootcamp-cohort-bar__sheet-btns">
+          <a href="#syllabus" class="btn btn-ghost" data-slot="m-cta-syllabus">Download syllabus</a>
+          <a href="#apply" class="btn btn-primary" data-slot="m-cta-apply">Apply now</a>
+        </div>
+      </nav>
+    </details>
+  </div>
+</header>
+<section class="t-hero-bootcamp-terminal-launch">
+  <div class="t-hero-bootcamp-terminal-launch__grid-bg" aria-hidden="true"></div>
+  <div class="container t-hero-bootcamp-terminal-launch__in">
+    <div class="t-hero-bootcamp-terminal-launch__copy">
+      <p class="t-hero-bootcamp-terminal-launch__tag"><span class="t-hero-bootcamp-terminal-launch__tag-dot" aria-hidden="true"></span><span data-slot="tag">Applications open for the January cohort</span></p>
+      <h1 class="t-hero-bootcamp-terminal-launch__title"><span data-slot="title">Switch careers in sixteen weeks.</span> <span class="t-hero-bootcamp-terminal-launch__title-em" data-slot="title-em">Ship real work from week one.</span></h1>
+      <p class="t-hero-bootcamp-terminal-launch__lead" data-slot="lead">Full-time or part-time programmes in web development, data and UX, taught by working practitioners and built around the job you want next.</p>
+      <div class="t-hero-bootcamp-terminal-launch__actions">
+        <a href="#apply" class="btn btn-primary t-hero-bootcamp-terminal-launch__cta" data-slot="cta-apply">Apply now</a>
+        <a href="#syllabus" class="btn btn-ghost t-hero-bootcamp-terminal-launch__cta" data-slot="cta-syllabus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-slot="cta-syllabus-text">Download syllabus</span></a>
+      </div>
+      <dl class="t-hero-bootcamp-terminal-launch__ticket">
+        <div class="t-hero-bootcamp-terminal-launch__cell"><dt data-slot="t1-label">Next start</dt><dd data-slot="t1-value">12 January</dd></div>
+        <div class="t-hero-bootcamp-terminal-launch__cell"><dt data-slot="t2-label">Format</dt><dd data-slot="t2-value">Full or part-time</dd></div>
+        <div class="t-hero-bootcamp-terminal-launch__cell"><dt data-slot="t3-label">Where</dt><dd data-slot="t3-value">Online or campus</dd></div>
+      </dl>
+    </div>
+    <div class="t-hero-bootcamp-terminal-launch__visual">
+      <div class="t-hero-bootcamp-terminal-launch__photo">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Adult students working together on laptops in a bright classroom" width="1200" height="1400" data-slot="photo">
+      </div>
+      <div class="t-hero-bootcamp-terminal-launch__term">
+        <div class="t-hero-bootcamp-terminal-launch__term-bar"><span class="t-hero-bootcamp-terminal-launch__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="t-hero-bootcamp-terminal-launch__term-name" data-slot="term-name">your-next-role</span></div>
+        <ol class="t-hero-bootcamp-terminal-launch__lines">
+          <li class="t-hero-bootcamp-terminal-launch__line is-cmd"><span data-slot="line-1">enrol in the web track</span></li>
+          <li class="t-hero-bootcamp-terminal-launch__line is-ok"><span data-slot="line-2">Foundations, weeks 1 to 4</span></li>
+          <li class="t-hero-bootcamp-terminal-launch__line is-ok"><span data-slot="line-3">Team projects, weeks 5 to 12</span></li>
+          <li class="t-hero-bootcamp-terminal-launch__line is-ok"><span data-slot="line-4">Demo day and portfolio</span></li>
+          <li class="t-hero-bootcamp-terminal-launch__line is-cmd is-last"><span data-slot="line-5">start the new job</span><span class="t-hero-bootcamp-terminal-launch__caret" aria-hidden="true"></span></li>
+        </ol>
+      </div>
+      <div class="t-hero-bootcamp-terminal-launch__badge"><span class="t-hero-bootcamp-terminal-launch__badge-num" data-slot="badge-num">87%</span><span class="t-hero-bootcamp-terminal-launch__badge-text" data-slot="badge-text">hired within six months (sample)</span></div>
+    </div>
+  </div>
+</section>
+<section class="t-pricing-bootcamp-programme-tabs">
+  <div class="container">
+    <div class="t-pricing-bootcamp-programme-tabs__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Programmes</p>
+        <h2 class="t-pricing-bootcamp-programme-tabs__title" data-slot="title">Three tracks. One goal: your first role in tech.</h2>
+      </div>
+      <p class="t-pricing-bootcamp-programme-tabs__lead" data-slot="lead">Every track runs full-time or part-time, online or on campus, with the same projects, mentors and career support.</p>
+    </div>
+    <div class="t-pricing-bootcamp-programme-tabs__tabs" role="tablist" aria-label="Programmes">
+      <button type="button" class="t-pricing-bootcamp-programme-tabs__tab is-active" role="tab" aria-selected="true"><span class="t-pricing-bootcamp-programme-tabs__tab-num" data-slot="tab-1-num">01</span><span class="t-pricing-bootcamp-programme-tabs__tab-name" data-slot="tab-1-name">Web development</span><span class="t-pricing-bootcamp-programme-tabs__tab-len" data-slot="tab-1-len">16 weeks</span></button>
+      <button type="button" class="t-pricing-bootcamp-programme-tabs__tab" role="tab" aria-selected="false" tabindex="-1"><span class="t-pricing-bootcamp-programme-tabs__tab-num" data-slot="tab-2-num">02</span><span class="t-pricing-bootcamp-programme-tabs__tab-name" data-slot="tab-2-name">Data analytics</span><span class="t-pricing-bootcamp-programme-tabs__tab-len" data-slot="tab-2-len">14 weeks</span></button>
+      <button type="button" class="t-pricing-bootcamp-programme-tabs__tab" role="tab" aria-selected="false" tabindex="-1"><span class="t-pricing-bootcamp-programme-tabs__tab-num" data-slot="tab-3-num">03</span><span class="t-pricing-bootcamp-programme-tabs__tab-name" data-slot="tab-3-name">UX design</span><span class="t-pricing-bootcamp-programme-tabs__tab-len" data-slot="tab-3-len">12 weeks</span></button>
+    </div>
+    <div class="t-pricing-bootcamp-programme-tabs__panels" data-states="tabs">
+      <article class="t-pricing-bootcamp-programme-tabs__panel is-active" data-state="web" role="tabpanel">
+        <div class="t-pricing-bootcamp-programme-tabs__info">
+          <h3 class="t-pricing-bootcamp-programme-tabs__name" data-slot="p1-name">Web development</h3>
+          <p class="t-pricing-bootcamp-programme-tabs__desc" data-slot="p1-desc">Go from first line of code to shipping full-stack apps with a team, the way product companies really work.</p>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p1-skills-label">What you will learn</p>
+          <ul class="t-pricing-bootcamp-programme-tabs__chips">
+            <li data-slot="p1-skill-1">HTML and CSS</li><li data-slot="p1-skill-2">JavaScript</li><li data-slot="p1-skill-3">A front-end framework</li><li data-slot="p1-skill-4">APIs and databases</li><li data-slot="p1-skill-5">Testing and Git</li>
+          </ul>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p1-roles-label">Roles graduates go for</p>
+          <p class="t-pricing-bootcamp-programme-tabs__roles" data-slot="p1-roles">Junior developer, front-end developer, full-stack developer</p>
+        </div>
+        <div class="t-pricing-bootcamp-programme-tabs__sheet">
+          <dl class="t-pricing-bootcamp-programme-tabs__spec">
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p1-r1-label">Length</dt><dd data-slot="p1-r1-value">16 weeks full-time, 32 part-time</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p1-r2-label">Hours</dt><dd data-slot="p1-r2-value">About 40 or 20 a week</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p1-r3-label">Where</dt><dd data-slot="p1-r3-value">Live online or on campus</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p1-r4-label">Next start</dt><dd data-slot="p1-r4-value">12 January</dd></div>
+          </dl>
+          <div class="t-pricing-bootcamp-programme-tabs__price"><span class="t-pricing-bootcamp-programme-tabs__price-label" data-slot="p1-price-label">Tuition</span><span class="t-pricing-bootcamp-programme-tabs__price-num" data-slot="p1-price">$9,800</span><span class="t-pricing-bootcamp-programme-tabs__price-note" data-slot="p1-price-note">or from $420 a month</span></div>
+          <div class="t-pricing-bootcamp-programme-tabs__btns"><a href="#apply" class="btn btn-primary" data-slot="p1-cta">Apply for this track</a><a href="#syllabus" class="t-pricing-bootcamp-programme-tabs__link" data-slot="p1-link">Syllabus</a></div>
+        </div>
+      </article>
+      <article class="t-pricing-bootcamp-programme-tabs__panel" data-state="data" role="tabpanel">
+        <div class="t-pricing-bootcamp-programme-tabs__info">
+          <h3 class="t-pricing-bootcamp-programme-tabs__name" data-slot="p2-name">Data analytics</h3>
+          <p class="t-pricing-bootcamp-programme-tabs__desc" data-slot="p2-desc">Learn to ask sharp questions of messy data, then answer them with clear dashboards and honest charts.</p>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p2-skills-label">What you will learn</p>
+          <ul class="t-pricing-bootcamp-programme-tabs__chips">
+            <li data-slot="p2-skill-1">Spreadsheets</li><li data-slot="p2-skill-2">SQL</li><li data-slot="p2-skill-3">Python for data</li><li data-slot="p2-skill-4">Statistics</li><li data-slot="p2-skill-5">Dashboards</li>
+          </ul>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p2-roles-label">Roles graduates go for</p>
+          <p class="t-pricing-bootcamp-programme-tabs__roles" data-slot="p2-roles">Data analyst, business analyst, reporting analyst</p>
+        </div>
+        <div class="t-pricing-bootcamp-programme-tabs__sheet">
+          <dl class="t-pricing-bootcamp-programme-tabs__spec">
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p2-r1-label">Length</dt><dd data-slot="p2-r1-value">14 weeks full-time, 28 part-time</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p2-r2-label">Hours</dt><dd data-slot="p2-r2-value">About 40 or 20 a week</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p2-r3-label">Where</dt><dd data-slot="p2-r3-value">Live online or on campus</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p2-r4-label">Next start</dt><dd data-slot="p2-r4-value">2 February</dd></div>
+          </dl>
+          <div class="t-pricing-bootcamp-programme-tabs__price"><span class="t-pricing-bootcamp-programme-tabs__price-label" data-slot="p2-price-label">Tuition</span><span class="t-pricing-bootcamp-programme-tabs__price-num" data-slot="p2-price">$8,900</span><span class="t-pricing-bootcamp-programme-tabs__price-note" data-slot="p2-price-note">or from $390 a month</span></div>
+          <div class="t-pricing-bootcamp-programme-tabs__btns"><a href="#apply" class="btn btn-primary" data-slot="p2-cta">Apply for this track</a><a href="#syllabus" class="t-pricing-bootcamp-programme-tabs__link" data-slot="p2-link">Syllabus</a></div>
+        </div>
+      </article>
+      <article class="t-pricing-bootcamp-programme-tabs__panel" data-state="ux" role="tabpanel">
+        <div class="t-pricing-bootcamp-programme-tabs__info">
+          <h3 class="t-pricing-bootcamp-programme-tabs__name" data-slot="p3-name">UX design</h3>
+          <p class="t-pricing-bootcamp-programme-tabs__desc" data-slot="p3-desc">Research real users, sketch fast, test early and hand over designs that developers love to build.</p>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p3-skills-label">What you will learn</p>
+          <ul class="t-pricing-bootcamp-programme-tabs__chips">
+            <li data-slot="p3-skill-1">User research</li><li data-slot="p3-skill-2">Wireframes</li><li data-slot="p3-skill-3">Prototyping</li><li data-slot="p3-skill-4">Usability testing</li><li data-slot="p3-skill-5">Design systems</li>
+          </ul>
+          <p class="t-pricing-bootcamp-programme-tabs__sub" data-slot="p3-roles-label">Roles graduates go for</p>
+          <p class="t-pricing-bootcamp-programme-tabs__roles" data-slot="p3-roles">UX designer, product designer, UX researcher</p>
+        </div>
+        <div class="t-pricing-bootcamp-programme-tabs__sheet">
+          <dl class="t-pricing-bootcamp-programme-tabs__spec">
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p3-r1-label">Length</dt><dd data-slot="p3-r1-value">12 weeks full-time, 24 part-time</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p3-r2-label">Hours</dt><dd data-slot="p3-r2-value">About 40 or 20 a week</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p3-r3-label">Where</dt><dd data-slot="p3-r3-value">Live online or on campus</dd></div>
+            <div class="t-pricing-bootcamp-programme-tabs__row"><dt data-slot="p3-r4-label">Next start</dt><dd data-slot="p3-r4-value">9 March</dd></div>
+          </dl>
+          <div class="t-pricing-bootcamp-programme-tabs__price"><span class="t-pricing-bootcamp-programme-tabs__price-label" data-slot="p3-price-label">Tuition</span><span class="t-pricing-bootcamp-programme-tabs__price-num" data-slot="p3-price">$7,600</span><span class="t-pricing-bootcamp-programme-tabs__price-note" data-slot="p3-price-note">or from $330 a month</span></div>
+          <div class="t-pricing-bootcamp-programme-tabs__btns"><a href="#apply" class="btn btn-primary" data-slot="p3-cta">Apply for this track</a><a href="#syllabus" class="t-pricing-bootcamp-programme-tabs__link" data-slot="p3-link">Syllabus</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="t-list-bootcamp-week-timeline">
+  <div class="container t-list-bootcamp-week-timeline__in">
+    <div class="t-list-bootcamp-week-timeline__intro">
+      <p class="eyebrow" data-slot="eyebrow">Curriculum</p>
+      <h2 class="t-list-bootcamp-week-timeline__title" data-slot="title">Sixteen weeks, week by week.</h2>
+      <p class="t-list-bootcamp-week-timeline__lead" data-slot="lead">Each phase ends with something you ship and can show an employer. No filler modules, no recorded-only lectures.</p>
+      <div class="t-list-bootcamp-week-timeline__weeks" aria-hidden="true">
+        <i class="is-a"></i><i class="is-a"></i><i class="is-a"></i><i class="is-a"></i><i class="is-b"></i><i class="is-b"></i><i class="is-b"></i><i class="is-b"></i><i class="is-c"></i><i class="is-c"></i><i class="is-c"></i><i class="is-c"></i><i class="is-d"></i><i class="is-d"></i><i class="is-d"></i><i class="is-e"></i>
+      </div>
+      <p class="t-list-bootcamp-week-timeline__weeks-note" data-slot="weeks-note">One square per week, full-time pace</p>
+      <a href="#syllabus" class="btn btn-ghost t-list-bootcamp-week-timeline__cta" data-slot="cta">Download the full syllabus</a>
+    </div>
+    <ol class="t-list-bootcamp-week-timeline__list">
+      <li class="t-list-bootcamp-week-timeline__phase">
+        <span class="t-list-bootcamp-week-timeline__node" aria-hidden="true"></span>
+        <div class="t-list-bootcamp-week-timeline__when"><span class="t-list-bootcamp-week-timeline__weeks-label" data-slot="ph1-weeks">Weeks 1 to 4</span><h3 class="t-list-bootcamp-week-timeline__name" data-slot="ph1-name">Foundations</h3></div>
+        <ul class="t-list-bootcamp-week-timeline__topics"><li data-slot="ph1-t1">HTML and CSS</li><li data-slot="ph1-t2">JavaScript basics</li><li data-slot="ph1-t3">Git and the command line</li></ul>
+        <p class="t-list-bootcamp-week-timeline__ship"><span class="t-list-bootcamp-week-timeline__ship-label" data-slot="ph1-ship-label">You ship</span><span data-slot="ph1-ship">A personal site, live online</span></p>
+      </li>
+      <li class="t-list-bootcamp-week-timeline__phase">
+        <span class="t-list-bootcamp-week-timeline__node" aria-hidden="true"></span>
+        <div class="t-list-bootcamp-week-timeline__when"><span class="t-list-bootcamp-week-timeline__weeks-label" data-slot="ph2-weeks">Weeks 5 to 8</span><h3 class="t-list-bootcamp-week-timeline__name" data-slot="ph2-name">Front end</h3></div>
+        <ul class="t-list-bootcamp-week-timeline__topics"><li data-slot="ph2-t1">Components</li><li data-slot="ph2-t2">State and forms</li><li data-slot="ph2-t3">Accessibility</li></ul>
+        <p class="t-list-bootcamp-week-timeline__ship"><span class="t-list-bootcamp-week-timeline__ship-label" data-slot="ph2-ship-label">You ship</span><span data-slot="ph2-ship">A team web app with real users</span></p>
+      </li>
+      <li class="t-list-bootcamp-week-timeline__phase">
+        <span class="t-list-bootcamp-week-timeline__node" aria-hidden="true"></span>
+        <div class="t-list-bootcamp-week-timeline__when"><span class="t-list-bootcamp-week-timeline__weeks-label" data-slot="ph3-weeks">Weeks 9 to 12</span><h3 class="t-list-bootcamp-week-timeline__name" data-slot="ph3-name">Back end and data</h3></div>
+        <ul class="t-list-bootcamp-week-timeline__topics"><li data-slot="ph3-t1">APIs</li><li data-slot="ph3-t2">Databases</li><li data-slot="ph3-t3">Auth and testing</li></ul>
+        <p class="t-list-bootcamp-week-timeline__ship"><span class="t-list-bootcamp-week-timeline__ship-label" data-slot="ph3-ship-label">You ship</span><span data-slot="ph3-ship">A full-stack project, tested</span></p>
+      </li>
+      <li class="t-list-bootcamp-week-timeline__phase">
+        <span class="t-list-bootcamp-week-timeline__node" aria-hidden="true"></span>
+        <div class="t-list-bootcamp-week-timeline__when"><span class="t-list-bootcamp-week-timeline__weeks-label" data-slot="ph4-weeks">Weeks 13 to 15</span><h3 class="t-list-bootcamp-week-timeline__name" data-slot="ph4-name">Capstone</h3></div>
+        <ul class="t-list-bootcamp-week-timeline__topics"><li data-slot="ph4-t1">Product brief</li><li data-slot="ph4-t2">Sprints</li><li data-slot="ph4-t3">Code review</li></ul>
+        <p class="t-list-bootcamp-week-timeline__ship"><span class="t-list-bootcamp-week-timeline__ship-label" data-slot="ph4-ship-label">You ship</span><span data-slot="ph4-ship">Your capstone, shown on demo day</span></p>
+      </li>
+      <li class="t-list-bootcamp-week-timeline__phase is-last">
+        <span class="t-list-bootcamp-week-timeline__node" aria-hidden="true"></span>
+        <div class="t-list-bootcamp-week-timeline__when"><span class="t-list-bootcamp-week-timeline__weeks-label" data-slot="ph5-weeks">Week 16</span><h3 class="t-list-bootcamp-week-timeline__name" data-slot="ph5-name">Career sprint</h3></div>
+        <ul class="t-list-bootcamp-week-timeline__topics"><li data-slot="ph5-t1">Portfolio review</li><li data-slot="ph5-t2">Mock interviews</li><li data-slot="ph5-t3">Hiring partner intros</li></ul>
+        <p class="t-list-bootcamp-week-timeline__ship"><span class="t-list-bootcamp-week-timeline__ship-label" data-slot="ph5-ship-label">You ship</span><span data-slot="ph5-ship">Applications, with a coach beside you</span></p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="t-stats-bootcamp-outcomes-partners">
+  <div class="container">
+    <div class="t-stats-bootcamp-outcomes-partners__head">
+      <div>
+        <p class="t-stats-bootcamp-outcomes-partners__eyebrow" data-slot="eyebrow">Outcomes</p>
+        <h2 class="t-stats-bootcamp-outcomes-partners__title" data-slot="title">Graduates who got hired, not just certified.</h2>
+      </div>
+      <p class="t-stats-bootcamp-outcomes-partners__note" data-slot="note">Sample figures. Replace them with the numbers from your latest outcomes report.</p>
+    </div>
+    <div class="t-stats-bootcamp-outcomes-partners__board">
+      <div class="t-stats-bootcamp-outcomes-partners__stats">
+        <div class="t-stats-bootcamp-outcomes-partners__stat is-big"><span class="t-stats-bootcamp-outcomes-partners__num" data-slot="s1-num">87%</span><span class="t-stats-bootcamp-outcomes-partners__label" data-slot="s1-label">Job placement within six months</span></div>
+        <div class="t-stats-bootcamp-outcomes-partners__stat"><span class="t-stats-bootcamp-outcomes-partners__num" data-slot="s2-num">+38%</span><span class="t-stats-bootcamp-outcomes-partners__label" data-slot="s2-label">Average salary uplift</span></div>
+        <div class="t-stats-bootcamp-outcomes-partners__stat"><span class="t-stats-bootcamp-outcomes-partners__num" data-slot="s3-num">11 weeks</span><span class="t-stats-bootcamp-outcomes-partners__label" data-slot="s3-label">Median time to first offer</span></div>
+        <div class="t-stats-bootcamp-outcomes-partners__stat"><span class="t-stats-bootcamp-outcomes-partners__num" data-slot="s4-num">4.8 / 5</span><span class="t-stats-bootcamp-outcomes-partners__label" data-slot="s4-label">Average graduate rating</span></div>
+      </div>
+      <div class="t-stats-bootcamp-outcomes-partners__roles">
+        <p class="t-stats-bootcamp-outcomes-partners__roles-title" data-slot="roles-title">First roles graduates took</p>
+        <ul class="t-stats-bootcamp-outcomes-partners__bars">
+          <li class="t-stats-bootcamp-outcomes-partners__bar is-1"><span class="t-stats-bootcamp-outcomes-partners__bar-head"><span data-slot="r1-name">Front-end developer</span><span class="t-stats-bootcamp-outcomes-partners__bar-val" data-slot="r1-val">34%</span></span><span class="t-stats-bootcamp-outcomes-partners__track" aria-hidden="true"><span class="t-stats-bootcamp-outcomes-partners__fill"></span></span></li>
+          <li class="t-stats-bootcamp-outcomes-partners__bar is-2"><span class="t-stats-bootcamp-outcomes-partners__bar-head"><span data-slot="r2-name">Data analyst</span><span class="t-stats-bootcamp-outcomes-partners__bar-val" data-slot="r2-val">24%</span></span><span class="t-stats-bootcamp-outcomes-partners__track" aria-hidden="true"><span class="t-stats-bootcamp-outcomes-partners__fill"></span></span></li>
+          <li class="t-stats-bootcamp-outcomes-partners__bar is-3"><span class="t-stats-bootcamp-outcomes-partners__bar-head"><span data-slot="r3-name">Full-stack developer</span><span class="t-stats-bootcamp-outcomes-partners__bar-val" data-slot="r3-val">19%</span></span><span class="t-stats-bootcamp-outcomes-partners__track" aria-hidden="true"><span class="t-stats-bootcamp-outcomes-partners__fill"></span></span></li>
+          <li class="t-stats-bootcamp-outcomes-partners__bar is-4"><span class="t-stats-bootcamp-outcomes-partners__bar-head"><span data-slot="r4-name">UX or product designer</span><span class="t-stats-bootcamp-outcomes-partners__bar-val" data-slot="r4-val">15%</span></span><span class="t-stats-bootcamp-outcomes-partners__track" aria-hidden="true"><span class="t-stats-bootcamp-outcomes-partners__fill"></span></span></li>
+          <li class="t-stats-bootcamp-outcomes-partners__bar is-5"><span class="t-stats-bootcamp-outcomes-partners__bar-head"><span data-slot="r5-name">Other tech roles</span><span class="t-stats-bootcamp-outcomes-partners__bar-val" data-slot="r5-val">8%</span></span><span class="t-stats-bootcamp-outcomes-partners__track" aria-hidden="true"><span class="t-stats-bootcamp-outcomes-partners__fill"></span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-stats-bootcamp-outcomes-partners__partners">
+      <p class="t-stats-bootcamp-outcomes-partners__partners-title" data-slot="partners-title">Where our graduates work</p>
+      <ul class="t-stats-bootcamp-outcomes-partners__logos">
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-a"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18L12 5l8 13z"/></svg><span data-slot="logo-1">Northbyte</span></li>
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-b"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg><span data-slot="logo-2">Quillstack</span></li>
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-c"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h6"/></svg><span data-slot="logo-3">tidepoint</span></li>
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-d"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 9h6v6H9z"/></svg><span data-slot="logo-4">MESAWARE</span></li>
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-e"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M3 12h18M6 6l12 12"/></svg><span data-slot="logo-5">Halcyo</span></li>
+        <li class="t-stats-bootcamp-outcomes-partners__logo is-f"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17c3-8 11-8 14 0"/><circle cx="12" cy="8" r="2"/></svg><span data-slot="logo-6">Vantafold</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="t-showcase-bootcamp-student-projects">
+  <div class="container">
+    <div class="t-showcase-bootcamp-student-projects__head">
+      <div>
+        <p class="eyebrow" data-slot="eyebrow">Built by students</p>
+        <h2 class="t-showcase-bootcamp-student-projects__title" data-slot="title">Projects from the last demo day.</h2>
+      </div>
+      <a href="#projects" class="t-showcase-bootcamp-student-projects__all" data-slot="all-link">See every project →</a>
+    </div>
+    <div class="t-showcase-bootcamp-student-projects__grid">
+      <article class="t-showcase-bootcamp-student-projects__card is-featured">
+        <div class="t-showcase-bootcamp-student-projects__window">
+          <div class="t-showcase-bootcamp-student-projects__chrome"><span class="t-showcase-bootcamp-student-projects__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="t-showcase-bootcamp-student-projects__url" data-slot="f-url">shift-swap.app</span></div>
+          <div class="t-showcase-bootcamp-student-projects__shot"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Screen of a student-built web app shown on a laptop" width="1400" height="900" data-slot="f-photo"></div>
+        </div>
+        <div class="t-showcase-bootcamp-student-projects__body">
+          <div class="t-showcase-bootcamp-student-projects__meta"><span class="t-showcase-bootcamp-student-projects__track" data-slot="f-track">Web development</span><span class="t-showcase-bootcamp-student-projects__team" data-slot="f-team">Team of three</span></div>
+          <h3 class="t-showcase-bootcamp-student-projects__name" data-slot="f-name">Shift swap for hospital staff</h3>
+          <p class="t-showcase-bootcamp-student-projects__desc" data-slot="f-desc">Lets nurses trade shifts in two taps instead of a group chat. Built and tested with a real ward in four weeks.</p>
+          <ul class="t-showcase-bootcamp-student-projects__stack"><li data-slot="f-tool-1">JavaScript</li><li data-slot="f-tool-2">API</li><li data-slot="f-tool-3">Database</li><li data-slot="f-tool-4">Tests</li></ul>
+        </div>
+      </article>
+      <article class="t-showcase-bootcamp-student-projects__card">
+        <div class="t-showcase-bootcamp-student-projects__window">
+          <div class="t-showcase-bootcamp-student-projects__chrome"><span class="t-showcase-bootcamp-student-projects__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="t-showcase-bootcamp-student-projects__url" data-slot="p2-url">bus-delays.data</span></div>
+          <div class="t-showcase-bootcamp-student-projects__shot"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Data dashboard with charts made by a student" width="900" height="600" data-slot="p2-photo"></div>
+        </div>
+        <div class="t-showcase-bootcamp-student-projects__body">
+          <div class="t-showcase-bootcamp-student-projects__meta"><span class="t-showcase-bootcamp-student-projects__track" data-slot="p2-track">Data analytics</span></div>
+          <h3 class="t-showcase-bootcamp-student-projects__name" data-slot="p2-name">Why the night bus runs late</h3>
+          <p class="t-showcase-bootcamp-student-projects__maker" data-slot="p2-maker">Name Surname, former teacher</p>
+        </div>
+      </article>
+      <article class="t-showcase-bootcamp-student-projects__card">
+        <div class="t-showcase-bootcamp-student-projects__window">
+          <div class="t-showcase-bootcamp-student-projects__chrome"><span class="t-showcase-bootcamp-student-projects__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="t-showcase-bootcamp-student-projects__url" data-slot="p3-url">clinic-booking.ux</span></div>
+          <div class="t-showcase-bootcamp-student-projects__shot"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Paper wireframes and a phone prototype on a desk" width="900" height="600" data-slot="p3-photo"></div>
+        </div>
+        <div class="t-showcase-bootcamp-student-projects__body">
+          <div class="t-showcase-bootcamp-student-projects__meta"><span class="t-showcase-bootcamp-student-projects__track" data-slot="p3-track">UX design</span></div>
+          <h3 class="t-showcase-bootcamp-student-projects__name" data-slot="p3-name">A calmer clinic booking flow</h3>
+          <p class="t-showcase-bootcamp-student-projects__maker" data-slot="p3-maker">Name Surname, former chef</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="t-reviews-bootcamp-career-diff">
+  <div class="container">
+    <p class="eyebrow" data-slot="eyebrow">Graduate stories</p>
+    <h2 class="t-reviews-bootcamp-career-diff__title" data-slot="title">Different starting lines. Same finish.</h2>
+    <div class="t-reviews-bootcamp-career-diff__layout">
+      <figure class="t-reviews-bootcamp-career-diff__feature">
+        <div class="t-reviews-bootcamp-career-diff__portrait"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1600&q=80" alt="Portrait of a smiling graduate at a desk with a laptop" width="900" height="1100" data-slot="f-photo"></div>
+        <div class="t-reviews-bootcamp-career-diff__quote-box">
+          <svg class="t-reviews-bootcamp-career-diff__mark" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M4 18v-5c0-4 2-7 6-8l1 2c-2 1-3 2-3 4h3v7zm9 0v-5c0-4 2-7 6-8l1 2c-2 1-3 2-3 4h3v7z"/></svg>
+          <blockquote class="t-reviews-bootcamp-career-diff__quote" data-slot="f-quote">I had never written a line of code. Sixteen weeks later I was reviewing pull requests with my new team.</blockquote>
+          <figcaption class="t-reviews-bootcamp-career-diff__who"><span class="t-reviews-bootcamp-career-diff__who-name" data-slot="f-name">Name Surname</span><span class="t-reviews-bootcamp-career-diff__who-role" data-slot="f-role">Junior developer, cohort of last spring</span></figcaption>
+        </div>
+      </figure>
+      <ul class="t-reviews-bootcamp-career-diff__diffs">
+        <li class="t-reviews-bootcamp-career-diff__diff">
+          <div class="t-reviews-bootcamp-career-diff__diff-head"><span class="t-reviews-bootcamp-career-diff__diff-name" data-slot="d1-name">Name Surname</span><span class="t-reviews-bootcamp-career-diff__diff-time" data-slot="d1-time">Hired in 9 weeks</span></div>
+          <p class="t-reviews-bootcamp-career-diff__line is-old"><span data-slot="d1-before">Retail shift manager</span></p>
+          <p class="t-reviews-bootcamp-career-diff__line is-new"><span data-slot="d1-after">Front-end developer</span></p>
+          <p class="t-reviews-bootcamp-career-diff__diff-quote" data-slot="d1-quote">“The mock interviews were harder than the real ones.”</p>
+        </li>
+        <li class="t-reviews-bootcamp-career-diff__diff">
+          <div class="t-reviews-bootcamp-career-diff__diff-head"><span class="t-reviews-bootcamp-career-diff__diff-name" data-slot="d2-name">Name Surname</span><span class="t-reviews-bootcamp-career-diff__diff-time" data-slot="d2-time">Hired in 6 weeks</span></div>
+          <p class="t-reviews-bootcamp-career-diff__line is-old"><span data-slot="d2-before">Primary school teacher</span></p>
+          <p class="t-reviews-bootcamp-career-diff__line is-new"><span data-slot="d2-after">Data analyst</span></p>
+          <p class="t-reviews-bootcamp-career-diff__diff-quote" data-slot="d2-quote">“I studied part-time around my classes and never felt behind.”</p>
+        </li>
+        <li class="t-reviews-bootcamp-career-diff__diff">
+          <div class="t-reviews-bootcamp-career-diff__diff-head"><span class="t-reviews-bootcamp-career-diff__diff-name" data-slot="d3-name">Name Surname</span><span class="t-reviews-bootcamp-career-diff__diff-time" data-slot="d3-time">Hired in 12 weeks</span></div>
+          <p class="t-reviews-bootcamp-career-diff__line is-old"><span data-slot="d3-before">Restaurant chef</span></p>
+          <p class="t-reviews-bootcamp-career-diff__line is-new"><span data-slot="d3-after">Product designer</span></p>
+          <p class="t-reviews-bootcamp-career-diff__diff-quote" data-slot="d3-quote">“Designing for busy people felt a lot like running a kitchen.”</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="t-pricing-bootcamp-financing-ways">
+  <div class="container">
+    <div class="t-pricing-bootcamp-financing-ways__head">
+      <p class="eyebrow" data-slot="eyebrow">Financing</p>
+      <h2 class="t-pricing-bootcamp-financing-ways__title" data-slot="title">Pay the way that fits your life right now.</h2>
+      <p class="t-pricing-bootcamp-financing-ways__lead" data-slot="lead">Same programme, same support. Pick how you pay when you get your offer.</p>
+    </div>
+    <div class="t-pricing-bootcamp-financing-ways__grid">
+      <article class="t-pricing-bootcamp-financing-ways__opt">
+        <p class="t-pricing-bootcamp-financing-ways__opt-tag" data-slot="o1-tag">Option A</p>
+        <h3 class="t-pricing-bootcamp-financing-ways__opt-name" data-slot="o1-name">Pay upfront</h3>
+        <p class="t-pricing-bootcamp-financing-ways__amount"><span class="t-pricing-bootcamp-financing-ways__big" data-slot="o1-amount">$9,200</span><span class="t-pricing-bootcamp-financing-ways__per" data-slot="o1-per">once</span></p>
+        <p class="t-pricing-bootcamp-financing-ways__save" data-slot="o1-save">You save $600</p>
+        <ul class="t-pricing-bootcamp-financing-ways__list"><li data-slot="o1-l1">Lowest total cost</li><li data-slot="o1-l2">Pay by card or bank transfer</li><li data-slot="o1-l3">Full refund in the first week</li></ul>
+        <a href="#apply" class="btn btn-ghost t-pricing-bootcamp-financing-ways__btn" data-slot="o1-cta">Choose upfront</a>
+      </article>
+      <article class="t-pricing-bootcamp-financing-ways__opt is-main">
+        <p class="t-pricing-bootcamp-financing-ways__opt-tag" data-slot="o2-tag">Most chosen</p>
+        <h3 class="t-pricing-bootcamp-financing-ways__opt-name" data-slot="o2-name">Monthly instalments</h3>
+        <div class="t-pricing-bootcamp-financing-ways__picker" role="group" aria-label="Spread payments over">
+          <button type="button" class="t-pricing-bootcamp-financing-ways__len" aria-pressed="false"><span data-slot="o2-len-1">6 months</span></button>
+          <button type="button" class="t-pricing-bootcamp-financing-ways__len is-active" aria-pressed="true"><span data-slot="o2-len-2">12 months</span></button>
+          <button type="button" class="t-pricing-bootcamp-financing-ways__len" aria-pressed="false"><span data-slot="o2-len-3">24 months</span></button>
+        </div>
+        <div class="t-pricing-bootcamp-financing-ways__results">
+          <p class="t-pricing-bootcamp-financing-ways__amount t-pricing-bootcamp-financing-ways__res"><span class="t-pricing-bootcamp-financing-ways__big" data-slot="o2-amount-1">$1,640</span><span class="t-pricing-bootcamp-financing-ways__per" data-slot="o2-per-1">a month</span></p>
+          <p class="t-pricing-bootcamp-financing-ways__amount t-pricing-bootcamp-financing-ways__res is-active"><span class="t-pricing-bootcamp-financing-ways__big" data-slot="o2-amount-2">$820</span><span class="t-pricing-bootcamp-financing-ways__per" data-slot="o2-per-2">a month</span></p>
+          <p class="t-pricing-bootcamp-financing-ways__amount t-pricing-bootcamp-financing-ways__res"><span class="t-pricing-bootcamp-financing-ways__big" data-slot="o2-amount-3">$420</span><span class="t-pricing-bootcamp-financing-ways__per" data-slot="o2-per-3">a month</span></p>
+        </div>
+        <p class="t-pricing-bootcamp-financing-ways__save" data-slot="o2-save">No interest on 6 or 12 months</p>
+        <ul class="t-pricing-bootcamp-financing-ways__list"><li data-slot="o2-l1">Start with a small deposit</li><li data-slot="o2-l2">Change the length once if life changes</li><li data-slot="o2-l3">No credit check under 12 months</li></ul>
+        <a href="#apply" class="btn t-pricing-bootcamp-financing-ways__btn t-pricing-bootcamp-financing-ways__btn-main" data-slot="o2-cta">Choose instalments</a>
+      </article>
+      <article class="t-pricing-bootcamp-financing-ways__opt">
+        <p class="t-pricing-bootcamp-financing-ways__opt-tag" data-slot="o3-tag">Option C</p>
+        <h3 class="t-pricing-bootcamp-financing-ways__opt-name" data-slot="o3-name">Pay after you are hired</h3>
+        <p class="t-pricing-bootcamp-financing-ways__amount"><span class="t-pricing-bootcamp-financing-ways__big" data-slot="o3-amount">$0</span><span class="t-pricing-bootcamp-financing-ways__per" data-slot="o3-per">while you study</span></p>
+        <p class="t-pricing-bootcamp-financing-ways__save" data-slot="o3-save">Then a fixed share of salary for a set time</p>
+        <ul class="t-pricing-bootcamp-financing-ways__list"><li data-slot="o3-l1">Only once you earn above a set level</li><li data-slot="o3-l2">Capped, so you never pay more than a limit</li><li data-slot="o3-l3">Pauses if you lose your job</li></ul>
+        <a href="#apply" class="btn btn-ghost t-pricing-bootcamp-financing-ways__btn" data-slot="o3-cta">Ask about deferred</a>
+      </article>
+    </div>
+    <div class="t-pricing-bootcamp-financing-ways__extras">
+      <p class="t-pricing-bootcamp-financing-ways__extra"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><span data-slot="extra-1">Scholarships for people new to tech</span></p>
+      <p class="t-pricing-bootcamp-financing-ways__extra"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg><span data-slot="extra-2">Employer-sponsored places</span></p>
+      <p class="t-pricing-bootcamp-financing-ways__extra"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg><span data-slot="extra-3">Free to apply, no deposit until you accept</span></p>
+    </div>
+  </div>
+</section>
+<section class="t-faq-bootcamp-help-prompt">
+  <div class="container t-faq-bootcamp-help-prompt__in">
+    <div class="t-faq-bootcamp-help-prompt__side">
+      <p class="eyebrow" data-slot="eyebrow">FAQ</p>
+      <h2 class="t-faq-bootcamp-help-prompt__title" data-slot="title">Questions, answered.</h2>
+      <p class="t-faq-bootcamp-help-prompt__lead" data-slot="lead">Still unsure if a bootcamp is right for you? Talk to an adviser who changed careers too.</p>
+      <div class="t-faq-bootcamp-help-prompt__help">
+        <div class="t-faq-bootcamp-help-prompt__help-bar"><span class="t-faq-bootcamp-help-prompt__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="t-faq-bootcamp-help-prompt__help-name" data-slot="help-name">admissions</span></div>
+        <div class="t-faq-bootcamp-help-prompt__help-body">
+          <p class="t-faq-bootcamp-help-prompt__help-line is-cmd"><span data-slot="help-line">talk to a human</span></p>
+          <p class="t-faq-bootcamp-help-prompt__help-row"><span class="t-faq-bootcamp-help-prompt__help-key" data-slot="help-k1">Email</span><a href="#contact" data-slot="help-v1">example@gmail.com</a></p>
+          <p class="t-faq-bootcamp-help-prompt__help-row"><span class="t-faq-bootcamp-help-prompt__help-key" data-slot="help-k2">Phone</span><a href="#contact" data-slot="help-v2">017 00000000</a></p>
+          <p class="t-faq-bootcamp-help-prompt__help-row"><span class="t-faq-bootcamp-help-prompt__help-key" data-slot="help-k3">Hours</span><span data-slot="help-v3">Weekdays, 9am to 6pm</span></p>
+          <a href="#call" class="btn btn-primary t-faq-bootcamp-help-prompt__help-btn" data-slot="help-cta">Book a 15-minute call</a>
+        </div>
+      </div>
+    </div>
+    <div class="t-faq-bootcamp-help-prompt__list">
+      <details class="t-faq-bootcamp-help-prompt__item" open>
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q1">Do I need any coding experience?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a1">No. Most students start from zero. A short free prep course gets everyone to the same starting line before week one.</p></div>
+      </details>
+      <details class="t-faq-bootcamp-help-prompt__item">
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q2">Can I keep my job while I study?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a2">Yes, on the part-time track. It runs on weekday evenings and Saturdays, at around 20 hours a week.</p></div>
+      </details>
+      <details class="t-faq-bootcamp-help-prompt__item">
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q3">What happens if I fall behind?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a3">Mentors run daily help sessions, and you can move to a later cohort once at no extra cost.</p></div>
+      </details>
+      <details class="t-faq-bootcamp-help-prompt__item">
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q4">Is the online course the same as campus?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a4">Same curriculum, same instructors and same live hours. Only the room changes.</p></div>
+      </details>
+      <details class="t-faq-bootcamp-help-prompt__item">
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q5">Do you guarantee a job?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a5">We do not promise jobs. We give you a coach, mock interviews and introductions to hiring partners until you are hired.</p></div>
+      </details>
+      <details class="t-faq-bootcamp-help-prompt__item">
+        <summary class="t-faq-bootcamp-help-prompt__q"><span data-slot="q6">What laptop do I need?</span><span class="t-faq-bootcamp-help-prompt__icon" aria-hidden="true"></span></summary>
+        <div class="t-faq-bootcamp-help-prompt__a"><p data-slot="a6">Any laptop from the last few years works. If you do not have one, we can lend you one for the course.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="t-contact-bootcamp-apply-steps">
+  <div class="container t-contact-bootcamp-apply-steps__in">
+    <div class="t-contact-bootcamp-apply-steps__info">
+      <p class="eyebrow" data-slot="eyebrow">Admissions</p>
+      <h2 class="t-contact-bootcamp-apply-steps__title" data-slot="title">Apply in four steps.</h2>
+      <p class="t-contact-bootcamp-apply-steps__lead" data-slot="lead">No fee to apply and no coding test on day one. Most people hear back within two working days.</p>
+      <ol class="t-contact-bootcamp-apply-steps__steps">
+        <li class="t-contact-bootcamp-apply-steps__step"><span class="t-contact-bootcamp-apply-steps__num" data-slot="s1-num">01</span><div><h3 class="t-contact-bootcamp-apply-steps__step-title" data-slot="s1-title">Send the form</h3><p class="t-contact-bootcamp-apply-steps__step-text" data-slot="s1-text">About ten minutes. Tell us where you are and where you want to go.</p></div></li>
+        <li class="t-contact-bootcamp-apply-steps__step"><span class="t-contact-bootcamp-apply-steps__num" data-slot="s2-num">02</span><div><h3 class="t-contact-bootcamp-apply-steps__step-title" data-slot="s2-title">Chat with admissions</h3><p class="t-contact-bootcamp-apply-steps__step-text" data-slot="s2-text">A relaxed video call about goals, timing and the right track.</p></div></li>
+        <li class="t-contact-bootcamp-apply-steps__step"><span class="t-contact-bootcamp-apply-steps__num" data-slot="s3-num">03</span><div><h3 class="t-contact-bootcamp-apply-steps__step-title" data-slot="s3-title">Take the skills check</h3><p class="t-contact-bootcamp-apply-steps__step-text" data-slot="s3-text">Logic and problem solving, not code. Free prep is included.</p></div></li>
+        <li class="t-contact-bootcamp-apply-steps__step"><span class="t-contact-bootcamp-apply-steps__num" data-slot="s4-num">04</span><div><h3 class="t-contact-bootcamp-apply-steps__step-title" data-slot="s4-title">Get your offer</h3><p class="t-contact-bootcamp-apply-steps__step-text" data-slot="s4-text">Pick a cohort and how you want to pay, then save your seat.</p></div></li>
+      </ol>
+    </div>
+    <form class="t-contact-bootcamp-apply-steps__form" action="#">
+      <div class="t-contact-bootcamp-apply-steps__form-head">
+        <h3 class="t-contact-bootcamp-apply-steps__form-title" data-slot="form-title">Start your application</h3>
+        <span class="t-contact-bootcamp-apply-steps__form-tag" data-slot="form-tag">Step 1 of 4</span>
+      </div>
+      <div class="t-contact-bootcamp-apply-steps__pair">
+        <label class="t-contact-bootcamp-apply-steps__field"><span class="t-contact-bootcamp-apply-steps__label" data-slot="f-name">Full name</span><input class="t-contact-bootcamp-apply-steps__input" type="text" name="name" autocomplete="name" required></label>
+        <label class="t-contact-bootcamp-apply-steps__field"><span class="t-contact-bootcamp-apply-steps__label" data-slot="f-email">Email</span><input class="t-contact-bootcamp-apply-steps__input" type="email" name="email" autocomplete="email" required></label>
+      </div>
+      <fieldset class="t-contact-bootcamp-apply-steps__group">
+        <legend class="t-contact-bootcamp-apply-steps__label" data-slot="f-track">Programme</legend>
+        <div class="t-contact-bootcamp-apply-steps__choices">
+          <label class="t-contact-bootcamp-apply-steps__choice"><input type="radio" name="track" value="web" checked><span data-slot="f-track-1">Web development</span></label>
+          <label class="t-contact-bootcamp-apply-steps__choice"><input type="radio" name="track" value="data"><span data-slot="f-track-2">Data analytics</span></label>
+          <label class="t-contact-bootcamp-apply-steps__choice"><input type="radio" name="track" value="ux"><span data-slot="f-track-3">UX design</span></label>
+        </div>
+      </fieldset>
+      <div class="t-contact-bootcamp-apply-steps__pair">
+        <fieldset class="t-contact-bootcamp-apply-steps__group">
+          <legend class="t-contact-bootcamp-apply-steps__label" data-slot="f-format">Format</legend>
+          <div class="t-contact-bootcamp-apply-steps__choices is-two">
+            <label class="t-contact-bootcamp-apply-steps__choice"><input type="radio" name="format" value="full" checked><span data-slot="f-format-1">Full-time</span></label>
+            <label class="t-contact-bootcamp-apply-steps__choice"><input type="radio" name="format" value="part"><span data-slot="f-format-2">Part-time</span></label>
+          </div>
+        </fieldset>
+        <label class="t-contact-bootcamp-apply-steps__field"><span class="t-contact-bootcamp-apply-steps__label" data-slot="f-cohort">Preferred start</span>
+          <select class="t-contact-bootcamp-apply-steps__input" name="cohort"><option data-slot="f-cohort-1">12 January</option><option data-slot="f-cohort-2">6 April</option><option data-slot="f-cohort-3">7 September</option></select>
+        </label>
+      </div>
+      <label class="t-contact-bootcamp-apply-steps__field"><span class="t-contact-bootcamp-apply-steps__label" data-slot="f-why">Why do you want to switch careers?</span><textarea class="t-contact-bootcamp-apply-steps__input" name="why" rows="3"></textarea></label>
+      <button type="submit" class="btn btn-primary t-contact-bootcamp-apply-steps__submit" data-slot="f-submit">Send application</button>
+      <p class="t-contact-bootcamp-apply-steps__fine" data-slot="f-fine">Free to apply. We only use your details to process your application.</p>
+    </form>
+  </div>
+</section>
+<footer class="t-footer-bootcamp-command-line">
+  <div class="container">
+    <div class="t-footer-bootcamp-command-line__top">
+      <h2 class="t-footer-bootcamp-command-line__line" data-slot="closing">Your next career starts with one small step.</h2>
+      <div class="t-footer-bootcamp-command-line__cta">
+        <a href="#apply" class="t-footer-bootcamp-command-line__prompt"><span class="t-footer-bootcamp-command-line__prompt-sign" aria-hidden="true"></span><span data-slot="cta-apply">apply for the next cohort</span><span class="t-footer-bootcamp-command-line__caret" aria-hidden="true"></span></a>
+        <p class="t-footer-bootcamp-command-line__next" data-slot="next">Next start: 12 January. Free to apply.</p>
+      </div>
+    </div>
+    <div class="t-footer-bootcamp-command-line__cols">
+      <div class="t-footer-bootcamp-command-line__brand-col">
+        <a href="#top" class="t-footer-bootcamp-command-line__logo"><span class="t-footer-bootcamp-command-line__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l5 5-5 5"/><path d="M13 17h6"/></svg></span><span class="t-footer-bootcamp-command-line__brand" data-slot="brand">Bootcamp Name</span></a>
+        <p class="t-footer-bootcamp-command-line__about" data-slot="about">Career-change programmes in web development, data and UX. Online and on campus.</p>
+      </div>
+      <nav class="t-footer-bootcamp-command-line__col" aria-label="Programmes">
+        <p class="t-footer-bootcamp-command-line__col-title" data-slot="c1-title">Programmes</p>
+        <a href="#web" data-slot="c1-l1">Web development</a><a href="#data" data-slot="c1-l2">Data analytics</a><a href="#ux" data-slot="c1-l3">UX design</a><a href="#part-time" data-slot="c1-l4">Part-time options</a>
+      </nav>
+      <nav class="t-footer-bootcamp-command-line__col" aria-label="Admissions">
+        <p class="t-footer-bootcamp-command-line__col-title" data-slot="c2-title">Admissions</p>
+        <a href="#apply" data-slot="c2-l1">How to apply</a><a href="#financing" data-slot="c2-l2">Financing</a><a href="#scholarships" data-slot="c2-l3">Scholarships</a><a href="#faq" data-slot="c2-l4">FAQ</a>
+      </nav>
+      <div class="t-footer-bootcamp-command-line__col">
+        <p class="t-footer-bootcamp-command-line__col-title" data-slot="c3-title">Contact</p>
+        <a href="#contact" data-slot="c3-l1">example@gmail.com</a><a href="#contact" data-slot="c3-l2">017 00000000</a><span class="t-footer-bootcamp-command-line__plain" data-slot="c3-l3">Campus and online</span>
+      </div>
+    </div>
+    <div class="t-footer-bootcamp-command-line__bottom">
+      <p class="t-footer-bootcamp-command-line__copy" data-slot="copyright">© 2026 Bootcamp Name. All rights reserved.</p>
+      <p class="t-footer-bootcamp-command-line__status"><span class="t-footer-bootcamp-command-line__dot" aria-hidden="true"></span><span data-slot="status">Applications open</span></p>
+      <nav class="t-footer-bootcamp-command-line__legal" aria-label="Legal"><a href="#privacy" data-slot="legal-1">Privacy</a><a href="#terms" data-slot="legal-2">Terms</a><a href="#outcomes" data-slot="legal-3">Outcomes report</a></nav>
+    </div>
+  </div>
+</footer></main><script>(() => { const root = document.querySelector(".t-pricing-bootcamp-programme-tabs"); if (!root) return;
+var tabs = [].slice.call(root.querySelectorAll('.t-pricing-bootcamp-programme-tabs__tab'));
+var panels = [].slice.call(root.querySelectorAll('.t-pricing-bootcamp-programme-tabs__panel'));
+function show(i, focus) {
+  tabs.forEach(function (t, j) {
+    var on = j === i;
+    t.classList.toggle('is-active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.tabIndex = on ? 0 : -1;
+  });
+  panels.forEach(function (p, j) { p.classList.toggle('is-active', j === i); });
+  if (focus) tabs[i].focus();
+}
+tabs.forEach(function (t, i) {
+  t.addEventListener('click', function () { show(i, false); });
+  t.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show((i + 1) % tabs.length, true); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show((i - 1 + tabs.length) % tabs.length, true); }
+  });
+});
+})();
+(() => { const root = document.querySelector(".t-pricing-bootcamp-financing-ways"); if (!root) return;
+var lens = [].slice.call(root.querySelectorAll('.t-pricing-bootcamp-financing-ways__len'));
+var res = [].slice.call(root.querySelectorAll('.t-pricing-bootcamp-financing-ways__res'));
+lens.forEach(function (b, i) {
+  b.addEventListener('click', function () {
+    lens.forEach(function (x, j) {
+      x.classList.toggle('is-active', j === i);
+      x.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+    });
+    res.forEach(function (r, j) { r.classList.toggle('is-active', j === i); });
+  });
+});
+})();</script></body></html>

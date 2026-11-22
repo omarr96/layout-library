@@ -315,6 +315,31 @@ window.DESIGNS = {
     },
     {
       "cat": "template-pages",
+      "slug": "tp-education-05-bootcamp",
+      "title": "Education · Coding bootcamp",
+      "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
+      "tags": [
+        "Education",
+        "Templates"
+      ],
+      "date": "2026-11-21",
+      "pages": [
+        {
+          "label": "Light",
+          "href": "template-pages/education-05-bootcamp-light.html"
+        },
+        {
+          "label": "Dark",
+          "href": "template-pages/education-05-bootcamp-dark.html"
+        },
+        {
+          "label": "Colourful",
+          "href": "template-pages/education-05-bootcamp-colour.html"
+        }
+      ]
+    },
+    {
+      "cat": "template-pages",
       "slug": "tp-sports-01-football",
       "title": "Sports · Football club",
       "desc": "Landing page made of 11 section templates (header to footer), in the builder's light, dark and colourful palettes. Photos are placeholders.",
