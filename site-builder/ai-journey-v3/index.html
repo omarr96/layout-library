@@ -199,6 +199,54 @@ svg{display:block}
 .ptabs span{font-size:12.5px;padding:5px 11px;border-radius:8px;color:var(--mut);font-weight:500}
 .ptabs span.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .ptabs span.new{color:var(--faint);border:1px dashed var(--line2)}
+.ptabs span i.ok{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-inline-end:6px;vertical-align:1px}
+.ptabs span i.sp{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ai);border-top-color:transparent;animation:spin .8s linear infinite;margin-inline-end:6px;vertical-align:-1px}
+/* page queue card */
+.pq{border:1px solid var(--line);border-radius:12px;margin-top:10px;overflow:hidden;background:#fff}
+.pq-h{padding:11px 12px 10px;border-bottom:1px solid var(--line)}
+.pq-h div{display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;color:var(--mut)}
+.pq-h div b{color:var(--ink)}
+.pq-bar{height:5px;border-radius:9px;background:var(--line);margin-top:8px;overflow:hidden;display:flex;gap:2px}
+.pq-bar i{flex:1;background:var(--line)}
+.pq-bar i.d{background:var(--ok)}
+.pq-bar i.r{background:linear-gradient(90deg,var(--ai) 60%,var(--line) 60%)}
+.pg{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line);font-size:13px}
+.pg:first-of-type{border-top:0}
+.pg .num{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;font-weight:700;flex:none;background:var(--soft);color:var(--mut);border:1px solid var(--line)}
+.pg.done .num{background:var(--ok);border-color:var(--ok);color:#fff}
+.pg.run .num{border-radius:50%;width:20px;height:20px;margin:1px;background:#fff;border:1.5px solid var(--ai);border-top-color:transparent;animation:spin .8s linear infinite}
+.pg .pn{flex:1;min-width:0}
+.pg .pn b{display:block;color:var(--ink);font-weight:600}
+.pg .pn small{color:var(--mut);font-size:12px}
+.pg.wait .pn b{color:var(--faint);font-weight:500}
+.pg.wait .pn small{color:var(--faint)}
+.pg .view{font-size:12px;font-weight:600;color:var(--ai);padding:4px 9px;border-radius:7px;background:var(--aibg)}
+.pg .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+.pg.run .tag{background:var(--aibg);color:var(--ai)}
+.pg.wait .tag{background:var(--soft);color:var(--faint)}
+.pg.run{background:#fbfaff}
+.subs{list-style:none;margin:0;padding:2px 12px 10px 44px;background:#fbfaff;display:grid;gap:5px}
+.subs li{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--tx)}
+.subs li .dot{width:14px;height:14px}
+.subs li.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.subs li.done .dot svg{width:8px;height:8px}
+.subs li.run{color:var(--ink);font-weight:600}
+.subs li.run .dot{border-color:var(--ai);border-top-color:transparent;animation:spin .8s linear infinite}
+.subs li.pend{color:var(--faint)}
+.pq-f{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px dashed var(--line2);font-size:12px;color:var(--faint)}
+.pq-f .dot{width:14px;height:14px}
+/* cakes page */
+.ph2{padding:34px 40px 26px;text-align:center}
+.ph2 small{font-size:12px;font-weight:600;color:var(--s-acc);text-transform:uppercase;letter-spacing:.12em}
+.ph2 h2{font-family:Fraunces,serif;font-weight:500;font-size:40px;margin:8px 0 8px;letter-spacing:-.02em}
+.ph2 p{margin:0 auto;max-width:460px;color:#6b5646}
+.sizes{display:flex;gap:10px;justify-content:center;padding:0 40px 30px;flex-wrap:wrap}
+.sizes span{padding:10px 16px;border-radius:12px;background:#fff;font-size:13px;box-shadow:0 1px 2px rgba(42,29,20,.06)}
+.sizes span b{color:var(--s-acc);margin-inline-start:6px}
+.of{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.of label{font-size:12px;font-weight:600;display:block}
+.of .in{height:40px;border-radius:10px;background:#fff;border:1px solid #e6dccd;margin-top:5px;padding:0 12px;display:flex;align-items:center;font-size:13px;color:#a08b75}
+.of .wide{grid-column:1/-1}
 .ptabs .auto{margin-inline-start:auto;font-size:12px;color:var(--faint)}
 .frame{flex:1;min-height:0;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 0 0 1px var(--line2),0 20px 50px -24px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
 .fb{height:38px;display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--line);flex:none}
@@ -334,6 +382,7 @@ svg{display:block}
   <button role="tab" data-s="s2">2 · Preloader</button>
   <button role="tab" data-s="s3">3 · Building</button>
   <button role="tab" data-s="s4">4 · Done + edit</button>
+  <button role="tab" data-s="s4b">4b · More pages</button>
   <button role="tab" data-s="s5">5 · Publish</button>
   <button role="tab" data-s="s6">6 · Live</button>
   <span class="note">Static layout — animation comes after approval</span>
@@ -592,6 +641,73 @@ svg{display:block}
   </div>
 </section>
 
+<!-- 4b. more pages -->
+<section class="screen" id="s4b">
+  <div data-use="tpl-top"></div>
+  <div class="bld">
+    <aside class="chat" aria-label="AI chat">
+      <div class="log" aria-live="polite">
+        <div data-use="tpl-plan"></div>
+        <div class="am"><div class="aa"></div><div class="tx">
+          <div class="sum"><h5><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg>Home page is ready</h5><ul><li>7 sections · menu, reviews, pre-order form</li></ul></div>
+        </div></div>
+        <div class="ub">Home looks great 👍 Now add 4 pages: Menu, About, Cakes and Contact.</div>
+        <div class="am"><div class="aa"></div><div class="tx">
+          <p>On it — I'll build them one by one in the same style as Home, reusing your header, footer and colours.</p>
+          <div class="pq">
+            <div class="pq-h"><div><span>NEW PAGES</span><b>2 of 4 done</b></div><div class="pq-bar"><i class="d"></i><i class="d"></i><i class="r"></i><i></i></div></div>
+            <div class="pg done"><span class="num"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span><span class="pn"><b>Menu</b><small>6 sections · built in 14s</small></span><button class="view">View</button></div>
+            <div class="pg done"><span class="num"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span><span class="pn"><b>About</b><small>4 sections · built in 9s</small></span><button class="view">View</button></div>
+            <div class="pg run"><span class="num"></span><span class="pn"><b>Cakes</b><small>Building order form · 3 of 5 sections</small></span><span class="tag">Building</span></div>
+            <ul class="subs">
+              <li class="done"><span class="dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Page header</li>
+              <li class="done"><span class="dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Cake gallery</li>
+              <li class="done"><span class="dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Sizes &amp; prices</li>
+              <li class="run"><span class="dot"></span>Order form <span class="tc mono" style="font-size:11px;padding:1px 6px;border-radius:5px;background:#fff;border:1px solid #ddd8ff;color:var(--ai);font-weight:500">add_form</span></li>
+              <li class="pend"><span class="dot"></span>FAQ</li>
+            </ul>
+            <div class="pg wait"><span class="num">4</span><span class="pn"><b>Contact</b><small>Waiting · map, hours, form</small></span><span class="tag">Queued</span></div>
+            <div class="pq-f"><span class="dot"></span>Then: add all pages to the menu &amp; footer</div>
+          </div>
+        </div></div>
+      </div>
+      <div class="cin">
+        <div class="stopbar"><span>Building page 3 of 4</span><button class="btn"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>Stop</button></div>
+        <div class="cbox"><label style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" for="c4b">Message</label><textarea id="c4b" rows="1" placeholder="Queue another change… it runs after these pages"></textarea><div class="prow"><button class="ib" aria-label="Attach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="sp"></div><button class="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></div>
+      </div>
+    </aside>
+    <div class="stage">
+      <div class="ptabs"><span><i class="ok"></i>Home</span><span><i class="ok"></i>Menu</span><span><i class="ok"></i>About</span><span class="on"><i class="sp"></i>Cakes</span><span class="new">Contact</span><span class="auto">Showing the page being built</span></div>
+      <div class="frame">
+        <div class="fb"><div class="d"><i></i><i></i><i></i></div><div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>crumbandco.zejify.site/cakes</div></div>
+        <div class="site">
+          <div class="sn"><span class="b">Crumb &amp; Co.</span><a>Menu</a><a style="font-weight:600">Cakes</a><a>About</a><a>Visit</a><span class="sb">Pre-order</span></div>
+          <div class="ph2"><small>Made to order</small><h2>Cakes for every celebration</h2><p>Birthdays, weddings, Eid or just Friday. Order 48 hours ahead and we'll bake it fresh.</p></div>
+          <div class="done-menu" style="padding-top:0"><div class="menu">
+            <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Cupcake box (6)<span>৳900</span></div></div>
+            <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Pastry platter<span>৳1,600</span></div></div>
+            <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Croissant tower<span>৳2,400</span></div></div>
+          </div></div>
+          <div class="sizes"><span>Small · 6 slices<b>৳1,800</b></span><span>Medium · 12 slices<b>৳3,200</b></span><span>Large · 20 slices<b>৳4,900</b></span></div>
+          <div class="bsec"><span class="blabel"><i></i>Building · Order form</span>
+            <h3>Order your cake</h3><p class="sub typed">Tell us the date and size — we'll confirm by phone</p>
+            <div class="of">
+              <div><label>Your name</label><div class="in">Full name</div></div>
+              <div><label>Phone</label><div class="in">01XXX-XXXXXX</div></div>
+              <div><label>Pick-up date</label><i class="sk" style="display:block;height:40px;margin-top:5px;border-radius:10px"></i></div>
+              <div><label>Size</label><i class="sk" style="display:block;height:40px;margin-top:5px;border-radius:10px"></i></div>
+              <div class="wide"><i class="sk" style="display:block;height:12px;width:30%;margin-bottom:8px"></i><i class="sk" style="display:block;height:70px;border-radius:10px"></i></div>
+            </div>
+            <div class="aicur" style="bottom:120px;inset-inline-end:20%"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2l16 9-7 2-3 7z"/></svg><span>Zejify AI</span></div>
+          </div>
+          <div class="next"><small>NEXT · FAQ</small><div><i class="sk" style="display:block;height:14px;width:80%;margin-bottom:10px"></i><i class="sk" style="display:block;height:14px;width:60%"></i></div><div><i class="sk" style="display:block;height:14px;width:70%;margin-bottom:10px"></i><i class="sk" style="display:block;height:14px;width:50%"></i></div></div>
+          <div style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 5. publish -->
 <section class="screen" id="s5">
   <div data-use="tpl-top"></div>
@@ -654,11 +770,11 @@ document.querySelectorAll('[data-use]').forEach(el => {
   el.replaceWith(document.getElementById(el.dataset.use).content.cloneNode(true));
 });
 // per-screen top bar states
-const progs = { s3: '<span class="run"></span><span>Building · 5 of 9</span>', s4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>', s5: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>' };
+const progs = { s3: '<span class="run"></span><span>Building · 5 of 9</span>', s4b: '<span class="run"></span><span>New pages · 2 of 4</span>', s4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>', s5: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>' };
 Object.entries(progs).forEach(([id, h]) => {
   const s = document.getElementById(id);
-  const p = s.querySelector('[data-prog]'); p.innerHTML = h; if (id !== 's3') p.classList.add('ok');
-  if (id === 's3') s.querySelector('[data-pub]').disabled = true;
+  const p = s.querySelector('[data-prog]'); p.innerHTML = h; if (id !== 's3' && id !== 's4b') p.classList.add('ok');
+  if (id === 's3' || id === 's4b') s.querySelector('[data-pub]').disabled = true;
 });
 // phone: Chat / Preview tabs
 document.querySelectorAll('.mtabs').forEach(m => m.querySelectorAll('button').forEach((b, i) => b.addEventListener('click', () => {

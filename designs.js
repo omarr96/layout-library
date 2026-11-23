@@ -3744,7 +3744,7 @@ window.DESIGNS = {
       "cat": "site-builder",
       "slug": "ai-journey-v3",
       "title": "Prompt to publish · AI journey v3 (layout)",
-      "desc": "Static layout for review: prompt box with Zejify MCP callout and setup modal, preloader, builder with AI chat log left and live preview building right, done + edit round, publish panel, live page.",
+      "desc": "Static layout for review: prompt box with Zejify MCP callout and setup modal, preloader, builder with AI chat log left and live preview building right, done + edit round, adding 4 more pages with per-page progress in chat, publish panel, live page.",
       "tags": [
         "AI builder",
         "Flow",
