@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Journey v3 · Layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#111113; --tx:#2b2b30; --mut:#6b6b73; --faint:#a1a1aa;
+  --line:#ececef; --line2:#dedee3; --soft:#f6f6f7; --hover:#f1f1f3; --bg:#fbfbfc;
+  --ok:#16a34a; --okbg:#effaf2; --ai:#6d5dfc; --aibg:#f3f1ff; --ai2:#a78bfa;
+  --r:14px; --sh:0 1px 2px rgba(17,17,19,.04),0 8px 24px -12px rgba(17,17,19,.12);
+  /* generated site (bakery) */
+  --s-bg:#fbf6ee; --s-ink:#2a1d14; --s-acc:#b5562b; --s-soft:#f1e6d6;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.55 Inter,system-ui,sans-serif;color:var(--tx);background:#e9e9ee;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+svg{display:block}
+
+/* ---------- review switcher ---------- */
+.rev{position:sticky;top:0;z-index:50;display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:#18181b;color:#e4e4e7}
+.rev b{font-size:13px;margin-inline-end:8px;color:#fff}
+.rev button{padding:6px 11px;border-radius:8px;font-size:12.5px;color:#a1a1aa}
+.rev button[aria-selected=true]{background:#2e2e33;color:#fff}
+.rev .note{margin-inline-start:auto;font-size:12px;color:#71717a}
+.screen{display:none;min-height:calc(100vh - 47px);background:var(--bg);position:relative;overflow:hidden}
+.screen.on{display:flex;flex-direction:column}
+
+/* ---------- app top bar ---------- */
+.top{height:56px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--line);background:#fff;flex:none}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);font-size:15px;letter-spacing:-.01em}
+.logo i{width:24px;height:24px;border-radius:7px;background:conic-gradient(from 200deg,#6d5dfc,#a78bfa,#38bdf8,#6d5dfc);display:grid;place-items:center}
+.logo i::after{content:"";width:9px;height:9px;border-radius:3px;background:#fff}
+.nav{display:flex;gap:2px;margin-inline-start:14px}
+.nav a{padding:6px 10px;border-radius:8px;color:var(--mut);font-weight:500;text-decoration:none}
+.nav a.on{color:var(--ink);background:var(--soft)}
+.sp{flex:1}
+.av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#fde68a,#f9a8d4);display:grid;place-items:center;font-size:12px;font-weight:700;color:#7c2d12}
+.btn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:9px;font-weight:600;font-size:13px;border:1px solid var(--line2);background:#fff;color:var(--ink)}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.ai{background:var(--ai);border-color:var(--ai);color:#fff}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn svg{width:15px;height:15px}
+
+/* ---------- 1. start ---------- */
+.start{flex:1;display:flex;flex-direction:column;align-items:center;padding:72px 20px 56px;background:
+  radial-gradient(600px 300px at 50% -40px,rgba(109,93,252,.14),transparent 70%),
+  radial-gradient(500px 260px at 85% 10%,rgba(56,189,248,.10),transparent 70%),var(--bg)}
+.hello{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 6px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:12.5px;color:var(--mut);box-shadow:var(--sh)}
+.hello span{padding:2px 8px;border-radius:99px;background:var(--aibg);color:var(--ai);font-weight:600}
+.start h1{font-family:Fraunces,serif;font-weight:500;font-size:46px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:22px 0 10px;text-align:center}
+.start h1 em{font-style:normal;background:linear-gradient(90deg,#6d5dfc,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.start .lead{margin:0 0 30px;color:var(--mut);font-size:16px;text-align:center}
+.pbox{width:min(760px,100%);background:#fff;border:1px solid var(--line2);border-radius:20px;box-shadow:0 2px 4px rgba(17,17,19,.03),0 24px 60px -28px rgba(76,60,200,.35);padding:16px 16px 12px}
+.pbox:focus-within{border-color:#c9c2ff;box-shadow:0 0 0 4px rgba(109,93,252,.12),0 24px 60px -28px rgba(76,60,200,.35)}
+.pbox textarea{width:100%;border:0;outline:0;resize:none;font:16px/1.55 Inter,sans-serif;color:var(--ink);min-height:84px;padding:4px 6px}
+.pbox textarea::placeholder{color:var(--faint)}
+.prow{display:flex;align-items:center;gap:6px;margin-top:6px}
+.ib{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--mut)}
+.ib:hover{background:var(--hover)}
+.ib svg{width:18px;height:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;border-radius:99px;border:1px solid var(--line);font-size:12.5px;color:var(--tx);background:#fff;font-weight:500}
+.chip svg{width:14px;height:14px;color:var(--mut)}
+.send{width:38px;height:38px;border-radius:12px;background:var(--ai);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(109,93,252,.7)}
+.send svg{width:18px;height:18px}
+.hint{font-size:12px;color:var(--faint);margin-inline-end:6px}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;width:min(760px,100%)}
+.idea{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--tx);box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.idea:hover{border-color:var(--line2);background:var(--soft)}
+.idea b{font-size:15px;line-height:1}
+.mcp{width:min(760px,100%);margin-top:34px;display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,#17152b,#24204a);color:#d9d6ff;box-shadow:var(--sh)}
+.mcp .mi{width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;background:rgba(167,139,250,.16);color:#c4b5fd}
+.mcp .mi svg{width:22px;height:22px}
+.mcp h3{margin:0;color:#fff;font-size:14.5px;font-weight:600}
+.mcp p{margin:2px 0 0;font-size:13px;color:#a7a3d6}
+.mcp .cl{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.mcp .cl span{font-size:11.5px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.08);color:#d4d0ff}
+.mcp .btn{margin-inline-start:auto;background:#fff;color:#1c1940;border:0;flex:none}
+.recent{width:min(760px,100%);margin-top:34px}
+.recent h4{margin:0 0 10px;font-size:12.5px;color:var(--mut);font-weight:600}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
+.rc .th{width:54px;height:40px;border-radius:7px;flex:none;background:var(--soft) center/cover}
+.rc b{display:block;font-size:13px;color:var(--ink);font-weight:600}
+.rc small{color:var(--faint);font-size:12px}
+
+/* MCP modal */
+.dim{position:absolute;inset:0;background:rgba(17,17,19,.42);backdrop-filter:blur(2px);display:grid;place-items:center;padding:20px;z-index:5}
+.modal{width:min(620px,100%);background:#fff;border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.4);overflow:hidden}
+.mh{display:flex;gap:12px;align-items:flex-start;padding:20px 22px 14px}
+.mh .mi{width:40px;height:40px;border-radius:11px;background:var(--aibg);color:var(--ai);display:grid;place-items:center;flex:none}
+.mh .mi svg{width:21px;height:21px}
+.mh h2{margin:0;font-size:17px;color:var(--ink)}
+.mh p{margin:3px 0 0;color:var(--mut);font-size:13.5px}
+.x{margin-inline-start:auto;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:var(--mut)}
+.x:hover{background:var(--hover)}
+.tabs{display:flex;gap:4px;padding:0 22px;border-bottom:1px solid var(--line)}
+.tabs button{padding:9px 12px;font-size:13px;font-weight:500;color:var(--mut);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-color:var(--ink)}
+.mb{padding:18px 22px 22px}
+.steps{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.steps li{display:flex;gap:11px;font-size:13.5px;color:var(--tx)}
+.steps li>span{width:22px;height:22px;border-radius:50%;background:var(--soft);border:1px solid var(--line2);font-size:11.5px;font-weight:700;display:grid;place-items:center;flex:none;color:var(--ink)}
+.code{position:relative;background:#16161a;color:#d4d4d8;border-radius:12px;padding:14px 16px;font-size:12.5px;line-height:1.7;overflow-x:auto}
+.code .k{color:#c4b5fd}.code .s{color:#86efac}
+.copy{position:absolute;top:9px;inset-inline-end:9px;height:28px;padding:0 10px;border-radius:7px;background:rgba(255,255,255,.1);color:#fff;font-size:12px;font-weight:600}
+.ex{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--aibg);border:1px dashed #cfc8ff;font-size:13px;color:#3b2f9e}
+.ex b{display:block;font-size:11.5px;color:var(--ai);margin-bottom:2px;font-weight:600}
+.mf{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-top:1px solid var(--line);background:var(--soft);font-size:12.5px;color:var(--mut)}
+
+/* ---------- 2. preloader ---------- */
+.pre{flex:1;display:grid;place-items:center;padding:40px 20px;background:radial-gradient(700px 400px at 50% 40%,rgba(109,93,252,.12),transparent 70%),var(--bg)}
+.pre-in{width:min(560px,100%);display:flex;flex-direction:column;align-items:center}
+.qchip{max-width:100%;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh);font-size:13.5px;color:var(--tx)}
+.qchip .av{width:24px;height:24px;font-size:10px;flex:none}
+.qchip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bp{position:relative;width:min(420px,100%);aspect-ratio:4/3;margin:28px 0;border-radius:16px;background:#fff;border:1px solid var(--line2);box-shadow:0 30px 70px -30px rgba(76,60,200,.45);padding:14px;overflow:hidden;
+  background-image:linear-gradient(rgba(109,93,252,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(109,93,252,.06) 1px,transparent 1px);background-size:16px 16px}
+.bp .bar{display:flex;gap:5px;margin-bottom:12px}.bp .bar i{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.blk{border-radius:7px;margin-bottom:8px;border:1.5px dashed #c9c2ff;background:rgba(109,93,252,.05)}
+.blk.f{border-style:solid;border-color:transparent;background:linear-gradient(110deg,#ece9ff 30%,#f6f4ff 50%,#ece9ff 70%)}
+.bp .row{display:flex;gap:8px}.bp .row>*{flex:1}
+.bp .fly{position:absolute;inset-inline-end:26px;bottom:54px;width:92px;height:30px;border-radius:7px;background:var(--ai);box-shadow:0 12px 24px -8px rgba(109,93,252,.7);transform:rotate(-6deg)}
+.bp .cur{position:absolute;inset-inline-end:18px;bottom:40px;width:18px;height:18px;color:var(--ink)}
+.stat{list-style:none;margin:0;padding:0;display:grid;gap:9px;width:min(320px,100%)}
+.stat li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--faint)}
+.stat li.done{color:var(--tx)}
+.stat li.run{color:var(--ink);font-weight:600}
+.dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;flex:none}
+.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.done .dot svg{width:11px;height:11px}
+.run .dot{border-color:var(--ai);border-top-color:transparent;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pbar{width:min(320px,100%);height:4px;border-radius:9px;background:var(--line);margin-top:22px;overflow:hidden}
+.pbar i{display:block;height:100%;width:46%;background:linear-gradient(90deg,var(--ai),#38bdf8);border-radius:9px}
+.skip{margin-top:14px;font-size:12.5px;color:var(--mut);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 3. builder ---------- */
+.bld{flex:none;display:grid;grid-template-columns:400px 1fr;grid-template-rows:minmax(0,1fr);min-height:0;height:calc(100vh - 47px - 56px);min-height:720px}
+.chat{display:flex;flex-direction:column;border-inline-end:1px solid var(--line);background:#fff;min-height:0}
+.log{flex:1;overflow:auto;padding:18px 18px 8px;display:flex;flex-direction:column;gap:14px}
+.ub{align-self:flex-end;max-width:88%;background:var(--soft);border:1px solid var(--line);padding:10px 13px;border-radius:14px 14px 4px 14px;font-size:13.5px;color:var(--ink)}
+.am{display:flex;gap:10px}
+.am .aa{width:26px;height:26px;border-radius:8px;flex:none;background:conic-gradient(from 200deg,#6d5dfc,#a78bfa,#38bdf8,#6d5dfc);display:grid;place-items:center}
+.am .aa::after{content:"";width:8px;height:8px;border-radius:2px;background:#fff}
+.am .tx{flex:1;min-width:0;font-size:13.5px;color:var(--tx)}
+.am .tx p{margin:3px 0 0}
+.caret{display:inline-block;width:7px;height:14px;background:var(--ai);vertical-align:-2px;border-radius:1px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:#fff}
+.card h5{margin:0 0 8px;font-size:11.5px;color:var(--mut);font-weight:600;display:flex;justify-content:space-between}
+.pl{display:flex;flex-wrap:wrap;gap:5px}
+.pl span{font-size:12px;padding:3px 9px;border-radius:7px;background:var(--soft);border:1px solid var(--line);color:var(--ink);font-weight:500}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;margin-top:10px;font-size:12.5px;align-items:center}
+.kv dt{color:var(--mut)}.kv dd{margin:0;display:flex;gap:5px;align-items:center;color:var(--ink)}
+.sw{width:16px;height:16px;border-radius:5px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.acts{border:1px solid var(--line);border-radius:12px;margin-top:10px;overflow:hidden}
+.act{display:flex;align-items:center;gap:9px;padding:8px 11px;font-size:13px;border-top:1px solid var(--line)}
+.act:first-child{border-top:0}
+.act .dot{width:16px;height:16px}
+.act.done{color:var(--tx)}.act.pend{color:var(--faint)}
+.act.run{background:var(--aibg);color:var(--ink);font-weight:600}
+.act small{margin-inline-start:auto;font-size:11.5px;color:var(--faint);font-weight:400}
+.act .tc{font-size:11px;padding:1px 6px;border-radius:5px;background:#fff;border:1px solid #ddd8ff;color:var(--ai);font-weight:500}
+.act .chev{width:14px;height:14px;color:var(--faint)}
+.det{padding:4px 11px 10px 36px;background:var(--aibg);font-size:12.5px;color:#4b4390}
+.det code{font-family:"JetBrains Mono",monospace;font-size:11.5px;background:#fff;border:1px solid #ddd8ff;border-radius:5px;padding:1px 5px;color:var(--ai)}
+.sum{background:var(--okbg);border:1px solid #c9ecd4;border-radius:12px;padding:12px;margin-top:10px}
+.sum h5{margin:0 0 6px;font-size:13px;color:#14532d;display:flex;gap:6px;align-items:center}
+.sum ul{margin:0;padding-inline-start:18px;font-size:12.5px;color:#22543a}
+.sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sugg button{font-size:12.5px;padding:6px 11px;border-radius:99px;border:1px solid #ddd8ff;background:var(--aibg);color:#4535d8;font-weight:500}
+.cin{padding:12px 14px 14px;border-top:1px solid var(--line)}
+.stopbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;font-size:12.5px;color:var(--mut)}
+.stopbar .btn{height:28px;font-size:12px;padding:0 10px}
+.cbox{border:1px solid var(--line2);border-radius:14px;padding:10px 10px 8px 12px}
+.cbox textarea{width:100%;border:0;outline:0;resize:none;font:13.5px/1.5 Inter,sans-serif;min-height:40px;color:var(--ink);background:none}
+.cbox .prow{margin:0}
+.cbox .send{width:32px;height:32px;border-radius:10px}
+.cbox.off{background:var(--soft)}
+.cbox.off .send{background:var(--line2);box-shadow:none}
+.ptop{display:flex;align-items:center;gap:8px;padding:0 6px;font-size:13px}
+.ptop .nm{font-weight:600;color:var(--ink)}
+.ptop .nm small{font-weight:400;color:var(--faint);margin-inline-start:6px}
+.prog{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut);padding:5px 10px;border-radius:99px;background:var(--soft)}
+.prog .run{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ai);border-top-color:transparent;animation:spin .8s linear infinite}
+.prog.ok{background:var(--okbg);color:var(--ok)}
+.dev{display:flex;padding:3px;border-radius:9px;background:var(--soft);gap:2px}
+.dev button{width:30px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--mut)}
+.dev button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dev svg{width:15px;height:15px}
+.stage{background:#f0f0f3;padding:18px 22px 0;display:flex;flex-direction:column;min-width:0;min-height:0}
+.ptabs{display:flex;gap:4px;margin-bottom:10px;align-items:center}
+.ptabs span{font-size:12.5px;padding:5px 11px;border-radius:8px;color:var(--mut);font-weight:500}
+.ptabs span.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.ptabs span.new{color:var(--faint);border:1px dashed var(--line2)}
+.ptabs .auto{margin-inline-start:auto;font-size:12px;color:var(--faint)}
+.frame{flex:1;min-height:0;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 0 0 1px var(--line2),0 20px 50px -24px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
+.fb{height:38px;display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--line);flex:none}
+.fb .d{display:flex;gap:5px}.fb .d i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
+.url{flex:1;max-width:380px;margin:0 auto;height:24px;border-radius:7px;background:var(--soft);font-size:12px;color:var(--mut);display:flex;align-items:center;justify-content:center;gap:5px}
+.url svg{width:11px;height:11px}
+.site{flex:1;min-height:0;overflow:auto;background:var(--s-bg);color:var(--s-ink);font-family:Inter,sans-serif}
+
+/* generated bakery site */
+.sn{display:flex;align-items:center;padding:18px 40px;gap:26px;font-size:13px}
+.sn .b{font-family:Fraunces,serif;font-size:20px;font-weight:600;margin-inline-end:auto}
+.sn .sb{padding:8px 15px;border-radius:99px;background:var(--s-ink);color:var(--s-bg);font-weight:600;font-size:12.5px}
+.sh{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding:20px 40px 44px}
+.sh small{font-size:12px;font-weight:600;color:var(--s-acc);text-transform:uppercase;letter-spacing:.12em}
+.sh h2{font-family:Fraunces,serif;font-weight:500;font-size:44px;line-height:1.06;margin:10px 0 14px;letter-spacing:-.02em}
+.sh p{margin:0 0 20px;font-size:15px;color:#6b5646;max-width:420px}
+.sh .cta{display:flex;gap:10px}
+.sh .cta span{padding:11px 18px;border-radius:99px;font-weight:600;font-size:13px;background:var(--s-acc);color:#fff}
+.sh .cta span+span{background:transparent;color:var(--s-ink);box-shadow:inset 0 0 0 1.5px var(--s-ink)}
+.sh .ph{aspect-ratio:5/4;border-radius:20px 20px 120px 20px;background:#d9c7ae url(https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=70&auto=format&fit=crop) center/cover}
+.bsec{position:relative;margin:0 14px;padding:30px 26px 34px;border-radius:12px;outline:2px solid var(--ai);outline-offset:-2px;background:rgba(109,93,252,.03)}
+.blabel{position:absolute;top:-11px;inset-inline-start:16px;display:flex;align-items:center;gap:6px;padding:3px 9px;border-radius:7px;background:var(--ai);color:#fff;font-size:11.5px;font-weight:600;font-family:Inter,sans-serif}
+.blabel i{width:10px;height:10px;border-radius:50%;border:1.5px solid #fff;border-top-color:transparent;animation:spin .8s linear infinite}
+.bsec h3{font-family:Fraunces,serif;font-weight:500;font-size:28px;margin:0 0 4px}
+.bsec .sub{color:#6b5646;font-size:13.5px;margin:0 0 18px}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mi2{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(42,29,20,.06)}
+.mi2 .im{aspect-ratio:4/3;background:center/cover}
+.mi2 .t{padding:11px 13px 13px;display:flex;justify-content:space-between;font-size:13.5px;font-weight:600}
+.mi2 .t span{color:var(--s-acc)}
+.sk{background:linear-gradient(110deg,#ece5da 30%,#f6f1ea 50%,#ece5da 70%);background-size:200% 100%;animation:sh 1.4s linear infinite;border-radius:8px}
+/* skeleton must beat .mi2 .im background */
+.site .sk{background:linear-gradient(110deg,#ece5da 30%,#f6f1ea 50%,#ece5da 70%);background-size:200% 100%}
+@keyframes sh{to{background-position:-200% 0}}
+.mi2.ghost .im{aspect-ratio:4/3}
+.mi2.ghost .t{gap:10px}
+.typed::after{content:"";display:inline-block;width:2px;height:1em;background:var(--ai);vertical-align:-2px;margin-inline-start:2px;animation:bl 1s steps(2) infinite}
+.aicur{position:absolute;inset-inline-end:14%;bottom:110px;display:flex;align-items:center;gap:4px;font-family:Inter,sans-serif;pointer-events:none}
+.aicur svg{width:18px;height:18px;color:var(--ai);filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
+.aicur span{background:var(--ai);color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px}
+.next{margin:22px 14px 0;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:20px;border-radius:12px;border:1.5px dashed #d8ccbb}
+.next .sk{height:14px;margin-bottom:10px}
+.next small{grid-column:1/-1;font-size:11.5px;color:#a8957f;font-weight:600}
+/* done-state site extras */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:44px 40px;align-items:center}
+.story .ph{aspect-ratio:4/3;border-radius:16px;background:center/cover url(https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=900&q=70&auto=format&fit=crop)}
+.story h3{font-family:Fraunces,serif;font-weight:500;font-size:28px;margin:0 0 10px}
+.story p{margin:0;color:#6b5646}
+.done-menu{padding:10px 40px 20px}
+.done-menu h3{font-family:Fraunces,serif;font-weight:500;font-size:28px;margin:0 0 4px}
+.done-menu .sub{color:#6b5646;font-size:13.5px;margin:0 0 18px}
+
+/* ---------- 4. publish ---------- */
+.pub{width:min(520px,100%)}
+.dom{display:flex;align-items:center;border:1.5px solid var(--ai);border-radius:11px;overflow:hidden;box-shadow:0 0 0 4px rgba(109,93,252,.1)}
+.dom input{flex:1;min-width:0;border:0;outline:0;padding:11px 12px;font:14px Inter,sans-serif;color:var(--ink)}
+.dom span{padding:0 12px;color:var(--mut);font-size:14px;background:var(--soft);align-self:stretch;display:flex;align-items:center}
+.avail{display:flex;align-items:center;gap:6px;margin:8px 0 4px;font-size:12.5px;color:var(--ok);font-weight:500}
+.avail svg{width:14px;height:14px}
+.own{font-size:12.5px;color:var(--ai);font-weight:500}
+.chk{list-style:none;margin:16px 0 0;padding:0;border:1px solid var(--line);border-radius:12px}
+.chk li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line);font-size:13.5px}
+.chk li:first-child{border-top:0}
+.chk li small{margin-inline-start:auto;color:var(--faint);font-size:12px}
+.chk .dot{width:18px;height:18px}
+.chk li.pend{color:var(--faint)}
+
+/* ---------- 5. live ---------- */
+.live{flex:1;display:grid;place-items:center;padding:40px 20px;background:radial-gradient(600px 360px at 50% 30%,rgba(22,163,74,.10),transparent 70%),var(--bg);position:relative}
+.conf{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.conf i{position:absolute;width:8px;height:12px;border-radius:2px;opacity:.85}
+.lc{width:min(640px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 80px -30px rgba(0,0,0,.25);overflow:hidden;position:relative}
+.lc .shot{height:200px;background:var(--s-bg);display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px 26px;align-items:center;border-bottom:1px solid var(--line)}
+.lc .shot h6{font-family:Fraunces,serif;font-weight:500;font-size:24px;line-height:1.1;margin:0;color:var(--s-ink)}
+.lc .shot .ph{height:150px;border-radius:14px 14px 60px 14px;background:center/cover url(https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=70&auto=format&fit=crop)}
+.lc .badge{position:absolute;top:16px;inset-inline-start:16px;display:flex;gap:6px;align-items:center;padding:4px 10px;border-radius:99px;background:#fff;color:var(--ok);font-weight:600;font-size:12px;box-shadow:var(--sh)}
+.lc .badge i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(22,163,74,.2)}
+.lb{padding:22px 26px 24px}
+.lb h2{margin:0;font-size:22px;color:var(--ink);letter-spacing:-.01em}
+.lb>p{margin:4px 0 16px;color:var(--mut)}
+.lurl{display:flex;gap:8px;align-items:center}
+.lurl .u{flex:1;min-width:0;display:flex;align-items:center;gap:8px;padding:0 12px;height:40px;border-radius:10px;background:var(--soft);border:1px solid var(--line);font-weight:500;color:var(--ink);overflow:hidden;white-space:nowrap}
+.lurl .u svg{width:14px;height:14px;color:var(--ok);flex:none}
+.lrow{display:grid;grid-template-columns:auto 1fr;gap:18px;margin-top:18px;align-items:center}
+.qr{width:96px;height:96px;border-radius:10px;border:1px solid var(--line);padding:7px;background:#fff}
+.share{display:flex;gap:6px;flex-wrap:wrap}
+.nx{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.nx a{display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;font-size:13px}
+.nx a small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+.nx a .ic{width:34px;height:34px;border-radius:9px;background:var(--aibg);color:var(--ai);display:grid;place-items:center;flex:none}
+.nx svg{width:17px;height:17px}
+
+/* mobile tabs for builder */
+.mtabs{display:none}
+@media (max-width:1100px){.bld{grid-template-columns:340px 1fr}.sh h2{font-size:34px}}
+@media (max-width:860px){
+  .nav,.hint,.top .btn.hide-m,.ptop .nm small{display:none}
+  .start{padding:44px 16px}
+  .start h1{font-size:32px}
+  .rgrid{grid-template-columns:1fr}
+  .mcp{flex-wrap:wrap}.mcp .btn{margin-inline-start:0}
+  .bld{grid-template-columns:1fr;grid-template-rows:auto;height:auto;min-height:0}
+  .mtabs{display:flex;gap:4px;padding:8px 14px;background:#fff;border-bottom:1px solid var(--line)}
+  .mtabs button{flex:1;padding:8px;border-radius:9px;font-weight:600;font-size:13px;color:var(--mut)}
+  .mtabs button.on{background:var(--soft);color:var(--ink)}
+  .chat{border:0}
+  .stage{padding:12px}
+  .frame{border-radius:12px;min-height:640px}
+  .sn{padding:14px 18px;gap:12px}.sn a{display:none}
+  .sh,.story{grid-template-columns:1fr;padding:16px 18px 28px}
+  .sh h2{font-size:30px}
+  .menu{grid-template-columns:1fr 1fr}
+  .next{grid-template-columns:1fr}
+  .done-menu{padding:10px 18px}
+  .dev,.top .prog{display:none}
+  .lc .shot{grid-template-columns:1fr}.lc .shot .ph{display:none}
+  .nx{grid-template-columns:1fr}
+  .lrow{grid-template-columns:1fr}
+  .lurl{flex-wrap:wrap}.lurl .u{flex-basis:100%}
+  .bld .stage{display:none}
+  .bld.pv .stage{display:flex}.bld.pv .chat{display:none}
+  .rev .note{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="rev" role="tablist" aria-label="Journey screens">
+  <b>Zejify · AI journey v3 — layout</b>
+  <button role="tab" data-s="s1" aria-selected="true">1 · Prompt</button>
+  <button role="tab" data-s="s1b">1b · MCP setup</button>
+  <button role="tab" data-s="s2">2 · Preloader</button>
+  <button role="tab" data-s="s3">3 · Building</button>
+  <button role="tab" data-s="s4">4 · Done + edit</button>
+  <button role="tab" data-s="s5">5 · Publish</button>
+  <button role="tab" data-s="s6">6 · Live</button>
+  <span class="note">Static layout — animation comes after approval</span>
+</nav>
+
+<!-- ============ 1. PROMPT ============ -->
+<section class="screen on" id="s1">
+  <header class="top">
+    <div class="logo"><i></i>zejify</div>
+    <nav class="nav"><a class="on" href="#">Build</a><a href="#">Sites</a><a href="#">Domains</a><a href="#">Hosting</a></nav>
+    <div class="sp"></div>
+    <button class="btn hide-m">Docs</button>
+    <div class="av">OM</div>
+  </header>
+  <div class="start">
+    <div class="hello"><span>New</span> Describe it once. We build, host and publish it.</div>
+    <h1>What do you want to <em>build</em> today?</h1>
+    <p class="lead">Tell the AI about your business. You'll watch your site being built, live.</p>
+
+    <div class="pbox">
+      <label for="p1" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Describe your website</label>
+      <textarea id="p1" rows="3" placeholder="A website for my bakery Crumb & Co. in Dhanmondi — fresh sourdough daily, a menu with prices, opening hours and a way to pre-order cakes…"></textarea>
+      <div class="prow">
+        <button class="ib" aria-label="Attach a file or image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 7.6"/></svg></button>
+        <button class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M3 12h18"/></svg>Type: Auto</button>
+        <button class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3A5.6 5.6 0 0 0 22 10c0-4.4-4.5-8-10-8z"/></svg>Style: Auto</button>
+        <div class="sp"></div>
+        <span class="hint">Enter to send</span>
+        <button class="ib" aria-label="Voice input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+        <button class="send" aria-label="Build my site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="ideas">
+      <button class="idea"><b>🥐</b>Bakery or café</button>
+      <button class="idea"><b>📷</b>Photographer portfolio</button>
+      <button class="idea"><b>🦷</b>Dental clinic</button>
+      <button class="idea"><b>🎓</b>Online course</button>
+      <button class="idea"><b>🔧</b>Local plumber</button>
+      <button class="idea"><b>🛍️</b>Small online shop</button>
+    </div>
+
+    <div class="mcp">
+      <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7zM12 16v5"/></svg></div>
+      <div>
+        <h3>Prefer your own AI? Build with Zejify MCP</h3>
+        <p>Connect Zejify to your AI assistant and create, edit and publish sites right from your chat.</p>
+        <div class="cl"><span>Claude</span><span>ChatGPT</span><span>Cursor</span><span>Any MCP client</span></div>
+      </div>
+      <button class="btn">Set up MCP →</button>
+    </div>
+
+    <div class="recent">
+      <h4>Your recent drafts</h4>
+      <div class="rgrid">
+        <div class="rc"><div class="th" style="background-image:url(https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200&q=60&auto=format&fit=crop)"></div><div><b>Morning Crumb</b><small>Edited 2 days ago</small></div></div>
+        <div class="rc"><div class="th" style="background:linear-gradient(135deg,#dbeafe,#e0e7ff)"></div><div><b>Rahman Dental</b><small>Draft · 5 days ago</small></div></div>
+        <div class="rc"><div class="th" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"></div><div><b>Studio Nila</b><small>Live · 1 week ago</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1b. MCP ============ -->
+<section class="screen" id="s1b">
+  <header class="top"><div class="logo"><i></i>zejify</div><nav class="nav"><a class="on" href="#">Build</a><a href="#">Sites</a><a href="#">Domains</a><a href="#">Hosting</a></nav><div class="sp"></div><div class="av">OM</div></header>
+  <div class="start" style="filter:blur(1px)"><h1>What do you want to <em>build</em> today?</h1><div class="pbox"><textarea rows="3" aria-hidden="true" tabindex="-1"></textarea></div></div>
+  <div class="dim">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mcpt">
+      <div class="mh">
+        <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7zM12 16v5"/></svg></div>
+        <div><h2 id="mcpt">Build from your own AI with Zejify MCP</h2><p>Your assistant gets Zejify tools: create a site, edit pages, add a domain, publish.</p></div>
+        <button class="x" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="tabs" role="tablist"><button class="on" role="tab" aria-selected="true">Claude</button><button role="tab">ChatGPT</button><button role="tab">Cursor</button><button role="tab">Other client</button></div>
+      <div class="mb">
+        <ol class="steps">
+          <li><span>1</span><div>Open <b>Settings → Connectors</b> and choose <b>Add custom connector</b>.</div></li>
+          <li><span>2</span><div>Paste the Zejify MCP address below and sign in with your Zejify account.</div></li>
+          <li><span>3</span><div>Ask your assistant to build a site — it shows up here in <b>Sites</b>.</div></li>
+        </ol>
+        <div class="code mono"><button class="copy">Copy</button><span class="k">Name</span>   Zejify<br><span class="k">URL</span>    <span class="s">https://mcp.zejify.com/sse</span></div>
+        <div class="ex"><b>Try this in your assistant</b>"Use Zejify to build a one-page site for my bakery Crumb &amp; Co. with a menu, opening hours and a pre-order form, then publish it."</div>
+      </div>
+      <div class="mf"><span>Works with any client that supports remote MCP.</span><button class="btn">Read the guide</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. PRELOADER ============ -->
+<section class="screen" id="s2">
+  <header class="top"><div class="logo"><i></i>zejify</div><div class="sp"></div><div class="av">OM</div></header>
+  <div class="pre">
+    <div class="pre-in">
+      <div class="qchip"><div class="av">OM</div><span>A website for my bakery Crumb &amp; Co. in Dhanmondi — fresh sourdough daily, a menu…</span></div>
+      <div class="bp" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="row" style="margin-bottom:10px"><div class="blk f" style="height:12px;flex:.3"></div><div style="flex:1"></div><div class="blk" style="height:12px;flex:.25"></div></div>
+        <div class="row"><div><div class="blk f" style="height:18px"></div><div class="blk f" style="height:18px;width:80%"></div><div class="blk" style="height:10px;width:60%"></div><div class="blk" style="height:16px;width:40%"></div></div><div class="blk f" style="height:86px"></div></div>
+        <div class="row" style="margin-top:6px"><div class="blk" style="height:52px"></div><div class="blk" style="height:52px"></div><div class="blk" style="height:52px"></div></div>
+        <div class="fly"></div>
+        <svg class="cur" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2l16 9-7 2-3 7z"/></svg>
+      </div>
+      <ul class="stat" aria-live="polite">
+        <li class="done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Reading your idea</li>
+        <li class="run"><span class="dot"></span>Choosing a layout for a bakery</li>
+        <li><span class="dot"></span>Setting up your site</li>
+      </ul>
+      <div class="pbar"><i></i></div>
+      <button class="skip">Skip to builder</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3/4/5. BUILDER (shared) ============ -->
+<template id="tpl-top">
+  <header class="top">
+    <div class="logo"><i></i></div>
+    <div class="ptop"><span class="nm">Crumb &amp; Co.<small>crumbandco.zejify.site</small></span></div>
+    <div class="sp"></div>
+    <div class="prog" data-prog></div>
+    <div class="dev" role="group" aria-label="Preview size">
+      <button class="on" aria-label="Desktop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
+      <button aria-label="Tablet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/></svg></button>
+      <button aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3" width="10" height="18" rx="2"/></svg></button>
+    </div>
+    <button class="btn hide-m">Preview</button>
+    <button class="btn ai" data-pub>Publish</button>
+  </header>
+  <div class="mtabs" role="tablist"><button class="on">Chat</button><button>Preview</button></div>
+</template>
+
+<template id="tpl-plan">
+  <div class="ub">A website for my bakery Crumb &amp; Co. in Dhanmondi — fresh sourdough daily, a menu with prices, opening hours and a way to pre-order cakes.</div>
+  <div class="am"><div class="aa"></div><div class="tx">
+    <b>Zejify AI</b>
+    <p>Lovely — a warm, homely site for Crumb &amp; Co. that makes people hungry and makes pre-ordering easy. Here's my plan:</p>
+    <div class="card">
+      <h5><span>PLAN</span><span>4 pages · 9 sections</span></h5>
+      <div class="pl"><span>Home</span><span>Menu</span><span>About</span><span>Contact</span></div>
+      <dl class="kv">
+        <dt>Palette</dt><dd><i class="sw" style="background:#fbf6ee"></i><i class="sw" style="background:#2a1d14"></i><i class="sw" style="background:#b5562b"></i><i class="sw" style="background:#f1e6d6"></i> Warm crust</dd>
+        <dt>Fonts</dt><dd><span style="font-family:Fraunces,serif;font-size:14px">Fraunces</span> + Inter</dd>
+        <dt>Features</dt><dd>Menu with prices · Hours · Cake pre-order form</dd>
+      </dl>
+    </div>
+  </div></div>
+</template>
+
+<template id="tpl-site-top">
+  <div class="sn"><span class="b">Crumb &amp; Co.</span><a>Menu</a><a>Cakes</a><a>About</a><a>Visit</a><span class="sb">Pre-order</span></div>
+  <div class="sh">
+    <div><small>Baked at 5am, every day</small><h2>Real sourdough, slow-made in Dhanmondi.</h2><p>Crusty loaves, buttery croissants and celebration cakes — baked fresh each morning in our little kitchen on Road 27.</p><div class="cta"><span>See today's menu</span><span>Pre-order a cake</span></div></div>
+    <div class="ph" role="img" aria-label="Fresh sourdough loaves"></div>
+  </div>
+</template>
+
+<!-- 3. building -->
+<section class="screen" id="s3">
+  <div data-use="tpl-top"></div>
+  <div class="bld">
+    <aside class="chat" aria-label="AI chat">
+      <div class="log" aria-live="polite">
+        <div data-use="tpl-plan"></div>
+        <div class="am"><div class="aa"></div><div class="tx">
+          <p>Building it now — you can watch it on the right.</p>
+          <div class="acts">
+            <div class="act done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Created 4 pages <span class="tc mono">create_page</span><small>2s</small></div>
+            <div class="act done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Set palette &amp; fonts <span class="tc mono">set_theme</span><small>1s</small></div>
+            <div class="act done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Header &amp; navigation<small>3s</small></div>
+            <div class="act done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Hero — wrote headline, added photo<small>6s</small></div>
+            <div class="act run"><span class="dot"></span>Building the menu section <span class="tc mono">add_section</span><small>4s</small><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="det">Writing 6 items with prices · choosing photos · <code>layout: grid-3</code><br>"Country sourdough — ৳380" <span class="caret"></span></div>
+            <div class="act pend"><span class="dot"></span>Cake pre-order form</div>
+            <div class="act pend"><span class="dot"></span>About, hours &amp; map</div>
+            <div class="act pend"><span class="dot"></span>Make it mobile-friendly</div>
+            <div class="act pend"><span class="dot"></span>Check contrast, speed &amp; SEO</div>
+          </div>
+        </div></div>
+      </div>
+      <div class="cin">
+        <div class="stopbar"><span>Building · step 5 of 9</span><button class="btn"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>Stop</button></div>
+        <div class="cbox off"><label style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" for="c3">Message</label><textarea id="c3" rows="1" placeholder="You can chat once the first version is ready…" disabled></textarea><div class="prow"><button class="ib" aria-label="Attach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="sp"></div><button class="send" aria-label="Send" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></div>
+      </div>
+    </aside>
+    <div class="stage">
+      <div class="ptabs"><span class="on">Home</span><span>Menu</span><span>About</span><span class="new">Contact</span><span class="auto">Auto-scrolls to what's being built</span></div>
+      <div class="frame">
+        <div class="fb"><div class="d"><i></i><i></i><i></i></div><div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>crumbandco.zejify.site</div></div>
+        <div class="site">
+          <div data-use="tpl-site-top"></div>
+          <div class="bsec">
+            <span class="blabel"><i></i>Building · Menu</span>
+            <h3>Today's bakes</h3>
+            <p class="sub typed">Out of the oven by 7am. When it's gone, it's gone</p>
+            <div class="menu">
+              <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Butter croissant<span>৳180</span></div></div>
+              <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Country sourdough<span>৳380</span></div></div>
+              <div class="mi2 ghost"><div class="im sk"></div><div class="t"><i class="sk" style="height:12px;width:60%"></i><i class="sk" style="height:12px;width:20%"></i></div></div>
+            </div>
+            <div class="aicur"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2l16 9-7 2-3 7z"/></svg><span>Zejify AI</span></div>
+          </div>
+          <div class="next"><small>NEXT · Cake pre-order form</small><div><i class="sk" style="display:block;height:22px;width:70%;margin-bottom:12px"></i><i class="sk" style="display:block;width:90%"></i><i class="sk" style="display:block;width:60%"></i></div><div><i class="sk" style="display:block;height:36px;margin-bottom:10px"></i><i class="sk" style="display:block;height:36px"></i></div></div>
+          <div style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. done + edit -->
+<section class="screen" id="s4">
+  <div data-use="tpl-top"></div>
+  <div class="bld">
+    <aside class="chat" aria-label="AI chat">
+      <div class="log" aria-live="polite">
+        <div data-use="tpl-plan"></div>
+        <div class="am"><div class="aa"></div><div class="tx">
+          <div class="sum"><h5><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Your site is ready · built in 38s</h5>
+            <ul><li>4 pages, 9 sections, all mobile-friendly</li><li>Menu with 6 items and prices</li><li>Cake pre-order form → sends to your email</li><li>SEO title, description and image set</li></ul></div>
+          <p style="margin-top:10px">Have a look around. Want me to change anything?</p>
+          <div class="sugg"><button>Make the hero darker</button><button>Add a reviews section</button><button>Try a different font</button><button>Add WhatsApp button</button></div>
+        </div></div>
+        <div class="ub">Add a reviews section under the menu</div>
+        <div class="am"><div class="aa"></div><div class="tx">
+          <p>Adding 3 short customer reviews under the menu, in your warm style.</p>
+          <div class="acts"><div class="act run"><span class="dot"></span>Adding reviews section <span class="tc mono">add_section</span><small>2s</small></div></div>
+        </div></div>
+      </div>
+      <div class="cin">
+        <div class="cbox"><label style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" for="c4">Message</label><textarea id="c4" rows="1" placeholder="Ask for a change… e.g. “make the buttons rounder”"></textarea><div class="prow"><button class="ib" aria-label="Attach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button class="chip">Select on page</button><div class="sp"></div><button class="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></div>
+      </div>
+    </aside>
+    <div class="stage">
+      <div class="ptabs"><span class="on">Home</span><span>Menu</span><span>About</span><span>Contact</span></div>
+      <div class="frame">
+        <div class="fb"><div class="d"><i></i><i></i><i></i></div><div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>crumbandco.zejify.site</div></div>
+        <div class="site">
+          <div data-use="tpl-site-top"></div>
+          <div class="done-menu"><h3>Today's bakes</h3><p class="sub">Out of the oven by 7am. When it's gone, it's gone.</p>
+            <div class="menu">
+              <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Butter croissant<span>৳180</span></div></div>
+              <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Country sourdough<span>৳380</span></div></div>
+              <div class="mi2"><div class="im" style="background-image:url(https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&q=70&auto=format&fit=crop)"></div><div class="t">Seeded rye<span>৳320</span></div></div>
+            </div></div>
+          <div class="bsec" style="margin-top:20px"><span class="blabel"><i></i>Adding · Reviews</span>
+            <div class="menu">
+              <div class="mi2" style="padding:16px"><div style="color:var(--s-acc)">★★★★★</div><p style="margin:6px 0 10px;font-size:13.5px">“The croissants are the real thing. I come every Friday.”</p><b style="font-size:12.5px">Nadia R.</b></div>
+              <div class="mi2" style="padding:16px"><div style="color:var(--s-acc)">★★★★★</div><p style="margin:6px 0 10px;font-size:13.5px" class="typed">“Ordered a birthday cake online — perfect</p></div>
+              <div class="mi2 ghost" style="padding:16px"><i class="sk" style="display:block;height:12px;width:40%;margin-bottom:10px"></i><i class="sk" style="display:block;height:12px;margin-bottom:6px"></i><i class="sk" style="display:block;height:12px;width:70%"></i></div>
+            </div></div>
+          <div class="story"><div class="ph" role="img" aria-label="Bakery counter"></div><div><h3>A small kitchen with a big oven</h3><p>We started Crumb &amp; Co. in 2019 with one starter and a borrowed oven. Today we bake 300 loaves a morning — still by hand.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. publish -->
+<section class="screen" id="s5">
+  <div data-use="tpl-top"></div>
+  <div class="bld" style="filter:saturate(.9)">
+    <aside class="chat"><div class="log"><div data-use="tpl-plan"></div></div></aside>
+    <div class="stage"><div class="frame"><div class="fb"><div class="d"><i></i><i></i><i></i></div><div class="url">crumbandco.zejify.site</div></div><div class="site"><div data-use="tpl-site-top"></div></div></div></div>
+  </div>
+  <div class="dim">
+    <div class="modal pub" role="dialog" aria-modal="true" aria-labelledby="pubt">
+      <div class="mh">
+        <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <div><h2 id="pubt">Publish Crumb &amp; Co.</h2><p>Free address with SSL. You can add your own domain any time.</p></div>
+        <button class="x" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="mb" style="padding-top:4px">
+        <label for="sub" style="display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px">Site address</label>
+        <div class="dom"><input id="sub" value="crumbandco"><span>.zejify.site</span></div>
+        <div class="avail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Available</div>
+        <a class="own" href="#">Use my own domain instead →</a>
+        <ul class="chk" aria-live="polite">
+          <li><span class="dot" style="background:var(--ok);border-color:var(--ok);color:#fff"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>Looks good on phones<small>4 pages</small></li>
+          <li><span class="dot" style="background:var(--ok);border-color:var(--ok);color:#fff"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>SEO title &amp; description<small>set</small></li>
+          <li class="run" style="font-weight:600;color:var(--ink)"><span class="dot"></span>Optimising images<small>7 of 11</small></li>
+          <li class="pend"><span class="dot"></span>SSL certificate</li>
+        </ul>
+      </div>
+      <div class="mf"><span>Free plan · ready in about 10 seconds</span><button class="btn ai">Publish now</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. live -->
+<section class="screen" id="s6">
+  <header class="top"><div class="logo"><i></i>zejify</div><div class="sp"></div><div class="av">OM</div></header>
+  <div class="live">
+    <div class="conf" aria-hidden="true" id="conf"></div>
+    <div class="lc">
+      <div class="shot"><h6>Real sourdough, slow-made in Dhanmondi.</h6><div class="ph"></div></div>
+      <span class="badge"><i></i>Live</span>
+      <div class="lb">
+        <h2>Crumb &amp; Co. is live 🎉</h2>
+        <p>Anyone can visit it now. Share the link or connect your own domain.</p>
+        <div class="lurl"><div class="u"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>crumbandco.zejify.site</div><button class="btn">Copy</button><button class="btn pri">Open site ↗</button></div>
+        <div class="lrow">
+          <svg class="qr" viewBox="0 0 21 21" aria-label="QR code placeholder" role="img" id="qr"></svg>
+          <div><div style="font-size:12.5px;color:var(--mut);margin-bottom:8px">Scan to open on your phone, or share:</div><div class="share"><button class="chip">WhatsApp</button><button class="chip">Facebook</button><button class="chip">Email</button><button class="chip">Copy link</button></div></div>
+        </div>
+        <div class="nx">
+          <a href="#"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span>Connect a domain<small>crumbandco.com is available</small></span></a>
+          <a href="#"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span>Go to dashboard<small>Edit, stats, forms</small></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// fill shared templates
+document.querySelectorAll('[data-use]').forEach(el => {
+  el.replaceWith(document.getElementById(el.dataset.use).content.cloneNode(true));
+});
+// per-screen top bar states
+const progs = { s3: '<span class="run"></span><span>Building · 5 of 9</span>', s4: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>', s5: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg><span>Ready</span>' };
+Object.entries(progs).forEach(([id, h]) => {
+  const s = document.getElementById(id);
+  const p = s.querySelector('[data-prog]'); p.innerHTML = h; if (id !== 's3') p.classList.add('ok');
+  if (id === 's3') s.querySelector('[data-pub]').disabled = true;
+});
+// phone: Chat / Preview tabs
+document.querySelectorAll('.mtabs').forEach(m => m.querySelectorAll('button').forEach((b, i) => b.addEventListener('click', () => {
+  m.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  m.closest('.screen').querySelector('.bld').classList.toggle('pv', i === 1);
+})));
+// screen switcher
+const tabs = document.querySelectorAll('.rev [role=tab]');
+function show(id) {
+  tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.s === id));
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === id));
+  if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+  window.scrollTo(0, 0);
+  const lg = document.querySelector('#' + id + ' .chat .log'); if (lg) lg.scrollTop = lg.scrollHeight;
+  // preview auto-scrolls to the section being built
+  const sec = document.querySelector('#' + id + ' .site .bsec');
+  if (sec) { const site = sec.closest('.site'); site.scrollTop += sec.getBoundingClientRect().top - site.getBoundingClientRect().top - 140; window.scrollTo(0, 0); }
+}
+tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.s)));
+window.addEventListener('load', () => show(document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : 's1'));
+// confetti (static scatter)
+const cols = ['#6d5dfc', '#38bdf8', '#f59e0b', '#16a34a', '#f472b6', '#b5562b'];
+const conf = document.getElementById('conf');
+for (let i = 0; i < 46; i++) {
+  const c = document.createElement('i');
+  c.style.cssText = `left:${(i * 37) % 100}%;top:${(i * 53) % 70}%;background:${cols[i % 6]};transform:rotate(${i * 41}deg)`;
+  conf.appendChild(c);
+}
+// QR placeholder pattern
+const qr = document.getElementById('qr'); let q = '';
+const fin = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#111"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#111"/>`;
+for (let y = 0; y < 21; y++) for (let x = 0; x < 21; x++) {
+  const inF = (x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12);
+  if (!inF && ((x * 7 + y * 13 + x * y) % 5 < 2)) q += `<rect x="${x}" y="${y}" width="1" height="1" fill="#111"/>`;
+}
+qr.innerHTML = q + fin(0, 0) + fin(14, 0) + fin(0, 14);
+</script>
+</body>
+</html>

@@ -3742,6 +3742,25 @@ window.DESIGNS = {
     },
     {
       "cat": "site-builder",
+      "slug": "ai-journey-v3",
+      "title": "Prompt to publish · AI journey v3 (layout)",
+      "desc": "Static layout for review: prompt box with Zejify MCP callout and setup modal, preloader, builder with AI chat log left and live preview building right, done + edit round, publish panel, live page.",
+      "tags": [
+        "AI builder",
+        "Flow",
+        "v3",
+        "Layout"
+      ],
+      "date": "2026-11-23",
+      "pages": [
+        {
+          "label": "Layout",
+          "href": "site-builder/ai-journey-v3/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-builder",
       "slug": "seo-system",
       "title": "SEO system · Builder editor",
       "desc": "SEO redesigned in the AI builder look: page score card, fix-first list and compact section rows that open in a wide flyout beside the panel, with live Google preview, social cards, structured data, whole-site view and agent.",
