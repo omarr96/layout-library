@@ -48,6 +48,10 @@ svg{display:block}
 
 /* user message */
 .um{align-self:flex-end;max-width:86%;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.um{position:relative;padding-inline-end:38px}
+.uav{position:absolute;top:0;inset-inline-end:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#fde68a,#f9a8d4);color:#7c2d12;font-size:11px;font-weight:700;display:grid;place-items:center;box-shadow:0 0 0 2px var(--panel)}
+.um:has(.ctx) .uav,.um:has(.att) .uav{top:auto;bottom:22px}
+.um .uav{bottom:22px;top:auto}
 .ub{background:var(--ubg);color:var(--utx);padding:10px 14px;border-radius:16px 16px 4px 16px;font-size:14px;line-height:1.5}
 .um .meta{font-size:11px;color:var(--faint)}
 .att{display:flex;gap:8px;align-items:center;padding:6px 10px 6px 6px;border-radius:12px;background:var(--soft);border:1px solid var(--line);font-size:12.5px}
@@ -248,7 +252,7 @@ svg{display:block}
     <div class="day">Today</div>
 
     <!-- 1. multi-task request -->
-    <div class="um">
+    <div class="um"><span class="uav" aria-hidden="true">OM</span>
       <span class="ctx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 2l16 9-7 2-3 7z"/></svg>Hero section</span>
       <div class="ub">make the hero darker, add a whatsapp button on every page and change phone to 017 00000000 everywhere</div>
       <span class="meta">10:42</span>
@@ -284,7 +288,7 @@ svg{display:block}
     </div>
 
     <!-- 2. question about Zejify -->
-    <div class="um"><div class="ub">how do i connect my own domain?</div><span class="meta">10:44</span></div>
+    <div class="um"><span class="uav" aria-hidden="true">OM</span><div class="ub">how do i connect my own domain?</div><span class="meta">10:44</span></div>
     <div class="am">
       <span class="av" aria-hidden="true"></span>
       <div class="ab">
@@ -299,7 +303,7 @@ svg{display:block}
     </div>
 
     <!-- 3. attachment + clarifying question -->
-    <div class="um">
+    <div class="um"><span class="uav" aria-hidden="true">OM</span>
       <div class="att"><i style="background-image:url(https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=200&q=60&auto=format&fit=crop)"></i><div><b>shop-front.jpg</b><small>1.2 MB</small></div></div>
       <div class="ub">use this photo and turn the menu into a slider</div>
       <span class="meta">10:47</span>
@@ -316,7 +320,7 @@ svg{display:block}
       </div>
     </div>
 
-    <div class="um"><div class="ub">about section</div><span class="meta">10:47</span></div>
+    <div class="um"><span class="uav" aria-hidden="true">OM</span><div class="ub">about section</div><span class="meta">10:47</span></div>
 
     <!-- 4. honest result with a warning -->
     <div class="am">
@@ -329,7 +333,7 @@ svg{display:block}
     </div>
 
     <!-- 5. bigger plan waiting for Go -->
-    <div class="um"><div class="ub">add 3 new pages: cakes, catering and contact</div><span class="meta">10:51</span></div>
+    <div class="um"><span class="uav" aria-hidden="true">OM</span><div class="ub">add 3 new pages: cakes, catering and contact</div><span class="meta">10:51</span></div>
     <div class="am">
       <span class="av" aria-hidden="true"></span>
       <div class="ab">
@@ -344,7 +348,7 @@ svg{display:block}
       </div>
     </div>
 
-    <div class="um"><div class="ub">go</div><span class="meta">10:51</span></div>
+    <div class="um"><span class="uav" aria-hidden="true">OM</span><div class="ub">go</div><span class="meta">10:51</span></div>
 
     <!-- 6. working now -->
     <div class="am live">
@@ -446,7 +450,7 @@ svg{display:block}
   function post(text) {
     if (!text.trim()) return;
     var now = new Date(), t = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
-    log.insertAdjacentHTML('beforeend', '<div class="um"><div class="ub">' + esc(text) + '</div><span class="meta">' + t + '</span></div><div class="am"><span class="av" aria-hidden="true"></span><div class="ab"><span class="typing" aria-label="Zejify AI is typing"><i></i><i></i><i></i></span><p style="color:var(--mut);font-size:12.5px">Queued, runs after the current pages.</p></div></div>');
+    log.insertAdjacentHTML('beforeend', '<div class="um"><span class="uav" aria-hidden="true">OM</span><div class="ub">' + esc(text) + '</div><span class="meta">' + t + '</span></div><div class="am"><span class="av" aria-hidden="true"></span><div class="ab"><span class="typing" aria-label="Zejify AI is typing"><i></i><i></i><i></i></span><p style="color:var(--mut);font-size:12.5px">Queued, runs after the current pages.</p></div></div>');
     ta.value = ''; size(); log.scrollTop = log.scrollHeight;
   }
   ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); post(ta.value); } });
