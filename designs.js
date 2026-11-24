@@ -3779,6 +3779,25 @@ window.DESIGNS = {
     },
     {
       "cat": "site-builder",
+      "slug": "ai-chat-orange",
+      "title": "AI chat · Zejify orange",
+      "desc": "The builder agent chat mockup with the Zejify Z logo and orange brand colour (#FD5201). Light and dark.",
+      "tags": [
+        "AI builder",
+        "Chat",
+        "Mockup",
+        "Brand"
+      ],
+      "date": "2026-11-24",
+      "pages": [
+        {
+          "label": "Mockup",
+          "href": "site-builder/ai-chat-orange/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-builder",
       "slug": "seo-system",
       "title": "SEO system · Builder editor",
       "desc": "SEO redesigned in the AI builder look: page score card, fix-first list and compact section rows that open in a wide flyout beside the panel, with live Google preview, social cards, structured data, whole-site view and agent.",
