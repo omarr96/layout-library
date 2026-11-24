@@ -3761,6 +3761,24 @@ window.DESIGNS = {
     },
     {
       "cat": "site-builder",
+      "slug": "ai-chat",
+      "title": "AI chat · Builder agent conversation",
+      "desc": "Chat panel mockup for the builder agent: multi-task plan with per-task Undo and Undo all, collapsible tool steps, before/after card, help answer with a link, photo attachment with a clarifying question, honest note, plan waiting for Go, live progress, composer with suggestions. Light and dark.",
+      "tags": [
+        "AI builder",
+        "Chat",
+        "Mockup"
+      ],
+      "date": "2026-11-24",
+      "pages": [
+        {
+          "label": "Mockup",
+          "href": "site-builder/ai-chat/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "site-builder",
       "slug": "seo-system",
       "title": "SEO system · Builder editor",
       "desc": "SEO redesigned in the AI builder look: page score card, fix-first list and compact section rows that open in a wide flyout beside the panel, with live Google preview, social cards, structured data, whole-site view and agent.",
