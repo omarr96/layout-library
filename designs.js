@@ -4907,6 +4907,24 @@ window.DESIGNS = {
     },
     {
       "cat": "landing-pages",
+      "slug": "riovizual-home",
+      "title": "RioVizual · Table plugin home page",
+      "desc": "Sales-focused home page for a WordPress table plugin: interactive editor hero switching between 6 blocks, block collection, use-case tabs, features, yearly/lifetime pricing toggle, free vs pro, reviews, guarantee, FAQ, sticky mobile buy bar.",
+      "tags": [
+        "WordPress",
+        "Plugin",
+        "SaaS"
+      ],
+      "date": "2026-11-24",
+      "pages": [
+        {
+          "label": "Home",
+          "href": "landing-pages/riovizual-home/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "landing-pages",
       "slug": "tempo",
       "title": "Tempo",
       "desc": "Habit and focus app landing page.",
