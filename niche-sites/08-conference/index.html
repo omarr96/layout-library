@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Common Ground 2027 — Lisbon, 13–14 May</title>
+<meta name="description" content="Common Ground is a two-day conference in Lisbon on streets, housing and public space, for the people who plan, design and run cities. 13–14 May 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --bg:#F3F5F7; --card:#FFFFFF; --ink:#121A2B; --muted:#576072; --line:#DDE2E9;
+  --blue:#2447B8; --blue-d:#1A3690; --blue-50:#E8EDFA; --sun:#F3D98B;
+  --ok:#1F7A55; --err:#B4232F;
+  --r:16px; --shadow:0 1px 2px rgba(18,26,43,.05),0 18px 40px -18px rgba(18,26,43,.22);
+  --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.03em;line-height:1.06}
+h1 em,h2 em,.serif{font-family:var(--serif);font-weight:500;font-style:italic;letter-spacing:-.01em}
+h1 em,h2 em{color:var(--blue);font-size:1.12em;line-height:.9}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.sec{padding:120px 0}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4.6vw,56px);margin:14px 0 18px}
+.sec-head p{color:var(--muted);font-size:18px}
+.sec-head.row{max-width:none;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.sec-head.row > div{max-width:640px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-line{border-color:var(--line);background:var(--card)}
+.btn-line:hover{border-color:var(--ink)}
+.tlink{font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(243,245,247,.84);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid transparent;transition:border-color .25s;z-index:-1}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:32px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.logo-mark{width:26px;height:26px;border-radius:50%;border:2.5px solid var(--blue);position:relative}
+.logo-mark::after{content:"";position:absolute;left:-2.5px;right:-2.5px;top:50%;height:2.5px;margin-top:-1.25px;background:var(--blue)}
+.logo small{font-weight:500;color:var(--muted);font-size:15px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-size:15px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:14px}
+.nav-cta .btn{padding:10px 18px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--card);align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);transition:transform .25s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+
+/* HERO */
+.hero{padding:150px 0 0;text-align:center}
+.hero-meta{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;font-size:15px;font-weight:500;color:var(--muted)}
+.hero-meta b{color:var(--ink);font-weight:600}
+.hero-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--line);align-self:center}
+.hero h1{font-size:clamp(44px,8vw,104px);margin:26px auto 26px;max-width:1000px}
+.hero .lede{font-size:clamp(18px,1.6vw,20px);color:var(--muted);max-width:620px;margin:0 auto}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.band{position:relative;margin-top:72px}
+.band-img{height:clamp(360px,46vw,620px);width:100%;object-fit:cover;object-position:center 60%}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,43,0) 45%,rgba(18,26,43,.55));pointer-events:none}
+.count{position:absolute;left:50%;bottom:-56px;transform:translateX(-50%);z-index:2;background:var(--card);border-radius:20px;box-shadow:var(--shadow);display:flex;align-items:center;gap:36px;padding:24px 34px;width:max-content;max-width:calc(100% - 32px)}
+.count-label{text-align:left;font-size:14px;color:var(--muted);line-height:1.4;max-width:170px}
+.count-label b{display:block;color:var(--ink);font-size:15px}
+.cells{display:flex;gap:26px}
+.cell{text-align:center;min-width:58px}
+.cell span{display:block;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.cell small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.count .btn{padding:12px 20px;white-space:nowrap}
+.photo-credit{position:absolute;left:24px;bottom:18px;color:rgba(255,255,255,.85);font-size:13px;z-index:1}
+
+/* ABOUT */
+.about{padding-top:190px}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
+.about-grid h2{font-size:clamp(32px,4vw,50px);margin:14px 0 22px}
+.about-grid p{color:var(--muted);font-size:18px;margin-bottom:16px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:8px}
+.fact{background:var(--card);padding:28px 26px}
+.fact b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:54px;line-height:1;color:var(--blue);margin-bottom:8px}
+.fact span{color:var(--muted);font-size:15px}
+.themes{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;list-style:none}
+.themes li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:15px;font-weight:500}
+
+/* SPEAKERS */
+.speakers{background:var(--card);border-block:1px solid var(--line)}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 32px}
+.sp img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);filter:saturate(.85);background:var(--bg);height:auto}
+.sp h3{font-size:22px;margin:20px 0 4px;letter-spacing:-.02em}
+.sp .role{color:var(--muted);font-size:15px}
+.sp .talk{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.3;margin-top:12px;color:var(--ink)}
+.sp .day{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--blue)}
+
+/* PROGRAMME */
+.tabs{display:inline-flex;gap:4px;padding:5px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:36px}
+.tab{border:0;background:transparent;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;color:var(--muted);text-align:left;line-height:1.3}
+.tab small{display:block;font-weight:500;font-size:13px}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.tab[aria-selected="true"] small{color:rgba(255,255,255,.7)}
+.agenda{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.slot{display:grid;grid-template-columns:130px 1fr 150px;gap:28px;padding:24px 32px;border-top:1px solid var(--line);align-items:baseline}
+.slot:first-child{border-top:0}
+.slot time{font-weight:600;font-variant-numeric:tabular-nums;font-size:16px}
+.slot h3{font-size:19px;letter-spacing:-.015em;line-height:1.3}
+.slot p{color:var(--muted);font-size:15px;margin-top:4px}
+.room{justify-self:end;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--blue-50);color:var(--blue-d);white-space:nowrap}
+.slot.brk{background:#F8F9FB}
+.slot.brk h3{font-weight:500;color:var(--muted);font-size:17px}
+.slot.brk .room{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.panel[hidden]{display:none}
+.panel.in{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.agenda-note{color:var(--muted);font-size:15px;margin-top:18px}
+
+/* TICKETS */
+.eb{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 20px;font-size:15px;margin-bottom:28px;flex-wrap:wrap}
+.eb-tag{background:var(--sun);color:#4A3A07;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.tk{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 30px;display:flex;flex-direction:column}
+.tk.feat{border:2px solid var(--blue);box-shadow:var(--shadow);position:relative}
+.tk.feat::before{content:"Most chosen";position:absolute;top:-13px;left:30px;background:var(--blue);color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px}
+.tk h3{font-size:21px}
+.tk .who{color:var(--muted);font-size:15px;margin-top:4px}
+.price{margin:26px 0 4px;display:flex;align-items:baseline;gap:12px}
+.price b{font-size:50px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.price s{color:var(--muted);font-size:19px}
+.price-note{font-size:14px;color:var(--muted)}
+.tk ul{list-style:none;margin:24px 0 30px;display:grid;gap:11px;font-size:15px}
+.tk li{padding-left:26px;position:relative}
+.tk li::before{content:"";position:absolute;left:2px;top:7px;width:12px;height:7px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+.tk .btn{margin-top:auto}
+.t-foot{margin-top:28px;color:var(--muted);font-size:15px;text-align:center}
+
+/* VENUE */
+.venue{background:var(--card);border-block:1px solid var(--line)}
+.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.v-photo{border-radius:20px;overflow:hidden;position:relative}
+.v-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.addr{margin-top:28px;display:grid;gap:6px}
+.addr h3{font-size:24px}
+.addr p{color:var(--muted)}
+.map{margin-top:22px;height:200px;border-radius:var(--r);border:1px solid var(--line);position:relative;overflow:hidden;background:
+  linear-gradient(90deg,transparent 0 31%,#E6EAF0 31% 33%,transparent 33%),
+  linear-gradient(0deg,transparent 0 58%,#E6EAF0 58% 61%,transparent 61%),
+  linear-gradient(90deg,transparent 0 70%,#E6EAF0 70% 71.5%,transparent 71.5%),
+  #F7F8FA}
+.map .river{position:absolute;left:-5%;right:-5%;bottom:-30px;height:78px;background:#D5E0F4;transform:rotate(-4deg)}
+.map .river span{position:absolute;right:16%;top:26px;font-family:var(--serif);font-style:italic;font-size:17px;color:#55709F;transform:rotate(4deg)}
+.map .pin{position:absolute;left:64%;top:46%;transform:translate(-50%,-100%);background:var(--blue);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;white-space:nowrap}
+.map .pin::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--blue)}
+.map .metro{position:absolute;left:6%;top:16%;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.map .metro::before{content:"M";width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px}
+.v-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.v-actions .btn{padding:11px 18px;font-size:15px}
+.travel{display:grid;gap:0}
+.travel h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.tr-item{padding:20px 0;border-bottom:1px solid var(--line)}
+.tr-item:first-of-type{padding-top:8px}
+.tr-item b{display:block;font-size:17px}
+.tr-item span{color:var(--muted);font-size:15px}
+.hotels{margin-top:40px}
+.hotel{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hotel b{font-size:17px}
+.hotel span{display:block;color:var(--muted);font-size:14px}
+.hotel em{font-style:normal;font-weight:600;white-space:nowrap}
+.code{display:inline-block;margin-top:18px;font-size:15px;color:var(--muted)}
+.code b{color:var(--ink);font-family:ui-monospace,Menlo,monospace;background:var(--blue-50);padding:2px 8px;border-radius:6px}
+
+/* SPONSORS */
+.spons{display:grid;gap:36px}
+.tier{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:baseline;border-top:1px solid var(--line);padding-top:28px}
+.tier h3{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.names{display:flex;flex-wrap:wrap;gap:14px 44px;list-style:none}
+.names li{font-weight:600;letter-spacing:-.02em;color:#3A4356}
+.tier.t1 .names li{font-size:30px}
+.tier.t2 .names li{font-size:22px}
+.tier.t3 .names li{font-size:18px;font-weight:500}
+.names li.s{font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:0}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+.faq-list{border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;background:none;border:0;text-align:left;padding:24px 44px 24px 0;font-weight:600;font-size:18px;position:relative;letter-spacing:-.01em}
+.qa button::after{content:"";position:absolute;right:8px;top:50%;width:10px;height:10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+.qa button[aria-expanded="true"]::after{transform:translateY(-30%) rotate(-135deg)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.qa .ans > div{overflow:hidden}
+.qa .ans p{color:var(--muted);padding:0 40px 24px 0}
+.qa.open .ans{grid-template-rows:1fr}
+.contact-card{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.contact-card p{color:var(--muted);font-size:15px;margin-bottom:14px}
+.contact-card .row{display:flex;gap:10px;flex-wrap:wrap}
+.contact-card .btn{padding:10px 16px;font-size:15px}
+
+/* REGISTER */
+.reg{background:var(--ink);color:#fff}
+.reg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
+.reg .eyebrow{color:var(--sun)}
+.reg h2{font-size:clamp(34px,4.6vw,54px);margin:14px 0 20px}
+.reg h2 em{color:var(--sun)}
+.reg-copy p{color:#B7BECC;font-size:18px}
+.reg-points{list-style:none;margin-top:30px;display:grid;gap:14px;color:#D7DCE5;font-size:16px}
+.reg-points li{display:flex;gap:12px}
+.reg-points li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--sun);margin-top:10px}
+.form{background:var(--card);color:var(--ink);border-radius:22px;padding:40px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:20px}
+.field label,.field legend{display:block;font-weight:600;font-size:15px;margin-bottom:7px}
+.field .opt{font-weight:400;color:var(--muted)}
+.field input[type=text],.field input[type=email],.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:13px 14px;background:#FBFCFD;font-size:16px;transition:border-color .2s,box-shadow .2s}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 15px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-50)}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.err{display:none;color:var(--err);font-size:14px;margin-top:6px}
+.field.bad .err{display:block}
+fieldset.field{border:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chip span{display:block;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:15px;font-weight:500;transition:all .2s}
+.chip input:checked + span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:focus-visible + span{outline:2px solid var(--blue);outline-offset:2px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted)}
+.field .check{font-weight:400;margin:0}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue);flex:none}
+.summary{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--line);padding-top:22px;margin-top:6px;flex-wrap:wrap}
+.summary .tot{font-size:15px;color:var(--muted)}
+.summary .tot b{display:block;font-size:28px;color:var(--ink);letter-spacing:-.03em;line-height:1.2}
+.f-note{font-size:13px;color:var(--muted);margin-top:14px}
+.success{text-align:center;padding:30px 10px}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--blue-50);display:grid;place-items:center;margin:0 auto 20px}
+.success .tick::after{content:"";width:22px;height:12px;border-left:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(-45deg) translate(2px,-2px)}
+.success h3{font-size:28px;margin-bottom:10px}
+.success p{color:var(--muted);max-width:420px;margin:0 auto 8px}
+
+/* FOOTER */
+footer{padding:64px 0 40px;font-size:15px;color:var(--muted)}
+.f-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.f-top p{max-width:340px;margin-top:14px}
+.f-cols{display:flex;gap:64px;flex-wrap:wrap}
+.f-cols h4{color:var(--ink);font-size:14px;margin-bottom:12px}
+.f-cols ul{list-style:none;display:grid;gap:8px}
+.f-cols a{text-decoration:none}
+.f-cols a:hover{color:var(--ink)}
+.f-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:14px}
+
+/* REVEAL */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.on{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .burger{display:inline-flex}
+  .mmenu{position:fixed;inset:70px 0 auto;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 24px 28px;box-shadow:var(--shadow)}
+  .mmenu.open{display:block}
+  .mmenu ul{list-style:none}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:18px}
+  .mmenu .btn{display:flex;margin-top:20px;border:0;padding:14px}
+  .about-grid,.v-grid,.faq-grid,.reg-grid{grid-template-columns:1fr;gap:48px}
+  .sp-grid{grid-template-columns:repeat(2,1fr)}
+  .t-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .sec{padding:84px 0}
+  .wrap{padding:0 16px}
+  .nav-cta .btn{display:none}
+  .hero{padding-top:118px}
+  .hero-meta .dot{display:none}
+  .hero-meta{flex-direction:column;gap:2px}
+  .band{margin-top:52px}
+  .band-img{height:380px}
+  .count{position:relative;left:auto;bottom:auto;transform:none;margin:-64px 16px 0;width:auto;max-width:none;flex-direction:column;gap:18px;padding:22px 18px}
+  .count-label{text-align:center;max-width:none}
+  .cells{gap:10px;justify-content:center;width:100%}
+  .cell{min-width:0;flex:1}
+  .cell span{font-size:32px}
+  .count .btn{width:100%}
+  .photo-credit{display:none}
+  .about{padding-top:84px}
+  .facts .fact{padding:22px 18px}
+  .fact b{font-size:42px}
+  .sp-grid{grid-template-columns:1fr 1fr;gap:32px 14px}
+  .sp h3{font-size:18px;margin-top:14px}
+  .sp .role{font-size:14px}
+  .sp .talk{font-size:18px}
+  .tabs{display:flex}
+  .tab{flex:1;padding:10px 12px}
+  .slot{grid-template-columns:1fr;gap:6px;padding:20px 18px}
+  .room{justify-self:start;margin-top:6px}
+  .tier{grid-template-columns:1fr;gap:12px}
+  .tier.t1 .names li{font-size:24px}
+  .form{padding:26px 18px}
+  .f-row{grid-template-columns:1fr;gap:0}
+  .summary .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Common Ground 2027, home"><span class="logo-mark" aria-hidden="true"></span>Common Ground <small>’27</small></a>
+    <ul class="nav-links">
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#tickets">Tickets</a></li>
+      <li><a href="#venue">Venue &amp; travel</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-ink" href="#register">Get tickets</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <ul>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#venue">Venue &amp; travel</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn btn-blue" href="#register">Get tickets — early bird</a>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="hero-meta"><span><b>13–14 May 2027</b></span><span class="dot" aria-hidden="true"></span><span>Armazém 9, Lisbon</span><span class="dot" aria-hidden="true"></span><span>One room, 600 people</span></p>
+    <h1>Cities are made<br><em>on the street.</em></h1>
+    <p class="lede">Common Ground is a two-day conference on streets, homes and public space — for the planners, designers, engineers and council officers who actually change them.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-ink" href="#register">Book your ticket</a>
+      <a class="btn btn-line" href="#programme">See the programme</a>
+    </div>
+  </div>
+  <div class="band">
+    <img class="band-img" src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=2000&q=70&auto=format&fit=crop" alt="A yellow tram passing between pale stone buildings on a sunny street in Lisbon" fetchpriority="high">
+    <span class="photo-credit">Baixa, Lisbon — a short walk from the venue</span>
+    <div class="count" role="group" aria-label="Countdown to the conference">
+      <p class="count-label"><b>Doors open in</b>Thursday 13 May, 9:00 Lisbon time</p>
+      <div class="cells" aria-live="off">
+        <div class="cell"><span id="cd-d">—</span><small>Days</small></div>
+        <div class="cell"><span id="cd-h">—</span><small>Hours</small></div>
+        <div class="cell"><span id="cd-m">—</span><small>Min</small></div>
+        <div class="cell"><span id="cd-s">—</span><small>Sec</small></div>
+      </div>
+      <a class="btn btn-blue" href="#tickets">Early bird $420</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec about" id="about">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <p class="eyebrow">Why Common Ground</p>
+      <h2>Fewer slides about the future. <em>More of what worked.</em></h2>
+      <p>Every talk is a real project: a street that was closed to cars, a housing block that stayed affordable, a square that people now actually sit in. Speakers show the budget, the politics and the mistakes — not just the renders.</p>
+      <p>One room, no parallel tracks, long breaks and a walking tour on the second afternoon. You leave with ideas you can take to your own council meeting on Monday.</p>
+      <ul class="themes" aria-label="Themes">
+        <li>Streets &amp; mobility</li><li>Housing</li><li>Public space</li><li>Climate adaptation</li><li>Participation</li>
+      </ul>
+    </div>
+    <div class="facts rv" role="list">
+      <div class="fact" role="listitem"><b>2</b><span>days, single track — you never miss a talk</span></div>
+      <div class="fact" role="listitem"><b>16</b><span>case-study talks from 11 countries</span></div>
+      <div class="fact" role="listitem"><b>600</b><span>seats, so it stays a conversation</span></div>
+      <div class="fact" role="listitem"><b>4th</b><span>edition, after Rotterdam, Lyon and Valencia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="sec speakers" id="speakers">
+  <div class="wrap">
+    <div class="sec-head row rv">
+      <div>
+        <p class="eyebrow">Speakers</p>
+        <h2>The people who <em>built it,</em> not the people who blogged about it.</h2>
+      </div>
+      <a class="tlink" href="#programme">Full programme →</a>
+    </div>
+    <div class="sp-grid">
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=700&q=70&auto=format&fit=crop" alt="Portrait of Adaeze Nwosu" loading="lazy" width="700" height="875">
+        <h3>Adaeze Nwosu</h3>
+        <p class="role">Head of Street Design, City of Harlow Vale</p>
+        <p class="talk">“Forty school streets in one summer”</p>
+        <span class="day">Day 1 · Opening keynote</span>
+      </article>
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=70&auto=format&fit=crop" alt="Portrait of Tomás Ferreira" loading="lazy" width="700" height="875">
+        <h3>Tomás Ferreira</h3>
+        <p class="role">Architect, Atelier Ribeira</p>
+        <p class="talk">“Cheap, shaded, loved: redesigning a Lisbon market square”</p>
+        <span class="day">Day 1 · 11:30</span>
+      </article>
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&q=70&auto=format&fit=crop" alt="Portrait of Mei Lin Ong" loading="lazy" width="700" height="875">
+        <h3>Mei Lin Ong</h3>
+        <p class="role">Housing researcher, Northfield Institute</p>
+        <p class="talk">“What keeps rent low for thirty years”</p>
+        <span class="day">Day 1 · 14:00</span>
+      </article>
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=70&auto=format&fit=crop" alt="Portrait of Rafael Domingo" loading="lazy" width="700" height="875">
+        <h3>Rafael Domingo</h3>
+        <p class="role">Transport planner, Metro Region Partnership</p>
+        <p class="talk">“The bus lane nobody wanted, and now everybody uses”</p>
+        <span class="day">Day 2 · 09:30</span>
+      </article>
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=700&q=70&auto=format&fit=crop" alt="Portrait of Ingrid Halvorsen" loading="lazy" width="700" height="875">
+        <h3>Ingrid Halvorsen</h3>
+        <p class="role">Landscape architect, Fjordline Studio</p>
+        <p class="talk">“Sponge streets: designing for the wettest week of the year”</p>
+        <span class="day">Day 2 · 11:00</span>
+      </article>
+      <article class="sp rv">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=700&q=70&auto=format&fit=crop" alt="Portrait of David Mensah-Clarke" loading="lazy" width="700" height="875">
+        <h3>David Mensah-Clarke</h3>
+        <p class="role">Former deputy mayor, now independent</p>
+        <p class="talk">“How to lose a vote and still pedestrianise the high street”</p>
+        <span class="day">Day 2 · Closing keynote</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME -->
+<section class="sec" id="programme">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Programme</p>
+      <h2>Two days, <em>one room,</em> long lunches.</h2>
+      <p>Talks run in the Main Hall. Small-group sessions happen in the Studio and the River Room, with the room shown on each slot.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Conference days">
+      <button class="tab" role="tab" id="tab-1" aria-selected="true" aria-controls="day-1" tabindex="0">Day 1<small>Thu 13 May · Streets &amp; homes</small></button>
+      <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="day-2" tabindex="-1">Day 2<small>Fri 14 May · Water, transit &amp; politics</small></button>
+    </div>
+
+    <div class="panel" id="day-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+      <div class="agenda">
+        <div class="slot brk"><time>08:30</time><div><h3>Registration and coffee on the river terrace</h3></div><span class="room">Terrace</span></div>
+        <div class="slot"><time>09:15</time><div><h3>Forty school streets in one summer</h3><p>Adaeze Nwosu — opening keynote</p></div><span class="room">Main Hall</span></div>
+        <div class="slot"><time>10:15</time><div><h3>Counting people, not cars: a cheap way to measure a street</h3><p>Priya Raman, Open Streets Lab</p></div><span class="room">Main Hall</span></div>
+        <div class="slot brk"><time>10:55</time><div><h3>Break — 35 minutes, on purpose</h3></div><span class="room">Terrace</span></div>
+        <div class="slot"><time>11:30</time><div><h3>Cheap, shaded, loved: redesigning a Lisbon market square</h3><p>Tomás Ferreira, Atelier Ribeira</p></div><span class="room">Main Hall</span></div>
+        <div class="slot brk"><time>12:30</time><div><h3>Lunch — local, mostly vegetarian, seated</h3></div><span class="room">River Room</span></div>
+        <div class="slot"><time>14:00</time><div><h3>What keeps rent low for thirty years</h3><p>Mei Lin Ong, Northfield Institute</p></div><span class="room">Main Hall</span></div>
+        <div class="slot"><time>15:00</time><div><h3>Workshop: run a street trial with a $5,000 budget</h3><p>Small groups of 30 · sign up at the desk</p></div><span class="room">Studio</span></div>
+        <div class="slot"><time>16:30</time><div><h3>Panel: who gets a say in a neighbourhood plan?</h3><p>Four speakers, one moderator, open questions</p></div><span class="room">Main Hall</span></div>
+        <div class="slot brk"><time>18:00</time><div><h3>Evening drinks by the water — everyone welcome</h3></div><span class="room">Terrace</span></div>
+      </div>
+    </div>
+
+    <div class="panel" id="day-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+      <div class="agenda">
+        <div class="slot brk"><time>08:45</time><div><h3>Coffee and pastel de nata</h3></div><span class="room">Terrace</span></div>
+        <div class="slot"><time>09:30</time><div><h3>The bus lane nobody wanted, and now everybody uses</h3><p>Rafael Domingo, Metro Region Partnership</p></div><span class="room">Main Hall</span></div>
+        <div class="slot"><time>10:20</time><div><h3>Trees before tarmac: a decade of shade data</h3><p>Sofia Andrade, Urban Canopy Trust</p></div><span class="room">Main Hall</span></div>
+        <div class="slot"><time>11:00</time><div><h3>Sponge streets: designing for the wettest week of the year</h3><p>Ingrid Halvorsen, Fjordline Studio</p></div><span class="room">Main Hall</span></div>
+        <div class="slot brk"><time>12:00</time><div><h3>Lunch and speaker tables — sit with whoever you came to hear</h3></div><span class="room">River Room</span></div>
+        <div class="slot"><time>13:30</time><div><h3>Guided walk: Baixa to Cais do Sodré, 90 minutes</h3><p>Three routes, led by local planners · comfortable shoes</p></div><span class="room">Meet at entrance</span></div>
+        <div class="slot"><time>15:30</time><div><h3>Five-minute stories: ten cities, one slide each</h3><p>Lightning talks chosen from attendee submissions</p></div><span class="room">Main Hall</span></div>
+        <div class="slot"><time>16:30</time><div><h3>How to lose a vote and still pedestrianise the high street</h3><p>David Mensah-Clarke — closing keynote</p></div><span class="room">Main Hall</span></div>
+        <div class="slot brk"><time>17:30</time><div><h3>Close and farewell — see you in 2028</h3></div><span class="room">Main Hall</span></div>
+      </div>
+    </div>
+    <p class="agenda-note">All Main Hall talks are filmed and live-captioned. Recordings go to ticket holders two weeks after the event.</p>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section class="sec" id="tickets" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Tickets</p>
+      <h2>Simple prices, <em>lunch included.</em></h2>
+      <p>Every ticket covers talks, coffee, lunch, the evening drinks and the recordings. Prices in USD, VAT included.</p>
+    </div>
+    <div class="eb rv"><span class="eb-tag">Early bird</span><span>Save up to $120 per person until <b>31 January 2027</b> — <span id="eb-left">a few weeks</span> left.</span></div>
+    <div class="t-grid">
+      <article class="tk rv">
+        <h3>Day pass</h3>
+        <p class="who">Choose Thursday or Friday</p>
+        <p class="price"><b>$240</b><s>$290</s></p>
+        <p class="price-note">Early bird · then $290</p>
+        <ul><li>All talks on your chosen day</li><li>Lunch and coffee</li><li>Evening drinks (Thursday)</li><li>Recordings of both days</li></ul>
+        <a class="btn btn-line" href="#register" data-ticket="day">Choose day pass</a>
+      </article>
+      <article class="tk feat rv">
+        <h3>Full conference</h3>
+        <p class="who">Both days, everything included</p>
+        <p class="price"><b>$420</b><s>$540</s></p>
+        <p class="price-note">Early bird · then $540</p>
+        <ul><li>Both days of talks</li><li>Street-trial workshop seat</li><li>Guided city walk on Friday</li><li>Lunches, drinks and recordings</li></ul>
+        <a class="btn btn-blue" href="#register" data-ticket="full">Choose full conference</a>
+      </article>
+      <article class="tk rv">
+        <h3>Team of five</h3>
+        <p class="who">For councils, studios and NGOs</p>
+        <p class="price"><b>$1,800</b><s>$2,300</s></p>
+        <p class="price-note">Early bird · five full tickets · names can change</p>
+        <ul><li>Five full-conference tickets</li><li>Reserved table at both lunches</li><li>One invoice, PO accepted</li><li>Swap names until 1 May</li></ul>
+        <a class="btn btn-line" href="#register" data-ticket="team">Choose team ticket</a>
+      </article>
+    </div>
+    <p class="t-foot">Students and community groups: 40 free places, funded by our partners. <a class="tlink" href="#faq">How to apply</a></p>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="sec venue" id="venue">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Venue &amp; travel</p>
+      <h2>A riverside warehouse, <em>ten minutes</em> from the old town.</h2>
+    </div>
+    <div class="v-grid">
+      <div class="rv">
+        <div class="v-photo"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=70&auto=format&fit=crop" alt="The bright main hall with round tables, a timber ceiling and three projection screens" loading="lazy" width="1200" height="900"></div>
+        <div class="addr">
+          <h3>Armazém 9</h3>
+          <p>Cais do Tejo 9, 1200-000 Lisbon, Portugal · step-free access throughout</p>
+        </div>
+        <div class="map" role="img" aria-label="Simple map: Armazém 9 sits on the riverfront, a short walk east of Cais do Sodré metro station">
+          <span class="metro">Cais do Sodré</span>
+          <span class="pin">Armazém 9</span>
+          <div class="river"><span>River Tagus</span></div>
+        </div>
+        <div class="v-actions">
+          <a class="btn btn-ink" href="https://maps.google.com/?q=Cais+do+Sodre+Lisbon" target="_blank" rel="noopener">Get directions</a>
+          <a class="btn btn-line" href="tel:01700000000">Call 017 00000000</a>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="travel">
+          <h3>Getting there</h3>
+          <div class="tr-item"><b>From the airport — 35 min by metro</b><span>Red line to Alameda, green line to Cais do Sodré, then a seven-minute walk along the river. A taxi takes about 25 minutes.</span></div>
+          <div class="tr-item"><b>By train — 4 min walk</b><span>Cais do Sodré station has trains from Cascais and the riverside ferries from Cacilhas and Seixal.</span></div>
+          <div class="tr-item"><b>By bike</b><span>Covered bike parking for 120 bikes at the entrance. The riverside path runs right past the door.</span></div>
+        </div>
+        <div class="hotels">
+          <h3 class="eyebrow" style="font-size:15px;margin-bottom:6px">Partner hotels</h3>
+          <div class="hotel"><div><b>Casa do Rio</b><span>3 min walk · quiet rooms on the river</span></div><em>$145 / night</em></div>
+          <div class="hotel"><div><b>Hotel Lumiar Baixa</b><span>12 min walk · in the old town</span></div><em>$128 / night</em></div>
+          <div class="hotel"><div><b>Pátio Hostel &amp; Rooms</b><span>9 min walk · private rooms and dorms</span></div><em>from $48</em></div>
+          <p class="code">Book with the code <b>GROUND27</b> before 1 April for these rates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="sec" id="partners">
+  <div class="wrap">
+    <div class="sec-head row rv">
+      <div>
+        <p class="eyebrow">Partners</p>
+        <h2>Made possible by <em>people who build cities.</em></h2>
+        <p>Partners fund the free student and community places. None of them buy a speaking slot.</p>
+      </div>
+      <a class="tlink" href="mailto:hello@example.com?subject=Partnering%20with%20Common%20Ground">Become a partner →</a>
+    </div>
+    <div class="spons rv">
+      <div class="tier t1"><h3>Lead partners</h3><ul class="names"><li>Northbank Works</li><li class="s">Terra &amp; Tide</li></ul></div>
+      <div class="tier t2"><h3>Partners</h3><ul class="names"><li>Halden Civic</li><li class="s">Openfield</li><li>Pavé Studio</li><li>Greystone Trust</li></ul></div>
+      <div class="tier t3"><h3>Supporters</h3><ul class="names"><li>Kerb Lab</li><li>Linden Housing Co-op</li><li>Mosaic Mobility</li><li>Arcadia Planning</li><li>Fieldnotes Press</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="rv">
+      <p class="eyebrow">FAQ</p>
+      <h2 style="font-size:clamp(34px,4.6vw,52px);margin:14px 0 18px">Good <em>questions.</em></h2>
+      <p style="color:var(--muted);font-size:18px">If yours isn’t here, write to us. A real person on the team answers within one working day.</p>
+      <div class="contact-card">
+        <p>Questions about tickets, invoices or access needs:</p>
+        <div class="row">
+          <a class="btn btn-ink" href="mailto:hello@example.com">hello@example.com</a>
+          <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="faq-list rv">
+      <div class="qa"><button aria-expanded="false" aria-controls="a1" id="q1">Can I get a refund if I can’t come?</button><div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p>Yes — a full refund until 1 April 2027, and 50% until 1 May. After that you can transfer your ticket to a colleague for free at any time.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false" aria-controls="a2" id="q2">How do the free student and community places work?</button><div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>Send us two or three sentences on what you work on and why you want to come. We pick 40 people in February, aiming for a mix of countries and backgrounds. Travel help is available for ten of them.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false" aria-controls="a3" id="q3">Is the venue accessible?</button><div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>Armazém 9 is step-free, with accessible toilets on both floors, a hearing loop in the Main Hall and live captions on every talk. There is a quiet room open all day. Tell us about any other needs when you register.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false" aria-controls="a4" id="q4">Will talks be in English?</button><div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>Yes, all talks are in English. Live captions are shown on screen, and the guided walks are offered in English and Portuguese.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false" aria-controls="a5" id="q5">Can my employer pay by invoice?</button><div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>Yes. Choose “invoice” after registering and we send a VAT invoice within two working days. Purchase orders from councils and public bodies are welcome.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false" aria-controls="a6" id="q6">Is there a code of conduct?</button><div class="ans" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Everyone — attendees, speakers, partners and staff — agrees to it when registering. Two named team members are on hand both days if anything goes wrong.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="sec reg" id="register">
+  <div class="wrap reg-grid">
+    <div class="reg-copy rv">
+      <p class="eyebrow">Register</p>
+      <h2>Save your seat <em>in Lisbon.</em></h2>
+      <p>Reserve now and we hold your early-bird price for seven days while you sort payment or an invoice.</p>
+      <ul class="reg-points">
+        <li>Payment link or invoice sent by email</li>
+        <li>Full refund until 1 April 2027</li>
+        <li>Name changes are always free</li>
+      </ul>
+    </div>
+    <div class="form rv" id="formbox">
+      <form id="regform" novalidate>
+        <div class="f-row">
+          <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name" required><p class="err" id="e-name">Please enter your name.</p></div>
+          <div class="field"><label for="f-email">Work email</label><input type="email" id="f-email" name="email" autocomplete="email" aria-describedby="e-email" required><p class="err" id="e-email">Please enter a valid email address.</p></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-org">Organisation <span class="opt">(optional)</span></label><input type="text" id="f-org" name="org" autocomplete="organization"></div>
+          <div class="field"><label for="f-ticket">Ticket</label>
+            <select id="f-ticket" name="ticket" aria-describedby="e-ticket" required>
+              <option value="">Choose a ticket</option>
+              <option value="day">Day pass — $240</option>
+              <option value="full">Full conference — $420</option>
+              <option value="team">Team of five — $1,800</option>
+            </select><p class="err" id="e-ticket">Please choose a ticket.</p></div>
+        </div>
+        <fieldset class="field" id="day-field" hidden>
+          <legend>Which day?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="day" value="Thursday 13 May" checked><span>Thursday 13 May</span></label>
+            <label class="chip"><input type="radio" name="day" value="Friday 14 May"><span>Friday 14 May</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Lunch <span class="opt">(optional)</span></legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="diet" value="any" checked><span>Anything</span></label>
+            <label class="chip"><input type="radio" name="diet" value="veg"><span>Vegetarian</span></label>
+            <label class="chip"><input type="radio" name="diet" value="vegan"><span>Vegan</span></label>
+            <label class="chip"><input type="radio" name="diet" value="gf"><span>Gluten-free</span></label>
+          </div>
+        </fieldset>
+        <div class="field" id="coc-field"><label class="check"><input type="checkbox" id="f-coc" aria-describedby="e-coc" required> <span>I agree to the Common Ground code of conduct.</span></label><p class="err" id="e-coc">Please agree to the code of conduct to continue.</p></div>
+        <div class="summary">
+          <p class="tot" aria-live="polite">Total today<b id="total">—</b></p>
+          <button class="btn btn-blue" type="submit">Reserve my ticket</button>
+        </div>
+        <p class="f-note">Nothing is charged now. This is a demo form and doesn’t send anything.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>Common Ground <small>’27</small></a>
+        <p>A two-day conference on streets, homes and public space. 13–14 May 2027, Armazém 9, Lisbon.</p>
+      </div>
+      <div class="f-cols">
+        <div><h4>Conference</h4><ul><li><a href="#speakers">Speakers</a></li><li><a href="#programme">Programme</a></li><li><a href="#tickets">Tickets</a></li><li><a href="#venue">Venue</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="mailto:hello@example.com">hello@example.com</a></li><li><a href="tel:01700000000">017 00000000</a></li><li><a href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      </div>
+    </div>
+    <div class="f-bot"><span>© 2026 Common Ground Conferences (fictional)</span><span>Code of conduct · Privacy · Accessibility</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var doc=document.documentElement;doc.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav shadow + mobile menu
+  var nav=document.getElementById('nav'),burger=document.getElementById('burger'),mm=document.getElementById('mmenu');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  function setMenu(open){burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Close menu':'Open menu');mm.classList.toggle('open',open);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  mm.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  // countdown (pauses when tab hidden)
+  var target=Date.parse('2027-05-13T09:00:00+01:00'),ebEnd=Date.parse('2027-01-31T23:59:00Z');
+  var els={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+  var timer=null;
+  function pad(n){return n<10?'0'+n:String(n);}
+  function tick(){
+    var diff=Math.max(0,target-Date.now()),t=Math.floor(diff/1000);
+    els.d.textContent=Math.floor(t/86400);els.h.textContent=pad(Math.floor(t%86400/3600));
+    els.m.textContent=pad(Math.floor(t%3600/60));els.s.textContent=pad(t%60);
+    if(diff===0)stop();
+  }
+  function start(){if(!timer){tick();timer=setInterval(tick,1000);}}
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+  if(!document.hidden)start();else tick();
+  var ebDays=Math.ceil((ebEnd-Date.now())/86400000),ebEl=document.getElementById('eb-left');
+  ebEl.textContent=ebDays>1?ebDays+' days':(ebDays===1?'1 day':'0 days');
+
+  // tabs
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function select(tab,focus){
+    tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;
+      var p=document.getElementById(t.getAttribute('aria-controls'));p.hidden=!on;if(on){p.classList.remove('in');void p.offsetWidth;p.classList.add('in');}});
+    if(focus)tab.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t);});
+    t.addEventListener('keydown',function(e){var k=e.key,n=null;
+      if(k==='ArrowRight')n=tabs[(i+1)%tabs.length];else if(k==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      else if(k==='Home')n=tabs[0];else if(k==='End')n=tabs[tabs.length-1];
+      if(n){e.preventDefault();select(n,true);}});
+  });
+
+  // FAQ accordion
+  [].forEach.call(document.querySelectorAll('.qa button'),function(b){
+    b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));b.parentNode.classList.toggle('open',open);});
+  });
+
+  // form
+  var form=document.getElementById('regform'),sel=document.getElementById('f-ticket'),dayF=document.getElementById('day-field'),total=document.getElementById('total');
+  var prices={day:'$240',full:'$420',team:'$1,800'},names={day:'Day pass',full:'Full conference',team:'Team of five'};
+  function upd(){total.textContent=prices[sel.value]||'—';dayF.hidden=sel.value!=='day';}
+  sel.addEventListener('change',upd);upd();
+  [].forEach.call(document.querySelectorAll('[data-ticket]'),function(a){a.addEventListener('click',function(){sel.value=a.getAttribute('data-ticket');upd();validate(sel);});});
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function validate(el){
+    var ok;
+    if(el.type==='checkbox')ok=el.checked;else if(el.type==='email')ok=emailRe.test(el.value.trim());else ok=el.value.trim().length>(el.id==='f-name'?1:0);
+    var f=el.closest('.field');f.classList.toggle('bad',!ok);el.setAttribute('aria-invalid',String(!ok));return ok;
+  }
+  var req=[].slice.call(form.querySelectorAll('[required]'));
+  req.forEach(function(el){
+    el.addEventListener('blur',function(){if(el.type!=='checkbox'&&el.value)validate(el);});
+    el.addEventListener('input',function(){if(el.closest('.field').classList.contains('bad'))validate(el);});
+    el.addEventListener('change',function(){if(el.closest('.field').classList.contains('bad'))validate(el);});
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var first=null;
+    req.forEach(function(el){if(!validate(el)&&!first)first=el;});
+    if(first){first.focus();return;}
+    var nm=document.getElementById('f-name').value.trim().split(/\s+/)[0],em=document.getElementById('f-email').value.trim();
+    var t=names[sel.value]+(sel.value==='day'?' ('+form.querySelector('[name=day]:checked').value+')':'');
+    var box=document.getElementById('formbox');
+    box.innerHTML='<div class="success" role="status" tabindex="-1"><div class="tick" aria-hidden="true"></div><h3></h3><p class="m1"></p><p class="m2"></p></div>';
+    box.querySelector('h3').textContent='See you in Lisbon, '+nm+'.';
+    box.querySelector('.m1').textContent='Your '+t+' is held at '+prices[sel.value]+' for seven days.';
+    box.querySelector('.m2').textContent='We’ve sent the payment link and invoice option to '+em+'.';
+    box.querySelector('.success').focus();
+  });
+
+  // reveal
+  var rv=[].slice.call(document.querySelectorAll('.rv'));
+  if(reduce||!('IntersectionObserver' in window)){rv.forEach(function(el){el.classList.add('on');});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px'});rv.forEach(function(el){io.observe(el);});}
+})();
+</script>
+</body>
+</html>

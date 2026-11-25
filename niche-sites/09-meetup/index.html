@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Thursday — a monthly meetup for local designers &amp; developers</title>
+<meta name="description" content="Second Thursday is a free monthly evening meetup for designers and developers in the Harbour District. Two short talks, show &amp; tell, pizza and good conversation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F2F7;
+  --card:#FFFFFF;
+  --ink:#1E1B2E;
+  --muted:#5D5970;
+  --line:#E1DEEA;
+  --soft:#EBE8F2;
+  --accent:#5A43C8;
+  --accent-ink:#4532A8;
+  --accent-tint:#ECE8FB;
+  --ok:#1F7A55;
+  --err:#B3261E;
+  --radius:22px;
+  --sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+  --wrap:1160px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.08}
+p{margin:0}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--accent)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:10px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font:600 16px/1 var(--sans);padding:15px 24px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-ink)}
+.btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn svg{width:18px;height:18px;flex:none}
+
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+.kicker::before{content:"";width:22px;height:1.5px;background:currentColor}
+.sec{padding:120px 0}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(34px,4.4vw,52px);margin:16px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:box-shadow .3s ease}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(244,242,247,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s ease;z-index:-1}
+.nav.scrolled::before{border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:19px;letter-spacing:-.02em}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:22px;font-weight:400;line-height:1}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.nav .btn{padding:11px 18px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative;transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--ink);transition:transform .25s ease}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 0;text-align:center}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 8px;font-size:14px;color:var(--muted)}
+.hero-tag b{background:var(--accent-tint);color:var(--accent-ink);border-radius:999px;padding:3px 10px;font-weight:600;font-size:13px}
+.hero h1{font-size:clamp(44px,7vw,90px);margin:26px auto 22px;max-width:960px;letter-spacing:-.035em}
+.hero h1 em.s{display:block;font-size:1.04em;letter-spacing:-.02em}
+.hero-lead{max-width:600px;margin:0 auto;color:var(--muted);font-size:19px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:34px 0 0}
+.hero-note{margin-top:16px;font-size:14px;color:var(--muted)}
+.hero-photo{position:relative;margin:64px auto 0;max-width:1320px;padding:0 28px}
+.hero-photo figure{margin:0;border-radius:32px;overflow:hidden;aspect-ratio:21/9;background:var(--soft)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.ticket{position:relative;max-width:880px;margin:-86px auto 0;background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 30px 60px -30px rgba(30,27,46,.28);display:grid;grid-template-columns:1.25fr 1fr;text-align:left;overflow:hidden}
+.ticket-main{padding:30px 34px}
+.ticket-main .lbl{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+.ticket-main h2{font-size:28px;margin:10px 0 14px;letter-spacing:-.02em}
+.ticket-meta{display:grid;gap:8px;font-size:15.5px;color:var(--muted)}
+.ticket-meta div{display:flex;gap:10px;align-items:center}
+.ticket-meta svg{width:18px;height:18px;color:var(--accent);flex:none}
+.ticket-side{border-left:1.5px dashed var(--line);padding:30px 34px;background:linear-gradient(180deg,#FBFAFD,#F7F5FB);display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.count div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 0 8px}
+.count b{display:block;font-size:28px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.1}
+.count span{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.count-done{display:none;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--accent-ink);line-height:1.2}
+.spots{font-size:14.5px;color:var(--muted)}
+.spots strong{color:var(--ink)}
+.bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:71%;background:var(--accent);border-radius:99px;transition:width .8s ease}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-big{font-size:clamp(26px,3vw,36px);line-height:1.3;letter-spacing:-.02em;font-weight:500}
+.about-big em.s{font-size:1.06em}
+.fit{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.fit li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:22px 0;border-top:1px solid var(--line)}
+.fit li:last-child{border-bottom:1px solid var(--line)}
+.fit .ic{width:44px;height:44px;border-radius:14px;background:var(--accent-tint);color:var(--accent-ink);display:grid;place-items:center}
+.fit .ic svg{width:22px;height:22px}
+.fit h3{font-size:19px;letter-spacing:-.015em;margin:2px 0 4px}
+.fit p{color:var(--muted);font-size:16px}
+.stats{display:flex;gap:56px;margin-top:44px;flex-wrap:wrap}
+.stats div b{display:block;font-family:var(--serif);font-weight:400;font-size:54px;line-height:1;letter-spacing:-.02em}
+.stats div span{font-size:14.5px;color:var(--muted)}
+
+/* ---------- run of show ---------- */
+.show{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.show-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start}
+.speakers{display:grid;gap:16px;margin-top:8px}
+.speaker{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--paper)}
+.speaker .av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:18px;color:#fff}
+.speaker h3{font-size:18px;letter-spacing:-.01em}
+.speaker p{font-size:15px;color:var(--muted);line-height:1.45;margin-top:3px}
+.speaker .when{font-size:13px;color:var(--accent-ink);font-weight:600;margin-bottom:2px}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:83px;top:12px;bottom:12px;width:1.5px;background:var(--line)}
+.timeline li{display:grid;grid-template-columns:70px 28px 1fr;gap:0;align-items:start;padding:0 0 30px}
+.timeline li:last-child{padding-bottom:0}
+.timeline time{font-weight:600;font-variant-numeric:tabular-nums;font-size:16px;padding-top:1px}
+.timeline .dot{width:12px;height:12px;border-radius:50%;background:var(--card);border:2.5px solid var(--accent);margin:7px 0 0 8px;position:relative;z-index:1}
+.timeline h3{font-size:19px;letter-spacing:-.015em}
+.timeline p{color:var(--muted);font-size:15.5px;margin-top:3px}
+.show-note{margin-top:34px;padding:18px 22px;border-radius:16px;background:var(--accent-tint);color:var(--accent-ink);font-size:15.5px}
+
+/* ---------- past events ---------- */
+.past-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:auto auto;gap:20px}
+.past{margin:0;position:relative;border-radius:24px;overflow:hidden;background:var(--soft)}
+.past img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.past:hover img{transform:scale(1.03)}
+.past figcaption{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;color:#fff;background:linear-gradient(180deg,transparent,rgba(20,17,34,.78))}
+.past figcaption b{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.past figcaption span{font-size:14px;opacity:.88}
+.past.big{grid-row:span 2;min-height:560px}
+.past.sm{min-height:270px}
+.past.wide{grid-column:span 2}
+.past-list{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.past-list div{padding:18px 0;border-top:1px solid var(--line);font-size:15.5px}
+.past-list b{display:block;font-weight:600}
+.past-list span{color:var(--muted)}
+
+/* ---------- organisers ---------- */
+.orgs{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.org figure{margin:0 0 18px;border-radius:24px;overflow:hidden;aspect-ratio:4/4.4;background:var(--soft)}
+.org img{width:100%;height:100%;object-fit:cover}
+.org h3{font-size:22px;letter-spacing:-.02em}
+.org .role{color:var(--accent-ink);font-size:14.5px;font-weight:600;margin:4px 0 8px}
+.org p{color:var(--muted);font-size:16px}
+
+/* ---------- code of conduct ---------- */
+.coc{background:var(--ink);color:#EDEBF4;border-radius:36px;padding:72px;display:grid;grid-template-columns:1fr 1.3fr;gap:64px}
+.coc .kicker{color:#BDB2F5}
+.coc h2{font-size:clamp(32px,4vw,46px);margin:16px 0 18px;color:#fff}
+.coc h2 em.s{color:#C9BFFA}
+.coc-lead{color:#BCB8CC;font-size:17px}
+.coc-lead a{color:#fff}
+.rules{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:34px 36px}
+.rules li b{display:block;color:#fff;font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.rules li b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#A797F5;margin-right:10px;vertical-align:2px}
+.rules li span{color:#BCB8CC;font-size:15.5px}
+
+/* ---------- location ---------- */
+.loc-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:stretch}
+.map{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:#EEEDF2;min-height:420px}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:56%;top:61%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin-card{background:var(--card);border-radius:14px;padding:10px 14px;font-size:14px;box-shadow:0 14px 30px -14px rgba(30,27,46,.35);white-space:nowrap;border:1px solid var(--line)}
+.pin-card b{display:block;font-size:15px}
+.pin-dot{width:20px;height:20px;border-radius:50%;background:var(--accent);border:4px solid #fff;box-shadow:0 0 0 8px rgba(90,67,200,.18);margin-top:10px}
+.loc-card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:22px}
+.loc-card h3{font-size:26px;letter-spacing:-.02em}
+.loc-card address{font-style:normal;color:var(--muted);font-size:17px;margin-top:6px}
+.loc-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.loc-list li{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:15.5px;color:var(--muted)}
+.loc-list svg{width:20px;height:20px;color:var(--accent);margin-top:2px}
+.loc-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+
+/* ---------- rsvp ---------- */
+.rsvp{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+.rsvp h2{font-size:clamp(36px,4.6vw,56px);margin:16px 0 18px}
+.rsvp-lead{color:var(--muted);font-size:18px}
+.join{margin-top:36px;display:grid;gap:14px}
+.join a{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;padding:18px 20px;border-radius:20px;background:var(--card);border:1px solid var(--line);text-decoration:none;transition:border-color .2s ease,transform .2s ease}
+.join a:hover{border-color:var(--accent);transform:translateY(-1px)}
+.join .ji{width:48px;height:48px;border-radius:14px;display:grid;place-items:center}
+.join .ji svg{width:24px;height:24px}
+.join b{display:block;font-size:17px;letter-spacing:-.01em}
+.join span{font-size:14.5px;color:var(--muted)}
+.join .arr{color:var(--muted);font-size:20px}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:30px;padding:40px;box-shadow:0 30px 60px -40px rgba(30,27,46,.25)}
+.form-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:26px;flex-wrap:wrap}
+.form-top h3{font-size:24px;letter-spacing:-.02em}
+.form-top span{font-size:14.5px;color:var(--muted)}
+.field{margin-bottom:20px}
+.field label,.field legend{display:block;font-weight:600;font-size:15px;margin-bottom:8px;padding:0}
+.field input[type=text],.field input[type=email]{width:100%;font:400 17px var(--sans);color:var(--ink);padding:15px 16px;border-radius:14px;border:1.5px solid var(--line);background:#FCFBFE;transition:border-color .2s ease,background .2s}
+.field input:focus{outline:none;border-color:var(--accent);background:#fff}
+.field.bad input{border-color:var(--err);background:#FFF9F8}
+.err{display:none;color:var(--err);font-size:14px;margin-top:7px}
+.field.bad .err{display:block}
+fieldset.field{border:0;margin:0 0 20px;padding:0;min-width:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg label{margin:0;font-weight:500;cursor:pointer;position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:#FCFBFE;font-size:16px;text-align:center;transition:all .2s ease}
+.seg input:checked+span{border-color:var(--accent);background:var(--accent-tint);color:var(--accent-ink);font-weight:600}
+.seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.plus-name{display:none;margin-top:12px}
+.plus-name.on{display:block}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);margin:6px 0 24px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--accent);margin:2px 0 0;flex:none}
+.form-card .btn{width:100%;padding:17px}
+.small{font-size:13.5px;color:var(--muted);text-align:center;margin-top:14px}
+.success{display:none;text-align:center;padding:30px 6px}
+.success.on{display:block;animation:rise .5s ease both}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--accent-tint);color:var(--accent-ink);display:grid;place-items:center;margin:0 auto 20px}
+.success .tick svg{width:30px;height:30px}
+.success h3{font-size:32px;letter-spacing:-.02em}
+.success h3 em.s{display:block}
+.success p{color:var(--muted);margin:12px auto 0;max-width:380px}
+.success .btn{width:auto;margin-top:24px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- footer ---------- */
+footer{padding:64px 0 48px;border-top:1px solid var(--line);margin-top:40px}
+.foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+.foot p{color:var(--muted);font-size:15px;max-width:340px;margin-top:14px}
+.foot-links{display:flex;gap:56px;flex-wrap:wrap}
+.foot-links h4{margin:0 0 12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.foot-links a{display:block;text-decoration:none;font-size:15px;margin-bottom:8px}
+.foot-links a:hover{color:var(--accent-ink)}
+.foot-base{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .burger{display:inline-flex}
+  .mmenu{position:fixed;top:72px;left:0;right:0;z-index:49;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 28px 26px;box-shadow:0 20px 40px -20px rgba(30,27,46,.2)}
+  .mmenu.open{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px;font-weight:500}
+  .mmenu .btn{display:flex;margin-top:18px;border-bottom:0;color:#fff}
+  .about-grid,.show-grid,.rsvp,.coc,.loc-grid{grid-template-columns:1fr;gap:48px}
+  .coc{padding:56px 40px}
+  .past-grid{grid-template-columns:1fr 1fr}
+  .past.big{grid-column:span 2;grid-row:auto;min-height:380px}
+  .orgs{grid-template-columns:repeat(3,1fr);gap:18px}
+  .ticket{grid-template-columns:1fr;margin:-60px 20px 0}
+  .ticket-side{border-left:0;border-top:1.5px dashed var(--line)}
+  .sec{padding:96px 0}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .nav .btn-primary{display:none}
+  .mmenu{padding:6px 16px 22px}
+  .hero{padding:118px 0 0}
+  .hero-tag{font-size:13px}
+  .hero h1{margin:22px auto 18px}
+  .hero-lead{font-size:17px}
+  .hero-ctas .btn{width:100%}
+  .hero-photo{padding:0 16px;margin-top:40px}
+  .hero-photo figure{aspect-ratio:4/3;border-radius:22px}
+  .ticket{margin:-40px 10px 0;border-radius:22px}
+  .ticket-main,.ticket-side{padding:24px 22px}
+  .ticket-main h2{font-size:24px}
+  .count b{font-size:24px}
+  .sec{padding:80px 0}
+  .sec-head{margin-bottom:38px}
+  .stats{gap:30px}
+  .stats div b{font-size:44px}
+  .timeline::before{left:71px}
+  .timeline li{grid-template-columns:58px 28px 1fr}
+  .past-grid{grid-template-columns:1fr}
+  .past.big{grid-column:auto;min-height:320px}
+  .past.sm{min-height:240px}
+  .past.wide{grid-column:auto}
+  .past-list{grid-template-columns:1fr;gap:0}
+  .orgs{grid-template-columns:1fr;gap:22px}
+  .org{display:grid;grid-template-columns:112px 1fr;gap:0 18px;align-items:start}
+  .org figure{grid-row:span 3;margin:0;aspect-ratio:1/1.1;border-radius:18px}
+  .org h3{font-size:20px;margin-top:4px}
+  .org .role{margin:2px 0 6px}
+  .org p{font-size:15px}
+  .coc{padding:44px 22px;border-radius:26px}
+  .rules{grid-template-columns:1fr;gap:24px}
+  .map{min-height:340px;border-radius:22px}
+  .loc-card{padding:26px 22px;border-radius:22px}
+  .loc-btns .btn{flex:1 1 100%}
+  .form-card{padding:28px 20px;border-radius:24px}
+  .foot-links{gap:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Second Thursday home"><span class="logo-mark" aria-hidden="true">2</span>Second Thursday</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#next">Next event</a>
+      <a href="#past">Past events</a>
+      <a href="#organisers">Organisers</a>
+      <a href="#venue">Venue</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://wa.me/0000000000">Join the group</a>
+      <a class="btn btn-primary" href="#rsvp">RSVP — it’s free</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#about">About</a>
+  <a href="#next">Next event</a>
+  <a href="#past">Past events</a>
+  <a href="#organisers">Organisers</a>
+  <a href="#venue">Venue</a>
+  <a class="btn btn-primary" href="#rsvp">RSVP — it’s free</a>
+</div>
+
+<main id="main">
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-tag rv"><b>#47</b> Thursday 10 December · doors 6:30 pm</span>
+    <h1 class="rv">Make good things.<em class="s">Meet the people who make them too.</em></h1>
+    <p class="hero-lead rv">Second Thursday is a free, friendly evening for designers and developers in the Harbour District. Two short talks, a little show &amp; tell, pizza, and the kind of conversation you don’t get on a video call.</p>
+    <div class="hero-ctas rv">
+      <a class="btn btn-primary" href="#rsvp">Save me a spot</a>
+      <a class="btn btn-ghost" href="#next">What happens on the night</a>
+    </div>
+    <p class="hero-note rv">Every second Thursday of the month · No tickets, no sales pitches · First-timers very welcome</p>
+  </div>
+
+  <div class="hero-photo">
+    <figure class="rv"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1800&q=70&auto=format&fit=crop" alt="A long table of meetup guests talking and laughing over food and drinks after the talks" width="1800" height="1200" fetchpriority="high"></figure>
+    <div class="ticket rv" aria-labelledby="ticket-title">
+      <div class="ticket-main">
+        <span class="lbl">Next meetup</span>
+        <h2 id="ticket-title">Small tools, made with care</h2>
+        <div class="ticket-meta">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Thursday 10 December 2026</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6:30 – 9:00 pm</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>The Loom Room, 14 Canal Street</div>
+        </div>
+      </div>
+      <div class="ticket-side">
+        <div>
+          <div class="count" id="count" role="timer" aria-label="Time until the next meetup">
+            <div><b id="cd-d">--</b><span>days</span></div>
+            <div><b id="cd-h">--</b><span>hrs</span></div>
+            <div><b id="cd-m">--</b><span>min</span></div>
+            <div><b id="cd-s">--</b><span>sec</span></div>
+          </div>
+          <p class="count-done" id="count-done">Doors are open — come on in.</p>
+        </div>
+        <div>
+          <p class="spots"><strong id="spots-left">23</strong> of 80 spots left · <span id="going">57</span> going</p>
+          <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <span class="kicker">What it is</span>
+      <p class="about-big" style="margin-top:22px">Since 2022 we’ve met once a month to share what we’re building, swap what we’ve learned and <em class="s">put faces to names.</em> It’s small on purpose — about eighty people, one room, no lanyards.</p>
+      <div class="stats">
+        <div><b>46</b><span>evenings so far</span></div>
+        <div><b>92</b><span>short talks given</span></div>
+        <div><b>1,240</b><span>people in the group</span></div>
+      </div>
+    </div>
+    <div class="rv">
+      <span class="kicker">Who it’s for</span>
+      <ul class="fit" style="margin-top:22px">
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l4-1 11-11a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"/></svg></span><div><h3>Designers of every kind</h3><p>Product, brand, type, motion — or you just care a lot about how things look and work.</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><div><h3>Developers who like the craft</h3><p>Front-end, back-end, mobile, hobby projects. Nobody will quiz you on frameworks.</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><h3>People just starting out</h3><p>Students, career-changers and the newly curious. Half the room was new once — we’ll say hello.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEXT EVENT / RUN OF SHOW ===== -->
+<section class="sec show" id="next">
+  <div class="wrap show-grid">
+    <div class="rv">
+      <span class="kicker">Thursday 10 December</span>
+      <div class="sec-head" style="margin-bottom:34px">
+        <h2>How the evening <em class="s">usually goes</em></h2>
+        <p>Same simple shape every month, so you always know what you’re walking into. Talks are short, and you’re free to arrive late or leave early.</p>
+      </div>
+      <div class="speakers">
+        <div class="speaker">
+          <span class="av" style="background:#5A43C8" aria-hidden="true">MO</span>
+          <div><p class="when">Talk one · 7:00 pm</p><h3>Mei Okafor — “The 40-line app I use every day”</h3><p>Why the most useful tool she’s built is also the smallest.</p></div>
+        </div>
+        <div class="speaker">
+          <span class="av" style="background:#2F7A6B" aria-hidden="true">TR</span>
+          <div><p class="when">Talk two · 7:25 pm</p><h3>Tomás Reyes — “Designing for the tired user”</h3><p>Forms, defaults and kindness for people at the end of a long day.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="rv">
+      <ol class="timeline">
+        <li><time>6:30</time><span class="dot" aria-hidden="true"></span><div><h3>Doors open</h3><p>Grab a name sticker and a drink. Someone from the team will introduce you around.</p></div></li>
+        <li><time>7:00</time><span class="dot" aria-hidden="true"></span><div><h3>Two short talks</h3><p>About twenty minutes each, with a few questions after.</p></div></li>
+        <li><time>7:50</time><span class="dot" aria-hidden="true"></span><div><h3>Show &amp; tell</h3><p>Three minutes, one thing you made. No slides needed — sign up on the night.</p></div></li>
+        <li><time>8:15</time><span class="dot" aria-hidden="true"></span><div><h3>Pizza &amp; chat</h3><p>Veggie, vegan and gluten-free options. The best part, honestly.</p></div></li>
+        <li><time>9:00</time><span class="dot" aria-hidden="true"></span><div><h3>Wrap up</h3><p>Some of us carry on at the café next door. Come along if you like.</p></div></li>
+      </ol>
+      <p class="show-note">Want to give a talk in 2027? We help first-time speakers shape their idea — just reply to any meetup email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAST EVENTS ===== -->
+<section class="sec" id="past">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Past events</span>
+      <h2>A few recent <em class="s">Thursdays</em></h2>
+      <p>Talks, side projects, a lot of good questions and more pizza than is strictly sensible.</p>
+    </div>
+    <div class="past-grid">
+      <figure class="past big rv"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&q=70&auto=format&fit=crop" alt="Meetup guests sitting and standing in a gallery room listening to a discussion" loading="lazy" width="1200" height="1300"><figcaption><b>#46 · Open questions night</b><span>November — the whole room as the panel</span></figcaption></figure>
+      <figure class="past sm rv"><img src="https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=900&q=70&auto=format&fit=crop" alt="Two developers leaning over a laptop to look at code together" loading="lazy" width="900" height="600"><figcaption><b>#45 · Pairing hour</b><span>October</span></figcaption></figure>
+      <figure class="past sm rv"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=900&q=70&auto=format&fit=crop" alt="Four people chatting and smiling around a café table" loading="lazy" width="900" height="600"><figcaption><b>#44 · Portfolio swap</b><span>September</span></figcaption></figure>
+      <figure class="past sm wide rv"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=70&auto=format&fit=crop" alt="Close-up of hands gesturing beside a laptop during a conversation" loading="lazy" width="1400" height="700"><figcaption><b>#43 · Show &amp; tell special</b><span>August — eleven projects in one evening</span></figcaption></figure>
+    </div>
+    <div class="past-list rv">
+      <div><b>#42 · Accessibility, start to finish</b><span>July · 74 attended</span></div>
+      <div><b>#41 · Tiny games jam</b><span>June · 68 attended</span></div>
+      <div><b>#40 · Type on screens</b><span>May · 80 attended</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORGANISERS ===== -->
+<section class="sec" id="organisers" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Organisers</span>
+      <h2>Run by volunteers, <em class="s">for neighbours</em></h2>
+      <p>Three people who started this because they missed meeting other makers in person. Say hi on the night — we’ll be the ones holding the stickers.</p>
+    </div>
+    <div class="orgs">
+      <div class="org rv"><figure><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=700&q=70&auto=format&fit=crop" alt="Portrait of Ada Mensah" loading="lazy" width="700" height="770"></figure><h3>Ada Mensah</h3><p class="role">Founder · product designer</p><p>Picks the speakers and keeps the evening running on time (mostly).</p></div>
+      <div class="org rv"><figure><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=70&auto=format&fit=crop" alt="Portrait of Rafael Domingo" loading="lazy" width="700" height="770"></figure><h3>Rafael Domingo</h3><p class="role">Co-host · front-end developer</p><p>Looks after the venue, the mic and the very important pizza order.</p></div>
+      <div class="org rv"><figure><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=70&auto=format&fit=crop" alt="Portrait of Nell Hartley" loading="lazy" width="700" height="770"></figure><h3>Nell Hartley</h3><p class="role">Welcome lead · illustrator</p><p>Meets every first-timer at the door and runs the group chat.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CODE OF CONDUCT ===== -->
+<section class="sec" id="conduct" style="padding-top:20px">
+  <div class="wrap">
+    <div class="coc rv">
+      <div>
+        <span class="kicker">Code of conduct</span>
+        <h2>Be kind. <em class="s">That’s most of it.</em></h2>
+        <p class="coc-lead">We want everyone to feel welcome, whatever their background, experience or identity. If something feels wrong, talk to any organiser on the night or write to <a href="mailto:hello@example.com">hello@example.com</a> — we read every message and keep it confidential.</p>
+      </div>
+      <ul class="rules">
+        <li><b>Welcome newcomers</b><span>Make room in the circle. Everyone was new once.</span></li>
+        <li><b>Respect people</b><span>No harassment, put-downs or unwanted attention — in the room or online.</span></li>
+        <li><b>No hard selling</b><span>Mention your job board or product, sure. Pitch the room, no.</span></li>
+        <li><b>Ask before photos</b><span>Look for the green sticker — it means “happy to be in pictures”.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VENUE ===== -->
+<section class="sec" id="venue" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Venue</span>
+      <h2>Find us by <em class="s">the canal</em></h2>
+    </div>
+    <div class="loc-grid">
+      <div class="map rv" role="img" aria-label="Simple map: The Loom Room sits on Canal Street, two minutes’ walk from Harbour Road tram stop">
+        <svg viewBox="0 0 700 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="700" height="460" fill="#EEEDF2"/>
+          <g fill="#E3E1EA">
+            <rect x="30" y="30" width="170" height="110" rx="12"/><rect x="230" y="30" width="190" height="110" rx="12"/><rect x="450" y="30" width="220" height="110" rx="12"/>
+            <rect x="30" y="300" width="170" height="130" rx="12"/><rect x="230" y="300" width="160" height="130" rx="12"/>
+            <rect x="30" y="170" width="170" height="100" rx="12"/>
+          </g>
+          <rect x="450" y="300" width="220" height="130" rx="12" fill="#DDEBDD"/>
+          <path d="M-20 232 C 140 214 260 250 380 236 S 600 210 720 228" stroke="#CFE0EE" stroke-width="34" fill="none"/>
+          <g stroke="#FFFFFF" stroke-width="16" fill="none" stroke-linecap="round">
+            <path d="M215 0 V460"/><path d="M435 0 V460"/><path d="M0 155 H700"/><path d="M0 285 H700"/>
+          </g>
+          <path d="M215 285 H700" stroke="#FFFFFF" stroke-width="22"/>
+          <path d="M0 370 H700" stroke="#C7BEEF" stroke-width="4" stroke-dasharray="10 8"/>
+          <circle cx="330" cy="370" r="9" fill="#fff" stroke="#5A43C8" stroke-width="3"/>
+          <path d="M330 362 C 345 330 380 300 392 290" stroke="#5A43C8" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" fill="none"/>
+          <g font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#5D5970">
+            <text x="470" y="279">Canal Street</text>
+            <text x="225" y="148" transform="rotate(-90 225 148)">Mill Lane</text>
+            <text x="300" y="396">Harbour Road tram</text>
+            <text x="505" y="372">Weavers Park</text>
+            <text x="40" y="226" fill="#6E8BA6">Harbour Canal</text>
+          </g>
+        </svg>
+        <div class="pin"><div class="pin-card"><b>The Loom Room</b>Ground floor, blue door</div><div class="pin-dot"></div></div>
+      </div>
+      <div class="loc-card rv">
+        <div>
+          <h3>The Loom Room</h3>
+          <address>14 Canal Street, Harbour District<br>Ground floor, blue door next to the bakery</address>
+        </div>
+        <ul class="loc-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg>Two minutes’ walk from Harbour Road tram stop</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="16" r="4"/><circle cx="18" cy="16" r="4"/><path d="M6 16l4-8h5l3 8M10 8h-2"/></svg>Bike racks out front, no car park</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M9 9h6l-1 5h3l2 6M11 9l-1 6a4 4 0 1 0 5 4"/></svg>Step-free entrance and accessible toilet</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h14l-1.5 16h-11L5 4Z"/><path d="M8 9h8"/></svg>Free water, soft drinks and a few beers</li>
+        </ul>
+        <div class="loc-btns">
+          <a class="btn btn-primary" href="https://maps.google.com/?q=14+Canal+Street">Get directions</a>
+          <a class="btn btn-ghost" href="tel:01700000000">Call on the night</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RSVP ===== -->
+<section class="sec" id="rsvp" style="padding-top:20px">
+  <div class="wrap rsvp">
+    <div class="rv">
+      <span class="kicker">RSVP</span>
+      <h2>Save your spot <em class="s">for the 10th</em></h2>
+      <p class="rsvp-lead">It’s free. RSVPs just help us order the right amount of pizza and keep the room comfortable. Can’t make it after all? Use the link in your email so someone else can come.</p>
+      <div class="join">
+        <a href="https://wa.me/0000000000">
+          <span class="ji" style="background:#E3F4EA;color:#1F7A55"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 19Z"/><path d="M9 9.5c.3 2 2.2 4 4.5 4.6l1.2-1.2 1.8.9c-.3 1.2-1.3 1.8-2.5 1.6A7 7 0 0 1 8.4 9.8C8.2 8.6 8.8 7.6 10 7.3l.9 1.8L9.8 10"/></svg></span>
+          <span><b>Join the WhatsApp group</b><span>Reminders, job posts and “anyone up for coffee?”</span></span>
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+        <a href="mailto:hello@example.com?subject=Add%20me%20to%20the%20Second%20Thursday%20list">
+          <span class="ji" style="background:var(--accent-tint);color:var(--accent-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></span>
+          <span><b>Get the monthly email</b><span>One short note when RSVPs open. That’s it.</span></span>
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-card rv">
+      <form id="rsvp-form" novalidate>
+        <div class="form-top"><h3>Meetup #47</h3><span>Thu 10 Dec · 6:30 pm</span></div>
+        <div class="field" id="f-name">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Sam Lee" aria-describedby="name-err">
+          <p class="err" id="name-err">Please add your name so we can write your sticker.</p>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-err">
+          <p class="err" id="email-err">That email doesn’t look quite right.</p>
+        </div>
+        <fieldset class="field">
+          <legend>Bringing a friend?</legend>
+          <div class="seg">
+            <label><input type="radio" name="plus" value="0" checked><span>Just me</span></label>
+            <label><input type="radio" name="plus" value="1"><span>Me + 1</span></label>
+          </div>
+          <div class="plus-name field" id="f-guest" style="margin-bottom:0">
+            <label for="guest">Friend’s first name</label>
+            <input type="text" id="guest" name="guest" placeholder="Their first name" aria-describedby="guest-err">
+            <p class="err" id="guest-err">Add their name too, please.</p>
+          </div>
+        </fieldset>
+        <label class="check"><input type="checkbox" id="first" name="first"> It’s my first Second Thursday — please say hello at the door</label>
+        <button type="submit" class="btn btn-primary">Count me in</button>
+        <p class="small" id="form-spots">23 spots left · we’ll email a reminder the day before</p>
+      </form>
+      <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>You’re on the list<em class="s" id="succ-name">see you Thursday.</em></h3>
+        <p id="succ-text">We’ve saved your spot for Thursday 10 December. A reminder will land in your inbox the day before.</p>
+        <button type="button" class="btn btn-ghost" id="again">RSVP someone else</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true">2</span>Second Thursday</a>
+        <p>A free monthly meetup for designers and developers in the Harbour District. Volunteer-run since 2022.</p>
+      </div>
+      <div class="foot-links">
+        <div><h4>Meetup</h4><a href="#next">Next event</a><a href="#past">Past events</a><a href="#conduct">Code of conduct</a></div>
+        <div><h4>Say hello</h4><a href="mailto:hello@example.com">hello@example.com</a><a href="tel:01700000000">017 00000000</a><a href="https://wa.me/0000000000">WhatsApp group</a></div>
+      </div>
+    </div>
+    <div class="foot-base"><span>© 2026 Second Thursday · a not-for-profit community group</span><span>Hosted kindly by The Loom Room</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav shadow + mobile menu */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var burger = document.getElementById('burger'), menu = document.getElementById('mmenu');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 1020) setMenu(false); });
+
+  /* reveal on scroll */
+  var rv = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    rv.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  }
+
+  /* countdown — pauses while the tab is hidden */
+  var target = new Date(2026, 11, 10, 18, 30, 0).getTime();
+  var els = {d:document.getElementById('cd-d'), h:document.getElementById('cd-h'), m:document.getElementById('cd-m'), s:document.getElementById('cd-s')};
+  var timer = null;
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function tick(){
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('count').style.display = 'none';
+      document.getElementById('count-done').style.display = 'block';
+      stop(); return;
+    }
+    var s = Math.floor(diff / 1000);
+    els.d.textContent = Math.floor(s / 86400);
+    els.h.textContent = pad(Math.floor(s % 86400 / 3600));
+    els.m.textContent = pad(Math.floor(s % 3600 / 60));
+    els.s.textContent = pad(s % 60);
+  }
+  function start(){ if (!timer) { tick(); timer = setInterval(tick, 1000); } }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  if (!document.hidden) start(); else tick();
+
+  /* spots */
+  var CAP = 80, going = 57;
+  function renderSpots(){
+    var left = Math.max(0, CAP - going);
+    document.getElementById('spots-left').textContent = left;
+    document.getElementById('going').textContent = going;
+    document.getElementById('bar').style.width = Math.round(going / CAP * 100) + '%';
+    document.getElementById('form-spots').textContent = left > 0
+      ? left + (left === 1 ? ' spot' : ' spots') + ' left · we’ll email a reminder the day before'
+      : 'We’re full — RSVP anyway and we’ll add you to the waitlist';
+  }
+  renderSpots();
+
+  /* RSVP form — never submits */
+  var form = document.getElementById('rsvp-form');
+  var success = document.getElementById('success');
+  var guestWrap = document.getElementById('f-guest');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function plusOne(){ var r = form.querySelector('input[name="plus"]:checked'); return r && r.value === '1'; }
+  form.querySelectorAll('input[name="plus"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      guestWrap.classList.toggle('on', plusOne());
+      if (!plusOne()) setBad('f-guest', 'guest', false);
+    });
+  });
+
+  function setBad(fieldId, inputId, bad){
+    document.getElementById(fieldId).classList.toggle('bad', bad);
+    document.getElementById(inputId).setAttribute('aria-invalid', bad ? 'true' : 'false');
+  }
+  var checks = {
+    name: function(){ return document.getElementById('name').value.trim().length >= 2; },
+    email: function(){ return emailRe.test(document.getElementById('email').value.trim()); },
+    guest: function(){ return !plusOne() || document.getElementById('guest').value.trim().length >= 1; }
+  };
+  var map = {name:'f-name', email:'f-email', guest:'f-guest'};
+  Object.keys(map).forEach(function(k){
+    var input = document.getElementById(k), touched = false;
+    input.addEventListener('blur', function(){ if (input.value.trim()) { touched = true; setBad(map[k], k, !checks[k]()); } });
+    input.addEventListener('input', function(){ if (touched || document.getElementById(map[k]).classList.contains('bad')) setBad(map[k], k, !checks[k]()); });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var first = null;
+    Object.keys(map).forEach(function(k){
+      var ok = checks[k]();
+      setBad(map[k], k, !ok);
+      if (!ok && !first) first = document.getElementById(k);
+    });
+    if (first) { first.focus(); return; }
+
+    var name = document.getElementById('name').value.trim().split(/\s+/)[0];
+    var guest = document.getElementById('guest').value.trim();
+    var isFirst = document.getElementById('first').checked;
+    var wasFull = going >= CAP;
+    going = Math.min(CAP, going + (plusOne() ? 2 : 1));
+    renderSpots();
+
+    document.getElementById('succ-name').textContent = wasFull ? 'you’re on the waitlist, ' + name + '.' : 'see you Thursday, ' + name + '.';
+    document.getElementById('succ-text').textContent =
+      (wasFull ? 'We’ll email you the moment a spot opens' : 'We’ve saved ' + (plusOne() ? 'two spots — for you and ' + guest : 'your spot') + ' for Thursday 10 December') +
+      '. ' + (isFirst ? 'Nell will look out for you at the door.' : 'A reminder will land in your inbox the day before.');
+    form.style.display = 'none';
+    success.classList.add('on');
+    success.focus();
+  });
+
+  document.getElementById('again').addEventListener('click', function(){
+    form.reset();
+    guestWrap.classList.remove('on');
+    ['f-name','f-email','f-guest'].forEach(function(id){ document.getElementById(id).classList.remove('bad'); });
+    success.classList.remove('on');
+    form.style.display = '';
+    document.getElementById('name').focus();
+  });
+})();
+</script>
+</body>
+</html>

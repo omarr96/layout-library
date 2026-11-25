@@ -226,6 +226,54 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "niche-sites",
+      "slug": "niche-07-wedding",
+      "title": "Amara & Jonah · Wedding",
+      "desc": "Countdown, our story, the day timeline, dress code, venue & directions, travel & hotel blocks, RSVP form, registry, FAQ, coordinator contact.",
+      "tags": [
+        "Event"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/07-wedding/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-08-conference",
+      "title": "Common Ground 2027 · Conference",
+      "desc": "Countdown, why attend, speakers, programme by day, tickets & early-bird, venue & travel, partners, FAQ, registration form with live total.",
+      "tags": [
+        "Event"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/08-conference/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-09-meetup",
+      "title": "Second Thursday · Community meetup",
+      "desc": "Next event with countdown & spots left, who it's for, speakers & run-of-show, past events, organisers, code of conduct, venue map, RSVP form.",
+      "tags": [
+        "Event"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/09-meetup/index.html"
+        }
+      ]
+    },
+    {
       "cat": "architecture-landing",
       "slug": "arch-gallery",
       "title": "Both pages",
