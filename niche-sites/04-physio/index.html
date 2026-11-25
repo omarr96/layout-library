@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linden Physio — Physiotherapy, rehab and home visits</title>
+<meta name="description" content="Linden Physio treats back and neck pain, sports injuries, post-surgery rehab and women's health. Every plan starts with a 60-minute assessment. No referral needed, most insurance accepted, home visits available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F1F3F2; --card:#FFFFFF; --ink:#14202B; --muted:#55616C; --line:#DCE1E2; --soft:#E7EBEA;
+--lake:#2B5C8A; --lake-d:#204A71; --lake-50:#E3EBF3;
+--r:20px; --shadow:0 1px 2px rgba(20,32,43,.05),0 18px 40px -20px rgba(20,32,43,.22);
+--sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+--serif:"Spectral",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--lake);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.1}
+h1 em,h2 em,.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lake)}
+.sec{padding:120px 0}
+.sec-head{max-width:620px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(32px,4.4vw,52px);margin:14px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-lake{background:var(--lake);color:#fff}
+.btn-lake:hover{background:var(--lake-d);transform:translateY(-1px)}
+.btn-line{background:var(--card);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-glass{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
+.btn-glass:hover{background:rgba(255,255,255,.22)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(241,243,242,.86);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid transparent;opacity:0;transition:opacity .3s,border-color .3s;z-index:-1}
+.nav.scrolled::before,.nav.menu-open::before{opacity:1;border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:30px;height:72px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;text-decoration:none;letter-spacing:-.02em;color:#fff;transition:color .3s}
+.logo small{display:block;font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-top:-3px}
+.logo-mark{width:34px;height:34px;flex:none}
+.nav-links{display:flex;gap:28px;list-style:none;margin-left:14px}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:rgba(255,255,255,.86);transition:color .3s}
+.nav-links a:hover{color:#fff}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px}
+.nav-cta .tel{text-decoration:none;font-size:15px;font-weight:600;color:#fff;transition:color .3s}
+.nav-cta .btn{padding:11px 18px;font-size:15px}
+.nav.scrolled .logo,.nav.scrolled .nav-cta .tel,.nav.menu-open .logo{color:var(--ink)}
+.nav.scrolled .nav-links a{color:var(--muted)}
+.nav.scrolled .nav-links a:hover{color:var(--ink)}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border:1px solid rgba(255,255,255,.45);border-radius:12px;background:rgba(255,255,255,.1);position:relative}
+.nav.scrolled .burger,.nav.menu-open .burger{border-color:var(--line);background:var(--card)}
+.burger span{position:absolute;left:13px;right:13px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .2s}
+.nav.scrolled .burger span,.nav.menu-open .burger span{background:var(--ink)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+
+/* HERO — full-bleed inset photo */
+.hero{padding:12px 12px 0}
+.hero-frame{position:relative;min-height:min(880px,96vh);border-radius:28px;overflow:hidden;display:flex;align-items:flex-end;color:#fff;background:#24313b}
+.hero-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%}
+.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,22,31,.82) 0%,rgba(13,22,31,.55) 42%,rgba(13,22,31,.08) 75%),linear-gradient(0deg,rgba(13,22,31,.55),transparent 45%)}
+.hero-copy{position:relative;z-index:1;padding:0 64px 72px;max-width:760px}
+.hero-copy .kicker{color:#BFD3E6;display:flex;align-items:center;gap:10px}
+.hero-copy .kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#8FE0B4;box-shadow:0 0 0 4px rgba(143,224,180,.22)}
+.hero h1{font-size:clamp(44px,6.6vw,86px);margin:20px 0 22px;letter-spacing:-.035em}
+.hero h1 em{color:#D6E4F1}
+.hero-lead{font-size:19px;max-width:520px;color:rgba(255,255,255,.86)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-ctas .btn-lake{background:#fff;color:var(--ink)}
+.hero-ctas .btn-lake:hover{background:var(--lake-50)}
+.facts{position:relative;z-index:2;margin:-46px auto 0;max-width:1080px;background:var(--card);border-radius:20px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:24px 26px;border-left:1px solid var(--line)}
+.fact:first-child{border-left:0}
+.fact b{display:block;font-size:17px;letter-spacing:-.01em}
+.fact span{font-size:14.5px;color:var(--muted)}
+
+/* CONDITIONS */
+.conds{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cond{background:var(--card);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.cond-img{aspect-ratio:16/9;overflow:hidden;background:var(--soft)}
+.cond-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.cond:hover .cond-img img{transform:scale(1.03)}
+.cond-body{padding:30px 32px 32px;display:flex;flex-direction:column;flex:1}
+.cond h3{font-size:26px;margin-bottom:10px}
+.cond p{color:var(--muted)}
+.cond .eg{font-size:14.5px;color:var(--ink);margin-top:14px}
+.cond .eg b{font-weight:600;color:var(--muted)}
+.cond .pick{margin-top:auto;padding-top:22px;align-self:flex-start;background:none;border:0;color:var(--lake);font-weight:600;font-size:15.5px;display:inline-flex;gap:8px;align-items:center}
+.cond .pick:hover{color:var(--lake-d)}
+.cond .pick span{transition:transform .2s}
+.cond .pick:hover span{transform:translateX(3px)}
+
+/* FIRST VISIT */
+.visit{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.visit-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:start}
+.visit-grid .sec-head{margin-bottom:28px}
+.visit-note{background:var(--paper);border-radius:16px;padding:24px 26px;font-size:15.5px;color:var(--muted)}
+.visit-note b{color:var(--ink)}
+.steps{list-style:none;display:grid;gap:0}
+.step{display:grid;grid-template-columns:84px 1fr;gap:8px;padding:30px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:52px;line-height:1;color:var(--lake)}
+.step h3{font-size:22px;margin-bottom:8px}
+.step p{color:var(--muted)}
+.step .dur{display:inline-block;margin-top:12px;font-size:13.5px;font-weight:600;color:var(--lake);background:var(--lake-50);padding:4px 11px;border-radius:999px}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pro-img{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--soft)}
+.pro-img img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.pro h3{font-size:22px;margin:22px 0 2px}
+.pro .role{font-size:15px;color:var(--lake);font-weight:600}
+.pro p{color:var(--muted);font-size:15.5px;margin-top:10px}
+.pro .cred{font-size:13.5px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+
+/* BOOKING */
+.book{background:#E2E9EF;border-radius:32px;margin:0 12px;padding:110px 0}
+.book .sec-head p{color:var(--muted)}
+.book-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;align-items:start}
+.form{background:var(--card);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.fs{border:0;margin-bottom:30px}
+.fs legend,.lbl{display:block;font-weight:700;font-size:15.5px;margin-bottom:12px}
+.fs legend span,.lbl span{font-weight:500;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip label{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line);border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:var(--card)}
+.chip label:hover{border-color:#9BA8B3}
+.chip input:checked+label{background:var(--lake);border-color:var(--lake);color:#fff}
+.chip input:focus-visible+label{outline:2px solid var(--lake);outline-offset:2px}
+.chip .sub{font-size:12.5px;opacity:.75;font-weight:500}
+.days .chip label{flex-direction:column;gap:0;min-width:74px;padding:10px 12px;line-height:1.25}
+.days .chip label b{font-size:18px}
+.pros .chip label{padding:7px 14px 7px 7px}
+.pros .chip label img,.pros .chip label .any{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:50% 18%;flex:none}
+.pros .chip label .any{display:grid;place-items:center;background:var(--lake-50);color:var(--lake);font-weight:700;font-size:13px}
+.slots-empty{font-size:15px;color:var(--muted);padding:12px 0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:18px}
+.field label{display:block;font-weight:600;font-size:15px;margin-bottom:7px}
+.field input,.field textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--paper);font-size:16px;transition:border-color .2s,background .2s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--lake);background:#fff}
+.field textarea{resize:vertical;min-height:84px}
+.field.bad input{border-color:#B4402C;background:#FDF4F2}
+.err{display:none;color:#A63A27;font-size:14px;margin-top:6px;font-weight:500}
+.bad .err,.fs.bad .err{display:block}
+.summary{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px;margin-top:8px}
+.summary p{font-size:15px;color:var(--muted);max-width:360px}
+.summary p b{color:var(--ink)}
+.success{display:none;text-align:center;padding:30px 10px}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--lake-50);display:grid;place-items:center;margin:0 auto 20px}
+.success .tick svg{width:30px;height:30px;color:var(--lake)}
+.success h3{font-size:30px;margin-bottom:12px}
+.success p{color:var(--muted);max-width:420px;margin:0 auto}
+.success .recap{margin:24px auto 26px;max-width:380px;text-align:left;background:var(--paper);border-radius:14px;padding:18px 22px;font-size:15px;list-style:none}
+.success .recap li{display:flex;justify-content:space-between;gap:16px;padding:5px 0}
+.success .recap li span{color:var(--muted)}
+.form.done .form-body{display:none}
+.form.done .success{display:block}
+.aside{display:grid;gap:20px}
+.aside-card{background:var(--card);border-radius:22px;padding:30px}
+.aside-card h3{font-size:22px;margin-bottom:8px}
+.aside-card p{color:var(--muted);font-size:15.5px}
+.aside-card .btns{display:grid;gap:10px;margin-top:20px}
+.aside-card ul{list-style:none;margin-top:14px;font-size:15px;color:var(--muted)}
+.aside-card li{padding:8px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.aside-card li span:last-child{color:var(--ink);font-weight:500;text-align:right}
+.aside-card li:first-child{border-top:0}
+
+/* PRICES */
+.price-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:start}
+.plist{list-style:none;background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:8px 32px}
+.plist li{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:24px 0;border-top:1px solid var(--line)}
+.plist li:first-child{border-top:0}
+.plist h3{font-size:19px;letter-spacing:-.015em}
+.plist .p{font-size:24px;font-weight:600;letter-spacing:-.02em;text-align:right}
+.plist .d{color:var(--muted);font-size:15px}
+.plist .m{color:var(--muted);font-size:14px;text-align:right}
+.ins h3{font-size:24px;margin-bottom:12px}
+.ins>p{color:var(--muted)}
+.ins ol{list-style:none;margin-top:24px;counter-reset:i}
+.ins li{counter-increment:i;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:14px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--muted)}
+.ins li b{color:var(--ink);display:block;font-size:16px}
+.ins li::before{content:counter(i);width:28px;height:28px;border-radius:50%;background:var(--lake-50);color:var(--lake);font-weight:700;font-size:13.5px;display:grid;place-items:center;margin-top:2px}
+
+/* HOME VISITS + FIND US */
+.home{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.home-photo{border-radius:var(--r);overflow:hidden;position:relative;min-height:520px;background:var(--soft)}
+.home-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.home-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,22,31,.88),rgba(13,22,31,.55) 40%,transparent 72%)}
+.home-photo .cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:36px;color:#fff}
+.home-photo h3{font-size:clamp(26px,3vw,34px);margin-bottom:10px}
+.home-photo p{color:rgba(255,255,255,.85);max-width:440px}
+.find{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.map{position:relative;height:270px;background:#E9EDE8;overflow:hidden}
+.map .park{position:absolute;left:-30px;top:120px;width:220px;height:190px;border-radius:44% 56% 40% 60%;background:#D7E3D2}
+.map .river{position:absolute;right:-60px;top:-40px;width:200px;height:380px;border-radius:50%;border:26px solid #D2E0EA;border-left-color:transparent;border-bottom-color:transparent;transform:rotate(18deg)}
+.map .rd{position:absolute;background:#fff;box-shadow:0 0 0 1px #DCE2DD}
+.map .r1{left:0;right:0;top:118px;height:12px}
+.map .r2{top:0;bottom:0;left:56%;width:12px}
+.map .r3{left:-10%;width:130%;top:60px;height:7px;transform:rotate(-9deg)}
+.map .r4{top:0;bottom:0;left:22%;width:7px;transform:rotate(6deg)}
+.map .zone{position:absolute;left:56%;top:124px;width:230px;height:230px;margin:-115px 0 0 -109px;border-radius:50%;border:1.5px dashed rgba(43,92,138,.45);background:rgba(43,92,138,.05)}
+.map .pin{position:absolute;left:56%;top:124px;transform:translate(-50%,-100%);margin-left:6px;display:flex;flex-direction:column;align-items:center}
+.map .pin b{background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:6px 11px;border-radius:9px;white-space:nowrap}
+.map .pin i{width:12px;height:12px;border-radius:50%;background:var(--lake);border:3px solid #fff;margin-top:6px;box-shadow:0 0 0 1px rgba(20,32,43,.2)}
+.map .lbl-z{position:absolute;right:14px;bottom:12px;font-size:12px;font-weight:600;color:var(--lake);background:rgba(255,255,255,.85);padding:4px 9px;border-radius:7px}
+.find-body{padding:30px 32px 32px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.find-body h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.find-body p,.hours{font-size:15.5px;color:var(--muted)}
+.hours{list-style:none}
+.hours li{display:flex;justify-content:space-between;gap:12px;padding:2px 0}
+.hours li b{color:var(--ink);font-weight:500}
+.find-btns{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;padding-top:6px}
+
+/* REVIEWS */
+.reviews{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px;display:flex;flex-direction:column}
+.rev blockquote{font-size:17px;line-height:1.6}
+.rev:first-child{background:var(--lake-50);border-color:transparent}
+.rev:first-child blockquote{font-family:var(--serif);font-style:italic;font-size:25px;line-height:1.4;letter-spacing:-.01em}
+.rev .who{margin-top:auto;padding-top:24px;font-size:14.5px;color:var(--muted)}
+.rev .who b{display:block;color:var(--ink);font-size:15.5px}
+.stars{color:var(--lake);letter-spacing:3px;font-size:15px;margin-bottom:16px}
+.rev-note{font-size:13.5px;color:var(--muted);margin-top:20px}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:72px}
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;background:none;border:0;text-align:left;font-size:18.5px;font-weight:600;letter-spacing:-.01em}
+.faq-q .ic{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);position:relative;flex:none;transition:background .2s,border-color .2s}
+.faq-q .ic::before,.faq-q .ic::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.6px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s}
+.faq-q .ic::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-q[aria-expanded="true"] .ic{background:var(--lake);border-color:var(--lake)}
+.faq-q[aria-expanded="true"] .ic::before,.faq-q[aria-expanded="true"] .ic::after{background:#fff}
+.faq-q[aria-expanded="true"] .ic::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-a>div{overflow:hidden}
+.faq-a p{color:var(--muted);padding:0 50px 26px 0}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+
+/* FOOTER */
+.foot{padding:80px 0 40px;border-top:1px solid var(--line);margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.foot .logo{color:var(--ink)}
+.foot p,.foot li{font-size:15px;color:var(--muted)}
+.foot h4{font-size:14px;font-weight:700;margin-bottom:12px}
+.foot ul{list-style:none;display:grid;gap:6px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.mbar{display:none}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.rv{opacity:1;transform:none;transition:none}
+*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}
+}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+.nav-links{display:none}
+.facts{grid-template-columns:1fr 1fr;margin-left:24px;margin-right:24px}
+.fact:nth-child(3){border-left:0}
+.fact:nth-child(n+3){border-top:1px solid var(--line)}
+.visit-grid,.book-grid,.price-grid,.faq-grid{grid-template-columns:1fr;gap:44px}
+.home{grid-template-columns:1fr}
+.reviews{grid-template-columns:1fr 1fr}
+.rev:first-child{grid-column:1/-1}
+.foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+body{font-size:16px;padding-bottom:76px}
+.sec{padding:84px 0}
+.wrap{padding:0 16px}
+.nav-cta{display:none}
+.burger{display:block}
+.nav-in{height:64px}
+.mmenu{display:block;position:fixed;top:64px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 16px 22px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;z-index:49}
+.mmenu.open{opacity:1;transform:none;visibility:visible}
+.mmenu a{display:block;padding:14px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;font-size:17px}
+.mmenu .btn{margin-top:16px;width:100%;border-bottom:0}
+.hero{padding:8px 8px 0}
+.hero-frame{min-height:640px;border-radius:22px;padding-top:96px}
+.hero-frame img{object-position:68% 40%}
+.hero-frame::after{background:linear-gradient(0deg,rgba(13,22,31,.9) 0%,rgba(13,22,31,.6) 50%,rgba(13,22,31,.2) 100%)}
+.hero-copy{padding:0 22px 72px}
+.hero-lead{font-size:17px}
+.hero-ctas .btn{flex:1 1 40%}
+.hero-ctas .btn-lake{flex-basis:100%}
+.hero h1{font-size:clamp(40px,11vw,52px)}
+.facts{grid-template-columns:1fr 1fr;margin:-40px 16px 0}
+.fact{padding:18px 18px}
+.fact b{font-size:15.5px}
+.fact span{font-size:13.5px}
+.conds,.team,.reviews{grid-template-columns:1fr}
+.cond-body{padding:24px}
+.team{gap:40px}
+.pro-img{aspect-ratio:1/1}
+.step{grid-template-columns:60px 1fr}
+.step .n{font-size:42px}
+.book{margin:0 8px;padding:80px 0;border-radius:24px}
+.form{padding:24px 18px}
+.row2{grid-template-columns:1fr;gap:0}
+.summary .btn{width:100%}
+.plist{padding:4px 20px}
+.plist li{grid-template-columns:1fr auto}
+.home-photo{min-height:440px}
+.home-photo .cap{padding:24px}
+.find-body{grid-template-columns:1fr;padding:24px}
+.find-btns .btn{flex:1 1 auto}
+.rev{padding:26px}
+.rev:first-child blockquote{font-size:22px}
+.faq-q{font-size:17px}
+.faq-a p{padding-right:0}
+.foot-grid{grid-template-columns:1fr}
+.mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(241,243,242,.97);border-top:1px solid var(--line)}
+.mbar .btn{padding:12px 6px;font-size:14.5px;gap:6px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+<div class="wrap nav-in">
+<a class="logo" href="#top" aria-label="Linden Physio, home">
+<svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#2B5C8A"/><path d="M17 7c-3.5 3.2-3.5 6.8 0 10s3.5 6.8 0 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="7.5" r="2" fill="#BFD3E6"/></svg>
+<span>Linden Physio<small>Physiotherapy &amp; rehab</small></span>
+</a>
+<ul class="nav-links">
+<li><a href="#treat">What we treat</a></li>
+<li><a href="#visit">First visit</a></li>
+<li><a href="#team">Team</a></li>
+<li><a href="#prices">Prices &amp; insurance</a></li>
+<li><a href="#home-visits">Home visits</a></li>
+</ul>
+<div class="nav-cta">
+<a class="tel" href="tel:01700000000">017 00000000</a>
+<a class="btn btn-lake" href="#book">Book assessment</a>
+</div>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+</div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+<a href="#treat">What we treat</a>
+<a href="#visit">Your first visit</a>
+<a href="#team">Our physios</a>
+<a href="#prices">Prices &amp; insurance</a>
+<a href="#home-visits">Home visits &amp; directions</a>
+<a href="#faq">Questions</a>
+<a class="btn btn-lake" href="#book">Book an assessment</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top">
+<div class="hero-frame">
+<img src="https://images.unsplash.com/photo-1758875569256-f37c438cac65?w=2000&q=70&auto=format&fit=crop" alt="A physiotherapist watching a patient's form as she lifts a barbell during a rehab session" fetchpriority="high">
+<div class="hero-copy">
+<p class="kicker">New assessments available this week</p>
+<h1>Move without <em>thinking about it</em> again.</h1>
+<p class="hero-lead">Hands-on physiotherapy for back and neck pain, sports injuries, recovery after surgery and women's health. Every plan starts with an hour-long assessment, so we treat the cause, not just the sore spot.</p>
+<div class="hero-ctas">
+<a class="btn btn-lake" href="#book">Book an initial assessment</a>
+<a class="btn btn-glass" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call us</a>
+<a class="btn btn-glass" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</a>
+</div>
+</div>
+</div>
+<div class="facts" role="list">
+<div class="fact" role="listitem"><b>60-minute assessment</b><span>$95, treatment included</span></div>
+<div class="fact" role="listitem"><b>No referral needed</b><span>Book directly with us</span></div>
+<div class="fact" role="listitem"><b>Insurance accepted</b><span>We bill most plans directly</span></div>
+<div class="fact" role="listitem"><b>Home visits</b><span>Within 6 miles of the clinic</span></div>
+</div>
+</section>
+
+<section class="sec" id="treat">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">What we treat</p>
+<h2>Four things we do <em>really well.</em></h2>
+<p>We keep our focus narrow on purpose. If your problem sits outside it, we'll tell you at the first call and point you to someone better placed.</p>
+</div>
+<div class="conds">
+<article class="cond rv">
+<div class="cond-img"><img loading="lazy" src="https://images.unsplash.com/photo-1768507423533-b87b62769758?w=1200&q=70&auto=format&fit=crop" alt="A physiotherapist's hands working on a patient's upper back and neck"></div>
+<div class="cond-body">
+<h3>Back &amp; neck pain</h3>
+<p>Desk-bound stiffness, a back that "went" lifting the shopping, headaches that start in the neck. Manual therapy to calm it down, then a simple routine that keeps it away.</p>
+<p class="eg"><b>Often seen:</b> sciatica, disc irritation, whiplash, postural pain</p>
+<button class="pick" type="button" data-concern="back">Book for back &amp; neck <span aria-hidden="true">→</span></button>
+</div>
+</article>
+<article class="cond rv">
+<div class="cond-img"><img loading="lazy" src="https://images.unsplash.com/photo-1540205895360-4ad4cffb3aa8?w=1200&q=70&auto=format&fit=crop" alt="A physiotherapist guiding a patient's hip into a deep lunge stretch on a mat"></div>
+<div class="cond-body">
+<h3>Sports injuries</h3>
+<p>Runners, lifters, weekend footballers. We find out why it happened, load it back up in stages and agree a clear return-to-sport date with you.</p>
+<p class="eg"><b>Often seen:</b> sprains, hamstring strains, runner's knee, shoulder pain</p>
+<button class="pick" type="button" data-concern="sport">Book for a sports injury <span aria-hidden="true">→</span></button>
+</div>
+</article>
+<article class="cond rv">
+<div class="cond-img"><img loading="lazy" src="https://images.unsplash.com/photo-1645005513713-9e2b92a687d3?w=1200&q=70&auto=format&fit=crop" alt="A physiotherapist supporting a patient's wrist as she lifts a light dumbbell"></div>
+<div class="cond-body">
+<h3>Post-surgery rehab</h3>
+<p>Structured programmes after knee, hip, shoulder or spinal surgery, built around your surgeon's protocol. We can start at home while you're still finding your feet.</p>
+<p class="eg"><b>Often seen:</b> ACL reconstruction, joint replacement, rotator cuff repair</p>
+<button class="pick" type="button" data-concern="surgery">Book post-surgery rehab <span aria-hidden="true">→</span></button>
+</div>
+</article>
+<article class="cond rv">
+<div class="cond-img"><img loading="lazy" src="https://images.unsplash.com/photo-1710897868917-1b2ddbf697ee?w=1200&q=70&auto=format&fit=crop&crop=top" alt="A pregnant woman standing in profile with her hands resting on her belly"></div>
+<div class="cond-body">
+<h3>Women's health</h3>
+<p>Private, unhurried appointments for pregnancy, postnatal recovery and pelvic floor concerns, with a specialist physio and a door that closes.</p>
+<p class="eg"><b>Often seen:</b> pelvic girdle pain, leaking, abdominal separation, return to running</p>
+<button class="pick" type="button" data-concern="women">Book a women's health visit <span aria-hidden="true">→</span></button>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="sec visit" id="visit">
+<div class="wrap visit-grid">
+<div class="rv">
+<div class="sec-head">
+<p class="kicker">Your first visit</p>
+<h2>Assessment first. <em>Then</em> treatment.</h2>
+<p>Before anyone starts pressing on things, we listen, test and explain. You leave the first hour knowing what's wrong, how long it should take and what you can do tonight.</p>
+</div>
+<div class="visit-note"><b>What to bring:</b> shorts or loose clothing, any scan reports or surgical notes, and your insurance card if you're claiming. Arrive five minutes early for a short health form.</div>
+</div>
+<ol class="steps rv">
+<li class="step"><span class="n">1</span><div><h3>Listen &amp; assess</h3><p>Your history, your goals, then movement, strength and joint tests. If anything needs a scan or a doctor, we'll say so straight away.</p><span class="dur">About 25 minutes</span></div></li>
+<li class="step"><span class="n">2</span><div><h3>Explain &amp; plan</h3><p>A plain-English diagnosis, a realistic timeline and an estimate of how many sessions you'll need. Most people need three to six.</p><span class="dur">About 10 minutes</span></div></li>
+<li class="step"><span class="n">3</span><div><h3>Treat &amp; take home</h3><p>Hands-on treatment in the same session, plus two or three exercises sent to your phone with videos, so progress doesn't wait for the next visit.</p><span class="dur">About 25 minutes</span></div></li>
+</ol>
+</div>
+</section>
+
+<section class="sec" id="team">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">Our physios</p>
+<h2>Three physios. <em>One</em> shared plan.</h2>
+<p>You'll usually see the same person every time. We meet weekly to talk through tricky cases, so you get three opinions for the price of one.</p>
+</div>
+<div class="team">
+<article class="pro rv">
+<div class="pro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=800&q=70&auto=format&fit=crop" alt="Portrait of Dr. Mai Tran, smiling, in a dark blazer"></div>
+<h3>Dr. Mai Tran, PT</h3>
+<p class="role">Clinic lead · Women's health</p>
+<p>Mai founded Linden after a decade in hospital outpatients. She sees pregnancy, postnatal and pelvic floor patients and still loves a stubborn shoulder.</p>
+<p class="cred">Doctor of Physical Therapy · Pelvic health certified · 14 years</p>
+</article>
+<article class="pro rv">
+<div class="pro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=70&auto=format&fit=crop" alt="Portrait of Dr. Arjun Mehta, wearing glasses and a white coat"></div>
+<h3>Dr. Arjun Mehta, PT</h3>
+<p class="role">Post-surgery &amp; spinal rehab</p>
+<p>Arjun works closely with local orthopaedic surgeons and runs most of our joint-replacement and ACL programmes, including the home visits.</p>
+<p class="cred">Doctor of Physical Therapy · Orthopaedic specialist · 9 years</p>
+</article>
+<article class="pro rv">
+<div class="pro-img"><img loading="lazy" src="https://images.unsplash.com/photo-1770134223774-13b735e29201?w=800&h=800&q=70&auto=format&fit=crop&crop=top" alt="Portrait of Rosa Delgado, smiling, in navy clinic scrubs"></div>
+<h3>Rosa Delgado, PT</h3>
+<p class="role">Sports injuries &amp; running</p>
+<p>A former track athlete, Rosa does our running gait analysis and return-to-sport testing. Expect to leave with homework and a date on the calendar.</p>
+<p class="cred">Physical Therapist · Sports certified · 7 years</p>
+</article>
+</div>
+</div>
+</section>
+
+<section class="book" id="book" aria-labelledby="book-h">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">Book online</p>
+<h2 id="book-h">Book your <em>initial assessment.</em></h2>
+<p>Pick what's bothering you, who you'd like to see and a time that suits. We'll text to confirm within two working hours.</p>
+</div>
+<div class="book-grid">
+<form class="form" id="bookForm" novalidate>
+<div class="form-body">
+<fieldset class="fs" id="fs-concern">
+<legend>What would you like help with?</legend>
+<div class="chips">
+<div class="chip"><input type="radio" name="concern" id="c-back" value="back"><label for="c-back">Back &amp; neck pain</label></div>
+<div class="chip"><input type="radio" name="concern" id="c-sport" value="sport"><label for="c-sport">Sports injury</label></div>
+<div class="chip"><input type="radio" name="concern" id="c-surgery" value="surgery"><label for="c-surgery">Post-surgery rehab</label></div>
+<div class="chip"><input type="radio" name="concern" id="c-women" value="women"><label for="c-women">Women's health</label></div>
+<div class="chip"><input type="radio" name="concern" id="c-other" value="other"><label for="c-other">Something else</label></div>
+</div>
+<p class="err" id="err-concern">Choose the closest option. You can add detail below.</p>
+</fieldset>
+
+<fieldset class="fs pros">
+<legend>Who would you like to see?</legend>
+<div class="chips">
+<div class="chip"><input type="radio" name="pro" id="p-any" value="any" checked><label for="p-any"><span class="any" aria-hidden="true">Any</span>First available</label></div>
+<div class="chip"><input type="radio" name="pro" id="p-mai" value="mai"><label for="p-mai"><img src="https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=80&q=60&auto=format&fit=crop" alt="">Mai</label></div>
+<div class="chip"><input type="radio" name="pro" id="p-arjun" value="arjun"><label for="p-arjun"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&q=60&auto=format&fit=crop" alt="">Arjun</label></div>
+<div class="chip"><input type="radio" name="pro" id="p-rosa" value="rosa"><label for="p-rosa"><img src="https://images.unsplash.com/photo-1770134223774-13b735e29201?w=80&h=80&q=60&auto=format&fit=crop&crop=top" alt="">Rosa</label></div>
+</div>
+</fieldset>
+
+<fieldset class="fs">
+<legend>Where? <span>· home visits are $35 extra</span></legend>
+<div class="chips">
+<div class="chip"><input type="radio" name="where" id="w-clinic" value="clinic" checked><label for="w-clinic">At the clinic</label></div>
+<div class="chip"><input type="radio" name="where" id="w-home" value="home"><label for="w-home">Home visit</label></div>
+</div>
+</fieldset>
+
+<fieldset class="fs days" id="fs-day">
+<legend>Day</legend>
+<div class="chips" id="days"></div>
+</fieldset>
+
+<fieldset class="fs" id="fs-time">
+<legend>Time <span id="slotNote"></span></legend>
+<div class="chips" id="slots"></div>
+<p class="err" id="err-time">Pick a time that works for you.</p>
+</fieldset>
+
+<div class="row2">
+<div class="field" id="f-name"><label for="name">Full name</label><input id="name" name="name" autocomplete="name"><p class="err">Please tell us your name.</p></div>
+<div class="field" id="f-phone"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"><p class="err">Enter a mobile number so we can confirm by text.</p></div>
+</div>
+<div class="field"><label for="notes">Anything we should know? <span style="font-weight:500;color:var(--muted)">(optional)</span></label><textarea id="notes" name="notes" placeholder="e.g. Right knee, three weeks since surgery. Using a cane."></textarea></div>
+
+<div class="summary">
+<p id="sumText">Initial assessment · 60 min · <b>$95</b></p>
+<button class="btn btn-lake" type="submit">Request this time</button>
+</div>
+</div>
+
+<div class="success" role="status" aria-live="polite" tabindex="-1" id="success">
+<div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+<h3>You're pencilled in.</h3>
+<p id="okText">We've held this slot for you. Expect a text within two working hours to confirm.</p>
+<ul class="recap" id="recap"></ul>
+<button class="btn btn-line" type="button" id="again">Book another appointment</button>
+</div>
+</form>
+
+<aside class="aside rv">
+<div class="aside-card">
+<h3>Rather talk it through?</h3>
+<p>Call or message and one of our physios will ring you back for a free 15-minute chat about whether physio is right for you.</p>
+<div class="btns">
+<a class="btn btn-lake" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call 017 00000000</a>
+<a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>Message on WhatsApp</a>
+</div>
+</div>
+<div class="aside-card">
+<h3>Good to know</h3>
+<ul>
+<li><span>Cancel or move</span><span>Free up to 24h before</span></li>
+<li><span>Referral</span><span>Not needed</span></li>
+<li><span>Insurance</span><span>Bring your card</span></li>
+<li><span>Parking</span><span>Free, behind the clinic</span></li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+<section class="sec" id="prices">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">Prices &amp; insurance</p>
+<h2>Clear prices. <em>No</em> packages to sign.</h2>
+<p>Pay per session, stop whenever you're better. If you're insured, most of this is covered and we handle the claim.</p>
+</div>
+<div class="price-grid">
+<ul class="plist rv">
+<li><h3>Initial assessment</h3><span class="p">$95</span><span class="d">Assessment, diagnosis, first treatment and home plan</span><span class="m">60 min</span></li>
+<li><h3>Follow-up treatment</h3><span class="p">$70</span><span class="d">Hands-on treatment and progressing your exercises</span><span class="m">40 min</span></li>
+<li><h3>Women's health assessment</h3><span class="p">$120</span><span class="d">Extended first visit with our pelvic health specialist</span><span class="m">75 min</span></li>
+<li><h3>Home visit</h3><span class="p">+$35</span><span class="d">Any appointment, at your home within 6 miles</span><span class="m">travel included</span></li>
+</ul>
+<div class="ins rv">
+<h3>Using your <span class="serif">insurance</span></h3>
+<p>We're in-network with most major health plans and bill them directly. Out of network? We'll give you an itemised receipt to claim back. HSA and FSA cards are welcome.</p>
+<ol>
+<li><div><b>Send us your card details</b>A photo by WhatsApp before your visit is fine.</div></li>
+<li><div><b>We check your cover</b>You'll know your co-pay before you arrive, not after.</div></li>
+<li><div><b>We bill the plan</b>You only pay the co-pay on the day.</div></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="home-visits" style="padding-top:0">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">Home visits &amp; finding us</p>
+<h2>At the clinic, <em>or</em> at your kitchen table.</h2>
+<p>If getting here is the hard part, after surgery, late in pregnancy, or with a new baby, we'll bring the treatment table to you.</p>
+</div>
+<div class="home">
+<div class="home-photo rv">
+<img loading="lazy" src="https://images.unsplash.com/photo-1773227055624-07b515ba87c5?w=1400&q=70&auto=format&fit=crop" alt="A physiotherapist holding the hands of a smiling older woman as she rises from her armchair">
+<div class="cap">
+<h3>Home visits, same care</h3>
+<p>Same physios, same hour, same price plus $35 for travel. We bring a folding table, bands and weights, and set up exercises using what's already in your home.</p>
+</div>
+</div>
+<div class="find rv">
+<div class="map" role="img" aria-label="Simple map showing Linden Physio on Linden Row at Mill Street, with a dashed circle marking the 6-mile home visit area">
+<div class="park"></div><div class="river"></div>
+<div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div><div class="rd r4"></div>
+<div class="zone"></div>
+<div class="pin"><b>Linden Physio</b><i></i></div>
+<span class="lbl-z">Home visit area · 6 mi</span>
+</div>
+<div class="find-body">
+<div>
+<h3>Address</h3>
+<p>214 Linden Row, Suite 2<br>Corner of Mill Street<br>Free parking behind the building, step-free entrance</p>
+</div>
+<div>
+<h3>Opening hours</h3>
+<ul class="hours">
+<li>Mon – Thu <b>7am – 8pm</b></li>
+<li>Friday <b>7am – 6pm</b></li>
+<li>Saturday <b>8am – 1pm</b></li>
+<li>Sunday <b>Closed</b></li>
+</ul>
+</div>
+<div class="find-btns">
+<a class="btn btn-lake" href="tel:01700000000">Call</a>
+<a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn btn-line" href="https://maps.google.com/?q=214+Linden+Row" target="_blank" rel="noopener">Get directions</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="reviews" style="padding-top:0">
+<div class="wrap">
+<div class="sec-head rv">
+<p class="kicker">From our patients</p>
+<h2>In their <em>own</em> words.</h2>
+</div>
+<div class="reviews">
+<figure class="rev rv">
+<div class="stars" aria-label="5 out of 5">★★★★★</div>
+<blockquote>Two years of on-and-off back pain and nobody had explained it the way Mai did in the first ten minutes. Five sessions later I'm deadlifting again, carefully.</blockquote>
+<figcaption class="who"><b>Daniel O.</b>Back pain · 5 sessions</figcaption>
+</figure>
+<figure class="rev rv">
+<div class="stars" aria-label="5 out of 5">★★★★★</div>
+<blockquote>Arjun came to the house for the first three weeks after my knee replacement. I was walking to the clinic by week six.</blockquote>
+<figcaption class="who"><b>Margaret L.</b>Knee replacement · home visits</figcaption>
+</figure>
+<figure class="rev rv">
+<div class="stars" aria-label="5 out of 5">★★★★★</div>
+<blockquote>Calm, kind and practical after my second baby. I wish I'd booked after my first.</blockquote>
+<figcaption class="who"><b>Priya S.</b>Postnatal recovery</figcaption>
+</figure>
+</div>
+<p class="rev-note">Names shortened for privacy. Shared with each patient's permission.</p>
+</div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+<div class="wrap faq-grid">
+<div class="sec-head rv">
+<p class="kicker">Questions</p>
+<h2>Before you <em>book.</em></h2>
+<p>Anything else, call or WhatsApp. A physio, not a call centre, will answer.</p>
+</div>
+<div class="faq rv" id="faqList">
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Do I need a doctor's referral?<span class="ic" aria-hidden="true"></span></button></h3>
+<div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>No. You can book directly with us. A few insurance plans ask for a referral before they'll pay, and we'll check that for you when we verify your cover.</p></div></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa2" id="fq2">How many sessions will I need?<span class="ic" aria-hidden="true"></span></button></h3>
+<div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>Most people need three to six, spaced a week or two apart. Post-surgery rehab usually runs longer, typically eight to twelve. You'll get an honest estimate at the end of your assessment, and we'll tell you when you no longer need us.</p></div></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa3" id="fq3">What should I wear?<span class="ic" aria-hidden="true"></span></button></h3>
+<div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Something you can move in and that lets us see the area: shorts for knees and hips, a vest top for shoulders and necks. We have private treatment rooms and gowns if you need them.</p></div></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">Is a women's health appointment different?<span class="ic" aria-hidden="true"></span></button></h3>
+<div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>It's longer (75 minutes) and always with Mai. An internal examination is sometimes helpful, but it's always explained first, always optional, and you can bring someone with you.</p></div></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Where do you do home visits?<span class="ic" aria-hidden="true"></span></button></h3>
+<div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p>Anywhere within six miles of the clinic. Just outside? Ask us anyway. Home visits run weekdays between 10am and 4pm.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<a class="logo" href="#top" aria-label="Linden Physio, back to top">
+<svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#2B5C8A"/><path d="M17 7c-3.5 3.2-3.5 6.8 0 10s3.5 6.8 0 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="7.5" r="2" fill="#BFD3E6"/></svg>
+<span>Linden Physio<small>Physiotherapy &amp; rehab</small></span>
+</a>
+<p style="margin-top:16px;max-width:320px">An independent physiotherapy clinic. Assessment first, honest timelines, and care that ends when you're better.</p>
+</div>
+<div><h4>Clinic</h4><ul><li>214 Linden Row, Suite 2</li><li>Corner of Mill Street</li><li><a href="https://maps.google.com/?q=214+Linden+Row" target="_blank" rel="noopener">Directions</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="tel:01700000000">017 00000000</a></li><li><a href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li></ul></div>
+<div><h4>Hours</h4><ul><li>Mon – Thu, 7am – 8pm</li><li>Fri, 7am – 6pm</li><li>Sat, 8am – 1pm</li></ul></div>
+</div>
+<div class="foot-bottom"><span>© 2026 Linden Physio. All patients and practitioners shown are illustrative.</span><span>Not for emergencies. If you need urgent help, call your local emergency number.</span></div>
+</div>
+</footer>
+
+<div class="mbar" aria-label="Quick contact">
+<a class="btn btn-line" href="tel:01700000000">Call</a>
+<a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn btn-lake" href="#book">Book</a>
+</div>
+
+<script>
+(function(){
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function(id){ return document.getElementById(id); };
+
+/* nav */
+var nav = $('nav');
+function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 40); }
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+var burger = $('burger'), menu = $('mmenu');
+function setMenu(open){
+burger.setAttribute('aria-expanded', open);
+burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+menu.classList.toggle('open', open);
+nav.classList.toggle('menu-open', open);
+}
+burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
+
+/* reveal */
+var rv = document.querySelectorAll('.rv');
+if (reduce || !('IntersectionObserver' in window)) { rv.forEach(function(el){ el.classList.add('in'); }); }
+else {
+var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -6% 0px'});
+rv.forEach(function(el){ io.observe(el); });
+}
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-q').forEach(function(q){
+q.addEventListener('click', function(){
+var item = q.closest('.faq-item'), open = !item.classList.contains('open');
+item.classList.toggle('open', open);
+q.setAttribute('aria-expanded', open);
+});
+});
+
+/* BOOKING */
+var form = $('bookForm');
+var PROS = {mai:'Dr. Mai Tran', arjun:'Dr. Arjun Mehta', rosa:'Rosa Delgado'};
+var CONCERNS = {back:'Back & neck pain', sport:'Sports injury', surgery:'Post-surgery rehab', women:"Women's health", other:'Something else'};
+var DAYN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var HOURS = {1:[7,20],2:[7,20],3:[7,20],4:[7,20],5:[7,18],6:[8,13]};
+
+// next 6 open days, starting tomorrow
+var days = [], d = new Date(); d.setHours(0,0,0,0);
+while (days.length < 6) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) days.push(new Date(d)); }
+
+function seed(str){ var h = 7; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 100003; return h; }
+function fmt(h, m){ var ap = h < 12 ? 'am' : 'pm', hh = h % 12 || 12; return hh + ':' + (m < 10 ? '0' + m : m) + ap; }
+
+function slotsFor(day, pro, where){
+var hrs = HOURS[day.getDay()], out = [];
+var start = hrs[0], end = hrs[1] - 1;
+if (where === 'home') { start = Math.max(start, 10); end = Math.min(end, 15); if (day.getDay() === 6) return out; }
+for (var h = start; h <= end; h++) {
+[0, 30].forEach(function(m){
+if (h === end && m === 30) return;
+var key = day.toDateString() + h + m + pro;
+var free = (seed(key) % 10) < (pro === 'any' ? 4 : 2);
+out.push({h:h, m:m, label:fmt(h, m), free:free});
+});
+}
+return out;
+}
+
+var daysEl = $('days'), slotsEl = $('slots');
+days.forEach(function(day, i){
+var id = 'd' + i;
+var wrap = document.createElement('div'); wrap.className = 'chip';
+wrap.innerHTML = '<input type="radio" name="day" id="' + id + '" value="' + i + '"' + (i === 0 ? ' checked' : '') + '>' +
+'<label for="' + id + '"><span class="sub">' + DAYN[day.getDay()] + '</span><b>' + day.getDate() + '</b><span class="sub">' + MON[day.getMonth()] + '</span></label>';
+daysEl.appendChild(wrap);
+});
+
+function val(name){ var x = form.querySelector('input[name=' + name + ']:checked'); return x ? x.value : null; }
+
+function renderSlots(){
+var prev = val('time');
+var day = days[+val('day')], pro = val('pro'), where = val('where');
+var list = slotsFor(day, pro, where);
+slotsEl.innerHTML = '';
+var free = list.filter(function(s){ return s.free; }).length;
+$('slotNote').textContent = free ? '· ' + free + ' open' : '';
+if (!free) {
+slotsEl.innerHTML = '<p class="slots-empty">' + (where === 'home' && day.getDay() === 6 ? 'Home visits run on weekdays only. Try another day.' : 'Nothing free that day. Try another day or "First available".') + '</p>';
+return;
+}
+list.filter(function(s){ return s.free; }).forEach(function(s, i){
+var id = 't' + i, w = document.createElement('div'); w.className = 'chip';
+w.innerHTML = '<input type="radio" name="time" id="' + id + '" value="' + s.label + '"' + (s.label === prev ? ' checked' : '') + '>' +
+'<label for="' + id + '">' + s.label + '</label>';
+slotsEl.appendChild(w);
+});
+}
+
+function price(){
+var c = val('concern'), base = c === 'women' ? 120 : 95, mins = c === 'women' ? 75 : 60;
+var home = val('where') === 'home';
+return {total: base + (home ? 35 : 0), mins: mins, home: home};
+}
+function updateSummary(){
+var p = price(), t = val('time'), day = days[+val('day')];
+var when = t ? DAYN[day.getDay()] + ' ' + day.getDate() + ' ' + MON[day.getMonth()] + ', ' + t + ' · ' : '';
+$('sumText').innerHTML = when + (val('concern') === 'women' ? "Women's health assessment" : 'Initial assessment') + ' · ' + p.mins + ' min' + (p.home ? ' · home visit' : '') + ' · <b>$' + p.total + '</b>';
+}
+
+form.addEventListener('change', function(e){
+var n = e.target.name;
+if (n === 'day' || n === 'pro' || n === 'where') renderSlots();
+if (n === 'concern') $('fs-concern').classList.remove('bad');
+if (n === 'time') $('fs-time').classList.remove('bad');
+updateSummary();
+});
+['name','phone'].forEach(function(id){
+$(id).addEventListener('input', function(){ $('f-' + id).classList.remove('bad'); });
+});
+
+// "Book for this" buttons preselect the concern
+document.querySelectorAll('.pick').forEach(function(b){
+b.addEventListener('click', function(){
+var r = $('c-' + b.dataset.concern); r.checked = true;
+if (b.dataset.concern === 'women') $('p-mai').checked = true;
+renderSlots(); updateSummary(); $('fs-concern').classList.remove('bad');
+$('book').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+});
+});
+
+form.addEventListener('submit', function(e){
+e.preventDefault();
+var bad = [];
+if (!val('concern')) { $('fs-concern').classList.add('bad'); bad.push(form.querySelector('input[name=concern]')); }
+if (!val('time')) { $('fs-time').classList.add('bad'); bad.push($('fs-time')); }
+var name = $('name').value.trim(), phone = $('phone').value.replace(/[^\d+]/g, '');
+if (name.length < 2) { $('f-name').classList.add('bad'); bad.push($('name')); }
+if (phone.replace(/\D/g, '').length < 7) { $('f-phone').classList.add('bad'); bad.push($('phone')); }
+$('name').setAttribute('aria-invalid', name.length < 2);
+$('phone').setAttribute('aria-invalid', phone.replace(/\D/g, '').length < 7);
+if (bad.length) {
+var first = bad[0];
+first.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+if (first.focus) first.focus({preventScroll:true});
+return;
+}
+var p = price(), day = days[+val('day')], pro = val('pro');
+var proName = pro === 'any' ? 'First available physio' : PROS[pro];
+var rows = [
+['For', CONCERNS[val('concern')]],
+['With', proName],
+['When', DAYN[day.getDay()] + ' ' + day.getDate() + ' ' + MON[day.getMonth()] + ', ' + val('time')],
+['Where', p.home ? 'Home visit' : '214 Linden Row, Suite 2'],
+['Fee', '$' + p.total + ' · ' + p.mins + ' min']
+];
+$('recap').innerHTML = rows.map(function(r){ return '<li><span>' + r[0] + '</span><b>' + r[1].replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</b></li>'; }).join('');
+$('okText').textContent = 'Thanks, ' + name.split(' ')[0].replace(/</g,'') + '. We’ve held this slot and will text ' + $('phone').value.trim() + ' within two working hours to confirm.';
+form.classList.add('done');
+$('success').focus({preventScroll:true});
+form.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+});
+
+$('again').addEventListener('click', function(){
+form.reset(); form.classList.remove('done');
+renderSlots(); updateSummary();
+});
+
+renderSlots(); updateSummary();
+})();
+</script>
+</body>
+</html>

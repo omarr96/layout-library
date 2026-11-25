@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margin Tutoring — Maths, English &amp; science tutors in Millbrook</title>
+<meta name="description" content="Small-group and one-to-one tutoring in maths, English and science for grades 3–12, in person in Millbrook or online. Qualified teachers, monthly progress notes, and a free trial lesson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F6F2; --card:#FFFFFF; --ink:#172033; --muted:#566074; --line:#E1E3E2; --soft:#EEEFEA;
+  --blue:#2F4B8F; --blue-d:#243B73; --blue-50:#E9EDF6;
+  --ok:#2E6B4F; --err:#B3261E;
+  --r:18px; --shadow:0 1px 2px rgba(23,32,51,.05),0 18px 40px -20px rgba(23,32,51,.22);
+  --sans:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Libre Caslon Text",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.08}
+em.s,h1 em,h2 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--blue)}
+.label{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--blue);font-weight:600}
+.sec{padding:112px 0}
+.sec-head{max-width:620px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(32px,4.4vw,50px);margin:14px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-line{background:var(--card);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(246,246,242,.86);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid transparent;transition:border-color .25s}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:32px;height:72px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.logo-mark{width:30px;height:34px;border-radius:5px;background:var(--card);border:1.5px solid var(--ink);position:relative;flex:none;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 7px,#D3D7DE 7px 8px);background-position:0 5px}
+.logo-mark::before{content:"";position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--blue)}
+.logo small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:-2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px}
+.nav-cta .tel{text-decoration:none;font-weight:600;font-size:15px}
+.nav-cta .btn{min-height:42px;padding:0 18px;font-size:15px}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border:1px solid var(--line);border-radius:12px;background:var(--card);position:relative}
+.burger span{position:absolute;left:13px;right:13px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+
+/* HERO */
+.hero{padding:156px 0 0;text-align:center}
+.hero .chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--muted)}
+.hero .chip b{background:var(--blue-50);color:var(--blue);font-weight:600;padding:3px 10px;border-radius:999px;font-size:13px}
+.hero h1{font-size:clamp(42px,7.2vw,92px);margin:26px auto 24px;max-width:960px}
+.hero h1 em{display:block}
+.hero .lede{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:640px;margin:0 auto 34px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero .fine{margin-top:20px;font-size:14px;color:var(--muted);display:flex;gap:8px 20px;justify-content:center;flex-wrap:wrap}
+.hero .fine span{display:inline-flex;align-items:center;gap:7px}
+.hero .fine span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.strip{display:grid;grid-template-columns:1fr 1.7fr 1fr;gap:18px;align-items:end;margin-top:72px}
+.strip figure{position:relative;border-radius:var(--r);overflow:hidden;background:var(--soft)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip figure:nth-child(1){height:340px}
+.strip figure:nth-child(2){height:460px}
+.strip figure:nth-child(3){height:380px}
+.strip figcaption{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:64px;text-align:center}
+.facts div{padding:34px 16px}
+.facts div+div{border-left:1px solid var(--line)}
+.facts strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,46px);line-height:1;letter-spacing:-.02em}
+.facts span{display:block;margin-top:10px;color:var(--muted);font-size:15px}
+
+/* SUBJECTS */
+.subjects{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.subj-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:72px;align-items:start}
+.subj-list{list-style:none;border-top:1px solid var(--line)}
+.subj-list li{display:grid;grid-template-columns:56px 1fr auto;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.subj-list .n{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:20px}
+.subj-list h3{font-size:24px;margin-bottom:6px}
+.subj-list p{color:var(--muted);font-size:16px;max-width:440px}
+.subj-list .gr{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;background:var(--soft);padding:5px 11px;border-radius:999px}
+.subj-photo{position:sticky;top:110px;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--soft)}
+.subj-photo img{width:100%;height:100%;object-fit:cover}
+.subj-photo p{position:absolute;inset:auto 0 0;padding:60px 26px 24px;color:#fff;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.35;background:linear-gradient(to top,rgba(14,20,34,.82),rgba(14,20,34,0))}
+
+/* HOW + REPORT */
+.how-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 34px 64px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--blue);color:var(--blue);display:grid;place-items:center;font-weight:600;font-size:16px;background:var(--paper)}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:19.5px;top:44px;bottom:4px;width:1.5px;background:var(--line)}
+.steps h3{font-size:21px;margin-bottom:6px}
+.steps p{color:var(--muted);font-size:16px}
+.report{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:34px;position:relative}
+.report::before{content:"";position:absolute;top:0;bottom:0;left:26px;width:1.5px;background:#C9D2E6;opacity:.7}
+.report>*{margin-left:18px}
+.rep-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.rep-top h3{font-size:20px}
+.rep-top p{font-size:14px;color:var(--muted)}
+.rep-top .tag{font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-50);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.skills{list-style:none;padding:22px 0;display:grid;gap:18px}
+.skills li{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:15px;font-weight:500}
+.skills li span{color:var(--muted);font-size:14px;font-weight:500}
+.bar{grid-column:1/-1;height:8px;border-radius:8px;background:var(--soft);position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:8px;width:var(--w);transform-origin:left;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.bar i{background:linear-gradient(to right,#9DB0D8 0 var(--split),var(--blue) var(--split))}
+.report:not(.in) .bar i{transform:scaleX(0)}
+.rep-key{display:flex;gap:18px;font-size:13px;color:var(--muted);margin-top:-6px}
+.rep-key span{display:inline-flex;align-items:center;gap:6px}
+.rep-key span::before{content:"";width:10px;height:10px;border-radius:3px;background:#9DB0D8}
+.rep-key span+span::before{background:var(--blue)}
+.note{margin-top:22px;padding:18px 20px;background:var(--paper);border-radius:14px}
+.note q{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;quotes:none}
+.note p{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* FEES */
+.fees{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.switch{display:inline-flex;padding:5px;border-radius:14px;background:var(--soft);border:1px solid var(--line);margin-bottom:40px}
+.switch button{border:0;background:transparent;padding:10px 22px;border-radius:10px;font-weight:600;font-size:15px;color:var(--muted);transition:background .2s,color .2s}
+.switch button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(23,32,51,.12)}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto}
+.plan{border:1px solid var(--line);border-radius:22px;padding:36px;background:var(--paper);display:flex;flex-direction:column}
+.plan.feat{background:var(--card);border-color:var(--blue);box-shadow:var(--shadow)}
+.plan h3{font-size:24px}
+.plan .who{color:var(--muted);font-size:15px;margin-top:4px}
+.price{display:flex;align-items:baseline;gap:8px;margin:26px 0 4px}
+.price strong{font-family:var(--serif);font-weight:400;font-size:58px;line-height:1;letter-spacing:-.03em}
+.price span{color:var(--muted);font-size:15px}
+.per{font-size:14px;color:var(--muted);min-height:22px}
+.plan ul{list-style:none;margin:24px 0 30px;display:grid;gap:11px;font-size:16px}
+.plan li{position:relative;padding-left:28px}
+.plan li::before{content:"";position:absolute;left:2px;top:7px;width:12px;height:7px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
+.plan .btn{margin-top:auto}
+.fee-note{text-align:center;color:var(--muted);font-size:15px;margin-top:32px}
+.price strong.flip{animation:flip .35s ease}
+@keyframes flip{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* TUTORS */
+.tutors{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tutor figure{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--soft);margin-bottom:18px}
+.tutor img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.tutor:hover img{transform:scale(1.03)}
+.tutor h3{font-size:20px}
+.tutor .role{color:var(--blue);font-weight:600;font-size:14px;margin:3px 0 8px}
+.tutor p{color:var(--muted);font-size:15px}
+.promise{margin-top:56px;padding:26px 30px;border-radius:var(--r);border:1px dashed #C2C8D3;display:flex;gap:16px 40px;flex-wrap:wrap;justify-content:center;font-size:15px;font-weight:500}
+.promise span{display:inline-flex;align-items:center;gap:9px}
+.promise svg{width:18px;height:18px;color:var(--blue)}
+
+/* QUOTES */
+.quotes{background:var(--blue);color:#fff}
+.quotes .label{color:#C3CEE8}
+.quotes h2{color:#fff}
+.quotes h2 em{color:#fff}
+.q-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.q{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:32px;display:flex;flex-direction:column}
+.q blockquote{font-family:var(--serif);font-size:19px;line-height:1.55;font-style:italic}
+.q:first-child blockquote{font-size:23px}
+.q footer{margin-top:auto;padding-top:24px;font-size:14px;color:#D2DAEE}
+.q footer b{display:block;color:#fff;font-size:15px}
+.stars{color:#F3D58B;letter-spacing:2px;font-size:15px;margin-bottom:14px}
+
+/* VISIT */
+.visit-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:stretch}
+.hours{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px}
+.hours h3{font-size:20px;margin-bottom:12px}
+.hours table{width:100%;border-collapse:collapse;font-size:16px}
+.hours td{padding:12px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--muted)}
+.hours tr.today td{color:var(--blue);font-weight:600}
+.hours tr.today td:first-child::after{content:" · today";font-weight:500;font-size:13px}
+.addr{margin:22px 0 22px;font-size:16px}
+.addr strong{display:block;font-size:17px}
+.addr span{color:var(--muted)}
+.contact-row{display:flex;gap:10px;flex-wrap:wrap}
+.contact-row .btn{flex:1 1 140px;min-height:48px;padding:0 16px;font-size:15px}
+.map{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#EDEEE8;min-height:420px}
+.map .rd{position:absolute;background:#fff;box-shadow:0 0 0 1px #DEDFD8}
+.map .park{position:absolute;background:#DCE5D6;border-radius:18px}
+.map .water{position:absolute;background:#D6E0EE;border-radius:50%}
+.map .blk{position:absolute;background:#E3E4DC;border-radius:6px}
+.map .lbl{position:absolute;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#7D8592}
+.pin{position:absolute;left:54%;top:44%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin .card{background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:9px 14px;border-radius:10px;white-space:nowrap;box-shadow:var(--shadow)}
+.pin .dot{width:16px;height:16px;border-radius:50%;background:var(--blue);border:3px solid #fff;margin-top:8px;box-shadow:0 0 0 6px rgba(47,75,143,.18)}
+.map .walk{position:absolute;right:16px;bottom:16px;background:var(--card);border-radius:12px;padding:12px 16px;font-size:14px;box-shadow:var(--shadow);max-width:250px}
+.map .walk b{display:block}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.faq{border-top:1px solid var(--line)}
+.faq h3{font-size:inherit;font-weight:inherit;letter-spacing:0}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;background:none;border:0;padding:24px 0;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.faq .ic{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);flex:none;position:relative;transition:transform .3s,border-color .2s}
+.faq .ic::before,.faq .ic::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)}
+.faq .ic::after{transform:translate(-50%,-50%) rotate(90deg);transition:opacity .2s}
+.faq button[aria-expanded="true"] .ic{border-color:var(--blue);transform:rotate(180deg)}
+.faq button[aria-expanded="true"] .ic::after{opacity:0}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-panel>div{overflow:hidden}
+.faq-panel p{padding:0 50px 24px 0;color:var(--muted)}
+.faq-item.open .faq-panel{grid-template-rows:1fr}
+
+/* BOOK */
+.book{padding:112px 0}
+.book-card{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden}
+.book-side{background:var(--ink);color:#fff;padding:52px 44px;position:relative;overflow:hidden}
+.book-side::after{content:"";position:absolute;inset:auto -60px -60px auto;width:240px;height:240px;border-radius:50%;border:1.5px solid rgba(255,255,255,.12)}
+.book-side .label{color:#AEB9D3}
+.book-side h2{font-size:clamp(32px,3.6vw,44px);margin:14px 0 18px}
+.book-side h2 em{color:#C3CEE8}
+.book-side p{color:#C6CCD8}
+.book-side ul{list-style:none;margin:30px 0 34px;display:grid;gap:14px;font-size:16px}
+.book-side li{display:flex;gap:12px}
+.book-side li b{font-family:var(--serif);font-style:italic;font-weight:400;color:#C3CEE8;min-width:22px}
+.book-side .wa{background:#fff;color:var(--ink)}
+form{padding:48px 44px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f{margin-bottom:20px;border:0;min-width:0}
+.f>label,.f legend{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.f legend{padding:0}
+.f input,.f select,.f textarea{width:100%;border:1px solid #D4D7DC;background:var(--paper);border-radius:12px;padding:13px 14px;font-size:16px;transition:border-color .2s,background .2s}
+.f textarea{min-height:88px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--blue-50)}
+.f .opt{font-weight:400;color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{position:relative}
+.pills input{position:absolute;opacity:0;width:1px;height:1px}
+.pills span{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid #D4D7DC;background:var(--paper);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s}
+.pills input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+.pills input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.err{display:none;color:var(--err);font-size:13px;font-weight:500;margin-top:6px}
+.f.bad input,.f.bad select{border-color:var(--err)}
+.f.bad .pills span{border-color:#E3A9A4}
+.f.bad .err{display:block}
+.submit{width:100%;margin-top:6px}
+.privacy{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+.success{display:none;padding:64px 44px;text-align:center;align-self:center}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--blue-50);display:grid;place-items:center;margin:0 auto 22px}
+.success .tick svg{width:28px;height:28px;color:var(--blue)}
+.success h3{font-size:30px;margin-bottom:12px}
+.success h3 em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--blue)}
+.success p{color:var(--muted);max-width:400px;margin:0 auto 26px}
+.book-card.done form{display:none}
+.book-card.done .success{display:block}
+
+/* FOOTER */
+footer.site{border-top:1px solid var(--line);padding:56px 0 110px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot p,.foot li{color:var(--muted);font-size:15px}
+.foot h4{font-size:14px;margin-bottom:12px}
+.foot ul{list-style:none;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+.legal{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* MOBILE BAR */
+.mbar{display:none}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1020px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:block}
+  .mmenu{display:block;position:fixed;inset:72px 0 auto;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 24px 26px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;z-index:49}
+  .mmenu.open{opacity:1;visibility:visible;transform:none}
+  .mmenu a:not(.btn){display:block;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px;font-weight:500}
+  .mmenu .btn{width:100%;margin-top:18px}
+  .subj-grid,.how-grid,.visit-grid,.faq-grid,.book-card{grid-template-columns:1fr}
+  .subj-grid,.how-grid,.faq-grid{gap:48px}
+  .subj-photo{position:relative;top:0;aspect-ratio:16/10}
+  .tutors{grid-template-columns:repeat(2,1fr)}
+  .q-grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .sec,.book{padding:80px 0}
+  .wrap{padding:0 16px}
+  .hero{padding-top:124px}
+  .hero .btn{width:100%}
+  .strip{grid-template-columns:1fr 1fr;gap:10px;margin-top:48px}
+  .strip figure:nth-child(2){grid-column:1/-1;grid-row:1;height:260px}
+  .strip figure:nth-child(1),.strip figure:nth-child(3){height:190px}
+  .facts{grid-template-columns:1fr;margin-top:44px}
+  .facts div{padding:22px 10px}
+  .facts div+div{border-left:0;border-top:1px solid var(--line)}
+  .subj-list li{grid-template-columns:34px 1fr;gap:6px 12px}
+  .subj-list .gr{grid-column:2;justify-self:start}
+  .report{padding:24px 20px}
+  .report::before{left:16px}
+  .report>*{margin-left:12px}
+  .rep-top{flex-direction:column}
+  .plans{grid-template-columns:1fr}
+  .plan{padding:28px 24px}
+  .tutors{gap:16px}
+  .tutor p{font-size:14px}
+  .tutor h3{font-size:18px}
+  .q{padding:26px 22px}
+  .q:first-child blockquote{font-size:20px}
+  .hours{padding:24px 20px}
+  .map{min-height:320px}
+  .map .walk{left:12px;right:12px;bottom:12px;max-width:none}
+  .faq button{font-size:17px}
+  .faq-panel p{padding-right:0}
+  .book-side{padding:40px 22px}
+  .book-side .wa{width:100%;font-size:15px}
+  .sec-head{margin-bottom:40px}
+  .faq-grid{gap:0}
+  form{padding:32px 20px}
+  .row{grid-template-columns:1fr;gap:0}
+  .success{padding:48px 22px}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px -16px rgba(23,32,51,.3)}
+  .mbar a{min-height:46px;padding:0 10px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+  .report:not(.in) .bar i{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Margin Tutoring, home"><span class="logo-mark" aria-hidden="true"></span><span>Margin<small>Tutoring · Millbrook</small></span></a>
+    <ul class="nav-links">
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#fees">Fees</a></li>
+      <li><a href="#tutors">Tutors</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="tel" href="tel:01700000000">017 00000000</a>
+      <a class="btn btn-blue" href="#book">Book a free trial</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#subjects">Subjects</a>
+  <a href="#how">How it works</a>
+  <a href="#fees">Fees</a>
+  <a href="#tutors">Tutors</a>
+  <a href="#visit">Visit &amp; hours</a>
+  <a href="#faq">Questions</a>
+  <a class="btn btn-blue" href="#book">Book a free trial lesson</a>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="chip"><b>Autumn term</b> Saturday group places open</span>
+    <h1>Steady, patient tutoring. <em>One lesson at a time.</em></h1>
+    <p class="lede">Maths, English and science for grades 3–12 — in small groups of four or one-to-one, at our Millbrook study rooms or online. Every family gets a written progress note each month.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-blue" href="#book">Book a free trial lesson</a>
+      <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25A366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg>Message us on WhatsApp</a>
+    </div>
+    <p class="fine"><span>45-minute free trial</span><span>No contract</span><span>Qualified teachers only</span></p>
+
+    <div class="strip">
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1560785496-3c9d27877182?w=900&q=70&auto=format&fit=crop" alt="A young boy working through a page of sums with a pencil at a wooden table" loading="eager"><figcaption>Grade 3 maths</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&q=70&auto=format&fit=crop" alt="Students writing quietly at a shared table during a small-group lesson" loading="eager"><figcaption>Small groups of four</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1610484826917-0f101a7bf7f4?w=900&q=70&auto=format&fit=crop" alt="A student in headphones taking an online lesson on a laptop" loading="eager"><figcaption>Or live online</figcaption></figure>
+    </div>
+
+    <div class="facts">
+      <div><strong>9 years</strong><span>teaching families across Millbrook</span></div>
+      <div><strong>4 max</strong><span>students in any small group</span></div>
+      <div><strong>Monthly</strong><span>written progress note for parents</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="sec subjects" id="subjects">
+  <div class="wrap subj-grid">
+    <div>
+      <div class="sec-head">
+        <p class="label"><b>01</b> &nbsp;What we teach</p>
+        <h2>Four subjects, <em>taught properly.</em></h2>
+        <p>We keep the list short on purpose. Each subject is led by a teacher who has taught it in a classroom, and every plan follows your child's school curriculum.</p>
+      </div>
+      <ul class="subj-list">
+        <li class="rv"><span class="n">i.</span><div><h3>Maths</h3><p>From times tables and fractions to algebra, geometry and pre-calculus. We fix the gaps first, then build speed and confidence.</p></div><span class="gr">Grades 3–12</span></li>
+        <li class="rv"><span class="n">ii.</span><div><h3>English</h3><p>Reading comprehension, grammar, vocabulary and essay writing — with honest feedback on every piece your child writes.</p></div><span class="gr">Grades 3–12</span></li>
+        <li class="rv"><span class="n">iii.</span><div><h3>Science</h3><p>General science, then biology, chemistry and physics. Concepts explained with real examples, plus practice with lab-style questions.</p></div><span class="gr">Grades 5–12</span></li>
+        <li class="rv"><span class="n">iv.</span><div><h3>Exam preparation</h3><p>Structured revision for end-of-year exams, SAT and ACT: past papers, timing practice and calm strategies for the day itself.</p></div><span class="gr">Grades 8–12</span></li>
+      </ul>
+    </div>
+    <figure class="subj-photo rv">
+      <img src="https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=1200&q=70&auto=format&fit=crop" alt="A teacher writing physics formulas on a small chalkboard beside a stack of books" loading="lazy">
+      <p>“Most students aren't bad at a subject. They're missing one or two steps nobody went back for.”</p>
+    </figure>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="wrap how-grid">
+    <div>
+      <div class="sec-head">
+        <p class="label"><b>02</b> &nbsp;How it works</p>
+        <h2>You'll always know <em>how it's going.</em></h2>
+        <p>No guessing, no vague “doing fine”. Here's what happens from the first visit.</p>
+      </div>
+      <ol class="steps">
+        <li class="rv"><h3>A free trial lesson</h3><p>45 minutes with a tutor, in person or online. We gently check where your child is and what's holding them back.</p></li>
+        <li class="rv"><h3>A plan you can read</h3><p>Within two days you get a one-page plan: three clear goals for the term and how we'll reach them.</p></li>
+        <li class="rv"><h3>Weekly lessons, same tutor</h3><p>Your child keeps one tutor, so nothing has to be explained twice. Short homework, never piles of it.</p></li>
+        <li class="rv"><h3>A progress note every month</h3><p>Skills, scores and a few honest lines from the tutor — by email or WhatsApp, whichever you prefer.</p></li>
+      </ol>
+    </div>
+    <article class="report rv" id="report" aria-label="Example monthly progress note">
+      <div class="rep-top">
+        <div><h3>Maya R. · Grade 7 Maths</h3><p>Progress note · October · Tutor: Daniel Osei</p></div>
+        <span class="tag">Example note</span>
+      </div>
+      <ul class="skills">
+        <li>Fractions &amp; ratios <span>58% → 84%</span><div class="bar" aria-hidden="true"><i style="--w:84%;--split:69%"></i></div></li>
+        <li>Solving equations <span>41% → 72%</span><div class="bar" aria-hidden="true"><i style="--w:72%;--split:57%"></i></div></li>
+        <li>Word problems <span>50% → 63%</span><div class="bar" aria-hidden="true"><i style="--w:63%;--split:79%"></i></div></li>
+      </ul>
+      <div class="rep-key"><span>Start of term</span><span>This month</span></div>
+      <div class="note">
+        <q>Maya now checks her own working before she asks — that's the big change this month. Next we'll slow down on word problems; she rushes the reading.</q>
+        <p>Attendance 4 of 4 · Homework 4 of 4 · Next note: late November</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="sec fees" id="fees">
+  <div class="wrap">
+    <div class="sec-head center" style="text-align:center">
+      <p class="label"><b>03</b> &nbsp;Fees</p>
+      <h2>Clear prices, <em>paid monthly.</em></h2>
+      <p>No sign-up fee and no term contract. Pause or stop with two weeks' notice.</p>
+    </div>
+    <div style="text-align:center">
+      <div class="switch" role="tablist" aria-label="Lesson location">
+        <button role="tab" id="t-in" aria-selected="true" aria-controls="plans" data-mode="in">In person</button>
+        <button role="tab" id="t-on" aria-selected="false" aria-controls="plans" data-mode="on" tabindex="-1">Online</button>
+      </div>
+    </div>
+    <div class="plans" id="plans" role="tabpanel" aria-labelledby="t-in">
+      <div class="plan rv">
+        <h3>Small group</h3>
+        <p class="who">Up to 4 students of the same grade and subject</p>
+        <div class="price"><strong data-in="26" data-on="22">$26</strong><span>per 60-min lesson</span></div>
+        <p class="per" data-in="About $104 a month for one lesson a week" data-on="About $88 a month for one lesson a week">About $104 a month for one lesson a week</p>
+        <ul>
+          <li>Same tutor and same group each week</li>
+          <li>Worksheets and practice papers included</li>
+          <li>Monthly progress note</li>
+          <li class="loc" data-in="Weekday afternoons and Saturday mornings" data-on="Live video classroom with shared whiteboard">Weekday afternoons and Saturday mornings</li>
+        </ul>
+        <a class="btn btn-line" href="#book">Try a group lesson free</a>
+      </div>
+      <div class="plan feat rv">
+        <h3>One-to-one</h3>
+        <p class="who">Your child and their tutor, nothing else</p>
+        <div class="price"><strong data-in="48" data-on="42">$48</strong><span>per 60-min lesson</span></div>
+        <p class="per" data-in="Or $90 for a 2-lesson weekly pack" data-on="Or $78 for a 2-lesson weekly pack">Or $90 for a 2-lesson weekly pack</p>
+        <ul>
+          <li>Lesson plan built around your child alone</li>
+          <li>Ideal before exams or after a difficult term</li>
+          <li>Monthly progress note plus a mid-term call</li>
+          <li class="loc" data-in="Choose any open slot, including weekday evenings" data-on="Recorded lessons to rewatch before tests">Choose any open slot, including weekday evenings</li>
+        </ul>
+        <a class="btn btn-blue" href="#book">Book a one-to-one trial</a>
+      </div>
+    </div>
+    <p class="fee-note">Siblings get 10% off. Ask us about reduced-fee places — we keep a few each term.</p>
+  </div>
+</section>
+
+<!-- TUTORS -->
+<section class="sec" id="tutors">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label"><b>04</b> &nbsp;Our tutors</p>
+      <h2>Real teachers, <em>who stay.</em></h2>
+      <p>Every Margin tutor is a qualified teacher with classroom experience and a cleared background check. Most have been with us for over four years.</p>
+    </div>
+    <div class="tutors">
+      <article class="tutor rv"><figure><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&q=70&auto=format&fit=crop" alt="Portrait of Elena Marsh, smiling" loading="lazy"></figure><h3>Elena Marsh</h3><p class="role">Founder · English</p><p>Taught high-school English for 14 years. Reads every essay twice.</p></article>
+      <article class="tutor rv"><figure><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=70&auto=format&fit=crop" alt="Portrait of Daniel Osei, smiling" loading="lazy"></figure><h3>Daniel Osei</h3><p class="role">Maths · Grades 6–12</p><p>MSc in mathematics. Patient with anyone who says “I'm just not a maths person”.</p></article>
+      <article class="tutor rv"><figure><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=700&q=70&auto=format&fit=crop" alt="Portrait of Amara Bello" loading="lazy"></figure><h3>Amara Bello</h3><p class="role">Science · Chemistry &amp; biology</p><p>Former lab technician turned teacher. Makes the periodic table feel friendly.</p></article>
+      <article class="tutor rv"><figure><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=700&q=70&auto=format&fit=crop" alt="Portrait of Richard Hale, wearing glasses" loading="lazy"></figure><h3>Richard Hale</h3><p class="role">Exam prep · SAT &amp; ACT</p><p>Twenty years as an exam coach. Calm, methodical, very good with nerves.</p></article>
+    </div>
+    <div class="promise">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z"/></svg>Background-checked</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7l8-4 8 4-8 4-8-4Zm4 2v5c2 2 6 2 8 0V9"/></svg>Qualified teachers</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Same tutor every week</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg>First-aid trained staff on site</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="sec quotes" aria-labelledby="q-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">From parents</p>
+      <h2 id="q-h">What families <em>notice first.</em></h2>
+    </div>
+    <div class="q-grid">
+      <figure class="q rv"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Jonah used to go quiet whenever homework came out. After one term with Daniel he explains fractions to his little sister. The monthly notes meant we always knew what to practise at home.</blockquote><footer><b>Priya N.</b>Parent of Jonah, Grade 6 · maths group</footer></figure>
+      <figure class="q rv"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Honest feedback on her essays, never just “good job”. Her English grade went up a full letter.</blockquote><footer><b>Marcus T.</b>Parent of Lena, Grade 9 · one-to-one</footer></figure>
+      <figure class="q rv"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Online lessons fit around football. Same tutor every week, and it actually feels personal.</blockquote><footer><b>Sofia &amp; Ade K.</b>Parents of Tobi, Grade 11 · online</footer></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="sec" id="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label"><b>05</b> &nbsp;Visit us</p>
+      <h2>Two quiet rooms <em>above the bookshop.</em></h2>
+      <p>Five minutes' walk from Millbrook Middle School, with a waiting corner and free tea for parents.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="hours rv">
+        <h3>Lesson hours</h3>
+        <table>
+          <caption style="position:absolute;left:-9999px">Lesson hours by day</caption>
+          <tbody id="hours">
+            <tr data-d="1"><td>Monday</td><td>3:30 – 8:00 pm</td></tr>
+            <tr data-d="2"><td>Tuesday</td><td>3:30 – 8:00 pm</td></tr>
+            <tr data-d="3"><td>Wednesday</td><td>3:30 – 8:00 pm</td></tr>
+            <tr data-d="4"><td>Thursday</td><td>3:30 – 8:00 pm</td></tr>
+            <tr data-d="5"><td>Friday</td><td>3:30 – 6:00 pm</td></tr>
+            <tr data-d="6"><td>Saturday</td><td>9:00 am – 2:00 pm</td></tr>
+            <tr data-d="0"><td>Sunday</td><td>Online only</td></tr>
+          </tbody>
+        </table>
+        <p class="addr"><strong>Margin Tutoring</strong><span>2nd floor, 14 Orchard Row, Millbrook · Entrance beside Pagewell Books</span></p>
+        <div class="contact-row">
+          <a class="btn btn-line" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
+          <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25A366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>WhatsApp</a>
+          <a class="btn btn-blue" href="https://maps.google.com/?q=14+Orchard+Row" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Directions</a>
+        </div>
+      </div>
+      <div class="map rv" role="img" aria-label="Simple map showing Margin Tutoring on Orchard Row, near Millbrook Middle School and Elm Park">
+        <span class="park" style="left:6%;top:8%;width:30%;height:34%"></span>
+        <span class="water" style="right:-8%;top:-10%;width:34%;height:40%"></span>
+        <span class="blk" style="left:42%;top:8%;width:18%;height:22%"></span>
+        <span class="blk" style="left:6%;top:56%;width:26%;height:30%"></span>
+        <span class="blk" style="left:66%;top:56%;width:28%;height:20%"></span>
+        <span class="rd" style="left:0;right:0;top:46%;height:16px"></span>
+        <span class="rd" style="top:0;bottom:0;left:38%;width:14px"></span>
+        <span class="rd" style="top:0;bottom:0;left:62%;width:12px;transform:skewX(-8deg)"></span>
+        <span class="rd" style="left:0;right:0;top:86%;height:10px"></span>
+        <span class="lbl" style="left:9%;top:22%">Elm Park</span>
+        <span class="lbl" style="left:8%;top:64%">Millbrook<br>Middle School</span>
+        <span class="lbl" style="left:3%;top:41%">Orchard Row</span>
+        <span class="lbl" style="left:66%;top:80%">Bus stop · Line 4</span>
+        <div class="pin"><span class="card">Margin Tutoring</span><span class="dot"></span></div>
+        <div class="walk"><b>Parking</b>Free 2-hour spaces on Orchard Row after 3 pm.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec subjects" id="faq">
+  <div class="wrap faq-grid">
+    <div class="sec-head">
+      <p class="label"><b>06</b> &nbsp;Questions</p>
+      <h2>Things parents <em>usually ask.</em></h2>
+      <p>Something else? Send us a WhatsApp — Elena answers most messages the same day.</p>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="faq-item"><h3><button aria-expanded="false" aria-controls="fa1" id="fq1">Is the trial lesson really free?<span class="ic" aria-hidden="true"></span></button></h3><div class="faq-panel" id="fa1" role="region" aria-labelledby="fq1"><div><p>Yes. It's 45 minutes with a tutor, there's nothing to pay and no card to give. If it isn't the right fit, you'll still leave with a short note on where your child is.</p></div></div></div>
+      <div class="faq-item"><h3><button aria-expanded="false" aria-controls="fa2" id="fq2">Group or one-to-one — which should we choose?<span class="ic" aria-hidden="true"></span></button></h3><div class="faq-panel" id="fa2" role="region" aria-labelledby="fq2"><div><p>Small groups suit most students who need steady practice and a bit of company. One-to-one is better before big exams, after a long gap, or if your child finds groups hard. We'll suggest one after the trial — you decide.</p></div></div></div>
+      <div class="faq-item"><h3><button aria-expanded="false" aria-controls="fa3" id="fq3">How do online lessons work?<span class="ic" aria-hidden="true"></span></button></h3><div class="faq-panel" id="fa3" role="region" aria-labelledby="fq3"><div><p>Live video with the same tutor, a shared whiteboard and worksheets on screen. Your child needs a laptop or tablet and headphones. One-to-one lessons are recorded so they can rewatch before a test.</p></div></div></div>
+      <div class="faq-item"><h3><button aria-expanded="false" aria-controls="fa4" id="fq4">What if we miss a lesson?<span class="ic" aria-hidden="true"></span></button></h3><div class="faq-panel" id="fa4" role="region" aria-labelledby="fq4"><div><p>Tell us 24 hours ahead and we'll move it to another slot that week or credit it to next month. Illness on the day is fine too — just send a message.</p></div></div></div>
+      <div class="faq-item"><h3><button aria-expanded="false" aria-controls="fa5" id="fq5">Do you support students with learning differences?<span class="ic" aria-hidden="true"></span></button></h3><div class="faq-panel" id="fa5" role="region" aria-labelledby="fq5"><div><p>Yes. Two of our tutors have specialist training in dyslexia and ADHD support. Tell us a little in the booking form and we'll match your child with the right tutor.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-card rv" id="bookCard">
+      <div class="book-side">
+        <p class="label">Free trial lesson</p>
+        <h2>Come and <em>see how it feels.</em></h2>
+        <p>Tell us a little about your child. We'll call or message within one working day to find a time.</p>
+        <ul>
+          <li><b>1.</b>We match your child with the right tutor</li>
+          <li><b>2.</b>A 45-minute lesson, in person or online</li>
+          <li><b>3.</b>A short written note afterwards — yours to keep</li>
+        </ul>
+        <a class="btn wa" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25A366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>Or message us on WhatsApp</a>
+      </div>
+      <form id="trialForm" novalidate>
+        <div class="row">
+          <div class="f" id="f-name"><label for="pname">Parent's name</label><input id="pname" name="pname" autocomplete="name" aria-describedby="e-name"><p class="err" id="e-name">Please tell us your name.</p></div>
+          <div class="f" id="f-phone"><label for="phone">Phone or WhatsApp</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="017 00000000" aria-describedby="e-phone"><p class="err" id="e-phone">Please enter a phone number we can reach.</p></div>
+        </div>
+        <div class="row">
+          <div class="f" id="f-child"><label for="child">Student's first name</label><input id="child" name="child" aria-describedby="e-child"><p class="err" id="e-child">Please add your child's first name.</p></div>
+          <div class="f" id="f-grade"><label for="grade">Grade</label>
+            <select id="grade" name="grade" aria-describedby="e-grade">
+              <option value="">Choose a grade</option>
+              <option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+            </select><p class="err" id="e-grade">Please choose a grade.</p></div>
+        </div>
+        <fieldset class="f" id="f-subj" aria-describedby="e-subj"><legend>Subject</legend>
+          <div class="pills">
+            <label><input type="radio" name="subj" value="Maths"><span>Maths</span></label>
+            <label><input type="radio" name="subj" value="English"><span>English</span></label>
+            <label><input type="radio" name="subj" value="Science"><span>Science</span></label>
+            <label><input type="radio" name="subj" value="Exam prep"><span>Exam prep</span></label>
+          </div><p class="err" id="e-subj">Please pick a subject.</p></fieldset>
+        <fieldset class="f" id="f-mode" aria-describedby="e-mode"><legend>Where would they like to learn?</legend>
+          <div class="pills">
+            <label><input type="radio" name="mode" value="in person"><span>In person, Millbrook</span></label>
+            <label><input type="radio" name="mode" value="online"><span>Online</span></label>
+            <label><input type="radio" name="mode" value="either"><span>Not sure yet</span></label>
+          </div><p class="err" id="e-mode">Please choose in person, online or not sure.</p></fieldset>
+        <div class="f"><label for="notes">Anything we should know? <span class="opt">(optional)</span></label><textarea id="notes" name="notes" placeholder="e.g. struggling with fractions, exams in May, prefers a quiet room"></textarea></div>
+        <button class="btn btn-blue submit" type="submit">Request my free trial lesson</button>
+        <p class="privacy">We only use your details to arrange the lesson. No newsletters.</p>
+      </form>
+      <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h3>Thank you, <em id="sName">there</em>.</h3>
+        <p id="sMsg">We'll be in touch within one working day to arrange the trial lesson.</p>
+        <button class="btn btn-line" type="button" id="again">Book for another child</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span><span>Margin<small>Tutoring · Millbrook</small></span></a>
+        <p style="margin-top:16px;max-width:320px">Small-group and one-to-one tutoring in maths, English and science for grades 3–12.</p>
+      </div>
+      <div><h4>Learn</h4><ul><li><a href="#subjects">Subjects</a></li><li><a href="#fees">Fees</a></li><li><a href="#tutors">Tutors</a></li><li><a href="#faq">Questions</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li><li><a href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h4>Find us</h4><ul><li>2nd floor, 14 Orchard Row</li><li>Millbrook</li><li>Mon–Sat, from 3:30 pm</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Margin Tutoring. A fictional business for design purposes.</span><span>Safeguarding policy · Privacy</span></div>
+  </div>
+</footer>
+
+<div class="mbar" aria-label="Quick contact">
+  <a class="btn btn-line" href="tel:01700000000">Call</a>
+  <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn btn-blue" href="#book">Free trial</a>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'),menu=document.getElementById('mmenu');
+  function setMenu(open){burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');menu.classList.toggle('open',open);}
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true');});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus();}});
+
+  /* reveal */
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('in');});}
+
+  /* today's hours */
+  var d=new Date().getDay(),row=document.querySelector('#hours tr[data-d="'+d+'"]');
+  if(row)row.classList.add('today');
+
+  /* fees toggle */
+  var tabs=[].slice.call(document.querySelectorAll('.switch [role=tab]')),panel=document.getElementById('plans');
+  function setMode(btn){
+    var m=btn.getAttribute('data-mode');
+    tabs.forEach(function(t){var on=t===btn;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;});
+    panel.setAttribute('aria-labelledby',btn.id);
+    panel.querySelectorAll('.price strong').forEach(function(s){s.textContent='$'+s.getAttribute('data-'+m);s.classList.remove('flip');void s.offsetWidth;s.classList.add('flip');});
+    panel.querySelectorAll('[data-in]:not(strong)').forEach(function(p){p.textContent=p.getAttribute('data-'+m);});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){setMode(t);});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();setMode(n);}
+    });
+  });
+
+  /* FAQ */
+  document.querySelectorAll('#faqList button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var open=b.getAttribute('aria-expanded')!=='true';
+      b.setAttribute('aria-expanded',open);
+      b.closest('.faq-item').classList.toggle('open',open);
+    });
+  });
+
+  /* trial form */
+  var form=document.getElementById('trialForm'),card=document.getElementById('bookCard');
+  var checks=[
+    ['f-name',function(){return form.pname.value.trim().length>1;}],
+    ['f-phone',function(){return form.phone.value.replace(/\D/g,'').length>=8;}],
+    ['f-child',function(){return form.child.value.trim().length>0;}],
+    ['f-grade',function(){return form.grade.value!=='';}],
+    ['f-subj',function(){return !!form.querySelector('input[name=subj]:checked');}],
+    ['f-mode',function(){return !!form.querySelector('input[name=mode]:checked');}]
+  ];
+  function check(c){var ok=c[1](),el=document.getElementById(c[0]);el.classList.toggle('bad',!ok);var inp=el.querySelector('input:not([type=radio]),select');if(inp)inp.setAttribute('aria-invalid',!ok);return ok;}
+  checks.forEach(function(c){
+    var el=document.getElementById(c[0]);
+    el.addEventListener('change',function(){if(el.classList.contains('bad'))check(c);});
+    el.addEventListener('input',function(){if(el.classList.contains('bad'))check(c);});
+    var inp=el.querySelector('input:not([type=radio]),select');
+    if(inp)inp.addEventListener('blur',function(){if(inp.value.trim())check(c);});
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var first=null;
+    checks.forEach(function(c){if(!check(c)&&!first)first=document.getElementById(c[0]);});
+    if(first){var f=first.querySelector('input,select');if(f)f.focus();return;}
+    var mode=form.querySelector('input[name=mode]:checked').value,subj=form.querySelector('input[name=subj]:checked').value;
+    document.getElementById('sName').textContent=form.pname.value.trim().split(' ')[0];
+    var where=mode==='online'?'online':mode==='in person'?'at our Millbrook rooms':'in person or online';
+    document.getElementById('sMsg').textContent='We’ll call or WhatsApp you within one working day to arrange '+form.child.value.trim()+'’s free '+subj.toLowerCase()+' trial ('+form.grade.value+', '+where+').';
+    card.classList.add('done');
+    document.getElementById('success').focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    form.reset();checks.forEach(function(c){document.getElementById(c[0]).classList.remove('bad');});
+    card.classList.remove('done');form.child.focus();
+  });
+})();
+</script>
+</body>
+</html>

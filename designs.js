@@ -178,6 +178,54 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "niche-sites",
+      "slug": "niche-04-physio",
+      "title": "Linden Physio · Physiotherapy clinic",
+      "desc": "Full-width hero, what we treat, first visit steps, physios, booking with practitioner & time slots, prices & insurance, home visits & map, reviews, FAQ.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/04-physio/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-05-tutor",
+      "title": "Margin Tutoring · Tutoring centre",
+      "desc": "Centred hero with photo strip, subjects, how it works & progress note, fees switch, tutors, parent quotes, hours & map, FAQ, free trial form.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/05-tutor/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-06-mechanic",
+      "title": "Kettle Lane Garage · Car mechanic",
+      "desc": "Full-width hero with open-now status, services, fixed-price service tiers by car size, how a visit works, booking, reviews, find us, FAQ.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/06-mechanic/index.html"
+        }
+      ]
+    },
+    {
       "cat": "architecture-landing",
       "slug": "arch-gallery",
       "title": "Both pages",
