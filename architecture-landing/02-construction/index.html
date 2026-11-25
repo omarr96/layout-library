@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Larkfield Builders — General contractor for new homes, commercial and renovation</title>
+<meta name="description" content="Larkfield Builders is a licensed and insured general contractor. New homes, commercial buildings and renovations, delivered design-and-build with a fixed price and a weekly site report.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..112,400..800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F2EC; --card:#FFFFFF; --stone:#ECE8DF; --ink:#1E2124; --muted:#5A5E63; --line:#E0DBD0;
+  --rust:#B5531C; --rust-d:#93410F; --rust-50:#F6E7DB;
+  --r:14px; --shadow:0 1px 2px rgba(30,33,36,.05),0 14px 34px -14px rgba(30,33,36,.18);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:700;font-stretch:108%;letter-spacing:-.025em;line-height:1.06}
+h1 em,h2 em,h3 em{font-family:var(--serif);font-weight:400;font-style:italic;font-stretch:100%;letter-spacing:-.015em;color:var(--rust)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rust-d)}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--rust)}
+.sec{padding:120px 0}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4.4vw,54px);margin:16px 0 18px}
+.sec-head p{color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:8px;font-weight:650;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;transform:translateY(-1px)}
+.btn-rust{background:var(--rust);color:#fff}
+.btn-rust:hover{background:var(--rust-d);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);background:var(--card)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(244,242,236,.86);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid transparent;transition:border-color .25s;z-index:-1}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:32px;height:72px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-stretch:112%;font-size:19px;letter-spacing:-.01em}
+.logo small{display:block;font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-stretch:100%;margin-top:-3px}
+.logo-mark{width:32px;height:32px;flex:none}
+.nav-links{display:flex;gap:28px;list-style:none;margin-left:8px}
+.nav-links a{text-decoration:none;font-size:15px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav-cta .tel{text-decoration:none;font-size:15px;font-weight:600}
+.nav-cta .btn{padding:10px 18px;font-size:15px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--card);position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{display:none}
+
+/* HERO */
+.hero{padding:148px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+.hero h1{font-size:clamp(42px,5.2vw,76px);margin-top:20px}.hero h1 em{display:block;white-space:nowrap}
+.hero-side p{font-size:19px;color:var(--muted);margin-bottom:28px;max-width:460px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-photo{margin-top:64px;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:21/9;background:var(--stone)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 75%}
+.site-note{position:absolute;right:28px;top:28px;background:rgba(255,255,255,.94);border-radius:12px;padding:16px 20px;box-shadow:var(--shadow);max-width:340px;font-size:14px}
+.site-note b{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.site-note b::before{content:"";width:8px;height:8px;border-radius:50%;background:#3E8A55}
+.site-note span{display:block;font-weight:600;font-size:16px;line-height:1.35}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);margin-top:0}
+.stat{padding:40px 24px 44px 0}
+.stat+.stat{padding-left:28px;border-left:1px solid var(--line)}
+.stat strong{display:block;font-size:clamp(34px,3.6vw,46px);font-weight:700;font-stretch:108%;letter-spacing:-.03em;line-height:1}
+.stat span{display:block;color:var(--muted);font-size:15px;margin-top:10px;max-width:220px}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.svc-img{aspect-ratio:4/3;overflow:hidden;background:var(--stone)}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.svc:hover .svc-img img{transform:scale(1.04)}
+.svc-body{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.svc-body h3{font-size:26px;margin-bottom:10px}
+.svc-body p{color:var(--muted);font-size:16px}
+.svc-meta{margin-top:auto;padding-top:22px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--line);margin-top:24px;font-size:14px;color:var(--muted)}
+.svc-meta b{color:var(--ink);font-size:15px}
+.db-band{margin-top:28px;display:flex;align-items:center;gap:28px;justify-content:space-between;background:var(--rust-50);border-radius:var(--r);padding:28px 32px}
+.db-band p{font-size:18px;max-width:760px}
+.db-band p strong{font-weight:700}
+.db-band a{flex:none;font-weight:650;text-decoration:none;color:var(--rust-d);border-bottom:2px solid currentColor;padding-bottom:2px}
+
+/* PROJECTS */
+.proj-top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:40px}
+.proj-top .sec-head{margin-bottom:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);padding:5px;border-radius:10px}
+.filters button{border:0;background:transparent;padding:9px 16px;border-radius:7px;font-weight:600;font-size:15px;color:var(--muted);transition:background .2s,color .2s}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.filters button:hover:not([aria-pressed="true"]){color:var(--ink)}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.proj{transition:opacity .35s,transform .35s}
+.proj.hide{display:none}
+.proj-img{border-radius:var(--r);overflow:hidden;aspect-ratio:3/2;background:var(--stone)}
+.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.proj:hover .proj-img img{transform:scale(1.03)}
+.proj-info{display:flex;justify-content:space-between;gap:20px;padding:20px 2px 0}
+.proj-info h3{font-size:22px;letter-spacing:-.015em}
+.proj-info p{color:var(--muted);font-size:15px;margin-top:4px}
+.tag{flex:none;align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);background:var(--card);padding:5px 10px;border-radius:6px;color:var(--muted)}
+.proj-facts{display:flex;gap:22px;margin-top:14px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.proj-facts b{color:var(--ink);font-weight:650}
+.empty{display:none;color:var(--muted)}
+
+/* PROCESS */
+.process{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s}
+.step{padding:0 24px 0 0;position:relative}
+.step+.step{padding-left:24px}
+.step-bar{height:6px;border-radius:3px;background:var(--stone);margin-bottom:26px;position:relative;overflow:hidden}
+.step-bar::after{content:"";position:absolute;inset:0;background:var(--rust);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.steps.in .step-bar::after{transform:scaleX(1)}
+.steps.in .step:nth-child(2) .step-bar::after{transition-delay:.15s}
+.steps.in .step:nth-child(3) .step-bar::after{transition-delay:.3s}
+.steps.in .step:nth-child(4) .step-bar::after{transition-delay:.45s}
+.steps.in .step:nth-child(5) .step-bar::after{transition-delay:.6s}
+.step-n{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--rust-d);text-transform:uppercase}
+.step h3{font-size:21px;margin:8px 0 10px;letter-spacing:-.015em}
+.step p{color:var(--muted);font-size:15px}
+.step .wk{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+.promise{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.promise-img{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;background:var(--stone)}
+.promise-img img{width:100%;height:100%;object-fit:cover}
+.promise h3{font-size:clamp(26px,2.8vw,34px);margin-bottom:16px}
+.promise p{color:var(--muted);margin-bottom:20px}
+.ticks{list-style:none;display:grid;gap:12px}
+.ticks li{display:flex;gap:12px;font-size:16px}
+.ticks li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--rust-50) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%2393410F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+
+.estimate{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px;box-shadow:var(--shadow)}
+.est-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.est-head b{display:block;font-size:18px}
+.est-head span{font-size:14px;color:var(--muted)}
+.est-ok{flex:none;font-size:12px!important;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2F6B40!important;background:#E3F0E6;padding:4px 10px;border-radius:6px}
+.estimate ul{list-style:none}
+.estimate li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.estimate li span{color:var(--muted)}
+.estimate li b{font-weight:600;font-variant-numeric:tabular-nums}
+.est-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:18px}
+.est-total span{font-weight:650}
+.est-total b{font-size:28px;font-weight:700;font-stretch:108%;letter-spacing:-.02em;color:var(--rust-d)}
+.est-note{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* SAFETY */
+.safety-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.safety-img{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:var(--stone);position:relative}
+.safety-img img{width:100%;height:100%;object-fit:cover;object-position:30% center}
+.safety-badge{position:absolute;right:20px;top:20px;background:var(--card);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);text-align:center}
+.safety-badge strong{display:block;font-size:30px;font-weight:700;font-stretch:108%;line-height:1;letter-spacing:-.03em}
+.safety-badge span{font-size:12px;color:var(--muted);font-weight:600}
+.creds{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);margin-top:8px}
+.creds li{padding:26px 24px 26px 0;border-bottom:1px solid var(--line)}
+.creds li:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
+.creds strong{display:block;font-size:30px;font-weight:700;font-stretch:108%;letter-spacing:-.03em;line-height:1.1}
+.creds span{display:block;font-weight:650;margin-top:6px}
+.creds small{display:block;color:var(--muted);font-size:14px;margin-top:4px;line-height:1.5}
+.lic{margin-top:26px;font-size:14px;color:var(--muted)}
+.lic b{color:var(--ink)}
+
+/* QUOTE BAND */
+.voice{padding:120px 0;text-align:center}
+.voice blockquote{max-width:900px;margin:0 auto}
+.voice blockquote p{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,42px);line-height:1.28;letter-spacing:-.01em}
+.voice footer{margin-top:28px;display:flex;justify-content:center;align-items:center;gap:14px;font-size:15px}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--rust-50);color:var(--rust-d);display:grid;place-items:center;font-weight:700;font-size:15px}
+.voice footer span{color:var(--muted);display:block;font-size:14px;text-align:left}
+.voice footer b{display:block;text-align:left}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;background:none;border:0;padding:24px 0;font-size:19px;font-weight:650;letter-spacing:-.01em}
+.faq-q i{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);position:relative;background:var(--card);transition:background .2s,border-color .2s}
+.faq-q i::before,.faq-q i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s}
+.faq-q i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-q[aria-expanded="true"] i{background:var(--ink);border-color:var(--ink)}
+.faq-q[aria-expanded="true"] i::before,.faq-q[aria-expanded="true"] i::after{background:#fff}
+.faq-q[aria-expanded="true"] i::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-a>div{overflow:hidden}
+.faq-a p{color:var(--muted);padding:0 48px 26px 0;font-size:16px}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+
+/* QUOTE FORM */
+.quote{background:var(--card);border-top:1px solid var(--line)}
+.quote-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.quote-aside h2{font-size:clamp(34px,4.2vw,52px);margin:16px 0 18px}
+.quote-aside>p{color:var(--muted);font-size:18px;margin-bottom:32px}
+.contact-list{list-style:none;display:grid;gap:18px;border-top:1px solid var(--line);padding-top:28px}
+.contact-list li{display:flex;gap:14px;align-items:flex-start}
+.contact-list svg{flex:none;width:22px;height:22px;color:var(--rust);margin-top:2px}
+.contact-list b{display:block}
+.contact-list span{color:var(--muted);font-size:15px}
+.contact-list a{text-decoration:none}
+form{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:36px}
+.fld-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fld{margin-bottom:20px}
+.fld label,.fld legend{display:block;font-weight:650;font-size:15px;margin-bottom:8px}
+.fld label small{font-weight:400;color:var(--muted)}
+.fld input,.fld select,.fld textarea{width:100%;padding:13px 14px;border:1px solid #CFC9BC;background:var(--card);border-radius:8px;font-size:16px;transition:border-color .2s,box-shadow .2s}
+.fld textarea{min-height:110px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--rust);box-shadow:0 0 0 3px rgba(181,83,28,.15)}
+.fld.err input,.fld.err select{border-color:#B3261E}
+.msg{display:none;color:#B3261E;font-size:14px;margin-top:6px}
+.fld.err .msg{display:block}
+fieldset{border:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
+.chip span{display:inline-block;padding:10px 16px;border:1px solid #CFC9BC;border-radius:8px;background:var(--card);font-size:15px;font-weight:550;transition:background .2s,border-color .2s,color .2s}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--rust);outline-offset:2px}
+.form-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px}
+.form-foot p{font-size:14px;color:var(--muted)}
+.success{display:none;text-align:center;padding:40px 10px}
+.success .ok{width:56px;height:56px;border-radius:50%;background:var(--rust-50);display:grid;place-items:center;margin:0 auto 18px}
+.success .ok svg{width:26px;height:26px;color:var(--rust-d)}
+.success h3{font-size:28px;margin-bottom:10px}
+.success p{color:var(--muted);max-width:420px;margin:0 auto 22px}
+form.done .form-body{display:none}
+form.done .success{display:block}
+
+/* FOOTER */
+footer.site{padding:72px 0 40px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot-grid p{color:var(--muted);font-size:15px;margin-top:16px;max-width:300px}
+.foot-grid h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.foot-grid ul{list-style:none;display:grid;gap:9px;font-size:15px}
+.foot-grid ul a{text-decoration:none}
+.foot-grid ul a:hover{color:var(--rust-d)}
+.foot-bot{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+  .nav-links{gap:20px}
+  .nav-cta .tel{display:none}
+  .steps{grid-template-columns:repeat(3,1fr);row-gap:44px}
+  .step:nth-child(4){padding-left:0}
+}
+@media (max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:block}
+  .mobile-menu{display:block;position:fixed;top:72px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 24px 28px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;z-index:49}
+  .mobile-menu.open{opacity:1;transform:none;visibility:visible}
+  .mobile-menu ul{list-style:none}
+  .mobile-menu li a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px;font-weight:600}
+  .mobile-menu .btn{margin-top:20px;width:100%}
+  .mobile-menu .tel{display:block;text-align:center;margin-top:14px;font-weight:600;text-decoration:none}
+  .hero{padding-top:120px}.hero h1{font-size:clamp(40px,7vw,60px)}
+  .hero-grid,.safety-grid,.faq-grid,.quote-grid,.promise{grid-template-columns:1fr;gap:36px}
+  .hero-photo{aspect-ratio:4/3;margin-top:44px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .services{grid-template-columns:1fr 1fr}
+  .services .svc:last-child{grid-column:1/-1}
+  .services .svc:last-child .svc-img{aspect-ratio:21/9}
+  .safety-img{aspect-ratio:4/3}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .sec,.voice{padding:88px 0}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .hero h1{font-size:38px}.hero h1 em{white-space:normal}
+  .hero-side p{font-size:17px}
+  .hero-ctas .btn{flex:1 1 100%}
+  .site-note{left:12px;right:12px;top:auto;bottom:12px;max-width:none;padding:12px 14px}
+  .site-note span{font-size:14px}
+  .stat{padding:28px 12px 30px 0}
+  .stat+.stat{padding-left:14px}
+  .stat:nth-child(3){padding-left:0}
+  .stat span{font-size:14px}
+  .services,.proj-grid{grid-template-columns:1fr}
+  .services .svc:last-child .svc-img{aspect-ratio:4/3}
+  .db-band{flex-direction:column;align-items:flex-start;padding:24px}
+  .db-band p{font-size:17px}
+  .steps{grid-template-columns:1fr;row-gap:36px}
+  .step,.step+.step{padding:0}
+  .creds{grid-template-columns:1fr}
+  .creds li,.creds li:nth-child(even){padding:22px 0;border-left:0}
+  .fld-row{grid-template-columns:1fr;gap:0}
+  form{padding:24px 18px}
+  .foot-grid{grid-template-columns:1fr}
+  .faq-q{font-size:17px}
+  .estimate{padding:22px 18px}.estimate li{font-size:14px}.est-total b{font-size:23px}
+  .faq-a p{padding-right:0}
+  .proj-info{flex-direction:column;gap:10px}
+  .proj-info .tag{order:-1}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+  .step-bar::after{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Larkfield Builders, home">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1E2124"/><path d="M8 23V14l8-6 8 6v9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><rect x="13" y="17" width="6" height="6" fill="#B5531C"/></svg>
+      <span>Larkfield<small>Builders</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">How we build</a></li>
+      <li><a href="#safety">Safety</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="tel" href="tel:01700000000">017 00000000</a>
+      <a class="btn btn-dark" href="#quote">Request a quote</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#process">How we build</a></li>
+    <li><a href="#safety">Safety</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="btn btn-dark" href="#quote">Request a quote</a>
+  <a class="tel" href="tel:01700000000">Call 017 00000000</a>
+</div>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">General contractor · Since 1994</span>
+        <h1>Built properly. <em>Handed over on time.</em></h1>
+      </div>
+      <div class="hero-side">
+        <p>New homes, commercial buildings and renovations — designed, priced and built by one accountable team, with a fixed price and a site report in your inbox every Friday.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-rust" href="#quote">Request a free quote
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-ghost" href="#projects">See recent projects</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo rv">
+      <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&q=70&auto=format&fit=crop" alt="Larkfield site team in hard hats and hi-vis vests reviewing a freshly poured concrete deck beside the rebar for the next pour" fetchpriority="high">
+      <div class="site-note" aria-hidden="true">
+        <b>Friday site report · Week 14</b>
+        <span>Level 2 deck poured. Steel for level 3 arrives Tuesday — on schedule.</span>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>31</strong><span>years building in the valley, three generations of the same family</span></div>
+      <div class="stat"><strong>640+</strong><span>homes, shops and offices completed and handed over</span></div>
+      <div class="stat"><strong>94%</strong><span>of projects since 2019 handed over on or before the contract date</span></div>
+      <div class="stat"><strong>10 yrs</strong><span>structural warranty on every new build, in writing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">What we build</span>
+      <h2>Three kinds of work. <em>One standard</em> for all of them.</h2>
+      <p>We keep our own carpenters, concrete crew and site managers on payroll, so the people who quote your job are the people who build it.</p>
+    </div>
+    <div class="services">
+      <article class="svc rv">
+        <div class="svc-img"><img loading="lazy" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1000&q=70&auto=format&fit=crop" alt="A newly completed white two-storey house with a flat roof and a lawn in front"></div>
+        <div class="svc-body">
+          <h3>New homes</h3>
+          <p>Custom and architect-designed houses from slab to keys. We work from your plans or design with you from a blank site.</p>
+          <div class="svc-meta"><span>Typical build</span><b>8–12 months</b></div>
+        </div>
+      </article>
+      <article class="svc rv">
+        <div class="svc-img"><img loading="lazy" src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1000&q=70&auto=format&fit=crop" alt="A multi-storey concrete building under construction with steel stud walls and orange formwork props"></div>
+        <div class="svc-body">
+          <h3>Commercial buildings</h3>
+          <p>Offices, clinics, retail and light industrial up to six storeys — including tenant fit-outs on live, occupied sites.</p>
+          <div class="svc-meta"><span>Projects from</span><b>$750k to $18M</b></div>
+        </div>
+      </article>
+      <article class="svc rv">
+        <div class="svc-img"><img loading="lazy" src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=1000&q=70&auto=format&fit=crop" alt="An interior wall opened up to the brick during a renovation, with a new steel beam and a builder working on a ladder"></div>
+        <div class="svc-body">
+          <h3>Renovations &amp; additions</h3>
+          <p>Second storeys, extensions, structural openings and full interior rebuilds — with a clean, sealed site if you're living in the house.</p>
+          <div class="svc-meta"><span>Typical project</span><b>10–26 weeks</b></div>
+        </div>
+      </article>
+    </div>
+    <div class="db-band rv">
+      <p><strong>Need drawings too?</strong> Our design-and-build service puts an architect, structural engineer and estimator on one contract with us — one price, one schedule, one point of contact.</p>
+      <a href="#process">How design-and-build works</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="proj-top">
+      <div class="sec-head rv">
+        <span class="eyebrow">Recent projects</span>
+        <h2>Finished, <em>handed over</em> and lived in.</h2>
+      </div>
+      <div class="filters rv" role="group" aria-label="Filter projects by type">
+        <button type="button" aria-pressed="true" data-filter="all">All</button>
+        <button type="button" aria-pressed="false" data-filter="home">New homes</button>
+        <button type="button" aria-pressed="false" data-filter="commercial">Commercial</button>
+        <button type="button" aria-pressed="false" data-filter="reno">Renovation</button>
+      </div>
+    </div>
+    <div class="proj-grid" id="projGrid" aria-live="polite">
+      <article class="proj rv" data-type="home">
+        <div class="proj-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=70&auto=format&fit=crop" alt="A modern timber and glass family home lit up at dusk behind a large tree"></div>
+        <div class="proj-info">
+          <div>
+            <h3>Hollis Lane Residence</h3>
+            <p>Four-bedroom family home on a sloping, tree-protected lot.</p>
+            <div class="proj-facts"><span><b>3,850</b> sq ft</span><span><b>11</b> months</span><span>Handed over <b>2 weeks early</b></span></div>
+          </div>
+          <span class="tag">New home</span>
+        </div>
+      </article>
+      <article class="proj rv" data-type="commercial">
+        <div class="proj-img"><img loading="lazy" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=70&auto=format&fit=crop" alt="A bright open-plan office floor with polished concrete floors, glass partitions and a timber kitchen bench"></div>
+        <div class="proj-info">
+          <div>
+            <h3>Millrace Works, Level 2</h3>
+            <p>Office fit-out in a converted 1920s warehouse, built while the floor below stayed open.</p>
+            <div class="proj-facts"><span><b>14,200</b> sq ft</span><span><b>16</b> weeks</span><span><b>Zero</b> lost-time incidents</span></div>
+          </div>
+          <span class="tag">Commercial</span>
+        </div>
+      </article>
+      <article class="proj rv" data-type="reno">
+        <div class="proj-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=70&auto=format&fit=crop" alt="A renovated open living room with a timber feature wall, pale sofa and kitchen visible beyond"></div>
+        <div class="proj-info">
+          <div>
+            <h3>Ashby Street Rebuild</h3>
+            <p>Two small rooms opened into one, with a new steel beam and a rear addition.</p>
+            <div class="proj-facts"><span><b>+640</b> sq ft</span><span><b>19</b> weeks</span><span>Family <b>stayed home</b></span></div>
+          </div>
+          <span class="tag">Renovation</span>
+        </div>
+      </article>
+      <article class="proj rv" data-type="home">
+        <div class="proj-img"><img loading="lazy" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=70&auto=format&fit=crop" alt="A white contemporary two-storey house with a balcony and a swimming pool in the foreground"></div>
+        <div class="proj-info">
+          <div>
+            <h3>Westbrook Court House</h3>
+            <p>Design-and-build home with a rooftop terrace and a pool, on a narrow infill lot.</p>
+            <div class="proj-facts"><span><b>4,300</b> sq ft</span><span><b>13</b> months</span><span>Fixed price, <b>no variations</b></span></div>
+          </div>
+          <span class="tag">New home</span>
+        </div>
+      </article>
+      <article class="proj rv hide" data-type="reno">
+        <div class="proj-img"><img loading="lazy" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=70&auto=format&fit=crop" alt="A renovated white kitchen with an island, black stools and pendant lights"></div>
+        <div class="proj-info">
+          <div>
+            <h3>Orchard Road Kitchen &amp; Rear Wing</h3>
+            <p>Load-bearing wall removed to join kitchen and dining, plus new plumbing and electrical throughout.</p>
+            <div class="proj-facts"><span><b>520</b> sq ft</span><span><b>12</b> weeks</span><span>On budget to <b>$1,400</b></span></div>
+          </div>
+          <span class="tag">Renovation</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec process" id="process">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">How a build works</span>
+      <h2>Five stages. <em>No surprises</em> between them.</h2>
+      <p>Here's a typical new home. Every stage ends with a sign-off from you before we spend money on the next one.</p>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step"><div class="step-bar"></div><span class="step-n">Stage 01</span><h3>Site visit &amp; brief</h3><p>We walk the site with you, check access, soil and services, and agree what you want to build and roughly what it will cost.</p><span class="wk">Week 1–2 · free</span></li>
+      <li class="step"><div class="step-bar"></div><span class="step-n">Stage 02</span><h3>Design &amp; fixed price</h3><p>Drawings, engineering and a line-by-line estimate. You get one fixed contract price before anything is built.</p><span class="wk">Weeks 3–10</span></li>
+      <li class="step"><div class="step-bar"></div><span class="step-n">Stage 03</span><h3>Permits &amp; scheduling</h3><p>We lodge the building permit, book inspections and lock in trades and materials against a dated programme.</p><span class="wk">Weeks 8–16</span></li>
+      <li class="step"><div class="step-bar"></div><span class="step-n">Stage 04</span><h3>Build</h3><p>One site manager from slab to finish. A photo report every Friday and a site walk with you at each milestone.</p><span class="wk">6–10 months</span></li>
+      <li class="step"><div class="step-bar"></div><span class="step-n">Stage 05</span><h3>Handover &amp; warranty</h3><p>Final inspection, a walk-through, keys and a manual for your building. We come back at 3 and 12 months.</p><span class="wk">10-year warranty</span></li>
+    </ol>
+    <div class="promise">
+      <div class="estimate rv" role="img" aria-label="Example fixed-price estimate summary for a four-bedroom home, totalling $1,284,600">
+        <div class="est-head"><div><b>Fixed-price contract</b><span>Hollis Lane Residence · Rev. C</span></div><span class="est-ok">Approved</span></div>
+        <ul>
+          <li><span>Site works &amp; foundations</span><b>$148,200</b></li>
+          <li><span>Structure &amp; framing</span><b>$312,900</b></li>
+          <li><span>Roof, windows &amp; envelope</span><b>$226,400</b></li>
+          <li><span>Services — plumbing, electrical, HVAC</span><b>$198,700</b></li>
+          <li><span>Interiors &amp; finishes</span><b>$331,100</b></li>
+          <li><span>Permits, insurance &amp; site management</span><b>$67,300</b></li>
+        </ul>
+        <div class="est-total"><span>Contract price</span><b>$1,284,600</b></div>
+        <p class="est-note">Allowances: none. Price fixed until handover.</p>
+      </div>
+      <div class="rv">
+        <h3>A fixed price means <em>fixed.</em></h3>
+        <p>Our estimators price every line before you sign — not an allowance, not a range. If something changes, it's because you asked for it, and you see the cost in writing first.</p>
+        <ul class="ticks">
+          <li>Itemised quote you can compare line by line</li>
+          <li>Progress payments tied to finished stages, never upfront</li>
+          <li>Changes priced and approved by you before work starts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="sec" id="safety">
+  <div class="wrap safety-grid">
+    <div class="safety-img rv">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1100&q=70&auto=format&fit=crop" alt="A licensed electrician in a hard hat, safety glasses and gloves installing wiring on a site wall">
+      <div class="safety-badge"><strong>1.1M</strong><span>hours without a<br>lost-time injury</span></div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Safety &amp; credentials</span>
+      <h2 style="font-size:clamp(34px,4.4vw,54px);margin:16px 0 18px">A safe site is <em>a well-run site.</em></h2>
+      <p style="color:var(--muted);font-size:18px;margin-bottom:28px">Every supervisor holds a 30-hour safety certificate, and every day starts with a 10-minute toolbox talk. The paperwork is below — ask us for copies and we'll send them the same day.</p>
+      <ul class="creds">
+        <li><strong>0.71</strong><span>Experience modifier rate</span><small>Well below the 1.0 industry baseline</small></li>
+        <li><strong>$5M</strong><span>General liability cover</span><small>Plus workers' compensation for every employee</small></li>
+        <li><strong>100%</strong><span>Supervisors safety-certified</span><small>30-hour training, renewed every three years</small></li>
+        <li><strong>Bonded</strong><span>Licensed &amp; bonded</span><small>Performance bonds available on commercial work</small></li>
+      </ul>
+      <p class="lic">General Contractor Licence <b>GC-104822</b> · Insured with an A-rated carrier · Member of the regional builders' association</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="voice" aria-label="Client testimonial">
+  <div class="wrap rv">
+    <blockquote>
+      <p>“We had three builders quote. Larkfield's was the only one we could actually read — and eleven months later the final invoice matched it to the dollar.”</p>
+      <footer><div class="avatar" aria-hidden="true">MO</div><div><b>Maya &amp; Daniel Okafor</b><span>Hollis Lane Residence (fictional client)</span></div></footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="sec-head rv">
+      <span class="eyebrow">Questions</span>
+      <h2>Before you <em>call us.</em></h2>
+      <p>Straight answers to what people ask most in the first meeting.</p>
+    </div>
+    <div class="faq rv">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="fa1" id="fq1">How much does a new home cost to build?<i aria-hidden="true"></i></button>
+        <div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Most of our recent custom homes have landed between $310 and $460 per square foot, depending on site, finishes and design. After the first site visit we give you a budget range in writing, then a fixed price once the drawings are done.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="fa2" id="fq2">Can you build from plans I already have?<i aria-hidden="true"></i></button>
+        <div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>Yes. About half our work is built from an independent architect's drawings. We'll review them for buildability and cost, suggest savings if you want them, and price the job as drawn.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="fa3" id="fq3">How do payments work?<i aria-hidden="true"></i></button>
+        <div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>A 5% deposit on signing, then progress payments when each stage is finished and inspected — slab, frame, lock-up, fit-out and handover. You never pay for work that hasn't been done.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="fa4" id="fq4">What happens if the build runs late?<i aria-hidden="true"></i></button>
+        <div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>The handover date is in the contract. Apart from weather days and changes you request, late delivery is covered by agreed daily liquidated damages — which is a good reason for us to plan carefully.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="fa5" id="fq5">Which areas do you work in?<i aria-hidden="true"></i></button>
+        <div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p>Homes and renovations within about 40 miles of our yard in Easton Ridge. Commercial projects across the wider region — ask us about yours.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="sec quote" id="quote">
+  <div class="wrap quote-grid">
+    <div class="quote-aside rv">
+      <span class="eyebrow">Request a quote</span>
+      <h2>Tell us about <em>your build.</em></h2>
+      <p>A senior estimator — not a salesperson — reads every request and calls you back within two working days to book a free site visit.</p>
+      <ul class="contact-list">
+        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><div><b><a href="tel:01700000000">017 00000000</a></b><span>Mon–Fri, 7:00 am – 5:00 pm</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7"/></svg><div><b><a href="mailto:hello@example.com">hello@example.com</a></b><span>Plans and photos welcome</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg><div><b>48 Millrace Road, Easton Ridge</b><span>Office and yard — visits by appointment</span></div></li>
+      </ul>
+    </div>
+    <form id="quoteForm" class="rv" novalidate>
+      <div class="form-body">
+        <fieldset class="fld" id="typeFld">
+          <legend>What are you planning?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="type" value="New home"><span>New home</span></label>
+            <label class="chip"><input type="radio" name="type" value="Commercial"><span>Commercial</span></label>
+            <label class="chip"><input type="radio" name="type" value="Renovation"><span>Renovation / addition</span></label>
+            <label class="chip"><input type="radio" name="type" value="Not sure"><span>Not sure yet</span></label>
+          </div>
+          <p class="msg" id="typeMsg">Choose the kind of project.</p>
+        </fieldset>
+        <div class="fld-row">
+          <div class="fld">
+            <label for="budget">Approximate budget</label>
+            <select id="budget" name="budget" aria-describedby="budgetMsg">
+              <option value="">Select a range</option>
+              <option>Under $150k</option>
+              <option>$150k – $500k</option>
+              <option>$500k – $1.5M</option>
+              <option>Over $1.5M</option>
+              <option>Not sure yet</option>
+            </select>
+            <p class="msg" id="budgetMsg">Pick a range — "Not sure yet" is fine.</p>
+          </div>
+          <div class="fld">
+            <label for="start">Hoping to start</label>
+            <select id="start" name="start">
+              <option>Within 3 months</option>
+              <option selected>3–6 months</option>
+              <option>6–12 months</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld-row">
+          <div class="fld">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" aria-describedby="nameMsg">
+            <p class="msg" id="nameMsg">Please tell us your name.</p>
+          </div>
+          <div class="fld">
+            <label for="phone">Phone <small>(optional)</small></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="fld">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" aria-describedby="emailMsg">
+          <p class="msg" id="emailMsg">Enter a valid email address.</p>
+        </div>
+        <div class="fld">
+          <label for="details">Site address and a few details <small>(optional)</small></label>
+          <textarea id="details" name="details" placeholder="e.g. Corner lot, slight slope. Looking at a 4-bed single-storey home."></textarea>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-rust" type="submit">Send my request</button>
+          <p>No obligation. We never share your details.</p>
+        </div>
+      </div>
+      <div class="success" role="status" aria-live="polite">
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Thanks, <span id="okName">there</span>.</h3>
+        <p id="okText">An estimator will call you within two working days to book your free site visit.</p>
+        <button class="btn btn-ghost" type="button" id="again">Send another request</button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Larkfield Builders, back to top">
+          <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1E2124"/><path d="M8 23V14l8-6 8 6v9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><rect x="13" y="17" width="6" height="6" fill="#B5531C"/></svg>
+          <span>Larkfield<small>Builders</small></span>
+        </a>
+        <p>General contractor for new homes, commercial buildings and renovations. Family-run since 1994.</p>
+      </div>
+      <div><h4>Build</h4><ul><li><a href="#services">New homes</a></li><li><a href="#services">Commercial</a></li><li><a href="#services">Renovations</a></li><li><a href="#process">Design-and-build</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#projects">Projects</a></li><li><a href="#safety">Safety</a></li><li><a href="#faq">FAQ</a></li><li><a href="#quote">Careers &amp; trades</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li><li>48 Millrace Road<br>Easton Ridge</li></ul></div>
+    </div>
+    <div class="foot-bot"><span>© 2026 Larkfield Builders. Licence GC-104822.</span><span>Licensed · Bonded · Insured</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav border on scroll
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobile menu
+  var burger = document.getElementById('burger'), menu = document.getElementById('mobileMenu');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 900) setMenu(false); });
+
+  // Reveal on scroll
+  var rvs = document.querySelectorAll('.rv, #steps');
+  if (reduce || !('IntersectionObserver' in window)) {
+    rvs.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    rvs.forEach(function(el){ io.observe(el); });
+  }
+
+  // Project filter (first 4 shown under "All")
+  var btns = document.querySelectorAll('.filters button'), projs = document.querySelectorAll('.proj');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-filter');
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      var shown = 0;
+      projs.forEach(function(p){
+        var ok = f === 'all' ? shown < 4 : p.getAttribute('data-type') === f;
+        if (f === 'all' && ok) shown++;
+        p.classList.toggle('hide', !ok);
+        if (ok) p.classList.add('in');
+      });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var open = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', open ? 'false' : 'true');
+      q.parentElement.classList.toggle('open', !open);
+    });
+  });
+
+  // Quote form: inline validation, inline success, never submits
+  var form = document.getElementById('quoteForm');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function setErr(el, bad){ el.classList.toggle('err', bad); var i = el.querySelector('input:not([type=radio]),select'); if (i) i.setAttribute('aria-invalid', bad ? 'true' : 'false'); }
+  function checkField(id){
+    var v = form.elements[id] ? form.elements[id].value.trim() : '';
+    var fld = document.getElementById(id).closest('.fld');
+    var bad = id === 'email' ? !emailRe.test(v) : !v;
+    setErr(fld, bad); return !bad;
+  }
+  ['name','email','budget'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'blur', function(){ if (el.value || el.closest('.fld').classList.contains('err')) checkField(id); });
+    el.addEventListener('input', function(){ if (el.closest('.fld').classList.contains('err')) checkField(id); });
+  });
+  var typeFld = document.getElementById('typeFld');
+  form.querySelectorAll('input[name=type]').forEach(function(r){ r.addEventListener('change', function(){ typeFld.classList.remove('err'); }); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var t = form.querySelector('input[name=type]:checked');
+    typeFld.classList.toggle('err', !t);
+    var ok = [checkField('budget'), checkField('name'), checkField('email')].every(Boolean) && !!t;
+    if (!ok) { var first = form.querySelector('.err input, .err select'); if (first) first.focus(); return; }
+    document.getElementById('okName').textContent = form.elements.name.value.trim().split(' ')[0];
+    document.getElementById('okText').textContent = 'We’ve got your ' + t.value.toLowerCase() + ' enquiry. An estimator will email ' + form.elements.email.value.trim() + ' within two working days to book a free site visit.';
+    form.classList.add('done');
+    form.querySelector('.success').focus && form.querySelector('#again').focus();
+  });
+  document.getElementById('again').addEventListener('click', function(){
+    form.reset(); form.classList.remove('done');
+    form.querySelectorAll('.err').forEach(function(x){ x.classList.remove('err'); });
+  });
+})();
+</script>
+</body>
+</html>

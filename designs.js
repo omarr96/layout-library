@@ -62,6 +62,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "architecture-landing",
+      "name": "Architecture & construction",
+      "desc": "Architecture studio and building contractor landing pages"
+    },
+    {
       "id": "tech-landing",
       "name": "Tech landing pages",
       "desc": "Developer API, team SaaS and cybersecurity landing pages"
@@ -103,6 +108,54 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "architecture-landing",
+      "slug": "arch-gallery",
+      "title": "Both pages",
+      "desc": "Gallery of the architecture studio and construction company pages.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "architecture-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "architecture-landing",
+      "slug": "arch-01-architecture-studio",
+      "title": "Alder Rowe · Architecture studio",
+      "desc": "Photo-led selected work with filter, approach, services & fees, 5-stage process, studio team, client quote, first-consultation form.",
+      "tags": [
+        "Architecture"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "architecture-landing/01-architecture-studio/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "architecture-landing",
+      "slug": "arch-02-construction",
+      "title": "Larkfield Builders · Construction",
+      "desc": "What we build, filterable projects, build stages with a fixed-price estimate, safety & credentials, testimonial, FAQ, quote form.",
+      "tags": [
+        "Construction"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "architecture-landing/02-construction/index.html"
+        }
+      ]
+    },
     {
       "cat": "tech-landing",
       "slug": "tech-gallery",
