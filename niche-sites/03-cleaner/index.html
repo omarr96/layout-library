@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightfold — Home &amp; office cleaning in Ashbury</title>
+<meta name="description" content="Regular, deep, move-out and office cleaning by vetted, insured local cleaners. Get an instant price and book in two minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F8F5F0;--card:#FFFFFF;--ink:#24201C;--muted:#625B53;--line:#E7E0D6;--soft:#F1ECE4;--coral:#B9452B;--coral-d:#9A3820;--coral-50:#FBE9E2;--r:20px;--shadow:0 1px 2px rgba(36,32,28,.05),0 18px 40px -22px rgba(36,32,28,.22);--sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Fraunces",Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.08}
+h1 em,h2 em,.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.kicker{font-size:14px;font-weight:600;color:var(--coral);letter-spacing:.02em;display:block}
+.sec{padding:120px 0}
+.sec-head{max-width:660px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4.4vw,54px);margin:12px 0 16px}
+.sec-head p{color:var(--muted);font-size:19px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s;line-height:1.2}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-coral{background:var(--coral);color:#fff}
+.btn-coral:hover{background:var(--coral-d);transform:translateY(-1px)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#000}
+.btn-line{background:var(--card);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(248,245,240,.86);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid transparent;transition:border-color .25s;z-index:-1}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:32px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;text-decoration:none;letter-spacing:-.03em}
+.logo-mark{width:30px;height:30px;border-radius:50%;background:var(--coral);position:relative;flex:none}
+.logo-mark::after{content:"";position:absolute;left:7px;top:7px;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:7px 7px 0 -2px rgba(255,255,255,.7)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-size:15.5px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav-cta .tel{text-decoration:none;font-weight:600;font-size:15.5px}
+.nav-cta .btn{padding:11px 20px;font-size:15px}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border:1px solid var(--line);border-radius:50%;background:var(--card);position:relative}
+.burger span{position:absolute;left:13px;right:13px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:16px}
+.burger span:nth-child(2){top:22px}
+.burger span:nth-child(3){top:28px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{display:none}
+.hero{padding:132px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(44px,6.2vw,84px);margin:18px 0 24px}
+.hero h1 em{color:var(--coral)}
+.hero-sub{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:520px;margin-bottom:36px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-facts{display:flex;gap:36px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-facts div{font-size:14.5px;color:var(--muted);max-width:150px;line-height:1.4}
+.hero-facts b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:30px;color:var(--ink);line-height:1.1;margin-bottom:4px}
+.hero-photo{position:relative}
+.hero-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:28px 28px 28px 160px}
+.hero-badge{position:absolute;right:-20px;bottom:44px;background:var(--card);border-radius:18px;padding:16px 20px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;max-width:270px}
+.hero-badge .dot{width:42px;height:42px;border-radius:50%;background:var(--coral-50);display:grid;place-items:center;flex:none}
+.hero-badge .dot svg{width:20px;height:20px;color:var(--coral)}
+.hero-badge p{font-size:14px;line-height:1.35;color:var(--muted)}
+.hero-badge strong{color:var(--ink);display:block;font-size:15.5px}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.svc img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.svc-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.svc h3{font-size:22px;margin-bottom:8px}
+.svc p{color:var(--muted);font-size:15.5px;flex:1}
+.svc .from{margin-top:20px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:16px;font-size:14px;color:var(--muted)}
+.svc .from b{font-size:20px;color:var(--ink)}
+.est-sec{background:var(--soft)}
+.est{display:grid;grid-template-columns:1.25fr .9fr;background:var(--card);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+.est-in{padding:44px}
+.est-out{padding:44px;background:var(--ink);color:#F4EFE8;display:flex;flex-direction:column}
+.field-label{font-weight:600;font-size:15px;margin-bottom:12px;display:block}
+.group{margin-bottom:34px;border:0}
+.group:last-child{margin-bottom:0}
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.type{position:relative}
+.type input{position:absolute;opacity:0;inset:0;pointer-events:none}
+.type label{display:block;padding:14px 12px;border:1px solid var(--line);border-radius:14px;text-align:center;font-weight:600;font-size:15px;cursor:pointer;transition:border-color .2s,background .2s;line-height:1.25}
+.type label small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px}
+.type input:checked+label{border-color:var(--coral);background:var(--coral-50);box-shadow:inset 0 0 0 1px var(--coral)}
+.type input:focus-visible+label{outline:2px solid var(--coral);outline-offset:2px}
+.steppers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stepper{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 18px}
+.stepper .lbl{font-weight:600;font-size:15px}
+.stepper .ctl{display:flex;align-items:center;gap:6px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);font-size:20px;line-height:1;display:grid;place-items:center}
+.stepper button:hover:not(:disabled){border-color:var(--ink)}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
+.stepper output{min-width:34px;text-align:center;font-weight:700;font-size:19px}
+.freq{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:15px;cursor:pointer;font-weight:500}
+.chip label i{font-style:normal;color:var(--coral);font-weight:600;margin-left:4px}
+.chip input:checked+label{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:checked+label i{color:#F6B9A6}
+.chip input:focus-visible+label{outline:2px solid var(--coral);outline-offset:2px}
+.extras{display:flex;flex-direction:column;gap:10px}
+.check{display:flex;align-items:center;gap:12px;font-size:15.5px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--coral)}
+.check span{color:var(--muted);margin-left:auto}
+.est-out .kicker{color:#F6B9A6}
+.price{font-size:clamp(56px,6vw,76px);font-weight:600;letter-spacing:-.04em;line-height:1;margin:14px 0 6px}
+.price small{font-size:20px;font-weight:500;letter-spacing:0;color:#BEB4A8}
+.was{font-size:15px;color:#BEB4A8;min-height:24px}
+.was s{margin-right:6px}
+.est-meta{margin:28px 0;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.est-meta div{font-size:14px;color:#BEB4A8}
+.est-meta b{display:block;color:#fff;font-size:17px;font-weight:600}
+.est-out ul{list-style:none;display:grid;gap:10px;font-size:15px;color:#E6DED3;margin-bottom:32px;flex:1}
+.est-out li{display:flex;gap:10px}
+.est-out li::before{content:"";width:16px;height:16px;flex:none;margin-top:4px;border-radius:50%;background:var(--coral) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.est-out .btn{width:100%}
+.est-note{font-size:13.5px;color:#BEB4A8;margin-top:14px;text-align:center}
+.book{margin-top:28px;background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:44px;display:none}
+.book.open{display:block;animation:rise .5s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}
+to{opacity:1;transform:none}
+}
+.book-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.book-head h3{font-size:32px}
+.book-sum{background:var(--coral-50);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:600;color:var(--coral-d)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+.f label{font-weight:600;font-size:14.5px}
+.f label span{font-weight:400;color:var(--muted)}
+.f input,.f select,.f textarea{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--paper);font-size:16px;width:100%}
+.f textarea{min-height:96px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 3px var(--coral-50);background:#fff}
+.f .err{font-size:13.5px;color:#A3301A;min-height:0;display:none}
+.f.invalid input,.f.invalid select{border-color:#C24A30;background:#fff}
+.f.invalid .err{display:block}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:30px;flex-wrap:wrap}
+.form-foot p{font-size:14px;color:var(--muted);max-width:420px}
+.success{display:none;text-align:center;padding:30px 10px}
+.success.show{display:block;animation:rise .5s ease both}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--coral-50);display:grid;place-items:center;margin:0 auto 20px}
+.success .tick svg{width:28px;height:28px;color:var(--coral)}
+.success h3{font-size:34px;margin-bottom:10px}
+.success p{color:var(--muted);max-width:520px;margin:0 auto}
+.tabs{display:inline-flex;gap:4px;padding:5px;background:var(--card);border:1px solid var(--line);border-radius:999px;margin-bottom:36px;flex-wrap:wrap}
+.tab{border:0;background:none;padding:10px 20px;border-radius:999px;font-weight:600;font-size:15px;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.panel{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.panel[hidden]{display:none}
+.room{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.room h3{font-size:21px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.room h3 .serif{color:var(--coral);font-size:26px;font-weight:400}
+.room ul{list-style:none;display:grid;gap:12px}
+.room li{display:flex;gap:12px;font-size:15.5px;line-height:1.45}
+.room li::before{content:"";width:18px;height:18px;flex:none;margin-top:2px;border-radius:50%;border:1.5px solid var(--coral);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5' fill='none' stroke='%23B9452B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/15px no-repeat}
+.room li.plus{font-weight:600}
+.room li.plus::before{background-color:var(--coral-50)}
+.panel-note{grid-column:1/-1;font-size:15px;color:var(--muted);padding-top:6px}
+.panel-note b{color:var(--ink)}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.trust-photo img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:28px}
+.trust h2{font-size:clamp(34px,4.4vw,54px);margin:12px 0 18px}
+.trust>div>p{color:var(--muted);font-size:19px;margin-bottom:34px}
+.promises{display:grid;gap:24px}
+.promise{display:grid;grid-template-columns:48px 1fr;gap:18px}
+.promise .ico{width:48px;height:48px;border-radius:50%;background:var(--coral-50);display:grid;place-items:center}
+.promise .ico svg{width:22px;height:22px;color:var(--coral)}
+.promise h3{font-size:19px;margin-bottom:4px}
+.promise p{font-size:15.5px;color:var(--muted)}
+.guarantee{margin-top:120px;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:56px;display:grid;grid-template-columns:auto 1fr auto;gap:44px;align-items:center}
+.seal{width:132px;height:132px;border-radius:50%;border:1.5px dashed var(--coral);display:grid;place-items:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.15;color:var(--coral);padding:14px}
+.guarantee h3{font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.guarantee p{color:var(--muted);font-size:17px;max-width:560px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px;display:flex;flex-direction:column}
+.stars{color:var(--coral);letter-spacing:3px;font-size:16px;margin-bottom:18px}
+.review blockquote{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;flex:1;margin-bottom:26px}
+.review footer{font-size:14.5px;color:var(--muted)}
+.review footer b{color:var(--ink);display:block;font-size:15.5px}
+.area-sec{background:var(--soft)}
+.area{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.map{position:relative;aspect-ratio:1/0.82;background:#EFE9DF;border-radius:28px;overflow:hidden;border:1px solid var(--line)}
+.map .zone{position:absolute;left:12%;top:12%;width:76%;height:74%;border-radius:46% 54% 50% 50%/52% 46% 54% 48%;background:rgba(185,69,43,.08);border:1.5px dashed rgba(185,69,43,.55)}
+.map .river{position:absolute;left:-10%;top:58%;width:130%;height:34px;background:#DCE4E6;transform:rotate(-12deg);border-radius:40px}
+.map .road{position:absolute;background:#fff;border-radius:6px}
+.map .r1{left:0;right:0;top:34%;height:8px}
+.map .r2{top:0;bottom:0;left:46%;width:8px;transform:rotate(8deg)}
+.map .r3{left:10%;right:20%;top:78%;height:6px;transform:rotate(4deg)}
+.map .park{position:absolute;left:62%;top:14%;width:18%;height:16%;border-radius:40%;background:#DDE5D3}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;white-space:nowrap}
+.pin::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px rgba(36,32,28,.1)}
+.pin.hq{font-size:14px}
+.pin.hq::before{width:16px;height:16px;background:var(--coral);box-shadow:0 0 0 6px rgba(185,69,43,.18)}
+.area-info h2{font-size:clamp(34px,4.4vw,52px);margin:12px 0 18px}
+.area-info>p{color:var(--muted);font-size:18px;margin-bottom:28px}
+.hoods{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-bottom:34px}
+.hoods li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14.5px}
+.hours{background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:26px 28px;margin-bottom:24px}
+.hours h3{font-size:17px;margin-bottom:12px}
+.hours dl{display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:15.5px}
+.hours dt{color:var(--muted);white-space:nowrap}
+.hours dd{font-weight:600;text-align:right}
+.contact-btns{display:flex;flex-wrap:wrap;gap:10px}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.faq-grid .sec-head{margin-bottom:0}
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;padding:24px 0;text-align:left;font-weight:600;font-size:18.5px}
+.faq-q .pm{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);flex:none;position:relative;transition:background .2s}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s}
+.faq-q .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-q[aria-expanded="true"] .pm{background:var(--coral-50);border-color:var(--coral-50)}
+.faq-q[aria-expanded="true"] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .3s ease,visibility 0s .3s}
+.faq-a.open{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .3s ease}
+.faq-a>div{overflow:hidden;min-height:0}
+.faq-a p{padding:0 48px 24px 0;color:var(--muted);font-size:16.5px}
+.cta{position:relative;border-radius:32px;overflow:hidden;color:#fff;padding:110px 64px;text-align:center}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,18,.55),rgba(28,22,18,.72));z-index:1}
+.cta>div{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.cta h2{font-size:clamp(36px,5vw,62px);margin-bottom:18px}
+.cta p{font-size:19px;color:#EDE5DA;margin-bottom:34px}
+.cta .hero-ctas{justify-content:center}
+.cta .btn-line{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45);color:#fff}
+.cta .btn-line:hover{background:rgba(255,255,255,.22)}
+footer.site{padding:80px 0 40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.foot p{color:var(--muted);font-size:15px;margin-top:14px;max-width:300px}
+.foot h4{font-size:14px;font-weight:600;margin-bottom:14px}
+.foot ul{list-style:none;display:grid;gap:8px;font-size:15px;color:var(--muted)}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+.legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13.5px;color:var(--muted)}
+.mbar{display:none}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (max-width:1080px){.nav-links{display:none}
+.services{grid-template-columns:repeat(2,1fr)}
+.est{grid-template-columns:1fr}
+.hero-grid{gap:40px}
+.hero-badge{right:16px}
+.trust,.area,.faq-grid{grid-template-columns:1fr;gap:48px}
+.trust-photo{order:-1}
+.reviews{grid-template-columns:1fr 1fr}
+.reviews .review:last-child{grid-column:1/-1}
+.guarantee{grid-template-columns:auto 1fr}
+.guarantee .btn{grid-column:1/-1;justify-self:start}
+.foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){.nav-cta{display:none}
+.burger{display:block}
+.mobile-menu{position:fixed;top:74px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 24px 28px;z-index:49;box-shadow:0 20px 30px -20px rgba(0,0,0,.2)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:14px 0;font-size:19px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.mobile-menu .btn{margin-top:20px;width:100%;border-bottom:0;font-size:16px}
+.hero{padding-top:110px}
+.hero-grid{grid-template-columns:1fr}
+.hero-photo img{aspect-ratio:4/3.4;border-radius:24px 24px 24px 90px}
+.panel{grid-template-columns:1fr}
+.reviews{grid-template-columns:1fr}
+}
+@media (max-width:640px){body{font-size:16px;padding-bottom:76px}
+.wrap{padding:0 16px}
+.sec{padding:80px 0}
+.sec-head{margin-bottom:36px}
+.sec-head p{font-size:17px}
+.hero{padding:100px 0 64px}
+.hero-ctas .btn{flex:1 1 100%}
+.hero-facts{gap:20px 28px}
+.hero-badge{left:14px;right:auto;bottom:14px;padding:12px 14px}
+.services{grid-template-columns:1fr}
+.est-in,.est-out,.book{padding:26px 20px}
+.est{border-radius:22px}
+.types{grid-template-columns:1fr 1fr}
+.steppers{grid-template-columns:1fr}
+.form-grid{grid-template-columns:1fr}
+.form-foot .btn{width:100%}
+.tabs{display:flex;border-radius:18px}
+.tab{flex:1 1 40%;padding:10px 12px}
+.room{padding:24px}
+.guarantee{grid-template-columns:1fr;padding:32px 24px;gap:22px;margin-top:80px}
+.seal{width:104px;height:104px;font-size:16px}
+.review{padding:26px}
+.review blockquote{font-size:19px}
+.map{aspect-ratio:1/1}
+.pin{font-size:12px}
+.contact-btns .btn{flex:1 1 100%}
+.faq-q{font-size:17px}
+.faq-a p{padding-right:0}
+.cta{padding:72px 22px;border-radius:24px}
+.foot{grid-template-columns:1fr 1fr;gap:32px}
+.foot>div:first-child{grid-column:1/-1}
+.mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(248,245,240,.96);border-top:1px solid var(--line)}
+.mbar .btn{padding:12px 8px;font-size:14.5px;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+.rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Brightfold home"><span class="logo-mark" aria-hidden="true"></span>Brightfold</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#price">Prices</a></li>
+      <li><a href="#included">What’s included</a></li>
+      <li><a href="#area">Area &amp; hours</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="tel" href="tel:01700000000">017 00000000</a>
+      <a class="btn btn-coral" href="#price">Get a price</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mmenu" aria-label="Mobile">
+  <a href="#services">Services</a>
+  <a href="#price">Prices</a>
+  <a href="#included">What’s included</a>
+  <a href="#area">Area &amp; hours</a>
+  <a href="#faq">FAQ</a>
+  <a class="btn btn-coral" href="#price">Get an instant price</a>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Home &amp; office cleaning across Ashbury</span>
+      <h1>Come home to a <em>calmer, cleaner</em> place.</h1>
+      <p class="hero-sub">Friendly, vetted cleaners who bring everything, follow a proper checklist and come back free if anything’s missed. See your price in under a minute.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-coral" href="#price">Get an instant price</a>
+        <a class="btn btn-line" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call 017 00000000</a>
+      </div>
+      <div class="hero-facts">
+        <div><b>4.9 / 5</b>from 612 local reviews</div>
+        <div><b>48 hrs</b>to report a miss, and we re-clean free</div>
+        <div><b>$2M</b>public liability cover on every visit</div>
+      </div>
+    </div>
+    <div class="hero-photo rv">
+      <img src="https://images.pexels.com/photos/6196688/pexels-photo-6196688.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Three cleaners in work overalls vacuuming, mopping and wiping down a bright open-plan kitchen" width="1400" height="1750" fetchpriority="high">
+      <div class="hero-badge">
+        <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <p><strong>Vetted &amp; insured</strong>Background-checked, trained in-house, paid a living wage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Four ways we clean</span>
+      <h2>Pick the clean <em>that fits the moment.</em></h2>
+      <p>Weekly upkeep, a once-a-season reset, handing back the keys or keeping the office fresh. Same careful team for all of it.</p>
+    </div>
+    <div class="services">
+      <article class="svc rv">
+        <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=900&q=70&auto=format&fit=crop" alt="A neatly made bed in a bright, tidy bedroom" loading="lazy" width="900" height="675">
+        <div class="svc-body"><h3>Regular clean</h3><p>Weekly or every other week. Kitchen, bathrooms, floors and dusting, kept consistently fresh by the same cleaner.</p><div class="from">From <b>$95</b></div></div>
+      </article>
+      <article class="svc rv">
+        <img src="https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=900" alt="A gloved hand squeegeeing a glass shower screen" loading="lazy" width="900" height="675">
+        <div class="svc-body"><h3>Deep clean</h3><p>Top-to-bottom reset: limescale, grout, skirting, behind and under. A good place to start before regular visits.</p><div class="from">From <b>$180</b></div></div>
+      </article>
+      <article class="svc rv">
+        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=70&auto=format&fit=crop" alt="A bright, empty-feeling living room with a blue sofa and wooden floor" loading="lazy" width="900" height="675">
+        <div class="svc-body"><h3>Move-out clean</h3><p>Built around landlord and agent inventories, including inside the oven, fridge and every cupboard. Deposit-back focused.</p><div class="from">From <b>$225</b></div></div>
+      </article>
+      <article class="svc rv">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=70&auto=format&fit=crop" alt="A modern open-plan office with a long corridor and kitchen area" loading="lazy" width="900" height="675">
+        <div class="svc-body"><h3>Office clean</h3><p>Early-morning or after-hours visits for studios and offices up to 40 desks. Kitchens, washrooms, desks and bins.</p><div class="from">From <b>$105</b></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE + BOOKING -->
+<section class="sec est-sec" id="price">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Instant price</span>
+      <h2>Your price, <em>before you share a thing.</em></h2>
+      <p>Choose the clean and the size of your place. The price you see is the price you pay, and you’re only charged once the clean is done.</p>
+    </div>
+
+    <div class="est rv">
+      <form class="est-in" id="estForm" onsubmit="return false" aria-label="Price estimate">
+        <fieldset class="group">
+          <legend class="field-label">Type of clean</legend>
+          <div class="types">
+            <div class="type"><input type="radio" name="type" id="t-regular" value="regular" checked><label for="t-regular">Regular<small>upkeep</small></label></div>
+            <div class="type"><input type="radio" name="type" id="t-deep" value="deep"><label for="t-deep">Deep<small>full reset</small></label></div>
+            <div class="type"><input type="radio" name="type" id="t-move" value="move"><label for="t-move">Move-out<small>end of tenancy</small></label></div>
+            <div class="type"><input type="radio" name="type" id="t-office" value="office"><label for="t-office">Office<small>workspace</small></label></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="field-label" id="sizeLegend">Size of your home</legend>
+          <div class="steppers">
+            <div class="stepper">
+              <span class="lbl" id="l-a">Bedrooms</span>
+              <div class="ctl">
+                <button type="button" data-step="a" data-d="-1" aria-label="Fewer bedrooms">−</button>
+                <output id="o-a" aria-labelledby="l-a" aria-live="polite">2</output>
+                <button type="button" data-step="a" data-d="1" aria-label="More bedrooms">+</button>
+              </div>
+            </div>
+            <div class="stepper">
+              <span class="lbl" id="l-b">Bathrooms</span>
+              <div class="ctl">
+                <button type="button" data-step="b" data-d="-1" aria-label="Fewer bathrooms">−</button>
+                <output id="o-b" aria-labelledby="l-b" aria-live="polite">1</output>
+                <button type="button" data-step="b" data-d="1" aria-label="More bathrooms">+</button>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group" id="freqGroup">
+          <legend class="field-label">How often?</legend>
+          <div class="freq">
+            <div class="chip"><input type="radio" name="freq" id="f0" value="0"><label for="f0">Just once</label></div>
+            <div class="chip"><input type="radio" name="freq" id="f10" value="10"><label for="f10">Monthly<i>−10%</i></label></div>
+            <div class="chip"><input type="radio" name="freq" id="f15" value="15" checked><label for="f15">Every 2 weeks<i>−15%</i></label></div>
+            <div class="chip"><input type="radio" name="freq" id="f20" value="20"><label for="f20">Weekly<i>−20%</i></label></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="field-label">Extras <span style="font-weight:400;color:var(--muted)">(optional)</span></legend>
+          <div class="extras">
+            <label class="check"><input type="checkbox" name="extra" value="35" data-name="Inside the oven">Inside the oven<span>+$35</span></label>
+            <label class="check"><input type="checkbox" name="extra" value="25" data-name="Inside the fridge">Inside the fridge<span>+$25</span></label>
+            <label class="check"><input type="checkbox" name="extra" value="30" data-name="Interior windows">Interior windows<span>+$30</span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="est-out" aria-live="polite">
+        <span class="kicker" id="outKicker">Regular clean · every 2 weeks</span>
+        <div class="price"><span id="priceVal">$99</span> <small id="per">per visit</small></div>
+        <div class="was" id="was"><s>$117</s>one-off price</div>
+        <div class="est-meta">
+          <div>Team<b id="team">1 cleaner</b></div>
+          <div>Time on site<b id="hours">about 3 hrs</b></div>
+        </div>
+        <ul id="incl">
+          <li>All products and equipment brought along</li>
+          <li>Same cleaner every visit where possible</li>
+          <li>Free re-clean if anything’s missed</li>
+        </ul>
+        <button class="btn btn-coral" type="button" id="toBook">Book this clean</button>
+        <p class="est-note">No payment now. Cancel free up to 24 hours before.</p>
+      </div>
+    </div>
+
+    <div class="book" id="book" tabindex="-1" aria-labelledby="bookTitle">
+      <div id="bookForm">
+        <div class="book-head">
+          <div><span class="kicker">Step 2 of 2</span><h3 id="bookTitle">Where and <em class="serif">when?</em></h3></div>
+          <span class="book-sum" id="bookSum">Regular clean · $99</span>
+        </div>
+        <form id="bForm" novalidate>
+          <div class="form-grid">
+            <div class="f"><label for="bn">Full name</label><input id="bn" name="name" autocomplete="name" required><span class="err" id="bn-e">Please tell us your name.</span></div>
+            <div class="f"><label for="bp">Phone</label><input id="bp" name="phone" type="tel" autocomplete="tel" required inputmode="tel"><span class="err" id="bp-e">Please enter a phone number we can reach you on.</span></div>
+            <div class="f"><label for="be">Email</label><input id="be" name="email" type="email" autocomplete="email" required><span class="err" id="be-e">Please enter a valid email address.</span></div>
+            <div class="f"><label for="bz">ZIP code</label><input id="bz" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="5" required><span class="err" id="bz-e">Please enter a 5-digit ZIP code.</span></div>
+            <div class="f full"><label for="ba">Street address</label><input id="ba" name="address" autocomplete="street-address" required><span class="err" id="ba-e">Please add the address we’re cleaning.</span></div>
+            <div class="f"><label for="bd">Preferred date</label><input id="bd" name="date" type="date" required><span class="err" id="bd-e">Please pick a date from tomorrow onwards.</span></div>
+            <div class="f"><label for="bt">Arrival window</label><select id="bt" name="time" required><option value="">Choose a window</option><option>Morning, 8am–12pm</option><option>Afternoon, 12pm–5pm</option><option>Early evening, 5pm–8pm (offices)</option></select><span class="err" id="bt-e">Please choose an arrival window.</span></div>
+            <div class="f full"><label for="bx">Anything we should know? <span>(optional)</span></label><textarea id="bx" name="notes" placeholder="Pets, parking, key safe code, rooms to skip…"></textarea></div>
+          </div>
+          <div class="form-foot">
+            <p>We’ll confirm your cleaner by text within two working hours. Nothing is charged until after the clean.</p>
+            <button class="btn btn-coral" type="submit">Request booking</button>
+          </div>
+        </form>
+      </div>
+      <div class="success" id="success" role="status">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>Thank you, <em class="serif" id="okName">friend</em>.</h3>
+        <p id="okText">Your request is in. We’ll text you to confirm your cleaner shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="sec" id="included">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">What’s included</span>
+      <h2>A proper checklist, <em>room by room.</em></h2>
+      <p>Every cleaner works from the same list, so you always know what you’re getting. Items in bold are added on top of a regular clean.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Type of clean">
+      <button class="tab" role="tab" id="tab-regular" aria-controls="p-regular" aria-selected="true">Regular</button>
+      <button class="tab" role="tab" id="tab-deep" aria-controls="p-deep" aria-selected="false" tabindex="-1">Deep</button>
+      <button class="tab" role="tab" id="tab-move" aria-controls="p-move" aria-selected="false" tabindex="-1">Move-out</button>
+      <button class="tab" role="tab" id="tab-office" aria-controls="p-office" aria-selected="false" tabindex="-1">Office</button>
+    </div>
+
+    <div class="panel" id="p-regular" role="tabpanel" aria-labelledby="tab-regular">
+      <div class="room"><h3><span class="serif">i.</span>Kitchen</h3><ul><li>Worktops, splashbacks and sink cleaned and shined</li><li>Hob and outside of appliances wiped</li><li>Cupboard fronts and handles wiped</li><li>Microwave inside and out</li></ul></div>
+      <div class="room"><h3><span class="serif">ii.</span>Bathrooms</h3><ul><li>Toilet, basin, bath and shower cleaned</li><li>Mirrors and glass polished streak-free</li><li>Taps and chrome descaled and shined</li><li>Towels folded or replaced if left out</li></ul></div>
+      <div class="room"><h3><span class="serif">iii.</span>Living &amp; bedrooms</h3><ul><li>Dusting of reachable surfaces and shelves</li><li>Beds made, linen changed if left out</li><li>Light switches and door handles wiped</li><li>Sofas tidied, cushions plumped</li></ul></div>
+    </div>
+    <div class="panel" id="p-deep" role="tabpanel" aria-labelledby="tab-deep" hidden>
+      <div class="room"><h3><span class="serif">i.</span>Kitchen</h3><ul><li>Everything in a regular clean</li><li class="plus">Degreasing of hob, extractor and filters</li><li class="plus">Cupboard fronts, tops and kickboards</li><li class="plus">Tiles and grout scrubbed</li></ul></div>
+      <div class="room"><h3><span class="serif">ii.</span>Bathrooms</h3><ul><li>Everything in a regular clean</li><li class="plus">Heavy limescale removal on glass and taps</li><li class="plus">Grout and silicone scrubbed</li><li class="plus">Extractor fan cover and vents</li></ul></div>
+      <div class="room"><h3><span class="serif">iii.</span>Living &amp; bedrooms</h3><ul><li>Everything in a regular clean</li><li class="plus">Skirting boards, door frames and doors</li><li class="plus">Under beds and behind furniture</li><li class="plus">Radiators, sills and window frames</li></ul></div>
+    </div>
+    <div class="panel" id="p-move" role="tabpanel" aria-labelledby="tab-move" hidden>
+      <div class="room"><h3><span class="serif">i.</span>Kitchen</h3><ul><li>Everything in a deep clean</li><li class="plus">Inside the oven, racks and trays</li><li class="plus">Inside the fridge and freezer</li><li class="plus">Inside every cupboard and drawer</li></ul></div>
+      <div class="room"><h3><span class="serif">ii.</span>Bathrooms</h3><ul><li>Everything in a deep clean</li><li class="plus">Inside cabinets and vanity units</li><li class="plus">Shower heads descaled</li><li class="plus">Wall tiles washed floor to ceiling</li></ul></div>
+      <div class="room"><h3><span class="serif">iii.</span>Living &amp; bedrooms</h3><ul><li>Everything in a deep clean</li><li class="plus">Inside wardrobes and built-in storage</li><li class="plus">Interior windows and tracks</li><li class="plus">Marks spot-cleaned from walls</li></ul></div>
+      <p class="panel-note"><b>Deposit-back promise:</b> if your landlord or agent flags anything on our list within 72 hours, we return and fix it free.</p>
+    </div>
+    <div class="panel" id="p-office" role="tabpanel" aria-labelledby="tab-office" hidden>
+      <div class="room"><h3><span class="serif">i.</span>Kitchen &amp; break area</h3><ul><li>Worktops, sink and tables cleaned</li><li>Microwave, kettle and coffee machine wiped</li><li>Dishwasher loaded or emptied</li><li>Fridge cleared of out-of-date items (weekly)</li></ul></div>
+      <div class="room"><h3><span class="serif">ii.</span>Washrooms</h3><ul><li>Toilets, urinals and basins sanitised</li><li>Soap, paper and hand towels restocked</li><li>Mirrors and partitions wiped</li><li>Sanitary bins checked</li></ul></div>
+      <div class="room"><h3><span class="serif">iii.</span>Desks &amp; floors</h3><ul><li>Clear desks wiped and sanitised</li><li>Phones, keyboards and handles disinfected</li><li>Meeting rooms reset</li><li>Glass partitions and entrance doors</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="sec" style="padding-top:0" id="team">
+  <div class="wrap">
+    <div class="trust">
+      <div class="trust-photo rv">
+        <img src="https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=1300" alt="Three smiling cleaners in matching overalls standing with vacuums and mops in a living room" loading="lazy" width="1300" height="1040">
+      </div>
+      <div class="rv">
+        <span class="kicker">Who comes to your door</span>
+        <h2>People you’d <em>happily hand a key to.</em></h2>
+        <p>We employ our cleaners directly. No agency strangers, no rotating faces. Fewer than one in ten applicants joins the team.</p>
+        <div class="promises">
+          <div class="promise"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><h3>Background-checked &amp; referenced</h3><p>ID, right-to-work and criminal record checks, plus two references, before anyone’s first shift.</p></div></div>
+          <div class="promise"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/></svg></span><div><h3>Fully insured</h3><p>$2M public liability and key cover. If something gets broken, we put it right.</p></div></div>
+          <div class="promise"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/><circle cx="12" cy="12" r="8"/></svg></span><div><h3>Trained, paid fairly, here to stay</h3><p>Two weeks of in-house training and a living wage. It’s why most of our team has been with us for years.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee rv">
+      <div class="seal">Happy or we come back</div>
+      <div>
+        <h3>The Brightfold <em class="serif">guarantee</em></h3>
+        <p>If anything on the checklist isn’t right, tell us within 48 hours and we’ll return to re-clean it at no cost. Still not happy? You don’t pay for that visit.</p>
+      </div>
+      <a class="btn btn-ink" href="#price">Book with confidence</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" style="padding-top:0" id="reviews">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Kind words</span>
+      <h2>From homes <em>just like yours.</em></h2>
+    </div>
+    <div class="reviews">
+      <figure class="review rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Marisol has cleaned for us every other Thursday for two years. I genuinely look forward to walking in on those evenings.”</blockquote><footer><b>Priya N.</b>Regular clean · Riverside</footer></figure>
+      <figure class="review rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Booked a move-out clean on Monday, done by Wednesday. The agent’s inspection came back spotless and we got the full deposit.”</blockquote><footer><b>Tom &amp; Delia R.</b>Move-out clean · Old Mill</footer></figure>
+      <figure class="review rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Our studio of twelve gets cleaned before we arrive. Quiet, reliable, and they actually restock the kitchen properly.”</blockquote><footer><b>Jonah W.</b>Office clean · Market Quarter</footer></figure>
+    </div>
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="sec area-sec" id="area">
+  <div class="wrap area">
+    <div class="map rv" role="img" aria-label="Simple map of the Ashbury service area, with Brightfold’s base on Linden Row near the centre and eight neighbourhoods covered inside the dashed boundary">
+      <div class="river"></div><div class="park"></div>
+      <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div>
+      <div class="zone"></div>
+      <span class="pin hq" style="left:50%;top:44%">Brightfold</span>
+      <span class="pin" style="left:26%;top:24%">Northgate</span>
+      <span class="pin" style="left:72%;top:26%">Elm Park</span>
+      <span class="pin" style="left:24%;top:48%">Old Mill</span>
+      <span class="pin" style="left:78%;top:48%">Harbor View</span>
+      <span class="pin" style="left:36%;top:72%">Riverside</span>
+      <span class="pin" style="left:66%;top:76%">Southfields</span>
+      <span class="pin" style="left:52%;top:20%">Market Qtr</span>
+    </div>
+    <div class="area-info rv">
+      <span class="kicker">Where &amp; when</span>
+      <h2>Ashbury and <em>about ten miles around.</em></h2>
+      <p>Our base is at 41 Linden Row. Not sure you’re covered? Pop your ZIP code in the booking form, or just give us a ring.</p>
+      <ul class="hoods" aria-label="Neighbourhoods we cover">
+        <li>Northgate</li><li>Market Quarter</li><li>Elm Park</li><li>Old Mill</li><li>Harbor View</li><li>Riverside</li><li>Southfields</li><li>Linden Hill</li>
+      </ul>
+      <div class="hours">
+        <h3>Cleaning hours</h3>
+        <dl>
+          <dt>Mon – Fri</dt><dd>7am – 8pm</dd>
+          <dt>Saturday</dt><dd>8am – 4pm</dd>
+          <dt>Sunday</dt><dd>Offices, by arrangement</dd>
+          <dt>Phone lines</dt><dd>Mon – Sat, 8am – 6pm</dd>
+        </dl>
+      </div>
+      <div class="contact-btns">
+        <a class="btn btn-ink" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call us</a>
+        <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</a>
+        <a class="btn btn-line" href="https://maps.google.com/?q=41+Linden+Row+Ashbury" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="sec-head rv">
+      <span class="kicker">Good questions</span>
+      <h2>Before your <em>first clean.</em></h2>
+      <p>Anything else, message us on WhatsApp and a real person will answer.</p>
+    </div>
+    <div class="faq rv">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Do I need to provide cleaning products?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>No. We bring everything, including a vacuum, microfibre cloths and plant-based products. If you’d prefer we use your own, just leave them out and add a note.</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">Do I have to be home?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Most clients aren’t. You can leave a key with us (stored coded and locked, never labelled with your address) or share a key safe code in your booking notes.</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">What if I need to cancel or move my clean?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a3" role="region" aria-labelledby="q3"><div><p>Change or cancel for free up to 24 hours before. Inside 24 hours we charge half the visit, because your cleaner has kept that time for you.</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Are you okay with pets?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Very. Tell us who lives with you and we’ll match you with a cleaner who’s comfortable around them. We use pet-safe products as standard.</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a5" id="q5">How does paying work?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a5" role="region" aria-labelledby="q5"><div><p>We save a card when you confirm and charge it the day after each clean, so you’ve had time to check everything first. Offices can pay by monthly invoice.</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="a6" id="q6">Can you clean our office outside working hours?<span class="pm" aria-hidden="true"></span></button><div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Most office cleans happen between 6am and 8am or after 5pm, so the team is never in your way. We can hold keys and alarm codes securely.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta rv">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=70&auto=format&fit=crop" alt="" loading="lazy" width="1600" height="900">
+      <div>
+        <h2>Get your evenings <em>back.</em></h2>
+        <p>See your price in under a minute. Most first cleans can happen this week.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-coral" href="#price">Get an instant price</a>
+          <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">Message on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span>Brightfold</a>
+        <p>Home and office cleaning by a small, salaried team. 41 Linden Row, Ashbury.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Regular clean</a></li><li><a href="#services">Deep clean</a></li><li><a href="#services">Move-out clean</a></li><li><a href="#services">Office clean</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#team">Our cleaners</a></li><li><a href="#included">Checklists</a></li><li><a href="#area">Service area</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li><li><a href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a></li><li>Mon – Sat, 8am – 6pm</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Brightfold Cleaning Co. A fictional business for design demonstration.</span><span>Fully insured · Living-wage employer</span></div>
+  </div>
+</footer>
+
+<div class="mbar" aria-label="Quick contact">
+  <a class="btn btn-line" href="tel:01700000000">Call</a>
+  <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn btn-coral" href="#price">Get a price</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var burger = document.getElementById('burger'), menu = document.getElementById('mmenu');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
+
+  /* reveal */
+  var rv = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) { rv.forEach(function(el){ el.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  }
+
+  /* estimator */
+  var RATES = {
+    regular:{name:'Regular clean', base:55, a:22, b:18, recurring:true,  incl:['All products and equipment brought along','Same cleaner every visit where possible','Free re-clean if anything’s missed']},
+    deep:   {name:'Deep clean',    base:110,a:38, b:32, recurring:false, incl:['Limescale, grout, skirting and behind furniture','Two-person team for a faster finish','Free re-clean if anything’s missed']},
+    move:   {name:'Move-out clean',base:140,a:45, b:38, recurring:false, incl:['Inside oven, fridge and every cupboard','Checked against your inventory','Deposit-back promise: 72-hour re-clean']},
+    office: {name:'Office clean',  base:70, a:20, b:15, recurring:true,  incl:['Before or after working hours','Washroom and kitchen restocking','Monthly invoicing available']}
+  };
+  var LIMITS = {home:{a:[1,6],b:[1,5]}, office:{a:[1,12],b:[1,6]}};
+  var state = {type:'regular', a:2, b:1};
+  var $ = function(id){ return document.getElementById(id); };
+  var estForm = $('estForm'), lastQuote = null;
+
+  function lim(){ return state.type === 'office' ? LIMITS.office : LIMITS.home; }
+  function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+  function calc(){
+    var r = RATES[state.type], L = lim();
+    state.a = Math.min(Math.max(state.a, L.a[0]), L.a[1]);
+    state.b = Math.min(Math.max(state.b, L.b[0]), L.b[1]);
+    var extras = 0, extraNames = [];
+    estForm.querySelectorAll('input[name=extra]:checked').forEach(function(x){ extras += +x.value; extraNames.push(x.dataset.name); });
+    var full = r.base + r.a * state.a + r.b * state.b + extras;
+    var freqEl = estForm.querySelector('input[name=freq]:checked');
+    var disc = r.recurring ? +freqEl.value : 0;
+    var price = Math.round(full * (1 - disc / 100));
+    var cleaners = full >= 200 ? 2 : 1;
+    var hrs = Math.max(2, Math.round(full / 42 / cleaners * 2) / 2);
+    var freqLabel = !r.recurring ? 'one-off' : (disc === 0 ? 'just once' : freqEl.nextElementSibling.firstChild.textContent.toLowerCase());
+
+    $('o-a').textContent = state.a;
+    $('o-b').textContent = state.b;
+    var isOff = state.type === 'office';
+    $('l-a').textContent = isOff ? 'Rooms / areas' : 'Bedrooms';
+    $('l-b').textContent = isOff ? 'Washrooms' : 'Bathrooms';
+    $('sizeLegend').textContent = isOff ? 'Size of your workspace' : 'Size of your home';
+    document.querySelectorAll('[data-step]').forEach(function(btn){
+      var k = btn.dataset.step, d = +btn.dataset.d, L2 = lim()[k];
+      btn.disabled = d < 0 ? state[k] <= L2[0] : state[k] >= L2[1];
+      var noun = k === 'a' ? (isOff ? 'rooms' : 'bedrooms') : (isOff ? 'washrooms' : 'bathrooms');
+      btn.setAttribute('aria-label', (d < 0 ? 'Fewer ' : 'More ') + noun);
+    });
+    $('freqGroup').hidden = !r.recurring;
+    $('outKicker').textContent = r.name + ' · ' + freqLabel;
+    $('priceVal').textContent = money(price);
+    $('per').textContent = r.recurring && disc ? 'per visit' : 'total';
+    $('was').innerHTML = disc ? '<s>' + money(full) + '</s>one-off price' : (r.recurring ? 'Save up to 20% with a regular slot' : 'One visit, fixed price');
+    $('team').textContent = cleaners + (cleaners > 1 ? ' cleaners' : ' cleaner');
+    $('hours').textContent = 'about ' + hrs + ' hrs';
+    $('incl').innerHTML = r.incl.concat(extraNames.length ? ['Extras: ' + extraNames.join(', ').toLowerCase()] : []).map(function(t){ return '<li>' + t + '</li>'; }).join('');
+    lastQuote = {name:r.name, price:money(price), freq:freqLabel};
+    $('bookSum').textContent = r.name + ' · ' + money(price);
+  }
+  estForm.addEventListener('change', function(e){ if (e.target.name === 'type') state.type = e.target.value; calc(); });
+  document.querySelectorAll('[data-step]').forEach(function(btn){
+    btn.addEventListener('click', function(){ state[btn.dataset.step] += +btn.dataset.d; calc(); });
+  });
+  calc();
+
+  /* booking */
+  var book = $('book');
+  $('toBook').addEventListener('click', function(){
+    book.classList.add('open');
+    book.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    setTimeout(function(){ $('bn').focus({preventScroll:true}); }, reduce ? 0 : 450);
+  });
+  var dateEl = $('bd');
+  var t = new Date(); t.setDate(t.getDate() + 1);
+  var minDate = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+  dateEl.min = minDate;
+
+  var rules = {
+    bn: function(v){ return v.trim().length >= 2; },
+    bp: function(v){ return v.replace(/\D/g, '').length >= 7; },
+    be: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+    bz: function(v){ return /^\d{5}$/.test(v.trim()); },
+    ba: function(v){ return v.trim().length >= 5; },
+    bd: function(v){ return !!v && v >= minDate; },
+    bt: function(v){ return !!v; }
+  };
+  function check(id){
+    var el = $(id), ok = rules[id](el.value), f = el.closest('.f');
+    f.classList.toggle('invalid', !ok);
+    el.setAttribute('aria-invalid', !ok);
+    if (!ok) el.setAttribute('aria-describedby', id + '-e'); else el.removeAttribute('aria-describedby');
+    return ok;
+  }
+  Object.keys(rules).forEach(function(id){
+    var el = $(id);
+    el.addEventListener('blur', function(){ if (el.value) check(id); });
+    el.addEventListener('input', function(){ if (el.closest('.f').classList.contains('invalid')) check(id); });
+    el.addEventListener('change', function(){ if (el.closest('.f').classList.contains('invalid')) check(id); });
+  });
+  $('bForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var first = null;
+    Object.keys(rules).forEach(function(id){ if (!check(id) && !first) first = $(id); });
+    if (first){ first.focus(); return; }
+    var d = new Date($('bd').value + 'T12:00:00');
+    var nice = d.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+    $('okName').textContent = $('bn').value.trim().split(' ')[0];
+    $('okText').textContent = 'Your ' + lastQuote.name.toLowerCase() + ' (' + lastQuote.price + ', ' + lastQuote.freq + ') is requested for ' + nice + ', ' + $('bt').value.split(',')[0].toLowerCase() + '. We’ll text ' + $('bp').value.trim() + ' to confirm your cleaner within two working hours.';
+    $('bookForm').hidden = true;
+    $('success').classList.add('show');
+  });
+
+  /* checklist tabs */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role=tab]'));
+  function select(tab, focus){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      $(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === 'Home') n = tabs[0];
+      if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n){ e.preventDefault(); select(n, true); }
+    });
+  });
+
+  /* faq */
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var a = $(q.getAttribute('aria-controls')), open = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', !open);
+      a.classList.toggle('open', !open);
+    });
+  });
+})();
+</script>
+</body>
+</html>

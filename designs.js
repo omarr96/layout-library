@@ -62,6 +62,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "niche-sites",
+      "name": "Local, event & community sites",
+      "desc": "Phone-first sites for local services, events and community groups"
+    },
+    {
       "id": "architecture-landing",
       "name": "Architecture & construction",
       "desc": "Architecture studio and building contractor landing pages"
@@ -108,6 +113,70 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "niche-sites",
+      "slug": "niche-gallery",
+      "title": "All sites",
+      "desc": "Gallery of the local, event and community sites.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "niche-sites/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-01-plumber",
+      "title": "Fairwell Plumbing · Plumber",
+      "desc": "24/7 call & WhatsApp, emergency steps, services with prices, upfront pricing, trust, reviews, service area map, booking form, FAQ.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/01-plumber/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-02-electrician",
+      "title": "Marlow Electric · Electrician",
+      "desc": "Services & guide prices, EV chargers, 24/7 emergency, who turns up, reviews, area & hours, quote form, FAQ.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/02-electrician/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-03-cleaner",
+      "title": "Brightfold · Cleaning service",
+      "desc": "Instant price estimator into booking, what's included checklist tabs, vetted & insured team, reviews, area & hours, FAQ.",
+      "tags": [
+        "Local service"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/03-cleaner/index.html"
+        }
+      ]
+    },
     {
       "cat": "architecture-landing",
       "slug": "arch-gallery",
