@@ -62,6 +62,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "fitness-landing",
+      "name": "Fitness landing pages",
+      "desc": "Gym, yoga studio and home-workout app landing pages"
+    },
+    {
       "id": "rtl-landing",
       "name": "RTL landing pages",
       "desc": "Right-to-left landing pages in Arabic, Hebrew, Persian and Urdu"
@@ -93,6 +98,73 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "fitness-landing",
+      "slug": "fit-gallery",
+      "title": "All 3 fitness pages",
+      "desc": "Gallery of the gym, yoga and exercise landing pages.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "fitness-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "fitness-landing",
+      "slug": "fit-01-gym",
+      "title": "Steelyard · Strength gym",
+      "desc": "24/7 independent gym: equipment floor, 7-day class timetable, coaches & PT prices, membership toggle, free 3-day pass form.",
+      "tags": [
+        "Fitness",
+        "Gym"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "fitness-landing/01-gym/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "fitness-landing",
+      "slug": "fit-02-yoga",
+      "title": "Linden Yoga House · Yoga studio",
+      "desc": "Intro offer, first-visit guide, class styles, filterable timetable, beginners' course, passes, teachers, intro form.",
+      "tags": [
+        "Fitness",
+        "Yoga"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "fitness-landing/02-yoga/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "fitness-landing",
+      "slug": "fit-03-exercise",
+      "title": "Sprightly · Home-workout app",
+      "desc": "Program finder, inside a session, live classes with reminders, progress dashboard, coaches, pricing toggle, app buttons.",
+      "tags": [
+        "Fitness",
+        "App"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "fitness-landing/03-exercise/index.html"
+        }
+      ]
+    },
     {
       "cat": "rtl-landing",
       "slug": "rtl-gallery",
