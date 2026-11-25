@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nearwater — Clean water, a short walk from home</title>
+<meta name="description" content="Nearwater is a small charity that builds and maintains clean water points with village water committees in rural East Africa. Give once or monthly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&family=Literata:ital,opsz,wght@1,7..72,400;1,7..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F5F1E8; --card:#FFFFFF; --ink:#15262B; --muted:#56656A; --line:#E4DDCF; --soft:#EDE7DA;
+  --teal:#0E6A7A; --teal-d:#0A5361; --teal-50:#DDEDEE; --teal-100:#C4E0E2;
+  --r:18px; --shadow:0 1px 2px rgba(21,38,43,.05),0 18px 40px -20px rgba(21,38,43,.22);
+  --sans:"Rethink Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Literata",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);font-size:17px;line-height:1.62;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.08}
+/* accent words: upright-to-italic serif sitting on a soft water line */
+.mark{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;background:linear-gradient(transparent 68%,var(--teal-100) 68%,var(--teal-100) 92%,transparent 92%);padding:0 .08em}
+.label{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.sec{padding:112px 0}
+.sec-head{max-width:660px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--teal-50)}
+.btn-line{border-color:var(--line);background:var(--card)}
+.btn-line:hover{border-color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:#fff;transition:color .25s}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(245,241,232,.86);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .25s;z-index:-1}
+.nav.solid{color:var(--ink)}
+.nav.solid::before{opacity:1}
+.nav-in{display:flex;align-items:center;gap:30px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;text-decoration:none;letter-spacing:-.03em}
+.logo svg{width:30px;height:30px}
+.nav-links{display:flex;gap:28px;list-style:none;margin-left:14px}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;opacity:.85}
+.nav-links a:hover{opacity:1}
+.nav-cta{margin-left:auto}
+.nav-cta .btn{padding:10px 20px;font-size:15px}
+.nav:not(.solid) .nav-cta .btn{background:#fff;color:var(--ink)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid rgba(255,255,255,.5);border-radius:12px;background:transparent;position:relative}
+.nav.solid .burger{border-color:var(--line);background:var(--card)}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{display:none}
+
+/* HERO — full-bleed photo, text bottom-left */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,28,33,.78) 0%,rgba(9,28,33,.45) 45%,rgba(9,28,33,.05) 75%),linear-gradient(0deg,rgba(9,28,33,.55),transparent 45%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:72px;padding-top:140px}
+.hero-txt{max-width:780px}
+.hero .label{color:#BFE3E6}
+.hero h1{max-width:760px;font-size:clamp(42px,6.2vw,80px);margin:18px 0 22px}
+.hero h1 .mark{white-space:nowrap;background:linear-gradient(transparent 70%,rgba(110,190,200,.55) 70%,rgba(110,190,200,.55) 92%,transparent 92%)}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);max-width:520px;color:rgba(255,255,255,.88);margin-bottom:32px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.12)}
+.hero-foot{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.25);display:flex;gap:40px;flex-wrap:wrap;font-size:15px;color:rgba(255,255,255,.8)}
+.hero-foot b{display:block;font-size:22px;color:#fff;font-weight:600;letter-spacing:-.02em}
+
+/* PROBLEM / APPROACH */
+.why{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.why-photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;position:relative}
+.why-photo img{width:100%;height:100%;object-fit:cover}
+.why-photo figcaption{position:absolute;left:16px;bottom:16px;right:16px;font-size:14px;color:#fff;background:rgba(9,28,33,.55);padding:10px 14px;border-radius:12px}
+.why h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 20px}
+.why .intro{color:var(--muted);font-size:18px;margin-bottom:40px}
+.steps{list-style:none;display:grid;gap:26px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:48px 1fr;gap:18px;counter-increment:s}
+.steps li::before{content:counter(s);width:48px;height:48px;border-radius:50%;border:1px solid var(--teal-100);background:var(--teal-50);color:var(--teal-d);display:grid;place-items:center;font-weight:600;font-size:18px}
+.steps h3{font-size:20px;margin:4px 0 6px;letter-spacing:-.015em}
+.steps p{color:var(--muted);font-size:16px}
+
+/* IMPACT */
+.impact{background:var(--card);border-block:1px solid var(--line)}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.num{padding:8px 28px 8px 0}
+.num + .num{padding-left:28px;border-left:1px solid var(--line)}
+.num b{display:block;font-size:clamp(40px,4.6vw,60px);font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--teal-d);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.num span{color:var(--muted);font-size:16px;display:block;max-width:220px}
+.impact-note{margin-top:44px;font-size:14px;color:var(--muted)}
+
+/* APPEAL */
+.appeal{display:grid;grid-template-columns:1.15fr 1fr;border-radius:24px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.appeal-photo{position:relative;min-height:460px}
+.appeal-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.appeal-body{padding:52px 52px 48px}
+.appeal-body h2{font-size:clamp(30px,3.4vw,42px);margin:14px 0 16px}
+.appeal-body p{color:var(--muted)}
+.bar{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin:32px 0 14px}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--teal);transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.bar-meta{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:var(--muted)}
+.bar-meta b{color:var(--ink);font-size:20px;letter-spacing:-.02em}
+.appeal-facts{display:flex;gap:28px;margin:26px 0 32px;font-size:15px;color:var(--muted);flex-wrap:wrap}
+.appeal-facts b{display:block;color:var(--ink);font-size:18px}
+
+/* DONATE */
+.donate{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:start}
+.donate-side h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 18px}
+.donate-side > p{color:var(--muted);font-size:18px}
+.gift-now{margin-top:36px;padding:26px 28px;border-radius:var(--r);background:var(--teal-50);border:1px solid var(--teal-100)}
+.gift-now .amt{font-size:15px;color:var(--teal-d);font-weight:600}
+.gift-now p{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.35;margin-top:6px;color:var(--ink)}
+.gift-now small{display:block;margin-top:10px;font-size:14px;color:var(--muted)}
+.donate-side ul{list-style:none;margin-top:28px;display:grid;gap:10px;font-size:15px;color:var(--muted)}
+.donate-side li{display:flex;gap:10px;align-items:flex-start}
+.donate-side li svg{flex:none;width:18px;height:18px;margin-top:4px;color:var(--teal)}
+.form{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.freq{display:grid;grid-template-columns:1fr 1fr;background:var(--soft);border-radius:12px;padding:4px;margin-bottom:28px}
+.freq button{border:0;background:transparent;padding:11px;border-radius:9px;font-weight:600;font-size:15px;color:var(--muted)}
+.freq button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(21,38,43,.12)}
+fieldset{border:0}
+legend,.flabel{font-size:15px;font-weight:600;margin-bottom:10px;display:block}
+.amts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.amts label{position:relative}
+.amts input{position:absolute;opacity:0;inset:0}
+.amts span{display:block;text-align:center;padding:14px 4px;border:1px solid var(--line);border-radius:12px;font-weight:600;font-size:18px;transition:border-color .2s,background .2s;cursor:pointer}
+.amts input:checked + span{border-color:var(--teal);background:var(--teal-50);color:var(--teal-d);box-shadow:inset 0 0 0 1px var(--teal)}
+.amts input:focus-visible + span{outline:2px solid var(--teal);outline-offset:2px}
+.other{margin-top:12px;position:relative}
+.other span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+.form .other input[type=number]{padding-left:34px}
+.field{margin-top:20px}
+.field label{font-size:15px;font-weight:600;display:block;margin-bottom:8px}
+.form input[type=text],.form input[type=email],.form input[type=number]{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:16px;transition:border-color .2s}
+.form input:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px var(--teal-50)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.err{display:none;color:#A3362B;font-size:14px;margin-top:6px}
+.invalid input{border-color:#C0473A!important}
+.invalid .err{display:block}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:20px;font-size:15px;color:var(--muted)}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--teal)}
+.form .btn{width:100%;margin-top:26px;padding:16px}
+.fine{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+.success{display:none;text-align:center;padding:30px 6px}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--teal-50);color:var(--teal);display:grid;place-items:center;margin:0 auto 20px}
+.success h3{font-size:28px;margin-bottom:10px}
+.success p{color:var(--muted);max-width:380px;margin:0 auto 22px}
+.form.done .form-body{display:none}
+.form.done .success{display:block}
+
+/* STORIES */
+.feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;margin-bottom:64px}
+.feature img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%}
+.feature blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.7vw,34px);line-height:1.3;letter-spacing:-.01em}
+.feature .who{margin-top:24px;font-size:15px;color:var(--muted)}
+.feature .who b{color:var(--ink);display:block;font-size:17px}
+.feature .story{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted)}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.mini{display:grid;grid-template-columns:160px 1fr;gap:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;align-items:center}
+.mini img{width:160px;height:180px;object-fit:cover;border-radius:12px}
+.mini h3{font-size:20px;margin-bottom:8px;letter-spacing:-.015em}
+.mini p{font-size:15px;color:var(--muted)}
+.mini .tag{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:6px;display:block}
+
+/* MONEY */
+.money{background:var(--card);border-block:1px solid var(--line)}
+.split{display:flex;height:56px;border-radius:14px;overflow:hidden;gap:3px}
+.split div{display:flex;align-items:center;padding-left:14px;color:#fff;font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden}
+.split .a{flex:81;background:var(--teal)}
+.split .b{flex:8;background:#3F8C98}
+.split .c{flex:7;background:#8DBBC1;color:var(--ink)}
+.split .d{flex:4;background:#C9DEE0;color:var(--ink);padding-left:8px}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px}
+.legend div{border-top:3px solid;padding-top:14px}
+.legend b{font-size:28px;letter-spacing:-.03em;display:block;line-height:1.1}
+.legend p{font-size:15px;color:var(--muted);margin-top:6px}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px;padding-top:44px;border-top:1px solid var(--line)}
+.proof h3{font-size:18px;margin-bottom:6px;letter-spacing:-.01em}
+.proof p{font-size:15px;color:var(--muted)}
+.proof a{color:var(--teal-d);font-weight:600}
+
+/* WAYS */
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.way{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px 30px;display:flex;flex-direction:column}
+.way .ic{width:48px;height:48px;border-radius:14px;background:var(--teal-50);color:var(--teal);display:grid;place-items:center;margin-bottom:22px}
+.way .ic svg{width:24px;height:24px}
+.way h3{font-size:22px;margin-bottom:10px;letter-spacing:-.015em}
+.way p{color:var(--muted);font-size:16px;flex:1}
+.way a{margin-top:24px;font-weight:600;color:var(--teal-d);text-decoration:none}
+.way a:hover{text-decoration:underline}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.faq-grid h2{font-size:clamp(32px,4vw,46px);margin:14px 0 16px}
+.faq-grid > div > p{color:var(--muted)}
+.acc{border-top:1px solid var(--line)}
+.acc h3{font-size:inherit}
+.acc button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;background:none;border:0;padding:22px 0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.acc button::after{content:"";flex:none;width:12px;height:12px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(45deg) translate(-3px,-3px);transition:transform .25s}
+.acc button[aria-expanded="true"]::after{transform:rotate(225deg)}
+.acc .panel{overflow:hidden;height:0;transition:height .3s ease}
+.acc .panel p{padding-bottom:22px;color:var(--muted);max-width:620px}
+.acc:last-child{border-bottom:1px solid var(--line)}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+.contact h2{font-size:clamp(32px,4vw,46px);margin:14px 0 16px}
+.contact .intro{color:var(--muted);margin-bottom:30px}
+.c-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.c-list{display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:15px;color:var(--muted)}
+.c-list b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.c-list a{text-decoration:none}
+.c-list a:hover{color:var(--teal-d)}
+.map{position:relative;border-radius:24px;overflow:hidden;background:#E9E4D7;border:1px solid var(--line);min-height:380px}
+.map .park{position:absolute;left:8%;top:12%;width:30%;height:34%;background:#D5E3D0;border-radius:18px}
+.map .river{position:absolute;left:-10%;right:-10%;bottom:16%;height:44px;background:#C4DDE0;transform:rotate(-6deg)}
+.map .rd{position:absolute;background:#fff}
+.map .h1{left:0;right:0;top:54%;height:14px}
+.map .h2{left:0;right:0;top:24%;height:8px}
+.map .v1{top:0;bottom:0;left:56%;width:14px}
+.map .v2{top:0;bottom:0;left:80%;width:8px}
+.map .pin{position:absolute;left:56%;top:54%;transform:translate(-30%,-100%);display:flex;flex-direction:column;align-items:center}
+.map .pin span{background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:7px 12px;border-radius:10px;white-space:nowrap;margin-bottom:6px}
+.map .pin i{width:18px;height:18px;border-radius:50%;background:var(--teal);border:4px solid #fff;box-shadow:0 0 0 6px rgba(14,106,122,.2)}
+.map .street{position:absolute;font-size:12px;color:#7D7A70;letter-spacing:.04em}
+.map a.dir{position:absolute;right:16px;bottom:16px}
+
+/* FOOTER */
+footer{padding:64px 0 40px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot p{color:var(--muted);font-size:15px;max-width:340px;margin-top:14px}
+.foot h4{font-size:14px;margin-bottom:12px}
+.foot ul{list-style:none;display:grid;gap:8px;font-size:15px;color:var(--muted)}
+.foot ul a{text-decoration:none}
+.foot ul a:hover{color:var(--ink)}
+.legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .why,.donate,.feature,.faq-grid,.contact{gap:48px}
+  .appeal-body{padding:40px}
+  .mini{grid-template-columns:120px 1fr}.mini img{width:120px;height:150px}
+}
+@media (max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:block}
+  .mobile-menu{display:block;position:fixed;top:72px;left:0;right:0;z-index:49;background:var(--sand);border-bottom:1px solid var(--line);padding:8px 24px 24px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
+  .mobile-menu.open{opacity:1;transform:none;visibility:visible}
+  .mobile-menu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:18px}
+  .mobile-menu .btn{margin-top:18px;width:100%;border-bottom:0}
+  .why,.donate,.feature,.faq-grid,.contact,.appeal{grid-template-columns:1fr}
+  .why-photo{aspect-ratio:16/11}
+  .feature img{aspect-ratio:16/12}
+  .appeal-photo{min-height:300px}
+  .nums{grid-template-columns:1fr 1fr;row-gap:40px}
+  .num:nth-child(3){border-left:0;padding-left:0}
+  .legend{grid-template-columns:1fr 1fr}
+  .proof,.ways{grid-template-columns:1fr}
+  .minis{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot > div:first-child{grid-column:1/-1}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .sec{padding:76px 0}
+  .hero{min-height:min(88vh,760px)}
+  .hero::after{background:linear-gradient(0deg,rgba(9,28,33,.88) 0%,rgba(9,28,33,.55) 55%,rgba(9,28,33,.2) 100%)}
+  .hero .wrap{padding-bottom:44px}
+  .hero-ctas .btn{flex:1 1 100%}
+  .hero-foot{gap:22px;margin-top:40px}
+  .hero-foot > div{flex:1 1 40%}
+  .num + .num{padding-left:18px}.num{padding-right:12px}
+  .num:nth-child(3){padding-left:0}
+  .appeal-body{padding:28px 22px}
+  .form{padding:26px 18px}
+  .amts{grid-template-columns:1fr 1fr}
+  .two{grid-template-columns:1fr}
+  .split{height:44px}
+  .split div{font-size:13px;padding-left:10px}
+  .split .c,.split .d{font-size:0;padding:0}
+  .legend{gap:22px}
+  .mini{grid-template-columns:96px 1fr;gap:16px;padding:12px}
+  .mini img{width:96px;height:120px}
+  .c-list{grid-template-columns:1fr}
+  .c-btns .btn{flex:1 1 100%}
+  .map{min-height:300px}
+  .foot{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Nearwater home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#0E6A7A"/><path d="M16 7c3.6 4.6 5.6 8 5.6 10.6a5.6 5.6 0 0 1-11.2 0C10.4 15 12.4 11.6 16 7z" fill="#fff"/><path d="M13.4 18.4a2.8 2.8 0 0 0 2.6 2.4" stroke="#0E6A7A" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      Nearwater
+    </a>
+    <ul class="nav-links">
+      <li><a href="#work">Our work</a></li>
+      <li><a href="#appeal">Appeal</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#money">Where it goes</a></li>
+      <li><a href="#help">Get involved</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a class="btn btn-teal" href="#donate">Donate</a></div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a href="#work">Our work</a>
+  <a href="#appeal">Current appeal</a>
+  <a href="#stories">Stories</a>
+  <a href="#money">Where the money goes</a>
+  <a href="#help">Get involved</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-teal" href="#donate">Donate</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top">
+  <img src="https://images.pexels.com/photos/14179265/pexels-photo-14179265.jpeg?auto=compress&cs=tinysrgb&w=1900" alt="Four laughing children filling bottles and cupping their hands under a new water tap" fetchpriority="high">
+  <div class="wrap">
+    <div class="hero-txt">
+      <span class="label">A small water charity · since 2011</span>
+      <h1>Clean water, <span class="mark">a short walk</span> from home.</h1>
+      <p class="lead">We build safe water points with village water committees in rural Tanzania and Uganda — then stay for ten years to keep every one of them flowing.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-light" href="#donate">Give clean water</a>
+        <a class="btn btn-ghost" href="#work">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div><b>61,400</b>people with water nearby</div>
+      <div><b>96%</b>of our water points flowing today</div>
+      <div><b>81¢</b>of every dollar spent in the field</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="work">
+  <div class="wrap why">
+    <figure class="why-photo rv">
+      <img src="https://images.pexels.com/photos/13613219/pexels-photo-13613219.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Two young brothers filling a yellow jerrycan at a concrete standpipe in open dry country" loading="lazy">
+      <figcaption>A standpipe finished in 2024 — 300 m from the nearest house.</figcaption>
+    </figure>
+    <div class="rv">
+      <span class="label">The problem, and what we do</span>
+      <h2>The hardest part of water is <span class="mark">the walk.</span></h2>
+      <p class="intro">In the villages we work with, the nearest safe source is often an hour or more away. That walk falls mostly on girls and women, every day, and it costs school, work and rest. A tap close to home gives those hours back.</p>
+      <ol class="steps">
+        <li><div><h3>The village asks, and leads</h3><p>We only work where a community invites us. Families choose the site, give labour and elect a water committee — half of its seats held by women.</p></div></li>
+        <li><div><h3>Local crews build it</h3><p>Tanzanian and Ugandan drilling teams build boreholes, solar pumps, rain tanks and tap stands, sized for the village and tested for quality.</p></div></li>
+        <li><div><h3>We stay for ten years</h3><p>Committees learn repairs and bookkeeping. Our mechanics visit every water point each quarter, and a sensor tells us if a pump stops.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec impact" aria-labelledby="impact-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Impact so far</span>
+      <h2 id="impact-h">Fifteen years, <span class="mark">212 water points</span>, still counting.</h2>
+    </div>
+    <div class="nums rv">
+      <div class="num"><b data-count="212">212</b><span>water points built with 148 villages</span></div>
+      <div class="num"><b data-count="61400">61,400</b><span>people now within 15 minutes of safe water</span></div>
+      <div class="num"><b data-count="96" data-suffix="%">96%</b><span>flowing at our last quarterly visit</span></div>
+      <div class="num"><b data-count="3.1" data-dec="1" data-suffix=" h">3.1 h</b><span>saved per household, every single day</span></div>
+    </div>
+    <p class="impact-note">Figures to September 2026, from quarterly field visits and pump sensors. Every water point is listed with photos and GPS in our project map.</p>
+  </div>
+</section>
+
+<section class="sec" id="appeal">
+  <div class="wrap">
+    <article class="appeal rv">
+      <div class="appeal-photo">
+        <img src="https://images.pexels.com/photos/35094475/pexels-photo-35094475.jpeg?auto=compress&cs=tinysrgb&w=1300" alt="Girls in bright printed dresses gathering at a tiled tap stand in late-afternoon sun, one filling a basin" loading="lazy">
+      </div>
+      <div class="appeal-body">
+        <span class="label">Current appeal · closes 31 December</span>
+        <h2>A solar well for <span class="mark">Kasoli village</span></h2>
+        <p>1,140 people in Kasoli walk 4.2 km to an unprotected spring. Their committee has chosen a site, raised $1,800 of their own, and is ready to build in February. We need to close the gap.</p>
+        <div class="bar" role="progressbar" aria-label="Kasoli appeal progress" aria-valuemin="0" aria-valuemax="38000" aria-valuenow="27360" aria-valuetext="$27,360 of $38,000 raised"><i id="barFill"></i></div>
+        <div class="bar-meta"><span><b>$27,360</b> raised</span><span>of $38,000 · 72%</span></div>
+        <div class="appeal-facts">
+          <div><b>214</b>donors so far</div>
+          <div><b>6</b>tap stands planned</div>
+          <div><b>36</b>days left</div>
+        </div>
+        <a class="btn btn-teal" href="#donate" data-appeal>Give to Kasoli</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="donate" style="padding-top:24px">
+  <div class="wrap donate">
+    <div class="donate-side rv">
+      <span class="label">Make a gift</span>
+      <h2>What your gift <span class="mark">does.</span></h2>
+      <p>Choose an amount to see where it goes. Monthly gifts let villages plan repairs ahead — they're the most useful gift we receive.</p>
+      <div class="gift-now" aria-live="polite">
+        <div class="amt" id="giftAmt">$50 one-off</div>
+        <p id="giftText">Brings one person clean water for good — our average cost per person, including ten years of upkeep.</p>
+        <small id="giftYear"></small>
+      </div>
+      <ul>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Tax-deductible in the US · 501(c)(3) charity</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Cancel or change a monthly gift any time, in one email</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>You'll get photos and GPS of the project you help fund</li>
+      </ul>
+    </div>
+
+    <div class="form rv" id="giveForm">
+      <form class="form-body" id="donateForm" novalidate>
+        <div class="freq" role="group" aria-label="Gift frequency">
+          <button type="button" aria-pressed="true" data-freq="once">One-off</button>
+          <button type="button" aria-pressed="false" data-freq="monthly">Monthly</button>
+        </div>
+        <fieldset id="amtField">
+          <legend>Amount (USD)</legend>
+          <div class="amts">
+            <label><input type="radio" name="amt" value="25"><span>$25</span></label>
+            <label><input type="radio" name="amt" value="50" checked><span>$50</span></label>
+            <label><input type="radio" name="amt" value="120"><span>$120</span></label>
+            <label><input type="radio" name="amt" value="500"><span>$500</span></label>
+          </div>
+          <div class="other">
+            <label class="flabel" for="otherAmt" style="position:absolute;left:-9999px">Other amount in dollars</label>
+            <span aria-hidden="true">$</span>
+            <input type="number" id="otherAmt" min="5" step="1" inputmode="numeric" placeholder="Other amount">
+          </div>
+          <p class="err" id="amtErr">Please choose an amount of $5 or more.</p>
+        </fieldset>
+        <div class="two">
+          <div class="field" id="fFirst"><label for="first">First name</label><input type="text" id="first" autocomplete="given-name"><p class="err">Please add your first name.</p></div>
+          <div class="field" id="fLast"><label for="last">Last name</label><input type="text" id="last" autocomplete="family-name"><p class="err">Please add your last name.</p></div>
+        </div>
+        <div class="field" id="fEmail"><label for="email">Email for your receipt</label><input type="email" id="email" autocomplete="email" placeholder="you@example.com"><p class="err">Please enter a valid email address.</p></div>
+        <label class="check"><input type="checkbox" id="kasoli">Put my gift towards the Kasoli well appeal</label>
+        <label class="check"><input type="checkbox" id="news" checked>Send me a short update twice a year (no more)</label>
+        <button class="btn btn-teal" type="submit" id="giveBtn">Continue — give $50</button>
+        <p class="fine">Demo page: no payment is taken and nothing is sent.</p>
+      </form>
+      <div class="success" role="status" tabindex="-1" id="success">
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h3>Thank you, <span id="sName">friend</span>.</h3>
+        <p id="sText">Your gift is pledged. A receipt and the project's photos will reach your inbox.</p>
+        <button class="btn btn-line" type="button" id="again">Make another gift</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="stories" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Stories from the villages</span>
+      <h2>What changes when the water <span class="mark">comes close.</span></h2>
+    </div>
+    <div class="feature rv">
+      <img src="https://images.pexels.com/photos/30370976/pexels-photo-30370976.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="A smiling woman in a patterned wrap carrying two yellow water containers past a small house under tall trees" loading="lazy">
+      <div>
+        <blockquote>“I used to leave before light and come back after the children had gone to school. Now I see them off, and I'm back from the tap before the tea is cool.”</blockquote>
+        <p class="who"><b>Neema A.</b>Treasurer, Mlimani water committee</p>
+        <p class="story">Neema keeps the committee's books: every family pays the equivalent of 40 cents a month into a repair fund. When the pump's controller failed last March, the committee paid for the part themselves and had water back in two days.</p>
+      </div>
+    </div>
+    <div class="minis">
+      <article class="mini rv">
+        <img src="https://images.pexels.com/photos/15204095/pexels-photo-15204095.jpeg?auto=compress&cs=tinysrgb&w=500" alt="A laughing boy holding his hands under a running tap" loading="lazy">
+        <div><span class="tag">School tap · Bukedi</span><h3>Taps before lessons</h3><p>A rain tank and handwashing station at Bukedi Primary. Absences from stomach illness fell by more than half in the first term.</p></div>
+      </article>
+      <article class="mini rv">
+        <img src="https://images.pexels.com/photos/35094211/pexels-photo-35094211.jpeg?auto=compress&cs=tinysrgb&w=500" alt="A toddler in a white dress filling a small bottle at a metal tap" loading="lazy">
+        <div><span class="tag">Tap stand · Kiwangala</span><h3>Small hands, short trip</h3><p>Six tap stands now sit within 400 m of every home in Kiwangala. Fetching water has become a five-minute errand.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec money" id="money">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Where the money goes</span>
+      <h2>Every dollar, <span class="mark">accounted for.</span></h2>
+      <p>From our audited accounts for the year to June 2026 — total spending $1.24 million.</p>
+    </div>
+    <div class="rv">
+      <div class="split" role="img" aria-label="81% water projects, 8% monitoring and repairs, 7% running the charity, 4% fundraising">
+        <div class="a">81%</div><div class="b">8%</div><div class="c">7%</div><div class="d">4%</div>
+      </div>
+      <div class="legend">
+        <div style="border-color:#0E6A7A"><b>81%</b><p>Building water points: drilling, pumps, tanks, tap stands and training</p></div>
+        <div style="border-color:#3F8C98"><b>8%</b><p>Monitoring and repairs for ten years after each project is finished</p></div>
+        <div style="border-color:#8DBBC1"><b>7%</b><p>Running the charity: a staff of nine, our office and the audit</p></div>
+        <div style="border-color:#C9DEE0"><b>4%</b><p>Fundraising: finding the next donor who'll give like you</p></div>
+      </div>
+    </div>
+    <div class="proof rv">
+      <div><h3>Independently audited</h3><p>Our accounts are audited every year by an outside firm and filed publicly. <a href="#money">Read the 2026 report</a></p></div>
+      <div><h3>Proof for every project</h3><p>Each water point has photos, GPS coordinates and its latest flow check on our project map.</p></div>
+      <div><h3>Small on purpose</h3><p>Nine staff, five of them in the field. Board members are unpaid volunteers. EIN 00-0000000.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="help">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Get involved</span>
+      <h2>Three ways to <span class="mark">help.</span></h2>
+    </div>
+    <div class="ways">
+      <article class="way rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3c3.8 4.8 6 8.4 6 11a6 6 0 0 1-12 0c0-2.6 2.2-6.2 6-11z"/><path d="M9.5 15a2.6 2.6 0 0 0 2.5 2.3"/></svg></div>
+        <h3>Give monthly</h3>
+        <p>Join 1,900 monthly givers. Steady gifts pay for the mechanics and spare parts that keep older water points running.</p>
+        <a href="#donate" data-monthly>Start a monthly gift →</a>
+      </article>
+      <article class="way rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 20V5l7 3 7-3v15l-7-3-7 3z"/></svg></div>
+        <h3>Fundraise</h3>
+        <p>Run, bake, give up your birthday, or set a water challenge at school. We'll send a starter kit and a page you can share.</p>
+        <a href="#contact">Ask for a fundraising kit →</a>
+      </article>
+      <article class="way rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17.5 14.6c1.6.6 2.7 2.1 3 4.4"/></svg></div>
+        <h3>Volunteer</h3>
+        <p>Help at our office on Saturday mornings, speak at local events, or lend a skill — accounting, translation, photography.</p>
+        <a href="#contact">Get in touch →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:24px" aria-labelledby="faq-h">
+  <div class="wrap faq-grid">
+    <div class="rv">
+      <span class="label">Questions</span>
+      <h2 id="faq-h">Before you <span class="mark">give.</span></h2>
+      <p>Anything else? Call or message us — a real person answers, usually Ruth or Daniel.</p>
+    </div>
+    <div class="rv" id="faq">
+      <div class="acc"><h3><button aria-expanded="false" aria-controls="q1" id="b1">Is my donation tax-deductible?</button></h3><div class="panel" id="q1" role="region" aria-labelledby="b1"><p>Yes. Nearwater is a registered 501(c)(3) public charity in the United States, so gifts are deductible to the extent the law allows. Your receipt arrives by email straight away, and monthly givers get a yearly summary each January.</p></div></div>
+      <div class="acc"><h3><button aria-expanded="false" aria-controls="q2" id="b2">How do you know the water points keep working?</button></h3><div class="panel" id="q2" role="region" aria-labelledby="b2"><p>Our mechanics visit every water point once a quarter, and most pumps carry a simple sensor that reports daily flow. If a point stops, the committee and our nearest mechanic are alerted, and most repairs happen within a week.</p></div></div>
+      <div class="acc"><h3><button aria-expanded="false" aria-controls="q3" id="b3">Can I change or cancel a monthly gift?</button></h3><div class="panel" id="q3" role="region" aria-labelledby="b3"><p>Any time, for any reason. Reply to any receipt or email hello@example.com and we'll change it the same day — no forms, no phone calls to sit through.</p></div></div>
+      <div class="acc"><h3><button aria-expanded="false" aria-controls="q4" id="b4">Can I give to a specific project?</button></h3><div class="panel" id="q4" role="region" aria-labelledby="b4"><p>Yes — tick the Kasoli box on the form to give to the current appeal. Gifts above $5,000 can sponsor a whole water point, named for a person or group if you wish; we'll send its photos and GPS when it's finished.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact" style="padding-top:24px">
+  <div class="wrap contact">
+    <div class="rv">
+      <span class="label">Contact</span>
+      <h2>Come and <span class="mark">say hello.</span></h2>
+      <p class="intro">Our small office is above the bookshop on Mill Lane. Drop in, call, or send us a message on WhatsApp.</p>
+      <div class="c-btns">
+        <a class="btn btn-teal" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call 017 00000000</a>
+        <a class="btn btn-line" href="https://wa.me/0000000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20l1.4-4A8 8 0 1 1 8.6 19z"/></svg>WhatsApp us</a>
+      </div>
+      <div class="c-list">
+        <div><b>Office</b>Nearwater, 2nd floor<br>18 Mill Lane, Riverton</div>
+        <div><b>Open</b>Mon–Fri, 9am–5pm<br>Volunteers: Sat, 10am–1pm</div>
+        <div><b>Email</b><a href="mailto:hello@example.com">hello@example.com</a></div>
+        <div><b>Field offices</b>Arusha, Tanzania<br>Mbale, Uganda</div>
+      </div>
+    </div>
+    <div class="map rv" role="img" aria-label="Map showing the Nearwater office on Mill Lane, near the river and the park">
+      <div class="park"></div><div class="river"></div>
+      <div class="rd h1"></div><div class="rd h2"></div><div class="rd v1"></div><div class="rd v2"></div>
+      <span class="street" style="left:6%;top:calc(54% + 20px)">MILL LANE</span>
+      <span class="street" style="left:16%;top:27%">RIVER PARK</span>
+      <span class="street" style="left:calc(56% + 22px);top:8%">STATION RD</span>
+      <div class="pin"><span>Nearwater office</span><i></i></div>
+      <a class="btn btn-light dir" href="#contact">Get directions</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#0E6A7A"/><path d="M16 7c3.6 4.6 5.6 8 5.6 10.6a5.6 5.6 0 0 1-11.2 0C10.4 15 12.4 11.6 16 7z" fill="#fff"/></svg>Nearwater</a>
+        <p>A small charity building safe water points with village committees in rural Tanzania and Uganda, and keeping them flowing for ten years.</p>
+      </div>
+      <div><h4>Give</h4><ul><li><a href="#donate">Donate once</a></li><li><a href="#donate" data-monthly>Give monthly</a></li><li><a href="#appeal">Kasoli appeal</a></li><li><a href="#help">Fundraise</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="#work">How we work</a></li><li><a href="#stories">Stories</a></li><li><a href="#money">Accounts &amp; audit</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Nearwater. Registered 501(c)(3) · EIN 00-0000000. All names and figures are illustrative.</span><span>Photos: Pexels</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  // Nav: transparent over hero, solid after
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger'), menu = document.getElementById('mobileMenu');
+  function onScroll(){ nav.classList.toggle('solid', window.scrollY > 40 || menu.classList.contains('open')); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+    onScroll();
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('open')){ setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 900) setMenu(false); });
+
+  // Reveal on scroll
+  var rv = document.querySelectorAll('.rv');
+  if(reduce || !hasIO){ rv.forEach(function(el){ el.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  }
+
+  // Count-up numbers + appeal bar (once, when visible)
+  function fmt(v, dec){ return dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US'); }
+  function countUp(el){
+    var to = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '';
+    if(reduce){ el.textContent = fmt(to, dec) + suf; return; }
+    var start = null, dur = 1400;
+    function step(t){
+      if(start === null) start = t;
+      var p = Math.min((t - start) / dur, 1), k = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(to * k, dec) + suf;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  var fill = document.getElementById('barFill');
+  if(hasIO && !reduce){
+    var cio = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); } });
+    }, {threshold:.6});
+    counters.forEach(function(el){ el.textContent = '0'; cio.observe(el); });
+    var bio = new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){ fill.style.width = '72%'; bio.disconnect(); }
+    }, {threshold:.5});
+    bio.observe(fill);
+  } else { fill.style.width = '72%'; }
+
+  // Donate form
+  var GIFTS = {
+    25:  'Buys spare parts to keep a village hand pump flowing for a whole year.',
+    50:  'Brings one person clean water for good — our average cost per person, including ten years of upkeep.',
+    120: 'Trains a new water committee in repairs, bookkeeping and running a repair fund.',
+    500: 'Builds a rain tank and handwashing station for a primary-school classroom block.'
+  };
+  var freq = 'once';
+  var form = document.getElementById('donateForm'), box = document.getElementById('giveForm');
+  var other = document.getElementById('otherAmt'), radios = form.querySelectorAll('input[name=amt]');
+  var freqBtns = form.querySelectorAll('[data-freq]');
+  var giftAmt = document.getElementById('giftAmt'), giftText = document.getElementById('giftText'), giftYear = document.getElementById('giftYear');
+  var giveBtn = document.getElementById('giveBtn');
+
+  function amount(){
+    var v = parseFloat(other.value);
+    if(other.value !== '') return isNaN(v) ? 0 : Math.round(v);
+    var r = form.querySelector('input[name=amt]:checked');
+    return r ? +r.value : 0;
+  }
+  function describe(a){
+    if(GIFTS[a]) return GIFTS[a];
+    if(a >= 500) return 'Goes into a new water point: every $500 builds part of a tap stand, pipe and pump for a whole village.';
+    if(a >= 50) return 'Brings about ' + Math.floor(a / 50) + (a >= 100 ? ' people' : ' person') + ' clean water for good, with ten years of upkeep.';
+    if(a >= 5) return 'Every dollar helps: it goes to the next water point being built, and to keeping the ones we\'ve built flowing.';
+    return 'Choose an amount to see what it does.';
+  }
+  function update(){
+    var a = amount(), per = freq === 'monthly' ? ' a month' : ' one-off';
+    giftAmt.textContent = a ? '$' + a.toLocaleString('en-US') + per : 'Your gift';
+    var d = describe(freq === 'monthly' ? a * 12 : a);
+    giftText.textContent = (freq === 'monthly' && a >= 5) ? 'Over a year, it ' + d.charAt(0).toLowerCase() + d.slice(1) : d;
+    giftYear.textContent = (freq === 'monthly' && a) ? '$' + a.toLocaleString('en-US') + ' a month is $' + (a * 12).toLocaleString('en-US') + ' a year.' : '';
+    giveBtn.textContent = a ? 'Continue — give $' + a.toLocaleString('en-US') + (freq === 'monthly' ? '/month' : '') : 'Continue';
+  }
+  freqBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      freq = b.dataset.freq;
+      freqBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+      update();
+    });
+  });
+  radios.forEach(function(r){ r.addEventListener('change', function(){ other.value = ''; document.getElementById('amtField').classList.remove('invalid'); update(); }); });
+  other.addEventListener('input', function(){
+    if(other.value !== '') radios.forEach(function(r){ r.checked = false; });
+    document.getElementById('amtField').classList.remove('invalid');
+    update();
+  });
+
+  // Links that pre-set the form
+  function setMonthly(){ freqBtns[1].click(); }
+  document.querySelectorAll('[data-monthly]').forEach(function(a){ a.addEventListener('click', setMonthly); });
+  document.querySelector('[data-appeal]').addEventListener('click', function(){ document.getElementById('kasoli').checked = true; });
+
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function check(id, ok){ document.getElementById(id).classList.toggle('invalid', !ok); return ok; }
+  ['first','last','email'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener('blur', function(){
+      if(el.value.trim() === '') return;
+      if(id === 'email') check('fEmail', emailRe.test(el.value.trim()));
+    });
+    el.addEventListener('input', function(){ el.closest('.field').classList.remove('invalid'); });
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var a = amount(), first = document.getElementById('first').value.trim();
+    var ok = [
+      check('amtField', a >= 5),
+      check('fFirst', first !== ''),
+      check('fLast', document.getElementById('last').value.trim() !== ''),
+      check('fEmail', emailRe.test(document.getElementById('email').value.trim()))
+    ];
+    var bad = form.querySelector('.invalid input');
+    if(ok.indexOf(false) > -1){ if(bad) bad.focus(); return; }
+    document.getElementById('sName').textContent = first;
+    var to = document.getElementById('kasoli').checked ? 'the Kasoli well' : 'where it\'s needed most';
+    document.getElementById('sText').textContent = 'Your ' + 'gift of $' + a + (freq === 'monthly' ? ' a month' : '') + ' is pledged to ' + to + '. A receipt and the project\'s photos will reach ' + document.getElementById('email').value.trim() + '.';
+    box.classList.add('done');
+    document.getElementById('success').focus();
+  });
+  document.getElementById('again').addEventListener('click', function(){
+    form.reset(); other.value = ''; freqBtns[0].click();
+    box.classList.remove('done'); update();
+    document.getElementById('first').focus();
+  });
+  update();
+
+  // FAQ accordion
+  document.querySelectorAll('.acc button').forEach(function(b){
+    var p = document.getElementById(b.getAttribute('aria-controls'));
+    b.addEventListener('click', function(){
+      var open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', !open);
+      if(reduce){ p.style.height = open ? '0' : 'auto'; return; }
+      if(open){ p.style.height = p.scrollHeight + 'px'; requestAnimationFrame(function(){ p.style.height = '0'; }); }
+      else {
+        p.style.height = p.scrollHeight + 'px';
+        p.addEventListener('transitionend', function te(){ if(b.getAttribute('aria-expanded') === 'true') p.style.height = 'auto'; p.removeEventListener('transitionend', te); });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

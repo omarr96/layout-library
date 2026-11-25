@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Millbeck Rovers FC — Community football for every age</title>
+<meta name="description" content="Millbeck Rovers FC is a volunteer-run community football club with mini kickers, juniors, girls and women, adult teams and walking football. Your first two sessions are free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Literata:ital,opsz,wght@1,7..72,400;1,7..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --chalk:#F2F4EE;--card:#FFFFFF;--ink:#14261C;--muted:#56645B;--line:#DCE2D7;--soft:#E7ECE3;
+  --pitch:#1E6B45;--pitch-dark:#16553A;--mint:#CFEBD8;--ok:#1E6B45;--err:#B0331F;
+  --sans:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"Barlow Condensed","Barlow",system-ui,sans-serif;
+  --serif:"Literata",Georgia,serif;
+  --r:20px;--wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--chalk);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.015em;line-height:1.08}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.mark{position:relative;white-space:nowrap}
+.mark svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.32em;overflow:visible}
+.mark path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;opacity:.55}
+.label{font:600 14px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;color:var(--pitch);display:inline-flex;align-items:center;gap:10px}
+.label::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.sec{padding:112px 0}
+.sec-head{max-width:640px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(34px,4.4vw,52px);margin-top:16px}
+.sec-head p{margin-top:16px;color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;font:600 16px/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn-pitch{background:var(--pitch);color:#fff}
+.btn-pitch:hover{background:var(--pitch-dark)}
+.btn-line{background:var(--card);border-color:var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--pitch);outline-offset:3px;border-radius:8px}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(242,244,238,.86);backdrop-filter:saturate(1.2) blur(14px);-webkit-backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid transparent;transition:border-color .25s;z-index:-1}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:32px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:19px;letter-spacing:-.01em}
+.logo small{display:block;font:500 12px/1.2 var(--cond);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.links{display:flex;gap:28px;margin-left:auto}
+.links a{text-decoration:none;font-weight:500;font-size:16px;color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 20px;font-size:15px}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border:1px solid var(--line);border-radius:14px;background:var(--card);position:relative;cursor:pointer}
+.burger span{position:absolute;left:13px;right:13px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile{display:none}
+
+/* hero */
+.hero{padding:140px 0 0}
+.hero-top{display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:end}
+.hero h1{font-size:clamp(46px,6.8vw,92px);margin-top:22px;letter-spacing:-.03em;line-height:1.02}
+.hero h1 .it{color:var(--pitch)}
+.hero-side p{font-size:19px;color:var(--muted)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-photo{position:relative;max-width:1408px;margin:56px auto 0;padding:0 16px}
+.hero-photo .ph{border-radius:28px;overflow:hidden;aspect-ratio:1800/760;position:relative;background:var(--soft)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.hero-photo .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,32,20,.38),rgba(10,32,20,0) 40%)}
+.next{max-width:1180px;margin:-48px auto 0;position:relative;z-index:2;padding:0 24px}
+.next-card{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 28px;box-shadow:0 24px 50px -30px rgba(20,38,28,.35)}
+.next-tag{font:600 13px/1.3 var(--cond);letter-spacing:.14em;text-transform:uppercase;color:var(--pitch);border-right:1px solid var(--line);padding-right:28px}
+.next-tag b{display:block;font-size:30px;letter-spacing:0;color:var(--ink);margin-top:4px;font-weight:600}
+.next-match{font-size:20px;font-weight:600}
+.next-match span{color:var(--muted);font-weight:400}
+.next-meta{color:var(--muted);font-size:15px;margin-top:2px}
+.facts{display:flex;gap:28px}
+.facts div{font:600 30px/1 var(--cond);text-align:right}
+.facts small{display:block;font:500 13px/1.3 var(--sans);color:var(--muted);margin-top:6px}
+
+/* intro */
+.intro{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:start}
+.intro h2{font-size:clamp(32px,3.8vw,46px);margin-top:16px}
+.intro-text p{color:var(--muted);font-size:18px}
+.intro-text p+p{margin-top:18px}
+.quote{margin-top:32px;padding-left:22px;border-left:3px solid var(--pitch)}
+.quote p{font:italic 400 21px/1.5 var(--serif);color:var(--ink)}
+.quote cite{display:block;margin-top:10px;font:500 15px var(--sans);color:var(--muted);font-style:normal}
+
+/* teams */
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.team-photo{border-radius:var(--r);overflow:hidden;position:relative;min-height:520px;grid-row:span 2}
+.team-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.team-photo figcaption{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.94);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:500}
+.team-list{display:grid;gap:16px;grid-row:span 2}
+.team{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;display:grid;grid-template-columns:92px 1fr;gap:20px;align-items:start}
+.team .age{font:600 22px/1.1 var(--cond);color:var(--pitch);letter-spacing:.02em}
+.team .age small{display:block;font:500 13px/1.3 var(--sans);color:var(--muted);letter-spacing:0;margin-top:6px}
+.team h3{font-size:21px;letter-spacing:-.01em}
+.team p{color:var(--muted);font-size:16px;margin-top:6px}
+
+/* training */
+.train{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.days{display:flex;gap:8px;padding:6px;background:var(--chalk);border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{border:0;background:transparent;font:600 16px/1 var(--sans);color:var(--muted);padding:13px 20px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.day:hover{color:var(--ink)}
+.day[aria-selected="true"]{background:var(--pitch);color:#fff}
+.day .today{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-left:7px;vertical-align:middle;opacity:.7}
+.sessions{margin-top:32px;display:grid;gap:12px}
+.session{display:grid;grid-template-columns:200px 1fr auto;gap:24px;align-items:center;padding:22px 26px;border:1px solid var(--line);border-radius:16px;background:var(--chalk);animation:rise .35s ease both}
+.session time{font:600 24px/1 var(--cond);letter-spacing:.01em}
+.session h3{font-size:19px}
+.session p{color:var(--muted);font-size:15px;margin-top:3px}
+.chip{font:600 13px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;border-radius:999px;background:var(--mint);color:var(--pitch-dark);white-space:nowrap}
+.chip.grey{background:var(--soft);color:var(--muted)}
+.train-note{margin-top:24px;color:var(--muted);font-size:15px}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* fixtures */
+.fx{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.fx-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 30px}
+.fx-box h3{font-size:22px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.fx-box h3 small{font:500 14px var(--sans);color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+th{text-align:left;font:600 13px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 0 12px;border-bottom:1px solid var(--line)}
+td{padding:15px 0;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.d{font:600 17px/1.2 var(--cond);white-space:nowrap;width:86px;color:var(--muted)}
+td .who{font-weight:600}
+td .sub{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+td.r{text-align:right;white-space:nowrap}
+.score{font:600 20px/1 var(--cond);letter-spacing:.04em}
+.res{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;border-radius:7px;font:700 13px/24px var(--cond);margin-left:10px;vertical-align:2px}
+.res.w{background:var(--mint);color:var(--pitch-dark)}
+.res.d{background:var(--soft);color:var(--muted)}
+.res.l{background:#F4E1DB;color:#8A2E1C}
+.ha{font:600 12px/1 var(--cond);letter-spacing:.1em;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-left:8px;vertical-align:2px}
+
+/* membership */
+.fees{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.fee{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;display:flex;flex-direction:column}
+.fee h3{font-size:20px}
+.fee .who{color:var(--muted);font-size:15px;margin-top:4px}
+.price{margin-top:26px;font:600 54px/1 var(--cond);letter-spacing:-.01em}
+.price span{font:500 16px var(--sans);color:var(--muted);letter-spacing:0;margin-left:4px}
+.fee ul{list-style:none;padding:20px 0 0;margin:22px 0 0;border-top:1px solid var(--line);display:grid;gap:10px;font-size:15px;color:var(--muted)}
+.fee li{padding-left:24px;position:relative}
+.fee li::before{content:"";position:absolute;left:2px;top:7px;width:11px;height:6px;border-left:2px solid var(--pitch);border-bottom:2px solid var(--pitch);transform:rotate(-45deg)}
+.fee.pop{border-color:var(--pitch);box-shadow:0 0 0 1px var(--pitch)}
+.fee .flag{position:absolute;top:-15px;left:24px}
+.fee-note{margin-top:28px;display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 24px;color:var(--muted);font-size:16px}
+.fee-note strong{color:var(--ink)}
+.fee-note svg{flex:none;margin-top:3px;color:var(--pitch)}
+
+/* ground + people */
+.ground{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ground-photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/4.4;position:relative}
+.ground-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 88%}
+.facil{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:0;border-top:1px solid var(--line)}
+.facil li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+.facil b{font:600 15px/1.4 var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--pitch)}
+.facil span{color:var(--muted)}
+.people{margin-top:96px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:600 20px/1 var(--cond);letter-spacing:.04em;background:var(--mint);color:var(--pitch-dark)}
+.person h3{font-size:19px;margin-top:18px}
+.person .role{font:600 13px/1.3 var(--cond);letter-spacing:.12em;text-transform:uppercase;color:var(--pitch);margin-top:6px}
+.person p{color:var(--muted);font-size:15px;margin-top:10px}
+.people-head{margin-top:96px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.people-head h2{font-size:clamp(30px,3.4vw,40px);margin-top:14px}
+.people-head p{color:var(--muted);max-width:420px;font-size:16px}
+.people-head + .people{margin-top:32px}
+
+/* sponsors */
+.spons{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+.spons-in{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between}
+.spons p.l{color:var(--muted);font-size:16px;max-width:260px}
+.spons ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px 40px}
+.spons li{font:italic 400 23px/1.3 var(--serif);color:var(--ink)}
+.spons a{font-weight:600;font-size:15px;color:var(--pitch)}
+
+/* join */
+.join{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.join-side h2{font-size:clamp(34px,4.2vw,50px);margin-top:16px}
+.join-side>p{color:var(--muted);font-size:18px;margin-top:18px}
+.steps{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:20px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;font-size:16px;color:var(--muted)}
+.steps li::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font:600 17px/1 var(--cond);color:var(--pitch)}
+.steps b{color:var(--ink);display:block;font-weight:600}
+.form{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:20px}
+.field>label,.field legend{display:block;font-weight:600;font-size:15px;margin-bottom:8px;padding:0}
+.field .opt{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;font:400 16px/1.4 var(--sans);color:var(--ink);background:var(--chalk);border:1px solid var(--line);border-radius:12px;padding:13px 14px;min-height:50px;transition:border-color .2s,background .2s}
+textarea{min-height:96px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2356645B' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pitch);background:#fff;box-shadow:0 0 0 3px rgba(30,107,69,.15)}
+.field.bad input,.field.bad select{border-color:var(--err);background:#fff}
+.err{display:none;color:var(--err);font-size:14px;margin-top:6px}
+.field.bad .err{display:block}
+fieldset{border:0;margin:0 0 20px;padding:0;min-width:0}
+.exp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.exp label{position:relative;display:block;cursor:pointer}
+.exp input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.exp span{display:block;border:1px solid var(--line);background:var(--chalk);border-radius:12px;padding:12px 14px;font-size:15px;font-weight:600;line-height:1.3;transition:border-color .2s,background .2s}
+.exp span small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
+.exp input:checked+span{border-color:var(--pitch);background:#fff;box-shadow:0 0 0 1px var(--pitch)}
+.exp input:focus-visible+span{outline:3px solid var(--pitch);outline-offset:2px}
+fieldset.bad .exp span{border-color:var(--err)}
+fieldset.bad .err{display:block}
+.form .btn{width:100%;margin-top:4px}
+.small{font-size:14px;color:var(--muted);margin-top:14px;text-align:center}
+.done{display:none;text-align:center;padding:24px 8px}
+.done .tick{width:64px;height:64px;border-radius:50%;background:var(--mint);color:var(--pitch-dark);display:grid;place-items:center;margin:0 auto}
+.done h3{font-size:28px;margin-top:22px}
+.done p{color:var(--muted);margin:12px auto 0;max-width:420px}
+.done .btn{width:auto;margin-top:24px}
+.form.sent form{display:none}
+.form.sent .done{display:block;animation:rise .4s ease both}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.c-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px}
+.c-card h2{font-size:clamp(30px,3.4vw,40px);margin-top:14px}
+.c-card address{font-style:normal;margin-top:18px;font-size:18px}
+.c-list{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid var(--line)}
+.c-list li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
+.c-list span{color:var(--muted)}
+.c-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.c-btns .btn{min-height:48px;padding:0 20px;font-size:15px}
+.map{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#E9ECE4;min-height:440px}
+.map .road{position:absolute;background:#fff;border:1px solid #DADFD3}
+.map .park{position:absolute;left:30%;top:22%;width:44%;height:52%;background:#CFE3C7;border-radius:18px;border:1px solid #B9D3B0}
+.map .pt{position:absolute;border:2px solid rgba(255,255,255,.9);border-radius:4px}
+.map .pt::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid rgba(255,255,255,.9)}
+.map .lbl{position:absolute;font:600 12px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;color:#7A867D}
+.map .river{position:absolute;right:-10%;bottom:-6%;width:60%;height:24%;background:#CFDFE6;border-radius:50%;transform:rotate(-8deg)}
+.pin{position:absolute;left:51%;top:40%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin b{background:var(--ink);color:#fff;font:600 14px/1 var(--sans);padding:10px 14px;border-radius:10px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.pin i{width:16px;height:16px;border-radius:50%;background:var(--pitch);border:3px solid #fff;margin-top:8px;box-shadow:0 0 0 6px rgba(30,107,69,.22)}
+
+footer{padding:56px 0 64px;color:var(--muted);font-size:15px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:32px}
+.foot nav{display:flex;gap:22px;flex-wrap:wrap}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1080px){
+  .links{gap:20px}
+  .fees{grid-template-columns:1fr 1fr}
+  .people{grid-template-columns:1fr 1fr}
+  .facts{display:none}
+  .next-card{grid-template-columns:auto 1fr}
+}
+@media (max-width:900px){
+  .links,.nav-in>.btn{display:none}
+  .burger{display:block}
+  .mobile{position:fixed;top:76px;left:0;right:0;z-index:49;background:var(--chalk);border-bottom:1px solid var(--line);padding:12px 24px 24px;box-shadow:0 24px 40px -24px rgba(20,38,28,.3)}
+  .mobile.open{display:block}
+  .mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;font-size:18px}
+  .mobile .btn{margin-top:18px;width:100%;border-bottom:0}
+  .sec{padding:80px 0}
+  .intro,.ground,.join,.contact,.fx{grid-template-columns:1fr;gap:40px}
+  .fx{gap:20px}
+  .teams{grid-template-columns:1fr}
+  .team-photo{min-height:380px;grid-row:auto}
+  .hero{padding-top:120px}
+  .hero-top{grid-template-columns:1fr;gap:28px}
+  .hero-photo .ph{aspect-ratio:16/9}
+  .session{grid-template-columns:150px 1fr auto}
+  .people-head{margin-top:72px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .nav-in{height:68px}
+  .mobile{top:68px;padding:8px 16px 20px}
+  .hero{padding-top:104px}
+  .hero-side p{font-size:17px}
+  .hero-cta .btn{flex:1 1 100%}
+  .hero-photo{padding:0 10px;margin-top:36px}
+  .hero-photo .ph{aspect-ratio:4/3.4;border-radius:22px}
+  .hero-photo img{object-position:42% 50%}
+  .next{padding:0 16px}
+  .next-card{grid-template-columns:1fr;gap:14px;padding:20px}
+  .next-tag{border-right:0;padding-right:0;border-bottom:1px solid var(--line);padding-bottom:14px;display:flex;justify-content:space-between;align-items:baseline}
+  .next-tag b{font-size:24px;margin:0}
+  .next-match{font-size:18px}
+  .sec{padding:68px 0}
+  .sec-head{margin-bottom:32px}
+  .sec-head p,.intro-text p,.join-side>p{font-size:16px}
+  .team{grid-template-columns:1fr;gap:8px;padding:22px}
+  .team .age small{display:inline;margin-left:8px}
+  .session{grid-template-columns:1fr auto;gap:6px 14px;padding:18px}
+  .session time{grid-column:1/-1;font-size:20px}
+  .days{width:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:2px;border-radius:16px;padding:4px}
+  .day{padding:12px 0;font-size:14px;border-radius:12px}
+  .day .today{display:block;margin:4px auto 0}
+  .fx-box{padding:22px 18px}
+  td.d{width:64px;font-size:15px}
+  .fees,.people{grid-template-columns:1fr}
+  .price{font-size:46px}
+  .facil li{grid-template-columns:1fr;gap:2px}
+  .people-head{margin-top:56px}
+  .spons-in{gap:20px}
+  .spons li{font-size:20px}
+  .row,.exp{grid-template-columns:1fr}
+  .form{padding:24px 18px}
+  .c-card{padding:26px 20px}
+  .c-btns .btn{flex:1 1 100%}
+  .map{min-height:320px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Millbeck Rovers FC home">
+      <svg width="38" height="44" viewBox="0 0 38 44" aria-hidden="true"><path d="M19 1.5 35.5 7v14.5C35.5 32 28.4 39.3 19 42.5 9.6 39.3 2.5 32 2.5 21.5V7z" fill="#1E6B45"/><path d="M19 1.5V42.5" stroke="#fff" stroke-width="4" opacity=".9"/><path d="M2.5 17h33" stroke="#fff" stroke-width="3" opacity=".9"/><circle cx="19" cy="17" r="6" fill="#fff"/><circle cx="19" cy="17" r="3" fill="#1E6B45"/></svg>
+      <span>Millbeck Rovers<small>Football club · est. 1974</small></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#teams">Teams</a>
+      <a href="#training">Training</a>
+      <a href="#fixtures">Fixtures</a>
+      <a href="#membership">Membership</a>
+      <a href="#club">The club</a>
+      <a href="#contact">Find us</a>
+    </nav>
+    <a class="btn btn-pitch" href="#join">Book a free taster</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile" id="mobile">
+  <a href="#teams">Teams</a>
+  <a href="#training">Training times</a>
+  <a href="#fixtures">Fixtures &amp; results</a>
+  <a href="#membership">Membership</a>
+  <a href="#club">The club</a>
+  <a href="#contact">Find us</a>
+  <a class="btn btn-pitch" href="#join">Book a free taster</a>
+</div>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-top">
+      <div>
+        <span class="label">Community football since 1974</span>
+        <h1 id="hero-title">Football for <span class="it mark">every age<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 50 2, 110 3, 198 6"/></svg></span> in Millbeck.</h1>
+      </div>
+      <div class="hero-side">
+        <p>From five-year-olds at Saturday Mini Kickers to walking football on Monday mornings, we're a club run by volunteers. Your first two sessions are free.</p>
+        <div class="hero-cta">
+          <a class="btn btn-pitch" href="#join">Book a free taster</a>
+          <a class="btn btn-line" href="#training">See training times</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1751394220229-9a23c9ed6a75?w=1800&amp;h=850&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=faces" alt="A team in red shirts huddled around their coach on the pitch before a match" fetchpriority="high"></div>
+    </div>
+  </section>
+
+  <div class="next">
+    <div class="next-card">
+      <p class="next-tag">Next home match<b>Sat 28 Nov</b></p>
+      <div>
+        <p class="next-match">Millbeck Rovers <span>v</span> Fenwick Town</p>
+        <p class="next-meta">Men's First XI · Kick-off 2:00 pm · Kestrel Lane, Pitch 1 · Free entry, tea hut open</p>
+      </div>
+      <div class="facts" aria-label="Club in numbers">
+        <div>22<small>teams</small></div>
+        <div>390<small>members</small></div>
+        <div>60+<small>volunteers</small></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec" aria-labelledby="intro-title">
+    <div class="wrap intro">
+      <div class="reveal">
+        <span class="label">About the club</span>
+        <h2 id="intro-title">A proper club, with a <span class="it">kettle</span> always on.</h2>
+      </div>
+      <div class="intro-text reveal">
+        <p>Millbeck Rovers began with one Sunday side and a borrowed set of goalposts. Fifty years on we have 22 teams, two grass pitches, a floodlit small-sided pitch and a clubhouse that smells of toast every Saturday morning.</p>
+        <p>We are a not-for-profit club and every coach is a volunteer. Every coach has a background check and coaching training. We care more about kids enjoying it than about results, and we keep fees low so nobody misses out.</p>
+        <blockquote class="quote">
+          <p>“Jonah came along to one taster and now he won't miss a Saturday. I ended up helping run the tea hut.”</p>
+          <cite>Priya Nandakumar, U9 parent (fictional)</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="teams" aria-labelledby="teams-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="label">Teams &amp; sections</span>
+        <h2 id="teams-title">There's a team for <span class="it">you</span>, at any age.</h2>
+        <p>Pick your section, then come to a free taster. The coaches will help you find the right group.</p>
+      </div>
+      <div class="teams">
+        <figure class="team-photo reveal" style="margin:0">
+          <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=1200&q=70&auto=format&fit=crop" alt="A coach crouching to talk to a group of young players in striped kits on an artificial pitch" loading="lazy">
+          <figcaption>U8 Kestrels, Saturday morning warm-up</figcaption>
+        </figure>
+        <div class="team-list">
+          <article class="team reveal">
+            <div class="age">4–8<small>years</small></div>
+            <div><h3>Mini Kickers</h3><p>Games-based sessions on Saturday mornings. No scores and no pressure. Parents stay pitch-side, and many end up joining in.</p></div>
+          </article>
+          <article class="team reveal">
+            <div class="age">U9–U16<small>boys &amp; mixed</small></div>
+            <div><h3>Juniors</h3><p>Fourteen teams playing in the local youth league, from 7-a-side up to 11-a-side. One training night a week plus matches on weekends.</p></div>
+          </article>
+          <article class="team reveal">
+            <div class="age">5–16+<small>girls &amp; women</small></div>
+            <div><h3>Wildcats, Girls &amp; Women</h3><p>Girls' teams from U10 to U14 and a women's side that welcomes complete beginners. Nobody here minds if you've never played before.</p></div>
+          </article>
+          <article class="team reveal">
+            <div class="age">16+<small>men's &amp; walking</small></div>
+            <div><h3>Adults &amp; Walking Football</h3><p>Saturday First XI, Sunday XI and a relaxed reserves squad. Walking football (no running, no tackling) for over-50s and women 30+.</p></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec train" id="training" aria-labelledby="train-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="label">Training times</span>
+        <h2 id="train-title">This week <span class="it">on the pitch</span></h2>
+        <p>All sessions are at Kestrel Lane. Come 10 minutes early for your first one, and bring shin pads and water.</p>
+      </div>
+      <div class="days" role="tablist" aria-label="Training day" id="days"></div>
+      <div class="sessions" id="sessions" role="tabpanel" aria-live="polite"></div>
+      <p class="train-note">Sessions marked “Taster welcome” are open to new players. Half-term and holiday changes are texted to parents on the Monday.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="fixtures" aria-labelledby="fx-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="label">Fixtures &amp; results</span>
+        <h2 id="fx-title">Come and <span class="it">cheer us on</span>.</h2>
+        <p>Home games are free to watch. The tea hut opens an hour before kick-off.</p>
+      </div>
+      <div class="fx">
+        <div class="fx-box reveal">
+          <h3>Next fixtures <small>This weekend</small></h3>
+          <table>
+            <caption class="sr-only" style="position:absolute;left:-9999px">Upcoming fixtures</caption>
+            <thead><tr><th scope="col">Date</th><th scope="col">Match</th><th scope="col" style="text-align:right">Kick-off</th></tr></thead>
+            <tbody>
+              <tr><td class="d">Sat 28</td><td><span class="who">First XI v Fenwick Town</span><span class="ha">H</span><span class="sub">County League Div. 2</span></td><td class="r">2:00 pm</td></tr>
+              <tr><td class="d">Sat 28</td><td><span class="who">U12 Falcons v Ashby Colts</span><span class="ha">A</span><span class="sub">Youth League · Ashby Park</span></td><td class="r">10:00 am</td></tr>
+              <tr><td class="d">Sun 29</td><td><span class="who">Women v Harrowgate Belles</span><span class="ha">H</span><span class="sub">Women's League Cup</span></td><td class="r">1:00 pm</td></tr>
+              <tr><td class="d">Sun 29</td><td><span class="who">Sunday XI v The Red Lion</span><span class="ha">H</span><span class="sub">Sunday League</span></td><td class="r">10:30 am</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fx-box reveal">
+          <h3>Latest results <small>Last weekend</small></h3>
+          <table>
+            <caption style="position:absolute;left:-9999px">Recent results</caption>
+            <thead><tr><th scope="col">Date</th><th scope="col">Match</th><th scope="col" style="text-align:right">Score</th></tr></thead>
+            <tbody>
+              <tr><td class="d">Sat 21</td><td><span class="who">First XI v Oakworth United</span><span class="ha">A</span></td><td class="r"><span class="score">3–1</span><span class="res w" title="Win">W</span></td></tr>
+              <tr><td class="d">Sat 21</td><td><span class="who">U14 Hawks v Brindley Juniors</span><span class="ha">H</span></td><td class="r"><span class="score">2–2</span><span class="res d" title="Draw">D</span></td></tr>
+              <tr><td class="d">Sun 22</td><td><span class="who">Women v Northgate Ladies</span><span class="ha">A</span></td><td class="r"><span class="score">4–0</span><span class="res w" title="Win">W</span></td></tr>
+              <tr><td class="d">Sun 22</td><td><span class="who">Sunday XI v Canal Street</span><span class="ha">H</span></td><td class="r"><span class="score">1–2</span><span class="res l" title="Loss">L</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="membership" aria-labelledby="fee-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="label">Membership</span>
+        <h2 id="fee-title">Fair fees, <span class="it">paid monthly</span>.</h2>
+        <p>Fees cover pitch hire, referees, league fees and insurance. The first two sessions are free, and you can cancel any time.</p>
+      </div>
+      <div class="fees">
+        <article class="fee reveal">
+          <h3>Mini Kickers</h3><p class="who">Ages 4–8</p>
+          <p class="price">$18<span>/ month</span></p>
+          <ul><li>Weekly Saturday session</li><li>Club T-shirt on joining</li><li>End-of-season medal</li></ul>
+        </article>
+        <article class="fee pop reveal">
+          <span class="chip flag">Most families</span>
+          <h3>Juniors &amp; Girls</h3><p class="who">U9–U16</p>
+          <p class="price">$32<span>/ month</span></p>
+          <ul><li>Training plus league matches</li><li>Match kit provided by the club</li><li>Siblings 25% off</li></ul>
+        </article>
+        <article class="fee reveal">
+          <h3>Adults</h3><p class="who">Men's &amp; women's teams</p>
+          <p class="price">$38<span>/ month</span></p>
+          <ul><li>Training and matches</li><li>Referee fees included</li><li>Students $24 / month</li></ul>
+        </article>
+        <article class="fee reveal">
+          <h3>Walking Football</h3><p class="who">Over-50s &amp; women 30+</p>
+          <p class="price">$5<span>/ session</span></p>
+          <ul><li>Pay on the day, no contract</li><li>Tea and biscuits after</li><li>Friendly festivals each season</li></ul>
+        </article>
+      </div>
+      <div class="fee-note reveal">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.4 1.1 4.1 2.3h2.6C14 6.1 15.4 5 17.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z" fill="currentColor"/></svg>
+        <p><strong>No child is turned away over cost.</strong> Our sponsors fund a quiet hardship fund. Speak to Ruth, our welfare officer, and it stays between you and her.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec train" id="club" aria-labelledby="club-title">
+    <div class="wrap">
+      <div class="ground">
+        <div class="ground-photo reveal">
+          <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1200&q=70&auto=format&fit=crop" alt="A quiet grass football pitch with a goal and tall trees behind it at sunset" loading="lazy">
+        </div>
+        <div class="reveal">
+          <span class="label">Clubhouse &amp; ground</span>
+          <h2 id="club-title" style="font-size:clamp(34px,4.2vw,50px);margin-top:16px">Kestrel Lane, <span class="it">our home</span>.</h2>
+          <p style="color:var(--muted);font-size:18px;margin-top:18px">We lease the ground from the town council and look after it ourselves. Volunteers cut the grass, mark the lines and keep the clubhouse running.</p>
+          <ul class="facil">
+            <li><b>Pitches</b><span>Two full-size grass pitches and a floodlit 3G pitch for winter evenings</span></li>
+            <li><b>Clubhouse</b><span>Four changing rooms, showers, first-aid room and defibrillator</span></li>
+            <li><b>Tea hut</b><span>Open Saturday 8:30 am – 1 pm and on match days, with bacon rolls, coffee and squash</span></li>
+            <li><b>Getting here</b><span>Free parking for 60 cars, bike racks, and bus 14 stops at the gate</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="people-head reveal">
+        <div>
+          <span class="label">Coaches &amp; committee</span>
+          <h2>The people who <span class="it">run it</span></h2>
+        </div>
+        <p>Every coach has a background check and first-aid training, and holds at least an introductory coaching badge.</p>
+      </div>
+      <div class="people">
+        <article class="person reveal"><div class="av" aria-hidden="true">DO</div><h3>Dele Okafor</h3><p class="role">Club chair</p><p>Played for the Sunday XI for twelve years and now does most of the line-marking.</p></article>
+        <article class="person reveal"><div class="av" aria-hidden="true">RM</div><h3>Ruth Madsen</h3><p class="role">Welfare officer</p><p>Parents can come to Ruth with any concern, about anything, and she'll treat it in confidence.</p></article>
+        <article class="person reveal"><div class="av" aria-hidden="true">SK</div><h3>Sam Kowalczyk</h3><p class="role">Junior coordinator</p><p>Places new juniors in the right age group and arranges every taster session.</p></article>
+        <article class="person reveal"><div class="av" aria-hidden="true">LA</div><h3>Lucía Arranz</h3><p class="role">Women's head coach</p><p>Started the women's side in 2019 with six players. It now has twenty-four.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="spons" aria-label="Club sponsors">
+    <div class="wrap spons-in">
+      <p class="l">Kits, balls and floodlights are paid for by local businesses. Thank you to:</p>
+      <ul>
+        <li>Hartley's Bakery</li>
+        <li>Millbeck Hardware</li>
+        <li>Orchard Road Dental</li>
+        <li>Kestrel Print Co.</li>
+      </ul>
+      <a href="#contact">Sponsor a team →</a>
+    </div>
+  </section>
+
+  <section class="sec" id="join" aria-labelledby="join-title">
+    <div class="wrap join">
+      <div class="join-side reveal">
+        <span class="label">Free taster</span>
+        <h2 id="join-title">Try two sessions, <span class="it" style="white-space:nowrap">on us</span>.</h2>
+        <p>No forms to sign up front and no kit to buy. Wear trainers or boots and something you can run in, and bring a drink.</p>
+        <ol class="steps">
+          <li><div><b>Tell us who's playing</b>It takes a minute and helps us find the right group.</div></li>
+          <li><div><b>Sam gets in touch</b>Usually within two days, with a session time and the coach's name.</div></li>
+          <li><div><b>Come and play</b>If you'd like to stay after two sessions, sign up then.</div></li>
+        </ol>
+      </div>
+      <div class="form reveal" id="formCard">
+        <form id="taster" novalidate>
+          <div class="row">
+            <div class="field" id="f-name">
+              <label for="name">Player's name</label>
+              <input id="name" name="name" autocomplete="name" aria-describedby="e-name">
+              <p class="err" id="e-name">Please tell us the player's name.</p>
+            </div>
+            <div class="field" id="f-group">
+              <label for="group">Age group</label>
+              <select id="group" name="group" aria-describedby="e-group">
+                <option value="">Choose a section</option>
+                <option>Mini Kickers (4–8)</option>
+                <option>Juniors U9–U12</option>
+                <option>Juniors U13–U16</option>
+                <option>Wildcats &amp; Girls (5–14)</option>
+                <option>Women (16+)</option>
+                <option>Men (16+)</option>
+                <option>Walking football</option>
+              </select>
+              <p class="err" id="e-group">Please choose an age group.</p>
+            </div>
+          </div>
+          <fieldset class="field" id="f-exp" aria-describedby="e-exp">
+            <legend>Experience</legend>
+            <div class="exp">
+              <label><input type="radio" name="exp" value="new"><span>Brand new<small>Never played</small></span></label>
+              <label><input type="radio" name="exp" value="some"><span>A little<small>School or park</small></span></label>
+              <label><input type="radio" name="exp" value="club"><span>Played for a club<small>Before or now</small></span></label>
+            </div>
+            <p class="err" id="e-exp">Please pick one. Every level is welcome.</p>
+          </fieldset>
+          <div class="row">
+            <div class="field" id="f-email">
+              <label for="email">Contact email</label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="e-email">
+              <p class="err" id="e-email">Please enter a valid email, like name@example.com.</p>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="phone">Mobile <span class="opt">(for session texts)</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="e-phone">
+              <p class="err" id="e-phone">Please enter a phone number with at least 8 digits.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="note">Anything we should know? <span class="opt">(optional)</span></label>
+            <textarea id="note" name="note" placeholder="For example: a medical condition, a preferred day, or a friend already in the team"></textarea>
+          </div>
+          <button class="btn btn-pitch" type="submit">Request my free taster</button>
+          <p class="small">For under-18s, a parent or guardian should fill this in. We never share your details.</p>
+        </form>
+        <div class="done" id="done" tabindex="-1" role="status">
+          <div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 id="doneTitle">See you on the pitch!</h3>
+          <p id="doneText">Sam will be in touch within two days with a session time.</p>
+          <button class="btn btn-line" type="button" id="again">Book another player</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" aria-labelledby="c-title" style="padding-top:0">
+    <div class="wrap contact">
+      <div class="c-card reveal">
+        <span class="label">Find us</span>
+        <h2 id="c-title">Kestrel Lane <span class="it">Recreation Ground</span></h2>
+        <address>140 Orchard Road, Millbeck<br>Entrance on Kestrel Lane, next to the allotments</address>
+        <ul class="c-list">
+          <li>Clubhouse<span>Mon–Fri 5–9:30 pm · Sat 8:30 am–5 pm</span></li>
+          <li>Phone<span>017 00000000</span></li>
+          <li>Email<span>hello@example.com</span></li>
+        </ul>
+        <div class="c-btns">
+          <a class="btn btn-pitch" href="tel:01700000000">Call the club</a>
+          <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-line" href="https://maps.google.com/?q=Millbeck" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+      <div class="map reveal" role="img" aria-label="Simple map: Kestrel Lane Recreation Ground sits between Orchard Road and the river, with the bus 14 stop at the gate">
+        <div class="road" style="left:-5%;right:-5%;top:14%;height:22px"></div>
+        <div class="road" style="left:22%;top:-5%;bottom:-5%;width:20px"></div>
+        <div class="road" style="left:-5%;right:-5%;top:80%;height:16px;transform:rotate(-4deg)"></div>
+        <div class="road" style="left:78%;top:-5%;height:60%;width:14px"></div>
+        <div class="river"></div>
+        <div class="park"></div>
+        <div class="pt" style="left:34%;top:30%;width:17%;height:18%"></div>
+        <div class="pt" style="left:54%;top:30%;width:17%;height:18%"></div>
+        <div class="pt" style="left:40%;top:54%;width:12%;height:13%"></div>
+        <span class="lbl" style="left:4%;top:8%">Orchard Road</span>
+        <span class="lbl" style="left:24.5%;top:52%;transform:rotate(90deg);transform-origin:left top">Kestrel Lane</span>
+        <span class="lbl" style="left:4%;top:73%">Mill Street</span>
+        <span class="lbl" style="right:8%;bottom:8%">River Beck</span>
+        <span class="lbl" style="left:57%;top:56%">Allotments</span>
+        <div class="pin"><b>Millbeck Rovers FC</b><i></i></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <p>© 2026 Millbeck Rovers FC · A volunteer-run, not-for-profit community club</p>
+    <nav aria-label="Footer">
+      <a href="#training">Training</a>
+      <a href="#membership">Membership</a>
+      <a href="#club">Safeguarding</a>
+      <a href="#join">Free taster</a>
+    </nav>
+  </div></div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'),menu=document.getElementById('mobile');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    menu.classList.toggle('open',open);
+  }
+  burger.addEventListener('click',function(){setMenu(burger.getAttribute('aria-expanded')!=='true')});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);burger.focus()}});
+  window.addEventListener('resize',function(){if(window.innerWidth>900)setMenu(false)});
+
+  /* training timetable */
+  var T={
+    Mon:[['10:00–11:00 am','Walking football','3G pitch · Over-50s, mixed',1],['6:00–7:15 pm','U13–U14 Hawks','3G pitch · Coach: Marcus',1],['7:30–9:00 pm','Women','3G pitch · Coach: Lucía',1]],
+    Tue:[['5:30–6:30 pm','U9–U10 Robins & Wrens','3G pitch · Coach: Grace',1],['6:45–8:00 pm','U15–U16 Kites','Pitch 2 under lights · Coach: Ahmed',0],['8:00–9:30 pm','Men · First XI & reserves','3G pitch · Coach: Tom',0]],
+    Wed:[['5:30–6:45 pm','Girls U10–U14','3G pitch · Coach: Lucía & Hana',1],['7:00–8:00 pm','Walking football','3G pitch · Women 30+ & mixed',1]],
+    Thu:[['5:30–6:45 pm','U11–U12 Falcons','3G pitch · Coach: Sam',1],['7:00–8:30 pm','Women','3G pitch · Match prep',0],['8:30–9:30 pm','Sunday XI','3G pitch · Coach: Dele',1]],
+    Fri:[['5:00–6:00 pm','Wildcats · girls 5–11','3G pitch · Coach: Hana',1],['6:15–7:15 pm','Junior goalkeepers','3G pitch · All ages 9–16',1]],
+    Sat:[['9:00–10:00 am','Mini Kickers (4–8)','Pitch 2 · Parents welcome',1],['10:00 am–12:30 pm','Junior league matches','Pitches 1 & 2 · Spectators welcome',0],['2:00 pm','First XI home match','Pitch 1 · Free entry',0]],
+    Sun:[['10:30 am','Sunday XI home match','Pitch 1',0],['1:00 pm','Women home match','Pitch 1',0]]
+  };
+  var names={Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday',Sun:'Sunday'};
+  var order=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var todayKey=order[(new Date().getDay()+6)%7];
+  var daysEl=document.getElementById('days'),sessEl=document.getElementById('sessions');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  order.forEach(function(k){
+    var b=document.createElement('button');
+    b.type='button';b.className='day';b.id='tab-'+k;b.setAttribute('role','tab');
+    b.setAttribute('aria-controls','sessions');b.dataset.day=k;
+    b.innerHTML=esc(k)+(k===todayKey?'<span class="today" aria-hidden="true"></span><span style="position:absolute;left:-9999px"> (today)</span>':'');
+    b.setAttribute('aria-label',names[k]+(k===todayKey?' (today)':''));
+    daysEl.appendChild(b);
+  });
+  var tabs=[].slice.call(daysEl.querySelectorAll('.day'));
+  function show(k,focus){
+    tabs.forEach(function(t){var on=t.dataset.day===k;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
+    sessEl.setAttribute('aria-labelledby','tab-'+k);
+    sessEl.innerHTML=T[k].map(function(s,i){
+      return '<div class="session" style="animation-delay:'+(i*60)+'ms"><time>'+esc(s[0])+'</time><div><h3>'+esc(s[1])+'</h3><p>'+esc(s[2])+'</p></div>'+(s[3]?'<span class="chip">Taster welcome</span>':'<span class="chip grey">Squad only</span>')+'</div>';
+    }).join('');
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t.dataset.day)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();show(tabs[n].dataset.day,true)}
+    });
+  });
+  show(todayKey);
+
+  /* taster form */
+  var form=document.getElementById('taster'),card=document.getElementById('formCard');
+  var checks={
+    name:function(){return document.getElementById('name').value.trim().length>=2},
+    group:function(){return document.getElementById('group').value!==''},
+    exp:function(){return !!form.querySelector('input[name=exp]:checked')},
+    email:function(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(document.getElementById('email').value.trim())},
+    phone:function(){return document.getElementById('phone').value.replace(/\D/g,'').length>=8}
+  };
+  function mark(key){
+    var ok=checks[key](),wrap=document.getElementById('f-'+key);
+    wrap.classList.toggle('bad',!ok);
+    var inp=key==='exp'?null:document.getElementById(key);
+    if(inp)inp.setAttribute('aria-invalid',ok?'false':'true');
+    return ok;
+  }
+  ['name','group','email','phone'].forEach(function(k){
+    var el=document.getElementById(k);
+    el.addEventListener('blur',function(){if(el.value!=='')mark(k)});
+    el.addEventListener('input',function(){if(document.getElementById('f-'+k).classList.contains('bad'))mark(k)});
+    el.addEventListener('change',function(){if(document.getElementById('f-'+k).classList.contains('bad'))mark(k)});
+  });
+  form.querySelectorAll('input[name=exp]').forEach(function(r){r.addEventListener('change',function(){mark('exp')})});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var first=null;
+    Object.keys(checks).forEach(function(k){if(!mark(k)&&!first)first=k});
+    if(first){
+      var f=first==='exp'?form.querySelector('input[name=exp]'):document.getElementById(first);
+      f.focus();return;
+    }
+    var nm=document.getElementById('name').value.trim().split(' ')[0];
+    var grp=document.getElementById('group').value;
+    document.getElementById('doneTitle').textContent='See you on the pitch, '+nm+'!';
+    document.getElementById('doneText').textContent='We’ve got your request for '+grp+'. Sam will text you within two days with a session time and your coach’s name.';
+    card.classList.add('sent');
+    document.getElementById('done').focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    form.reset();
+    form.querySelectorAll('.bad').forEach(function(x){x.classList.remove('bad')});
+    form.querySelectorAll('[aria-invalid]').forEach(function(x){x.removeAttribute('aria-invalid')});
+    card.classList.remove('sent');
+    document.getElementById('name').focus();
+  });
+
+  /* gentle reveal */
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(el){el.classList.add('in')});
+  }else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
+  }
+})();
+</script>
+</body>
+</html>

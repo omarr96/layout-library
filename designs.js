@@ -322,6 +322,54 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "niche-sites",
+      "slug": "niche-13-charity",
+      "title": "Nearwater · Charity",
+      "desc": "Problem & what we do, impact numbers, current appeal, donate form (one-off/monthly), stories, where the money goes, ways to help, FAQ, contact.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/13-charity/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-14-club",
+      "title": "Millbeck Rovers FC · Sports club",
+      "desc": "Next match card, about, teams & sections, training day tabs, fixtures & results, membership, clubhouse, committee, sponsors, taster form, find us.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/14-club/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-15-school",
+      "title": "Fernhollow School · School",
+      "desc": "Key facts, welcome from the Head, curriculum tabs by stage, school day & term dates, clubs, news, admissions & fees, parents' guide, visit form & map.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/15-school/index.html"
+        }
+      ]
+    },
+    {
       "cat": "architecture-landing",
       "slug": "arch-gallery",
       "title": "Both pages",
