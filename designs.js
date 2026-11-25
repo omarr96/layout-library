@@ -62,6 +62,11 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
+      "id": "tech-landing",
+      "name": "Tech landing pages",
+      "desc": "Developer API, team SaaS and cybersecurity landing pages"
+    },
+    {
       "id": "fitness-landing",
       "name": "Fitness landing pages",
       "desc": "Gym, yoga studio and home-workout app landing pages"
@@ -98,6 +103,73 @@ window.DESIGNS = {
     }
   ],
   "items": [
+    {
+      "cat": "tech-landing",
+      "slug": "tech-gallery",
+      "title": "All 3 tech pages",
+      "desc": "Gallery of the developer API, team SaaS and cybersecurity landing pages.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "tech-landing/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "tech-landing",
+      "slug": "tech-01-developer-api",
+      "title": "Relaymark · Developer API",
+      "desc": "Email + SMS API: live event console, quick start code tabs, webhook lifecycle, reliability & status, SDKs, usage pricing calculator, security.",
+      "tags": [
+        "Tech",
+        "Developer"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "tech-landing/01-developer-api/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "tech-landing",
+      "slug": "tech-02-team-saas",
+      "title": "Settle · Team SaaS",
+      "desc": "Async check-ins replacing status meetings: app UI, product tour tabs, use cases by team, integrations, security, per-seat pricing slider.",
+      "tags": [
+        "Tech",
+        "SaaS"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "tech-landing/02-team-saas/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "tech-landing",
+      "slug": "tech-03-cybersecurity",
+      "title": "Quietpost · Cybersecurity",
+      "desc": "24/7 managed detection & response for SMBs: incident line, incident replay, threats, how it works, SOC, pricing, risk assessment form.",
+      "tags": [
+        "Tech",
+        "Security"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "tech-landing/03-cybersecurity/index.html"
+        }
+      ]
+    },
     {
       "cat": "fitness-landing",
       "slug": "fit-gallery",

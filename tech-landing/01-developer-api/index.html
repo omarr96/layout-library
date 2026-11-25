@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relaymark — Transactional email &amp; SMS API</title>
+<meta name="description" content="Relaymark is one API for transactional email and SMS. Send in five lines, get signed webhooks for every state change, and pay only for what you deliver.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0D0F0E; --bg-2:#131614; --bg-3:#1A1E1B; --line:#262B27; --line-2:#343a35;
+--ink:#ECE8DF; --ink-2:#B4B0A6; --ink-3:#8A877F;
+--signal:#FF6A2B; --signal-ink:#1A0C04; --ok:#7FD4A8; --warn:#F2C46B; --err:#FF7A7A; --blue:#8DB8FF;
+--sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+--mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--serif:"Instrument Serif",Georgia,serif;
+--r:10px; --wrap:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+code,kbd,pre{font-family:var(--mono)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--signal);color:var(--signal-ink);padding:8px 14px;border-radius:6px;z-index:100;font-weight:600}
+.skip:focus{top:12px}
+
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:10px;margin:0 0 20px}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--signal);border-radius:2px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;margin:0;line-height:1.05}
+h2{font-size:clamp(32px,4.2vw,52px);max-width:16ch}
+h2 em,h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--signal)}
+.lede{color:var(--ink-2);font-size:18px;max-width:56ch;margin:20px 0 0}
+section{padding:120px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+.sec-head .lede{margin:0}
+
+.btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;transition:background .15s,border-color .15s,transform .15s;white-space:nowrap}
+.btn-primary{background:var(--signal);color:var(--signal-ink)}
+.btn-primary:hover{background:#ff8450}
+.btn-ghost{border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink-3);background:var(--bg-2)}
+.btn .arr{font-family:var(--mono);transition:transform .15s}
+.btn:hover .arr{transform:translateX(3px)}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;height:64px}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(13,15,14,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:-1}
+.nav .wrap{display:flex;align-items:center;height:100%;gap:32px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.logo-mark{width:24px;height:24px;border-radius:6px;background:var(--signal);display:grid;place-items:center}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;color:var(--ink-2);font-size:14px}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px}
+.nav-cta .signin{color:var(--ink-2);text-decoration:none;font-size:14px}
+.nav-cta .btn{height:38px;font-size:14px;padding:0 16px}
+.burger{display:none;margin-left:auto;width:42px;height:42px;border:1px solid var(--line-2);border-radius:8px;background:transparent;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:1.5px;background:var(--ink);position:relative;transition:transform .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg);z-index:49;padding:24px;display:none;flex-direction:column;gap:4px;overflow:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a:not(.btn){display:block;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:20px;font-weight:500}
+.mobile-menu .btn{margin-top:24px;justify-content:center}
+
+.hero{padding:160px 0 100px;border-top:0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 30%,#000 10%,transparent 70%);opacity:.5;pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:56px;align-items:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:10px;font:500 13px/1 var(--mono);color:var(--ink-2);border:1px solid var(--line-2);border-radius:99px;padding:7px 14px 7px 8px;text-decoration:none;margin-bottom:28px}
+.badge b{background:var(--bg-3);color:var(--ok);font-weight:500;padding:4px 8px;border-radius:99px}
+.hero h1{font-size:clamp(42px,6.2vw,80px);letter-spacing:-.04em;line-height:.98}
+.hero .lede{font-size:19px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.install{display:flex;align-items:center;gap:12px;margin-top:28px;font:400 14px var(--mono);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:0 6px 0 16px;height:46px;max-width:380px}
+.install .p{color:var(--signal)}
+.install code{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copy{border:1px solid var(--line-2);background:var(--bg-3);border-radius:6px;font:500 12px var(--mono);padding:6px 10px;color:var(--ink-2)}
+.copy:hover{color:var(--ink);border-color:var(--ink-3)}
+.copy.done{color:var(--ok);border-color:var(--ok)}
+
+.console{background:var(--bg-2);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 6px rgba(255,255,255,.015);overflow:hidden;font-family:var(--mono);font-size:13px}
+.console-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-3);font-size:12px}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
+.console-bar .live{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--ok)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(127,212,168,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(127,212,168,0)}100%{box-shadow:0 0 0 0 rgba(127,212,168,0)}}
+.req{padding:18px 20px;border-bottom:1px solid var(--line);line-height:1.75;color:var(--ink-2)}
+.req .m{color:var(--signal);font-weight:500}
+.k{color:var(--blue)}.s{color:var(--ok)}.n{color:var(--warn)}.c{color:var(--ink-3)}.f{color:#E6B3FF}.kw{color:#FF9E7A}
+.events{list-style:none;margin:0;padding:10px 0;min-height:236px}
+.events li{display:grid;grid-template-columns:72px 120px 1fr;gap:12px;padding:6px 20px;color:var(--ink-2);font-size:12.5px;align-items:center}
+.events li.new{animation:slide .4s ease-out}
+@keyframes slide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.events time{color:var(--ink-3)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.t-q{color:var(--ink-3)}.t-s{color:var(--blue)}.t-d{color:var(--ok)}.t-o{color:var(--warn)}.t-f{color:var(--signal)}
+.events .msg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.console-foot{display:flex;gap:24px;padding:14px 20px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12px;flex-wrap:wrap}
+.console-foot b{color:var(--ink);font-weight:500}
+
+.qs{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;padding:24px 0 24px 56px;border-top:1px solid var(--line);position:relative}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:24px;font:500 13px var(--mono);color:var(--signal);border:1px solid var(--line-2);border-radius:6px;padding:3px 7px}
+.steps h3{font-size:19px;letter-spacing:-.015em;margin-bottom:6px}
+.steps p{margin:0;color:var(--ink-2);font-size:15px}
+.steps code{font-size:13px;background:var(--bg-3);padding:2px 6px;border-radius:4px;color:var(--ink)}
+.codebox{background:var(--bg-2);border:1px solid var(--line-2);border-radius:14px;overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:14px 18px;font:500 13px var(--mono);color:var(--ink-3);white-space:nowrap;margin-bottom:-1px}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--signal)}
+.tabs .copy{margin:auto 12px auto auto;flex-shrink:0}
+.panel{display:none}
+.panel.active{display:block}
+.panel pre{margin:0;padding:24px;overflow-x:auto;font-size:13.5px;line-height:1.75;color:var(--ink-2);tab-size:2}
+.panel .file{padding:12px 24px 0;font:12px var(--mono);color:var(--ink-3)}
+.resp{border-top:1px solid var(--line);padding:16px 24px;font:12.5px/1.7 var(--mono);color:var(--ink-3);background:var(--bg)}
+.resp b{color:var(--ok);font-weight:500}
+
+.flow{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage{padding:28px 24px 32px;border-right:1px solid var(--line);position:relative;background:var(--bg)}
+.stage:last-child{border-right:0}
+.stage .ev{font:500 12px var(--mono);display:inline-block;padding:4px 8px;border-radius:5px;background:var(--bg-3)}
+.stage h3{font-size:18px;letter-spacing:-.01em;margin-bottom:8px}
+.stage p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.stage .ms{display:block;margin:10px 0 22px;font:12px var(--mono);color:var(--ink-3)}
+.dev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px}
+.dev{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--bg-2)}
+.dev h3{font-size:18px;margin-bottom:10px;letter-spacing:-.01em}
+.dev p{margin:0 0 18px;color:var(--ink-2);font-size:15px}
+.dev pre{margin:0;font-size:12.5px;line-height:1.7;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;color:var(--ink-2)}
+
+.rel{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:36px 28px 36px 0}
+.stat+.stat{padding-left:28px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:clamp(36px,4vw,54px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.stat b small{font-size:.45em;color:var(--ink-3);font-weight:500;letter-spacing:0;margin-left:4px}
+.stat span{display:block;color:var(--ink-2);font-size:14px;margin-top:12px}
+.status{margin-top:48px;border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--bg-2)}
+.status-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.status-head h3{font-size:17px;letter-spacing:-.01em}
+.status-head p{margin:0;font:13px var(--mono);color:var(--ink-3)}
+.svc{display:grid;grid-template-columns:180px 1fr 80px;gap:20px;align-items:center;padding:10px 0;font-size:14px}
+.svc+.svc{border-top:1px solid var(--line)}
+.svc .nm{color:var(--ink-2)}
+.svc .pct{font:13px var(--mono);text-align:right;color:var(--ok)}
+.bars{display:grid;grid-template-columns:repeat(90,1fr);gap:2px;height:28px}
+.bars i{background:var(--ok);border-radius:1.5px;opacity:.85}
+.bars i.w{background:var(--warn)}
+.bars i.e{background:var(--signal)}
+.regions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font:13px var(--mono);color:var(--ink-2)}
+.regions span{border:1px solid var(--line-2);border-radius:6px;padding:6px 10px}
+.regions span::before{content:"● ";color:var(--ok)}
+
+.sdks{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sdk{padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;display:flex;flex-direction:column;gap:14px;transition:background .15s}
+.sdk:nth-child(4n){border-right:0}
+.sdk:nth-last-child(-n+4){border-bottom:0}
+.sdk:hover{background:var(--bg-2)}
+.sdk .top{display:flex;justify-content:space-between;align-items:center}
+.sdk b{font-size:16px;font-weight:600}
+.sdk .v{font:12px var(--mono);color:var(--ink-3)}
+.sdk code{font-size:12.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.tool{padding:24px 0 0;border-top:1px solid var(--line-2)}
+.tool h3{font-size:16px;margin-bottom:6px;display:flex;gap:10px;align-items:center}
+.tool h3 code{font-size:12px;color:var(--signal);font-weight:400}
+.tool p{margin:0;color:var(--ink-2);font-size:15px}
+
+.price-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:stretch}
+.calc{border:1px solid var(--line-2);border-radius:14px;background:var(--bg-2);padding:36px}
+.calc h3{font-size:20px;letter-spacing:-.015em}
+.calc>p{color:var(--ink-2);margin:8px 0 32px;font-size:15px}
+.range{margin-bottom:30px}
+.range label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:15px;margin-bottom:14px}
+.range output{font:500 15px var(--mono);color:var(--ink)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:linear-gradient(90deg,var(--signal) var(--p,0%),var(--line-2) var(--p,0%));border-radius:4px;outline-offset:8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--signal);cursor:grab}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);border:4px solid var(--signal);cursor:grab}
+.total{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-top:1px dashed var(--line-2);padding-top:26px;flex-wrap:wrap}
+.total .amt{font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:-.045em;line-height:1}
+.total .amt small{font-size:16px;color:var(--ink-3);font-weight:400;letter-spacing:0}
+.breakdown{font:13px/1.8 var(--mono);color:var(--ink-3);text-align:right}
+.breakdown b{color:var(--ink-2);font-weight:400}
+.plans{display:flex;flex-direction:column;gap:24px}
+.plan{border:1px solid var(--line);border-radius:14px;padding:28px;flex:1;display:flex;flex-direction:column}
+.plan .nm{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+.plan .pr{font-size:30px;font-weight:600;letter-spacing:-.03em;margin:10px 0 4px}
+.plan .pr small{font-size:14px;color:var(--ink-3);font-weight:400;letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:14px 0 22px;color:var(--ink-2);font-size:14.5px}
+.plan li{padding:5px 0 5px 22px;position:relative}
+.plan li::before{content:"→";position:absolute;left:0;color:var(--signal);font-family:var(--mono);font-size:13px}
+.plan .btn{margin-top:auto;align-self:flex-start;height:40px;font-size:14px}
+.unit{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px;font-size:14px;color:var(--ink-2)}
+.unit div{border-top:1px solid var(--line);padding-top:16px}
+.unit b{display:block;font:500 15px var(--mono);color:var(--ink);margin-bottom:4px}
+
+.sec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sec-item{padding:32px;border-bottom:1px solid var(--line)}
+.sec-item:nth-child(odd){border-right:1px solid var(--line)}
+.sec-item:nth-last-child(-n+2){border-bottom:0}
+.sec-item h3{font-size:18px;margin-bottom:8px;letter-spacing:-.01em}
+.sec-item p{margin:0;color:var(--ink-2);font-size:15px}
+.quote{margin:56px 0 0;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.quote .q-mark{font:400 96px/0.7 var(--serif);color:var(--signal)}
+.quote blockquote{margin:0;font:400 clamp(24px,2.6vw,34px)/1.3 var(--serif);letter-spacing:-.005em;max-width:38ch}
+.quote figcaption{margin-top:18px;font:13px var(--mono);color:var(--ink-3)}
+
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item h3{margin:0;font-size:inherit}
+.faq-q{width:100%;background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:24px;text-align:left;font-size:17px;font-weight:500;letter-spacing:-.01em}
+.faq-q .pm{font:400 20px var(--mono);color:var(--ink-3);transition:transform .2s;flex-shrink:0}
+.faq-q[aria-expanded="true"] .pm{transform:rotate(45deg);color:var(--signal)}
+.faq-a{padding:0 48px 24px 0;color:var(--ink-2);font-size:15.5px}
+.faq-a p{margin:0}
+.faq-a code{font-size:13px;background:var(--bg-3);padding:2px 6px;border-radius:4px;color:var(--ink)}
+
+.cta{text-align:left;padding:120px 0}
+.cta-box{border:1px solid var(--line-2);border-radius:18px;padding:64px;background:radial-gradient(ellipse 60% 120% at 100% 0%,rgba(255,106,43,.14),transparent 60%),var(--bg-2);display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.cta h2{max-width:14ch}
+.signup label{display:block;font-size:14px;color:var(--ink-2);margin-bottom:8px}
+.signup .row{display:flex;gap:10px}
+.signup input{flex:1;min-width:0;height:48px;background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:0 14px;color:var(--ink);font:15px var(--sans)}
+.signup input:focus{outline:none;border-color:var(--signal)}
+.signup input[aria-invalid="true"]{border-color:var(--err)}
+.signup .err{color:var(--err);font-size:13.5px;min-height:20px;margin:8px 0 0}
+.signup .fine{color:var(--ink-3);font-size:13px;margin:6px 0 0}
+.success{display:none;border:1px solid var(--ok);border-radius:10px;padding:20px;font:13.5px/1.7 var(--mono);color:var(--ink-2)}
+.success b{color:var(--ok);font-weight:500}
+.success.show{display:block}
+
+footer{border-top:1px solid var(--line);padding:72px 0 40px}
+.foot{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
+.foot h4{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 16px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{padding:5px 0}
+.foot a{color:var(--ink-2);text-decoration:none;font-size:14.5px}
+.foot a:hover{color:var(--ink)}
+.foot .about p{color:var(--ink-3);font-size:14px;margin:16px 0 0;max-width:30ch}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font:12.5px var(--mono);color:var(--ink-3)}
+.legal .st{display:flex;align-items:center;gap:8px;color:var(--ok)}
+
+@media (max-width:1080px){
+.nav-links{gap:20px}
+.hero-grid,.qs,.faq-grid,.price-grid,.cta-box{grid-template-columns:minmax(0,1fr)}
+.sec-head{grid-template-columns:1fr;gap:20px}
+.flow{grid-template-columns:1fr 1fr}
+.stage{border-bottom:1px solid var(--line)}
+.stage:nth-child(2n){border-right:0}
+.stage:last-child{grid-column:1/-1;border-bottom:0}
+.dev-grid{grid-template-columns:minmax(0,1fr)}
+.sdks{grid-template-columns:repeat(2,1fr)}
+.sdk:nth-child(4n){border-right:1px solid var(--line)}
+.sdk:nth-child(2n){border-right:0}
+.sdk:nth-last-child(-n+4){border-bottom:1px solid var(--line)}
+.sdk:nth-last-child(-n+2){border-bottom:0}
+.rel{grid-template-columns:1fr 1fr}
+.stat:nth-child(3){padding-left:0;border-left:0}
+.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.foot{grid-template-columns:repeat(3,1fr)}
+.foot .about{grid-column:1/-1}
+}
+@media (max-width:860px){
+.nav-links,.nav-cta{display:none}
+.burger{display:flex}
+}
+@media (max-width:640px){
+.wrap{padding:0 16px}
+section{padding:80px 0}
+.hero{padding:112px 0 72px}
+.hero-actions .btn{flex:1;justify-content:center}
+.install{max-width:none}
+.events li{grid-template-columns:58px 1fr;row-gap:0}
+.events li .msg{grid-column:2}
+.events{min-height:330px}
+.flow{grid-template-columns:minmax(0,1fr)}
+.stage{border-right:0!important}
+.sdks{grid-template-columns:minmax(0,1fr)}
+.sdk{border-right:0!important;border-bottom:1px solid var(--line)!important}
+.sdk:last-child{border-bottom:0!important}
+.tools,.unit{grid-template-columns:minmax(0,1fr)}
+.rel{grid-template-columns:minmax(0,1fr)}
+.stat,.stat+.stat{padding:28px 0;border-left:0;border-bottom:1px solid var(--line)}
+.stat:last-child{border-bottom:0}
+.svc{grid-template-columns:1fr auto;gap:8px 12px}
+.svc .bars{grid-column:1/-1;grid-row:2;height:22px;gap:1px}
+.sec-grid{grid-template-columns:minmax(0,1fr)}
+.sec-item{border-right:0!important;border-bottom:1px solid var(--line)!important}
+.sec-item:last-child{border-bottom:0!important}
+.quote{grid-template-columns:1fr;gap:8px}
+.calc,.cta-box{padding:28px 20px}
+.signup .row{flex-direction:column}.signup input{flex:none}
+.faq-a{padding-right:0}
+.breakdown{text-align:left}
+.foot{grid-template-columns:1fr 1fr}
+.panel pre{padding:20px 16px;font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{animation:none!important;transition:none!important}
+html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+<div class="wrap">
+<a href="#" class="logo" aria-label="Relaymark home">
+<span class="logo-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h7M6 3l4 4-4 4" stroke="#1A0C04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="1.3" fill="#1A0C04"/></svg></span>
+Relaymark
+</a>
+<nav aria-label="Primary">
+<ul class="nav-links">
+<li><a href="#quickstart">Quick start</a></li>
+<li><a href="#webhooks">Webhooks</a></li>
+<li><a href="#reliability">Reliability</a></li>
+<li><a href="#sdks">SDKs</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#docs">Docs</a></li>
+</ul>
+</nav>
+<div class="nav-cta">
+<a href="#" class="signin">Sign in</a>
+<a href="#start" class="btn btn-primary">Get an API key</a>
+</div>
+<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
+</div>
+</header>
+<div class="mobile-menu" id="mobile-menu" hidden>
+<a href="#quickstart">Quick start</a>
+<a href="#webhooks">Webhooks</a>
+<a href="#reliability">Reliability</a>
+<a href="#sdks">SDKs</a>
+<a href="#pricing">Pricing</a>
+<a href="#docs">Docs</a>
+<a href="#">Sign in</a>
+<a href="#start" class="btn btn-primary">Get an API key</a>
+</div>
+
+<main id="main">
+
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<a class="badge" href="#docs"><b>v3.2</b> Batch sends &amp; scheduled SMS are live <span aria-hidden="true">→</span></a>
+<h1>Email and SMS that <em>arrive</em>, from one API call.</h1>
+<p class="lede">Relaymark sends your password resets, receipts and one-time codes over email or SMS. You get a signed webhook every time a message changes state, and you pay only for what you send.</p>
+<div class="hero-actions">
+<a href="#start" class="btn btn-primary">Start sending free <span class="arr" aria-hidden="true">→</span></a>
+<a href="#docs" class="btn btn-ghost">Read the docs</a>
+</div>
+<div class="install">
+<span class="p" aria-hidden="true">$</span>
+<code id="install-cmd">npm install @relaymark/node</code>
+<button class="copy" type="button" data-copy="#install-cmd" aria-label="Copy install command">Copy</button>
+</div>
+</div>
+
+<div class="console" role="img" aria-label="Example Relaymark console: a POST to /v3/messages returns an ID, followed by a live event log showing messages being queued, sent, delivered and opened.">
+<div class="console-bar">
+<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+<span>console · production</span>
+<span class="live"><span class="pulse"></span>live events</span>
+</div>
+<div class="req">
+<span class="m">POST</span> /v3/messages<br>
+<span class="c">→</span> <span class="n">202</span> <span class="c">Accepted ·</span> id <span class="s">msg_7Kq2f9XaLp</span> <span class="c">· 41 ms</span>
+</div>
+<ul class="events" id="events" aria-hidden="true"></ul>
+<div class="console-foot">
+<span>delivered <b id="m-del">98.7%</b></span>
+<span>p50 to inbox <b>2.1 s</b></span>
+<span>bounced <b>0.4%</b></span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="quickstart">
+<div class="wrap qs">
+<div>
+<p class="eyebrow">Quick start</p>
+<h2>Your first message in <em>under five minutes.</em></h2>
+<ol class="steps" style="margin-top:40px">
+<li><h3>Create a key</h3><p>Sign up and copy a sandbox key. It starts with <code>rm_test_</code> and sends only to addresses you have verified.</p></li>
+<li><h3>Verify your domain</h3><p>Add three DNS records (SPF, DKIM and a return path). Most providers pick them up in under ten minutes.</p></li>
+<li><h3>Send</h3><p>Install the SDK for your stack and call <code>messages.send</code>. To go live, swap in a <code>rm_live_</code> key.</p></li>
+</ol>
+</div>
+
+<div class="codebox">
+<div class="tabs" role="tablist" aria-label="Code example language">
+<button class="tab" role="tab" id="t-node" aria-controls="p-node" aria-selected="true">Node.js</button>
+<button class="tab" role="tab" id="t-py" aria-controls="p-py" aria-selected="false" tabindex="-1">Python</button>
+<button class="tab" role="tab" id="t-go" aria-controls="p-go" aria-selected="false" tabindex="-1">Go</button>
+<button class="tab" role="tab" id="t-curl" aria-controls="p-curl" aria-selected="false" tabindex="-1">cURL</button>
+<button class="copy" type="button" id="copy-code" aria-label="Copy code example">Copy</button>
+</div>
+
+<div class="panel active" role="tabpanel" id="p-node" aria-labelledby="t-node" tabindex="0">
+<div class="file">send.ts</div>
+<pre><code><span class="kw">import</span> { Relaymark } <span class="kw">from</span> <span class="s">"@relaymark/node"</span>;
+
+<span class="kw">const</span> rm = <span class="kw">new</span> <span class="f">Relaymark</span>(process.env.<span class="k">RELAYMARK_KEY</span>);
+
+<span class="kw">await</span> rm.messages.<span class="f">send</span>({
+  <span class="k">from</span>: <span class="s">"Acme Receipts &lt;receipts@example.com&gt;"</span>,
+  <span class="k">to</span>: <span class="s">"dana@example.com"</span>,
+  <span class="k">subject</span>: <span class="s">"Your receipt #2041"</span>,
+  <span class="k">template</span>: <span class="s">"receipt"</span>,
+  <span class="k">data</span>: { <span class="k">total</span>: <span class="s">"$48.00"</span> },
+  <span class="k">fallback</span>: { <span class="k">sms</span>: <span class="s">"+15550100199"</span>, <span class="k">after</span>: <span class="s">"15m"</span> },
+}, { <span class="k">idempotencyKey</span>: <span class="s">"order_2041"</span> });</code></pre>
+</div>
+
+<div class="panel" role="tabpanel" id="p-py" aria-labelledby="t-py" tabindex="0">
+<div class="file">send.py</div>
+<pre><code><span class="kw">import</span> os
+<span class="kw">from</span> relaymark <span class="kw">import</span> Relaymark
+
+rm = <span class="f">Relaymark</span>(os.environ[<span class="s">"RELAYMARK_KEY"</span>])
+
+rm.messages.<span class="f">send</span>(
+    <span class="k">from_</span>=<span class="s">"Acme Receipts &lt;receipts@example.com&gt;"</span>,
+    <span class="k">to</span>=<span class="s">"dana@example.com"</span>,
+    <span class="k">subject</span>=<span class="s">"Your receipt #2041"</span>,
+    <span class="k">template</span>=<span class="s">"receipt"</span>,
+    <span class="k">data</span>={<span class="s">"total"</span>: <span class="s">"$48.00"</span>},
+    <span class="k">fallback</span>={<span class="s">"sms"</span>: <span class="s">"+15550100199"</span>, <span class="s">"after"</span>: <span class="s">"15m"</span>},
+    <span class="k">idempotency_key</span>=<span class="s">"order_2041"</span>,
+)</code></pre>
+</div>
+
+<div class="panel" role="tabpanel" id="p-go" aria-labelledby="t-go" tabindex="0">
+<div class="file">main.go</div>
+<pre><code>rm := relaymark.<span class="f">New</span>(os.<span class="f">Getenv</span>(<span class="s">"RELAYMARK_KEY"</span>))
+
+_, err := rm.Messages.<span class="f">Send</span>(ctx, &amp;relaymark.Message{
+  <span class="k">From</span>:     <span class="s">"Acme Receipts &lt;receipts@example.com&gt;"</span>,
+  <span class="k">To</span>:       []<span class="kw">string</span>{<span class="s">"dana@example.com"</span>},
+  <span class="k">Subject</span>:  <span class="s">"Your receipt #2041"</span>,
+  <span class="k">Template</span>: <span class="s">"receipt"</span>,
+  <span class="k">Data</span>:     <span class="kw">map</span>[<span class="kw">string</span>]any{<span class="s">"total"</span>: <span class="s">"$48.00"</span>},
+  <span class="k">Fallback</span>: &amp;relaymark.Fallback{<span class="k">SMS</span>: <span class="s">"+15550100199"</span>, <span class="k">After</span>: <span class="n">15</span> * time.Minute},
+}, relaymark.<span class="f">WithIdempotencyKey</span>(<span class="s">"order_2041"</span>))</code></pre>
+</div>
+
+
+<div class="panel" role="tabpanel" id="p-curl" aria-labelledby="t-curl" tabindex="0">
+<div class="file">terminal</div>
+<pre><code>curl https://api.relaymark.example/v3/messages \
+  -H <span class="s">"Authorization: Bearer $RELAYMARK_KEY"</span> \
+  -H <span class="s">"Idempotency-Key: order_2041"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{
+    "from": "Acme Receipts &lt;receipts@example.com&gt;",
+    "to": "dana@example.com",
+    "subject": "Your receipt #2041",
+    "template": "receipt",
+    "data": { "total": "$48.00" },
+    "fallback": { "sms": "+15550100199", "after": "15m" }
+  }'</span></code></pre>
+</div>
+
+<div class="resp"><b>202</b> { "id": "msg_7Kq2f9XaLp", "status": "queued", "channel": "email" }</div>
+</div>
+</div>
+</section>
+
+<section id="webhooks">
+<div class="wrap">
+<div class="sec-head">
+<div>
+<p class="eyebrow">Message lifecycle</p>
+<h2>Know where every message is, <em>to the second.</em></h2>
+</div>
+<p class="lede">Each message moves through five states, and each move fires a signed webhook. You never have to poll, and you can always answer a support ticket that starts with “I never got the code.”</p>
+</div>
+
+<div class="flow">
+<div class="stage"><span class="ev t-q">message.queued</span><span class="ms">+0 ms</span><h3>Accepted</h3><p>We validate the request, store it, and return an ID before we contact any mailbox provider.</p></div>
+<div class="stage"><span class="ev t-s">message.sent</span><span class="ms">+380 ms</span><h3>Handed off</h3><p>Sent from a warmed IP pool, matched to your domain’s reputation and the recipient’s provider.</p></div>
+<div class="stage"><span class="ev t-d">message.delivered</span><span class="ms">+2.1 s</span><h3>Accepted by inbox</h3><p>The receiving server confirms delivery. For SMS, this is the carrier’s delivery receipt.</p></div>
+<div class="stage"><span class="ev t-o">message.opened</span><span class="ms">later</span><h3>Engaged</h3><p>Opens and link clicks, if you turn tracking on. It is off by default for auth codes.</p></div>
+<div class="stage"><span class="ev t-f">message.failed</span><span class="ms">any time</span><h3>Bounced or blocked</h3><p>Returns a plain-English reason and a code. We suppress the address automatically.</p></div>
+</div>
+
+<div class="dev-grid">
+<div class="dev">
+<h3>Signed webhooks with automatic retries</h3>
+<p>Every payload is signed with HMAC-SHA256. If your endpoint fails, we retry with exponential backoff for up to 72 hours.</p>
+<pre><code>rm.webhooks.<span class="f">verify</span>(body, headers[<span class="s">"rm-signature"</span>])</code></pre>
+</div>
+<div class="dev">
+<h3>Idempotent by design</h3>
+<p>If you send the same request twice with the same key, we send one message. Retries after a network timeout are safe for 24 hours.</p>
+<pre><code><span class="k">Idempotency-Key</span>: order_2041</code></pre>
+</div>
+<div class="dev">
+<h3>Email first, SMS as backup</h3>
+<p>If a one-time code isn’t delivered or opened in time, we resend it by text automatically. It is one message ID on one bill.</p>
+<pre><code><span class="k">fallback</span>: { <span class="k">sms</span>: <span class="s">"+1…"</span>, <span class="k">after</span>: <span class="s">"15m"</span> }</code></pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="reliability">
+<div class="wrap">
+<div class="sec-head">
+<div>
+<p class="eyebrow">Reliability</p>
+<h2>Measured publicly, <em>not promised.</em></h2>
+</div>
+<p class="lede">These numbers come from our public status page and our monthly deliverability report. Enterprise plans include a contractual uptime SLA with service credits.</p>
+</div>
+
+<div class="rel">
+<div class="stat"><b>99.995<small>%</small></b><span>API uptime, trailing 12 months</span></div>
+<div class="stat"><b>41<small>ms</small></b><span>Median API response, US-East</span></div>
+<div class="stat"><b>2.1<small>s</small></b><span>Median time from request to inbox</span></div>
+<div class="stat"><b>98.7<small>%</small></b><span>Inbox placement, seed-list average</span></div>
+</div>
+
+<div class="status">
+<div class="status-head">
+<h3>Last 90 days</h3>
+<p>All systems operational · updated 1 min ago</p>
+</div>
+<div class="svc"><span class="nm">REST API</span><div class="bars" data-bars="api" aria-hidden="true"></div><span class="pct">99.998%</span></div>
+<div class="svc"><span class="nm">Email delivery</span><div class="bars" data-bars="email" aria-hidden="true"></div><span class="pct">99.991%</span></div>
+<div class="svc"><span class="nm">SMS delivery</span><div class="bars" data-bars="sms" aria-hidden="true"></div><span class="pct">99.982%</span></div>
+<div class="svc"><span class="nm">Webhooks</span><div class="bars" data-bars="hooks" aria-hidden="true"></div><span class="pct">99.996%</span></div>
+<div class="regions" aria-label="Sending regions">
+<span>us-east</span><span>us-west</span><span>eu-central</span><span>eu-west</span><span>ap-southeast</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="sdks">
+<div class="wrap">
+<div class="sec-head">
+<div>
+<p class="eyebrow">SDKs &amp; tooling</p>
+<h2>Idiomatic libraries, <em>typed from one spec.</em></h2>
+</div>
+<p class="lede">Every SDK is generated from our OpenAPI 3.1 spec and then tuned by hand. Each one has typed errors, automatic retries and pagination helpers, and ships on the same day as the API.</p>
+</div>
+
+<div class="sdks">
+<a class="sdk" href="#docs"><span class="top"><b>Node.js</b><span class="v">v3.2.1</span></span><code>npm i @relaymark/node</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>Python</b><span class="v">v3.2.0</span></span><code>pip install relaymark</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>Go</b><span class="v">v3.1.4</span></span><code>go get relaymark.example/go</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>Ruby</b><span class="v">v3.2.0</span></span><code>gem install relaymark</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>PHP</b><span class="v">v3.1.2</span></span><code>composer require relaymark/php</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>Java</b><span class="v">v3.0.8</span></span><code>com.relaymark:relaymark:3.0.8</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>.NET</b><span class="v">v3.1.0</span></span><code>dotnet add package Relaymark</code></a>
+<a class="sdk" href="#docs"><span class="top"><b>Rust</b><span class="v">v0.9.2</span></span><code>cargo add relaymark</code></a>
+</div>
+
+<div class="tools">
+<div class="tool"><h3>CLI <code>rm listen</code></h3><p>Forward live webhooks to localhost, tail logs and replay any event from your terminal.</p></div>
+<div class="tool"><h3>Test inbox <code>@sandbox</code></h3><p>Send to any <code>*.sandbox</code> address. You see the rendered email and SMS without reaching a real person.</p></div>
+<div class="tool"><h3>MCP server <code>/mcp</code></h3><p>Lets your coding agent read our docs, create templates and check delivery logs, all limited to a scoped key.</p></div>
+</div>
+</div>
+</section>
+
+<section id="pricing">
+<div class="wrap">
+<div class="sec-head">
+<div>
+<p class="eyebrow">Pricing</p>
+<h2>Pay per message. <em>No seats, no tiers to outgrow.</em></h2>
+</div>
+<p class="lede">Every account gets 3,000 free emails a month. After that you pay only for what you send, every feature is included, and nothing is locked behind a sales call.</p>
+</div>
+
+<div class="price-grid">
+<div class="calc">
+<h3>Estimate your monthly bill</h3>
+<p>Drag to your expected volume. US SMS rates shown; other countries are listed in the docs.</p>
+<div class="range">
+<label for="r-email">Emails per month <output id="o-email" for="r-email">50,000</output></label>
+<input type="range" id="r-email" min="0" max="10" step="1" value="3" aria-valuetext="50,000 emails">
+</div>
+<div class="range">
+<label for="r-sms">SMS segments per month <output id="o-sms" for="r-sms">1,000</output></label>
+<input type="range" id="r-sms" min="0" max="8" step="1" value="2" aria-valuetext="1,000 SMS segments">
+</div>
+<div class="total" aria-live="polite">
+<div><span class="sr-only">Estimated total: </span><span class="amt" id="total">$33.75</span> <small style="color:var(--ink-3)">/ month</small></div>
+<div class="breakdown" id="breakdown"><b>Email</b> 47,000 × $0.55/1k = $25.85<br><b>SMS</b> 1,000 × $0.0079 = $7.90</div>
+</div>
+</div>
+
+<div class="plans">
+<div class="plan">
+<span class="nm">Free</span>
+<div class="pr">$0 <small>forever</small></div>
+<ul><li>3,000 emails / month</li><li>100 test SMS to verified numbers</li><li>1 domain, 3-day log retention</li></ul>
+<a href="#start" class="btn btn-ghost">Create free account</a>
+</div>
+<div class="plan">
+<span class="nm">Scale · from 1M emails</span>
+<div class="pr">$0.40 <small>per 1,000 emails</small></div>
+<ul><li>Dedicated IPs with managed warm-up</li><li>99.99% uptime SLA, SSO and audit log</li><li>A named deliverability engineer</li></ul>
+<a href="#start" class="btn btn-ghost">Talk to an engineer</a>
+</div>
+</div>
+</div>
+
+<div class="unit">
+<div><b>$0.55 / 1,000</b>Emails after the free 3,000. Billed monthly in arrears.</div>
+<div><b>$0.0079 / segment</b>US and Canada SMS. Inbound messages are free.</div>
+<div><b>$0</b>Webhooks, templates, logs, the test inbox and support.</div>
+</div>
+</div>
+</section>
+
+<section id="security">
+<div class="wrap">
+<div class="sec-head">
+<div>
+<p class="eyebrow">Security &amp; compliance</p>
+<h2>The questionnaire answers, <em>already written.</em></h2>
+</div>
+<p class="lede">Your security team will ask, so here are the answers. Reports, our DPA and the subprocessor list are in the Trust Center, and you don’t need an NDA to read the summaries.</p>
+</div>
+<div class="sec-grid">
+<div class="sec-item"><h3>SOC 2 Type II &amp; GDPR</h3><p>Audited every year by an independent firm. The DPA is signed when you click a button, and we publish 30 days’ notice of any subprocessor change.</p></div>
+<div class="sec-item"><h3>EU data residency</h3><p>Pin message bodies, logs and backups to eu-central. Data never leaves the region, not even for support.</p></div>
+<div class="sec-item"><h3>Scoped, rotating keys</h3><p>Limit a key to one domain, one channel or read-only logs. You can rotate keys without downtime and restrict them to your own IP ranges.</p></div>
+<div class="sec-item"><h3>Redaction on by default</h3><p>We detect one-time codes and reset links and mask them in logs after delivery. Your support team sees the status, not the secret.</p></div>
+</div>
+
+<figure class="quote">
+<span class="q-mark" aria-hidden="true">“</span>
+<div>
+<blockquote>We moved login codes over on a Friday afternoon. By Monday, “didn’t get my code” tickets had dropped from forty a day to two.</blockquote>
+<figcaption>Priya Okafor-Lind, Staff Engineer at Northbeam Ledger (fictional customer)</figcaption>
+</div>
+</figure>
+</div>
+</section>
+
+<section id="faq">
+<div class="wrap faq-grid">
+<div>
+<p class="eyebrow">FAQ</p>
+<h2>What engineers <em>ask first.</em></h2>
+<p class="lede">Can’t find your answer? Write to <a href="mailto:hello@example.com">hello@example.com</a>. An engineer replies, usually within a few hours.</p>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa1" id="fq1">Can I send marketing email or newsletters?<span class="pm" aria-hidden="true">+</span></button></h3>
+<div class="faq-a" id="fa1" role="region" aria-labelledby="fq1" hidden><p>No. Relaymark is built only for transactional messages that a user triggers, such as receipts, codes and alerts. Keeping bulk mail off our IPs is why delivery stays fast. If you also send newsletters, use a separate provider on a subdomain.</p></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa2" id="fq2">How hard is it to migrate from another provider?<span class="pm" aria-hidden="true">+</span></button></h3>
+<div class="faq-a" id="fa2" role="region" aria-labelledby="fq2" hidden><p>Most teams switch in an afternoon. We accept common SMTP credentials, so you can change only the host first and move to the API later. Run <code>rm import templates</code> to copy your existing templates and suppression lists.</p></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa3" id="fq3">What counts as an SMS segment?<span class="pm" aria-hidden="true">+</span></button></h3>
+<div class="faq-a" id="fa3" role="region" aria-labelledby="fq3" hidden><p>A segment holds 160 standard characters, or 70 characters if the message includes emoji or non-Latin scripts. Longer messages are split and billed per segment. Before you send, the API returns the exact segment count in <code>dry_run</code> mode.</p></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">What are the rate limits?<span class="pm" aria-hidden="true">+</span></button></h3>
+<div class="faq-a" id="fa4" role="region" aria-labelledby="fq4" hidden><p>Pay-as-you-go accounts can make 50 requests per second, and each batch call can carry up to 500 messages. Limits rise automatically as your sending reputation grows. Scale plans set limits in the contract.</p></div>
+</div>
+<div class="faq-item">
+<h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa5" id="fq5">Do I need a dedicated IP?<span class="pm" aria-hidden="true">+</span></button></h3>
+<div class="faq-a" id="fa5" role="region" aria-labelledby="fq5" hidden><p>Probably not below about 500,000 emails a month. Our shared pools are carefully screened and usually beat a cold dedicated IP. Once your volume is steady, we warm up a dedicated IP for you at no extra charge on Scale.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta" id="start">
+<div class="wrap">
+<div class="cta-box">
+<div>
+<p class="eyebrow">Get started</p>
+<h2>Send your first message <em>before your coffee cools.</em></h2>
+<p class="lede">You get a sandbox key right away and 3,000 free emails every month. No credit card is needed until you go live.</p>
+</div>
+<form class="signup" id="signup" novalidate>
+<div id="signup-fields">
+<label for="email">Work email</label>
+<div class="row">
+<input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" aria-describedby="email-err email-fine" required>
+<button class="btn btn-primary" type="submit">Get API key <span class="arr" aria-hidden="true">→</span></button>
+</div>
+<p class="err" id="email-err" aria-live="polite"></p>
+<p class="fine" id="email-fine">We’ll email you a sign-in link. We won’t send you newsletters.</p>
+</div>
+<div class="success" id="success" role="status" tabindex="-1">
+<b>✓ 201 Created</b><br>
+Sign-in link sent to <span id="sent-to"></span>.<br>
+Your sandbox key will be waiting in the console.
+</div>
+</form>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer id="docs">
+<div class="wrap">
+<div class="foot">
+<div class="about">
+<a href="#" class="logo"><span class="logo-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h7M6 3l4 4-4 4" stroke="#1A0C04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="1.3" fill="#1A0C04"/></svg></span>Relaymark</a>
+<p>Transactional email and SMS for software teams. 88 Foundry Lane, Suite 4, Portland, OR.<br>017 00000000 · hello@example.com</p>
+</div>
+<div><h4>Docs</h4><ul><li><a href="#quickstart">Quick start</a></li><li><a href="#">API reference</a></li><li><a href="#">OpenAPI spec</a></li><li><a href="#webhooks">Webhook events</a></li><li><a href="#">Migration guides</a></li></ul></div>
+<div><h4>Product</h4><ul><li><a href="#">Email API</a></li><li><a href="#">SMS API</a></li><li><a href="#">Templates</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Changelog</a></li></ul></div>
+<div><h4>Trust</h4><ul><li><a href="#reliability">Status</a></li><li><a href="#security">Trust Center</a></li><li><a href="#">DPA</a></li><li><a href="#">Subprocessors</a></li><li><a href="#">Acceptable use</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="mailto:hello@example.com">Contact</a></li></ul></div>
+</div>
+<div class="legal">
+<span>© 2026 Relaymark, Inc. Fictional company for design purposes.</span>
+<span class="st"><span class="pulse"></span>All systems operational</span>
+</div>
+</div>
+</footer>
+
+<script>
+(function () {
+"use strict";
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* mobile menu */
+var burger = document.querySelector(".burger");
+var menu = document.getElementById("mobile-menu");
+function setMenu(open) {
+burger.setAttribute("aria-expanded", String(open));
+burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+menu.hidden = !open;
+menu.classList.toggle("open", open);
+document.body.style.overflow = open ? "hidden" : "";
+}
+burger.addEventListener("click", function () { setMenu(burger.getAttribute("aria-expanded") !== "true"); });
+menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { setMenu(false); burger.focus(); } });
+window.addEventListener("resize", function () { if (window.innerWidth > 860 && !menu.hidden) setMenu(false); });
+
+/* copy buttons */
+function copyText(text, btn) {
+var done = function () {
+btn.textContent = "Copied";
+btn.classList.add("done");
+setTimeout(function () { btn.textContent = "Copy"; btn.classList.remove("done"); }, 1600);
+};
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(text).then(done, done);
+} else { done(); }
+}
+document.querySelectorAll("[data-copy]").forEach(function (b) {
+b.addEventListener("click", function () { copyText(document.querySelector(b.dataset.copy).textContent, b); });
+});
+
+/* code tabs */
+var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+function selectTab(t, focus) {
+tabs.forEach(function (x) {
+var on = x === t;
+x.setAttribute("aria-selected", String(on));
+x.tabIndex = on ? 0 : -1;
+document.getElementById(x.getAttribute("aria-controls")).classList.toggle("active", on);
+});
+if (focus) t.focus();
+try { localStorage.setItem("rm-lang", t.id); } catch (e) {}
+}
+tabs.forEach(function (t, i) {
+t.addEventListener("click", function () { selectTab(t); });
+t.addEventListener("keydown", function (e) {
+var j = null;
+if (e.key === "ArrowRight") j = (i + 1) % tabs.length;
+if (e.key === "ArrowLeft") j = (i - 1 + tabs.length) % tabs.length;
+if (e.key === "Home") j = 0;
+if (e.key === "End") j = tabs.length - 1;
+if (j !== null) { e.preventDefault(); selectTab(tabs[j], true); }
+});
+});
+try { var saved = localStorage.getItem("rm-lang"); if (saved && document.getElementById(saved)) selectTab(document.getElementById(saved)); } catch (e) {}
+document.getElementById("copy-code").addEventListener("click", function () {
+var p = document.querySelector(".panel.active pre");
+copyText(p.textContent, this);
+});
+
+/* live event log */
+var list = document.getElementById("events");
+var people = ["dana@example.com", "+1 555 0100 182", "li.wei@example.org", "sam@example.net", "+44 7700 900 412", "ana.r@example.com", "kofi@example.io", "+1 555 0100 377"];
+var kinds = [["queued", "t-q"], ["sent", "t-s"], ["delivered", "t-d"], ["delivered", "t-d"], ["opened", "t-o"], ["delivered", "t-d"], ["sent", "t-s"], ["failed", "t-f"]];
+var subjects = { queued: "receipt #2041", sent: "login code", delivered: "password reset", opened: "invoice ready", failed: "mailbox full · 5.2.2" };
+var clock = 0;
+function stamp() {
+clock += 37 + Math.floor(Math.random() * 400);
+var s = 14 * 3600 + 22 * 60 + Math.floor(clock / 1000);
+var hh = Math.floor(s / 3600), mm = Math.floor(s / 60) % 60, ss = s % 60;
+return [hh, mm, ss].map(function (n) { return String(n).padStart(2, "0"); }).join(":");
+}
+var n = 0;
+function addEvent(animate) {
+var k = kinds[n % kinds.length], who = people[(n * 3) % people.length];
+n++;
+var li = document.createElement("li");
+if (animate) li.className = "new";
+li.innerHTML = '<time>' + stamp() + '</time><span class="tag ' + k[1] + '">' + k[0] + '</span><span class="msg">' + who + ' · ' + subjects[k[0]] + '</span>';
+list.insertBefore(li, list.firstChild);
+while (list.children.length > 8) list.removeChild(list.lastChild);
+}
+for (var i = 0; i < 8; i++) addEvent(false);
+var timer = null;
+function start() { if (!reduce && !timer) timer = setInterval(function () { addEvent(true); }, 1500); }
+function stop() { clearInterval(timer); timer = null; }
+document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+start();
+
+/* status bars (deterministic) */
+var incidents = { api: { 61: "w" }, email: { 23: "w", 24: "w", 70: "w" }, sms: { 12: "w", 48: "e", 49: "w" }, hooks: { 77: "w" } };
+document.querySelectorAll("[data-bars]").forEach(function (el) {
+var inc = incidents[el.dataset.bars] || {}, html = "";
+for (var d = 0; d < 90; d++) html += '<i class="' + (inc[d] || "") + '"></i>';
+el.innerHTML = html;
+});
+
+/* pricing calculator */
+var EMAIL_STEPS = [0, 3000, 10000, 50000, 100000, 250000, 500000, 1000000, 2500000, 5000000, 10000000];
+var SMS_STEPS = [0, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000];
+var rE = document.getElementById("r-email"), rS = document.getElementById("r-sms");
+var fmt = function (x) { return x.toLocaleString("en-US"); };
+var usd = function (x) { return "$" + x.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+function calc() {
+var e = EMAIL_STEPS[rE.value], s = SMS_STEPS[rS.value];
+var billable = Math.max(0, e - 3000);
+var rate = e >= 1000000 ? 0.40 : 0.55;
+var ec = billable / 1000 * rate, sc = s * 0.0079;
+document.getElementById("o-email").textContent = fmt(e);
+document.getElementById("o-sms").textContent = fmt(s);
+rE.setAttribute("aria-valuetext", fmt(e) + " emails");
+rS.setAttribute("aria-valuetext", fmt(s) + " SMS segments");
+rE.style.setProperty("--p", (rE.value / rE.max * 100) + "%");
+rS.style.setProperty("--p", (rS.value / rS.max * 100) + "%");
+document.getElementById("total").textContent = usd(ec + sc);
+document.getElementById("breakdown").innerHTML =
+"<b>Email</b> " + fmt(billable) + " × $" + rate.toFixed(2) + "/1k = " + usd(ec) + (rate < 0.55 ? " <b>(Scale)</b>" : "") +
+"<br><b>SMS</b> " + fmt(s) + " × $0.0079 = " + usd(sc);
+}
+rE.addEventListener("input", calc); rS.addEventListener("input", calc);
+calc();
+
+/* FAQ accordion */
+document.querySelectorAll(".faq-q").forEach(function (q) {
+q.addEventListener("click", function () {
+var open = q.getAttribute("aria-expanded") === "true";
+q.setAttribute("aria-expanded", String(!open));
+document.getElementById(q.getAttribute("aria-controls")).hidden = open;
+});
+});
+
+/* signup form (never submits) */
+var form = document.getElementById("signup"), input = document.getElementById("email"), err = document.getElementById("email-err");
+var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function validate() {
+var v = input.value.trim(), msg = "";
+if (!v) msg = "Enter your work email so we can send a sign-in link.";
+else if (!re.test(v)) msg = "That doesn’t look like an email address. Check for a missing @ or domain.";
+err.textContent = msg;
+input.setAttribute("aria-invalid", msg ? "true" : "false");
+return !msg;
+}
+input.addEventListener("blur", function () { if (input.value) validate(); });
+input.addEventListener("input", function () { if (input.getAttribute("aria-invalid") === "true") validate(); });
+form.addEventListener("submit", function (e) {
+e.preventDefault();
+if (!validate()) { input.focus(); return; }
+document.getElementById("sent-to").textContent = input.value.trim();
+document.getElementById("signup-fields").hidden = true;
+var ok = document.getElementById("success");
+ok.classList.add("show");
+ok.focus();
+});
+})();
+</script>
+</body>
+</html>
