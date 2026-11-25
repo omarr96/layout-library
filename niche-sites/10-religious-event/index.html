@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eid on the Meadow — Northgate Islamic Centre family day</title>
+<meta name="description" content="Eid prayer on the Great Meadow at 8:30am, then a free family day: food stalls, kids' corner, henna, community stage. Hosted by Northgate Islamic Centre. Everyone welcome.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F1; --card:#FFFFFF; --ink:#22252B; --muted:#5F636B; --line:#ECE4D8;
+  --saffron:#B4570D; --saffron-d:#8F440A; --saffron-50:#F8EADB; --meadow:#E4EBDD; --meadow-d:#B9C9AA;
+  --r:18px; --shadow:0 1px 2px rgba(34,37,43,.05),0 18px 40px -18px rgba(34,37,43,.22);
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Young Serif",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:700;letter-spacing:-.025em;line-height:1.08}
+.acc{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;color:var(--saffron)}
+.label{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--saffron)}
+.sec{padding:112px 0}
+.sec-head{max-width:620px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(32px,4.4vw,50px);margin:14px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-main{background:var(--saffron);color:#fff}
+.btn-main:hover{background:var(--saffron-d);transform:translateY(-1px)}
+.btn-line{background:var(--card);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-glass{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-glass:hover{background:rgba(255,255,255,.26)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:box-shadow .25s}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(251,247,241,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .25s;z-index:-1}
+.nav.solid::before,.nav.open::before{opacity:1}
+.nav.solid{box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;font-size:17px;color:#fff;transition:color .25s}
+.logo small{display:block;font-weight:500;font-size:12px;opacity:.8;letter-spacing:.02em}
+.logo-mark{width:34px;height:34px;flex:none}
+.nav.solid .logo,.nav.open .logo{color:var(--ink)}
+.links{display:flex;align-items:center;gap:30px;list-style:none}
+.links a{text-decoration:none;font-size:15px;font-weight:500;color:#fff;transition:color .25s;opacity:.92}
+.links a:hover{opacity:1}
+.nav.solid .links a{color:var(--ink)}
+.nav .btn{padding:10px 18px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;border-radius:10px;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;background:#fff;border-radius:2px;position:relative;transition:transform .25s,background .25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.nav.solid .burger span,.nav.solid .burger span::before,.nav.solid .burger span::after,.nav.open .burger span::before,.nav.open .burger span::after{background:var(--ink)}
+.nav.open .burger span{background:transparent}
+.nav.open .burger span::before{transform:translateY(7px) rotate(45deg)}
+.nav.open .burger span::after{transform:translateY(-7px) rotate(-45deg)}
+
+/* HERO */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,20,16,.72) 0%,rgba(24,20,16,.45) 38%,rgba(24,20,16,0) 70%),linear-gradient(180deg,rgba(24,20,16,.45) 0%,rgba(24,20,16,.05) 30%,rgba(24,20,16,.2) 60%,rgba(24,20,16,.7) 100%)}
+.hero-in{position:relative;z-index:2;width:100%;padding-bottom:150px;padding-top:140px}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.04em;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.hero-tag i{width:7px;height:7px;border-radius:50%;background:#F2B36B}
+.hero h1{font-size:clamp(46px,7.4vw,104px);max-width:11ch;letter-spacing:-.035em;line-height:.98}
+.hero h1 .acc{color:#F6C48C}
+.hero-lede{font-size:clamp(18px,1.7vw,21px);max-width:520px;margin:22px 0 32px;color:rgba(255,255,255,.9)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* KEY CARD */
+.key{position:relative;z-index:5;margin-top:-92px}
+.key-card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(3,1fr) 1.5fr;overflow:hidden}
+.key-item{padding:28px 28px 26px;border-right:1px solid var(--line)}
+.key-item .k{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.key-item .v{font-size:21px;font-weight:700;margin-top:6px;letter-spacing:-.015em;line-height:1.25}
+.key-item .s{font-size:14.5px;color:var(--muted);margin-top:4px}
+.count{padding:24px 28px;background:var(--saffron-50);display:flex;flex-direction:column;justify-content:center}
+.count .k{font-size:13px;font-weight:600;color:var(--saffron-d);letter-spacing:.06em;text-transform:uppercase}
+.count-row{display:flex;gap:18px;margin-top:8px}
+.cu{text-align:left}
+.cu b{display:block;font-family:var(--serif);font-weight:400;font-size:38px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.cu span{font-size:13px;color:var(--muted)}
+.moon-note{display:flex;gap:12px;align-items:flex-start;max-width:760px;margin:26px auto 0;color:var(--muted);font-size:15px;text-align:left}
+.moon-note svg{width:20px;height:20px;flex:none;margin-top:3px;color:var(--saffron)}
+
+/* PROGRAMME */
+.prog{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.prog .sec-head{position:sticky;top:120px;margin-bottom:0}
+.tl{list-style:none;border-left:2px solid var(--line);margin-left:6px}
+.tl li{position:relative;padding:0 0 34px 34px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-8px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--meadow-d)}
+.tl li.big::before{background:var(--saffron);border-color:var(--saffron);box-shadow:0 0 0 6px var(--saffron-50)}
+.tl time{font-size:14px;font-weight:700;color:var(--saffron);letter-spacing:.03em}
+.tl h3{font-size:22px;margin:4px 0 6px;letter-spacing:-.015em}
+.tl p{color:var(--muted);font-size:16px;max-width:520px}
+.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:88px}
+.zone{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.zone img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.zone div{padding:22px 24px 26px}
+.zone h3{font-size:21px;margin-bottom:6px}
+.zone p{color:var(--muted);font-size:15.5px}
+
+/* BAND */
+.band{position:relative;min-height:520px;display:flex;align-items:center;color:#fff;overflow:hidden}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,24,18,.72) 0%,rgba(22,24,18,.35) 50%,rgba(22,24,18,0) 80%)}
+.band .wrap{position:relative;z-index:2;width:100%}
+.band h2{font-size:clamp(32px,4.6vw,54px);max-width:14ch}
+.band h2 .acc{color:#F6C48C}
+.band p{max-width:440px;margin-top:18px;font-size:18px;color:rgba(255,255,255,.9)}
+
+/* VISIT */
+.visit{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.map{position:relative;aspect-ratio:5/4;border-radius:22px;background:var(--meadow);overflow:hidden;border:1px solid var(--line)}
+.map .path{position:absolute;background:#F5F1E8;border-radius:40px}
+.map .road{position:absolute;background:#D9D4C9}
+.map .pond{position:absolute;right:6%;top:8%;width:19%;height:22%;border-radius:48% 52% 45% 55%;background:#CFE0E4}
+.map .tree{position:absolute;width:22px;height:22px;border-radius:50%;background:#C9D6BC}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;background:var(--card);border-radius:999px;padding:6px 11px 6px 6px;font-size:13px;font-weight:600;box-shadow:0 4px 14px -6px rgba(34,37,43,.35);white-space:nowrap}
+.pin b{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;display:grid;place-items:center;flex:none}
+.pin.main b{background:var(--saffron)}
+.area{position:absolute;border:2px dashed rgba(180,87,13,.45);border-radius:16px;background:rgba(255,255,255,.35)}
+.map-key{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-top:18px;font-size:14.5px;color:var(--muted);list-style:none}
+.map-key b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;margin-right:8px}
+.map-key li:first-child b{background:var(--saffron)}
+.info h3{font-size:20px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.info h3 svg{width:20px;height:20px;color:var(--saffron)}
+.info p{color:var(--muted);font-size:16px}
+.info>div{padding:22px 0;border-bottom:1px solid var(--line)}
+.info>div:first-child{padding-top:0}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+
+/* STALLS */
+.stalls{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tier{border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;background:var(--paper);display:flex;flex-direction:column}
+.tier h3{font-size:21px}
+.price{font-family:var(--serif);font-size:44px;line-height:1;margin:16px 0 4px}
+.price small{font-family:var(--sans);font-size:15px;color:var(--muted)}
+.tier ul{list-style:none;margin:18px 0 26px;display:grid;gap:9px;font-size:15.5px;color:var(--muted)}
+.tier li{padding-left:24px;position:relative}
+.tier li::before{content:"";position:absolute;left:2px;top:9px;width:11px;height:6px;border-left:2px solid var(--saffron);border-bottom:2px solid var(--saffron);transform:rotate(-45deg)}
+.tier .btn{margin-top:auto}
+.stall-note{margin-top:26px;color:var(--muted);font-size:15px}
+
+/* JOIN */
+.join{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.roles{list-style:none;display:grid;gap:14px;margin-top:8px}
+.roles li{display:flex;gap:16px;padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.roles .t{font-family:var(--serif);color:var(--saffron);font-size:15px;min-width:92px;padding-top:2px}
+.roles h3{font-size:17px;letter-spacing:-.01em}
+.roles p{font-size:15px;color:var(--muted)}
+.form-card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:38px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:28px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{text-align:center;padding:10px 6px;border-radius:9px;font-weight:600;font-size:15px;cursor:pointer;color:var(--muted);transition:background .2s,color .2s}
+.seg input:checked+label{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(34,37,43,.12)}
+.seg input:focus-visible+label{outline:2px solid var(--saffron);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:18px}
+.field label{display:block;font-weight:600;font-size:14.5px;margin-bottom:7px}
+.field label .opt{font-weight:400;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid #DDD4C6;border-radius:11px;background:#fff;font-size:16px;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px var(--saffron-50)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:#B3261E}
+.err{display:none;color:#B3261E;font-size:13.5px;margin-top:6px}
+.field.bad .err{display:block}
+.only{display:none}
+.form-card[data-type="attend"] .o-attend,.form-card[data-type="volunteer"] .o-volunteer,.form-card[data-type="stall"] .o-stall{display:block}
+.fine{font-size:13.5px;color:var(--muted);margin-top:14px}
+.form-card .btn-main{width:100%;padding:16px}
+.done{display:none;text-align:center;padding:30px 6px}
+.done .tick{width:62px;height:62px;border-radius:50%;background:var(--saffron-50);display:grid;place-items:center;margin:0 auto 18px}
+.done .tick svg{width:28px;height:28px;color:var(--saffron)}
+.done h3{font-size:28px;margin-bottom:10px}
+.done p{color:var(--muted);max-width:400px;margin:0 auto 22px}
+.form-card.sent form{display:none}
+.form-card.sent .done{display:block}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+.faq{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q h3{font-size:inherit}
+.q button{width:100%;text-align:left;background:none;border:0;padding:22px 44px 22px 0;font-size:18px;font-weight:600;position:relative;letter-spacing:-.01em}
+.q button::after{content:"";position:absolute;right:8px;top:50%;width:10px;height:10px;border-right:2px solid var(--saffron);border-bottom:2px solid var(--saffron);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+.q button[aria-expanded="true"]::after{transform:translateY(-30%) rotate(-135deg)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.a>div{overflow:hidden}
+.a p{color:var(--muted);padding:0 40px 24px 0;font-size:16.5px}
+.q.on .a{grid-template-rows:1fr}
+
+/* FOOTER */
+footer{background:#1F2126;color:#C9C6C0;padding:72px 0 36px;font-size:15px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+footer .logo{color:#fff}
+footer h3{color:#fff;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+.foot-b{border-top:1px solid #34363C;margin-top:56px;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:#93918C}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{transition-duration:.01ms!important;animation:none!important}
+}
+
+/* RESPONSIVE */
+@media (max-width:1020px){
+  .key-card{grid-template-columns:repeat(3,1fr)}
+  .key-item:nth-child(3){border-right:0}
+  .key-item{border-bottom:1px solid var(--line)}
+  .count{grid-column:1/-1}
+  .prog,.visit,.join,.faq-wrap{grid-template-columns:1fr;gap:44px}
+  .prog .sec-head{position:static}
+  .zones,.tiers{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .links{position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 24px;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  .nav.open .links{display:flex}
+  .links li{border-bottom:1px solid var(--line)}
+  .links li:last-child{border:0;padding-top:16px}
+  .links a{display:block;padding:14px 0;color:var(--ink)!important;font-size:17px}
+  .links .btn{color:#fff!important;width:100%}
+  .burger{display:inline-flex}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero::after{background:linear-gradient(180deg,rgba(24,20,16,.5) 0%,rgba(24,20,16,.35) 35%,rgba(24,20,16,.82) 100%)}
+  .wrap{padding:0 16px}
+  .sec{padding:80px 0}
+  .hero{min-height:640px}
+  .hero-in{padding-top:120px;padding-bottom:120px}
+  .band img{object-position:62% 30%}
+  .hero-cta .btn{flex:1 1 100%}
+  .key{margin-top:-70px}
+  .key-card{grid-template-columns:1fr}
+  .key-item{border-right:0;padding:20px 22px}
+  .count{padding:22px}
+  .count-row{gap:14px}
+  .cu b{font-size:32px}
+  .zones,.tiers{grid-template-columns:1fr}
+  .zones{margin-top:60px}
+  .band{min-height:460px}
+  .band::after{background:linear-gradient(0deg,rgba(22,24,18,.8) 0%,rgba(22,24,18,.2) 70%)}
+  .band .wrap{align-self:flex-end;padding-bottom:44px}
+  .map{aspect-ratio:4/5}
+  .pin{font-size:11.5px;padding:4px 8px 4px 4px}
+  .pin b{width:19px;height:19px;font-size:11px}
+  .pin .lbl{display:none}
+  .map-key{grid-template-columns:1fr}
+  .form-card{padding:26px 20px}
+  .grid2{grid-template-columns:1fr;gap:0}
+  .seg label{font-size:14px}
+  .foot{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Eid on the Meadow, home">
+      <svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#B4570D"/><path d="M7 22h20M10 26h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 22a6 6 0 0 1 12 0" fill="none" stroke="#fff" stroke-width="2"/></svg>
+      <span>Eid on the Meadow<small>Northgate Islamic Centre</small></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="links"><span></span></button>
+    <ul class="links" id="links">
+      <li><a href="#day">The day</a></li>
+      <li><a href="#visit">Getting there</a></li>
+      <li><a href="#stalls">Stalls</a></li>
+      <li><a href="#join">Volunteer</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#join" class="btn btn-main" data-type="attend">Register free</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1655663718827-3adff2fc349a?w=2000&q=70&auto=format&fit=crop" alt="Worshippers sitting on prayer mats outdoors as the morning sun rises behind them">
+    <div class="wrap hero-in">
+      <span class="hero-tag"><i></i>Eid al-Adha · Sunday 16 May 2027</span>
+      <h1>Eid on the <span class="acc">Meadow</span></h1>
+      <p class="hero-lede">Pray together in the open air at 8:30, then stay for a long, easy family day — breakfast stalls, a kids' corner, henna and a community stage. Free, and everyone is welcome.</p>
+      <div class="hero-cta">
+        <a href="#join" class="btn btn-main" data-type="attend">Register to attend</a>
+        <a href="#visit" class="btn btn-glass">How to get there</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="key" aria-label="Key details">
+    <div class="wrap">
+      <div class="key-card">
+        <div class="key-item"><div class="k">Prayer</div><div class="v">8:30 am</div><div class="s">Mats down from 7:45</div></div>
+        <div class="key-item"><div class="k">Place</div><div class="v">Great Meadow, Hollins Park</div><div class="s">Elm Street entrance</div></div>
+        <div class="key-item"><div class="k">Family day</div><div class="v">9:30 am – 4 pm</div><div class="s">Free entry, no ticket</div></div>
+        <div class="count" role="timer" aria-live="off" aria-label="Countdown to Eid prayer">
+          <div class="k">Until Eid prayer</div>
+          <div class="count-row">
+            <div class="cu"><b id="cd-d">--</b><span>days</span></div>
+            <div class="cu"><b id="cd-h">--</b><span>hours</span></div>
+            <div class="cu"><b id="cd-m">--</b><span>mins</span></div>
+            <div class="cu"><b id="cd-s">--</b><span>secs</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="moon-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg><span>The date depends on the moon sighting. We confirm it here and by text to everyone registered by 9 pm the evening before. If Eid falls on Monday 17 May, the whole programme simply moves to Monday.</span></p>
+    </div>
+  </section>
+
+  <section class="sec" id="day">
+    <div class="wrap">
+      <div class="prog">
+        <div class="sec-head rv">
+          <span class="label">The day</span>
+          <h2>One morning prayer, then <span class="acc">the whole day</span> together</h2>
+          <p>Come for the prayer, stay for breakfast, leave when the kids finally run out of energy. Everything happens within a short walk on the meadow.</p>
+        </div>
+        <ol class="tl rv">
+          <li><time>7:45 am</time><h3>Gates open, mats go down</h3><p>Volunteers lay the main rows. Bring your own mat if you can — we have spares at the welcome tent.</p></li>
+          <li class="big"><time>8:30 am</time><h3>Eid prayer and sermon</h3><p>Led by Imam Yusuf Hadley. Brothers' rows face the oak line; the sisters' prayer area is screened, shaded and has its own entrance.</p></li>
+          <li><time>9:15 am</time><h3>Greetings and breakfast</h3><p>The food court opens: chai, fresh parathas, dates and pastries. Find your neighbours, take the family photo.</p></li>
+          <li><time>10:00 am</time><h3>Kids' corner and henna tent</h3><p>Bouncy castle for under-8s, face painting, craft table and a story circle. Henna artists work through the day.</p></li>
+          <li><time>11:30 am</time><h3>Community stage</h3><p>Nasheed groups, a youth poetry slot, local school choir and a short welcome from neighbouring faith groups.</p></li>
+          <li><time>2:00 pm</time><h3>Family games</h3><p>Sack race, three-legged race and the famously competitive parents-versus-teens tug of war.</p></li>
+          <li><time>4:00 pm</time><h3>Close and clean-up</h3><p>We leave the meadow cleaner than we found it. Grab a litter-picker if you can spare twenty minutes.</p></li>
+        </ol>
+      </div>
+
+      <div class="zones">
+        <article class="zone rv">
+          <img src="https://images.unsplash.com/photo-1791601033870-e87734abdb18?w=900&q=70&auto=format&fit=crop" alt="A stallholder arranging trays of golden fried pastries" loading="lazy">
+          <div><h3>Food court</h3><p>Fourteen local stalls, all halal and clearly labelled for nuts and dairy. Most dishes $3–$9, and free chai until 10.</p></div>
+        </article>
+        <article class="zone rv">
+          <img src="https://images.unsplash.com/photo-1683155586907-3aa3642fda3e?w=900&q=70&auto=format&fit=crop" alt="Young children dressed in their Eid clothes, smiling" loading="lazy">
+          <div><h3>Kids' corner</h3><p>Fenced, shaded and staffed by checked volunteers. Under-8s need a grown-up nearby; wristbands at the gate.</p></div>
+        </article>
+        <article class="zone rv">
+          <img src="https://images.unsplash.com/photo-1790808415650-9da77af4bba7?w=900&q=70&auto=format&fit=crop" alt="An artist applying a floral henna pattern to a hand wearing bangles" loading="lazy">
+          <div><h3>Henna &amp; crafts</h3><p>Three henna artists from 10 am, $5 a hand with proceeds to the Centre's food bank. Walk-ups only.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="band-h">
+    <img src="https://images.unsplash.com/photo-1770273329575-a3787c550881?w=2000&q=70&auto=format&fit=crop" alt="A young girl in a navy headscarf and party dress standing among trees in a park" loading="lazy">
+    <div class="wrap rv">
+      <h2 id="band-h">Bring the family. Bring <span class="acc">the neighbours</span> too.</h2>
+      <p>Eid on the Meadow is open to everyone in Northgate, whatever your faith. Last year more than 2,400 people came along — about a third of them for the first time.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="visit">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="label">Getting there</span>
+        <h2>Find us on the <span class="acc">Great Meadow</span></h2>
+        <p>Hollins Park, 300 Elm Street, Northgate. Parking is limited, so walk, bus or take our free shuttle from the Centre if you can.</p>
+      </div>
+      <div class="visit">
+        <div class="rv">
+          <div class="map" role="img" aria-label="Site map of the Great Meadow showing the prayer area in the centre, sisters' prayer area to its right, food court below, kids' corner and henna tent on the left, community stage at the top, welcome tent and lost children point by the Elm Street entrance, parking lot at the bottom left and bus stop at the bottom right.">
+            <span class="road" style="left:0;right:0;bottom:0;height:9%"></span>
+            <span class="road" style="left:0;top:0;bottom:0;width:6%"></span>
+            <span class="path" style="left:6%;right:22%;bottom:16%;height:5%"></span>
+            <span class="path" style="left:56%;top:12%;bottom:16%;width:4%"></span>
+            <span class="pond"></span>
+            <span class="tree" style="left:12%;top:8%"></span><span class="tree" style="left:18%;top:12%"></span><span class="tree" style="left:84%;top:52%"></span><span class="tree" style="left:90%;top:60%"></span><span class="tree" style="left:30%;top:6%"></span>
+            <span class="area" style="left:28%;top:26%;width:26%;height:30%"></span>
+            <span class="area" style="left:62%;top:30%;width:16%;height:24%"></span>
+            <span class="pin main" style="left:41%;top:41%"><b>1</b><span class="lbl">Main prayer</span></span>
+            <span class="pin" style="left:70%;top:42%"><b>2</b><span class="lbl">Sisters' prayer</span></span>
+            <span class="pin" style="left:42%;top:68%"><b>3</b><span class="lbl">Food court</span></span>
+            <span class="pin" style="left:17%;top:44%"><b>4</b><span class="lbl">Kids' corner</span></span>
+            <span class="pin" style="left:44%;top:14%"><b>5</b><span class="lbl">Stage</span></span>
+            <span class="pin" style="left:72%;top:72%"><b>6</b><span class="lbl">Welcome &amp; lost children</span></span>
+            <span class="pin" style="left:15%;top:94%"><b>P</b><span class="lbl">Parking</span></span>
+            <span class="pin" style="left:84%;top:94%"><b>B</b><span class="lbl">Bus 14</span></span>
+          </div>
+          <ul class="map-key">
+            <li><b>1</b>Main prayer area</li>
+            <li><b>2</b>Sisters' prayer area (screened)</li>
+            <li><b>3</b>Food court &amp; seating</li>
+            <li><b>4</b>Kids' corner &amp; henna tent</li>
+            <li><b>5</b>Community stage</li>
+            <li><b>6</b>Welcome tent, first aid, lost children</li>
+          </ul>
+        </div>
+        <div class="info rv">
+          <div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="13" rx="3"/><path d="M4 11h16M8 20l-1 2M16 20l1 2"/></svg>Bus &amp; shuttle</h3><p>Bus 14 stops at Elm Street Gate. Our free shuttle runs from Northgate Islamic Centre every 15 minutes from 7:15 am, and back from 12 pm.</p></div>
+          <div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>Parking</h3><p>Park lot on Mill Road, $5 for the day, cash or card. 24 accessible bays held near the gate — show your placard to a steward.</p></div>
+          <div><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6h5l2 5M12 11H8M9 14a5 5 0 1 0 6 6"/></svg>Access</h3><p>Firm matting from the gate to both prayer areas, chairs for anyone who prays seated, two accessible restrooms and a quiet tent by the pond.</p></div>
+          <div class="contact-row">
+            <a class="btn btn-main" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
+            <a class="btn btn-line" href="https://wa.me/0000000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</a>
+            <a class="btn btn-line" href="https://maps.google.com/?q=Hollins+Park"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec stalls" id="stalls">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="label">Stalls &amp; vendors</span>
+        <h2>Run a stall <span class="acc">on the day</span></h2>
+        <p>We keep the market small and local, so families can actually move around. Applications close Friday 23 April 2027; we reply within a week.</p>
+      </div>
+      <div class="tiers">
+        <div class="tier rv">
+          <h3>Food &amp; drink</h3>
+          <div class="price">$140 <small>/ pitch</small></div>
+          <ul><li>3 × 3 m gazebo pitch</li><li>Shared power and water point</li><li>Halal certificate and food permit needed</li></ul>
+          <a href="#join" class="btn btn-line" data-type="stall" data-stall="Food &amp; drink">Enquire about food</a>
+        </div>
+        <div class="tier rv">
+          <h3>Market &amp; crafts</h3>
+          <div class="price">$60 <small>/ pitch</small></div>
+          <ul><li>3 × 3 m pitch, bring your own table</li><li>Clothing, books, gifts, henna</li><li>Local makers get first refusal</li></ul>
+          <a href="#join" class="btn btn-line" data-type="stall" data-stall="Market &amp; crafts">Enquire about a pitch</a>
+        </div>
+        <div class="tier rv">
+          <h3>Charity &amp; community</h3>
+          <div class="price">Free</div>
+          <ul><li>Table and two chairs provided</li><li>Registered charities and local groups</li><li>Fundraising buckets welcome</li></ul>
+          <a href="#join" class="btn btn-line" data-type="stall" data-stall="Charity &amp; community">Apply for a table</a>
+        </div>
+      </div>
+      <p class="stall-note">No generators, no amplified music at pitches, and everything leaves with you at 4:30 pm.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="join">
+    <div class="wrap join">
+      <div class="rv">
+        <div class="sec-head" style="margin-bottom:32px">
+          <span class="label">Register or volunteer</span>
+          <h2>Let us know <span class="acc">you're coming</span></h2>
+          <p>Entry is free and you don't need a ticket. Registering helps us plan mats, water and shuttles — and means you'll get the date confirmation by text.</p>
+        </div>
+        <ul class="roles" aria-label="Volunteer shifts">
+          <li><span class="t">6:30–9:30</span><div><h3>Mats &amp; set-up</h3><p>Rolling out rows, putting up gazebos, the early-start crew.</p></div></li>
+          <li><span class="t">9:00–1:00</span><div><h3>Welcome &amp; wayfinding</h3><p>Gates, shuttle stop and the lost children point.</p></div></li>
+          <li><span class="t">10:00–2:00</span><div><h3>Kids' corner</h3><p>Background check needed — we arrange it for free.</p></div></li>
+          <li><span class="t">2:00–5:00</span><div><h3>Green team</h3><p>Recycling stations and the final meadow sweep.</p></div></li>
+        </ul>
+      </div>
+
+      <div class="form-card rv" id="formCard" data-type="attend">
+        <form id="regForm" novalidate>
+          <fieldset class="seg">
+            <legend class="sr" style="position:absolute;left:-9999px">I'd like to</legend>
+            <input type="radio" name="type" id="t-attend" value="attend" checked><label for="t-attend">Attend</label>
+            <input type="radio" name="type" id="t-vol" value="volunteer"><label for="t-vol">Volunteer</label>
+            <input type="radio" name="type" id="t-stall" value="stall"><label for="t-stall">Stall</label>
+          </fieldset>
+          <div class="grid2">
+            <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required aria-describedby="e-name"><div class="err" id="e-name">Please tell us your name.</div></div>
+            <div class="field"><label for="f-phone">Mobile <span class="opt">(for the date text)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" aria-describedby="e-phone"><div class="err" id="e-phone">That number looks too short.</div></div>
+          </div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><div class="err" id="e-email">Please enter a valid email address.</div></div>
+
+          <div class="only o-attend">
+            <div class="grid2">
+              <div class="field"><label for="f-adults">Adults</label><select id="f-adults" name="adults"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+              <div class="field"><label for="f-kids">Children</label><select id="f-kids" name="kids"><option>0</option><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+            </div>
+            <div class="field"><label for="f-travel">How will you get there?</label><select id="f-travel" name="travel"><option>Walking or bus</option><option>Free shuttle from the Centre</option><option>Car — standard parking</option><option>Car — accessible bay</option></select></div>
+          </div>
+
+          <div class="only o-volunteer">
+            <div class="field"><label for="f-role">Preferred shift</label><select id="f-role" name="role" aria-describedby="e-role"><option value="">Choose a shift</option><option>Mats &amp; set-up (6:30–9:30)</option><option>Welcome &amp; wayfinding (9:00–1:00)</option><option>Kids' corner (10:00–2:00)</option><option>Green team (2:00–5:00)</option><option>Anywhere you need me</option></select><div class="err" id="e-role">Please pick a shift.</div></div>
+          </div>
+
+          <div class="only o-stall">
+            <div class="field"><label for="f-stall">Stall type</label><select id="f-stall" name="stall" aria-describedby="e-stall"><option value="">Choose a stall type</option><option>Food &amp; drink</option><option>Market &amp; crafts</option><option>Charity &amp; community</option></select><div class="err" id="e-stall">Please pick a stall type.</div></div>
+            <div class="field"><label for="f-about">What would you bring?</label><textarea id="f-about" name="about" aria-describedby="e-about" placeholder="e.g. Fresh jalebi and chai, family-run, been trading 6 years"></textarea><div class="err" id="e-about">A short sentence is plenty (at least 15 characters).</div></div>
+          </div>
+
+          <button type="submit" class="btn btn-main" id="submitBtn">Register — it's free</button>
+          <p class="fine">We only use your details for this event. No marketing, ever.</p>
+        </form>
+        <div class="done" role="status" aria-live="polite">
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 id="doneH">You're on the list</h3>
+          <p id="doneP">We'll send the confirmed date the evening before.</p>
+          <button type="button" class="btn btn-line" id="again">Register someone else</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" style="padding-top:40px">
+    <div class="wrap faq-wrap">
+      <div class="sec-head rv">
+        <span class="label">Good to know</span>
+        <h2>Questions families <span class="acc">usually ask</span></h2>
+        <p>Can't see yours? Call or message the Centre office, Monday to Friday, 10 am – 6 pm.</p>
+      </div>
+      <div class="faq rv" id="faqList">
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a1" id="q1">What should we bring?</button></h3><div class="a" id="a1" role="region" aria-labelledby="q1"><div><p>A prayer mat, a picnic blanket, water bottles and sun cream. A folding chair is handy for grandparents. Most stalls take cards, but cash is quicker at the henna tent.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a2" id="q2">Where is the sisters' prayer area?</button></h3><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>To the right of the main rows (number 2 on the map), screened on three sides and shaded, with its own entrance from the path, female stewards and a buggy park right beside it.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a3" id="q3">What if a child gets lost?</button></h3><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>Every child gets a free wristband at the gate — write your mobile number on it. Lost children are taken to the welcome tent by the Elm Street entrance (number 6), which is staffed all day and never moves.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a4" id="q4">Is it accessible?</button></h3><div class="a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. Firm matting runs from the gate to both prayer areas and the food court, there are chairs for anyone praying seated, accessible restrooms, reserved parking and a quiet tent for anyone who needs a break from the noise.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a5" id="q5">What happens if it rains?</button></h3><div class="a" id="a5" role="region" aria-labelledby="q5"><div><p>Light rain, we carry on. If heavy rain is forecast, the prayer moves indoors to Northgate Islamic Centre and the Sports Hall next door, in two sittings at 8:00 and 9:15. We'll text everyone registered by 6 am.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a6" id="q6">Can friends who aren't Muslim come?</button></h3><div class="a" id="a6" role="region" aria-labelledby="q6"><div><p>Please do. You're welcome to watch the prayer quietly from the edge of the meadow, then join us for breakfast. Modest dress is appreciated but there's no dress code for the family day.</p></div></div></div>
+        <div class="q"><h3><button aria-expanded="false" aria-controls="a7" id="q7">Is all the food halal?</button></h3><div class="a" id="a7" role="region" aria-labelledby="q7"><div><p>Yes, every stall is checked in advance. Each one shows a card listing nuts, dairy, gluten and egg, and there are vegetarian options at more than half of them.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#B4570D"/><path d="M7 22h20M10 26h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M11 22a6 6 0 0 1 12 0" fill="none" stroke="#fff" stroke-width="2"/></svg><span>Eid on the Meadow<small>Northgate Islamic Centre</small></span></a>
+        <p style="margin-top:18px;max-width:340px">A free community Eid day run by volunteers from Northgate Islamic Centre, with thanks to the Hollins Park Friends group.</p>
+      </div>
+      <div>
+        <h3>The Centre</h3>
+        <ul><li>48 Linden Avenue, Northgate</li><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li><li><a href="https://wa.me/0000000000">WhatsApp the office</a></li></ul>
+      </div>
+      <div>
+        <h3>On this page</h3>
+        <ul><li><a href="#day">Programme</a></li><li><a href="#visit">Map &amp; travel</a></li><li><a href="#stalls">Stalls</a></li><li><a href="#join">Volunteer</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-b"><span>© 2027 Northgate Islamic Centre. A fictional community event.</span><span>Photos: Unsplash</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),burger=document.getElementById('burger'),links=document.getElementById('links');
+  function onScroll(){nav.classList.toggle('solid',window.scrollY>40)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  links.addEventListener('click',function(e){if(e.target.closest('a')){nav.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu')}});
+
+  /* Countdown — pauses when the tab is hidden */
+  var target=new Date(2027,4,16,8,30,0).getTime(),timer=null;
+  var el={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var diff=Math.max(0,target-Date.now()),t=Math.floor(diff/1000);
+    el.d.textContent=Math.floor(t/86400);el.h.textContent=pad(Math.floor(t%86400/3600));
+    el.m.textContent=pad(Math.floor(t%3600/60));el.s.textContent=pad(t%60);
+    if(diff===0)stop();
+  }
+  function start(){if(!timer){tick();timer=setInterval(tick,1000)}}
+  function stop(){clearInterval(timer);timer=null}
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start()});
+  start();
+
+  /* FAQ accordion */
+  document.querySelectorAll('.q button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var q=b.closest('.q'),open=b.getAttribute('aria-expanded')==='true';
+      b.setAttribute('aria-expanded',!open);q.classList.toggle('on',!open);
+    });
+  });
+
+  /* Form */
+  var card=document.getElementById('formCard'),form=document.getElementById('regForm'),btn=document.getElementById('submitBtn');
+  var labels={attend:'Register — it’s free',volunteer:'Sign me up to volunteer',stall:'Send stall enquiry'};
+  function setType(t){
+    card.setAttribute('data-type',t);btn.textContent=labels[t];
+    var r=form.querySelector('input[name="type"][value="'+t+'"]');if(r)r.checked=true;
+    form.querySelectorAll('.field.bad').forEach(function(f){if(f.closest('.only'))f.classList.remove('bad')});
+  }
+  form.querySelectorAll('input[name="type"]').forEach(function(r){r.addEventListener('change',function(){setType(r.value)})});
+  document.querySelectorAll('a[data-type]').forEach(function(a){
+    a.addEventListener('click',function(){
+      card.classList.remove('sent');setType(a.getAttribute('data-type'));
+      var s=a.getAttribute('data-stall');if(s)document.getElementById('f-stall').value=s;
+    });
+  });
+  var rules={
+    'f-name':function(v){return v.trim().length>1},
+    'f-email':function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())},
+    'f-phone':function(v){return v.trim()===''||v.replace(/\D/g,'').length>=7},
+    'f-role':function(v){return card.getAttribute('data-type')!=='volunteer'||v!==''},
+    'f-stall':function(v){return card.getAttribute('data-type')!=='stall'||v!==''},
+    'f-about':function(v){return card.getAttribute('data-type')!=='stall'||v.trim().length>=15}
+  };
+  function check(id){
+    var inp=document.getElementById(id),ok=rules[id](inp.value),f=inp.closest('.field');
+    f.classList.toggle('bad',!ok);inp.setAttribute('aria-invalid',!ok);return ok;
+  }
+  Object.keys(rules).forEach(function(id){
+    var inp=document.getElementById(id);
+    inp.addEventListener('blur',function(){if(inp.value!=='')check(id)});
+    inp.addEventListener('input',function(){if(inp.closest('.field').classList.contains('bad'))check(id)});
+    inp.addEventListener('change',function(){if(inp.closest('.field').classList.contains('bad'))check(id)});
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var first=null;
+    Object.keys(rules).forEach(function(id){if(!check(id)&&!first)first=document.getElementById(id)});
+    if(first){first.focus();return}
+    var t=card.getAttribute('data-type'),name=document.getElementById('f-name').value.trim().split(' ')[0];
+    var msg={
+      attend:['You’re on the list, '+name,'We’ll text and email the confirmed date by 9 pm the evening before. See you on the meadow.'],
+      volunteer:['Thank you, '+name,'Our volunteer lead, Amina, will email your shift details and a short briefing two weeks before Eid.'],
+      stall:['Enquiry received, '+name,'We reply to every stall enquiry within a week. Applications close Friday 23 April 2027.']
+    }[t];
+    document.getElementById('doneH').textContent=msg[0];document.getElementById('doneP').textContent=msg[1];
+    card.classList.add('sent');
+    document.getElementById('again').focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    form.reset();setType(card.getAttribute('data-type'));
+    form.querySelectorAll('.field.bad').forEach(function(f){f.classList.remove('bad')});
+    card.classList.remove('sent');document.getElementById('f-name').focus();
+  });
+
+  /* Gentle reveal */
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(n){io.observe(n)});
+  }else{rv.forEach(function(n){n.classList.add('in')})}
+})();
+</script>
+</body>
+</html>

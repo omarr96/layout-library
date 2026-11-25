@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashgrove Masjid — Prayer times, classes and community in Millbrook</title>
+<meta name="description" content="Ashgrove Masjid & Community Centre, Millbrook. Today's prayer and jamaat times, Friday prayer, madrasah, nikah and funeral services, events, women's facilities and how to visit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Marcellus&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone:#F4F2ED; --card:#FFFFFF; --ink:#1C2230; --muted:#5A6170; --line:#E3DFD6;
+  --lapis:#2D4E86; --lapis-d:#223D6C; --lapis-50:#E8EDF6; --sand:#E9DFCC; --sand-50:#F7F2E8;
+  --r:18px; --shadow:0 1px 2px rgba(28,34,48,.05),0 18px 40px -18px rgba(28,34,48,.22);
+  --sans:"Albert Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Marcellus",Georgia,serif;
+  --accent:"EB Garamond",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--stone);color:var(--ink);font-size:17px;line-height:1.62;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--lapis);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.005em;line-height:1.12}
+h3{font-family:var(--sans);font-weight:600;letter-spacing:-.012em}
+.acc{font-family:var(--accent);font-style:italic;font-weight:500;color:var(--lapis);letter-spacing:0}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lapis)}
+.sec{padding:110px 0}
+.sec-head{max-width:620px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(32px,4.2vw,48px);margin:12px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-lapis{background:var(--lapis);color:#fff}
+.btn-lapis:hover{background:var(--lapis-d);transform:translateY(-1px)}
+.btn-line{border-color:var(--line);background:var(--card)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-glass{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);color:#fff}
+.btn-glass:hover{background:rgba(255,255,255,.24)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:#fff;transition:color .25s}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(244,242,237,.86);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .25s;z-index:-1}
+.nav.solid{color:var(--ink)}
+.nav.solid::before{opacity:1}
+.nav-in{display:flex;align-items:center;gap:30px;height:72px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;line-height:1.1}
+.logo-mark{width:30px;height:34px;border:2px solid currentColor;border-radius:15px 15px 3px 3px;position:relative;flex:none}
+.logo-mark::after{content:"";position:absolute;left:50%;bottom:4px;width:8px;height:13px;transform:translateX(-50%);border-radius:4px 4px 1px 1px;background:currentColor}
+.logo b{font-family:var(--display);font-weight:400;font-size:21px;display:block}
+.logo small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.nav-links{display:flex;gap:26px;margin-left:auto;list-style:none}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;opacity:.9}
+.nav-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+.nav .btn{padding:10px 18px;font-size:15px}
+.nav:not(.solid) .btn-lapis{background:#fff;color:var(--ink)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid currentColor;background:transparent;align-items:center;justify-content:center;opacity:.9}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .25s,opacity .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+
+/* HERO */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#20262f}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:grayscale(1) contrast(1.02) brightness(.95)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,28,44,.45) 0%,rgba(20,28,44,.08) 30%,rgba(20,28,44,.45) 68%,rgba(18,26,42,.85) 100%),linear-gradient(90deg,rgba(34,61,108,.45),rgba(34,61,108,0) 60%)}
+.hero-in{position:relative;z-index:1;width:100%;padding-bottom:150px;padding-top:140px;display:grid;grid-template-columns:1.35fr .9fr;gap:48px;align-items:end}
+.hero .kicker{color:#DCE5F4}
+.hero h1{font-size:clamp(44px,6.4vw,86px);margin:16px 0 22px;max-width:12ch}
+.hero h1 .acc{color:#F0E4C9}
+.hero p.lead{font-size:19px;max-width:520px;color:rgba(255,255,255,.88)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.next-card{justify-self:end;width:100%;max-width:340px;border-radius:var(--r);padding:24px 26px;background:rgba(18,26,42,.42);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.next-card .date{font-size:14px;color:rgba(255,255,255,.75)}
+.next-card .lbl{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F0E4C9;margin-top:18px}
+.next-card .nm{font-family:var(--display);font-size:40px;line-height:1.1;margin-top:4px}
+.next-card .tm{display:flex;gap:18px;margin-top:10px;font-size:15px;color:rgba(255,255,255,.85)}
+.next-card .tm b{color:#fff;font-weight:600}
+.next-card .cd{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);font-size:15px}
+
+/* PRAYER PANEL */
+.times{position:relative;z-index:2;margin-top:-92px}
+.panel{background:var(--card);border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line);padding:30px 32px 26px}
+.panel-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.panel-top h2{font-size:28px}
+.seg{display:inline-flex;padding:4px;background:var(--stone);border:1px solid var(--line);border-radius:12px}
+.seg button{border:0;background:transparent;padding:8px 16px;border-radius:9px;font-size:15px;font-weight:600;color:var(--muted)}
+.seg button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(28,34,48,.12)}
+.pgrid{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pcell{padding:18px 18px 16px;border-right:1px solid var(--line);transition:background .3s}
+.pcell:last-child{border-right:0}
+.pcell .pn{font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px}
+.pcell .pn .tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:var(--lapis);color:#fff;display:none}
+.pcell .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:14px;color:var(--muted)}
+.pcell .row b{font-family:var(--display);font-weight:400;font-size:24px;color:var(--ink);font-variant-numeric:tabular-nums}
+.pcell .row.j b{color:var(--lapis)}
+.pcell.sun .row.j{visibility:hidden}
+.pcell.is-next{background:var(--lapis-50)}
+.pcell.is-next .tag{display:inline-block}
+.pcell.is-past{opacity:.55}
+.panel-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin-top:16px;font-size:14px;color:var(--muted)}
+
+/* JUMUAH */
+.jum{padding:96px 0 40px}
+.jum-in{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
+.jum h2{font-size:clamp(32px,4vw,46px);margin:12px 0 16px}
+.jum p{color:var(--muted);font-size:18px;max-width:470px}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.slot .n{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.slot .t{font-family:var(--display);font-size:46px;line-height:1.05;margin:10px 0 6px}
+.slot p{font-size:15px;color:var(--muted)}
+.jum-note{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;background:var(--sand-50);border:1px solid var(--sand);border-radius:14px;padding:16px 18px;font-size:15px;color:#4d4a42}
+.jum-note svg{width:20px;height:20px;flex:none;margin-top:2px;color:#8a6d3b}
+
+/* SERVICES */
+.svc-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.svc-photo{position:sticky;top:100px;border-radius:22px;overflow:hidden;aspect-ratio:4/5}
+.svc-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 50%}
+.svc-photo figcaption{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,.94);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--muted)}
+.svc-photo figcaption b{display:block;color:var(--ink);font-size:15px}
+.svc-photo{position:relative}
+.svc-list{list-style:none;border-top:1px solid var(--line)}
+.svc-list li{display:grid;grid-template-columns:48px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}
+.ico{width:48px;height:48px;border-radius:14px;background:var(--lapis-50);color:var(--lapis);display:grid;place-items:center}
+.ico svg{width:22px;height:22px}
+.svc-list h3{font-size:20px;margin-bottom:6px}
+.svc-list p{color:var(--muted);font-size:16px}
+.svc-list .meta{display:inline-block;margin-top:8px;font-size:14px;font-weight:600;color:var(--lapis)}
+
+/* EVENTS */
+.events{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ev-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ev{display:grid;grid-template-columns:74px 1fr;gap:20px;padding:24px;border:1px solid var(--line);border-radius:var(--r);background:var(--stone);transition:border-color .2s,transform .2s}
+.ev:hover{border-color:#c9c3b6;transform:translateY(-2px)}
+.ev .d{text-align:center;border-radius:12px;background:var(--card);border:1px solid var(--line);padding:10px 0 8px;align-self:start}
+.ev .d b{display:block;font-family:var(--display);font-weight:400;font-size:32px;line-height:1}
+.ev .d span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lapis)}
+.ev h3{font-size:19px}
+.ev .when{font-size:14px;color:var(--muted);margin:4px 0 8px}
+.ev p{font-size:15px;color:var(--muted)}
+.ev .who{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--sand-50);border:1px solid var(--sand);color:#6b5a39}
+
+/* WOMEN & ACCESS */
+.wa-in{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.wa-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:26px 32px;margin-top:8px}
+.wa-list li{padding-top:18px;border-top:1px solid var(--line)}
+.wa-list b{display:block;font-size:17px;margin-bottom:4px}
+.wa-list span{font-size:15px;color:var(--muted)}
+.wa-photo{border-radius:22px;overflow:hidden;aspect-ratio:5/6;position:relative}
+.wa-photo img{width:100%;height:100%;object-fit:cover;object-position:35% 40%}
+.wa-quote{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(255,255,255,.95);border-radius:14px;padding:18px 20px;font-size:15px;color:var(--muted)}
+.wa-quote q{display:block;font-family:var(--accent);font-style:italic;font-size:21px;line-height:1.35;color:var(--ink);quotes:none;margin-bottom:6px}
+
+/* DONATE */
+.donate{background:var(--lapis);color:#fff}
+.donate .kicker{color:#C9D6EE}
+.don-in{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.donate h2{font-size:clamp(34px,4.4vw,50px);margin:12px 0 18px}
+.donate h2 .acc{color:#F0E4C9}
+.donate .intro{color:rgba(255,255,255,.82);font-size:18px}
+.fund-bar{margin-top:36px;padding:22px 24px;border-radius:var(--r);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.fund-bar .top{display:flex;justify-content:space-between;font-size:15px;color:rgba(255,255,255,.82)}
+.fund-bar .top b{color:#fff}
+.bar{height:8px;border-radius:8px;background:rgba(255,255,255,.18);margin:12px 0 10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:8px;background:#F0E4C9;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.fund-bar small{font-size:14px;color:rgba(255,255,255,.7)}
+.don-card{background:var(--card);color:var(--ink);border-radius:22px;padding:34px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.don-card fieldset{border:0;margin-bottom:24px}
+.don-card legend{font-weight:600;font-size:15px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;pointer-events:none}
+.chip label{display:inline-flex;align-items:center;padding:11px 18px;border-radius:12px;border:1px solid var(--line);background:var(--stone);font-weight:600;font-size:15px;cursor:pointer;transition:border-color .2s,background .2s}
+.chip input:checked+label{border-color:var(--lapis);background:var(--lapis-50);color:var(--lapis-d);box-shadow:inset 0 0 0 1px var(--lapis)}
+.chip input:focus-visible+label{outline:2px solid var(--lapis);outline-offset:2px}
+.amts .chip label{min-width:78px;justify-content:center;font-size:17px}
+.fund-hint{font-size:14px;color:var(--muted);margin-top:10px;min-height:22px}
+.field.other{display:none;margin-top:12px;max-width:220px}
+.field.other.show{display:flex}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.field input{font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--stone);color:var(--ink);width:100%}
+.field input:focus{outline:none;border-color:var(--lapis);box-shadow:0 0 0 3px var(--lapis-50)}
+.field.bad input{border-color:#B4432F}
+.err{font-size:13px;color:#A23A27;min-height:18px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.summary{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.summary p{font-size:15px;color:var(--muted)}
+.summary p b{color:var(--ink);font-size:20px;font-family:var(--display);font-weight:400}
+.don-note{font-size:13px;color:var(--muted);margin-top:14px}
+.done{display:none;text-align:center;padding:30px 10px}
+.done .ok{width:56px;height:56px;border-radius:50%;background:var(--lapis-50);color:var(--lapis);display:grid;place-items:center;margin:0 auto 16px}
+.done h3{font-family:var(--display);font-weight:400;font-size:30px;margin-bottom:10px}
+.done p{color:var(--muted);max-width:400px;margin:0 auto 20px}
+
+/* VISIT */
+.visit-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.vphoto{border-radius:22px;overflow:hidden;aspect-ratio:3/2}
+.vphoto img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.map{position:relative;margin-top:18px;height:240px;border-radius:22px;overflow:hidden;background:#ECE8DF;border:1px solid var(--line)}
+.map .park{position:absolute;left:6%;top:12%;width:28%;height:38%;border-radius:14px;background:#DCE3D2}
+.map .park::after{content:"Larch Park";position:absolute;left:12px;bottom:8px;font-size:11px;color:#6b7660;letter-spacing:.06em;text-transform:uppercase}
+.map .rd{position:absolute;background:#fff;box-shadow:0 0 0 1px #DDD8CC}
+.map .r1{left:0;right:0;top:58%;height:16px}
+.map .r2{top:0;bottom:0;left:52%;width:14px}
+.map .r3{left:52%;right:0;top:26%;height:9px;transform:rotate(-8deg);transform-origin:left}
+.map .rl{position:absolute;font-size:11px;color:#7d7869;letter-spacing:.04em}
+.map .rail{position:absolute;left:0;right:0;bottom:12%;height:4px;background:repeating-linear-gradient(90deg,#B9B2A3 0 10px,transparent 10px 16px)}
+.map .stn{position:absolute;right:12%;bottom:calc(12% - 9px);font-size:11px;background:#fff;border:1px solid #D6D0C2;border-radius:6px;padding:2px 7px;color:var(--muted)}
+.pin{position:absolute;left:calc(52% + 30px);top:calc(58% - 56px);display:flex;align-items:center;gap:8px}
+.pin i{width:34px;height:34px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--lapis);box-shadow:0 6px 14px rgba(45,78,134,.35);display:block}
+.pin span{background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:5px 9px;border-radius:8px;white-space:nowrap}
+.vinfo h2{font-size:clamp(32px,4vw,46px);margin:12px 0 16px}
+.vinfo>p{color:var(--muted);font-size:18px}
+.vlist{list-style:none;margin:28px 0;border-top:1px solid var(--line)}
+.vlist li{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+.vlist li span:first-child{font-weight:600}
+.vlist li span:last-child{color:var(--muted)}
+.contact-btns{display:flex;flex-wrap:wrap;gap:10px}
+.first{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.first h3{font-size:17px;margin-bottom:8px}
+.first ul{list-style:none;display:grid;gap:6px;font-size:15px;color:var(--muted)}
+.first li{padding-left:20px;position:relative}
+.first li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--lapis)}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.74);padding:64px 0 34px;font-size:15px}
+.f-in{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px}
+footer .logo{color:#fff;margin-bottom:14px}
+footer h4{color:#fff;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a{text-decoration:none}
+footer a:hover{color:#fff;text-decoration:underline}
+.f-bot{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:rgba(255,255,255,.55)}
+
+/* Sticky mobile action bar */
+.mbar{display:none}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1080px){
+  .pgrid{grid-template-columns:repeat(3,1fr)}
+  .pcell:nth-child(3){border-right:0}
+  .pcell:nth-child(-n+3){border-bottom:1px solid var(--line)}
+}
+@media (max-width:960px){
+  .nav-links,.nav .btn{display:none}
+  .burger{display:inline-flex}
+  .mmenu{position:fixed;inset:72px 0 auto;z-index:49;background:var(--stone);border-bottom:1px solid var(--line);padding:12px 24px 24px;box-shadow:var(--shadow)}
+  .mmenu.open{display:block}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:18px}
+  .mmenu .btn{margin-top:18px;width:100%;border-bottom:0}
+  .hero-in{grid-template-columns:1fr;gap:28px}
+  .hero::after{background:linear-gradient(180deg,rgba(20,28,44,.6) 0%,rgba(20,28,44,.62) 50%,rgba(18,26,42,.9) 100%)}
+  .next-card{justify-self:start}
+  .jum-in,.svc-in,.wa-in,.don-in,.visit-in{grid-template-columns:1fr;gap:40px}
+  .svc-photo{position:relative;top:0;aspect-ratio:16/11}
+  .wa-photo{aspect-ratio:4/3;order:-1}
+  .ev-list{grid-template-columns:1fr}
+  .f-in{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .sec{padding:76px 0}
+  .wrap{padding:0 16px}
+  .hero{min-height:auto}
+  .hero-in{padding-top:110px;padding-bottom:118px}
+  .hero p.lead{font-size:17px}
+  .next-card{max-width:none;padding:20px}
+  .next-card .nm{font-size:34px}
+  .times{margin-top:-76px}
+  .panel{padding:22px 16px 18px;border-radius:18px}
+  .panel-top h2{font-size:24px}
+  .pgrid{grid-template-columns:1fr}
+  .pcell{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:13px 14px;border-right:0;border-bottom:1px solid var(--line)}
+  .pcell:nth-child(-n+3){border-bottom:1px solid var(--line)}
+  .pcell:last-child{border-bottom:0}
+  .pcell .row{margin:0;flex-direction:column;align-items:flex-end;gap:0;min-width:62px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+  .pcell .row b{font-size:21px;order:-1}
+  .pcell .row.j b[style]{font-size:15px!important}
+  .wa-photo{aspect-ratio:auto;background:var(--card);border:1px solid var(--line)}
+  .wa-photo img{height:280px}
+  .wa-quote{position:static;border-radius:0;background:var(--card)}
+  .jum{padding:72px 0 16px}
+  .slots{grid-template-columns:1fr 1fr;gap:10px}
+  .slot{padding:18px}
+  .slot .t{font-size:34px}
+  .svc-list li{grid-template-columns:40px 1fr;gap:14px}
+  .ico{width:40px;height:40px;border-radius:12px}
+  .ev{grid-template-columns:60px 1fr;gap:14px;padding:18px}
+  .ev .d b{font-size:26px}
+  .wa-list{grid-template-columns:1fr;gap:16px}
+  .don-card{padding:22px 18px}
+  .f2{grid-template-columns:1fr}
+  .vlist li{grid-template-columns:1fr;gap:2px}
+  .contact-btns .btn{flex:1 1 140px}
+  .f-in{grid-template-columns:1fr}
+  .mbar{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+  .mbar a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:600;text-decoration:none;color:var(--ink);padding:4px}
+  .mbar svg{width:20px;height:20px;color:var(--lapis)}
+  footer{padding-bottom:96px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Ashgrove Masjid, home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span><b>Ashgrove Masjid</b><small>Millbrook</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#times">Prayer times</a></li>
+      <li><a href="#jumuah">Friday prayer</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#visit">Visit us</a></li>
+    </ul>
+    <a class="btn btn-lapis" href="#donate">Donate</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#times">Prayer times</a>
+  <a href="#jumuah">Friday prayer</a>
+  <a href="#services">Services</a>
+  <a href="#events">Events</a>
+  <a href="#women">Women &amp; access</a>
+  <a href="#visit">Visit us</a>
+  <a class="btn btn-lapis" href="#donate">Donate</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top" aria-label="Welcome">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1744094936054-93d3013c771d?w=1800&q=70&auto=format&fit=crop" alt="Sunlight falling through lattice windows across the carpet of a quiet prayer hall">
+  <div class="wrap hero-in">
+    <div>
+      <span class="kicker">Ashgrove Masjid &amp; Community Centre</span>
+      <h1>A place to pray, learn and <span class="acc">belong.</span></h1>
+      <p class="lead">Open every day from the first prayer to the last, for the Muslims of Millbrook and for anyone who would like to visit, ask a question or simply sit in the quiet.</p>
+      <div class="hero-cta">
+        <a class="btn btn-lapis" href="#times" style="background:#fff;color:var(--ink)">Today's prayer times</a>
+        <a class="btn btn-glass" href="#visit">Plan a first visit</a>
+      </div>
+    </div>
+    <aside class="next-card" aria-live="polite" aria-label="Next prayer">
+      <div class="date" id="ncDate">Today</div>
+      <div class="lbl">Next prayer</div>
+      <div class="nm" id="ncName">Asr</div>
+      <div class="tm"><span>Begins <b id="ncStart">13:50</b></span><span>Jamaat <b id="ncJam">14:30</b></span></div>
+      <div class="cd" id="ncCount">Starts soon</div>
+    </aside>
+  </div>
+</section>
+
+<section class="times" id="times" aria-labelledby="times-h">
+  <div class="wrap">
+    <div class="panel rv">
+      <div class="panel-top">
+        <h2 id="times-h"><span id="dayLbl">Today's</span> prayer times</h2>
+        <div class="seg" role="tablist" aria-label="Choose day">
+          <button role="tab" id="tabToday" aria-selected="true" aria-controls="pgrid">Today</button>
+          <button role="tab" id="tabTom" aria-selected="false" aria-controls="pgrid" tabindex="-1">Tomorrow</button>
+        </div>
+      </div>
+      <div class="pgrid" id="pgrid" role="tabpanel" aria-labelledby="times-h"></div>
+      <div class="panel-foot">
+        <span id="pfDate">Begins = start time · Jamaat = congregation in the main hall</span>
+        <span>Printed monthly timetables at reception · Jamaat times may change at the start of each month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="jum" id="jumuah" aria-labelledby="jum-h">
+  <div class="wrap jum-in">
+    <div class="rv">
+      <span class="kicker">Every Friday</span>
+      <h2 id="jum-h">Friday prayer, <span class="acc">twice</span> over</h2>
+      <p>The main hall fills quickly on Fridays, so we hold two congregations. The sermon in both is mostly in English with a short Arabic opening, and the women's hall upstairs relays it on screen.</p>
+    </div>
+    <div class="slots rv">
+      <div class="slot"><div class="n">First Jumu'ah</div><div class="t">12:45</div><p>Sermon 12:30 · Doors 12:00<br>Suits most school and office lunch hours</p></div>
+      <div class="slot"><div class="n">Second Jumu'ah</div><div class="t">13:30</div><p>Sermon 13:20 · Shorter talk<br>Quieter, good for families</p></div>
+      <div class="jum-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 19v1M17 19v1"/></svg><span>Our car park is kept for disabled and elderly worshippers on Fridays. Please use the Larch Road public car park (4 minutes' walk) and never block neighbours' driveways.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Services</span>
+      <h2 id="svc-h">Here for the <span class="acc">big moments</span> and the ordinary weeks</h2>
+      <p>Most services are free or cost-only. Call the office or drop in after any prayer to speak to someone.</p>
+    </div>
+    <div class="svc-in">
+      <figure class="svc-photo rv">
+        <img src="https://images.unsplash.com/photo-1589104760192-ccab0ce0d90f?w=1200&q=70&auto=format&fit=crop" alt="A teacher sitting on the floor with a group of young children, pointing at picture cards" loading="lazy">
+        <figcaption><b>Weekend madrasah, ages 5–14</b>Small groups, qualified teachers, safeguarding-checked volunteers.</figcaption>
+      </figure>
+      <ul class="svc-list">
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span>
+          <div><h3>Madrasah &amp; adult classes</h3><p>Children's classes Saturday and Sunday mornings, plus weekday evening courses for adults in Arabic reading, basics of faith and youth mentoring.</p><span class="meta">From $25 a month · bursaries available</span></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></span>
+          <div><h3>Nikah ceremonies</h3><p>Small ceremonies in the library room or larger ones in the hall, with an imam to officiate and help with the paperwork you'll need for a civil registration.</p><span class="meta">Book at least 4 weeks ahead</span></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
+          <div><h3>Funeral services</h3><p>Washing and shrouding, the funeral prayer and liaison with the cemetery, handled with care by a trained team who will guide the family at every step.</p><span class="meta">24-hour line: 017 00000000</span></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div><h3>New Muslims &amp; the curious</h3><p>A friendly monthly circle, a mentor to call on, and an open invitation to anyone who simply wants to ask questions over tea. No pressure, ever.</p><span class="meta">First Sunday of the month, 3pm</span></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+          <div><h3>Counselling &amp; meet an imam</h3><p>Confidential sessions with a qualified counsellor (male and female available), or a private conversation with one of our imams about family or personal matters.</p><span class="meta">By appointment · free</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec events" id="events" aria-labelledby="ev-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Coming up</span>
+      <h2 id="ev-h">This month at <span class="acc">Ashgrove</span></h2>
+      <p>Everyone is welcome at our community events. Most are free; just let us know you're coming for the meals.</p>
+    </div>
+    <ul class="ev-list">
+      <li class="ev rv"><div class="d"><b>29</b><span>Nov</span></div><div><h3>Open Mosque Saturday</h3><div class="when">Sat · 11:00 – 15:00</div><p>Guided tours every hour, a Q&amp;A with the imam and tea in the courtyard. Bring friends, neighbours and colleagues.</p><span class="who">Open to all</span></div></li>
+      <li class="ev rv"><div class="d"><b>04</b><span>Dec</span></div><div><h3>Sisters' study circle</h3><div class="when">Thu · 10:30 – 12:00 · Women's hall</div><p>A relaxed weekly gathering with a short talk, discussion and a crèche in the next room.</p><span class="who">Women only</span></div></li>
+      <li class="ev rv"><div class="d"><b>06</b><span>Dec</span></div><div><h3>Winter coat &amp; food drive</h3><div class="when">Sat · 10:00 – 14:00 · Main entrance</div><p>Drop off warm coats and tinned food for the Millbrook community pantry. Volunteers needed for sorting.</p><span class="who">Volunteers welcome</span></div></li>
+      <li class="ev rv"><div class="d"><b>13</b><span>Dec</span></div><div><h3>Neighbours' supper</h3><div class="when">Sat · 18:30 · Community hall</div><p>A shared meal for residents of Larch Road and the estate, with stalls from the youth group and our madrasah children.</p><span class="who">Free · please RSVP at reception</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="women" aria-labelledby="wa-h">
+  <div class="wrap wa-in">
+    <div>
+      <div class="sec-head rv" style="margin-bottom:28px">
+        <span class="kicker">Women &amp; accessibility</span>
+        <h2 id="wa-h">Room for <span class="acc">everyone</span> to pray in comfort</h2>
+        <p>Women have their own entrance, hall and facilities, open for every prayer, including Jumu'ah. The building was refitted in 2023 so that age or mobility is never a barrier.</p>
+      </div>
+      <ul class="wa-list rv">
+        <li><b>Women's prayer hall</b><span>Separate side entrance, carpeted hall upstairs with a lift, relayed sermon on screen.</span></li>
+        <li><b>Wudu &amp; toilets</b><span>Dedicated women's wudu area, accessible toilet on both floors, baby-changing room.</span></li>
+        <li><b>Step-free throughout</b><span>Ramp at the main door, lift to all floors, wide corridors and automatic doors.</span></li>
+        <li><b>Chairs &amp; seated wudu</b><span>Prayer chairs in every hall and a seated wudu station for those who need it.</span></li>
+        <li><b>Hearing loop</b><span>Induction loop in the main hall; ask the office for a portable receiver.</span></li>
+        <li><b>Parking bays</b><span>Six disabled bays by the entrance, kept free on Fridays for blue-badge holders.</span></li>
+      </ul>
+    </div>
+    <figure class="wa-photo rv">
+      <img src="https://images.unsplash.com/photo-1633279309534-f761427548b6?w=1200&q=70&auto=format&fit=crop" alt="A smiling young woman in a beige headscarf holding up a book in a bright room" loading="lazy">
+      <figcaption class="wa-quote"><q>I come with the twins for Thursday circle. There's a crèche next door and I finally get an hour to think.</q>Rania H., member since 2019</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec donate" id="donate" aria-labelledby="don-h">
+  <div class="wrap don-in">
+    <div class="rv">
+      <span class="kicker">Support your masjid</span>
+      <h2 id="don-h">Kept open by the <span class="acc">community</span>, for the community</h2>
+      <p class="intro">We receive no government funding. Heating, cleaning, the madrasah and the food pantry are all paid for by people like you, one gift at a time.</p>
+      <div class="fund-bar">
+        <div class="top"><span>New roof &amp; boiler fund</span><b>$148,600 of $220,000</b></div>
+        <div class="bar" aria-hidden="true"><i id="fundBar" data-w="67.5"></i></div>
+        <small>412 households have given so far · target spring 2027</small>
+      </div>
+    </div>
+
+    <div class="don-card rv">
+      <form id="donForm" novalidate>
+        <fieldset>
+          <legend>Choose a fund</legend>
+          <div class="chips" id="fundChips">
+            <span class="chip"><input type="radio" name="fund" id="f1" value="General" checked><label for="f1">General</label></span>
+            <span class="chip"><input type="radio" name="fund" id="f2" value="Zakat"><label for="f2">Zakat</label></span>
+            <span class="chip"><input type="radio" name="fund" id="f3" value="Building fund"><label for="f3">Building fund</label></span>
+          </div>
+          <p class="fund-hint" id="fundHint">Day-to-day running costs: heating, cleaning, staff and the madrasah.</p>
+        </fieldset>
+        <fieldset>
+          <legend>Amount</legend>
+          <div class="chips amts">
+            <span class="chip"><input type="radio" name="amt" id="a1" value="10"><label for="a1">$10</label></span>
+            <span class="chip"><input type="radio" name="amt" id="a2" value="25" checked><label for="a2">$25</label></span>
+            <span class="chip"><input type="radio" name="amt" id="a3" value="50"><label for="a3">$50</label></span>
+            <span class="chip"><input type="radio" name="amt" id="a4" value="100"><label for="a4">$100</label></span>
+            <span class="chip"><input type="radio" name="amt" id="a5" value="other"><label for="a5">Other</label></span>
+          </div>
+          <div class="field other" id="otherWrap">
+            <label for="otherAmt">Your amount (USD)</label>
+            <input id="otherAmt" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 40" aria-describedby="otherErr">
+            <span class="err" id="otherErr"></span>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>How often</legend>
+          <div class="chips">
+            <span class="chip"><input type="radio" name="freq" id="q1" value="once" checked><label for="q1">One-off</label></span>
+            <span class="chip"><input type="radio" name="freq" id="q2" value="monthly"><label for="q2">Monthly</label></span>
+          </div>
+        </fieldset>
+        <div class="f2">
+          <div class="field" id="nameF"><label for="dName">Full name</label><input id="dName" autocomplete="name" aria-describedby="nameErr"><span class="err" id="nameErr"></span></div>
+          <div class="field" id="mailF"><label for="dMail">Email</label><input id="dMail" type="email" autocomplete="email" aria-describedby="mailErr"><span class="err" id="mailErr"></span></div>
+        </div>
+        <div class="summary">
+          <p>You're pledging <b id="sumAmt">$25</b> <span id="sumTxt">once to the General fund</span></p>
+          <button class="btn btn-lapis" type="submit">Make my pledge</button>
+        </div>
+        <p class="don-note">This records a pledge only. We'll email you secure payment details and a receipt for your records. Zakat is kept in a separate account and distributed locally.</p>
+      </form>
+      <div class="done" id="donDone" role="status" tabindex="-1">
+        <div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>Thank you, <span id="doneName"></span></h3>
+        <p id="doneTxt">Your pledge has been noted. No payment has been taken.</p>
+        <button class="btn btn-line" type="button" id="donAgain">Make another pledge</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="visit" aria-labelledby="visit-h">
+  <div class="wrap visit-in">
+    <div class="rv">
+      <div class="vphoto"><img src="https://images.unsplash.com/photo-1721386010564-02c5728a6643?w=1200&q=70&auto=format&fit=crop" alt="White mosque building with a green dome and small turrets against a pale evening sky" loading="lazy"></div>
+      <div class="map" role="img" aria-label="Map: Ashgrove Masjid sits on Larch Road, beside Larch Park and five minutes north of Millbrook station">
+        <div class="park"></div>
+        <div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div>
+        <span class="rl" style="left:14px;top:calc(58% + 20px)">LARCH ROAD</span>
+        <span class="rl" style="left:calc(52% + 20px);top:10px">ELM AVENUE</span>
+        <div class="rail"></div><span class="stn">Millbrook Stn</span>
+        <div class="pin"><i></i><span>Ashgrove Masjid</span></div>
+      </div>
+    </div>
+    <div class="vinfo rv">
+      <span class="kicker">Visit us</span>
+      <h2 id="visit-h">You're <span class="acc">welcome</span> to drop in</h2>
+      <p>Whether you're new to the area, a student, a neighbour or a school group, our doors are open. Weekend tours need no booking.</p>
+      <ul class="vlist">
+        <li><span>Address</span><span>42 Larch Road, Millbrook</span></li>
+        <li><span>Open</span><span>Daily, 30 min before the first prayer until after the last</span></li>
+        <li><span>Office</span><span>Mon–Fri 10:00–17:00 · Sat 10:00–13:00</span></li>
+        <li><span>Getting here</span><span>5 min walk from Millbrook station · buses 12 &amp; 40 stop outside</span></li>
+      </ul>
+      <div class="contact-btns">
+        <a class="btn btn-lapis" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call the office</a>
+        <a class="btn btn-line" href="https://wa.me/0000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg>WhatsApp</a>
+        <a class="btn btn-line" href="https://maps.google.com/?q=42+Larch+Road+Millbrook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Directions</a>
+      </div>
+      <div class="first">
+        <h3>First time visiting?</h3>
+        <ul>
+          <li>Wear loose, modest clothing; headscarves are available for women at the door if you'd like one.</li>
+          <li>Shoes come off at the racks inside the entrance.</li>
+          <li>Ask at reception and someone will happily show you around.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div>
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span><span><b>Ashgrove Masjid</b><small>Millbrook</small></span></a>
+        <p>A mosque and community centre run by volunteers and a small staff team since 1987.</p>
+      </div>
+      <div><h4>Visit</h4><ul><li>42 Larch Road, Millbrook</li><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#times">Prayer times</a></li><li><a href="#services">Services</a></li><li><a href="#events">Events</a></li><li><a href="#women">Women &amp; access</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#donate">Donate</a></li><li><a href="#events">Volunteer</a></li><li><a href="#services">Book a nikah</a></li></ul></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Ashgrove Masjid &amp; Community Centre · Registered charity no. 0000000</span><span>Safeguarding lead: hello@example.com</span></div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a href="#times"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Times</a>
+  <a href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
+  <a href="https://maps.google.com/?q=42+Larch+Road+Millbrook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>Directions</a>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Nav ---------- */
+  var nav = document.getElementById("nav");
+  var burger = document.getElementById("burger");
+  var mmenu = document.getElementById("mmenu");
+  function onScroll(){ nav.classList.toggle("solid", window.scrollY > 40 || mmenu.classList.contains("open")); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+  function setMenu(open){
+    mmenu.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    onScroll();
+  }
+  burger.addEventListener("click", function(){ setMenu(!mmenu.classList.contains("open")); });
+  mmenu.addEventListener("click", function(e){ if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && mmenu.classList.contains("open")) { setMenu(false); burger.focus(); } });
+
+  /* ---------- Prayer times (fixed sample timetable) ---------- */
+  // Sample timetable: start times shift slightly by day of month; jamaat times fixed for the month.
+  var BASE = [
+    {k:"fajr",    n:"Fajr",    s:"05:58", j:"06:30"},
+    {k:"sunrise", n:"Sunrise", s:"07:38", j:null},
+    {k:"dhuhr",   n:"Dhuhr",   s:"11:56", j:"12:45"},
+    {k:"asr",     n:"Asr",     s:"13:52", j:"14:30"},
+    {k:"maghrib", n:"Maghrib", s:"15:59", j:"16:04"},
+    {k:"isha",    n:"Isha",    s:"17:36", j:"19:30"}
+  ];
+  var SHIFT = {fajr:1, sunrise:1, dhuhr:0, asr:-0.5, maghrib:-0.5, isha:-0.4};
+  function toMin(t){ var p = t.split(":"); return (+p[0]) * 60 + (+p[1]); }
+  function fmt(m){ m = Math.round(m); var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? "0" : "") + h + ":" + (mm < 10 ? "0" : "") + mm; }
+  function dayTimes(date){
+    var d = date.getDate() - 1, isFri = date.getDay() === 5;
+    return BASE.map(function(p){
+      var s = toMin(p.s) + Math.round(SHIFT[p.k] * d / 2);
+      var o = {k:p.k, n:p.n, s:s, j:p.j ? toMin(p.j) : null};
+      if (p.k === "maghrib") o.j = s + 5;
+      if (p.k === "dhuhr" && isFri) { o.n = "Jumu'ah"; o.j = toMin("12:45"); o.j2 = toMin("13:30"); }
+      return o;
+    });
+  }
+  var grid = document.getElementById("pgrid");
+  var tabToday = document.getElementById("tabToday"), tabTom = document.getElementById("tabTom");
+  var showTomorrow = false;
+  var dateFmt = function(d){ try { return d.toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"}); } catch(e){ return d.toDateString(); } };
+  var hijri = function(d){ try { return new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", {day:"numeric", month:"long", year:"numeric"}).format(d); } catch(e){ return ""; } };
+
+  function findNext(now){
+    var mins = now.getHours() * 60 + now.getMinutes();
+    var today = dayTimes(now).filter(function(p){ return p.k !== "sunrise"; });
+    for (var i = 0; i < today.length; i++) if (today[i].s > mins) return {p:today[i], tomorrow:false, diff:today[i].s - mins};
+    var t = new Date(now); t.setDate(t.getDate() + 1);
+    var f = dayTimes(t)[0];
+    return {p:f, tomorrow:true, diff:(1440 - mins) + f.s};
+  }
+
+  function render(){
+    var now = new Date();
+    var date = new Date(now); if (showTomorrow) date.setDate(date.getDate() + 1);
+    var times = dayTimes(date), nx = findNext(now);
+    var mins = now.getHours() * 60 + now.getMinutes();
+    grid.innerHTML = times.map(function(p){
+      var cls = "pcell" + (p.k === "sunrise" ? " sun" : "");
+      var isNext = (nx.tomorrow === showTomorrow) && nx.p.k === p.k;
+      if (isNext) cls += " is-next";
+      else if (!showTomorrow && p.k !== "sunrise" && p.s <= mins) cls += " is-past";
+      var jam = p.j2 ? fmt(p.j) + " / " + fmt(p.j2) : (p.j ? fmt(p.j) : "—");
+      return '<div class="' + cls + '"' + (isNext ? ' aria-current="time"' : '') + '>' +
+        '<div class="pn">' + p.n + '<span class="tag">Next</span></div>' +
+        '<div class="row"><span>Begins</span><b>' + fmt(p.s) + '</b></div>' +
+        '<div class="row j"><span>Jamaat</span><b' + (p.j2 ? ' style="font-size:18px"' : '') + '>' + jam + '</b></div></div>';
+    }).join("");
+    document.getElementById("dayLbl").textContent = showTomorrow ? "Tomorrow's" : "Today's";
+    var h = hijri(date);
+    document.getElementById("pfDate").textContent = dateFmt(date) + (h ? " · " + h : "") + " · Begins = start time · Jamaat = congregation";
+
+    // hero card
+    document.getElementById("ncDate").textContent = dateFmt(now) + (hijri(now) ? " · " + hijri(now) : "");
+    document.getElementById("ncName").textContent = nx.p.n + (nx.tomorrow ? " (tomorrow)" : "");
+    document.getElementById("ncStart").textContent = fmt(nx.p.s);
+    document.getElementById("ncJam").textContent = nx.p.j ? fmt(nx.p.j) : "—";
+    var hh = Math.floor(nx.diff / 60), mm = nx.diff % 60;
+    document.getElementById("ncCount").textContent = "Begins in " + (hh ? hh + " h " : "") + mm + " min";
+  }
+  function selectTab(tom){
+    showTomorrow = tom;
+    tabToday.setAttribute("aria-selected", String(!tom)); tabTom.setAttribute("aria-selected", String(tom));
+    tabToday.tabIndex = tom ? -1 : 0; tabTom.tabIndex = tom ? 0 : -1;
+    render();
+  }
+  tabToday.addEventListener("click", function(){ selectTab(false); });
+  tabTom.addEventListener("click", function(){ selectTab(true); });
+  [tabToday, tabTom].forEach(function(b){
+    b.addEventListener("keydown", function(e){
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); var t = b === tabToday ? tabTom : tabToday; t.focus(); selectTab(t === tabTom); }
+    });
+  });
+  render();
+  var timer = null;
+  function startTimer(){ if (!timer) timer = setInterval(render, 30000); }
+  function stopTimer(){ clearInterval(timer); timer = null; }
+  document.addEventListener("visibilitychange", function(){ if (document.hidden) stopTimer(); else { render(); startTimer(); } });
+  startTimer();
+
+  /* ---------- Donate pledge ---------- */
+  var form = document.getElementById("donForm");
+  var hints = {
+    "General": "Day-to-day running costs: heating, cleaning, staff and the madrasah.",
+    "Zakat": "Kept separately and given to eligible families in Millbrook, assessed by our welfare team.",
+    "Building fund": "Goes straight to the new roof and boiler, so the halls stay warm and dry."
+  };
+  var otherWrap = document.getElementById("otherWrap"), otherAmt = document.getElementById("otherAmt");
+  function val(name){ var c = form.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ""; }
+  function amount(){ var a = val("amt"); return a === "other" ? parseInt(otherAmt.value, 10) : parseInt(a, 10); }
+  function summary(){
+    var fund = val("fund"), a = amount();
+    document.getElementById("fundHint").textContent = hints[fund];
+    otherWrap.classList.toggle("show", val("amt") === "other");
+    document.getElementById("sumAmt").textContent = a > 0 ? "$" + a : "$—";
+    document.getElementById("sumTxt").textContent = (val("freq") === "monthly" ? "every month" : "once") + " to the " + fund + (fund === "Building fund" ? "" : " fund");
+  }
+  form.addEventListener("change", summary);
+  otherAmt.addEventListener("input", summary);
+  form.querySelector("#a5").addEventListener("change", function(){ otherAmt.focus(); });
+  function setErr(fieldEl, errId, msg){
+    if (fieldEl) fieldEl.classList.toggle("bad", !!msg);
+    document.getElementById(errId).textContent = msg || "";
+  }
+  var nameI = document.getElementById("dName"), mailI = document.getElementById("dMail");
+  function vName(){ var ok = nameI.value.trim().length >= 2; setErr(document.getElementById("nameF"), "nameErr", ok ? "" : "Please enter your name."); nameI.setAttribute("aria-invalid", String(!ok)); return ok; }
+  function vMail(){ var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mailI.value.trim()); setErr(document.getElementById("mailF"), "mailErr", ok ? "" : "Please enter a valid email so we can send payment details."); mailI.setAttribute("aria-invalid", String(!ok)); return ok; }
+  function vAmt(){ if (val("amt") !== "other") { setErr(otherWrap, "otherErr", ""); return true; } var ok = amount() >= 1; setErr(otherWrap, "otherErr", ok ? "" : "Enter an amount of $1 or more."); return ok; }
+  nameI.addEventListener("blur", function(){ if (nameI.value) vName(); });
+  mailI.addEventListener("blur", function(){ if (mailI.value) vMail(); });
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var a = vAmt(), n = vName(), m = vMail();
+    if (!(a && n && m)) { var bad = form.querySelector('[aria-invalid="true"]') || (a ? null : otherAmt); if (bad) bad.focus(); return; }
+    var first = nameI.value.trim().split(/\s+/)[0];
+    document.getElementById("doneName").textContent = first + ".";
+    document.getElementById("doneTxt").textContent = "Your pledge of $" + amount() + " " + document.getElementById("sumTxt").textContent + " has been noted. We'll email " + mailI.value.trim() + " with secure payment details. No payment has been taken.";
+    form.style.display = "none";
+    var done = document.getElementById("donDone"); done.style.display = "block"; done.focus();
+  });
+  document.getElementById("donAgain").addEventListener("click", function(){
+    form.reset(); summary();
+    ["nameF","mailF"].forEach(function(id){ document.getElementById(id).classList.remove("bad"); });
+    ["nameErr","mailErr","otherErr"].forEach(function(id){ document.getElementById(id).textContent = ""; });
+    document.getElementById("donDone").style.display = "none"; form.style.display = "block"; nameI.focus();
+  });
+  summary();
+
+  /* ---------- Reveal + fund bar ---------- */
+  var bar = document.getElementById("fundBar");
+  var els = document.querySelectorAll(".rv");
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(function(el){ el.classList.add("in"); });
+    bar.style.width = bar.dataset.w + "%";
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px"});
+    els.forEach(function(el){ io.observe(el); });
+    var io2 = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting) { bar.style.width = bar.dataset.w + "%"; io2.disconnect(); }
+    });
+    io2.observe(bar);
+  }
+})();
+</script>
+</body>
+</html>

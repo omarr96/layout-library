@@ -274,6 +274,54 @@ window.DESIGNS = {
       ]
     },
     {
+      "cat": "niche-sites",
+      "slug": "niche-10-religious-event",
+      "title": "Eid on the Meadow · Eid festival",
+      "desc": "Prayer details & countdown, moon-sighting note, the day's programme, site map & transport, stalls & vendors, volunteer shifts, register form, FAQ.",
+      "tags": [
+        "Event"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/10-religious-event/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-11-mosque",
+      "title": "Ashgrove Masjid · Mosque",
+      "desc": "Live prayer times (today/tomorrow), Friday prayer, services, events, women & accessibility, building fund & pledge form, visit us with map.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/11-mosque/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "niche-sites",
+      "slug": "niche-12-church",
+      "title": "Ashby Falls Community Church · Church",
+      "desc": "Service times, first-visit guide, kids & youth, groups, events filter, latest message, community outreach, giving, plan-a-visit form & map.",
+      "tags": [
+        "Community"
+      ],
+      "date": "2026-11-25",
+      "pages": [
+        {
+          "label": "Page",
+          "href": "niche-sites/12-church/index.html"
+        }
+      ]
+    },
+    {
       "cat": "architecture-landing",
       "slug": "arch-gallery",
       "title": "Both pages",

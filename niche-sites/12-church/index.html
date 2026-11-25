@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashby Falls Community Church — Sundays at 9:00 & 10:45</title>
+<meta name="description" content="A friendly neighbourhood church on Mill Street in Ashby Falls. Sundays at 9:00 and 10:45am, kids and youth programs, a weekly community meal and a free food pantry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#F8F4EE; --card:#FFFFFF; --ink:#2A2226; --muted:#675C60; --line:#E8DFD6; --soft:#F1EAE2;
+  --plum:#7A3557; --plum-d:#622A46; --plum-50:#F4E6EC;
+  --ok:#2F6B4A; --err:#A8321E;
+  --r:20px; --shadow:0 1px 2px rgba(42,34,38,.05),0 18px 40px -20px rgba(42,34,38,.22);
+  --sans:"Albert Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Lora",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--linen);color:var(--ink);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.1}
+/* accent words: upright sans sentence, a single italic serif phrase with a hand-drawn underline */
+.acc{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.005em;color:var(--plum);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8c40-5 90-7 196-3' fill='none' stroke='%237A3557' stroke-opacity='.35' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") left 92%/100% .3em no-repeat;padding-bottom:.06em}
+.kicker{font-size:14px;font-weight:600;color:var(--plum);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.sec{padding:108px 0}
+.sec-head{max-width:620px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 16px}
+.sec-head p{color:var(--muted);font-size:18px}
+.sec-head .kicker{color:var(--plum);font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s}
+.btn-plum{background:var(--plum);color:#fff}
+.btn-plum:hover{background:var(--plum-d);transform:translateY(-1px)}
+.btn-line{border-color:var(--line);background:var(--card)}
+.btn-line:hover{border-color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(248,244,238,.84);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);border-bottom:1px solid transparent;transition:border-color .25s;z-index:-1}
+.nav.scrolled::before{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:28px;height:70px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;line-height:1.05}
+.logo-mark{width:34px;height:34px;flex:none}
+.logo b{display:block;font-size:17px;letter-spacing:-.02em}
+.logo small{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.nav-links{display:flex;gap:24px;list-style:none;margin-left:auto}
+.nav-links a{text-decoration:none;font-size:15px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+.nav .btn{padding:10px 18px;font-size:15px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{display:none}
+
+/* HERO: text first, then a wide photo band */
+.hero{padding:146px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:64px;align-items:end}
+.hero h1{font-size:clamp(42px,6.2vw,80px);margin:20px 0 24px;max-width:13ch}
+.hero-sub{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:560px;margin-bottom:32px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.sunday{border-left:2px solid var(--plum);padding:4px 0 6px 24px}
+.sunday h2{font-size:15px;font-weight:600;letter-spacing:0;color:var(--muted);margin-bottom:14px}
+.times{display:flex;gap:28px;margin-bottom:16px}
+.times strong{display:block;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.times span{font-size:14px;color:var(--muted)}
+.sunday p{font-size:15px;color:var(--muted)}
+.sunday p b{color:var(--ink);font-weight:600}
+.band{margin-top:64px;position:relative;border-radius:28px;overflow:hidden;aspect-ratio:2.35/1;background:var(--soft)}
+.band img{width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+.band::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(30,20,25,.55))}
+.band figcaption{position:absolute;left:28px;bottom:24px;z-index:1;color:#fff;font-size:15px;font-weight:500;display:flex;align-items:center;gap:10px}
+.band figcaption::before{content:"";width:22px;height:2px;background:#fff;border-radius:2px}
+
+/* FIRST VISIT */
+.visit-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.visit-photo{position:sticky;top:100px}
+.visit-photo img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%}
+.visit-photo blockquote{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45}
+.visit-photo cite{display:block;margin-top:8px;font-family:var(--sans);font-style:normal;font-size:14px;color:var(--muted)}
+.expect{list-style:none;border-top:1px solid var(--line)}
+.expect li{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:28px 0;border-bottom:1px solid var(--line)}
+.ico{width:52px;height:52px;border-radius:14px;background:var(--plum-50);color:var(--plum);display:grid;place-items:center}
+.ico svg{width:24px;height:24px}
+.expect h3{font-size:21px;margin-bottom:6px}
+.expect p{color:var(--muted)}
+
+/* KIDS */
+.kids{background:var(--card)}
+.kids-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+.kids-photo img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%}
+.ages{list-style:none;margin:8px 0 28px}
+.ages li{display:flex;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+.ages li:first-child{border-top:1px solid var(--line)}
+.ages .age{flex:none;width:104px;font-size:14px;font-weight:600;color:var(--plum)}
+.ages h3{font-size:19px;margin-bottom:3px}
+.ages p{color:var(--muted);font-size:16px}
+.safe{display:flex;gap:14px;align-items:flex-start;background:var(--linen);border-radius:16px;padding:18px 20px;font-size:15px;color:var(--muted)}
+.safe svg{flex:none;width:22px;height:22px;color:var(--ok);margin-top:2px}
+.safe b{color:var(--ink)}
+
+/* GROUPS */
+.groups-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.group-feature{grid-row:span 2;position:relative;border-radius:var(--r);overflow:hidden;min-height:460px;color:#fff;display:flex;align-items:flex-end}
+.group-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.group-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,25,.05) 10%,rgba(30,20,25,.55) 45%,rgba(30,20,25,.88))}
+.group-feature div{position:relative;z-index:1;padding:32px}
+.group-feature .tag{display:inline-block;font-size:13px;font-weight:600;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.group-feature h3{font-size:30px;margin-bottom:8px}
+.group-feature p{opacity:.92;max-width:440px}
+.group-list{list-style:none;background:var(--card);border-radius:var(--r);padding:8px 28px;box-shadow:var(--shadow)}
+.group-list li{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.group-list li:last-child{border-bottom:0}
+.group-list h3{font-size:18px;margin-bottom:2px}
+.group-list p{font-size:15px;color:var(--muted)}
+.group-list .when{flex:none;font-size:14px;font-weight:600;color:var(--plum);text-align:right;white-space:nowrap}
+
+/* EVENTS */
+.events{background:var(--card)}
+.ev-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.ev-top .sec-head{margin-bottom:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);padding:9px 16px;border-radius:999px;font-size:15px;font-weight:500;color:var(--muted);transition:all .2s}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.ev-list{list-style:none;border-top:1px solid var(--line)}
+.ev{display:grid;grid-template-columns:84px 1fr auto;gap:28px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);transition:opacity .25s}
+.ev[hidden]{display:none}
+.date{text-align:center;border-radius:14px;background:var(--linen);padding:10px 0}
+.date small{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--plum)}
+.date b{display:block;font-size:28px;font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.ev h3{font-size:20px;margin-bottom:4px}
+.ev p{color:var(--muted);font-size:16px}
+.ev .meta{font-size:14px;color:var(--muted);text-align:right;white-space:nowrap}
+.ev .meta b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+.ev-empty{padding:28px 0;color:var(--muted)}
+
+/* WATCH */
+.watch-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.player{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:16/9;text-decoration:none;color:#fff;box-shadow:var(--shadow)}
+.player img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.player:hover img{transform:scale(1.03)}
+.player::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,20,25,.72),rgba(30,20,25,.15) 70%)}
+.player-txt{position:absolute;z-index:1;left:32px;bottom:30px;right:32px}
+.player-txt small{font-size:14px;opacity:.85}
+.player-txt h3{font-size:clamp(24px,3vw,36px);margin:6px 0 4px}
+.player-txt p{opacity:.85;font-size:15px}
+.play{position:absolute;z-index:1;top:28px;left:32px;width:64px;height:64px;border-radius:50%;background:#fff;color:var(--plum);display:grid;place-items:center;transition:transform .25s}
+.player:hover .play{transform:scale(1.07)}
+.play svg{width:22px;height:22px;margin-left:3px}
+.watch-side h3{font-size:22px;margin-bottom:10px}
+.watch-side p{color:var(--muted);margin-bottom:22px}
+.past{list-style:none;border-top:1px solid var(--line);margin-bottom:26px}
+.past li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:16px}
+.past a{text-decoration:none;font-weight:500}
+.past a:hover{color:var(--plum)}
+.past span{color:var(--muted);font-size:14px;white-space:nowrap}
+
+/* OUTREACH */
+.outreach{background:var(--ink);color:#F4EEF0}
+.outreach .kicker{color:#E7B9CE}
+.out-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.out-grid h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 18px}
+.outreach .acc{color:#E7B9CE;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8c40-5 90-7 196-3' fill='none' stroke='%23E7B9CE' stroke-opacity='.4' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E")}
+.out-lead{color:#CFC4C9;font-size:18px;margin-bottom:34px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:34px;padding:26px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)}
+.stats strong{display:block;font-size:36px;font-weight:600;letter-spacing:-.03em;color:#fff}
+.stats span{font-size:14px;color:#BFB3B9}
+.pantry{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.pantry p{font-size:15px;color:#CFC4C9}
+.pantry p b{color:#fff}
+.outreach .btn-line{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+.outreach .btn-line:hover{border-color:#fff}
+.out-photo img{border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;width:100%}
+
+/* GIVE */
+.give-box{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;background:var(--card);border-radius:28px;padding:56px;box-shadow:var(--shadow)}
+.give-box h2{font-size:clamp(30px,3.6vw,44px);margin:14px 0 14px}
+.give-box>div>p{color:var(--muted);margin-bottom:26px}
+.give-box p.kicker,.form-card p.kicker{color:var(--plum);margin-bottom:0;font-size:14px}
+.split{list-style:none}
+.split li{padding:16px 0;border-bottom:1px solid var(--line)}
+.split li:last-child{border-bottom:0}
+.split .row{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
+.split .row span{color:var(--plum)}
+.bar{height:6px;border-radius:6px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--plum);border-radius:6px;transform-origin:left;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.split small{display:block;margin-top:6px;color:var(--muted);font-size:14px}
+.give-note{font-size:14px;color:var(--muted);margin-top:14px}
+
+/* PLAN + CONTACT */
+.plan-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.form-card{background:var(--card);border-radius:28px;padding:44px;box-shadow:var(--shadow)}
+.form-card h2{font-size:clamp(28px,3.4vw,40px);margin:12px 0 10px}
+#form-wrap>p:not(.kicker){color:var(--muted);margin-bottom:28px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+.f label,.f legend{font-size:15px;font-weight:600}
+.f .opt{font-weight:400;color:var(--muted)}
+.f input,.f select,.f textarea{width:100%;border:1px solid var(--line);background:var(--linen);border-radius:12px;padding:12px 14px;font-size:16px;transition:border-color .2s,background .2s}
+.f textarea{min-height:92px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--plum);background:#fff;box-shadow:0 0 0 3px var(--plum-50)}
+.f.bad input,.f.bad select{border-color:var(--err);background:#FDF3F1}
+.err{font-size:14px;color:var(--err);min-height:0}
+.err:empty{display:none}
+fieldset.f{border:0}
+.seg{display:flex;gap:10px;flex-wrap:wrap;margin-top:2px}
+.seg label{position:relative;font-weight:500}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:inline-block;border:1px solid var(--line);background:var(--linen);border-radius:12px;padding:10px 16px;font-size:15px;transition:all .2s;cursor:pointer}
+.seg input:checked+span{background:var(--plum-50);border-color:var(--plum);color:var(--plum-d);font-weight:600}
+.seg input:focus-visible+span{outline:2px solid var(--plum);outline-offset:2px}
+.f.bad .seg span{border-color:var(--err)}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;flex-wrap:wrap}
+.form-foot p{font-size:14px;color:var(--muted);max-width:300px}
+.success{display:none;text-align:left}
+.success.show{display:block;animation:rise .5s ease both}
+.success .tick{width:56px;height:56px;border-radius:50%;background:#E5F0E9;color:var(--ok);display:grid;place-items:center;margin-bottom:18px}
+.success .tick svg{width:26px;height:26px}
+.success h3{font-size:28px;margin-bottom:10px}
+.success p{color:var(--muted);margin-bottom:10px}
+.success ul{margin:16px 0 22px 20px;color:var(--muted)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.find{display:flex;flex-direction:column;gap:20px}
+.map{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:#EDE6DC;border:1px solid var(--line)}
+.map .river{position:absolute;left:-10%;right:-10%;top:62%;height:38px;background:#C9DCE3;transform:rotate(-8deg);border-radius:40px}
+.map .rd{position:absolute;background:#fff;box-shadow:0 0 0 1px #E2D8CC}
+.map .r1{left:0;right:0;top:34%;height:14px}
+.map .r2{top:0;bottom:0;left:56%;width:14px}
+.map .r3{top:0;bottom:0;left:18%;width:10px;transform:rotate(12deg)}
+.map .green{position:absolute;left:24%;top:10%;width:26%;height:20%;background:#D6E2C8;border-radius:12px}
+.map .park{position:absolute;left:68%;top:10%;width:17%;height:18%;background:#E2D8CC;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted)}
+.map .lbl{position:absolute;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.map .pin{position:absolute;left:56%;top:34%;transform:translate(-30%,-100%)}
+.pin-dot{width:46px;height:46px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--plum);display:grid;place-items:center;box-shadow:0 10px 20px -8px rgba(122,53,87,.6)}
+.pin-dot svg{transform:rotate(45deg);width:20px;height:20px;color:#fff}
+.pin-tag{position:absolute;right:54px;top:4px;background:#fff;border-radius:10px;padding:6px 12px;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:var(--shadow)}
+.contact-card{background:var(--card);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+.contact-card h3{font-size:21px;margin-bottom:6px}
+.contact-card address{font-style:normal;color:var(--muted);margin-bottom:18px}
+.contact-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px;margin-bottom:22px}
+.contact-card dt{color:var(--muted)}
+.contact-card dd{font-weight:500}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.actions .btn{padding:12px 10px;font-size:15px}
+
+/* FOOTER */
+footer{padding:64px 0 40px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.foot p{color:var(--muted);font-size:15px;margin-top:14px;max-width:300px}
+.foot h3{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:15px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--plum)}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted);padding-top:24px;border-top:1px solid var(--line)}
+
+/* mobile quick bar */
+.quick{display:none}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1060px){
+  .nav-links{gap:18px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .sunday{max-width:520px}
+}
+@media (max-width:960px){
+  .nav-links,.nav .nav-btn{display:none}
+  .burger{display:block}
+  .mobile-menu{position:fixed;inset:70px 0 auto;background:var(--linen);border-bottom:1px solid var(--line);padding:12px 24px 24px;z-index:49;box-shadow:0 20px 30px -20px rgba(0,0,0,.2)}
+  .mobile-menu.open{display:block}
+  .mobile-menu ul{list-style:none}
+  .mobile-menu li a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px;font-weight:500}
+  .mobile-menu .btn{width:100%;margin-top:18px}
+  .sec{padding:84px 0}
+  .visit-grid,.kids-grid,.watch-grid,.out-grid,.give-box,.plan-grid{grid-template-columns:1fr;gap:40px}
+  .visit-photo{position:static}
+  .visit-photo img{aspect-ratio:16/10}
+  .groups-grid{grid-template-columns:1fr}
+  .group-feature{grid-row:auto;min-height:380px}
+  .give-box{padding:40px 32px}
+  .foot{grid-template-columns:1fr 1fr}
+  .band{aspect-ratio:16/10}
+}
+@media (max-width:640px){
+  body{font-size:16px;padding-bottom:72px}
+  .wrap{padding:0 16px}
+  .hero{padding-top:112px}
+  .band{margin-top:44px;border-radius:20px;aspect-ratio:4/3}
+  .band figcaption{left:18px;bottom:16px;font-size:14px}
+  .times strong{font-size:34px}
+  .sec{padding:68px 0}
+  .sec-head{margin-bottom:36px}
+  .expect li{grid-template-columns:44px 1fr;gap:14px;padding:22px 0}
+  .ico{width:44px;height:44px;border-radius:12px}
+  .ages li{flex-direction:column;gap:4px}
+  .group-list{padding:4px 20px}
+  .group-list li{flex-direction:column;gap:4px}
+  .group-list .when{text-align:left}
+  .group-feature div{padding:24px}
+  .ev{grid-template-columns:64px 1fr;gap:16px}
+  .ev .meta{grid-column:2;text-align:left;white-space:normal}
+  .ev .meta b{display:inline;margin-right:8px}
+  .date b{font-size:23px}
+  .player-txt{left:20px;right:20px;bottom:18px}
+  .play{top:18px;left:20px;width:52px;height:52px}
+  .player{aspect-ratio:4/3}
+  .player::after{background:linear-gradient(180deg,rgba(30,20,25,.2),rgba(30,20,25,.8))}
+  .stats{gap:12px}
+  .stats strong{font-size:28px}
+  .give-box{padding:30px 20px;border-radius:22px}
+  .form-card{padding:28px 20px;border-radius:22px}
+  .fields{grid-template-columns:1fr}
+  .form-foot .btn{width:100%}
+  .actions{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr;gap:28px}
+  .quick{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+  .quick::before{content:"";position:absolute;inset:0;background:rgba(248,244,238,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:-1}
+  .quick .btn{padding:11px 8px;font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Ashby Falls Community Church, home">
+      <svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#7A3557"/><path d="M9 25V15.5L17 9l8 6.5V25" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M14.5 25v-5a2.5 2.5 0 0 1 5 0v5" fill="none" stroke="#F4E6EC" stroke-width="2.2"/></svg>
+      <span><b>Ashby Falls</b><small>Community Church</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#visit">Sundays</a></li>
+      <li><a href="#kids">Kids &amp; youth</a></li>
+      <li><a href="#groups">Groups</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#watch">Watch</a></li>
+      <li><a href="#give">Give</a></li>
+    </ul>
+    <a class="btn btn-plum nav-btn" href="#plan">Plan a visit</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+  <ul>
+    <li><a href="#visit">Sundays</a></li>
+    <li><a href="#kids">Kids &amp; youth</a></li>
+    <li><a href="#groups">Groups</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#watch">Watch online</a></li>
+    <li><a href="#outreach">Food pantry</a></li>
+    <li><a href="#give">Give</a></li>
+  </ul>
+  <a class="btn btn-plum" href="#plan">Plan a visit</a>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Mill Street, Ashby Falls</p>
+        <h1>A church that <span class="acc">saves you a seat.</span></h1>
+        <p class="hero-sub">We’re a neighbourhood church of about 300 people — families, students, retirees, the curious and the unsure. Come as you are; the coffee’s on from 8:30.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-plum" href="#plan">Plan your first visit</a>
+          <a class="btn btn-line" href="#watch"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>Watch online</a>
+        </div>
+      </div>
+      <div class="sunday">
+        <h2>This Sunday</h2>
+        <div class="times">
+          <div><strong>9:00</strong><span>Quieter, shorter</span></div>
+          <div><strong>10:45</strong><span>Full band, livestreamed</span></div>
+        </div>
+        <p><b>214 Mill Street</b> · free parking behind the building<br>Kids’ rooms open at both services</p>
+      </div>
+    </div>
+    <figure class="band rv">
+      <img src="https://images.unsplash.com/photo-1569292567777-e5d61a759322?w=1800&q=70&auto=format&fit=crop" alt="A laughing group of young adults from many backgrounds posing together on the church’s front steps" width="1800" height="1200" fetchpriority="high">
+      <figcaption>Youth night on the front steps</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- FIRST VISIT -->
+<section class="sec" id="visit" aria-labelledby="visit-h">
+  <div class="wrap visit-grid">
+    <figure class="visit-photo rv">
+      <img src="https://images.unsplash.com/photo-1778939124771-2455f739db29?w=1200&q=70&auto=format&fit=crop" alt="The red-brick church building with its arched front entrance and green lawn" width="1200" height="1500" loading="lazy">
+      <blockquote>“I sat in the back the first week and nobody made a fuss. By week three I was pouring the coffee.”<cite>— Priya, came along in 2024</cite></blockquote>
+    </figure>
+    <div>
+      <div class="sec-head">
+        <p class="kicker">Your first Sunday</p>
+        <h2 id="visit-h">What to expect, <span class="acc">before you walk in.</span></h2>
+        <p>Visiting somewhere new can feel like a lot. Here’s everything people usually ask us about.</p>
+      </div>
+      <ul class="expect">
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></span>
+          <div><h3>Parking &amp; the front door</h3><p>Park in the lot behind the building (enter from Weir Lane). Use the main doors on Mill Street — there’s a step-free ramp on the left and someone in a green lanyard to say hello.</p></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><h3>About 70 minutes</h3><p>Some live music, a short talk on everyday life and faith, and time to sit quietly. Nobody will ask you to stand up, speak or sign anything.</p></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0Z"/></svg></span>
+          <div><h3>Wear whatever’s comfortable</h3><p>Jeans, work boots, Sunday best — you’ll see all of it. Bring the kids, bring a friend, bring your questions.</p></div></li>
+        <li class="rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v2M12 3v2"/></svg></span>
+          <div><h3>Stay for coffee</h3><p>The hall stays open after both services with coffee, tea and something baked. If you’d like, we’ll introduce you to a few people — or just let you be.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KIDS -->
+<section class="sec kids" id="kids" aria-labelledby="kids-h">
+  <div class="wrap kids-grid">
+    <div>
+      <div class="sec-head">
+        <p class="kicker">Kids &amp; youth</p>
+        <h2 id="kids-h">Somewhere they’ll <span class="acc">actually want</span> to go.</h2>
+        <p>Every age has its own room, its own leaders and its own kind of Sunday morning.</p>
+      </div>
+      <ul class="ages">
+        <li><span class="age">0 – 2 years</span><div><h3>The Nest</h3><p>A calm nursery with familiar faces. Pagers for parents, so you’re never far.</p></div></li>
+        <li><span class="age">3 – 10 years</span><div><h3>Ashby Kids</h3><p>Games, crafts, stories and snacks — grouped by age, at both services.</p></div></li>
+        <li><span class="age">11 – 18 years</span><div><h3>Youth</h3><p>Friday nights 7–9pm in the youth hall: food, music, honest conversations.</p></div></li>
+      </ul>
+      <div class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><p><b>Safe by design.</b> Secure check-in with matching name tags, two trained adults in every room, and every volunteer background-checked.</p></div>
+    </div>
+    <figure class="kids-photo rv">
+      <img src="https://images.unsplash.com/photo-1766932901295-d4185660341b?w=1300&q=70&auto=format&fit=crop" alt="Children making paper crafts at a long table while a volunteer helps and parents look on" width="1300" height="1040" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- GROUPS -->
+<section class="sec" id="groups" aria-labelledby="groups-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Groups &amp; ministries</p>
+      <h2 id="groups-h">Sunday is the start. <span class="acc">The week is where</span> friendships happen.</h2>
+      <p>Small, informal groups that meet in homes, the hall and the café down the road. Drop in any week.</p>
+    </div>
+    <div class="groups-grid">
+      <article class="group-feature rv">
+        <img src="https://images.unsplash.com/photo-1721180672597-beddd124205a?w=1300&q=70&auto=format&fit=crop" alt="Overhead view of people sharing plates of food at a long table with ‘Welcome friends’ written across the tablecloth" width="1300" height="770" loading="lazy">
+        <div>
+          <span class="tag">Open to everyone</span>
+          <h3>Tuesday Table</h3>
+          <p>A free home-cooked dinner in the church hall every Tuesday at 6pm. Around 80 neighbours, one long table, no sign-up needed.</p>
+        </div>
+      </article>
+      <ul class="group-list rv">
+        <li><div><h3>Young adults</h3><p>Ages 18–30 · board games and big questions</p></div><span class="when">Sun · 7pm</span></li>
+        <li><div><h3>Parents’ morning</h3><p>Coffee and toddler play in the hall</p></div><span class="when">Wed · 9:30am</span></li>
+        <li><div><h3>Men’s breakfast</h3><p>Pancakes at Millside Café</p></div><span class="when">1st Sat · 8am</span></li>
+      </ul>
+      <ul class="group-list rv">
+        <li><div><h3>Women’s evening</h3><p>Conversation, crafts and dessert</p></div><span class="when">Thu · 7:30pm</span></li>
+        <li><div><h3>Seniors’ coffee club</h3><p>With lifts available — just ask</p></div><span class="when">Mon · 10am</span></li>
+        <li><div><h3>Community choir</h3><p>All voices, no audition</p></div><span class="when">Thu · 6pm</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="sec events" id="events" aria-labelledby="events-h">
+  <div class="wrap">
+    <div class="ev-top">
+      <div class="sec-head">
+        <p class="kicker">Coming up</p>
+        <h2 id="events-h">What’s on <span class="acc">this season</span></h2>
+      </div>
+      <div class="chips" role="group" aria-label="Filter events">
+        <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-f="community" aria-pressed="false">Community</button>
+        <button class="chip" type="button" data-f="family" aria-pressed="false">Kids &amp; family</button>
+        <button class="chip" type="button" data-f="sunday" aria-pressed="false">Services</button>
+      </div>
+    </div>
+    <ul class="ev-list" id="ev-list" aria-live="polite">
+      <li class="ev" data-c="community"><div class="date"><small>Dec</small><b>2</b></div><div><h3>Winter coat drive opens</h3><p>Drop off clean coats, hats and gloves in the foyer. Collected for the Ashby Falls shelter.</p></div><div class="meta"><b>Wed – Dec 19</b>Foyer, all week</div></li>
+      <li class="ev" data-c="family"><div class="date"><small>Dec</small><b>5</b></div><div><h3>Kids’ holiday craft morning</h3><p>Paper lanterns, cookie decorating and hot chocolate. Ages 3–10, parents welcome.</p></div><div class="meta"><b>Sat · 10am</b>Church hall</div></li>
+      <li class="ev" data-c="community"><div class="date"><small>Dec</small><b>12</b></div><div><h3>Carols on the green</h3><p>Lights, a brass band and warm cider on the town green. Free, family friendly.</p></div><div class="meta"><b>Sat · 5pm</b>Town green</div></li>
+      <li class="ev" data-c="family"><div class="date"><small>Dec</small><b>13</b></div><div><h3>Youth gingerbread night</h3><p>Teams of four, one hour, a lot of icing. Bring a friend.</p></div><div class="meta"><b>Sun · 6pm</b>Youth hall</div></li>
+      <li class="ev" data-c="community"><div class="date"><small>Dec</small><b>19</b></div><div><h3>Pantry holiday boxes</h3><p>Help pack 250 holiday food boxes for local families. Volunteers 14+.</p></div><div class="meta"><b>Sat · 9am</b>Pantry entrance</div></li>
+      <li class="ev" data-c="sunday family"><div class="date"><small>Dec</small><b>24</b></div><div><h3>Christmas Eve candlelight</h3><p>Two relaxed services with music and candles. The 4pm one is made for little ones.</p></div><div class="meta"><b>Thu · 4pm &amp; 6pm</b>Main hall</div></li>
+      <li class="ev" data-c="sunday"><div class="date"><small>Jan</small><b>10</b></div><div><h3>New groups Sunday</h3><p>Every group sets up a table after both services. Find one that fits your week.</p></div><div class="meta"><b>Sun · 9:00 &amp; 10:45</b>Hall &amp; foyer</div></li>
+    </ul>
+    <p class="ev-empty" id="ev-empty" hidden>Nothing in this category right now — check back soon.</p>
+  </div>
+</section>
+
+<!-- WATCH -->
+<section class="sec" id="watch" aria-labelledby="watch-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Watch online</p>
+      <h2 id="watch-h">Can’t make it in? <span class="acc">Join from home.</span></h2>
+      <p>The 10:45 service streams live every Sunday, and past talks are here any time.</p>
+    </div>
+    <div class="watch-grid">
+      <a class="player rv" href="#watch" aria-label="Play the latest message: Making room, by Ruth Adeyemi, 31 minutes">
+        <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1500&q=70&auto=format&fit=crop" alt="" width="1500" height="1000" loading="lazy">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="player-txt">
+          <small>Latest message · Sunday, Nov 22</small>
+          <h3>Making room</h3>
+          <p>Ruth Adeyemi · Lead pastor · 31 min</p>
+        </span>
+      </a>
+      <div class="watch-side rv">
+        <h3>Recent talks</h3>
+        <p>Part of our autumn series, <i>Ordinary Days</i> — on work, rest, family and the people next door.</p>
+        <ul class="past">
+          <li><a href="#watch">Good neighbours</a><span>Nov 15 · 28 min</span></li>
+          <li><a href="#watch">When rest feels lazy</a><span>Nov 8 · 33 min</span></li>
+          <li><a href="#watch">Small things, often</a><span>Nov 1 · 29 min</span></li>
+        </ul>
+        <a class="btn btn-line" href="#watch">See every message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTREACH -->
+<section class="sec outreach" id="outreach" aria-labelledby="out-h">
+  <div class="wrap out-grid">
+    <div>
+      <p class="kicker">In the community</p>
+      <h2 id="out-h">If you’re hungry, <span class="acc">just come.</span></h2>
+      <p class="out-lead">The Mill Street Pantry is run by church members and neighbours for anyone in Ashby Falls who needs a hand. No paperwork, no questions, no catch.</p>
+      <div class="stats">
+        <div><strong>420</strong><span>households a month</span></div>
+        <div><strong>80</strong><span>meals every Tuesday</span></div>
+        <div><strong>65</strong><span>regular volunteers</span></div>
+      </div>
+      <div class="pantry">
+        <a class="btn btn-plum" href="#plan">Volunteer with us</a>
+        <p><b>Pantry hours</b><br>Wed 4–7pm · Sat 9am–12pm</p>
+      </div>
+    </div>
+    <figure class="out-photo rv">
+      <img src="https://images.unsplash.com/photo-1732194438313-40cb4261f49b?w=1200&q=70&auto=format&fit=crop" alt="Smiling volunteers with name lanyards packing tins, fruit and cooking oil into boxes" width="1200" height="1200" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- GIVE -->
+<section class="sec" id="give" aria-labelledby="give-h">
+  <div class="wrap">
+    <div class="give-box rv">
+      <div>
+        <p class="kicker">Give</p>
+        <h2 id="give-h">Generosity that <span class="acc">stays local.</span></h2>
+        <p>If you’re a guest, please don’t feel you need to give. If Ashby Falls is your church home, here’s where every dollar went last year.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-plum" href="#give">Give online</a>
+          <a class="btn btn-line" href="#give">Set up a monthly gift</a>
+        </div>
+        <p class="give-note">Also by text, by check, or in the box by the main doors.</p>
+      </div>
+      <ul class="split" id="split">
+        <li><div class="row">Pantry, meals &amp; local outreach <span>38%</span></div><div class="bar"><i style="transform:scaleX(.38)"></i></div><small>Food, the Tuesday Table, the coat drive and emergency help.</small></li>
+        <li><div class="row">Kids, youth &amp; groups <span>24%</span></div><div class="bar"><i style="transform:scaleX(.24)"></i></div><small>Supplies, training and safe rooms for every age.</small></li>
+        <li><div class="row">Staff &amp; Sunday services <span>26%</span></div><div class="bar"><i style="transform:scaleX(.26)"></i></div><small>Four part-time staff, music and livestreaming.</small></li>
+        <li><div class="row">Building &amp; upkeep <span>12%</span></div><div class="bar"><i style="transform:scaleX(.12)"></i></div><small>Heating a 1920s brick building is not cheap.</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN A VISIT + CONTACT -->
+<section class="sec" id="plan" aria-labelledby="plan-h" style="padding-top:0">
+  <div class="wrap plan-grid">
+    <div class="form-card rv">
+      <div id="form-wrap">
+        <p class="kicker">Plan a visit</p>
+        <h2 id="plan-h">Tell us you’re coming — <span class="acc">we’ll save you a seat.</span></h2>
+        <p>Totally optional. It just means someone can meet you at the door, show the kids to their rooms and grab you a coffee.</p>
+        <form id="visit-form" novalidate>
+          <div class="fields">
+            <div class="f"><label for="v-name">Your name</label><input id="v-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name" aria-live="polite"></span></div>
+            <div class="f"><label for="v-email">Email</label><input id="v-email" name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="err" id="e-email" aria-live="polite"></span></div>
+            <div class="f"><label for="v-date">Which Sunday?</label>
+              <select id="v-date" name="date" aria-describedby="e-date">
+                <option value="">Choose a date</option>
+                <option>Sunday, November 29</option>
+                <option>Sunday, December 6</option>
+                <option>Sunday, December 13</option>
+                <option>Sunday, December 20</option>
+              </select><span class="err" id="e-date" aria-live="polite"></span></div>
+            <div class="f"><label for="v-people">How many of you?</label><input id="v-people" name="people" type="number" min="1" max="20" inputmode="numeric" value="1" aria-describedby="e-people"><span class="err" id="e-people" aria-live="polite"></span></div>
+            <fieldset class="f full" id="f-time" aria-describedby="e-time"><legend>Service</legend>
+              <div class="seg">
+                <label><input type="radio" name="time" value="9:00am"><span>9:00am · quieter</span></label>
+                <label><input type="radio" name="time" value="10:45am"><span>10:45am · full band</span></label>
+              </div><span class="err" id="e-time" aria-live="polite"></span></fieldset>
+            <fieldset class="f full"><legend>Bringing kids? <span class="opt">(optional)</span></legend>
+              <div class="seg">
+                <label><input type="checkbox" name="kids" value="The Nest (0–2)"><span>0–2</span></label>
+                <label><input type="checkbox" name="kids" value="Ashby Kids (3–10)"><span>3–10</span></label>
+                <label><input type="checkbox" name="kids" value="Youth (11–18)"><span>11–18</span></label>
+              </div></fieldset>
+            <div class="f full"><label for="v-note">Anything we should know? <span class="opt">(optional)</span></label><textarea id="v-note" name="note" placeholder="Accessibility needs, allergies, questions…"></textarea></div>
+          </div>
+          <div class="form-foot">
+            <p>We’ll only use your email to say hello before Sunday. No mailing lists.</p>
+            <button class="btn btn-plum" type="submit">Save my seat</button>
+          </div>
+        </form>
+      </div>
+      <div class="success" id="success" role="status" tabindex="-1">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="s-title">See you Sunday!</h3>
+        <p id="s-body"></p>
+        <ul id="s-list"></ul>
+        <button class="btn btn-line" type="button" id="again">Plan another visit</button>
+      </div>
+    </div>
+
+    <div class="find rv">
+      <div class="map" id="map" role="img" aria-label="Map: the church is on Mill Street at the corner of Weir Lane, beside free parking and a short walk from the town green and the river">
+        <div class="green"></div>
+        <div class="river"></div>
+        <div class="rd r1"></div><div class="rd r2"></div><div class="rd r3"></div>
+        <div class="park">P · free</div>
+        <span class="lbl" style="left:27%;top:17%">Town green</span>
+        <span class="lbl" style="left:4%;top:39%">Mill Street</span>
+        <span class="lbl" style="left:59%;top:52%;transform:rotate(90deg);transform-origin:left">Weir Lane</span>
+        <span class="lbl" style="left:8%;top:80%;color:#5C7D89">Ashby River</span>
+        <div class="pin"><div class="pin-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M6 19v-7l6-5 6 5v7"/></svg></div><span class="pin-tag">Ashby Falls Church</span></div>
+      </div>
+      <div class="contact-card">
+        <h3>Find us</h3>
+        <address>214 Mill Street, Ashby Falls<br>Corner of Mill Street &amp; Weir Lane</address>
+        <dl>
+          <dt>Sundays</dt><dd>9:00am &amp; 10:45am</dd>
+          <dt>Office</dt><dd>Mon–Thu, 9am–3pm</dd>
+          <dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
+        </dl>
+        <div class="actions">
+          <a class="btn btn-plum" href="tel:01700000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
+          <a class="btn btn-line" href="https://wa.me/0000000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3 3Z"/></svg>WhatsApp</a>
+          <a class="btn btn-line" href="#map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-8-8 18-2-8Z"/></svg>Directions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top" aria-label="Ashby Falls Community Church, back to top">
+          <svg class="logo-mark" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#7A3557"/><path d="M9 25V15.5L17 9l8 6.5V25" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M14.5 25v-5a2.5 2.5 0 0 1 5 0v5" fill="none" stroke="#F4E6EC" stroke-width="2.2"/></svg>
+          <span><b>Ashby Falls</b><small>Community Church</small></span>
+        </a>
+        <p>A neighbourhood church on Mill Street since 1924. Everyone welcome, every week.</p>
+      </div>
+      <div><h3>Sundays</h3><ul><li><a href="#visit">What to expect</a></li><li><a href="#kids">Kids &amp; youth</a></li><li><a href="#watch">Watch online</a></li></ul></div>
+      <div><h3>Get involved</h3><ul><li><a href="#groups">Groups</a></li><li><a href="#events">Events</a></li><li><a href="#outreach">Food pantry</a></li><li><a href="#give">Give</a></li></ul></div>
+      <div><h3>Contact</h3><ul><li><a href="tel:01700000000">017 00000000</a></li><li><a href="mailto:hello@example.com">hello@example.com</a></li><li>214 Mill Street, Ashby Falls</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Ashby Falls Community Church</span><span>Step-free access · hearing loop in the main hall</span></div>
+  </div>
+</footer>
+
+<div class="quick" aria-label="Quick actions">
+  <a class="btn btn-line" href="tel:01700000000">Call</a>
+  <a class="btn btn-line" href="https://wa.me/0000000000">WhatsApp</a>
+  <a class="btn btn-plum" href="#plan">Plan a visit</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav border on scroll */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* mobile menu */
+  var burger = document.getElementById('burger'), menu = document.getElementById('mobile-menu');
+  function setMenu(open){
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function(){ setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 960) setMenu(false); });
+
+  /* gentle reveal + give bars grow in */
+  var bars = document.querySelectorAll('#split .bar i');
+  var targets = [];
+  bars.forEach(function(b){ targets.push(b.style.transform); if (!reduce) b.style.transform = 'scaleX(0)'; });
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        if (en.target.querySelector && en.target.querySelector('#split')) {
+          bars.forEach(function(b, i){ b.style.transform = targets[i]; });
+        }
+        io.unobserve(en.target);
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  } else {
+    rv.forEach(function(el){ el.classList.add('in'); });
+    bars.forEach(function(b, i){ b.style.transform = targets[i]; });
+  }
+
+  /* events filter */
+  var chips = document.querySelectorAll('.chip'), evs = document.querySelectorAll('.ev'), empty = document.getElementById('ev-empty');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var f = c.getAttribute('data-f'), shown = 0;
+      chips.forEach(function(x){ x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      evs.forEach(function(ev){
+        var ok = f === 'all' || ev.getAttribute('data-c').split(' ').indexOf(f) > -1;
+        ev.hidden = !ok; if (ok) shown++;
+      });
+      empty.hidden = shown > 0;
+    });
+  });
+
+  /* plan a visit form */
+  var form = document.getElementById('visit-form'), wrap = document.getElementById('form-wrap'), success = document.getElementById('success');
+  var fields = {
+    name: {el: form.querySelector('#v-name'), test: function(v){ return v.trim().length >= 2 ? '' : 'Please tell us your name.'; }},
+    email:{el: form.querySelector('#v-email'), test: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Please enter an email like name@example.com.'; }},
+    date: {el: form.querySelector('#v-date'), test: function(v){ return v ? '' : 'Pick the Sunday you’re thinking of.'; }},
+    people:{el: form.querySelector('#v-people'), test: function(v){ var n = Number(v); return Number.isInteger(n) && n >= 1 && n <= 20 ? '' : 'Enter a number from 1 to 20.'; }}
+  };
+  function show(key, msg){
+    var el = fields[key].el, box = el.closest('.f');
+    box.classList.toggle('bad', !!msg);
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    document.getElementById('e-' + key).textContent = msg;
+  }
+  function timeVal(){ var r = form.querySelector('input[name="time"]:checked'); return r ? r.value : ''; }
+  function showTime(msg){
+    document.getElementById('f-time').classList.toggle('bad', !!msg);
+    document.getElementById('e-time').textContent = msg;
+  }
+  Object.keys(fields).forEach(function(k){
+    var el = fields[k].el;
+    el.addEventListener('blur', function(){ if (el.value !== '' || el.closest('.f').classList.contains('bad')) show(k, fields[k].test(el.value)); });
+    el.addEventListener('input', function(){ if (el.closest('.f').classList.contains('bad')) show(k, fields[k].test(el.value)); });
+    el.addEventListener('change', function(){ if (el.closest('.f').classList.contains('bad')) show(k, fields[k].test(el.value)); });
+  });
+  form.querySelectorAll('input[name="time"]').forEach(function(r){ r.addEventListener('change', function(){ showTime(''); }); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var first = null;
+    Object.keys(fields).forEach(function(k){
+      var msg = fields[k].test(fields[k].el.value); show(k, msg);
+      if (msg && !first) first = fields[k].el;
+    });
+    if (!timeVal()) { showTime('Choose 9:00 or 10:45.'); if (!first) first = form.querySelector('input[name="time"]'); }
+    if (first) { first.focus(); return; }
+
+    var name = fields.name.el.value.trim().split(/\s+/)[0];
+    var kids = Array.prototype.map.call(form.querySelectorAll('input[name="kids"]:checked'), function(k){ return k.value; });
+    document.getElementById('s-title').textContent = 'See you Sunday, ' + name + '!';
+    document.getElementById('s-body').textContent = 'We’ve saved ' + (Number(fields.people.el.value) === 1 ? 'a seat' : fields.people.el.value + ' seats') + ' at the ' + timeVal() + ' service on ' + fields.date.el.value + '. Here’s what happens next:';
+    var list = document.getElementById('s-list'); list.innerHTML = '';
+    var steps = ['A short hello email from our welcome team this week.', 'Look for the green lanyards at the Mill Street doors.'];
+    if (kids.length) steps.push('We’ll walk your kids to ' + kids.join(' and ') + ' and give you a check-in tag.');
+    steps.push('Coffee and a pastry are on us afterwards.');
+    steps.forEach(function(s){ var li = document.createElement('li'); li.textContent = s; list.appendChild(li); });
+    wrap.hidden = true; success.classList.add('show'); success.focus();
+  });
+  document.getElementById('again').addEventListener('click', function(){
+    form.reset(); Object.keys(fields).forEach(function(k){ show(k, ''); }); showTime('');
+    success.classList.remove('show'); wrap.hidden = false; fields.name.el.focus();
+  });
+})();
+</script>
+</body>
+</html>
