@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunny Side — Illustrated hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--butter:#ffe8a3;--tomato:#ff6b4a;--ink:#2b2d42;--sky:#8ecae6;--cream:#fff8e6}
+*{box-sizing:border-box;margin:0}
+html,body{overflow-x:hidden}
+body{font:17px/1.55 Nunito,system-ui,sans-serif;color:var(--ink);background:var(--butter)}
+a{color:inherit}
+:focus-visible{outline:3px dashed var(--ink);outline-offset:4px;border-radius:8px}
+.nav{position:relative;display:flex;align-items:center;gap:1rem;margin:1rem clamp(.75rem,3vw,2rem) 0;padding:.6rem .6rem .6rem 1.2rem;background:var(--cream);border:3px solid var(--ink);border-radius:99px;box-shadow:0 5px 0 var(--ink)}
+.logo{display:flex;align-items:center;gap:.5rem;font:700 1.35rem Fredoka,sans-serif;text-decoration:none}
+.links{display:flex;gap:.25rem;list-style:none;padding:0;margin-left:auto}
+.links a{display:block;padding:.45rem .9rem;border-radius:99px;font-weight:800;text-decoration:none}
+.links a:hover{background:var(--butter)}
+.order{padding:.6rem 1.1rem;background:var(--tomato);color:#fff;border:3px solid var(--ink);border-radius:99px;font:600 1rem Fredoka,sans-serif;text-decoration:none}
+.order:hover{background:#ef5535}
+.burger{display:none;margin-left:auto;background:var(--butter);border:3px solid var(--ink);border-radius:99px;padding:.45rem .9rem;font:600 .95rem Fredoka,sans-serif;color:var(--ink);cursor:pointer}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:2rem;padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3rem);min-height:calc(100vh - 90px)}
+.sticker{display:inline-block;background:var(--sky);border:3px solid var(--ink);border-radius:12px;padding:.25rem .75rem;font:600 .95rem Fredoka,sans-serif;transform:rotate(-3deg)}
+.sticker.closed{background:#ffc2b3}
+h1{font:700 clamp(2.8rem,6.4vw,5.6rem)/.98 Fredoka,sans-serif;margin:1rem 0;letter-spacing:-.01em}
+h1 .hl{position:relative;white-space:nowrap}
+h1 .hl svg{position:absolute;left:-4%;bottom:-.12em;width:108%;height:.35em;z-index:-1}
+.lede{font-size:1.15rem;max-width:40ch}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-block;padding:.9rem 1.4rem;border:3px solid var(--ink);border-radius:16px;font:600 1.1rem Fredoka,sans-serif;text-decoration:none;box-shadow:0 5px 0 var(--ink);background:#fff}
+.btn.primary{background:var(--tomato);color:#fff}
+.btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.small{margin-top:1.4rem;font-size:.92rem;font-weight:600}
+.scene{position:relative;max-width:620px;width:100%;justify-self:center}
+.scene svg{width:100%;height:auto;display:block;overflow:visible}
+.rays{transform-origin:300px 280px;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steam path{animation:rise 3s ease-in-out infinite;opacity:.0}
+.steam path:nth-child(2){animation-delay:1s}.steam path:nth-child(3){animation-delay:2s}
+@keyframes rise{0%{opacity:0;transform:translateY(10px)}40%{opacity:.9}100%{opacity:0;transform:translateY(-22px)}}
+.egg{cursor:pointer;transform-box:fill-box;transform-origin:center}
+.egg.wobble{animation:wob .6s ease}
+@keyframes wob{25%{transform:scale(1.08,.92)}50%{transform:scale(.94,1.06)}75%{transform:scale(1.03,.97)}}
+.eggbtn{position:absolute;left:31%;top:44%;width:30%;height:26%;border-radius:50%;background:transparent;border:0;cursor:pointer}
+.bubble{position:absolute;right:2%;top:2%;max-width:220px;background:#fff;border:3px solid var(--ink);border-radius:18px;padding:.6rem .9rem;font:600 1rem/1.3 Fredoka,sans-serif;box-shadow:0 4px 0 var(--ink)}
+.bubble::after{content:"";position:absolute;left:22px;bottom:-14px;width:20px;height:20px;background:#fff;border:3px solid var(--ink);border-top:0;border-left:0;transform:rotate(45deg)}
+.hint{position:absolute;left:4%;bottom:0;font-size:.85rem;font-weight:800;transform:rotate(-4deg)}
+@media (max-width:880px){
+ .links,.order{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;position:absolute;z-index:10;top:calc(100% + 10px);left:0;right:0;background:var(--cream);border:3px solid var(--ink);border-radius:22px;padding:.5rem;box-shadow:0 5px 0 var(--ink)}
+ .links.open a{padding:.75rem 1rem;font-size:1.1rem}
+ .hero{grid-template-columns:1fr;min-height:0}
+ .scene{order:-1;max-width:440px}
+ .bubble{font-size:.85rem;max-width:170px}
+}
+@media (prefers-reduced-motion:reduce){.rays,.steam path,.egg.wobble{animation:none}.steam path{opacity:.8}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">
+    <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3c9 0 15 6 16 13 1 8-4 13-9 16-5 3-12 6-18 2S2 23 4 15C6 8 12 3 20 3Z" fill="#fff" stroke="#2b2d42" stroke-width="3"/><circle cx="20" cy="20" r="7" fill="#ffb627" stroke="#2b2d42" stroke-width="3"/></svg>
+    Sunny Side
+  </a>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">Brunch menu</a></li>
+      <li><a href="#">Pancake lab</a></li>
+      <li><a href="#">Kids</a></li>
+      <li><a href="#">Find us</a></li>
+    </ul>
+  </nav>
+  <a class="order" href="#">Join the queue</a>
+</header>
+
+<section class="hero" aria-labelledby="h">
+  <div>
+    <span class="sticker" id="status">Open 7am – 3pm daily</span>
+    <h1 id="h">Brunch that's always <span class="hl">sunny side
+      <svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14c40-10 90-12 196-4" stroke="#ff6b4a" stroke-width="10" fill="none" stroke-linecap="round"/></svg></span> up.</h1>
+    <p class="lede">Fluffy stacks, runny yolks, crispy everything. All-day brunch on Marigold Street — no reservations, but we text you when your table's ready.</p>
+    <div class="btns">
+      <a class="btn primary" href="#">Join the waitlist</a>
+      <a class="btn" href="#">Peek at the menu</a>
+    </div>
+    <p class="small">☎ <a href="tel:01700000000">017 00000000</a> · 5 Marigold Street · Dogs welcome on the patio</p>
+  </div>
+
+  <div class="scene">
+    <svg viewBox="0 0 600 560" role="img" aria-labelledby="sc-t">
+      <title id="sc-t">Cartoon frying pan with a fried egg, bacon and toast, next to a steaming mug of coffee</title>
+      <g class="rays" fill="#ffd166">
+        <path d="M300 280 L280 0 L320 0Z"/><path d="M300 280 L520 60 L545 90Z"/><path d="M300 280 L600 260 L600 300Z"/><path d="M300 280 L545 470 L520 500Z"/>
+        <path d="M300 280 L320 560 L280 560Z"/><path d="M300 280 L80 500 L55 470Z"/><path d="M300 280 L0 300 L0 260Z"/><path d="M300 280 L55 90 L80 60Z"/>
+      </g>
+      <circle cx="300" cy="280" r="150" fill="#ffd166" opacity=".6"/>
+      <!-- pan -->
+      <g stroke="#2b2d42" stroke-width="6" stroke-linejoin="round">
+        <rect x="430" y="300" width="160" height="34" rx="17" fill="#2b2d42" transform="rotate(-18 430 317)"/>
+        <ellipse cx="270" cy="330" rx="210" ry="150" fill="#4a4e69"/>
+        <ellipse cx="270" cy="318" rx="180" ry="122" fill="#22223b"/>
+      </g>
+      <!-- bacon -->
+      <g stroke="#2b2d42" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M150 410c20-14 40 10 60-4s40 10 60-4 40 10 60-4l6 26c-20 14-40-10-60 4s-40-10-60 4-40-10-60 4Z" fill="#e76f51"/>
+        <path d="M160 414c20-10 40 8 60-3s40 8 60-3 40 8 60-3" stroke="#ffd6c9" stroke-width="4" fill="none"/>
+      </g>
+      <!-- toast -->
+      <g stroke="#2b2d42" stroke-width="5" stroke-linejoin="round">
+        <path d="M340 220c-6-34 20-56 52-54 34 2 54 30 44 58l-8 86-92 0Z" fill="#e9a462"/>
+        <path d="M352 226c-2-24 16-40 40-38 26 2 40 22 34 42l-6 68-70 0Z" fill="#f6d39a" stroke-width="0"/>
+        <circle cx="376" cy="250" r="5" fill="#2b2d42" stroke-width="0"/><circle cx="404" cy="250" r="5" fill="#2b2d42" stroke-width="0"/>
+        <path d="M378 268q12 10 24 0" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- egg -->
+      <g class="egg" id="egg">
+        <path d="M180 250c30-46 100-40 120-6 26 4 40 34 24 60-14 28-60 34-92 26-40 4-78-14-74-44-2-16 8-30 22-36Z" fill="#fff" stroke="#2b2d42" stroke-width="6"/>
+        <circle cx="240" cy="290" r="36" fill="#ffb627" stroke="#2b2d42" stroke-width="6"/>
+        <circle cx="228" cy="278" r="9" fill="#fff" opacity=".8"/>
+      </g>
+      <!-- mug -->
+      <g stroke="#2b2d42" stroke-width="6" stroke-linejoin="round">
+        <path d="M470 120h90v80c0 24-20 40-45 40s-45-16-45-40Z" fill="#ff6b4a"/>
+        <path d="M560 140c26 0 30 40 0 44" fill="none"/>
+        <ellipse cx="515" cy="120" rx="45" ry="10" fill="#6b4226"/>
+      </g>
+      <g class="steam" stroke="#2b2d42" stroke-width="5" fill="none" stroke-linecap="round">
+        <path d="M495 96c-10-14 10-22 0-38"/><path d="M515 92c-10-14 10-22 0-38"/><path d="M535 96c-10-14 10-22 0-38"/>
+      </g>
+      <!-- sparkles -->
+      <g fill="#2b2d42"><path d="M70 120l6 16 16 6-16 6-6 16-6-16-16-6 16-6Z"/><path d="M560 400l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/></g>
+    </svg>
+    <button class="eggbtn" id="eggbtn" type="button" aria-label="Poke the egg for a brunch fact" aria-describedby="bubble"></button>
+    <p class="bubble" id="bubble" aria-live="polite">Psst — poke me!</p>
+    <p class="hint" aria-hidden="true">↑ go on, poke the egg</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.textContent=o?'Close':'Menu';m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+
+  var lines=['We crack 1,400 eggs every Saturday.','Pancakes are 3 cm tall. We measured.','Bottomless filter coffee — really.','Hollandaise made fresh every hour.','Ask for the secret maple butter.'];
+  var i=0,egg=document.getElementById('egg'),bub=document.getElementById('bubble');
+  document.getElementById('eggbtn').addEventListener('click',function(){
+    bub.textContent=lines[i];i=(i+1)%lines.length;
+    egg.classList.remove('wobble');void egg.getBBox();egg.classList.add('wobble');
+  });
+
+  // Open 07:00–15:00
+  var n=new Date(),mins=n.getHours()*60+n.getMinutes(),open=mins>=420&&mins<900,s=document.getElementById('status');
+  s.textContent=open?'☀ Open now · till 3pm':'☾ Closed · back at 7am';
+  if(!open)s.classList.add('closed');
+})();
+</script>
+</body>
+</html>

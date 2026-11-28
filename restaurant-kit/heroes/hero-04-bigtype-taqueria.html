@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Lumbre — Big type hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#ffd23f;--ink:#1b1b1b;--pink:#ff5d8f;--lime:#3ddc84}
+*{box-sizing:border-box;margin:0}
+html,body{overflow-x:hidden}
+body{font:16px/1.5 "Space Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--sun)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.nav{position:relative;display:flex;align-items:center;gap:1rem;padding:1rem clamp(1rem,3vw,2rem);border-bottom:3px solid var(--ink)}
+.logo{font:1.6rem/1 Anton,sans-serif;text-transform:uppercase;text-decoration:none;letter-spacing:.02em}
+.logo span{color:var(--pink);-webkit-text-stroke:1px var(--ink)}
+.links{display:flex;gap:0;list-style:none;padding:0;margin-left:auto}
+.links a{display:block;padding:.45rem .9rem;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.85rem;border:2px solid transparent;border-radius:99px}
+.links a:hover{border-color:var(--ink)}
+.order{background:var(--ink);color:var(--sun);padding:.6rem 1.1rem;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.85rem;border-radius:99px}
+.order:hover{background:var(--pink);color:var(--ink)}
+.burger{display:none;margin-left:auto;background:var(--ink);color:var(--sun);border:0;border-radius:99px;padding:.55rem 1rem;font:700 .85rem "Space Grotesk",sans-serif;text-transform:uppercase;cursor:pointer}
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,3vw,2rem) 0}
+.top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.06em}
+.top .open{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2px solid var(--ink);padding:.3rem .8rem;border-radius:99px}
+.top .open i{width:10px;height:10px;border-radius:50%;background:var(--lime);border:2px solid var(--ink)}
+.top .open.closed i{background:var(--pink)}
+h1{font:clamp(3.2rem,10.6vw,10.2rem)/.92 Anton,sans-serif;text-transform:uppercase;letter-spacing:-.01em;margin:clamp(1.2rem,4vw,2.5rem) 0}
+h1 .line{display:block}
+h1 .out{color:transparent;-webkit-text-stroke:3px var(--ink)}
+h1 .swap{display:inline-block;color:var(--pink);-webkit-text-stroke:3px var(--ink);transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+h1 .swap.out-anim{transform:translateY(-.25em) rotate(-4deg);opacity:0}
+h1 small{display:inline-block;vertical-align:top;-webkit-text-stroke:0;color:var(--ink);font:700 clamp(.8rem,1.3vw,1.05rem)/1.3 "Space Grotesk",sans-serif;max-width:22ch;margin:.6em 0 0 .6em;letter-spacing:0;text-transform:none}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem;padding-bottom:1.5rem}
+.row p{max-width:44ch;font-size:1.1rem;font-weight:500}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:1rem 1.5rem;font-weight:700;text-transform:uppercase;text-decoration:none;border:3px solid var(--ink);border-radius:99px;box-shadow:5px 5px 0 var(--ink);background:var(--pink)}
+.btn.alt{background:#fff}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+.marquee{margin:0 calc(-1 * clamp(1rem,3vw,2rem));background:var(--ink);color:var(--sun);overflow:hidden;border-top:3px solid var(--ink);white-space:nowrap}
+.track{display:inline-flex;gap:2.5rem;padding:.85rem 0;animation:run 28s linear infinite;font:1.35rem Anton,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.track span::after{content:"✺";color:var(--pink);margin-left:2.5rem}
+.marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+@keyframes run{to{transform:translateX(-50%)}}
+@media (max-width:760px){
+ .links,.order{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;position:absolute;z-index:10;top:100%;left:0;right:0;background:var(--sun);border-bottom:3px solid var(--ink);padding:.5rem 1rem 1rem}
+ .links.open a{font-size:1.4rem;font-family:Anton,sans-serif;padding:.5rem 0;border:0}
+ h1 .out,h1 .swap{-webkit-text-stroke-width:2px}
+ h1{font-size:clamp(3.4rem,19vw,5.4rem)}
+ h1 small{display:block;margin:.8rem 0 0}
+}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.btn,h1 .swap{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">La <span>Lumbre</span></a>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">Tacos</a></li>
+      <li><a href="#">Mezcal bar</a></li>
+      <li><a href="#">Parties</a></li>
+      <li><a href="#">Find us</a></li>
+    </ul>
+  </nav>
+  <a class="order" href="#">Order online</a>
+</header>
+
+<section class="hero" aria-labelledby="h">
+  <div class="top">
+    <span class="open" id="status"><i aria-hidden="true"></i><span id="status-text">Open daily till late</span></span>
+    <span>Calle Sol 9 · Night Market</span>
+  </div>
+  <h1 id="h" aria-label="Tacos al pastor until 1 am">
+    <span class="line" aria-hidden="true">Tacos</span>
+    <span class="line" aria-hidden="true"><span class="swap" id="swap">al pastor</span></span>
+    <span class="line out" aria-hidden="true">hasta la 1am<small>Corn tortillas pressed to order. Salsa bar free, always.</small></span>
+  </h1>
+  <div class="row">
+    <p>Trompo-roasted pork, pineapple, onion, cilantro. Three for 450 — and the horchata is on us before 6 pm.</p>
+    <div class="btns">
+      <a class="btn" href="#">Order tacos</a>
+      <a class="btn alt" href="#">Book a party</a>
+    </div>
+  </div>
+  <div class="marquee" aria-label="Today's specials">
+    <div class="track">
+      <span>Birria Tuesday</span><span>Mezcal flights 3 for 900</span><span>Elote with chipotle mayo</span><span>Vegan jackfruit pastor</span><span>Churros till close</span>
+      <span aria-hidden="true">Birria Tuesday</span><span aria-hidden="true">Mezcal flights 3 for 900</span><span aria-hidden="true">Elote with chipotle mayo</span><span aria-hidden="true">Vegan jackfruit pastor</span><span aria-hidden="true">Churros till close</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.textContent=o?'Close':'Menu';m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+
+  // Rotating filling (skipped for reduced motion)
+  var words=['al pastor','carnitas','de birria','al carbón','de hongos'],i=0,el=document.getElementById('swap');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){setInterval(function(){if(document.hidden)return;el.classList.add('out-anim');setTimeout(function(){i=(i+1)%words.length;el.textContent=words[i];el.classList.remove('out-anim');},260);},2200);}
+
+  // Open 12:00–01:00 (past midnight)
+  var n=new Date(),mins=n.getHours()*60+n.getMinutes(),open=mins>=720||mins<60;
+  document.getElementById('status-text').textContent=open?'Abierto · open till 1am':'Cerrado · opens at noon';
+  if(!open)document.getElementById('status').classList.add('closed');
+})();
+</script>
+</body>
+</html>

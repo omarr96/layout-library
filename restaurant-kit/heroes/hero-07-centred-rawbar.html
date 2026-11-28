@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tide &amp; Salt — Centred dish hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#efe9df;--navy:#1f3b4d;--coral:#c4532a;--muted:#6b7780}
+*{box-sizing:border-box;margin:0}
+html,body{overflow-x:hidden}
+body{font:14px/1.6 "IBM Plex Mono",ui-monospace,monospace;color:var(--navy);background:var(--ground)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:1.25rem clamp(1rem,4vw,3rem);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.logo{text-decoration:none;font-weight:500;display:flex;gap:.6rem;align-items:center}
+.logo svg{flex:none}
+.links{display:flex;gap:2rem;list-style:none;padding:0}
+.links a{text-decoration:none}
+.links a:hover{color:var(--coral)}
+.links a.res{border-bottom:1px solid currentColor}
+.burger{display:none;background:none;border:0;font:inherit;color:inherit;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;padding:.4rem}
+.hero{position:relative;min-height:calc(100vh - 64px);display:grid;grid-template-rows:1fr auto;place-items:center;padding:0 clamp(1rem,4vw,3rem) 2.5rem;text-align:center}
+.stage{position:relative;width:100%;max-width:1200px;display:grid;place-items:center}
+.word{position:absolute;top:50%;font:clamp(4.5rem,16vw,15rem)/1 Italiana,serif;letter-spacing:-.02em;transform:translateY(-50%);color:var(--navy);user-select:none}
+.word.l{left:0}
+.word.r{right:0}
+.amp{position:absolute;top:8%;left:50%;transform:translateX(-50%);font:italic 2.2rem Italiana,serif;color:var(--coral)}
+.dish{position:relative;z-index:1;width:min(52vw,520px);aspect-ratio:1;border-radius:50%;overflow:hidden;mix-blend-mode:multiply;animation:bob 7s ease-in-out infinite}
+.dish img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.32)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.note{position:absolute;z-index:2;display:flex;align-items:center;gap:.6rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.note::before{content:"";width:clamp(40px,7vw,90px);height:1px;background:var(--navy)}
+.note b{font-weight:500;color:var(--coral)}
+.n1{left:calc(50% + min(20vw,190px));top:22%}
+.n2{left:calc(50% + min(22vw,210px));top:66%}
+.n3{right:calc(50% + min(21vw,200px));top:76%;flex-direction:row-reverse}
+.foot{display:grid;gap:1rem;justify-items:center;max-width:560px}
+.foot h1{font:clamp(1.6rem,3vw,2.3rem)/1.2 Italiana,serif}
+.foot p{color:var(--muted)}
+.btns{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;align-items:center}
+.btn{display:inline-block;padding:.9rem 1.6rem;background:var(--navy);color:var(--ground);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;border-radius:99px}
+.btn:hover{background:var(--coral)}
+.meta{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.meta .on{color:#2f7a4f}.meta .off{color:var(--coral)}
+@media (max-width:760px){
+ .links{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;gap:0;position:absolute;z-index:10;top:100%;left:0;right:0;background:var(--ground);border-top:1px solid rgba(31,59,77,.2);border-bottom:1px solid rgba(31,59,77,.2);padding:.5rem 1.25rem}
+ .links.open a{display:block;padding:.8rem 0}
+ .hero{min-height:0;padding-top:1rem}
+ .stage{padding:2.5rem 0}
+ .dish{width:68vw}
+ .word{font-size:22vw;top:auto;bottom:0;transform:none}
+ .word.l{top:0;bottom:auto}
+ .amp{display:none}
+ .note{display:none}
+}
+@media (prefers-reduced-motion:reduce){.dish{animation:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="16" r="14"/><path d="M5 18c3-3 6-3 9 0s6 3 9 0 4-2 5-1"/></svg>
+    Tide &amp; Salt — Raw bar
+  </a>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Oyster hour</a></li>
+      <li><a href="#">Visit</a></li>
+      <li><a class="res" href="#">Reserve</a></li>
+    </ul>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links">Menu +</button>
+</header>
+
+<section class="hero" aria-labelledby="h">
+  <div class="stage">
+    <span class="word l" aria-hidden="true">Tide</span>
+    <span class="word r" aria-hidden="true">Salt</span>
+    <div class="dish">
+      <img src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=1200&h=1200&q=75&auto=format&fit=crop" alt="Trout tartare topped with roe and a basil leaf in a white bowl">
+    </div>
+    <span class="note n1" aria-hidden="true"><span><b>01</b> Trout roe, salt-cured</span></span>
+    <span class="note n2" aria-hidden="true"><span><b>02</b> Avocado, yuzu, chive</span></span>
+    <span class="note n3" aria-hidden="true"><span><b>03</b> Hand-cut sea trout</span></span>
+  </div>
+  <div class="foot">
+    <h1 id="h">One plate, caught this morning. Sea trout tartare, 1,250.</h1>
+    <p>Twelve seats at a marble counter. Oysters, crudo and cold white wine on Pier Road, steps from the boats that supply us.</p>
+    <div class="btns">
+      <a class="btn" href="#">Reserve the counter</a>
+      <span class="meta" id="status">Tue–Sun · 17:00–23:00</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.textContent=o?'Close ×':'Menu +';m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+  // Tue–Sun 17:00–23:00, closed Mondays
+  var n=new Date(),d=n.getDay(),mins=n.getHours()*60+n.getMinutes(),s=document.getElementById('status');
+  var open=d!==1&&mins>=1020&&mins<1380;
+  s.innerHTML=open?'<span class="on">● Open now</span> · until 23:00':'<span class="off">● Closed</span> · '+(d===1?'back Tuesday 17:00':(mins<1020?'opens 17:00':'opens tomorrow 17:00'));
+  if(!open&&d===0&&mins>=1380)s.innerHTML='<span class="off">● Closed</span> · back Tuesday 17:00';
+})();
+</script>
+</body>
+</html>

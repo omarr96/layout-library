@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern House — Booking hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--clay:#2a1612;--saffron:#e0a039;--chai:#fbf4ea;--chili:#a8321e;--line:#e6d9c6}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.55 Mulish,system-ui,sans-serif;color:var(--clay);background:var(--chai)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:2px;border-radius:6px}
+.nav{position:absolute;z-index:6;inset:0 0 auto;display:flex;align-items:center;gap:2rem;padding:1.1rem clamp(1rem,4vw,3rem);color:var(--chai)}
+.logo{display:flex;align-items:center;gap:.6rem;font:1.5rem Marcellus,serif;text-decoration:none}
+.links{display:flex;gap:1.8rem;list-style:none;padding:0}
+.links a{text-decoration:none;font-weight:600;font-size:.95rem}
+.links a:hover{color:var(--saffron)}
+.nav .tel{margin-left:auto;font-weight:700;text-decoration:none;font-size:.95rem}
+.burger{display:none;margin-left:auto;background:none;border:0;color:inherit;padding:.4rem;cursor:pointer}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem clamp(1rem,4vw,3rem) 2.5rem;color:var(--chai);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(42,22,18,.95) 0,rgba(42,22,18,.55) 45%,rgba(42,22,18,.35) 70%,rgba(42,22,18,.7)),url("https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1800&q=70&auto=format&fit=crop") center/cover}
+.eyebrow{font-weight:800;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--saffron)}
+h1{font:clamp(2.6rem,6.2vw,5.4rem)/1.02 Marcellus,serif;max-width:15ch;margin:.7rem 0 1rem}
+.lede{max-width:48ch;font-size:1.08rem;color:rgba(251,244,234,.86);margin-bottom:2.2rem}
+form{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;background:var(--chai);color:var(--clay);border-radius:18px;padding:.5rem;box-shadow:0 30px 60px rgba(0,0,0,.35);max-width:1100px}
+.f{position:relative;padding:.7rem 1.1rem .8rem;border-right:1px solid var(--line);min-width:0}
+.f label,.f .lbl{display:block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7a5e4d;margin-bottom:.2rem}
+.f input,.f select{width:100%;border:0;background:transparent;font:700 1.05rem Mulish,sans-serif;color:var(--clay);padding:.15rem 0;appearance:none;-webkit-appearance:none}
+.f select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232a1612' stroke-width='2'/%3E%3C/svg%3E") right center no-repeat;padding-right:1.2rem;cursor:pointer}
+.f input:focus,.f select:focus{outline:none}
+.f:focus-within{background:#fff;border-radius:12px}
+.f.bad{background:#fdecea;border-radius:12px}
+.err{display:block;min-height:0;font-size:.78rem;font-weight:700;color:var(--chili);margin-top:.15rem}
+.err:empty{display:none}
+.step{display:flex;align-items:center;gap:.6rem}
+.step button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--clay);background:transparent;font:700 1.1rem/1 Mulish,sans-serif;color:var(--clay);cursor:pointer;flex:none}
+.step button:hover{background:var(--clay);color:var(--chai)}
+.step button:disabled{opacity:.3;cursor:not-allowed;background:transparent;color:var(--clay)}
+.step output{font:700 1.05rem Mulish,sans-serif;min-width:5.5ch;text-align:center}
+.go{border:0;border-radius:12px;background:var(--saffron);color:var(--clay);font:800 1rem Mulish,sans-serif;padding:0 1.8rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;justify-content:center;margin-left:.5rem;min-height:64px}
+.go:hover{background:#eab354}
+.result{max-width:1100px;margin-top:1rem;background:rgba(251,244,234,.97);color:var(--clay);border-radius:14px;padding:1rem 1.2rem;display:none}
+.result.show{display:block}
+.result h2{font:1.2rem Marcellus,serif;margin-bottom:.6rem}
+.slots{display:flex;flex-wrap:wrap;gap:.5rem}
+.slots button{padding:.6rem 1rem;border-radius:99px;border:1.5px solid var(--clay);background:#fff;font:700 .95rem Mulish,sans-serif;color:var(--clay);cursor:pointer}
+.slots button:hover,.slots button[aria-pressed="true"]{background:var(--clay);color:var(--chai)}
+.note{margin-top:.7rem;font-size:.88rem;color:#6a5446}
+.note strong{color:#2e7d4f}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;margin-top:1.2rem;font-size:.85rem;color:rgba(251,244,234,.75)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:900px){
+ .links,.nav .tel{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:1rem;right:1rem;background:var(--chai);color:var(--clay);border-radius:14px;padding:.5rem 1rem;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+ .links.open a{display:block;padding:.8rem 0}
+ form{grid-template-columns:1fr}
+ .f{border-right:0;border-bottom:1px solid var(--line)}
+ .f:nth-child(1){grid-column:1/-1}
+ .f.g{grid-column:1/-1}
+ .go{grid-column:1/-1;margin:.5rem 0 0;min-height:54px}
+}
+@media (prefers-reduced-motion:no-preference){.result.show{animation:up .35s ease}@keyframes up{from{opacity:0;transform:translateY(8px)}}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">
+    <svg width="26" height="32" viewBox="0 0 26 32" fill="none" stroke="#e0a039" stroke-width="2" aria-hidden="true"><path d="M13 1v4M7 5h12l3 6-3 15H7L4 11Z"/><path d="M4 11h18M8 26l-1 4h12l-1-4"/><path d="M13 14c2 2 2 5 0 7-2-2-2-5 0-7Z" fill="#e0a039"/></svg>
+    Lantern House
+  </a>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Biryani Fridays</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Takeaway</a></li>
+    </ul>
+  </nav>
+  <a class="tel" href="tel:01700000000">017 00000000</a>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</header>
+
+<section class="hero" aria-labelledby="h">
+  <p class="eyebrow">Bengali &amp; North Indian kitchen · Indigo Road</p>
+  <h1 id="h">Slow-cooked curries, lit by a hundred lanterns.</h1>
+  <p class="lede">Mutton kacchi sealed in the handi for four hours, butter chicken finished over charcoal, and mishti doi to end it. Tables go fast on weekends.</p>
+
+  <form id="book" novalidate aria-label="Find a table">
+    <div class="f" id="f-date">
+      <label for="date">Date</label>
+      <input id="date" name="date" type="date" required aria-describedby="e-date">
+      <span class="err" id="e-date"></span>
+    </div>
+    <div class="f" id="f-time">
+      <label for="time">Time</label>
+      <select id="time" name="time" required aria-describedby="e-time">
+        <option value="">Choose a time</option>
+      </select>
+      <span class="err" id="e-time"></span>
+    </div>
+    <div class="f g" id="f-guests">
+      <span class="lbl" id="l-guests">Guests</span>
+      <div class="step" role="group" aria-labelledby="l-guests">
+        <button type="button" id="minus" aria-label="Fewer guests">−</button>
+        <output id="guests" aria-live="polite">2 guests</output>
+        <button type="button" id="plus" aria-label="More guests">+</button>
+      </div>
+      <span class="err" id="e-guests"></span>
+    </div>
+    <button class="go" type="submit">Find a table
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+  <div class="result" id="result" role="status" aria-live="polite" tabindex="-1"></div>
+
+  <p class="meta"><span id="status">Open Tue–Sun · 12:00–15:00 &amp; 18:00–23:00</span><a href="https://maps.google.com/?q=Indigo+Road" target="_blank" rel="noopener">41 Indigo Road</a><span>Halal · ask us about allergens</span></p>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+
+  function pad(n){return (n<10?'0':'')+n;}
+  function iso(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  function toMin(t){var p=t.split(':');return +p[0]*60+ +p[1];}
+  function fmt(mins){return pad(Math.floor(mins/60))+':'+pad(mins%60);}
+  var SLOTS=[];for(var t=720;t<=840;t+=30)SLOTS.push(t);for(t=1080;t<=1290;t+=30)SLOTS.push(t);
+
+  var now=new Date(),date=document.getElementById('date'),time=document.getElementById('time');
+  var maxD=new Date(now);maxD.setDate(maxD.getDate()+60);
+  date.min=iso(now);date.max=iso(maxD);
+  SLOTS.forEach(function(s){var o=document.createElement('option');o.value=fmt(s);o.textContent=(s<900?'Lunch ':'Dinner ')+fmt(s);time.appendChild(o);});
+
+  var guests=2,out=document.getElementById('guests'),minus=document.getElementById('minus'),plus=document.getElementById('plus');
+  function renderG(){out.textContent=guests+(guests===1?' guest':' guests');minus.disabled=guests<=1;plus.disabled=guests>=12;
+    var e=document.getElementById('e-guests');e.textContent=guests>8?'9+ guests: we’ll call to set up a long table.':'';}
+  minus.addEventListener('click',function(){if(guests>1){guests--;renderG();}});
+  plus.addEventListener('click',function(){if(guests<12){guests++;renderG();}});
+  renderG();
+
+  function setErr(id,msg){var f=document.getElementById('f-'+id),e=document.getElementById('e-'+id),inp=document.getElementById(id);
+    e.textContent=msg;f.classList.toggle('bad',!!msg);if(inp&&inp.tagName!=='OUTPUT')inp.setAttribute('aria-invalid',msg?'true':'false');return !msg;}
+  date.addEventListener('change',function(){validateDate();});
+  time.addEventListener('change',function(){if(time.value)setErr('time','');});
+
+  function validateDate(){
+    if(!date.value)return setErr('date','Pick a date.');
+    var d=new Date(date.value+'T00:00');
+    if(date.value<date.min)return setErr('date','That date has passed.');
+    if(date.value>date.max)return setErr('date','We take bookings up to 60 days ahead.');
+    if(d.getDay()===1)return setErr('date','We’re closed on Mondays.');
+    return setErr('date','');
+  }
+
+  var res=document.getElementById('result');
+  document.getElementById('book').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=validateDate();
+    var tOk=!!time.value;setErr('time',tOk?'':'Choose a time.');
+    if(ok&&tOk&&date.value===iso(new Date())){
+      var n=new Date(),nm=n.getHours()*60+n.getMinutes();
+      if(toMin(time.value)<nm+30){setErr('time','Too soon — pick a time at least 30 min from now.');tOk=false;}
+    }
+    if(!ok||!tOk){res.classList.remove('show');var first=document.querySelector('.f.bad input,.f.bad select');if(first)first.focus();return;}
+    if(guests>8){res.innerHTML='<h2>Large party</h2><p class="note">For '+guests+' guests please call <a href="tel:01700000000">017 00000000</a> or <a href="https://wa.me/0000000000">WhatsApp us</a> — we’ll join tables for you.</p>';res.classList.add('show');return;}
+    // Demo availability: deterministic per date+guests, always offers nearest slots
+    var want=toMin(time.value),seed=0,i;
+    for(i=0;i<date.value.length;i++)seed=(seed*31+date.value.charCodeAt(i))%9973;seed+=guests*7;
+    var sameSession=SLOTS.filter(function(s){return (s<900)===(want<900);});
+    var free=sameSession.filter(function(s,k){return (seed+k*5)%4!==0||s===want&&seed%3;});
+    var isToday=date.value===iso(new Date()),nm2=new Date().getHours()*60+new Date().getMinutes();
+    if(isToday)free=free.filter(function(s){return s>=nm2+30;});
+    free.sort(function(a,c){return Math.abs(a-want)-Math.abs(c-want);});
+    free=free.slice(0,3).sort(function(a,c){return a-c;});
+    var d=new Date(date.value+'T00:00'),label=d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+    if(!free.length){res.innerHTML='<h2>Fully booked</h2><p class="note">Nothing left for '+guests+' on '+label+'. Try another day, or walk in — we hold four tables at the bar.</p>';}
+    else{
+      var exact=free.indexOf(want)>-1;
+      res.innerHTML='<h2>'+(exact?'Good news — tables free':'That time’s taken, but we have')+' for '+guests+' on '+label+'</h2><div class="slots">'+
+        free.map(function(s){return '<button type="button" aria-pressed="false" data-t="'+fmt(s)+'">'+fmt(s)+'</button>';}).join('')+
+        '</div><p class="note" id="pick">Choose a time to hold it.</p>';
+    }
+    res.classList.add('show');res.focus();
+  });
+  res.addEventListener('click',function(e){
+    var btn=e.target.closest('.slots button');if(!btn)return;
+    res.querySelectorAll('.slots button').forEach(function(x){x.setAttribute('aria-pressed',x===btn);});
+    document.getElementById('pick').innerHTML='<strong>✓ '+btn.dataset.t+' held for 10 minutes</strong> — this is a demo, nothing has been booked.';
+  });
+
+  // Tue–Sun 12–15 & 18–23
+  var d=now.getDay(),mins=now.getHours()*60+now.getMinutes();
+  var open=d!==1&&((mins>=720&&mins<900)||(mins>=1080&&mins<1380));
+  document.getElementById('status').textContent=open?'● Open now · kitchen till '+(mins<900?'15:00':'23:00'):'Closed now · Tue–Sun 12:00–15:00 & 18:00–23:00';
+})();
+</script>
+</body>
+</html>

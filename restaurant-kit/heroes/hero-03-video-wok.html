@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wok &amp; Flame — Video hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--coal:#0f0d0c;--chili:#e3342f;--yolk:#ffc94a;--paper:#fff7ec}
+*{box-sizing:border-box;margin:0}
+body{font:16px/1.55 Manrope,system-ui,sans-serif;color:var(--paper);background:var(--coal)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yolk);outline-offset:3px;border-radius:4px}
+.nav{position:absolute;inset:0 0 auto;z-index:5;display:flex;align-items:center;gap:1.5rem;padding:1rem clamp(1rem,4vw,2.5rem)}
+.logo{font:2rem/1 "Bebas Neue",sans-serif;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo i{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--chili);font-style:normal;font-size:1.1rem}
+.nav nav{margin-left:auto}.links{display:flex;gap:1.6rem;list-style:none;padding:0}
+.links a{text-decoration:none;font-weight:600;font-size:.92rem;text-transform:uppercase;letter-spacing:.08em}
+.links a:hover{color:var(--yolk)}
+.order{padding:.65rem 1.1rem;background:var(--yolk);color:var(--coal);font-weight:800;text-decoration:none;border-radius:4px;text-transform:uppercase;font-size:.85rem;letter-spacing:.06em}
+.order:hover{background:#fff}
+.burger{display:none;margin-left:auto;background:none;border:0;color:inherit;padding:.4rem;cursor:pointer}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;isolation:isolate;background:#2a0f0b url("https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=1600&q=70&auto=format&fit=crop") center/cover}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(15,13,12,.35) 0,rgba(15,13,12,.78) 75%),linear-gradient(180deg,rgba(15,13,12,.6),transparent 30%)}
+.inner{padding:6rem clamp(1rem,4vw,2rem) 7rem;max-width:1000px}
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .85rem;border-radius:99px;background:rgba(15,13,12,.55);border:1px solid rgba(255,247,236,.25);font-size:.82rem;font-weight:600;margin-bottom:1.4rem}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:#5fdc8a}
+.chip.closed .dot{background:var(--chili)}
+h1{font:clamp(3.2rem,8.4vw,7.6rem)/.88 "Bebas Neue",sans-serif;letter-spacing:.01em;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+h1 span{color:var(--yolk)}
+.lede{max-width:46ch;margin:1.3rem auto 2rem;font-size:1.08rem;color:rgba(255,247,236,.88)}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+.btn{padding:1rem 1.6rem;border-radius:4px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font-size:.9rem}
+.btn.primary{background:var(--chili);color:#fff}
+.btn.primary:hover{background:#c8211c}
+.btn.ghost{border:2px solid var(--paper)}
+.btn.ghost:hover{background:var(--paper);color:var(--coal)}
+.bar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem clamp(1rem,4vw,2.5rem);font-size:.85rem;color:rgba(255,247,236,.8)}
+.bar p{display:flex;gap:1.5rem;flex-wrap:wrap}
+.vbtn{display:inline-flex;align-items:center;gap:.5rem;background:rgba(15,13,12,.6);color:var(--paper);border:1px solid rgba(255,247,236,.4);border-radius:99px;padding:.5rem .9rem .5rem .6rem;font:600 .8rem Manrope,sans-serif;cursor:pointer}
+.vbtn:hover{border-color:var(--yolk)}
+.vbtn svg{width:20px;height:20px}
+.vbtn .play{display:none}
+.vbtn[aria-pressed="true"] .play{display:block}
+.vbtn[aria-pressed="true"] .pause{display:none}
+@media (max-width:820px){
+ .links,.order{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:var(--coal);padding:.5rem 1rem 1rem;border-bottom:3px solid var(--chili)}
+ .links.open a{display:block;padding:.85rem 0;border-bottom:1px solid rgba(255,247,236,.12)}
+ .bar p{display:none}
+ .bar{justify-content:flex-end}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#"><i aria-hidden="true">火</i>Wok &amp; Flame</a>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Catering</a></li>
+      <li><a href="#">Jobs</a></li>
+    </ul>
+  </nav>
+  <a class="order" href="#">Order now</a>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</header>
+
+<section class="hero" aria-labelledby="h">
+  <!-- Stock footage: Mixkit free licence (wok over open flame) -->
+  <video id="bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"
+    poster="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=1600&q=70&auto=format&fit=crop">
+    <source src="https://assets.mixkit.co/videos/9286/9286-720.mp4" type="video/mp4">
+  </video>
+  <div class="inner">
+    <p class="chip" id="status"><span class="dot" aria-hidden="true"></span><span id="status-text">Open daily 11:30–23:30</span></p>
+    <h1 id="h">Fire-kissed noodles.<br><span>90 seconds</span> from wok to you.</h1>
+    <p class="lede">Hand-pulled noodles, smoky wok hei and chili oil we make every morning. Eat in at the counter or grab it hot on the way home.</p>
+    <div class="btns">
+      <a class="btn primary" href="#">Order for pickup</a>
+      <a class="btn ghost" href="#">See the menu</a>
+    </div>
+  </div>
+  <div class="bar">
+    <p><span>22 Lantern Alley, Night Market</span><a href="tel:01700000000">017 00000000</a><span>Delivery on Zipbowl</span></p>
+    <button class="vbtn" id="vbtn" type="button" aria-pressed="false" aria-label="Pause background video">
+      <svg class="pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5Z"/></svg>
+      <span id="vlabel">Pause</span>
+    </button>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+
+  var v=document.getElementById('bg'),btn=document.getElementById('vbtn'),lab=document.getElementById('vlabel');
+  var userPaused=false,mq=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function ui(paused){btn.setAttribute('aria-pressed',paused);lab.textContent=paused?'Play':'Pause';btn.setAttribute('aria-label',(paused?'Play':'Pause')+' background video');}
+  function play(){var p=v.play();if(p&&p.catch)p.catch(function(){ui(true);});ui(false);}
+  function pause(){v.pause();ui(true);}
+  btn.addEventListener('click',function(){if(v.paused){userPaused=false;play();}else{userPaused=true;pause();}});
+  function applyMotion(){if(mq.matches){userPaused=true;pause();}}
+  applyMotion();
+  if(mq.addEventListener)mq.addEventListener('change',applyMotion);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else if(!userPaused)play();});
+  v.addEventListener('error',function(){ui(true);},true);
+
+  // Open 11:30–23:30
+  var n=new Date(),mins=n.getHours()*60+n.getMinutes(),open=mins>=690&&mins<1410;
+  document.getElementById('status-text').textContent=open?'Open now · kitchen closes 23:30':'Closed now · fires up at 11:30';
+  if(!open)document.getElementById('status').classList.add('closed');
+})();
+</script>
+</body>
+</html>

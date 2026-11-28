@@ -306,6 +306,176 @@ window.DESIGNS = {
     },
     {
       "cat": "restaurant-kit",
+      "slug": "rk-hero-01-fullbleed-mezze",
+      "title": "Hero 01 · Full-bleed food photo · Olive & Ember",
+      "desc": "Edge-to-edge overhead food photo, headline bottom-left, open-now facts.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-01-fullbleed-mezze.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-02-split-vegan",
+      "title": "Hero 02 · Split photo + text · Greenhouse Kitchen",
+      "desc": "Text beside an arch-framed photo with a bowl-of-the-week card.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-02-split-vegan.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-03-video-wok",
+      "title": "Hero 03 · Video background · Wok & Flame",
+      "desc": "Full-screen looping flame video with pause button and poster fallback.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-03-video-wok.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-04-bigtype-taqueria",
+      "title": "Hero 04 · Big type only · La Lumbre",
+      "desc": "Giant type with a cycling filling word and a specials ticker, no photo.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-04-bigtype-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-05-collage-bakery",
+      "title": "Hero 05 · Photo collage · Crumb & Kettle",
+      "desc": "Five-photo collage with a fresh-at-6am badge and today's hours.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-05-collage-bakery.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-06-slider-trattoria",
+      "title": "Hero 06 · Slider · Nonna Rosa",
+      "desc": "Four-slide crossfade with progress dots, arrows, keys and pause.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-06-slider-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-07-centred-rawbar",
+      "title": "Hero 07 · Centred dish · Tide & Salt",
+      "desc": "One dish on a plain ground with labelled leader lines.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-07-centred-rawbar.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-08-dark-tasting",
+      "title": "Hero 08 · Dark moody · Maison Obscura",
+      "desc": "Near-black and gold fine dining with a candle-like spotlight.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-08-dark-tasting.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-09-illustrated-brunch",
+      "title": "Hero 09 · Illustrated & playful · Sunny Side",
+      "desc": "Drawn brunch scene; poke the egg for brunch facts.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-09-illustrated-brunch.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-hero-10-booking-indian",
+      "title": "Hero 10 · Booking bar in hero · Lantern House",
+      "desc": "Date, time and guests in the hero; finds the nearest free tables.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "restaurant-kit/heroes/hero-10-booking-indian.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
       "slug": "rk-menu-01-tabs-mezze",
       "title": "Menu 01 · Tabs by category · Cedar & Sumac",
       "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",

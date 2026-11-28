@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Obscura — Dark hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0b0a09;--gold:#c9a96e;--ivory:#ece6da;--smoke:#8a8378}
+*{box-sizing:border-box;margin:0}
+body{font:300 15px/1.7 Jost,system-ui,sans-serif;color:var(--ivory);background:var(--night)}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.nav{position:absolute;z-index:6;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.75rem clamp(1rem,5vw,4rem);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase}
+.logo{font:300 1.1rem Cormorant,serif;letter-spacing:.42em;text-decoration:none}
+.links{display:flex;gap:2.75rem;list-style:none;padding:0}
+.links a{text-decoration:none;color:var(--smoke);transition:color .3s}
+.links a:hover{color:var(--gold)}
+.burger{display:none;background:none;border:0;color:var(--ivory);font:400 .72rem Jost,sans-serif;letter-spacing:.32em;text-transform:uppercase;cursor:pointer;padding:.5rem 0}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.layer{position:absolute;inset:0 0 0 30%;z-index:-2;background:url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=70&auto=format&fit=crop") 50% 60%/cover}
+.layer.dim{filter:grayscale(.6) brightness(.22)}
+.layer.lit{filter:grayscale(.1) brightness(.85) contrast(1.05);-webkit-mask:radial-gradient(circle 260px at var(--x,45%) var(--y,58%),#000 0,rgba(0,0,0,.5) 45%,transparent 100%);mask:radial-gradient(circle 260px at var(--x,45%) var(--y,58%),#000 0,rgba(0,0,0,.5) 45%,transparent 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--night) 28%,rgba(11,10,9,.55) 48%,rgba(11,10,9,0) 70%),radial-gradient(ellipse at 70% 50%,transparent 40%,rgba(11,10,9,.85) 100%)}
+.copy{padding:8rem clamp(1rem,5vw,4rem) 6rem;max-width:640px}
+.award{display:flex;align-items:center;gap:.9rem;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.award svg{flex:none}
+h1{font:300 clamp(2.8rem,6vw,5.4rem)/1.02 Cormorant,serif;margin:1.6rem 0 1.4rem;letter-spacing:-.01em}
+h1 em{color:var(--gold)}
+.lede{color:var(--smoke);max-width:40ch;font-size:1rem}
+.menu{list-style:none;padding:0;margin:2rem 0 2.6rem;display:flex;gap:2.25rem;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+.menu li b{display:block;font:300 1.9rem/1 Cormorant,serif;letter-spacing:0;color:var(--ivory);margin-bottom:.35rem}
+.ctas{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+.btn{position:relative;display:inline-block;padding:1rem 2.2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;overflow:hidden;z-index:0;transition:color .4s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.6,0,.2,1);z-index:-1}
+.btn:hover{color:var(--night)}
+.btn:hover::before{transform:scaleX(1)}
+.quiet{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--smoke);text-decoration:none;border-bottom:1px solid rgba(138,131,120,.5);padding-bottom:.2rem}
+.quiet:hover{color:var(--ivory)}
+.side{position:absolute;right:clamp(1rem,5vw,4rem);bottom:2rem;text-align:right;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--smoke)}
+.side span{color:var(--ivory)}
+@media (max-width:860px){
+ .links{display:none}
+ .burger{display:block}
+ .links.open{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:rgba(11,10,9,.97);padding:1rem clamp(1rem,5vw,4rem) 2rem;border-bottom:1px solid rgba(201,169,110,.3)}
+ .links.open a{display:block;padding:1rem 0;color:var(--ivory)}
+ .layer{inset:0}
+ .layer.dim{filter:grayscale(.4) brightness(.5)}
+ .layer.lit{--x:50%;--y:28%}
+ .hero{align-items:flex-end}
+ .hero::after{background:linear-gradient(0deg,var(--night) 38%,rgba(11,10,9,.4) 70%,rgba(11,10,9,.7))}
+ .copy{padding:40vh 1rem 5rem}
+ .menu{gap:1.5rem}
+ .side{left:1rem;right:auto;text-align:left;bottom:1.25rem}
+}
+@media (prefers-reduced-motion:reduce){.btn,.btn::before,.links a{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#">Obscura</a>
+  <nav aria-label="Main">
+    <ul class="links" id="nav-links">
+      <li><a href="#">The menu</a></li>
+      <li><a href="#">Cellar</a></li>
+      <li><a href="#">Chef's table</a></li>
+      <li><a href="#">Gift a dinner</a></li>
+    </ul>
+  </nav>
+  <button class="burger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+</header>
+
+<section class="hero" id="hero" aria-labelledby="h">
+  <div class="layer dim" aria-hidden="true"></div>
+  <div class="layer lit" aria-hidden="true"></div>
+  <div class="copy">
+    <p class="award">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M16 4v24M8 9c0 6 3 10 8 12M24 9c0 6-3 10-8 12M5 14c1 5 5 9 11 10M27 14c-1 5-5 9-11 10"/></svg>
+      Two Laurels · Northern Table Guide 2026
+    </p>
+    <h1 id="h">Eleven courses.<br>One sitting.<br><em>Seven thirty.</em></h1>
+    <p class="lede">A single nightly service for twenty guests, cooked over embers and candlelight by chef Ilse Varga. Dietary requirements honoured with 72 hours' notice.</p>
+    <ul class="menu">
+      <li><b>11</b>Courses</li>
+      <li><b>20</b>Guests nightly</li>
+      <li><b>3h</b>At the table</li>
+    </ul>
+    <div class="ctas">
+      <a class="btn" href="#">Request a seat</a>
+      <a class="quiet" href="#">Wine pairing notes</a>
+    </div>
+  </div>
+  <p class="side" id="side">Wed – Sat · <span>19:30</span> seating<br>3 Vault Street, Lower Town</p>
+</section>
+
+<script>
+(function(){
+  var b=document.querySelector('.burger'),m=document.getElementById('nav-links');
+  function set(o){b.setAttribute('aria-expanded',o);b.textContent=o?'Close':'Menu';m.classList.toggle('open',o);}
+  b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+
+  // Candle-light spotlight follows a fine pointer; static for touch / reduced motion
+  var hero=document.getElementById('hero'),lit=hero.querySelector('.lit');
+  var fine=window.matchMedia('(pointer: fine)').matches,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(fine&&!reduce){
+    var tx=0,ty=0,cx=null,cy=null,raf=0;
+    hero.addEventListener('pointermove',function(e){
+      var r=lit.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;
+      if(cx===null){cx=tx;cy=ty;}
+      if(!raf)raf=requestAnimationFrame(step);
+    });
+    function step(){
+      cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
+      lit.style.setProperty('--x',cx+'px');lit.style.setProperty('--y',cy+'px');
+      raf=(Math.abs(tx-cx)>.5||Math.abs(ty-cy)>.5)?requestAnimationFrame(step):0;
+    }
+  }
+
+  // Wed–Sat seating 19:30; doors 19:00–23:30
+  var n=new Date(),d=n.getDay(),mins=n.getHours()*60+n.getMinutes(),side=document.getElementById('side');
+  var service=d>=3&&d<=6;
+  if(service&&mins>=1140&&mins<1410)side.insertAdjacentHTML('afterbegin','<span>Service in progress</span><br>');
+  else if(service&&mins<1140)side.insertAdjacentHTML('afterbegin','<span>Tonight</span> — doors at 19:00<br>');
+})();
+</script>
+</body>
+</html>
