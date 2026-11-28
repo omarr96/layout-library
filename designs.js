@@ -62,11 +62,6 @@ window.DESIGNS = {
       "desc": "Single sections in many layouts: heroes, FAQs and more"
     },
     {
-      "id": "restaurant-kit",
-      "name": "Restaurant section kit",
-      "desc": "Headers, heroes, menus and footers for restaurant sites, one .html file each"
-    },
-    {
       "id": "niche-sites",
       "name": "Local, event & community sites",
       "desc": "Phone-first sites for local services, events and community groups"
@@ -118,974 +113,6 @@ window.DESIGNS = {
     }
   ],
   "items": [
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-gallery",
-      "title": "Restaurant kit · all sections",
-      "desc": "Gallery of every restaurant section: headers, heroes, signature dishes, menus, story, booking and footers.",
-      "tags": [
-        "Gallery"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Gallery",
-          "href": "restaurant-kit/index.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-01-classic-bistro",
-      "title": "Header 01 · Classic · Copper Pot Bistro",
-      "desc": "Logo left, links centre, Book a table right; shadow on scroll; dropdown on mobile.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-01-classic-bistro.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-02-centred-trattoria",
-      "title": "Header 02 · Centred logo · Trattoria Nonna Lucia",
-      "desc": "Crest logo between two link groups, double rule, elegant small caps.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-02-centred-trattoria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-03-transparent-steakhouse",
-      "title": "Header 03 · Transparent → solid · Ember & Oak",
-      "desc": "Clear over the hero photo, turns solid coal with a brass line on scroll; drawer menu.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-03-transparent-steakhouse.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-04-pill-seafood",
-      "title": "Header 04 · Floating pill · Saltwater Shack",
-      "desc": "Frosted floating pill that hides on scroll down and returns on scroll up.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-04-pill-seafood.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-05-tworow-indian",
-      "title": "Header 05 · Two rows · Masala Lane",
-      "desc": "Top bar with open-now, phone, map and delivery; main bar below stays sticky.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-05-tworow-indian.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-06-minimal-sushi",
-      "title": "Header 06 · Minimal + full-screen menu · Kaze Omakase",
-      "desc": "Logo and a Menu button; full-screen overlay menu with seatings and contact.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-06-minimal-sushi.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-07-bold-burger",
-      "title": "Header 07 · Bold · Big Flip Burgers",
-      "desc": "Huge logo, chunky hard-shadow buttons, specials ticker.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-07-bold-burger.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-08-order-book-taqueria",
-      "title": "Header 08 · Order + Book · La Calaca Taqueria",
-      "desc": "Order online and Book side by side, each opening a small popover; bottom dock on phones.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-08-order-book-taqueria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-09-vertical-finedining",
-      "title": "Header 09 · Vertical side header · Maison Céleste",
-      "desc": "Fixed editorial sidebar with wordmark, serif nav, hours and Reserve; scroll-spy.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-09-vertical-finedining.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-header-10-bilingual-kacchi",
-      "title": "Header 10 · EN / বাংলা + Open now · Puran Dhaka Kacchi Ghar",
-      "desc": "Working language switch and a live Open now badge.",
-      "tags": [
-        "Restaurant",
-        "Header"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Header",
-          "href": "restaurant-kit/headers/header-10-bilingual-kacchi.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-01-fullbleed-mezze",
-      "title": "Hero 01 · Full-bleed food photo · Olive & Ember",
-      "desc": "Edge-to-edge overhead food photo, headline bottom-left, open-now facts.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-01-fullbleed-mezze.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-02-split-vegan",
-      "title": "Hero 02 · Split photo + text · Greenhouse Kitchen",
-      "desc": "Text beside an arch-framed photo with a bowl-of-the-week card.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-02-split-vegan.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-03-video-wok",
-      "title": "Hero 03 · Video background · Wok & Flame",
-      "desc": "Full-screen looping flame video with pause button and poster fallback.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-03-video-wok.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-04-bigtype-taqueria",
-      "title": "Hero 04 · Big type only · La Lumbre",
-      "desc": "Giant type with a cycling filling word and a specials ticker, no photo.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-04-bigtype-taqueria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-05-collage-bakery",
-      "title": "Hero 05 · Photo collage · Crumb & Kettle",
-      "desc": "Five-photo collage with a fresh-at-6am badge and today's hours.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-05-collage-bakery.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-06-slider-trattoria",
-      "title": "Hero 06 · Slider · Nonna Rosa",
-      "desc": "Four-slide crossfade with progress dots, arrows, keys and pause.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-06-slider-trattoria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-07-centred-rawbar",
-      "title": "Hero 07 · Centred dish · Tide & Salt",
-      "desc": "One dish on a plain ground with labelled leader lines.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-07-centred-rawbar.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-08-dark-tasting",
-      "title": "Hero 08 · Dark moody · Maison Obscura",
-      "desc": "Near-black and gold fine dining with a candle-like spotlight.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-08-dark-tasting.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-09-illustrated-brunch",
-      "title": "Hero 09 · Illustrated & playful · Sunny Side",
-      "desc": "Drawn brunch scene; poke the egg for brunch facts.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-09-illustrated-brunch.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-hero-10-booking-indian",
-      "title": "Hero 10 · Booking bar in hero · Lantern House",
-      "desc": "Date, time and guests in the hero; finds the nearest free tables.",
-      "tags": [
-        "Restaurant",
-        "Hero"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Hero",
-          "href": "restaurant-kit/heroes/hero-10-booking-indian.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-signature-01-big-cards",
-      "title": "Signature 01 · Big photo cards · Smokestack & Pine",
-      "desc": "Dark poster grid of big dish cards; brisket card double height; pit status from the clock.",
-      "tags": [
-        "Restaurant",
-        "Signature"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Signature",
-          "href": "restaurant-kit/signature/signature-01-big-cards.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-signature-02-slider",
-      "title": "Signature 02 · Slider · Kohaku Izakaya",
-      "desc": "Split slider of six plates with Japanese names, pairing and price; swipe, keys, auto-play.",
-      "tags": [
-        "Restaurant",
-        "Signature"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Signature",
-          "href": "restaurant-kit/signature/signature-02-slider.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-signature-03-alternating",
-      "title": "Signature 03 · Alternating rows · Thalassa Taverna",
-      "desc": "Four numbered photo/text rows with Greek names and serves, allergens, price.",
-      "tags": [
-        "Restaurant",
-        "Signature"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Signature",
-          "href": "restaurant-kit/signature/signature-03-alternating.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-signature-04-hero-plus-small",
-      "title": "Signature 04 · Hero dish + small ones · Bếp Mây",
-      "desc": "Big pho card with a handwritten sticker beside four small dishes with heat meters.",
-      "tags": [
-        "Restaurant",
-        "Signature"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Signature",
-          "href": "restaurant-kit/signature/signature-04-hero-plus-small.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-signature-05-ingredients-story",
-      "title": "Signature 05 · Ingredients & story · Limón Cevichería",
-      "desc": "Ceviche photo with numbered ingredient hotspots, founder story and a 12-minute timeline.",
-      "tags": [
-        "Restaurant",
-        "Signature"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Signature",
-          "href": "restaurant-kit/signature/signature-05-ingredients-story.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-01-tabs-mezze",
-      "title": "Menu 01 · Tabs by category · Cedar & Sumac",
-      "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-01-tabs-mezze.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-02-dotted-bistro",
-      "title": "Menu 02 · Dotted line to price · Maison Lulu",
-      "desc": "Two columns, dotted leaders to prices, house classics and a set menu box.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-02-dotted-bistro.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-03-photo-cards-brunch",
-      "title": "Menu 03 · Photo cards · Sunday Yolk",
-      "desc": "Brunch photo cards with price tabs, badges and a save-a-dish heart.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-03-photo-cards-brunch.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-04-thumbs-ramen",
-      "title": "Menu 04 · List with thumbnails · Kumo Ramen Bar",
-      "desc": "Dark list with round thumbnails, allergen chips, spice dots and a photo popup.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-04-thumbs-ramen.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-05-printed-trattoria",
-      "title": "Menu 05 · Printed-menu look · Trattoria Nonna Pia",
-      "desc": "A paper menu on wood with a double border and a print button.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-05-printed-trattoria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-06-accordion-bangla",
-      "title": "Menu 06 · Accordion · Shorshe Ghor",
-      "desc": "Bangladeshi menu in five open/close sections with Bangla names, prices in ৳.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-06-accordion-bangla.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-07-chalkboard-seafood",
-      "title": "Menu 07 · Chalkboard · The Salty Gull",
-      "desc": "Framed chalkboard with today's catch, sold-out item and an easy-read switch.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-07-chalkboard-seafood.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-08-tasting-finedining",
-      "title": "Menu 08 · Tasting menu · Halcyon",
-      "desc": "Eight courses on a gold timeline; tasting/garden and wine-pairing switches.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-08-tasting-finedining.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-09-filters-thai",
-      "title": "Menu 09 · Filters · Baan Phrik",
-      "desc": "Veg, vegan, spicy, gluten-free and nut-free filters with live count; prices in ৳.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-09-filters-thai.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-menu-10-featured-taqueria",
-      "title": "Menu 10 · Featured dish + list · Casa Maíz",
-      "desc": "Dish of the week card next to tacos, small plates and drinks.",
-      "tags": [
-        "Restaurant",
-        "Menu"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Menu",
-          "href": "restaurant-kit/menus/menu-10-featured-taqueria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-story-01-chef-portrait-quote",
-      "title": "Story 01 · Chef portrait + quote · Kappo Tsukiyo",
-      "desc": "Dark split with a greyscale chef portrait, big quote and a read-more bio.",
-      "tags": [
-        "Restaurant",
-        "Story"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Story",
-          "href": "restaurant-kit/story/story-01-chef-portrait-quote.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-story-02-family-timeline",
-      "title": "Story 02 · Family timeline · Trattoria Ferrante",
-      "desc": "Four generations from 1952 to 2024 as year tabs with photo panels.",
-      "tags": [
-        "Restaurant",
-        "Story"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Story",
-          "href": "restaurant-kit/story/story-02-family-timeline.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-story-03-photo-collage",
-      "title": "Story 03 · Photo collage + text · Taberna Lumbre",
-      "desc": "Tilted photo-print collage with a desde 2011 stamp and a photo viewer.",
-      "tags": [
-        "Restaurant",
-        "Story"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Story",
-          "href": "restaurant-kit/story/story-03-photo-collage.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-story-04-since-1985",
-      "title": "Story 04 · Since 1985 big number · Lou's Lunch Counter",
-      "desc": "Giant photo-filled 1985 with counting stats and a coffee-price card.",
-      "tags": [
-        "Restaurant",
-        "Story"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Story",
-          "href": "restaurant-kit/story/story-04-since-1985.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-story-05-kitchen-process",
-      "title": "Story 05 · Kitchen process · Fieldstone",
-      "desc": "Source, prep, fire, plate, pass: a snap-scroll strip of kitchen photos.",
-      "tags": [
-        "Restaurant",
-        "Story"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Story",
-          "href": "restaurant-kit/story/story-05-kitchen-process.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-01-form-hours-kalamata",
-      "title": "Booking 01 · Booking form + hours · Little Kalamata House",
-      "desc": "Form with times from the day's hours, occasion chips and a summary ticket.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-01-form-hours-kalamata.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-02-night-map-hanok-ember",
-      "title": "Booking 02 · Map + address + hours · Hanok Ember",
-      "desc": "Night map with metro, car and bus routes, address card and 7-day hours.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-02-night-map-hanok-ember.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-03-slot-picker-casa-tilde",
-      "title": "Booking 03 · Reservation picker · Casa Tilde",
-      "desc": "Guests, date, time, details in four steps with live slot availability.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-03-slot-picker-casa-tilde.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-04-one-tap-island-pot",
-      "title": "Booking 04 · WhatsApp & call · Island Pot",
-      "desc": "Big tap tiles and a WhatsApp message builder with live chat preview.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-04-one-tap-island-pot.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-05-branches-crust-cinder",
-      "title": "Booking 05 · Multiple branches · Crust & Cinder",
-      "desc": "Four branch cards linked to map pins, with open-now and feature filters.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-05-branches-crust-cinder.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-booking-06-delivery-zones-golden-fold",
-      "title": "Booking 06 · Delivery zones · Golden Fold",
-      "desc": "Area or postcode checker with zone fee, time, minimum and free-delivery bar.",
-      "tags": [
-        "Restaurant",
-        "Booking"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Booking",
-          "href": "restaurant-kit/booking/booking-06-delivery-zones-golden-fold.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-01-columns-trattoria",
-      "title": "Footer 01 · Columns · Trattoria Nonna Lisa",
-      "desc": "About, hours (today highlighted), contact and links under a tablecloth edge.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-01-columns-trattoria.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-02-big-wordmark-brasa",
-      "title": "Footer 02 · Big brand-name · Brasa",
-      "desc": "Giant wordmark across the width with an open-late sticker.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-02-big-wordmark-brasa.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-03-map-hours-saffron",
-      "title": "Footer 03 · Map + hours · Saffron Lane",
-      "desc": "Drawn map card with route, weekly hours timeline with a live now marker.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-03-map-hours-saffron.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-04-newsletter-leaf-ladle",
-      "title": "Footer 04 · Newsletter · Leaf & Ladle",
-      "desc": "Newsletter card as the main block, interest chips, inline checks.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-04-newsletter-leaf-ladle.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-05-photo-strip-kai-sushi",
-      "title": "Footer 05 · Photo strip · Kai",
-      "desc": "Instagram-style photo strip with a lightbox above the footer.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-05-photo-strip-kai-sushi.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-06-minimal-line-patty-club",
-      "title": "Footer 06 · Minimal one-line · Patty Club",
-      "desc": "One line with logo, status, links, phone, social and back-to-top.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-06-minimal-line-patty-club.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-07-dark-book-ember-oak",
-      "title": "Footer 07 · Dark + Book a table · Ember & Oak",
-      "desc": "Last-chance booking bar with guests, date and time, then columns.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-07-dark-book-ember-oak.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-08-delivery-kacchi-ghor",
-      "title": "Footer 08 · Delivery badges · Kacchi Ghor",
-      "desc": "Order on Foodpanda, Pathao Food or by phone; EN / বাংলা switch.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-08-delivery-kacchi-ghor.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-09-branches-noodle-lab",
-      "title": "Footer 09 · Multiple branches · Noodle Lab",
-      "desc": "Three branch cards with their own hours and open-now filter.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-09-branches-noodle-lab.html"
-        }
-      ]
-    },
-    {
-      "cat": "restaurant-kit",
-      "slug": "rk-footer-10-elegant-centred-maison-celeste",
-      "title": "Footer 10 · Elegant centred · Maison Céleste",
-      "desc": "Centred monogram, award line and gold-ruled columns; EN / FR switch.",
-      "tags": [
-        "Restaurant",
-        "Footer"
-      ],
-      "date": "2026-11-28",
-      "pages": [
-        {
-          "label": "Footer",
-          "href": "restaurant-kit/footers/footer-10-elegant-centred-maison-celeste.html"
-        }
-      ]
-    },
     {
       "cat": "niche-sites",
       "slug": "niche-gallery",
@@ -2242,6 +1269,974 @@ window.DESIGNS = {
         {
           "label": "Page",
           "href": "site-dashboard/form-emails/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-gallery",
+      "title": "Restaurant kit · all sections",
+      "desc": "Gallery of every restaurant section: headers, heroes, signature dishes, menus, story, booking and footers.",
+      "tags": [
+        "Gallery"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/restaurant-kit/index.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-01-classic-bistro",
+      "title": "Header 01 · Classic · Copper Pot Bistro",
+      "desc": "Logo left, links centre, Book a table right; shadow on scroll; dropdown on mobile.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-01-classic-bistro.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-02-centred-trattoria",
+      "title": "Header 02 · Centred logo · Trattoria Nonna Lucia",
+      "desc": "Crest logo between two link groups, double rule, elegant small caps.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-02-centred-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-03-transparent-steakhouse",
+      "title": "Header 03 · Transparent → solid · Ember & Oak",
+      "desc": "Clear over the hero photo, turns solid coal with a brass line on scroll; drawer menu.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-03-transparent-steakhouse.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-04-pill-seafood",
+      "title": "Header 04 · Floating pill · Saltwater Shack",
+      "desc": "Frosted floating pill that hides on scroll down and returns on scroll up.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-04-pill-seafood.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-05-tworow-indian",
+      "title": "Header 05 · Two rows · Masala Lane",
+      "desc": "Top bar with open-now, phone, map and delivery; main bar below stays sticky.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-05-tworow-indian.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-06-minimal-sushi",
+      "title": "Header 06 · Minimal + full-screen menu · Kaze Omakase",
+      "desc": "Logo and a Menu button; full-screen overlay menu with seatings and contact.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-06-minimal-sushi.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-07-bold-burger",
+      "title": "Header 07 · Bold · Big Flip Burgers",
+      "desc": "Huge logo, chunky hard-shadow buttons, specials ticker.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-07-bold-burger.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-08-order-book-taqueria",
+      "title": "Header 08 · Order + Book · La Calaca Taqueria",
+      "desc": "Order online and Book side by side, each opening a small popover; bottom dock on phones.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-08-order-book-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-09-vertical-finedining",
+      "title": "Header 09 · Vertical side header · Maison Céleste",
+      "desc": "Fixed editorial sidebar with wordmark, serif nav, hours and Reserve; scroll-spy.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-09-vertical-finedining.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-header-10-bilingual-kacchi",
+      "title": "Header 10 · EN / বাংলা + Open now · Puran Dhaka Kacchi Ghar",
+      "desc": "Working language switch and a live Open now badge.",
+      "tags": [
+        "Restaurant",
+        "Header"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Header",
+          "href": "sections/restaurant-kit/headers/header-10-bilingual-kacchi.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-01-fullbleed-mezze",
+      "title": "Hero 01 · Full-bleed food photo · Olive & Ember",
+      "desc": "Edge-to-edge overhead food photo, headline bottom-left, open-now facts.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-01-fullbleed-mezze.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-02-split-vegan",
+      "title": "Hero 02 · Split photo + text · Greenhouse Kitchen",
+      "desc": "Text beside an arch-framed photo with a bowl-of-the-week card.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-02-split-vegan.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-03-video-wok",
+      "title": "Hero 03 · Video background · Wok & Flame",
+      "desc": "Full-screen looping flame video with pause button and poster fallback.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-03-video-wok.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-04-bigtype-taqueria",
+      "title": "Hero 04 · Big type only · La Lumbre",
+      "desc": "Giant type with a cycling filling word and a specials ticker, no photo.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-04-bigtype-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-05-collage-bakery",
+      "title": "Hero 05 · Photo collage · Crumb & Kettle",
+      "desc": "Five-photo collage with a fresh-at-6am badge and today's hours.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-05-collage-bakery.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-06-slider-trattoria",
+      "title": "Hero 06 · Slider · Nonna Rosa",
+      "desc": "Four-slide crossfade with progress dots, arrows, keys and pause.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-06-slider-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-07-centred-rawbar",
+      "title": "Hero 07 · Centred dish · Tide & Salt",
+      "desc": "One dish on a plain ground with labelled leader lines.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-07-centred-rawbar.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-08-dark-tasting",
+      "title": "Hero 08 · Dark moody · Maison Obscura",
+      "desc": "Near-black and gold fine dining with a candle-like spotlight.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-08-dark-tasting.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-09-illustrated-brunch",
+      "title": "Hero 09 · Illustrated & playful · Sunny Side",
+      "desc": "Drawn brunch scene; poke the egg for brunch facts.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-09-illustrated-brunch.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-hero-10-booking-indian",
+      "title": "Hero 10 · Booking bar in hero · Lantern House",
+      "desc": "Date, time and guests in the hero; finds the nearest free tables.",
+      "tags": [
+        "Restaurant",
+        "Hero"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Hero",
+          "href": "sections/restaurant-kit/heroes/hero-10-booking-indian.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-signature-01-big-cards",
+      "title": "Signature 01 · Big photo cards · Smokestack & Pine",
+      "desc": "Dark poster grid of big dish cards; brisket card double height; pit status from the clock.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "sections/restaurant-kit/signature/signature-01-big-cards.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-signature-02-slider",
+      "title": "Signature 02 · Slider · Kohaku Izakaya",
+      "desc": "Split slider of six plates with Japanese names, pairing and price; swipe, keys, auto-play.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "sections/restaurant-kit/signature/signature-02-slider.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-signature-03-alternating",
+      "title": "Signature 03 · Alternating rows · Thalassa Taverna",
+      "desc": "Four numbered photo/text rows with Greek names and serves, allergens, price.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "sections/restaurant-kit/signature/signature-03-alternating.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-signature-04-hero-plus-small",
+      "title": "Signature 04 · Hero dish + small ones · Bếp Mây",
+      "desc": "Big pho card with a handwritten sticker beside four small dishes with heat meters.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "sections/restaurant-kit/signature/signature-04-hero-plus-small.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-signature-05-ingredients-story",
+      "title": "Signature 05 · Ingredients & story · Limón Cevichería",
+      "desc": "Ceviche photo with numbered ingredient hotspots, founder story and a 12-minute timeline.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "sections/restaurant-kit/signature/signature-05-ingredients-story.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-01-tabs-mezze",
+      "title": "Menu 01 · Tabs by category · Cedar & Sumac",
+      "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-01-tabs-mezze.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-02-dotted-bistro",
+      "title": "Menu 02 · Dotted line to price · Maison Lulu",
+      "desc": "Two columns, dotted leaders to prices, house classics and a set menu box.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-02-dotted-bistro.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-03-photo-cards-brunch",
+      "title": "Menu 03 · Photo cards · Sunday Yolk",
+      "desc": "Brunch photo cards with price tabs, badges and a save-a-dish heart.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-03-photo-cards-brunch.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-04-thumbs-ramen",
+      "title": "Menu 04 · List with thumbnails · Kumo Ramen Bar",
+      "desc": "Dark list with round thumbnails, allergen chips, spice dots and a photo popup.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-04-thumbs-ramen.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-05-printed-trattoria",
+      "title": "Menu 05 · Printed-menu look · Trattoria Nonna Pia",
+      "desc": "A paper menu on wood with a double border and a print button.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-05-printed-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-06-accordion-bangla",
+      "title": "Menu 06 · Accordion · Shorshe Ghor",
+      "desc": "Bangladeshi menu in five open/close sections with Bangla names, prices in ৳.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-06-accordion-bangla.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-07-chalkboard-seafood",
+      "title": "Menu 07 · Chalkboard · The Salty Gull",
+      "desc": "Framed chalkboard with today's catch, sold-out item and an easy-read switch.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-07-chalkboard-seafood.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-08-tasting-finedining",
+      "title": "Menu 08 · Tasting menu · Halcyon",
+      "desc": "Eight courses on a gold timeline; tasting/garden and wine-pairing switches.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-08-tasting-finedining.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-09-filters-thai",
+      "title": "Menu 09 · Filters · Baan Phrik",
+      "desc": "Veg, vegan, spicy, gluten-free and nut-free filters with live count; prices in ৳.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-09-filters-thai.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-menu-10-featured-taqueria",
+      "title": "Menu 10 · Featured dish + list · Casa Maíz",
+      "desc": "Dish of the week card next to tacos, small plates and drinks.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "sections/restaurant-kit/menus/menu-10-featured-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-story-01-chef-portrait-quote",
+      "title": "Story 01 · Chef portrait + quote · Kappo Tsukiyo",
+      "desc": "Dark split with a greyscale chef portrait, big quote and a read-more bio.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "sections/restaurant-kit/story/story-01-chef-portrait-quote.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-story-02-family-timeline",
+      "title": "Story 02 · Family timeline · Trattoria Ferrante",
+      "desc": "Four generations from 1952 to 2024 as year tabs with photo panels.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "sections/restaurant-kit/story/story-02-family-timeline.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-story-03-photo-collage",
+      "title": "Story 03 · Photo collage + text · Taberna Lumbre",
+      "desc": "Tilted photo-print collage with a desde 2011 stamp and a photo viewer.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "sections/restaurant-kit/story/story-03-photo-collage.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-story-04-since-1985",
+      "title": "Story 04 · Since 1985 big number · Lou's Lunch Counter",
+      "desc": "Giant photo-filled 1985 with counting stats and a coffee-price card.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "sections/restaurant-kit/story/story-04-since-1985.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-story-05-kitchen-process",
+      "title": "Story 05 · Kitchen process · Fieldstone",
+      "desc": "Source, prep, fire, plate, pass: a snap-scroll strip of kitchen photos.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "sections/restaurant-kit/story/story-05-kitchen-process.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-01-form-hours-kalamata",
+      "title": "Booking 01 · Booking form + hours · Little Kalamata House",
+      "desc": "Form with times from the day's hours, occasion chips and a summary ticket.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-01-form-hours-kalamata.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-02-night-map-hanok-ember",
+      "title": "Booking 02 · Map + address + hours · Hanok Ember",
+      "desc": "Night map with metro, car and bus routes, address card and 7-day hours.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-02-night-map-hanok-ember.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-03-slot-picker-casa-tilde",
+      "title": "Booking 03 · Reservation picker · Casa Tilde",
+      "desc": "Guests, date, time, details in four steps with live slot availability.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-03-slot-picker-casa-tilde.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-04-one-tap-island-pot",
+      "title": "Booking 04 · WhatsApp & call · Island Pot",
+      "desc": "Big tap tiles and a WhatsApp message builder with live chat preview.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-04-one-tap-island-pot.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-05-branches-crust-cinder",
+      "title": "Booking 05 · Multiple branches · Crust & Cinder",
+      "desc": "Four branch cards linked to map pins, with open-now and feature filters.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-05-branches-crust-cinder.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-booking-06-delivery-zones-golden-fold",
+      "title": "Booking 06 · Delivery zones · Golden Fold",
+      "desc": "Area or postcode checker with zone fee, time, minimum and free-delivery bar.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "sections/restaurant-kit/booking/booking-06-delivery-zones-golden-fold.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-01-columns-trattoria",
+      "title": "Footer 01 · Columns · Trattoria Nonna Lisa",
+      "desc": "About, hours (today highlighted), contact and links under a tablecloth edge.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-01-columns-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-02-big-wordmark-brasa",
+      "title": "Footer 02 · Big brand-name · Brasa",
+      "desc": "Giant wordmark across the width with an open-late sticker.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-02-big-wordmark-brasa.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-03-map-hours-saffron",
+      "title": "Footer 03 · Map + hours · Saffron Lane",
+      "desc": "Drawn map card with route, weekly hours timeline with a live now marker.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-03-map-hours-saffron.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-04-newsletter-leaf-ladle",
+      "title": "Footer 04 · Newsletter · Leaf & Ladle",
+      "desc": "Newsletter card as the main block, interest chips, inline checks.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-04-newsletter-leaf-ladle.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-05-photo-strip-kai-sushi",
+      "title": "Footer 05 · Photo strip · Kai",
+      "desc": "Instagram-style photo strip with a lightbox above the footer.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-05-photo-strip-kai-sushi.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-06-minimal-line-patty-club",
+      "title": "Footer 06 · Minimal one-line · Patty Club",
+      "desc": "One line with logo, status, links, phone, social and back-to-top.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-06-minimal-line-patty-club.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-07-dark-book-ember-oak",
+      "title": "Footer 07 · Dark + Book a table · Ember & Oak",
+      "desc": "Last-chance booking bar with guests, date and time, then columns.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-07-dark-book-ember-oak.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-08-delivery-kacchi-ghor",
+      "title": "Footer 08 · Delivery badges · Kacchi Ghor",
+      "desc": "Order on Foodpanda, Pathao Food or by phone; EN / বাংলা switch.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-08-delivery-kacchi-ghor.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-09-branches-noodle-lab",
+      "title": "Footer 09 · Multiple branches · Noodle Lab",
+      "desc": "Three branch cards with their own hours and open-now filter.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-09-branches-noodle-lab.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-footer-10-elegant-centred-maison-celeste",
+      "title": "Footer 10 · Elegant centred · Maison Céleste",
+      "desc": "Centred monogram, award line and gold-ruled columns; EN / FR switch.",
+      "tags": [
+        "Restaurant",
+        "Footer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Footer",
+          "href": "sections/restaurant-kit/footers/footer-10-elegant-centred-maison-celeste.html"
         }
       ]
     },
