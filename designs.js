@@ -122,7 +122,7 @@ window.DESIGNS = {
       "cat": "restaurant-kit",
       "slug": "rk-gallery",
       "title": "Restaurant kit · all sections",
-      "desc": "Gallery of every restaurant header, hero, menu section and footer.",
+      "desc": "Gallery of every restaurant section: headers, heroes, signature dishes, menus, story, booking and footers.",
       "tags": [
         "Gallery"
       ],
@@ -476,6 +476,91 @@ window.DESIGNS = {
     },
     {
       "cat": "restaurant-kit",
+      "slug": "rk-signature-01-big-cards",
+      "title": "Signature 01 · Big photo cards · Smokestack & Pine",
+      "desc": "Dark poster grid of big dish cards; brisket card double height; pit status from the clock.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "restaurant-kit/signature/signature-01-big-cards.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-signature-02-slider",
+      "title": "Signature 02 · Slider · Kohaku Izakaya",
+      "desc": "Split slider of six plates with Japanese names, pairing and price; swipe, keys, auto-play.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "restaurant-kit/signature/signature-02-slider.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-signature-03-alternating",
+      "title": "Signature 03 · Alternating rows · Thalassa Taverna",
+      "desc": "Four numbered photo/text rows with Greek names and serves, allergens, price.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "restaurant-kit/signature/signature-03-alternating.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-signature-04-hero-plus-small",
+      "title": "Signature 04 · Hero dish + small ones · Bếp Mây",
+      "desc": "Big pho card with a handwritten sticker beside four small dishes with heat meters.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "restaurant-kit/signature/signature-04-hero-plus-small.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-signature-05-ingredients-story",
+      "title": "Signature 05 · Ingredients & story · Limón Cevichería",
+      "desc": "Ceviche photo with numbered ingredient hotspots, founder story and a 12-minute timeline.",
+      "tags": [
+        "Restaurant",
+        "Signature"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Signature",
+          "href": "restaurant-kit/signature/signature-05-ingredients-story.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
       "slug": "rk-menu-01-tabs-mezze",
       "title": "Menu 01 · Tabs by category · Cedar & Sumac",
       "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",
@@ -641,6 +726,193 @@ window.DESIGNS = {
         {
           "label": "Menu",
           "href": "restaurant-kit/menus/menu-10-featured-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-story-01-chef-portrait-quote",
+      "title": "Story 01 · Chef portrait + quote · Kappo Tsukiyo",
+      "desc": "Dark split with a greyscale chef portrait, big quote and a read-more bio.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "restaurant-kit/story/story-01-chef-portrait-quote.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-story-02-family-timeline",
+      "title": "Story 02 · Family timeline · Trattoria Ferrante",
+      "desc": "Four generations from 1952 to 2024 as year tabs with photo panels.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "restaurant-kit/story/story-02-family-timeline.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-story-03-photo-collage",
+      "title": "Story 03 · Photo collage + text · Taberna Lumbre",
+      "desc": "Tilted photo-print collage with a desde 2011 stamp and a photo viewer.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "restaurant-kit/story/story-03-photo-collage.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-story-04-since-1985",
+      "title": "Story 04 · Since 1985 big number · Lou's Lunch Counter",
+      "desc": "Giant photo-filled 1985 with counting stats and a coffee-price card.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "restaurant-kit/story/story-04-since-1985.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-story-05-kitchen-process",
+      "title": "Story 05 · Kitchen process · Fieldstone",
+      "desc": "Source, prep, fire, plate, pass: a snap-scroll strip of kitchen photos.",
+      "tags": [
+        "Restaurant",
+        "Story"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Story",
+          "href": "restaurant-kit/story/story-05-kitchen-process.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-01-form-hours-kalamata",
+      "title": "Booking 01 · Booking form + hours · Little Kalamata House",
+      "desc": "Form with times from the day's hours, occasion chips and a summary ticket.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-01-form-hours-kalamata.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-02-night-map-hanok-ember",
+      "title": "Booking 02 · Map + address + hours · Hanok Ember",
+      "desc": "Night map with metro, car and bus routes, address card and 7-day hours.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-02-night-map-hanok-ember.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-03-slot-picker-casa-tilde",
+      "title": "Booking 03 · Reservation picker · Casa Tilde",
+      "desc": "Guests, date, time, details in four steps with live slot availability.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-03-slot-picker-casa-tilde.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-04-one-tap-island-pot",
+      "title": "Booking 04 · WhatsApp & call · Island Pot",
+      "desc": "Big tap tiles and a WhatsApp message builder with live chat preview.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-04-one-tap-island-pot.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-05-branches-crust-cinder",
+      "title": "Booking 05 · Multiple branches · Crust & Cinder",
+      "desc": "Four branch cards linked to map pins, with open-now and feature filters.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-05-branches-crust-cinder.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-booking-06-delivery-zones-golden-fold",
+      "title": "Booking 06 · Delivery zones · Golden Fold",
+      "desc": "Area or postcode checker with zone fee, time, minimum and free-delivery bar.",
+      "tags": [
+        "Restaurant",
+        "Booking"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Booking",
+          "href": "restaurant-kit/booking/booking-06-delivery-zones-golden-fold.html"
         }
       ]
     },

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Fold — Delivery Zones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--jade:#0e5e4f;--jade2:#0a4a3e;--gold:#f6c445;--rice:#fffaf0;--ink:#10241f;--muted:#5d6f69;--line:#e7dfcc;--z1:#f6c445;--z2:#f2a65a;--z3:#e8735a;--err:#b3261e}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--rice);color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
+.dz{max-width:1200px;margin:0 auto;padding:56px 24px 88px}
+.wrap{background:var(--jade);color:var(--rice);border-radius:30px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.l{padding:44px 40px}
+.l small{font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h2{font:400 clamp(40px,5.4vw,64px)/1 'Instrument Serif',serif;margin:10px 0 12px}
+h2 em{color:var(--gold)}
+.l>p{margin:0 0 26px;color:#bcd6cd;max-width:420px}
+form{display:flex;gap:10px;flex-wrap:wrap}
+label{display:block;width:100%;font-weight:600;font-size:14px;margin-bottom:-2px}
+.in{flex:1 1 220px;position:relative}
+.in svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+input{width:100%;font:500 16px Outfit,sans-serif;padding:14px 14px 14px 42px;border-radius:14px;border:2px solid transparent;background:var(--rice);color:var(--ink);min-width:0}
+input:focus{outline:none;border-color:var(--gold)}
+input[aria-invalid="true"]{border-color:#ff9a8a}
+.btn{font:700 15px Outfit,sans-serif;border:0;border-radius:14px;padding:14px 22px;background:var(--gold);color:var(--jade2);cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.err{width:100%;color:#ffc2b8;font-size:13px;margin:0}
+.err:empty{display:none}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 0;font-size:13px;color:#bcd6cd;align-items:center}
+.quick button{font:500 13px Outfit,sans-serif;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--rice);border-radius:99px;padding:5px 11px;cursor:pointer}
+.quick button:hover{border-color:var(--gold)}
+.res{margin-top:26px;background:var(--rice);color:var(--ink);border-radius:20px;padding:22px;min-height:150px}
+.res .ph{color:var(--muted);margin:0;display:flex;gap:12px;align-items:center;height:100%}
+.res .ph svg{flex:0 0 40px}
+.rh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.zb{font:700 13px Outfit,sans-serif;padding:5px 12px;border-radius:99px;color:var(--ink)}
+.rh h3{margin:0;font:400 26px/1.1 'Instrument Serif',serif}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0}
+.facts div{background:#f4eedf;border-radius:12px;padding:10px 12px}
+.facts dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;font-weight:700;font-size:18px}
+.free{margin:14px 0 0;font-size:14px}
+.bar{height:8px;border-radius:4px;background:#ebe3cf;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--jade);border-radius:4px;transition:width .4s}
+.cart{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13.5px;color:var(--muted)}
+.cart input[type=range]{padding:0;width:auto;flex:1;accent-color:var(--jade);background:none;border:0}
+.out h3{margin:0 0 6px;font:400 26px 'Instrument Serif',serif}
+.out p{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+.out form input{padding-left:14px;background:#f4eedf}
+.out .btn{background:var(--jade);color:var(--rice)}
+.out .err{color:var(--err)}
+.ok{color:var(--jade);font-weight:600;margin:4px 0 0}
+.r{background:var(--jade2);position:relative;padding:28px;display:flex;flex-direction:column;gap:18px}
+.mapw{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;margin:0 auto}
+.mapw svg{width:100%;height:100%;display:block}
+.ring{transition:opacity .3s}
+.mapw.pick .ring{opacity:.35}
+.mapw.pick .ring.hit{opacity:1}
+.area{position:absolute;transform:translate(-50%,-50%);font:600 12px Outfit,sans-serif;background:rgba(10,74,62,.9);color:var(--rice);border:1.5px solid rgba(255,250,240,.35);border-radius:99px;padding:4px 10px;cursor:pointer;white-space:nowrap}
+.area:hover,.area.on{background:var(--rice);color:var(--jade2);border-color:var(--rice)}
+.table{width:100%;border-collapse:collapse;font-size:14px;color:#d6e7e1}
+.table th{text-align:left;font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#8fb5a9;padding:0 8px 8px}
+.table td{padding:9px 8px;border-top:1px solid rgba(255,255,255,.09)}
+.table td:first-child{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--rice)}
+.table i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.table tr.on td{background:rgba(246,196,69,.1)}
+.foot{font-size:12.5px;color:#8fb5a9;margin:0}
+@media (max-width:920px){.wrap{grid-template-columns:1fr}}
+@media (max-width:520px){.dz{padding:32px 12px 56px}.l{padding:30px 20px}.r{padding:20px 14px}.facts{grid-template-columns:1fr 1fr}.btn{width:100%}.area{font-size:10.5px;padding:3px 7px}.table{font-size:13px}.table th,.table td{padding-left:4px;padding-right:4px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="dz" aria-labelledby="dz-title">
+  <div class="wrap">
+    <div class="l">
+      <small>Golden Fold · Dumpling house</small>
+      <h2 id="dz-title">Do we <em>deliver</em><br>to your door?</h2>
+      <p>Hand-pleated every morning, steamed to order, rushed out in bamboo-lined boxes by our own riders. Check your area for the fee and time.</p>
+      <form id="zf" novalidate>
+        <label for="q">Your neighbourhood or postcode</label>
+        <div class="in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><input id="q" list="areas" autocomplete="off" placeholder="e.g. Lotus Hill or GF2" aria-describedby="q-e"></div>
+        <button class="btn" type="submit">Check area</button>
+        <p class="err" id="q-e" aria-live="polite"></p>
+      </form>
+      <datalist id="areas"></datalist>
+      <div class="quick"><span>Try:</span><button type="button" data-a="Lotus Hill">Lotus Hill</button><button type="button" data-a="Canal Gardens">Canal Gardens</button><button type="button" data-a="Northgate">Northgate</button></div>
+      <div class="res" id="res" aria-live="polite">
+        <p class="ph"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="26" rx="16" ry="8" fill="#f4eedf"/><path d="M6 24c2-10 26-10 28 0-6 4-22 4-28 0z" fill="#f6c445"/><path d="M12 19q2 3 4 0q2 3 4 0q2 3 4 0q2 3 4 0" stroke="#0e5e4f" stroke-width="1.6" fill="none"/></svg>Type your area, tap one on the map, or pick a suggestion — your fee and delivery time show up here.</p>
+      </div>
+    </div>
+    <div class="r">
+      <div class="mapw" id="mapw">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <rect width="400" height="400" fill="#0a4a3e"/>
+          <g stroke="#0e5e4f" stroke-width="1" opacity=".9"><path d="M0 50H400M0 100H400M0 150H400M0 200H400M0 250H400M0 300H400M0 350H400M50 0V400M100 0V400M150 0V400M200 0V400M250 0V400M300 0V400M350 0V400"/></g>
+          <circle class="ring" data-z="3" cx="200" cy="200" r="185" fill="#e8735a" fill-opacity=".22" stroke="#e8735a" stroke-width="2" stroke-dasharray="6 6"/>
+          <circle class="ring" data-z="2" cx="200" cy="200" r="122" fill="#f2a65a" fill-opacity=".28" stroke="#f2a65a" stroke-width="2" stroke-dasharray="6 6"/>
+          <circle class="ring" data-z="1" cx="200" cy="200" r="62" fill="#f6c445" fill-opacity=".4" stroke="#f6c445" stroke-width="2"/>
+          <path d="M-10 300 C90 260 160 330 240 300 S360 240 410 260" stroke="#2c6f84" stroke-width="14" fill="none" opacity=".8"/>
+          <circle cx="200" cy="200" r="16" fill="#fffaf0"/>
+          <path d="M191 203c1-7 17-7 18 0-4 3-14 3-18 0z" fill="#0e5e4f"/>
+        </svg>
+      </div>
+      <table class="table" id="tbl">
+        <caption style="position:absolute;left:-9999px">Delivery zones, fees and times</caption>
+        <thead><tr><th scope="col">Zone</th><th scope="col">Fee</th><th scope="col">Time</th><th scope="col">Min. order</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="foot">Riders out 11:30am–10:30pm daily. Rain or big match nights may add 10 min. Free delivery on orders over $40 in Zones 1–2.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var Z={
+    1:{name:'Zone 1 · Jade',fee:0,t:'20–30 min',min:12,col:'#f6c445',free:0},
+    2:{name:'Zone 2 · Amber',fee:2.5,t:'30–40 min',min:18,col:'#f2a65a',free:40},
+    3:{name:'Zone 3 · Ember',fee:4.9,t:'40–55 min',min:25,col:'#e8735a',free:60}
+  };
+  // area: [zone, x%, y%, postcode]; zone 0 = out of range
+  var A={'Lotus Hill':[1,38,40,'GF1'],'Old Mint':[1,60,58,'GF1'],'Canal Gardens':[2,72,30,'GF2'],'Silk Row':[2,28,68,'GF2'],'Teahouse Square':[2,64,78,'GF2'],'Brightwater':[3,14,24,'GF3'],'Kite Fields':[3,86,62,'GF3'],'Stonebridge':[3,48,92,'GF3'],'Northgate':[0,0,0,'GF7'],'Willow Marsh':[0,0,0,'GF8']};
+  function $(id){return document.getElementById(id);}
+  var dl=$('areas'),mw=$('mapw'),res=$('res'),q=$('q'),cur=null,cart=30;
+  Object.keys(A).forEach(function(k){
+    var o=document.createElement('option');o.value=k;dl.appendChild(o);
+    if(A[k][0]){var b=document.createElement('button');b.type='button';b.className='area';b.textContent=k;b.style.left=A[k][1]+'%';b.style.top=A[k][2]+'%';b.addEventListener('click',function(){q.value=k;show(k);});mw.appendChild(b);A[k].btn=b;}
+  });
+  var tb=$('tbl').querySelector('tbody');
+  [1,2,3].forEach(function(z){var r=document.createElement('tr');r.id='zr'+z;r.innerHTML='<td><i style="background:'+Z[z].col+'"></i>'+Z[z].name.split(' · ')[0]+'</td><td>'+(Z[z].fee?'$'+Z[z].fee.toFixed(2):'Free')+'</td><td>'+Z[z].t+'</td><td>$'+Z[z].min+'</td>';tb.appendChild(r);});
+  function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'');}
+  function find(v){
+    var n=norm(v);if(!n)return null;
+    for(var k in A){if(norm(k)===n)return k;}
+    for(k in A){if(norm(k).indexOf(n)===0&&n.length>=3)return k;}
+    var pc=n.toUpperCase().match(/^GF(\d)/);
+    if(pc){for(k in A){if(A[k][3]==='GF'+pc[1])return {pc:'GF'+pc[1],k:k};}return {pc:'GF'+pc[1],k:null};}
+    return null;
+  }
+  function money(x){return '$'+x.toFixed(2);}
+  function freeLine(z){
+    var c=Z[z];if(!c.fee)return '<p class="free">Delivery is <b>always free</b> in Zone 1.</p>';
+    var gap=c.free-cart,pct=Math.min(100,cart/c.free*100);
+    return '<p class="free" id="fl">'+(gap>0?'Add <b>'+money(gap)+'</b> more for free delivery (over $'+c.free+').':'<b>Free delivery unlocked</b> on this order.')+'</p><div class="bar" aria-hidden="true"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="cart"><label for="ct" style="width:auto;margin:0;font-weight:500">Basket</label><input type="range" id="ct" min="10" max="80" step="1" value="'+cart+'" aria-valuetext="'+money(cart)+'"><b id="ctv">'+money(cart)+'</b></div>';
+  }
+  function mark(z,k){
+    mw.classList.toggle('pick',!!z);
+    [].forEach.call(mw.querySelectorAll('.ring'),function(r){r.classList.toggle('hit',+r.dataset.z===z);});
+    for(var a in A){if(A[a].btn)A[a].btn.classList.toggle('on',a===k);}
+    [1,2,3].forEach(function(i){$('zr'+i).classList.toggle('on',i===z);});
+  }
+  function show(k,pc){
+    $('q-e').textContent='';q.removeAttribute('aria-invalid');
+    var z=k?A[k][0]:0,label=k||pc;cur=z;
+    if(!z){
+      mark(0,null);
+      res.innerHTML='<div class="out"><h3>'+label+' is just beyond our riders.</h3><p>We can’t keep dumplings hot that far yet. Pick up from 9 Lantern Arcade, or leave your email and we’ll tell you when we expand.</p>'+
+        '<form id="nf" novalidate><div class="in" style="flex:1 1 200px"><label for="ne" style="position:absolute;left:-9999px">Email</label><input id="ne" type="email" autocomplete="email" placeholder="hello@example.com" aria-describedby="ne-e"></div><button class="btn" type="submit">Notify me</button><p class="err" id="ne-e"></p></form></div>';
+      $('nf').addEventListener('submit',function(e){e.preventDefault();var ne=$('ne'),bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ne.value.trim());ne.setAttribute('aria-invalid',bad);$('ne-e').textContent=bad?'Enter a valid email so we can reach you.':'';
+        if(bad){ne.focus();return;}var p=document.createElement('p');p.className='ok';p.setAttribute('tabindex','-1');p.textContent='Done — we’ll email '+ne.value.trim()+' the day we reach '+label+'.';this.replaceWith(p);p.focus();});
+      return;
+    }
+    var c=Z[z];mark(z,k);
+    res.innerHTML='<div class="rh"><span class="zb" style="background:'+c.col+'">'+c.name+'</span><h3>Yes, we deliver to '+k+'!</h3></div>'+
+      '<dl class="facts"><div><dt>Fee</dt><dd>'+(c.fee?money(c.fee):'Free')+'</dd></div><div><dt>Arrives in</dt><dd>'+c.t+'</dd></div><div><dt>Min. order</dt><dd>$'+c.min+'</dd></div></dl><div id="fw">'+freeLine(z)+'</div>';
+    bindCart(z);
+  }
+  function bindCart(z){var ct=$('ct');if(!ct)return;ct.addEventListener('input',function(){
+    cart=+ct.value;var c=Z[z],gap=c.free-cart;ct.setAttribute('aria-valuetext',money(cart));$('ctv').textContent=money(cart);
+    $('fl').innerHTML=gap>0?'Add <b>'+money(gap)+'</b> more for free delivery (over $'+c.free+').':'<b>Free delivery unlocked</b> on this order.';
+    document.querySelector('#fw .bar i').style.width=Math.min(100,cart/c.free*100)+'%';});}
+  $('zf').addEventListener('submit',function(e){
+    e.preventDefault();var v=q.value.trim();
+    if(!v){q.setAttribute('aria-invalid','true');$('q-e').textContent='Type a neighbourhood or postcode first.';q.focus();return;}
+    var r=find(v);
+    if(!r){q.setAttribute('aria-invalid','true');$('q-e').textContent='We don’t recognise “'+v+'”. Try a nearby neighbourhood or a GF postcode.';return;}
+    if(typeof r==='object')show(r.k&&A[r.k][3]===r.pc?r.k:null,r.pc);else{q.value=r;show(r);}
+  });
+  q.addEventListener('input',function(){if(q.getAttribute('aria-invalid')){q.removeAttribute('aria-invalid');$('q-e').textContent='';}});
+  [].forEach.call(document.querySelectorAll('.quick button'),function(b){b.addEventListener('click',function(){q.value=b.dataset.a;show(b.dataset.a);});});
+})();
+</script>
+</body>
+</html>

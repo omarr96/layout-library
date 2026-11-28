@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thalassa Taverna — Signature Dishes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Commissioner:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf6;--ink:#142033;--muted:#55607a;--sea:#1f4e8c;--sand:#efe6d2;--line:#dcd6c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Commissioner,system-ui,sans-serif;font-weight:300;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+.sig{max-width:1160px;margin:0 auto;padding:56px 24px 100px}
+.intro{text-align:center;max-width:640px;margin:0 auto 72px}
+.wave{width:84px;height:14px;margin:0 auto 18px;display:block;stroke:var(--sea);fill:none;stroke-width:2}
+.eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sea)}
+h2{font-family:"Gilda Display",serif;font-weight:400;font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.08;margin:12px 0 16px}
+.intro p{color:var(--muted)}
+.row{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center;margin-bottom:96px}
+.row:last-of-type{margin-bottom:0}
+.row:nth-of-type(even) .pic{order:2}
+.pic{position:relative;isolation:isolate}
+.pic::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--sand);z-index:-1}
+.row:nth-of-type(even) .pic::before{inset:28px 28px -28px -28px}
+.pic img{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover}
+.tag{position:absolute;left:-14px;bottom:28px;background:var(--sea);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px}
+.row:nth-of-type(even) .tag{left:auto;right:-14px}
+.num{font-family:"Gilda Display",serif;font-size:1.05rem;color:var(--sea);letter-spacing:.18em;display:flex;align-items:center;gap:14px}
+.num::after{content:"";flex:0 0 60px;height:1px;background:var(--sea)}
+.txt h3{font-family:"Gilda Display",serif;font-weight:400;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.1;margin:14px 0 6px}
+.gr{font-family:"Gilda Display",serif;font-style:italic;color:var(--muted);font-size:1.05rem}
+.txt p.d{margin:16px 0 22px;color:#2c3850;max-width:46ch}
+.spec{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec div{flex:1 1 30%;padding:12px 14px 12px 0;min-width:110px}
+.spec dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.spec dd{font-weight:600;font-size:.96rem}
+.more{display:inline-flex;align-items:center;gap:10px;margin-top:22px;color:var(--sea);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.more:hover{gap:14px}
+.more svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.js .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.foot{text-align:center;margin-top:88px;color:var(--muted);font-size:.9rem}
+.foot a{color:var(--sea)}
+@media (max-width:860px){.row{grid-template-columns:1fr;gap:44px;margin-bottom:76px}.row:nth-of-type(even) .pic{order:0}.pic::before,.row:nth-of-type(even) .pic::before{inset:18px -14px -18px 18px}.tag,.row:nth-of-type(even) .tag{left:-8px;right:auto}}
+@media (max-width:520px){.sig{padding:40px 18px 72px}.intro{margin-bottom:52px}}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}.more:hover{gap:10px}}
+</style>
+</head>
+<body>
+<section class="sig" aria-labelledby="sig-title">
+  <header class="intro">
+    <svg class="wave" viewBox="0 0 84 14" aria-hidden="true"><path d="M2 7c5-6 9-6 14 0s9 6 14 0 9-6 14 0 9 6 14 0 9-6 14 0 9 6 10 3"/></svg>
+    <p class="eyebrow">Thalassa Taverna &middot; From the boat</p>
+    <h2 id="sig-title">What the sea gave us,<br>cooked simply</h2>
+    <p>Four dishes that have stayed on the menu since the day we opened on Harbour Row. Olive oil from Kalamata, lemons from the courtyard tree.</p>
+  </header>
+
+  <article class="row reveal">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=1100&q=70&auto=format&fit=crop" alt="Plate piled with whole pink prawns" loading="lazy" width="1100" height="880"><span class="tag">Morning catch</span></div>
+    <div class="txt">
+      <p class="num">I</p>
+      <h3>Garides sto karvouno</h3>
+      <p class="gr" lang="el">Γαρίδες στα κάρβουνα</p>
+      <p class="d">Whole red prawns split down the back, brushed with oregano oil and kissed over vine-cutting coals. Eaten with your hands, heads and all.</p>
+      <dl class="spec"><div><dt>Serves</dt><dd>2 to share</dd></div><div><dt>Allergens</dt><dd>Crustacean</dd></div><div><dt>Price</dt><dd>$32</dd></div></dl>
+      <a class="more" href="#menu">See the full sea menu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <article class="row reveal">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1100&q=70&auto=format&fit=crop" alt="Crisp-skinned salmon fillet with greens and lime on a dark plate" loading="lazy" width="1100" height="880"><span class="tag">Chef&rsquo;s favourite</span></div>
+    <div class="txt">
+      <p class="num">II</p>
+      <h3>Salmon plaki</h3>
+      <p class="gr" lang="el">Σολομός πλακί</p>
+      <p class="d">Skin crackled in the pan, then laid on wilted horta and lemon-caper butter. Our nod to the north, cooked the island way.</p>
+      <dl class="spec"><div><dt>Serves</dt><dd>1</dd></div><div><dt>Allergens</dt><dd>Fish, dairy</dd></div><div><dt>Price</dt><dd>$27</dd></div></dl>
+      <a class="more" href="#menu">See the full sea menu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <article class="row reveal">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1551248429-40975aa4de74?w=1100&q=70&auto=format&fit=crop" alt="Salad bowl with grilled shrimp, cherry tomatoes and leaves" loading="lazy" width="1100" height="880"><span class="tag">Light lunch</span></div>
+    <div class="txt">
+      <p class="num">III</p>
+      <h3>Harbour salad</h3>
+      <p class="gr" lang="el">Σαλάτα του λιμανιού</p>
+      <p class="d">Grilled shrimp, sweet cherry tomatoes, cos, capers and barley rusk crumbs, dressed at the table with aged red-wine vinegar.</p>
+      <dl class="spec"><div><dt>Serves</dt><dd>1</dd></div><div><dt>Allergens</dt><dd>Crustacean, gluten</dd></div><div><dt>Price</dt><dd>$19</dd></div></dl>
+      <a class="more" href="#menu">See the full sea menu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <article class="row reveal">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=1100&q=70&auto=format&fit=crop" alt="Whole fish, shellfish and lobster laid on crushed ice" loading="lazy" width="1100" height="880"><span class="tag">Pick your fish</span></div>
+    <div class="txt">
+      <p class="num">IV</p>
+      <h3>The ice table</h3>
+      <p class="gr" lang="el">Ψάρι της ημέρας</p>
+      <p class="d">Walk up to the ice, point at a fish, and we weigh it in front of you. Grilled whole or baked in salt, with lemon potatoes and ladolemono.</p>
+      <dl class="spec"><div><dt>Serves</dt><dd>1&ndash;4</dd></div><div><dt>Allergens</dt><dd>Fish, shellfish</dd></div><div><dt>Price</dt><dd>$9 / 100 g</dd></div></dl>
+      <a class="more" href="#menu">See the full sea menu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </article>
+
+  <p class="foot">Catch changes with the weather. Call <a href="tel:01700000000">017 00000000</a> before 4 pm to hold a fish for dinner.</p>
+</section>
+<script>
+(function(){
+  var rows=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.documentElement.classList.add('js');
+  var list=[].slice.call(rows);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var k=list.indexOf(e.target);list.slice(0,k+1).forEach(function(r){r.classList.add('in');io.unobserve(r)})})},{rootMargin:'0px 0px -12% 0px',threshold:.05});
+  rows.forEach(function(r){io.observe(r)});
+})();
+</script>
+</body>
+</html>

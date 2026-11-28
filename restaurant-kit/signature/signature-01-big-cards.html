@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smokestack &amp; Pine — Signature Dishes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#161311;--card:#211c19;--bone:#f3ead9;--muted:#b9ad9b;--ember:#e8572a;--ash:#3a322c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--bg);color:var(--bone);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--ember);outline-offset:4px}
+.sig{max-width:1280px;margin:0 auto;padding:56px 24px 96px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px;border-bottom:1px solid var(--ash);padding-bottom:28px}
+.eyebrow{font-weight:600;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember)}
+h2{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(3rem,8.5vw,7rem);line-height:.86;letter-spacing:-.01em;margin-top:10px}
+h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--bone)}
+.pit{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--ash);border-radius:999px;padding:10px 18px 10px 12px;font-size:.92rem;max-width:100%}
+.pit b{font-weight:600}
+.flame{width:30px;height:30px;border-radius:50%;background:var(--ember);display:grid;place-items:center;flex:none}
+.flame svg{width:16px;height:16px;fill:#161311}
+.pit[data-state="cold"] .flame{background:var(--ash)}
+.pit[data-state="cold"] .flame svg{fill:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{position:relative;display:block;border-radius:6px;overflow:hidden;aspect-ratio:5/4;background:var(--card);color:var(--bone);text-decoration:none;isolation:isolate}
+.card:first-child{grid-row:span 2;aspect-ratio:auto}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(22,19,17,0) 30%,rgba(22,19,17,.55) 58%,rgba(22,19,17,.95) 100%)}
+.card:hover img,.card:focus-visible img{transform:scale(1.06)}
+.num{position:absolute;top:18px;left:20px;font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:1rem;letter-spacing:.14em;background:rgba(22,19,17,.7);padding:4px 10px;border-radius:3px}
+.chip{position:absolute;top:18px;right:18px;background:var(--ember);color:#161311;font-weight:600;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px}
+.info{position:absolute;left:0;right:0;bottom:0;padding:26px 26px 24px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.card h3{font-family:"Big Shoulders Display",sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:.95}
+.card:first-child h3{font-size:clamp(2.4rem,5vw,4.2rem)}
+.price{font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:1.6rem;color:var(--ember);white-space:nowrap}
+.desc{color:#e2d7c4;max-width:46ch;margin-top:8px;font-size:.98rem;display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease,opacity .4s;opacity:0}
+.desc>span{overflow:hidden}
+.card:hover .desc,.card:focus-visible .desc,.card:first-child .desc{grid-template-rows:1fr;opacity:1}
+.meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.meta span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--ember);margin-right:7px;vertical-align:middle;border-radius:1px}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:32px;color:var(--muted);font-size:.9rem}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--bone);color:#161311;font-weight:600;text-decoration:none;padding:14px 22px;border-radius:4px;letter-spacing:.04em}
+.btn:hover{background:var(--ember)}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+@media (hover:none){.desc{grid-template-rows:1fr;opacity:1}}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.card,.card:first-child{grid-row:auto;aspect-ratio:4/5}}
+@media (max-width:520px){.sig{padding:40px 16px 72px}.info{padding:20px}.card,.card:first-child{aspect-ratio:3/4}h2 em{-webkit-text-stroke:1.5px var(--bone)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sig" aria-labelledby="sig-title">
+  <div class="top">
+    <div>
+      <p class="eyebrow">Smokestack &amp; Pine &middot; Texas-style barbecue</p>
+      <h2 id="sig-title">Off the pit,<br><em>since dawn</em></h2>
+    </div>
+    <p class="pit" id="pit" data-state="hot" role="status"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg></span><span id="pitText"><b>Pit status:</b> checking the smoker&hellip;</span></p>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="#order-brisket">
+      <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=1400&q=70&auto=format&fit=crop" alt="Thick slices of smoked brisket with a dark peppery bark" width="1400" height="1050">
+      <span class="num">No. 01</span><span class="chip">Sells out daily</span>
+      <div class="info">
+        <div class="row"><h3>Post-oak<br>brisket</h3><span class="price">$26</span></div>
+        <p class="desc"><span>Fourteen hours over post oak with nothing but salt and coarse black pepper. Sliced to order, fatty or lean &mdash; your call at the block.</span></p>
+        <p class="meta"><span>14 hr smoke</span><span>Per 250 g</span><span>Gluten free</span></p>
+      </div>
+    </a>
+    <a class="card" href="#order-ribs">
+      <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=1000&q=70&auto=format&fit=crop" alt="Rack of charred, glazed pork ribs on a board" loading="lazy" width="1000" height="800">
+      <span class="num">No. 02</span>
+      <div class="info">
+        <div class="row"><h3>Black-glaze ribs</h3><span class="price">$22</span></div>
+        <p class="desc"><span>St. Louis cut, molasses and chipotle mop, finished hot so the glaze cracks.</span></p>
+        <p class="meta"><span>Half rack</span><span>Mild heat</span></p>
+      </div>
+    </a>
+    <a class="card" href="#order-burnt-ends">
+      <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?w=1000&q=70&auto=format&fit=crop" alt="Sliced smoked meat with roast potatoes in a cast-iron pan" loading="lazy" width="1000" height="800">
+      <span class="num">No. 03</span><span class="chip">Thursdays only</span>
+      <div class="info">
+        <div class="row"><h3>Burnt-end skillet</h3><span class="price">$18</span></div>
+        <p class="desc"><span>Brisket point cubes re-smoked in their own fat with crushed potatoes and pickled shallot.</span></p>
+        <p class="meta"><span>Serves 2</span><span>Contains mustard</span></p>
+      </div>
+    </a>
+  </div>
+
+  <div class="foot">
+    <p>Prices per portion. Sides &mdash; slaw, pickles, white bread &mdash; are on the house. Ask us about allergens.</p>
+    <a class="btn" href="#order">Pre-order for pickup <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+<script>
+(function(){
+  var el=document.getElementById('pit'),t=document.getElementById('pitText');
+  var h=new Date().getHours(),msg,state='hot';
+  if(h>=6&&h<11){msg='Smoker lit at 6 am &mdash; counter opens at 11.'}
+  else if(h>=11&&h<15){msg='Brisket is on the block right now.'}
+  else if(h>=15&&h<22){msg='Ribs still going &mdash; brisket may be sold out.'}
+  else{msg='Pit is cold. Back tomorrow at 11 am.';state='cold'}
+  el.setAttribute('data-state',state);
+  t.innerHTML='<b>Pit status:</b> '+msg;
+})();
+</script>
+</body>
+</html>

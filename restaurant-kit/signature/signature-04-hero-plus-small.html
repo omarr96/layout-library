@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bếp Mây — Signature Dishes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffaf0;--jade:#0f5b4a;--jade-d:#0a4236;--grass:#e3d45c;--chilli:#c63d24;--ink:#1c2420;--muted:#56625c;--card:#fff;--line:#ece3cf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--chilli);outline-offset:3px;border-radius:6px}
+.sig{max-width:1240px;margin:0 auto;padding:56px 24px 96px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--grass);color:var(--jade-d);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:99px}
+h2{font-weight:800;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.035em;color:var(--jade-d);margin-top:14px}
+h2 span{font-family:"Gochi Hand",cursive;font-weight:400;color:var(--chilli);letter-spacing:0;font-size:.82em}
+.head p{max-width:330px;color:var(--muted);font-size:.95rem}
+.bento{display:grid;grid-template-columns:1.45fr 1fr;gap:20px}
+.hero{position:relative;background:var(--jade);color:#fff;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.hero .ph{position:relative;aspect-ratio:16/11;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.ribbon{position:absolute;top:20px;left:20px;background:var(--chilli);color:#fff;font-weight:700;font-size:.8rem;padding:8px 14px;border-radius:99px;letter-spacing:.04em}
+.note{position:absolute;right:22px;bottom:-26px;width:132px;height:132px;border-radius:50%;background:var(--grass);color:var(--jade-d);display:grid;place-items:center;text-align:center;font-family:"Gochi Hand",cursive;font-size:1.25rem;line-height:1.05;transform:rotate(-8deg);box-shadow:0 10px 24px -10px rgba(0,0,0,.4);padding:14px}
+.hero .body{padding:34px 34px 32px;display:flex;flex-direction:column;gap:12px;flex:1}
+.vn{font-family:"Gochi Hand",cursive;font-size:1.4rem;color:var(--grass)}
+.hero h3{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.hero p.d{color:#d6e7e1;max-width:52ch}
+.hero .bot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:.75rem;font-weight:500;border:1px solid rgba(255,255,255,.35);padding:4px 10px;border-radius:99px}
+.hero .price{font-size:1.7rem;font-weight:800}
+.order{display:inline-flex;align-items:center;gap:8px;background:var(--grass);color:var(--jade-d);font-weight:700;text-decoration:none;padding:12px 20px;border-radius:99px}
+.order:hover{background:#fff}
+.order svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2}
+.side{display:grid;grid-template-rows:repeat(4,1fr);gap:14px}
+.mini{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 18px 12px 12px;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s,box-shadow .2s}
+.mini:hover{transform:translateX(4px);border-color:var(--jade);box-shadow:0 14px 30px -20px rgba(15,91,74,.6)}
+.mini img{width:118px;height:100%;min-height:96px;max-height:120px;object-fit:cover;border-radius:14px;display:block}
+.mini .vn{font-size:1.05rem;color:var(--chilli);line-height:1}
+.mini h4{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;margin:2px 0}
+.mini p{font-size:.86rem;color:var(--muted);line-height:1.4}
+.mini .row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:8px}
+.mini b{font-weight:800;color:var(--jade-d)}
+.heat{display:inline-flex;gap:2px}
+.heat i{width:7px;height:12px;border-radius:7px 7px 3px 3px;background:var(--line)}
+.heat i.on{background:var(--chilli)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:26px;font-size:.88rem;color:var(--muted)}
+.foot a{color:var(--jade);font-weight:700}
+@media (max-width:960px){.bento{grid-template-columns:1fr}.side{grid-template-columns:repeat(2,1fr);grid-template-rows:none}}
+@media (max-width:620px){.sig{padding:40px 16px 72px}.side{grid-template-columns:1fr}.hero .body{padding:30px 22px 24px}.note{width:104px;height:104px;font-size:1.02rem;right:14px;bottom:-20px}.mini{grid-template-columns:96px 1fr}.mini img{width:96px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sig" aria-labelledby="sig-title">
+  <div class="head">
+    <div><span class="kicker">Bếp Mây &middot; Saigon street kitchen</span><h2 id="sig-title">One bowl made our name. <span>the rest made us stay</span></h2></div>
+    <p>Grandma Mây&rsquo;s recipes, cooked on Lane 9 since 2014. Herbs come in a basket with every order &mdash; tear them in yourself.</p>
+  </div>
+
+  <div class="bento">
+    <article class="hero">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=1400&q=70&auto=format&fit=crop" alt="Bowl of beef pho with rice noodles, greens and spring onion in clear broth" width="1400" height="960">
+        <span class="ribbon">The house bowl</span>
+        <span class="note" aria-hidden="true">broth simmers 18 hours!</span>
+      </div>
+      <div class="body">
+        <span class="vn" lang="vi">Phở bò tái chín</span>
+        <h3>Eighteen-hour beef pho</h3>
+        <p class="d">Charred onion, ginger, star anise and cassia in a clear oxtail broth, ladled boiling over rare sirloin so it cooks at the table. Fresh rice noodles every morning.</p>
+        <div class="bot">
+          <div class="tags"><span>Gluten free</span><span>Dairy free</span><span>Large or small</span></div>
+          <span class="price">$15</span>
+          <a class="order" href="#order">Order for delivery <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <div class="side">
+      <a class="mini" href="#bun-ga">
+        <img src="https://images.unsplash.com/photo-1503764654157-72d979d9af2f?w=400&q=70&auto=format&fit=crop" alt="Noodle salad with chicken, herbs and lime in a white bowl" loading="lazy" width="400" height="400">
+        <div><span class="vn" lang="vi">Bún gà nướng</span><h4>Lemongrass chicken noodles</h4><p>Cold vermicelli, grilled thigh, pickles, nuoc cham.</p><div class="row"><b>$13</b><span class="heat" role="img" aria-label="Heat 1 of 3"><i class="on"></i><i></i><i></i></span></div></div>
+      </a>
+      <a class="mini" href="#canh-ga">
+        <img src="https://images.unsplash.com/photo-1602253057119-44d745d9b860?w=400&q=70&auto=format&fit=crop" alt="Glazed chicken wings with lettuce on a dark plate" loading="lazy" width="400" height="400">
+        <div><span class="vn" lang="vi">Cánh gà chiên mắm</span><h4>Fish-sauce caramel wings</h4><p>Double-fried, sticky, garlicky. Order two plates.</p><div class="row"><b>$11</b><span class="heat" role="img" aria-label="Heat 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></div></div>
+      </a>
+      <a class="mini" href="#bun-cari">
+        <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400&q=70&auto=format&fit=crop" alt="Curry noodle soup with herbs and a lime wedge" loading="lazy" width="400" height="400">
+        <div><span class="vn" lang="vi">Bún cà ri gà</span><h4>Coconut curry noodle soup</h4><p>Saigon-style yellow curry, sweet potato, chicken.</p><div class="row"><b>$14</b><span class="heat" role="img" aria-label="Heat 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span></div></div>
+      </a>
+      <a class="mini" href="#mi-xao">
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=70&auto=format&fit=crop" alt="Stir-fried egg noodles on a leaf-shaped plate with chopsticks" loading="lazy" width="400" height="400">
+        <div><span class="vn" lang="vi">Mì xào giòn</span><h4>Wok-fried egg noodles</h4><p>Smoky wok hei, greens, crispy shallots. Vegan on request.</p><div class="row"><b>$12</b><span class="heat" role="img" aria-label="Heat 1 of 3"><i class="on"></i><i></i><i></i></span></div></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="foot"><p>Delivered by RiceRunner and Lane9 Go within 3 km. Peanuts and fish sauce are in most dishes &mdash; ask us.</p><a href="#menu">View the full menu &rarr;</a></div>
+</section>
+</body>
+</html>

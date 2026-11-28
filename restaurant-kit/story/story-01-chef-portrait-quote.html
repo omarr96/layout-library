@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kappo Tsukiyo — The Chef</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2efe8;--sec:#17181a;--ink:#f4f1ea;--muted:#a9a59c;--accent:#c8553d;--line:#34363a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:#1b1b1b;line-height:1.6;overflow-x:hidden;padding-top:48px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.chef{background:var(--sec);color:var(--ink);position:relative;overflow:hidden}
+.wrap{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:640px}
+.photo{position:relative;min-height:520px}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(.85) contrast(1.05)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--sec))}
+.hanko{position:absolute;left:28px;bottom:28px;z-index:2;width:74px;height:74px;border:2px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-family:"Shippori Mincho",serif;font-size:1.6rem;font-weight:700;writing-mode:vertical-rl;letter-spacing:.1em;background:rgba(23,24,26,.6)}
+.text{padding:88px 64px 72px 56px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.kanji{position:absolute;right:28px;top:40px;font-family:"Shippori Mincho",serif;font-size:1rem;writing-mode:vertical-rl;letter-spacing:.6em;color:var(--muted)}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:36px;height:1px;background:var(--accent)}
+blockquote{margin:28px 0 30px;font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(1.7rem,3.3vw,2.75rem);line-height:1.3;letter-spacing:-.005em;position:relative}
+blockquote::before{content:"\201C";position:absolute;left:-.55em;top:-.2em;font-size:3.2em;line-height:1;color:var(--accent);opacity:.9}
+blockquote mark{background:none;color:var(--ink);box-shadow:inset 0 -.18em 0 rgba(200,85,61,.55)}
+.who{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.sig{font-family:"Shippori Mincho",serif;font-size:1.5rem;font-weight:700}
+.role{font-size:.85rem;color:var(--muted);border-left:1px solid var(--line);padding-left:18px}
+.bio{margin-top:28px;color:#cfcbc2;max-width:56ch;font-size:.98rem}
+.more{overflow:hidden;transition:max-height .45s ease,opacity .35s;max-height:0;opacity:0}
+.more.open{opacity:1;visibility:visible}
+.more:not(.open){visibility:hidden}
+.more p{padding-top:14px}
+.toggle{margin-top:18px;align-self:flex-start;background:none;border:1px solid var(--line);color:var(--ink);font:500 .85rem Inter,sans-serif;padding:10px 18px;border-radius:999px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:border-color .2s,background .2s}
+.toggle:hover{border-color:var(--accent);background:rgba(200,85,61,.12)}
+.toggle svg{transition:transform .3s}
+.toggle[aria-expanded="true"] svg{transform:rotate(45deg)}
+.facts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.facts li{padding:18px 18px 0 0}
+.facts li+li{padding-left:18px;border-left:1px solid var(--line)}
+.facts b{display:block;font-family:"Shippori Mincho",serif;font-size:1.9rem;font-weight:700;line-height:1.1}
+.facts span{display:block;line-height:1.4;margin-top:4px;font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+.cta{margin-top:34px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.btn{background:var(--accent);color:#fff;text-decoration:none;padding:13px 24px;font-weight:600;font-size:.9rem;letter-spacing:.04em;border-radius:2px;transition:background .2s}
+.btn:hover{background:#a9432e}
+.link{color:var(--ink);font-size:.9rem;text-underline-offset:5px;text-decoration-color:var(--accent)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.photo{min-height:440px}.photo::after{background:linear-gradient(180deg,transparent 55%,var(--sec))}.text{padding:44px 24px 56px}.kanji{display:none}blockquote{margin-left:0;padding-left:.9em}blockquote::before{left:-.15em;font-size:2.4em}}
+@media (max-width:480px){body{padding-top:24px}.photo{min-height:380px}.facts{grid-template-columns:1fr 1fr}.facts li:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line);margin-top:16px}.facts b{font-size:1.6rem}.role{border-left:0;padding-left:0;flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="chef" aria-labelledby="chef-h">
+  <div class="wrap">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=1400&q=70&auto=format&fit=crop" alt="Chef Haruto Mizuno in a white jacket and grey apron, arms folded" loading="lazy" width="1400" height="1600">
+      <span class="hanko" aria-hidden="true">月夜</span>
+    </div>
+    <div class="text">
+      <span class="kanji" aria-hidden="true">料理長 水野</span>
+      <p class="eyebrow" id="chef-h">The chef behind the counter</p>
+      <blockquote>
+        <p>I don&rsquo;t cook to impress you. I cook so that the <mark>fish, the rice and the season</mark> can speak a little louder than I do.</p>
+      </blockquote>
+      <div class="who">
+        <span class="sig">Haruto Mizuno</span>
+        <span class="role">Head chef &amp; owner, Kappo Tsukiyo</span>
+      </div>
+      <div class="bio">
+        <p>Haruto trained for eleven years in small kappo kitchens before opening Tsukiyo&rsquo;s eight-seat cypress counter in 2016. Every evening he cooks directly in front of his guests, and the menu changes with whatever arrives from the morning market.</p>
+        <div class="more" id="chef-more">
+          <p>He still sharpens his knives by hand before every service, ages his own fish for up to nine days, and writes each night&rsquo;s menu with a brush on washi paper. Ask him about the rice &mdash; it&rsquo;s polished in-house twice a week.</p>
+          <p>Outside the kitchen he teaches a monthly knife class for young cooks and keeps a small vegetable plot that supplies the shiso and mitsuba you&rsquo;ll find on your plate.</p>
+        </div>
+      </div>
+      <button class="toggle" type="button" aria-expanded="false" aria-controls="chef-more">
+        <span>Read his story</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+      </button>
+      <ul class="facts">
+        <li><b>11</b><span>years in kappo kitchens</span></li>
+        <li><b>8</b><span>seats at the counter</span></li>
+        <li><b>9</b><span>days dry-aged fish</span></li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="#reserve">Reserve a counter seat</a>
+        <a class="link" href="#omakase">See tonight&rsquo;s omakase</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var btn=document.querySelector('.toggle'),more=document.getElementById('chef-more'),label=btn.querySelector('span');
+  btn.addEventListener('click',function(){
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!open));
+    label.textContent=open?'Read his story':'Show less';
+    if(open){more.style.maxHeight='0px';more.classList.remove('open');}
+    else{more.style.maxHeight=more.scrollHeight+'px';more.classList.add('open');}
+  });
+  window.addEventListener('resize',function(){if(btn.getAttribute('aria-expanded')==='true')more.style.maxHeight=more.scrollHeight+'px';});
+})();
+</script>
+</body>
+</html>

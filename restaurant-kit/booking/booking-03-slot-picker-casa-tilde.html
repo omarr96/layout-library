@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Tilde — Reservation Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bone:#f3e9d8;--paper:#fbf6ee;--pim:#b7352b;--ink:#2a2420;--olive:#6b7a3a;--muted:#7a6c60;--line:#e2d3bb;--err:#a3231a}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--olive);outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
+.rp{max-width:1180px;margin:0 auto;padding:56px 24px 88px;display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start}
+.side small{font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pim)}
+h2{font:800 clamp(36px,4.6vw,54px)/1 Fraunces,serif;margin:10px 0 14px;letter-spacing:-.02em}
+h2 em{font-weight:400;color:var(--pim)}
+.side>p{color:var(--muted);margin:0 0 26px}
+.ticket{background:var(--ink);color:var(--bone);border-radius:18px;padding:22px 22px 18px;position:relative}
+.ticket::before,.ticket::after{content:"";position:absolute;top:58px;width:18px;height:18px;border-radius:50%;background:var(--paper)}
+.ticket::before{left:-9px}.ticket::after{right:-9px}
+.ticket h3{margin:0 0 16px;font:600 18px Fraunces,serif;padding-bottom:14px;border-bottom:1.5px dashed rgba(243,233,216,.25)}
+.ticket dl{margin:0;display:grid;gap:10px}
+.ticket div{display:flex;justify-content:space-between;gap:12px;font-size:14.5px}
+.ticket dt{color:#bfae98}
+.ticket dd{margin:0;font-weight:700;text-align:right}
+.ticket dd.empty{color:#7d6f62;font-weight:400}
+.ticket p{margin:16px 0 0;font-size:12.5px;color:#bfae98}
+.box{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);list-style:none;margin:0;padding:0;background:var(--bone)}
+.steps li{position:relative}
+.steps button{width:100%;font:500 13.5px 'DM Sans',sans-serif;background:none;border:0;padding:16px 8px 14px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
+.steps button:disabled{cursor:default;opacity:.55}
+.steps .n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;border:1.5px solid currentColor;font-size:13px}
+.steps li.done button{color:var(--olive)}
+.steps li.done .n{background:var(--olive);border-color:var(--olive);color:#fff}
+.steps li.cur button{color:var(--ink);font-weight:700}
+.steps li.cur .n{background:var(--pim);border-color:var(--pim);color:#fff}
+.steps li.cur::after{content:"";position:absolute;left:20%;right:20%;bottom:0;height:3px;background:var(--pim);border-radius:3px 3px 0 0}
+.pane{padding:30px 30px 26px}
+.pane[hidden]{display:none}
+.pane h3{font:600 24px Fraunces,serif;margin:0 0 4px}
+.pane .sub{margin:0 0 20px;color:var(--muted);font-size:14.5px}
+.opts{display:grid;gap:10px}
+.guests{grid-template-columns:repeat(4,1fr)}
+.opt{font:600 16px 'DM Sans',sans-serif;background:var(--paper);border:1.5px solid var(--line);color:var(--ink);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.15s;text-align:center}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt[aria-pressed="true"]{background:var(--pim);border-color:var(--pim);color:#fff}
+.opt:disabled{cursor:not-allowed;color:#b9ab9a;background:repeating-linear-gradient(135deg,#faf5ec 0 6px,#f3ebdd 6px 12px);text-decoration:line-through}
+.dates{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}
+.dates .opt{flex:0 0 78px;scroll-snap-align:start;padding:12px 6px;line-height:1.2}
+.dates .opt small{display:block;font-weight:500;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.dates .opt b{display:block;font:800 26px Fraunces,serif;margin:2px 0}
+.dates .opt:disabled{text-decoration:none}
+.group{margin-bottom:18px}
+.group h4{margin:0 0 8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.slots{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
+.slots .opt{padding:11px 6px;font-size:15px;position:relative}
+.slots .opt i{display:block;font-style:normal;font-size:11px;font-weight:500;color:var(--pim)}
+.slots .opt[aria-pressed="true"] i{color:#ffd9d4}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-top:4px;flex-wrap:wrap}
+.f{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-weight:700;font-size:13.5px}
+input{font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);min-width:0;width:100%}
+input:focus{outline:none;border-color:var(--ink);background:#fff}
+input[aria-invalid="true"]{border-color:var(--err);background:#fdf0ee}
+.err{font-size:12.5px;color:var(--err)}
+.err:empty{display:none}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 30px 22px;border-top:1px solid var(--line)}
+.btn{font:700 15px 'DM Sans',sans-serif;border-radius:99px;padding:13px 24px;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--bone);transition:.2s}
+.btn:hover:not(:disabled){background:var(--pim);border-color:var(--pim)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.link{background:none;border-color:transparent;color:var(--ink);padding-left:4px;text-decoration:underline;text-underline-offset:4px}
+.btn.link:hover{background:none;color:var(--pim)}
+.btn.link[hidden]{display:none}
+.msg{font-size:13.5px;color:var(--muted)}
+.ok{text-align:center;padding:44px 30px}
+.ok .stamp{display:inline-grid;place-items:center;width:120px;height:120px;border-radius:50%;border:3px double var(--pim);color:var(--pim);font:800 15px/1.1 Fraunces,serif;transform:rotate(-8deg);margin-bottom:18px;text-transform:uppercase;letter-spacing:.06em}
+.ok h3{font:800 30px Fraunces,serif;margin:0 0 6px}
+.ok p{color:var(--muted);margin:0 auto 22px;max-width:420px}
+@media (max-width:920px){.rp{grid-template-columns:1fr;gap:28px}.side{max-width:560px}}
+@media (max-width:520px){.rp{padding:40px 16px 64px}.pane{padding:22px 18px}.nav{padding:16px 18px 18px}.steps button{font-size:11.5px;padding:12px 2px}.steps .lbl{display:none}.row2{grid-template-columns:1fr}.guests{grid-template-columns:repeat(3,1fr)}.nav .btn:not(.link){padding:13px 18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<section class="rp" aria-labelledby="rp-title">
+  <div class="side">
+    <small>Casa Tilde · Tapas &amp; vermut bar</small>
+    <h2 id="rp-title">Find your <em>seat</em> at the bar.</h2>
+    <p>Four quick steps. Live availability for the next two weeks — no account, no deposit.</p>
+    <div class="ticket" aria-live="polite">
+      <h3>Your table</h3>
+      <dl>
+        <div><dt>Guests</dt><dd id="s-g" class="empty">—</dd></div>
+        <div><dt>Date</dt><dd id="s-d" class="empty">—</dd></div>
+        <div><dt>Time</dt><dd id="s-t" class="empty">—</dd></div>
+        <div><dt>Name</dt><dd id="s-n" class="empty">—</dd></div>
+      </dl>
+      <p>Closed Tuesdays · Tables of 9+ call 017 00000000</p>
+    </div>
+  </div>
+  <div class="box" id="box">
+    <ol class="steps" id="steps">
+      <li><button type="button" data-go="0"><span class="n">1</span><span class="lbl">Guests</span></button></li>
+      <li><button type="button" data-go="1"><span class="n">2</span><span class="lbl">Date</span></button></li>
+      <li><button type="button" data-go="2"><span class="n">3</span><span class="lbl">Time</span></button></li>
+      <li><button type="button" data-go="3"><span class="n">4</span><span class="lbl">Details</span></button></li>
+    </ol>
+    <div class="pane" id="p0"><h3 tabindex="-1">How many of you?</h3><p class="sub">Most tables are high-tops for 2–4. Groups of 5–8 sit at the long olive-wood table.</p><div class="opts guests" id="guests"></div></div>
+    <div class="pane" id="p1" hidden><h3 tabindex="-1">Pick a day</h3><p class="sub">Scroll for more dates. Greyed days are closed or fully booked.</p><div class="dates" id="dates"></div></div>
+    <div class="pane" id="p2" hidden><h3 tabindex="-1">Choose a time</h3><p class="sub" id="slot-sub">Tables are yours for 2 hours.</p><div id="slots"></div><div class="legend"><span>Red note = only a few left</span><span>Striped = taken</span></div></div>
+    <div class="pane" id="p3" hidden><h3 tabindex="-1">Who's the table for?</h3><p class="sub">We'll text a confirmation. That's it.</p>
+      <div class="row2">
+        <div class="f"><label for="nm">Name</label><input id="nm" autocomplete="name" aria-describedby="nm-e"><span class="err" id="nm-e"></span></div>
+        <div class="f"><label for="ph">Mobile</label><input id="ph" type="tel" autocomplete="tel" placeholder="017 00000000" aria-describedby="ph-e"><span class="err" id="ph-e"></span></div>
+      </div>
+    </div>
+    <div class="nav" id="nav"><button class="btn link" type="button" id="back" hidden>← Back</button><span class="msg" id="msg" aria-live="polite"></span><button class="btn" type="button" id="next" disabled>Continue</button></div>
+    <div class="ok" id="ok" hidden tabindex="-1"><div class="stamp">Mesa<br>reservada</div><h3>¡Hasta pronto!</h3><p id="ok-p"></p><button class="btn" type="button" id="restart">Book another table</button></div>
+  </div>
+</section>
+<script>
+(function(){
+  var S={g:null,d:null,t:null},step=0,TOTAL=4;
+  var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function $(id){return document.getElementById(id);}
+  function fmt(m){var h=Math.floor(m/60),mm=m%60;return (h%12||12)+':'+String(mm).padStart(2,'0')+(h<12?'am':'pm');}
+  function dlabel(d){return DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()];}
+  function rand(seed){var x=Math.sin(seed)*10000;return x-Math.floor(x);}
+  function key(d){return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();}
+  // Slots per day: lunch Sat/Sun only; dinner every open day
+  function slotsFor(d,g){
+    var dow=d.getDay(),out=[],now=new Date(),today=key(d)===key(now),cm=now.getHours()*60+now.getMinutes();
+    var groups=[];
+    if(dow===0||dow===6)groups.push(['Lunch',[780,810,840,870,900]]);
+    groups.push(['Early evening',[1080,1110,1140,1170]],['Prime time',[1200,1230,1260,1290]],['Late',[1320,1350,1380]]);
+    groups.forEach(function(gr){
+      out.push([gr[0],gr[1].map(function(m){
+        var r=rand(key(d)+m*7+g*13),left=Math.floor(r*5)-(g>4?2:0);
+        if(today&&m<cm+45)left=0;
+        if(gr[0]==='Prime time'&&(dow===5||dow===6))left=Math.max(0,left-2);
+        return {m:m,left:left};
+      })]);
+    });
+    return out;
+  }
+  function freeCount(d,g){var c=0;slotsFor(d,g).forEach(function(gr){gr[1].forEach(function(s){if(s.left>0)c++;});});return c;}
+  function pressGroup(wrap,btn){wrap.querySelectorAll('.opt').forEach(function(b){b.setAttribute('aria-pressed',b===btn);});}
+
+  var gw=$('guests');
+  for(var i=1;i<=8;i++)(function(n){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=n+(n===8?'':'');b.setAttribute('aria-pressed','false');b.setAttribute('aria-label',n+(n===1?' guest':' guests'));
+    b.addEventListener('click',function(){S.g=n;S.d=null;S.t=null;pressGroup(gw,b);summary();go(1);});gw.appendChild(b);})(i);
+
+  function buildDates(){
+    var dw=$('dates');dw.innerHTML='';var base=new Date();base.setHours(0,0,0,0);
+    for(var k=0;k<14;k++){(function(k){
+      var d=new Date(base);d.setDate(base.getDate()+k);
+      var closed=d.getDay()===2,full=!closed&&freeCount(d,S.g)===0;
+      var b=document.createElement('button');b.type='button';b.className='opt';b.setAttribute('aria-pressed',S.d&&key(S.d)===key(d)?'true':'false');
+      b.innerHTML='<small>'+(k===0?'Today':k===1?'Tmrw':DN[d.getDay()])+'</small><b>'+d.getDate()+'</b><small>'+(closed?'Closed':full?'Full':MN[d.getMonth()])+'</small>';
+      b.setAttribute('aria-label',dlabel(d)+(closed?', closed':full?', fully booked':''));
+      if(closed||full)b.disabled=true;
+      b.addEventListener('click',function(){S.d=d;S.t=null;pressGroup(dw,b);summary();go(2);});
+      dw.appendChild(b);})(k);}
+  }
+  function buildSlots(){
+    var sw=$('slots');sw.innerHTML='';
+    $('slot-sub').textContent=dlabel(S.d)+' · '+S.g+(S.g===1?' guest':' guests')+'. Tables are yours for 2 hours.';
+    slotsFor(S.d,S.g).forEach(function(gr){
+      var g=document.createElement('div');g.className='group';g.innerHTML='<h4>'+gr[0]+'</h4>';
+      var w=document.createElement('div');w.className='opts slots';
+      gr[1].forEach(function(s){
+        var b=document.createElement('button');b.type='button';b.className='opt';b.setAttribute('aria-pressed',S.t===s.m?'true':'false');
+        b.innerHTML=fmt(s.m)+(s.left>0&&s.left<=2?'<i>'+s.left+' left</i>':'');
+        b.setAttribute('aria-label',fmt(s.m)+(s.left<=0?', taken':s.left<=2?', only '+s.left+' left':''));
+        if(s.left<=0)b.disabled=true;
+        b.addEventListener('click',function(){S.t=s.m;$('slots').querySelectorAll('.opt').forEach(function(x){x.setAttribute('aria-pressed',x===b);});summary();go(3);});
+        w.appendChild(b);
+      });
+      g.appendChild(w);sw.appendChild(g);
+    });
+  }
+  function summary(){
+    function set(id,v){var el=$(id);el.textContent=v||'—';el.classList.toggle('empty',!v);}
+    set('s-g',S.g?S.g+(S.g===1?' guest':' guests'):'');set('s-d',S.d?dlabel(S.d):'');set('s-t',S.t?fmt(S.t):'');set('s-n',$('nm').value.trim());
+  }
+  function ready(n){return n===0||(n===1&&S.g)||(n===2&&S.g&&S.d)||(n===3&&S.g&&S.d&&S.t);}
+  function go(n,noFocus){
+    if(!ready(n))return;step=n;
+    if(n===1)buildDates();if(n===2)buildSlots();
+    for(var k=0;k<TOTAL;k++){$('p'+k).hidden=k!==n;}
+    [].forEach.call($('steps').children,function(li,k){li.className=k===n?'cur':(ready(k+1)&&k<n)||(k<n)?'done':'';var b=li.querySelector('button');b.disabled=!ready(k);if(k===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+    $('back').hidden=n===0;$('msg').textContent='';
+    var nx=$('next');nx.textContent=n===3?'Confirm booking':'Continue';
+    nx.disabled=!(n===3||ready(n+1));
+    if(!noFocus){var h=$('p'+n).querySelector('h3');h.focus({preventScroll:true});}
+  }
+  $('steps').addEventListener('click',function(e){var b=e.target.closest('button');if(b&&!b.disabled)go(+b.dataset.go);});
+  $('back').addEventListener('click',function(){go(step-1);});
+  var rules={nm:function(v){return v.trim().length<2?'Add the name for the booking.':'';},ph:function(v){var d=v.replace(/\D/g,'');return d.length<10||d.length>14?'Enter a mobile number, e.g. 017 00000000.':'';}};
+  function check(id){var el=$(id),m=rules[id](el.value);el.setAttribute('aria-invalid',m?'true':'false');$(id+'-e').textContent=m;return !m;}
+  ['nm','ph'].forEach(function(id){$(id).addEventListener('input',function(){summary();if($(id).getAttribute('aria-invalid')==='true')check(id);});$(id).addEventListener('blur',function(){if($(id).value)check(id);});});
+  $('next').addEventListener('click',function(){
+    if(step<3){go(step+1);return;}
+    var a=check('nm'),b=check('ph');
+    if(!a||!b){$('msg').textContent='Almost there — check the fields above.';$(a?'ph':'nm').focus();return;}
+    $('steps').hidden=true;for(var k=0;k<TOTAL;k++)$('p'+k).hidden=true;$('nav').hidden=true;
+    $('ok-p').textContent=$('nm').value.trim()+', your table for '+S.g+' is held for '+dlabel(S.d)+' at '+fmt(S.t)+'. A text is on its way to '+$('ph').value.trim()+'.';
+    var ok=$('ok');ok.hidden=false;ok.focus();
+  });
+  $('restart').addEventListener('click',function(){
+    S={g:null,d:null,t:null};$('nm').value='';$('ph').value='';['nm','ph'].forEach(function(id){$(id).removeAttribute('aria-invalid');$(id+'-e').textContent='';});
+    pressGroup(gw,null);$('ok').hidden=true;$('steps').hidden=false;$('nav').hidden=false;summary();go(0);
+  });
+  go(0,true);
+})();
+</script>
+</body>
+</html>
