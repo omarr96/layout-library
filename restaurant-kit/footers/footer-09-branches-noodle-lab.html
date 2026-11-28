@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noodle Lab — Footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--concrete:#ecebe8;--ink:#1b1b1b;--red:#e63b2e;--paper:#f7f6f3;--mid:#6c6a66;--line:#cfcdc8}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'IBM Plex Mono',ui-monospace,monospace;background:var(--paper);color:var(--ink)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.page-end{min-height:40vh;display:grid;place-items:center;padding:48px 20px;text-align:center}
+.page-end p{font:400 clamp(24px,3.4vw,38px)/1.1 'Archivo Black',sans-serif;margin:0;text-transform:uppercase}
+.page-end span{display:block;margin-top:10px;font-size:13px;color:var(--mid)}
+
+.ft{background:var(--concrete);border-top:6px solid var(--ink)}
+.wrap{max-width:1280px;margin:0 auto;padding:64px 24px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.head h2{font:400 clamp(36px,5vw,64px)/.92 'Archivo Black',sans-serif;margin:0;text-transform:uppercase;letter-spacing:-.01em}
+.head h2 span{color:var(--red)}
+.toggle{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;cursor:pointer;background:none;border:0;color:var(--ink);font-family:inherit;padding:6px 0}
+.toggle .sw{width:46px;height:26px;border-radius:13px;background:var(--line);position:relative;transition:.2s;flex:none}
+.toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle[aria-pressed=true] .sw{background:var(--ink)}
+.toggle[aria-pressed=true] .sw::after{left:23px;background:var(--red)}
+.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--paper);border:2px solid var(--ink);display:flex;flex-direction:column;transition:opacity .3s,filter .3s,transform .2s;position:relative}
+.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.card.dim{opacity:.38;filter:grayscale(1)}
+.ph{position:relative;aspect-ratio:16/9;overflow:hidden;border-bottom:2px solid var(--ink)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.no{position:absolute;top:0;left:0;background:var(--ink);color:var(--paper);font:400 22px 'Archivo Black';padding:8px 14px}
+.badge{position:absolute;bottom:10px;right:10px;font-size:12px;font-weight:600;padding:5px 10px;background:var(--paper);border:2px solid var(--ink);display:flex;gap:6px;align-items:center}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--mid)}
+.badge.open{background:#d9f7c9}.badge.open i{background:#1f9d3a}
+.badge.closed i{background:var(--red)}
+.body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.body h3{margin:0;font:400 24px 'Archivo Black',sans-serif;text-transform:uppercase}
+.body h3 small{display:block;font:500 12px 'IBM Plex Mono';color:var(--red);letter-spacing:.1em;margin-bottom:4px}
+.body address{font-style:normal;font-size:14px;line-height:1.55}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px}
+dt{color:var(--mid)}dd{margin:0}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:11.5px;border:1px solid var(--ink);padding:3px 8px;border-radius:99px}
+.acts{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:6px}
+.acts a{font:600 13px 'IBM Plex Mono';text-decoration:none;text-align:center;padding:11px 8px;border:2px solid var(--ink);transition:.15s}
+.acts a.p{background:var(--ink);color:var(--paper)}
+.acts a:hover{background:var(--red);border-color:var(--red);color:#fff}
+.empty{display:none;margin:16px 0 0;font-size:14px;padding:14px 16px;border:2px dashed var(--ink)}
+.empty.show{display:block}
+.base{margin-top:48px;border-top:2px solid var(--ink);padding:22px 0 30px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px}
+.logo{font:400 22px 'Archivo Black';text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.logo b{background:var(--red);color:#fff;padding:0 6px}
+.base nav{display:flex;gap:18px;flex-wrap:wrap}
+.base nav a{text-decoration:none}.base nav a:hover{color:var(--red);text-decoration:underline}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}.cards li:last-child{grid-column:1/-1}.cards li:last-child .card{flex-direction:row}.cards li:last-child .ph{aspect-ratio:auto;width:45%;border-bottom:0;border-right:2px solid var(--ink)}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}.cards li:last-child .card{flex-direction:column}.cards li:last-child .ph{aspect-ratio:16/9;width:auto;border-right:0;border-bottom:2px solid var(--ink)}.wrap{padding:48px 16px 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<section class="page-end" aria-label="End of page">
+  <div><p>Broth simmered 18 hours.<br>Noodles pulled this morning.</p><span>— end of page content —</span></div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="head">
+      <h2>Three labs.<br><span>One broth.</span></h2>
+      <button class="toggle" type="button" id="onlyOpen" aria-pressed="false"><span class="sw" aria-hidden="true"></span>Show open now only</button>
+    </div>
+    <ul class="cards" id="cards" aria-label="Our branches"></ul>
+    <p class="empty" id="empty" role="status">All three labs are closed right now. First doors open at 11am — see you then.</p>
+    <div class="base">
+      <a class="logo" href="#" aria-label="Noodle Lab home"><b>NL</b>Noodle Lab</a>
+      <nav aria-label="Footer"><a href="#">Menu</a><a href="#">Order online</a><a href="#">Franchise</a><a href="#">Gift cards</a><a href="mailto:hello@example.com">hello@example.com</a></nav>
+      <span>© <span id="yr">2026</span> Noodle Lab Ramen · Contains wheat, soy, sesame, egg</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var U='https://images.unsplash.com/photo-';
+  // hours: [open, close] minutes; close may exceed 1440 (after midnight)
+  var B=[
+    {n:'01',area:'Downtown',name:'Market Hall',addr:'Stall 12, Central Market Hall, 40 Union Street',img:'1557872943-16a5ac26437e',hrs:[690,1320],late:{5:1500,6:1500},seat:'Counter · 22 seats',tags:['Walk-in only','Late Fri–Sat']},
+    {n:'02',area:'Westside',name:'The Garage',addr:'Unit 3, Old Tyre Works, 9 Bolt Lane',img:'1569718212165-3a8278d5f624',hrs:[720,1350],late:{},seat:'Booths · 60 seats',tags:['Bookings','Family friendly','Parking']},
+    {n:'03',area:'Campus',name:'Library Square',addr:'1 Library Square, North Campus',img:'1623341214825-9f4f963727da',hrs:[660,1260],late:{},closedOn:[0],seat:'Canteen · 40 seats',tags:['Student deal','Takeaway']}
+  ];
+  function fmt(m){m=m%1440;var h=Math.floor(m/60),mm=m%60;return (h%12||12)+(mm?':'+String(mm).padStart(2,'0'):'')+(h<12?'am':'pm');}
+  var now=new Date(),d=now.getDay(),m=now.getHours()*60+now.getMinutes();
+  function status(b){
+    var yd=(d+6)%7,yClose=b.late[yd]||b.hrs[1];
+    if(yClose>1440&&m<yClose-1440&&!(b.closedOn||[]).includes(yd))return [true,'Open · till '+fmt(yClose)];
+    if((b.closedOn||[]).includes(d))return [false,'Closed today'];
+    var close=b.late[d]||b.hrs[1];
+    if(m>=b.hrs[0]&&m<close)return [true,'Open · till '+fmt(close)];
+    return [false,m<b.hrs[0]?'Opens '+fmt(b.hrs[0]):'Closed · opens '+fmt(b.hrs[0])];
+  }
+  var ul=document.getElementById('cards'),anyOpen=false;
+  B.forEach(function(b){
+    var s=status(b);if(s[0])anyOpen=true;
+    var li=document.createElement('li');
+    var hrsText=(b.closedOn?'Mon–Sat ':'Daily ')+fmt(b.hrs[0])+'–'+fmt(b.hrs[1])+(Object.keys(b.late).length?' (Fri–Sat till '+fmt(1500)+')':'');
+    li.innerHTML='<article class="card" data-open="'+s[0]+'" aria-label="'+b.name+' branch">'+
+      '<div class="ph"><img src="'+U+b.img+'?w=800&q=70&auto=format&fit=crop" alt="Ramen bowl served at '+b.name+'" loading="lazy" width="800" height="450"><span class="no" aria-hidden="true">'+b.n+'</span>'+
+      '<span class="badge '+(s[0]?'open':'closed')+'"><i aria-hidden="true"></i>'+s[1]+'</span></div>'+
+      '<div class="body"><h3><small>'+b.area+'</small>'+b.name+'</h3><address>'+b.addr+'</address>'+
+      '<dl><dt>Hours</dt><dd>'+hrsText+'</dd><dt>Space</dt><dd>'+b.seat+'</dd><dt>Phone</dt><dd><a href="tel:01700000000">017 00000000</a></dd></dl>'+
+      '<div class="tags">'+b.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      '<div class="acts"><a class="p" href="https://maps.google.com/?q='+encodeURIComponent(b.addr)+'" target="_blank" rel="noopener">Directions ↗</a><a href="#">Order here</a></div></div></article>';
+    ul.appendChild(li);
+  });
+  var tg=document.getElementById('onlyOpen'),empty=document.getElementById('empty');
+  tg.addEventListener('click',function(){
+    var on=tg.getAttribute('aria-pressed')!=='true';tg.setAttribute('aria-pressed',on);
+    ul.querySelectorAll('.card').forEach(function(c){c.classList.toggle('dim',on&&c.dataset.open!=='true');});
+    empty.classList.toggle('show',on&&!anyOpen);
+  });
+  document.getElementById('yr').textContent=now.getFullYear();
+})();
+</script>
+</body>
+</html>

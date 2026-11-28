@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saffron Lane — Footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Mulish:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0f3d3e;--teal2:#145152;--saffron:#f2a541;--cream:#fbf6ec;--mint:#a9cfc4}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Mulish,system-ui,sans-serif;background:var(--cream);color:var(--teal)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--saffron);outline-offset:3px}
+.page-end{min-height:40vh;display:grid;place-items:center;padding:48px 20px;text-align:center}
+.page-end p{font:400 clamp(22px,3.4vw,34px)/1.25 'Yeseva One',serif;margin:0;max-width:640px}
+.page-end span{display:block;margin-top:12px;font-size:14px;color:#6d7f7b}
+
+.ft{background:var(--teal);color:var(--cream)}
+.wrap{max-width:1240px;margin:0 auto;padding:72px 24px 24px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font:400 clamp(30px,4vw,46px)/1.05 'Yeseva One',serif;margin:0}
+.head h2 small{display:block;font:800 12px Mulish;letter-spacing:.24em;text-transform:uppercase;color:var(--saffron);margin-bottom:12px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:9px 16px;font-weight:800;font-size:14px;background:rgba(255,255,255,.08)}
+.pill i{width:9px;height:9px;border-radius:50%;background:#e07a5f}
+.pill.open{background:var(--saffron);color:var(--teal)}.pill.open i{background:var(--teal)}
+.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:28px}
+.card{background:var(--teal2);border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.map{position:relative;aspect-ratio:16/10;background:#e9e1cf}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:58%;top:46%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin b{background:var(--teal);color:var(--cream);font-size:13px;padding:7px 12px;border-radius:10px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.pin svg{position:static;width:30px;height:38px;margin-top:4px}
+.mapinfo{padding:22px 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.mapinfo address{font-style:normal;line-height:1.5}
+.mapinfo address strong{display:block;font-size:17px}
+.mapinfo address span{color:var(--mint);font-size:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px Mulish;border-radius:12px;padding:12px 16px;text-decoration:none;cursor:pointer;border:1.5px solid var(--saffron);background:transparent;color:var(--saffron);transition:.2s}
+.btn.solid{background:var(--saffron);color:var(--teal)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.hours{padding:24px}
+.hours h3{margin:0 0 4px;font:400 22px 'Yeseva One',serif}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--mint);margin:0 0 18px}
+.legend span::before{content:"";display:inline-block;width:14px;height:8px;border-radius:4px;background:var(--saffron);margin-right:6px}
+.legend span.d::before{background:var(--mint)}
+.row{display:grid;grid-template-columns:44px 1fr 96px;gap:12px;align-items:center;padding:7px 0;font-size:14px}
+.row .day{font-weight:800}
+.row .tm{text-align:right;white-space:nowrap;color:var(--mint);font-size:12.5px}
+.row.today{background:rgba(242,165,65,.12);border-radius:10px;margin:0 -10px;padding:7px 10px}
+.row.today .tm{color:var(--cream)}
+.track{position:relative;height:10px;background:rgba(255,255,255,.07);border-radius:5px}
+.seg{position:absolute;top:0;bottom:0;border-radius:5px;background:var(--saffron)}
+.seg.d{background:var(--mint)}
+.seg.d2{background:linear-gradient(90deg,var(--saffron) 35%,var(--mint) 55%)}
+.now{position:absolute;top:-6px;bottom:-6px;width:2px;background:#fff;border-radius:1px}
+.now::after{content:"now";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:.08em}
+.scale{display:grid;grid-template-columns:44px 1fr 96px;gap:12px;font-size:11px;color:var(--mint);margin-top:6px}
+.scale div{display:flex;justify-content:space-between}
+.closed{font-size:12px;color:#e8a99a}
+.note{margin:16px 0 0;font-size:13px;color:var(--mint)}
+.bottom{margin-top:44px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mint)}
+.bottom nav{display:flex;gap:20px;flex-wrap:wrap}
+.bottom a{text-decoration:none}.bottom a:hover{color:var(--saffron)}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+@media (max-width:480px){.wrap{padding-top:52px}.row,.scale{grid-template-columns:34px 1fr 92px;gap:8px}.row .tm{font-size:11px}.mapinfo{padding:18px}.hours{padding:20px 18px}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<section class="page-end" aria-label="End of page">
+  <div><p>Slow-cooked curries, tandoor breads and chai the way grandmother poured it.</p><span>— end of page content —</span></div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="head">
+      <h2><small>Saffron Lane · Indian kitchen</small>Come find us<br>on the corner.</h2>
+      <span class="pill" id="pill" role="status"><i aria-hidden="true"></i><span>Checking…</span></span>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="map" role="img" aria-label="Illustrated map: Saffron Lane is on the corner of Mill Road and Cotton Street, near Riverside Park">
+          <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="400" fill="#ece4d2"/>
+            <path d="M0 300 C120 270 160 340 300 320 S520 260 640 300 V400 H0Z" fill="#b9d6cf"/>
+            <rect x="40" y="40" width="150" height="110" rx="14" fill="#cfe0bf"/>
+            <g fill="#e2d8c3"><rect x="230" y="40" width="110" height="70" rx="6"/><rect x="230" y="150" width="110" height="80" rx="6"/><rect x="420" y="40" width="180" height="70" rx="6"/><rect x="420" y="150" width="90" height="80" rx="6"/><rect x="540" y="150" width="70" height="80" rx="6"/><rect x="40" y="190" width="150" height="50" rx="6"/></g>
+            <g stroke="#fff" stroke-width="18" fill="none" stroke-linecap="round"><path d="M0 130H640"/><path d="M380 0V290"/><path d="M210 0V260"/></g>
+            <g stroke="#f2a541" stroke-width="5" fill="none" stroke-dasharray="2 9" stroke-linecap="round"><path d="M100 380 C160 260 260 150 372 140"/></g>
+            <g font-family="Mulish" font-weight="800" font-size="12" fill="#5c6f6b" letter-spacing="1.5"><text x="440" y="124">MILL ROAD</text><text x="390" y="270" transform="rotate(-90 390 270)">COTTON ST</text><text x="58" y="100">RIVERSIDE PARK</text></g>
+            <circle cx="100" cy="370" r="7" fill="#0f3d3e"/><text x="114" y="374" font-family="Mulish" font-size="12" font-weight="800" fill="#0f3d3e">Metro · 4 min walk</text>
+          </svg>
+          <div class="pin" aria-hidden="true"><b>Saffron Lane</b><svg viewBox="0 0 30 38"><path d="M15 37S2 23 2 14a13 13 0 0126 0c0 9-13 23-13 23z" fill="#f2a541" stroke="#0f3d3e" stroke-width="2"/><circle cx="15" cy="14" r="5" fill="#0f3d3e"/></svg></div>
+        </div>
+        <div class="mapinfo">
+          <address><strong>21 Mill Road, Cotton Quarter</strong><span>Free parking after 6pm · step-free entrance</span></address>
+          <div class="actions">
+            <a class="btn solid" href="https://maps.google.com/?q=21+Mill+Road" target="_blank" rel="noopener">Get directions ↗</a>
+            <button class="btn" type="button" id="copy">Copy address</button>
+          </div>
+        </div>
+      </div>
+      <div class="card hours">
+        <h3>Opening hours</h3>
+        <div class="legend"><span>Lunch</span><span class="d">Dinner</span></div>
+        <div id="rows"></div>
+        <div class="scale" aria-hidden="true"><span></span><div><span>11am</span><span>3pm</span><span>7pm</span><span>11pm</span></div><span></span></div>
+        <p class="note">Kitchen closes 30 minutes before. Call <a href="tel:01700000000">017 00000000</a> for groups of 8+.</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© <span id="yr">2026</span> Saffron Lane. Vegetarian &amp; vegan dishes marked on the menu.</span>
+      <nav aria-label="Footer"><a href="#">Menu</a><a href="#">Takeaway</a><a href="#">Events</a><a href="mailto:hello@example.com">hello@example.com</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var D=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],FULL=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  // index 0 = Monday. Each day: list of [start,end,type]
+  var H=[[],[[720,900,'l'],[1050,1350,'d']],[[720,900,'l'],[1050,1350,'d']],[[720,900,'l'],[1050,1350,'d']],[[720,900,'l'],[1050,1380,'d']],[[720,1380,'d2']],[[720,1290,'d2']]];
+  var S=660,E=1410;
+  function pct(m){return ((m-S)/(E-S)*100).toFixed(2)+'%';}
+  function fmt(m){var h=Math.floor(m/60),mm=m%60;return (h%12||12)+(mm?':'+String(mm).padStart(2,'0'):'')+(h<12?'am':'pm');}
+  var now=new Date(),di=(now.getDay()+6)%7,m=now.getHours()*60+now.getMinutes(),box=document.getElementById('rows');
+  H.forEach(function(day,i){
+    var r=document.createElement('div');r.className='row'+(i===di?' today':'');
+    var label=day.length?day.map(function(s){return fmt(s[0])+'–'+fmt(s[1]);}).join(', '):'Closed';
+    r.setAttribute('aria-label',FULL[i]+': '+label);
+    var html='<span class="day" aria-hidden="true">'+D[i]+'</span><div class="track" aria-hidden="true">';
+    day.forEach(function(s){html+='<span class="seg '+s[2]+'" style="left:'+pct(s[0])+';width:calc('+pct(s[1])+' - '+pct(s[0])+')"></span>';});
+    if(i===di&&m>=S&&m<=E)html+='<span class="now" style="left:'+pct(m)+'"></span>';
+    html+='</div><span class="tm" aria-hidden="true">'+(day.length?fmt(day[0][0])+'–'+fmt(day[day.length-1][1]):'<span class="closed">Closed</span>')+'</span>';
+    r.innerHTML=html;box.appendChild(r);
+  });
+  var today=H[di],pill=document.getElementById('pill'),t=pill.querySelector('span'),cur=null,next=null;
+  today.forEach(function(s){if(m>=s[0]&&m<s[1])cur=s;else if(!next&&m<s[0])next=s;});
+  if(cur){pill.classList.add('open');t.textContent='Open now · until '+fmt(cur[1]);}
+  else if(next){t.textContent='Closed · reopens '+fmt(next[0])+' today';}
+  else{for(var k=1;k<8;k++){var n=(di+k)%7;if(H[n].length){t.textContent='Closed · opens '+(k===1?'tomorrow':FULL[n])+' '+fmt(H[n][0][0]);break;}}}
+  document.getElementById('yr').textContent=now.getFullYear();
+  var c=document.getElementById('copy');
+  c.addEventListener('click',function(){
+    var addr='21 Mill Road, Cotton Quarter';
+    function done(ok){c.textContent=ok?'Copied ✓':'Copy failed';setTimeout(function(){c.textContent='Copy address';},1800);}
+    if(navigator.clipboard)navigator.clipboard.writeText(addr).then(function(){done(true);},function(){done(false);});else done(false);
+  });
+})();
+</script>
+</body>
+</html>

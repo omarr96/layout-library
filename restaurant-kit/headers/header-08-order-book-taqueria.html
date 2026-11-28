@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Calaca Taqueria — Order &amp; Book Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff4f9a;--green:#0b6e4f;--cream:#fff3dc;--ink:#2b1b2e;--muted:#6d5a68;--err:#c0262d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Rubik,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:200}
+.skip:focus{left:8px}
+.hdr{position:sticky;top:0;z-index:50;background:var(--green);color:#fff}
+.hdr::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px;background:radial-gradient(circle at 10px 0,var(--green) 9px,transparent 10px) 0 0/20px 14px repeat-x;pointer-events:none}
+.bar{max-width:1280px;margin:0 auto;padding:0 24px;height:80px;display:flex;align-items:center;gap:26px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Bungee,sans-serif;font-size:1.45rem;line-height:1;white-space:nowrap}
+.logo em{font-style:normal;color:var(--pink)}
+.nav{list-style:none;display:flex;gap:4px;margin-left:auto}
+.nav a{display:block;text-decoration:none;font-weight:500;padding:8px 12px;border-radius:8px}
+.nav a:hover{background:rgba(255,255,255,.12)}
+.duo{position:relative;display:flex;border-radius:14px;background:#fff;padding:4px;gap:4px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.duo>button{font:700 .95rem Rubik,sans-serif;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.b-order{background:var(--pink);color:var(--ink)}
+.b-book{background:transparent;color:var(--green)}
+.b-book:hover{background:#e8f4ef}
+.duo>button[aria-expanded=true]{box-shadow:inset 0 0 0 2px var(--ink)}
+.pop{position:absolute;right:0;top:calc(100% + 14px);width:320px;background:#fff;color:var(--ink);border-radius:16px;padding:20px;box-shadow:0 24px 50px -18px rgba(43,27,46,.45);display:none}
+.pop.open{display:block}
+.pop h2{font-family:Bungee,sans-serif;font-weight:400;font-size:1rem;margin-bottom:10px}
+.pop ul{list-style:none;display:grid;gap:8px}
+.pop li a{display:flex;justify-content:space-between;align-items:center;text-decoration:none;padding:12px 14px;border:2px solid #f1e3d2;border-radius:12px;font-weight:500}
+.pop li a:hover{border-color:var(--pink)}
+.pop li small{color:var(--muted);font-size:.8rem}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f label{display:grid;gap:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.f .full{grid-column:1/-1}
+.f input,.f select{font:500 .95rem Rubik,sans-serif;padding:10px;border:2px solid #e6d7c4;border-radius:10px;background:#fffaf2;color:var(--ink);width:100%}
+.f [aria-invalid=true]{border-color:var(--err)}
+.f .er{color:var(--err);font-size:.78rem;font-weight:500;text-transform:none;letter-spacing:0;min-height:1em}
+.f button{grid-column:1/-1;background:var(--green);color:#fff;border:0;border-radius:10px;padding:12px;font:700 1rem Rubik,sans-serif;cursor:pointer}
+.ok{display:none;background:#e8f4ef;border-radius:12px;padding:14px;font-weight:500;color:var(--green)}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:12px;border:2px solid rgba(255,255,255,.5);background:none;color:#fff;cursor:pointer;align-items:center;justify-content:center}
+.mnav{display:none}
+@media (max-width:980px){
+ .nav{display:none}.burger{display:inline-flex}
+ .bar{height:68px}
+ .duo{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;box-shadow:0 10px 30px -8px rgba(43,27,46,.5)}
+ .duo>button{flex:1;justify-content:center;padding:14px}
+ .pop{position:fixed;left:12px;right:12px;width:auto;top:auto;bottom:84px;max-height:calc(100vh - 110px);overflow:auto}
+ .mnav{display:block;background:var(--green);visibility:hidden;max-height:0;overflow:hidden;transition:max-height .3s,visibility .3s}
+ .mnav.open{visibility:visible;max-height:400px}
+ .mnav ul{list-style:none;padding:8px 24px 28px}
+ .mnav a{display:block;text-decoration:none;font-family:Bungee,sans-serif;font-size:1.3rem;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.3)}
+ body{padding-bottom:84px}
+}
+.hero{min-height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;max-width:1280px;margin:0 auto;padding:60px 24px 40px;gap:40px;align-items:center}
+.hero h1{font-family:Bungee,sans-serif;font-weight:400;font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:1;color:var(--green)}
+.hero h1 span{color:var(--pink)}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:42ch;margin-top:16px}
+.pic{aspect-ratio:1;border-radius:50% 50% 24px 24px;background:url("https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=1600&q=70&auto=format&fit=crop") center/cover;border:8px solid var(--pink)}
+.filler{max-width:1280px;margin:0 auto;padding:40px 24px 200px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.filler div{background:#fff;border-radius:18px;padding:22px;border-top:8px solid var(--pink)}
+.filler div:nth-child(2){border-color:var(--green)}
+.filler h2{font-family:Bungee,sans-serif;font-weight:400;font-size:1.05rem}
+.filler p{color:var(--muted)}
+@media (max-width:820px){.hero{grid-template-columns:1fr}.pic{max-width:340px;width:100%;justify-self:center;order:-1}.filler{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+ <div class="bar">
+  <a class="logo" href="#" aria-label="La Calaca Taqueria, home">
+   <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="16" r="14" fill="#fff3dc"/><rect x="11" y="26" width="14" height="7" rx="2" fill="#fff3dc"/><circle cx="12.5" cy="15" r="4" fill="#ff4f9a"/><circle cx="23.5" cy="15" r="4" fill="#ff4f9a"/><path d="M18 19l-2 4h4z" fill="#2b1b2e"/><path d="M14 30v3M18 30v3M22 30v3" stroke="#0b6e4f" stroke-width="1.4"/></svg>
+   La <em>Calaca</em>
+  </a>
+  <ul class="nav">
+   <li><a href="#menu">Menu</a></li>
+   <li><a href="#tacos">Taco Tuesday</a></li>
+   <li><a href="#mezcal">Mezcal bar</a></li>
+   <li><a href="#visit">Visit</a></li>
+  </ul>
+  <div class="duo" id="duo">
+   <button class="b-order" type="button" aria-expanded="false" aria-controls="p-order" data-pop="p-order"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 4h2l2.4 11.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>Order online</button>
+   <button class="b-book" type="button" aria-expanded="false" aria-controls="p-book" data-pop="p-book"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Book</button>
+   <div class="pop" id="p-order" role="region" aria-label="Order online options">
+    <h2>How do you want it?</h2>
+    <ul>
+     <li><a href="#pickup">Pickup in 15 min <small>order direct</small></a></li>
+     <li><a href="#tacoyo">Delivery · Tacoyo <small>25–35 min</small></a></li>
+     <li><a href="#rapiride">Delivery · RapiRide <small>30–40 min</small></a></li>
+    </ul>
+   </div>
+   <div class="pop" id="p-book" role="region" aria-label="Book a table">
+    <h2>Grab a table</h2>
+    <form class="f" id="bf" novalidate>
+     <label>Date<input type="date" name="date" id="bdate" required><span class="er" id="e-date"></span></label>
+     <label>Time<select name="time" id="btime" required><option value="">Choose</option><option>17:30</option><option>18:30</option><option>19:30</option><option>20:30</option><option>21:30</option></select><span class="er" id="e-time"></span></label>
+     <label>Guests<select name="guests"><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select><span class="er"></span></label>
+     <label>Phone<input type="tel" name="phone" id="bphone" required placeholder="017 00000000" autocomplete="tel"><span class="er" id="e-phone"></span></label>
+     <button type="submit">Request table</button>
+    </form>
+    <p class="ok" id="bok" role="status" tabindex="-1"></p>
+   </div>
+  </div>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ </div>
+ <nav class="mnav" id="mnav" aria-label="Mobile">
+  <ul>
+   <li><a href="#menu">Menu</a></li>
+   <li><a href="#tacos">Taco Tuesday</a></li>
+   <li><a href="#mezcal">Mezcal bar</a></li>
+   <li><a href="#visit">Visit</a></li>
+  </ul>
+ </nav>
+</header>
+<main id="main">
+ <section class="hero">
+  <div>
+   <h1>Tacos al pastor, <span>trompo</span>-carved nightly.</h1>
+   <p>Hand-pressed blue corn tortillas, salsa macha, horchata by the litre. Order and Book sit side by side — on phones they dock to the bottom of the screen.</p>
+  </div>
+  <div class="pic" role="img" aria-label="Plate of tacos with herbs"></div>
+ </section>
+ <section class="filler" id="menu">
+  <div><h2>Al pastor</h2><p>Pork, pineapple, onion, cilantro. Three for the price of two on Tuesdays.</p></div>
+  <div id="mezcal"><h2>Mezcal bar</h2><p>Forty agaves, flights of three, chapulines on the side if you're brave.</p></div>
+  <div id="visit"><h2>Visit</h2><p>77 Calle Verde, Market Quarter. Daily 12:00–00:00.</p></div>
+ </section>
+</main>
+<script>
+(function(){
+ var duo=document.getElementById('duo'),btns=duo.querySelectorAll('[data-pop]');
+ function closeAll(except){btns.forEach(function(b){if(b!==except){b.setAttribute('aria-expanded','false');document.getElementById(b.dataset.pop).classList.remove('open')}})}
+ btns.forEach(function(b){b.addEventListener('click',function(){var p=document.getElementById(b.dataset.pop),o=!p.classList.contains('open');closeAll(b);p.classList.toggle('open',o);b.setAttribute('aria-expanded',o);
+  if(o){var f=p.querySelector('input,a');if(f)f.focus()}})});
+ document.addEventListener('click',function(e){if(!e.target.closest('#duo'))closeAll()});
+ var bu=document.getElementById('burger'),mn=document.getElementById('mnav');
+ function setM(o){bu.setAttribute('aria-expanded',o);bu.setAttribute('aria-label',o?'Close menu':'Open menu');mn.classList.toggle('open',o)}
+ bu.addEventListener('click',function(){closeAll();setM(bu.getAttribute('aria-expanded')!=='true')});
+ mn.addEventListener('click',function(e){if(e.target.closest('a'))setM(false)});
+ document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;
+  var open=duo.querySelector('[aria-expanded=true]');if(open){closeAll();open.focus();return}
+  if(bu.getAttribute('aria-expanded')==='true'){setM(false);bu.focus()}});
+ // booking form
+ var f=document.getElementById('bf'),d=document.getElementById('bdate'),t=document.getElementById('btime'),ph=document.getElementById('bphone'),ok=document.getElementById('bok');
+ var today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());d.min=today.toISOString().slice(0,10);
+ function err(el,id,msg){el.setAttribute('aria-invalid',msg?'true':'false');var e=document.getElementById(id);e.textContent=msg;if(msg)el.setAttribute('aria-describedby',id);else el.removeAttribute('aria-describedby');return !msg}
+ function vDate(){return err(d,'e-date',!d.value?'Pick a date':(d.value<d.min?'Date is in the past':''))}
+ function vTime(){return err(t,'e-time',t.value?'':'Pick a time')}
+ function vPh(){var digits=ph.value.replace(/\D/g,'');return err(ph,'e-phone',digits.length<8?'Enter a phone number':'')}
+ d.addEventListener('change',vDate);t.addEventListener('change',vTime);ph.addEventListener('blur',vPh);
+ f.addEventListener('submit',function(e){e.preventDefault();var a=vDate(),b=vTime(),c=vPh();
+  if(!(a&&b&&c)){(f.querySelector('[aria-invalid=true]')).focus();return}
+  f.style.display='none';ok.style.display='block';ok.textContent='¡Listo! Table for '+f.guests.value+' on '+d.value+' at '+t.value+'. We’ll text '+ph.value+' to confirm.';ok.focus()});
+})();
+</script>
+</body>
+</html>
