@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saigon Mint Kitchen — Today's Special</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--herb:#1f5c45;--herb2:#174635;--lime:#c6e05a;--chili:#e2492f;--paper:#fbf7ec;--ink:#17241e;--muted:#5a6a61}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Be Vietnam Pro",system-ui,sans-serif;background:#f1eee6;color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--chili);outline-offset:3px}
+.ts{max-width:1200px;margin:0 auto;padding:56px 24px 88px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.top h2{font:400 clamp(30px,4.4vw,46px)/1 "Bagel Fat One",sans-serif;margin:0;color:var(--herb)}
+.top h2 span{color:var(--chili)}
+.top p{margin:0;color:var(--muted);font-size:14.5px;max-width:360px}
+.strip{position:relative;display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:34px;background:var(--herb);color:#eaf3ec;border-radius:26px;padding:26px 34px 26px 26px;overflow:hidden}
+.strip::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 50%,rgba(198,224,90,.22),transparent 40%);pointer-events:none}
+.bowl{position:relative;width:220px;height:220px;border-radius:50%;overflow:hidden;border:6px solid var(--lime);box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.bowl img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .35s}
+.stamp{position:absolute;left:180px;top:22px;width:84px;height:84px;border-radius:50%;background:var(--chili);color:#fff;display:grid;place-items:center;text-align:center;font:400 22px/1 "Bagel Fat One",sans-serif;transform:rotate(-12deg);box-shadow:0 8px 20px -8px rgba(0,0,0,.5);z-index:1}
+.stamp small{display:block;font:600 10px "Be Vietnam Pro",sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.info{position:relative;min-width:0}
+.day{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+.day .vi{font-weight:500;letter-spacing:.04em;text-transform:none;color:#bcd3c4}
+.info h3{font:400 clamp(30px,3.6vw,44px)/1.02 "Bagel Fat One",sans-serif;margin:8px 0 8px;color:#fff}
+.info p{margin:0 0 14px;color:#cfe0d5;max-width:460px;font-size:15px}
+.row{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px}
+.pr{font:400 34px/1 "Bagel Fat One",sans-serif;color:var(--lime)}
+.pr s{font:500 15px "Be Vietnam Pro",sans-serif;color:#9fbcab;margin-left:6px}
+.live{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.1);font-size:13.5px;font-weight:600}
+.live i{width:8px;height:8px;border-radius:50%;background:#f3a08f}
+.live.on i{background:var(--lime);box-shadow:0 0 0 4px rgba(198,224,90,.25)}
+.side{position:relative;display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.week{display:grid;grid-template-columns:repeat(7,40px);gap:6px}
+.week button{font:700 13px "Be Vietnam Pro",sans-serif;width:40px;height:48px;border-radius:12px;border:1.5px solid rgba(255,255,255,.22);background:transparent;color:#dce9e0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;transition:background .2s,border-color .2s}
+.week button small{font-weight:500;font-size:9.5px;opacity:.75}
+.week button:hover{border-color:var(--lime)}
+.week button[aria-pressed="true"]{background:var(--lime);border-color:var(--lime);color:var(--herb2)}
+.week button.today{position:relative}
+.week button.today::after{content:"";position:absolute;bottom:-7px;width:6px;height:6px;border-radius:50%;background:var(--chili)}
+.order{display:inline-flex;align-items:center;gap:8px;font:700 15px "Be Vietnam Pro",sans-serif;background:var(--chili);color:#fff;text-decoration:none;padding:13px 22px;border-radius:99px;transition:transform .2s,background .2s}
+.order:hover{background:#c93b23;transform:translateY(-1px)}
+.back{font:600 13px "Be Vietnam Pro",sans-serif;background:none;border:0;color:var(--lime);text-decoration:underline;cursor:pointer;padding:4px}
+.note{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:13px;color:var(--muted)}
+.note b,.note a{color:var(--herb)}.note a{font-weight:600}
+@media (max-width:1020px){.strip{grid-template-columns:160px 1fr;padding:24px}.bowl{width:160px;height:160px}.stamp{left:130px;width:70px;height:70px;font-size:18px}.side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap}}
+@media (max-width:600px){.ts{padding:40px 16px 64px}.strip{grid-template-columns:1fr;gap:18px;padding:22px 18px;text-align:left}.bowl{width:132px;height:132px;border-width:5px}.stamp{left:110px;top:16px}.week{grid-template-columns:repeat(7,1fr);width:100%;gap:4px}.week button{width:auto}.side{flex-direction:column;align-items:stretch}.order{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="ts" aria-labelledby="ts-title">
+  <div class="top">
+    <h2 id="ts-title">Món của ngày — <span>today's bowl</span></h2>
+    <p>Saigon Mint Kitchen cooks one special each day, in one big pot, until it runs out. Lunch only, 11am–3pm.</p>
+  </div>
+
+  <div class="strip">
+    <div class="bowl"><img id="ph" src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=70&auto=format&fit=crop" alt=""></div>
+    <div class="stamp" aria-hidden="true"><div><span id="save">-$3</span><small>today</small></div></div>
+    <div class="info" aria-live="polite">
+      <span class="day"><span id="dn">Today</span><span class="vi" id="dv"></span></span>
+      <h3 id="dish">Loading…</h3>
+      <p id="desc"></p>
+      <div class="row">
+        <span class="pr"><span id="price"></span><s id="was"></s></span>
+        <span class="live" id="live" role="status"><i aria-hidden="true"></i><span>…</span></span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="week" role="group" aria-label="Preview the special for another day" id="week"></div>
+      <div class="row"><button class="back" type="button" id="back" hidden>Back to today</button><a class="order" href="#order">Order for pickup <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <span><b>Delivery:</b> on Bikebasket &amp; LunchLoop, 11am–3pm</span>
+    <span><b>Allergens:</b> fish sauce in most broths, ask for the vegan stock</span>
+    <span>48 Lantern Lane, Riverside Market · <a href="tel:01700000000">017 00000000</a></span>
+  </div>
+</section>
+<script>
+(function(){
+  var IMG={pho:'1582878826629-29b7ad1cdc43',rice:'1603133872878-684f208fb84b',grill:'1561651823-34feb02250e4'};
+  // Monday-first
+  var S=[
+    {d:'Monday',v:'Thứ Hai',n:'Phở Bò Tái',t:'Rare beef pho, 12-hour bone broth, star anise and a mountain of herbs.',p:9,w:12,i:'pho'},
+    {d:'Tuesday',v:'Thứ Ba',n:'Cơm Chiên Dương Châu',t:'Wok-fired jasmine rice with lap cheong, prawns, egg and spring onion.',p:8,w:10.5,i:'rice'},
+    {d:'Wednesday',v:'Thứ Tư',n:'Bún Chả Hà Nội',t:'Charred pork patties in sweet-sour nước chấm with rice noodles and lettuce.',p:9.5,w:12,i:'grill'},
+    {d:'Thursday',v:'Thứ Năm',n:'Phở Gà Gừng',t:'Ginger chicken pho, clear and gentle, with lime and fresh chilli.',p:8.5,w:11,i:'pho'},
+    {d:'Friday',v:'Thứ Sáu',n:'Cơm Tấm Sườn',t:'Broken rice with lemongrass pork chop, pickles and a fried egg.',p:10,w:13,i:'grill'},
+    {d:'Saturday',v:'Thứ Bảy',n:'Bún Bò Huế',t:'Spicy lemongrass beef noodle soup from Huế. Our hottest bowl.',p:10.5,w:13.5,i:'pho'},
+    {d:'Sunday',v:'Chủ Nhật',n:'Cơm Gà Hội An',t:'Turmeric chicken rice with herb salad and ginger dipping sauce.',p:9,w:11.5,i:'rice'}
+  ];
+  var now=new Date(),di=(now.getDay()+6)%7,sel=di;
+  var week=document.getElementById('week'),back=document.getElementById('back');
+  function money(x){return '$'+(x%1?x.toFixed(2):x);}
+  S.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';
+    b.innerHTML=s.d.slice(0,1)+'<small>'+s.d.slice(0,3)+'</small>';
+    b.setAttribute('aria-label',s.d+(i===di?' (today)':'')+': '+s.n);
+    if(i===di)b.classList.add('today');
+    b.addEventListener('click',function(){show(i);});
+    week.appendChild(b);
+  });
+  function status(i){
+    var live=document.getElementById('live'),txt=live.querySelector('span');
+    live.classList.remove('on');
+    if(i!==di){var k=(i-di+7)%7;txt.textContent=k===1?'Back tomorrow':'Next on '+S[i].d;return;}
+    var m=now.getHours()*60+now.getMinutes();
+    if(m<660){var l=660-m;txt.textContent='Pot opens in '+(l>=60?Math.floor(l/60)+'h ':'')+(l%60)+'m';}
+    else if(m<900){live.classList.add('on');var r=900-m;txt.textContent='Serving now · '+(r>=60?Math.floor(r/60)+'h ':'')+(r%60)+'m left';}
+    else{txt.textContent='Sold out for today · tomorrow: '+S[(di+1)%7].n;}
+  }
+  function show(i){
+    sel=i;var s=S[i];
+    week.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false');});
+    document.getElementById('dn').textContent=i===di?'Today · '+s.d:'Preview · '+s.d;
+    document.getElementById('dv').textContent=s.v;
+    document.getElementById('dish').textContent=s.n;
+    document.getElementById('desc').textContent=s.t;
+    document.getElementById('price').textContent=money(s.p);
+    document.getElementById('was').textContent=money(s.w);
+    document.getElementById('save').textContent='-'+money(s.w-s.p);
+    var ph=document.getElementById('ph');ph.src='https://images.unsplash.com/photo-'+IMG[s.i]+'?w=600&q=70&auto=format&fit=crop';
+    back.hidden=i===di;
+    status(i);
+  }
+  back.addEventListener('click',function(){show(di);week.children[di].focus();});
+  show(di);
+  setInterval(function(){now=new Date();status(sel);},60000);
+})();
+</script>
+</body>
+</html>

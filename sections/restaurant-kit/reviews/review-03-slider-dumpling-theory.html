@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dumpling Theory — Review Slider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff4e0;--ink:#1b1b1b;--red:#d7263d;--jade:#1f7a5c;--paper:#fffdf8;--muted:#5e564b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--jade);outline-offset:3px}
+.sl{max-width:1240px;margin:0 auto;padding:56px 24px 88px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px}
+.kicker{font-family:"Space Mono",monospace;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;background:var(--ink);color:var(--bg);display:inline-block;padding:4px 10px;border-radius:4px}
+h2{font-weight:800;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.95;letter-spacing:-.03em;margin-top:14px}
+h2 span{color:var(--red)}
+.ctrl{display:flex;align-items:center;gap:10px}
+.ctrl button{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,transform .15s}
+.ctrl button:hover{background:var(--ink);color:var(--bg)}
+.ctrl button:active{transform:scale(.94)}
+.ctrl button:disabled{opacity:.35;cursor:default;background:var(--paper);color:var(--ink)}
+.ctrl svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ctrl .pp{width:auto;height:40px;border-radius:999px;padding:0 14px;font-family:"Space Mono",monospace;font-size:.78rem;border-width:1.5px}
+.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:8px 4px 26px;margin:0 -4px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 calc((100% - 44px)/3);scroll-snap-align:start;background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:24px 24px 0;display:flex;flex-direction:column;position:relative;box-shadow:6px 6px 0 var(--ink)}
+.slide:nth-child(3n+2){box-shadow:6px 6px 0 var(--red)}
+.slide:nth-child(3n){box-shadow:6px 6px 0 var(--jade)}
+.tick{display:flex;justify-content:space-between;font-family:"Space Mono",monospace;font-size:.75rem;color:var(--muted);text-transform:uppercase}
+.stars{color:var(--red);font-size:1.1rem;letter-spacing:2px;margin:14px 0 6px}
+.slide blockquote{font-size:1.22rem;font-weight:500;line-height:1.38;flex:1}
+.perf{margin:22px -24px 0;border-top:2px dashed var(--ink);position:relative;padding:16px 24px 20px;display:flex;align-items:center;gap:12px}
+.perf::before,.perf::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.perf::before{left:-12px;clip-path:inset(0 0 0 50%)}.perf::after{right:-12px;clip-path:inset(0 50% 0 0)}
+.av{width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.slide:nth-child(3n) .av{background:var(--jade)}.slide:nth-child(3n+1) .av{background:var(--ink)}
+.perf b{display:block;font-size:1rem}
+.perf small{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--muted)}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:8px}
+.dots button{width:12px;height:12px;border-radius:999px;border:2px solid var(--ink);background:transparent;cursor:pointer;padding:0;transition:width .25s,background .25s}
+.dots button[aria-current="true"]{width:34px;background:var(--ink)}
+.note{text-align:center;font-family:"Space Mono",monospace;font-size:.78rem;color:var(--muted);margin-top:20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:980px){.slide{flex-basis:calc((100% - 22px)/2)}}
+@media (max-width:620px){.slide{flex-basis:88%}.sl{padding:40px 16px 72px}.ctrl button{width:46px;height:46px}}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="sl" aria-roledescription="carousel" aria-labelledby="sl-title">
+  <div class="top">
+    <div>
+      <span class="kicker">Dumpling Theory · Dim sum house</span>
+      <h2 id="sl-title">Proven by <span>4,100+</span> hungry tables</h2>
+    </div>
+    <div class="ctrl">
+      <button type="button" class="pp" id="pp" aria-pressed="false">Pause</button>
+      <button type="button" id="prev" aria-label="Previous reviews"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" id="next" aria-label="Next reviews"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+
+  <div class="track" id="track" tabindex="0" aria-label="Guest reviews, use arrow keys to scroll">
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="1 of 7">
+      <div class="tick"><span>Table 12</span><span>6 baskets</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>The soup dumplings have actual soup in them. Burned my tongue, regret nothing. Watch them fold through the glass, it's hypnotic.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">MW</span><div><b>Mei W.</b><small>Google · 2 weeks ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="2 of 7">
+      <div class="tick"><span>Table 03</span><span>4 baskets</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>Crispy-bottom pork buns are the reason I now walk 20 minutes on Sundays. Trolley service on weekends is pure joy.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">DO</span><div><b>Daniel O.</b><small>Google · 1 month ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="3 of 7">
+      <div class="tick"><span>Takeaway</span><span>Order #2281</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>Frozen dumpling packs are dangerously good. Clear cooking card, vegan pack labelled, gone in two nights.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">FH</span><div><b>Farzana H.</b><small>Google · 3 weeks ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="4 of 7">
+      <div class="tick"><span>Table 08</span><span>9 baskets</span></div>
+      <div class="stars" role="img" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;<span style="opacity:.25">&#9733;</span></div>
+      <blockquote>Queue on Saturday was long, but they bring hot tea out to the line. Har gow skins were thin as paper. Worth it.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">LC</span><div><b>Lucas C.</b><small>Google · 2 months ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="5 of 7">
+      <div class="tick"><span>Table 15</span><span>Birthday</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>They put a candle in a custard bun and the whole room sang. My dad still talks about it.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">AY</span><div><b>Aiko Y.</b><small>Google · 5 days ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="6 of 7">
+      <div class="tick"><span>Table 01</span><span>Solo lunch</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>Lunch set for one is perfect: three baskets, greens, tea, out in 35 minutes. Counter seats are great for solo diners.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">RB</span><div><b>Rafi B.</b><small>Google · 1 week ago</small></div></div>
+    </article>
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="7 of 7">
+      <div class="tick"><span>Table 06</span><span>5 baskets</span></div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>Chilli oil wontons. That's the review. Order two plates, you won't want to share.</blockquote>
+      <div class="perf"><span class="av" aria-hidden="true">GS</span><div><b>Grace S.</b><small>Google · 4 days ago</small></div></div>
+    </article>
+  </div>
+  <div class="dots" id="dots" role="group" aria-label="Choose review"></div>
+  <p class="note">4.7 &#9733; average on Google from 4,100+ reviews</p>
+  <p class="sr" id="live" aria-live="polite"></p>
+</section>
+<script>
+(function(){
+  var track=document.getElementById('track'),slides=[].slice.call(track.children),dots=document.getElementById('dots'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),pp=document.getElementById('pp'),live=document.getElementById('live');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,userPaused=reduce,hover=false,timer=null;
+  function per(){return Math.max(1,Math.round(track.clientWidth/slides[0].getBoundingClientRect().width));}
+  function pages(){return Math.max(1,slides.length-per()+1);}
+  function cur(){var w=slides[0].getBoundingClientRect().width+22;return Math.round(track.scrollLeft/w);}
+  function go(i,announce){
+    var n=pages();i=(i+n)%n;
+    track.scrollTo({left:slides[i].offsetLeft-track.offsetLeft-4,behavior:reduce?'auto':'smooth'});
+    if(announce)live.textContent='Showing review '+(i+1)+' of '+slides.length;
+  }
+  function build(){
+    dots.innerHTML='';
+    for(var i=0;i<pages();i++){(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to review '+(i+1));b.addEventListener('click',function(){go(i,true);});dots.appendChild(b);})(i);}
+    sync();
+  }
+  function sync(){
+    var c=Math.min(cur(),pages()-1);
+    [].forEach.call(dots.children,function(d,i){d.setAttribute('aria-current',String(i===c));});
+  }
+  var st;track.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(sync,80);});
+  prev.addEventListener('click',function(){go(cur()-1,true);});
+  next.addEventListener('click',function(){go(cur()+1,true);});
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();go(cur()+1,true);}
+    if(e.key==='ArrowLeft'){e.preventDefault();go(cur()-1,true);}
+  });
+  function tick(){stop();if(userPaused||hover||document.hidden)return;timer=setTimeout(function(){go(cur()+1,false);tick();},6000);}
+  function stop(){clearTimeout(timer);timer=null;}
+  pp.addEventListener('click',function(){userPaused=!userPaused;pp.textContent=userPaused?'Play':'Pause';pp.setAttribute('aria-pressed',String(userPaused));tick();});
+  if(reduce){pp.textContent='Play';pp.setAttribute('aria-pressed','true');}
+  var sec=track.parentNode;
+  sec.addEventListener('mouseenter',function(){hover=true;stop();});
+  sec.addEventListener('mouseleave',function(){hover=false;tick();});
+  sec.addEventListener('focusin',function(){hover=true;stop();});
+  sec.addEventListener('focusout',function(e){if(!sec.contains(e.relatedTarget)){hover=false;tick();}});
+  document.addEventListener('visibilitychange',tick);
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(build,150);});
+  build();tick();
+})();
+</script>
+</body>
+</html>

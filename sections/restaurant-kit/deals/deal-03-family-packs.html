@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crispy Hen Co. — Family Packs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#d7261e;--mustard:#ffc93c;--black:#141414;--cream:#fff6e0;--muted:#5b5146}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Rubik,system-ui,sans-serif;background:#f4ede0;color:var(--black);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.fp{max-width:1200px;margin:0 auto;padding:56px 24px 88px}
+.hd{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:34px}
+.hd .kick{display:inline-block;background:var(--black);color:var(--mustard);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;transform:rotate(-2deg)}
+.hd h2{font:400 clamp(38px,6vw,72px)/.95 "Bowlby One",sans-serif;margin:14px 0 0;color:var(--red);text-transform:uppercase}
+.hd p{margin:0;max-width:330px;color:var(--muted)}
+.img{width:150px;height:150px;border-radius:50%;overflow:hidden;border:4px solid var(--black);box-shadow:6px 6px 0 var(--black)}
+.img img{width:100%;height:100%;object-fit:cover;display:block}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pk{background:var(--cream);border:3px solid var(--black);border-radius:20px;box-shadow:8px 8px 0 var(--black);padding:24px;display:flex;flex-direction:column}
+.pk.hot{background:var(--mustard)}
+.pk .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pk h3{font:400 26px/1 "Bowlby One",sans-serif;margin:0;text-transform:uppercase}
+.badge{flex:none;font-weight:700;font-size:12px;background:var(--red);color:#fff;padding:5px 10px;border-radius:99px;border:2px solid var(--black)}
+.pk .what{margin:8px 0 18px;font-size:14.5px;color:var(--muted)}
+.pk.hot .what{color:#4a3a18}
+.ppl{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:2.5px solid var(--black);border-radius:14px;padding:8px 8px 8px 14px}
+.ppl label{font-weight:700;font-size:14px}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:38px;height:38px;border-radius:10px;border:2px solid var(--black);background:var(--mustard);font:700 20px/1 Rubik,sans-serif;cursor:pointer;color:var(--black)}
+.pk.hot .step button{background:var(--red);color:#fff}
+.step button:disabled{opacity:.35;cursor:not-allowed}
+.step output{min-width:36px;text-align:center;font:700 20px Rubik,sans-serif}
+.inc{list-style:none;padding:0;margin:18px 0;display:grid;gap:8px;font-size:15px}
+.inc li{display:flex;justify-content:space-between;gap:10px;border-bottom:2px dotted rgba(20,20,20,.25);padding-bottom:6px}
+.inc b{font-weight:700}
+.tot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.tot .p{font:400 40px/1 "Bowlby One",sans-serif}
+.tot .pp{display:block;font-size:13px;color:var(--muted);margin-top:6px}
+.pk.hot .tot .pp{color:#4a3a18}
+.sv{font-weight:700;font-size:13px;background:var(--black);color:var(--mustard);padding:6px 10px;border-radius:8px;white-space:nowrap}
+.add{margin-top:16px;width:100%;font:700 16px Rubik,sans-serif;background:var(--red);color:#fff;border:2.5px solid var(--black);border-radius:14px;padding:14px;cursor:pointer;box-shadow:4px 4px 0 var(--black);transition:transform .12s,box-shadow .12s}
+.add:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--black)}
+.add:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--black)}
+.pk.hot .add{background:var(--black)}
+.ok{min-height:22px;margin:10px 0 0;font-size:13.5px;font-weight:700;color:#1d6b38}
+.pk.hot .ok{color:#174f2a}
+.foot{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:34px;font-size:13.5px;color:var(--muted)}
+.foot b{color:var(--black)}
+.bump{animation:bp .3s ease}
+@keyframes bp{50%{transform:scale(1.08)}}
+@media (max-width:980px){.grid{grid-template-columns:1fr 1fr}.grid .pk:last-child{grid-column:1/-1}}
+@media (max-width:640px){.fp{padding:40px 16px 64px}.hd{grid-template-columns:1fr}.img{display:none}.grid{grid-template-columns:1fr;gap:22px}.pk{box-shadow:6px 6px 0 var(--black)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="fp" aria-labelledby="fp-title">
+  <div class="hd">
+    <div>
+      <span class="kick">Crispy Hen Co. · Fried chicken</span>
+      <h2 id="fp-title">Feed the<br>whole crew</h2>
+    </div>
+    <div style="display:flex;gap:22px;align-items:center">
+      <p>Pick a pack, tell us how many are eating and we'll scale the chicken, sides and drinks. The more of you, the less each pays.</p>
+      <div class="img"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=70&auto=format&fit=crop" alt="Golden fried chicken drumsticks on a wire rack"></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <article class="pk" data-name="Duo Box" data-min="1" data-max="3" data-n="2" data-pp="420" data-pcs="3" aria-labelledby="t1">
+      <div class="top"><h3 id="t1">Duo Box</h3></div>
+      <p class="what">Date night, sofa night. Bone-in pieces, fries and dips.</p>
+      <div class="ppl"><label for="n1">People</label><div class="step"><button type="button" data-d="-1" aria-label="Fewer people">−</button><output id="n1" aria-live="polite"></output><button type="button" data-d="1" aria-label="More people">+</button></div></div>
+      <ul class="inc"></ul>
+      <div class="tot"><div><span class="p" aria-live="polite"></span><span class="pp"></span></div><span class="sv"></span></div>
+      <button class="add" type="button">Add to order</button>
+      <p class="ok" aria-live="polite"></p>
+    </article>
+
+    <article class="pk hot" data-name="Family Bucket" data-min="3" data-max="6" data-n="4" data-pp="380" data-pcs="3" aria-labelledby="t2">
+      <div class="top"><h3 id="t2">Family Bucket</h3><span class="badge">Best value</span></div>
+      <p class="what">Our Sunday classic. Mixed pieces, slaw, mash &amp; gravy, a big bottle.</p>
+      <div class="ppl"><label for="n2">People</label><div class="step"><button type="button" data-d="-1" aria-label="Fewer people">−</button><output id="n2" aria-live="polite"></output><button type="button" data-d="1" aria-label="More people">+</button></div></div>
+      <ul class="inc"></ul>
+      <div class="tot"><div><span class="p" aria-live="polite"></span><span class="pp"></span></div><span class="sv"></span></div>
+      <button class="add" type="button">Add to order</button>
+      <p class="ok" aria-live="polite"></p>
+    </article>
+
+    <article class="pk" data-name="Party Tub" data-min="6" data-max="12" data-n="8" data-pp="350" data-pcs="3" aria-labelledby="t3">
+      <div class="top"><h3 id="t3">Party Tub</h3><span class="badge">Order 2h ahead</span></div>
+      <p class="what">Match nights and birthdays. Wings, tenders, loaded fries, two sauces per person.</p>
+      <div class="ppl"><label for="n3">People</label><div class="step"><button type="button" data-d="-1" aria-label="Fewer people">−</button><output id="n3" aria-live="polite"></output><button type="button" data-d="1" aria-label="More people">+</button></div></div>
+      <ul class="inc"></ul>
+      <div class="tot"><div><span class="p" aria-live="polite"></span><span class="pp"></span></div><span class="sv"></span></div>
+      <button class="add" type="button">Add to order</button>
+      <p class="ok" aria-live="polite"></p>
+    </article>
+  </div>
+
+  <div class="foot">
+    <span><b>Halal</b> chicken, fried fresh to order.</span>
+    <span><b>Delivery</b> via Bikebasket &amp; ParcelPan, or collect from 22 Mill Road.</span>
+    <span><b>Allergens:</b> coating contains wheat &amp; milk.</span>
+  </div>
+</section>
+<script>
+(function(){
+  var ALC=520; // à la carte per person
+  function tk(n){return '৳'+n.toLocaleString('en-US');}
+  document.querySelectorAll('.pk').forEach(function(card){
+    var d=card.dataset,min=+d.min,max=+d.max,n=+d.n,pp=+d.pp,pcs=+d.pcs;
+    var inp=card.querySelector('output'),minus=card.querySelector('[data-d="-1"]'),plus=card.querySelector('[data-d="1"]');
+    var inc=card.querySelector('.inc'),p=card.querySelector('.p'),ppEl=card.querySelector('.pp'),sv=card.querySelector('.sv'),ok=card.querySelector('.ok');
+    var party=d.name==='Party Tub',fam=d.name==='Family Bucket';
+    function render(bump){
+      inp.textContent=n;minus.disabled=n<=min;plus.disabled=n>=max;
+      // per-person price drops slightly as the group grows
+      var each=pp-(n-min)*10,total=each*n,save=(ALC-each)*n;
+      var rows=[
+        [party?'Wings & tenders':'Chicken pieces',n*pcs+(party?n*2:0)],
+        [fam?'Sides (slaw, mash, gravy)':party?'Loaded fries':'Regular fries',fam?Math.ceil(n*1.5):n],
+        ['Dips & sauces',party?n*2:n+1],
+        [n>=4?'1.5L bottles':'Cans',n>=4?Math.ceil(n/3):n]
+      ];
+      inc.innerHTML=rows.map(function(r){return '<li><span>'+r[0]+'</span><b>× '+r[1]+'</b></li>';}).join('');
+      p.textContent=tk(total);ppEl.textContent=tk(each)+' per person';
+      sv.textContent='Save '+tk(save);
+      if(bump&&!matchMedia('(prefers-reduced-motion: reduce)').matches){p.classList.remove('bump');void p.offsetWidth;p.classList.add('bump');}
+      ok.textContent='';
+    }
+    [minus,plus].forEach(function(b){b.addEventListener('click',function(){n=Math.min(max,Math.max(min,n+ +b.dataset.d));render(true);});});
+    card.querySelector('.add').addEventListener('click',function(){
+      ok.textContent='✓ Added '+d.name+' for '+n+' — '+p.textContent+'. Ready at checkout.';
+    });
+    render(false);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hedgerow Kitchen — Newsletter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--moss:#2f4a35;--moss2:#24392a;--oat:#f2ecdf;--paper:#faf7f0;--terra:#c46a3c;--ink:#1f2a22;--muted:#5d6a5f;--err:#b3261e;--line:#d8cfbd}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--oat);color:var(--ink);line-height:1.55;overflow-x:hidden;padding:56px 24px 88px}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+.nl{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);background:var(--moss);border-radius:28px;overflow:hidden;color:var(--oat)}
+.pic{position:relative;min-height:300px}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stamp{position:absolute;right:-34px;bottom:34px;width:136px;height:136px;border-radius:50%;background:var(--terra);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Young Serif",serif;font-size:1.05rem;line-height:1.1;transform:rotate(-12deg);box-shadow:0 10px 24px -10px rgba(0,0,0,.5);z-index:2}
+.stamp small{display:block;font-family:Manrope,sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.body{padding:52px 52px 44px 64px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c9d6b8}
+h2{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:clamp(2rem,3.8vw,3rem);line-height:1.08;margin:10px 0 12px}
+.lead{color:#d9e0cf;max-width:46ch}
+.perks{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 26px;font-size:.9rem;color:#e7ecdd}
+.perks li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--terra);margin-right:8px;vertical-align:middle}
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
+.f label{display:block;font-size:.82rem;font-weight:700;margin-bottom:6px}
+.f label span{font-weight:400;color:#c9d6b8}
+.f input[type=text],.f input[type=email]{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:2px solid transparent;border-radius:12px;padding:12px 14px;transition:border-color .2s}
+.f input:focus{outline:none;border-color:var(--terra)}
+.f input[aria-invalid=true]{border-color:#ff9b8f;background:#fff2ef}
+.err{display:block;min-height:1.2em;font-size:.82rem;font-weight:500;color:#ffc2b9;margin-top:4px}
+fieldset{border:0}
+legend{font-size:.82rem;font-weight:700;margin-bottom:8px}
+.tops{display:flex;flex-wrap:wrap;gap:8px}
+.tops label{position:relative;cursor:pointer}
+.tops input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.tops span{display:inline-block;border:1.5px solid rgba(242,236,223,.45);border-radius:999px;padding:7px 14px;font-size:.86rem;transition:background .2s,color .2s}
+.tops input:checked+span{background:var(--oat);color:var(--moss);border-color:var(--oat)}
+.tops input:focus-visible+span{outline:3px solid var(--terra);outline-offset:2px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:#dfe6d5}
+.consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--terra);flex:none}
+.consent a{color:#fff}
+.go{justify-self:start;font:inherit;font-weight:700;font-size:1rem;background:var(--terra);color:#fff;border:0;border-radius:999px;padding:14px 28px;cursor:pointer;transition:background .2s,transform .15s}
+.go:hover{background:#ad5a2f}
+.go:active{transform:scale(.97)}
+.fine{font-size:.78rem;color:#b9c6ae}
+.ok{display:none;background:var(--moss2);border-radius:18px;padding:28px;text-align:left}
+.ok.show{display:block;animation:pop .4s ease-out}
+.ok svg{width:46px;height:46px;margin-bottom:10px}
+.ok h3{font-family:"Young Serif",serif;font-weight:400;font-size:1.6rem}
+.ok p{color:#d9e0cf;margin-top:6px}
+.ok button{margin-top:14px;font:inherit;font-size:.88rem;font-weight:700;color:var(--oat);background:none;border:0;text-decoration:underline;cursor:pointer}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:880px){.nl{grid-template-columns:1fr}.pic{min-height:220px}.stamp{right:18px;bottom:-40px;width:110px;height:110px;font-size:.9rem}.body{padding:56px 24px 32px}}
+@media (max-width:520px){body{padding:24px 16px 56px}.row{grid-template-columns:1fr}.body{padding:52px 18px 28px}.go{width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="nl" aria-labelledby="nl-title">
+  <div class="pic">
+    <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=1200&q=70&auto=format&fit=crop" alt="Chopping board with avocado, cherry tomatoes, eggs, mushrooms, spinach and spring onions" loading="lazy" width="1200" height="1200">
+    <div class="stamp" aria-hidden="true">Free<br>pudding<small>on sign-up</small></div>
+  </div>
+  <div class="body">
+    <p class="eyebrow">Hedgerow Kitchen · The Larder Letter</p>
+    <h2 id="nl-title">What's growing, what's cooking, once a month.</h2>
+    <p class="lead">New seasonal menus a week before anyone else, first pick of supper-club seats, and a free pudding on your next visit.</p>
+    <ul class="perks"><li>1 email a month</li><li>Early supper-club booking</li><li>Unsubscribe anytime</li></ul>
+
+    <form id="form" novalidate>
+      <div class="row">
+        <div class="f">
+          <label for="fn">First name <span>(optional)</span></label>
+          <input type="text" id="fn" name="fn" autocomplete="given-name" maxlength="40">
+        </div>
+        <div class="f">
+          <label for="em">Email address</label>
+          <input type="email" id="em" name="em" autocomplete="email" required aria-describedby="em-err" placeholder="you@example.com">
+          <span class="err" id="em-err"></span>
+        </div>
+      </div>
+      <fieldset>
+        <legend>I'd like to hear about</legend>
+        <div class="tops">
+          <label><input type="checkbox" name="t" value="menus" checked><span>Seasonal menus</span></label>
+          <label><input type="checkbox" name="t" value="supper"><span>Supper clubs</span></label>
+          <label><input type="checkbox" name="t" value="garden"><span>Garden &amp; farm days</span></label>
+          <label><input type="checkbox" name="t" value="gifts"><span>Gift cards</span></label>
+        </div>
+      </fieldset>
+      <div>
+        <label class="consent"><input type="checkbox" id="cs" aria-describedby="cs-err"> <span>I agree to receive the Larder Letter and have read the <a href="#privacy">privacy note</a>.</span></label>
+        <span class="err" id="cs-err"></span>
+      </div>
+      <button class="go" type="submit">Join the Larder Letter</button>
+      <p class="fine">We never share your email. Questions? hello@example.com</p>
+    </form>
+
+    <div class="ok" id="ok" role="status" tabindex="-1">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#c46a3c"/><path d="M14 25l7 7 13-15" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3 id="ok-h">You're on the list.</h3>
+      <p id="ok-p"></p>
+      <button type="button" id="again">Use a different email</button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var form=document.getElementById('form'),em=document.getElementById('em'),emErr=document.getElementById('em-err'),cs=document.getElementById('cs'),csErr=document.getElementById('cs-err'),
+      ok=document.getElementById('ok'),fn=document.getElementById('fn'),touched=false;
+  var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function checkEm(){
+    var v=em.value.trim(),m='';
+    if(!v)m='Please enter your email address.';else if(!re.test(v))m='That email looks incomplete, e.g. name@example.com.';
+    emErr.textContent=m;em.setAttribute('aria-invalid',m?'true':'false');return !m;
+  }
+  function checkCs(){var m=cs.checked?'':'Please tick the box so we can email you.';csErr.textContent=m;cs.setAttribute('aria-invalid',m?'true':'false');return !m;}
+  em.addEventListener('blur',function(){if(em.value.trim())touched=true;if(touched)checkEm();});
+  em.addEventListener('input',function(){if(touched)checkEm();});
+  cs.addEventListener('change',function(){if(touched)checkCs();});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();touched=true;
+    var a=checkEm(),b=checkCs();
+    if(!a){em.focus();return;}
+    if(!b){cs.focus();return;}
+    var name=fn.value.trim(),topics=[].map.call(form.querySelectorAll('input[name=t]:checked'),function(i){return i.nextElementSibling.textContent;});
+    document.getElementById('ok-h').textContent=name?'You’re on the list, '+name+'.':'You’re on the list.';
+    document.getElementById('ok-p').textContent='We’ve sent a confirmation to '+em.value.trim()+'. Show it at the till for your free pudding.'+(topics.length?' You’ll hear about: '+topics.join(', ')+'.':'');
+    form.hidden=true;ok.classList.add('show');ok.focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    ok.classList.remove('show');form.hidden=false;em.value='';touched=false;emErr.textContent='';csErr.textContent='';em.removeAttribute('aria-invalid');em.focus();
+  });
+})();
+</script>
+</body>
+</html>

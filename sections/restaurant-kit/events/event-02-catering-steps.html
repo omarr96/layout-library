@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masala Mehfil — Catering &amp; Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<style>
+:root{--mag:#a1124f;--mag2:#7c0d3c;--mari:#f5a300;--warm:#fff8ef;--ink:#2a1420;--muted:#6e5560;--line:#efdccb}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Nunito Sans",system-ui,sans-serif;background:var(--warm);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--mari);outline-offset:3px}
+.cs{max-width:1180px;margin:0 auto;padding:56px 24px 88px}
+.garland{height:14px;margin:0 auto 26px;max-width:420px;background:radial-gradient(circle at 7px 7px,var(--mari) 5px,transparent 6px) 0 0/22px 14px repeat-x}
+.hd{text-align:center;max-width:680px;margin:0 auto 40px}
+.ey{font-weight:800;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mag)}
+h2{font:400 clamp(36px,5.2vw,62px)/1.05 "Abril Fatface",serif;margin:10px 0 12px;color:var(--mag2)}
+.hd p{margin:0;color:var(--muted)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 28px;padding:0}
+.steps::before{content:"";position:absolute;top:28px;left:12.5%;right:12.5%;height:3px;background:var(--line);z-index:0}
+.prog{position:absolute;top:28px;left:12.5%;height:3px;background:var(--mag);z-index:0;transition:width .45s ease;width:0}
+.steps button{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;background:none;border:0;cursor:pointer;font:inherit;color:var(--muted);padding:0 4px}
+.steps .n{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font:400 24px "Abril Fatface",serif;background:#fff;border:3px solid var(--line);color:var(--muted);transition:background .3s,border-color .3s,color .3s,transform .3s}
+.steps .l{font-weight:800;font-size:15px;line-height:1.25;text-align:center}
+.steps .w{font-size:12.5px;color:var(--muted)}
+.steps button.done .n{border-color:var(--mag);color:var(--mag)}
+.steps button[aria-selected="true"] .n{background:var(--mag);border-color:var(--mag);color:#fff;transform:scale(1.08)}
+.steps button[aria-selected="true"] .l{color:var(--mag2)}
+.steps button:hover .n{border-color:var(--mari)}
+.panel{display:grid;grid-template-columns:1.1fr .9fr;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -44px rgba(124,13,60,.5)}
+.pc{padding:36px 40px;display:flex;flex-direction:column}
+.pc .k{display:inline-block;align-self:flex-start;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:#fff0d1;color:#8a5a00;padding:5px 12px;border-radius:99px}
+.pc h3{font:400 clamp(26px,3vw,36px)/1.1 "Abril Fatface",serif;margin:14px 0 10px;color:var(--mag2)}
+.pc p{margin:0 0 18px;color:var(--muted)}
+.pc ul{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:10px}
+.pc li{display:flex;gap:12px;align-items:flex-start}
+.pc li::before{content:"";flex:none;width:10px;height:10px;margin-top:7px;border-radius:2px;background:var(--mari);transform:rotate(45deg)}
+.nav{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.btn{font:800 15px "Nunito Sans",sans-serif;padding:13px 22px;border-radius:99px;cursor:pointer;text-decoration:none;border:2px solid var(--mag);transition:background .2s,color .2s}
+.btn.pri{background:var(--mag);color:#fff}
+.btn.pri:hover{background:var(--mag2);border-color:var(--mag2)}
+.btn.sec{background:transparent;color:var(--mag)}
+.btn.sec:hover{background:#fbe9f0}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.ph{position:relative;min-height:340px;background:var(--mag2)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .q{position:absolute;left:20px;right:20px;bottom:20px;background:rgba(255,248,239,.95);border-radius:16px;padding:14px 16px;font-size:14px;color:var(--ink)}
+.ph .q b{display:block;font:400 26px "Abril Fatface",serif;color:var(--mag)}
+.foot{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;margin-top:26px;font-size:13.5px;color:var(--muted)}
+.foot a{color:var(--mag);font-weight:800}
+.fade{animation:fd .4s ease}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:860px){.panel{grid-template-columns:1fr}.ph{min-height:240px;order:-1}}
+@media (max-width:600px){.cs{padding:40px 16px 64px}.steps{grid-template-columns:1fr;gap:0}.steps::before,.prog{display:none}.steps button{flex-direction:row;gap:14px;padding:8px 0;text-align:left}.steps .n{width:44px;height:44px;font-size:19px}.steps .l{text-align:left}.steps button .txt{display:flex;flex-direction:column}.pc{padding:26px 20px}.nav .btn{flex:1;text-align:center}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="cs" aria-labelledby="cs-title">
+  <div class="garland" aria-hidden="true"></div>
+  <div class="hd">
+    <span class="ey">Masala Mehfil · Catering &amp; events</span>
+    <h2 id="cs-title">From first call<br>to last chai</h2>
+    <p>Mehndi nights, office Diwali, a 300-guest walima: we've cooked for them all. Here's exactly how it works.</p>
+  </div>
+
+  <div class="steps" role="tablist" aria-label="How catering works">
+    <span class="prog" id="prog" aria-hidden="true"></span>
+  </div>
+
+  <div class="panel">
+    <div class="pc" role="tabpanel" id="pnl" tabindex="0">
+      <span class="k" id="pk"></span>
+      <h3 id="ph3"></h3>
+      <p id="pp"></p>
+      <ul id="pl"></ul>
+      <div class="nav">
+        <button class="btn sec" type="button" id="prev">Back</button>
+        <button class="btn pri" type="button" id="next">Next step</button>
+      </div>
+    </div>
+    <div class="ph">
+      <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000&q=70&auto=format&fit=crop" alt="Catering buffet with silver chafing dishes and white flowers" loading="lazy">
+      <div class="q"><b>40 – 400</b>guests per event · tasting for up to 6 included from 80 guests</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Halal kitchen · full veg &amp; Jain menus</span>
+    <span>Delivering within 40 km of our Old Bazaar Road kitchen</span>
+    <span>Call <a href="tel:01700000000">017 00000000</a> or <a href="https://wa.me/0000000000">WhatsApp us</a></span>
+  </div>
+</section>
+<script>
+(function(){
+  var S=[
+    {l:'Tell us the occasion',w:'8+ weeks before',h:'Share the date, guest count and the mood',p:'A quick call or WhatsApp with our events lead. We note the vibe, the venue and anything non-negotiable (Nani\'s biryani recipe included).',i:['Date, venue and rough guest numbers','Veg, non-veg, Jain or halal requirements','Budget per head, we\'ll be honest about it']},
+    {l:'Come for a tasting',w:'6 weeks before',h:'Taste before you commit',p:'Bring up to six people to our kitchen table. Try two starters, three mains, breads and a dessert from your shortlist.',i:['Free from 80 guests, otherwise $60 credited later','Swap any dish as many times as you like','Meet the chef who\'ll run your day']},
+    {l:'Lock the menu & setup',w:'3 weeks before',h:'Menu, staff and the look of the spread',p:'We send a written proposal with final pricing, staffing and a floor sketch. A 30% deposit holds your date.',i:['Buffet, family-style or live counters (dosa, chaat, kebab)','Brass serveware, linen and marigold styling available','Final numbers can change up to 7 days before']},
+    {l:'We cook, serve & clear',w:'On the day',h:'You host. We handle the rest.',p:'Our team arrives three hours early, sets up, serves and clears every last plate. You get leftovers packed to take home.',i:['Uniformed servers, one per 20 guests','Hot food held at temperature, never reheated twice','Masala chai station for the late crowd']}
+  ];
+  var tl=document.querySelector('.steps'),prog=document.getElementById('prog'),cur=0,btns=[];
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  S.forEach(function(s,i){
+    var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='tab'+i;b.setAttribute('aria-controls','pnl');
+    b.innerHTML='<span class="n">'+(i+1)+'</span><span class="txt"><span class="l">'+s.l+'</span><br><span class="w">'+s.w+'</span></span>';
+    b.addEventListener('click',function(){go(i);});
+    b.addEventListener('keydown',function(e){var k=e.key,n=null;if(k==='ArrowRight'||k==='ArrowDown')n=(i+1)%4;else if(k==='ArrowLeft'||k==='ArrowUp')n=(i+3)%4;else if(k==='Home')n=0;else if(k==='End')n=3;if(n!==null){e.preventDefault();go(n);btns[n].focus();}});
+    tl.appendChild(b);btns.push(b);
+  });
+  var pnl=document.getElementById('pnl'),prev=document.getElementById('prev'),next=document.getElementById('next');
+  function go(i){
+    cur=i;var s=S[i];
+    btns.forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1;b.classList.toggle('done',j<i);});
+    pnl.setAttribute('aria-labelledby','tab'+i);
+    prog.style.width=(i/3*75)+'%';
+    document.getElementById('pk').textContent='Step '+(i+1)+' of 4 · '+s.w;
+    document.getElementById('ph3').textContent=s.h;
+    document.getElementById('pp').textContent=s.p;
+    document.getElementById('pl').innerHTML=s.i.map(function(x){return '<li>'+x+'</li>';}).join('');
+    prev.disabled=i===0;
+    next.textContent=i===3?'Start an enquiry':'Next step';
+    if(!rm){pnl.classList.remove('fade');void pnl.offsetWidth;pnl.classList.add('fade');}
+  }
+  prev.addEventListener('click',function(){if(cur>0)go(cur-1);});
+  next.addEventListener('click',function(){if(cur<3)go(cur+1);else location.hash='enquire';});
+  go(0);
+})();
+</script>
+</body>
+</html>

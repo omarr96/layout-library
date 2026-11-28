@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Nord — As Seen In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=Space+Mono:wght@700&family=Syne:wght@800&family=Unbounded:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8e6e1;--sec:#f6f4ef;--ink:#121416;--muted:#62666b;--accent:#3b5b6b;--line:#d9d5cc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter Tight",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;padding-top:48px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.press{background:var(--sec);padding:84px 24px 92px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.wrap{max-width:1200px;margin:0 auto}
+.top{display:flex;align-items:center;gap:20px;font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.top::before,.top::after{content:"";flex:1;height:1px;background:var(--line)}
+.hint{font:400 clamp(1.1rem,2vw,1.3rem) "Instrument Serif",serif;font-style:italic;text-align:center;color:var(--muted);margin-top:10px;text-transform:none;letter-spacing:0}
+.strip{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:44px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip li+li{border-left:1px solid var(--line)}
+.logo{width:100%;height:112px;display:flex;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;color:var(--ink);opacity:.42;filter:grayscale(1);transition:opacity .3s,background .3s;position:relative;padding:0 10px;text-align:center;line-height:1}
+.logo:hover{opacity:.8}
+.logo[aria-selected="true"]{opacity:1;background:#fff}
+.logo::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.logo[aria-selected="true"]::after{transform:scaleX(1)}
+.logo .prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--ink);width:0;z-index:1}
+.logo[aria-selected="true"] .prog.run{animation:p 5s linear forwards}
+@keyframes p{to{width:100%}}
+/* invented mastheads */
+.l1{font-family:"Bodoni Moda",serif;font-weight:600;font-size:.98rem;letter-spacing:.2em;display:flex;flex-direction:column;align-items:center;gap:6px}
+.l1 small{font-size:.5rem;letter-spacing:.5em;border-top:1px solid currentColor;border-bottom:1px solid currentColor;padding:3px 0 2px}
+.l2{font-family:Syne,sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.04em}
+.l2 b{color:var(--accent)}
+.l3{font-family:"Instrument Serif",serif;font-size:1.2rem;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.l3 span{border:1.5px solid currentColor;border-radius:50%;width:28px;height:28px;flex:0 0 auto;display:grid;place-items:center;font-size:.95rem;font-style:italic}
+.l4{font-family:Unbounded,sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.12em;display:flex;align-items:center;gap:7px}
+.l4 i{width:14px;height:14px;border-radius:50%;box-shadow:inset -4px -2px 0 0 currentColor;display:block}
+.l5{font-family:"Space Mono",monospace;font-weight:700;font-size:1.25rem;letter-spacing:-.02em}
+.l5 em{font-style:normal;color:var(--accent)}
+.l6{font-family:"Instrument Serif",serif;font-size:1.05rem;display:flex;flex-direction:column;align-items:center}
+.l6 em{font-size:1.6rem;line-height:.9}
+.quote{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;margin-top:44px;min-height:170px}
+.quote blockquote{font-family:"Instrument Serif",serif;font-size:clamp(1.7rem,3.6vw,2.8rem);line-height:1.15;letter-spacing:-.01em;max-width:24ch;transition:opacity .35s,transform .35s}
+.quote blockquote.fade{opacity:0;transform:translateY(8px)}
+.quote cite{display:block;font:500 .85rem "Inter Tight",sans-serif;color:var(--muted);font-style:normal;margin-top:16px;letter-spacing:.02em}
+.quote cite b{color:var(--ink);font-weight:600}
+.side{text-align:right;font-size:.88rem;color:var(--muted)}
+.side .n{font-family:"Instrument Serif",serif;font-size:3.4rem;line-height:1;color:var(--ink)}
+.side a{display:inline-block;margin-top:14px;color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.side a:hover{color:var(--accent);border-color:var(--accent)}
+.pause{margin-top:10px;background:none;border:0;font:500 .78rem "Inter Tight",sans-serif;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:900px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.strip li:nth-child(4){border-left:0}.strip li:nth-child(n+4){border-top:1px solid var(--line)}.quote{grid-template-columns:1fr;gap:24px}.side{text-align:left}}
+@media (max-width:480px){.press{padding:64px 16px 72px}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip li:nth-child(4){border-left:1px solid var(--line)}.strip li:nth-child(odd){border-left:0}.strip li:nth-child(n+3){border-top:1px solid var(--line)}.logo{height:92px}.l2{font-size:1.15rem}.l3{font-size:1.05rem}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="press" aria-labelledby="an-title">
+  <div class="wrap">
+    <h2 class="top" id="an-title">Atelier Nord in the press</h2>
+    <p class="hint">Pick a masthead to read what they wrote</p>
+    <ul class="strip" role="tablist" aria-label="Publications">
+      <li><button class="logo" role="tab" aria-selected="true" aria-controls="q" data-q="A dinner that tastes like the coast at dawn: cold, bright, and quietly astonishing." data-w="Ingrid Vale, restaurant critic" data-d="March 2026" aria-label="The Gilded Fork"><span class="l1" aria-hidden="true">THE GILDED FORK<small>EST. 1961</small></span><span class="prog"></span></button></li>
+      <li><button class="logo" role="tab" aria-selected="false" aria-controls="q" data-q="The smoked beetroot alone is worth crossing the city for. Then the bread arrives." data-w="Tomas Reyner, Platemark" data-d="January 2026" aria-label="Platemark"><span class="l2" aria-hidden="true">platemark<b>.</b></span><span class="prog"></span></button></li>
+      <li><button class="logo" role="tab" aria-selected="false" aria-controls="q" data-q="Nineteen seats, eleven courses, zero pretension. The most generous tasting menu in town." data-w="Supper Quarterly, Winter Issue" data-d="December 2025" aria-label="Supper Quarterly"><span class="l3" aria-hidden="true"><span>S</span>Supper Quarterly</span><span class="prog"></span></button></li>
+      <li><button class="logo" role="tab" aria-selected="false" aria-controls="q" data-q="Book the counter, put your phone away, and let chef Liv Aarsen cook you a short story." data-w="Mara Quill, Night Table" data-d="October 2025" aria-label="Night Table"><span class="l4" aria-hidden="true"><i></i>NIGHT TABLE</span><span class="prog"></span></button></li>
+      <li><button class="logo" role="tab" aria-selected="false" aria-controls="q" data-q="Rye, butter, kelp salt. Three ingredients and the best course I ate all year." data-w="Morsel, Best Bites 2025" data-d="August 2025" aria-label="Morsel"><span class="l5" aria-hidden="true">MORSEL<em>/</em></span><span class="prog"></span></button></li>
+      <li><button class="logo" role="tab" aria-selected="false" aria-controls="q" data-q="Nordic cooking with warmth instead of austerity. A genuine destination, and a kind one." data-w="The Northern Larder guide" data-d="May 2025" aria-label="The Northern Larder"><span class="l6" aria-hidden="true">The Northern<em>Larder</em></span><span class="prog"></span></button></li>
+    </ul>
+
+    <div class="quote">
+      <div role="tabpanel" id="q" aria-live="polite">
+        <blockquote id="qt"></blockquote>
+        <cite><b id="qw"></b> · <span id="qd"></span></cite>
+      </div>
+      <div class="side">
+        <div class="n">19</div>seats · tasting menu only<br>Thu–Sat · 14 Kvarn Street, Harbour Mill
+        <br><a href="#">Request a seat</a>
+        <br><button class="pause" id="pause" aria-pressed="false">Pause rotation</button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.logo')),i=0,t=null,paused=false,hold=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var qt=document.getElementById('qt'),qw=document.getElementById('qw'),qd=document.getElementById('qd');
+  function sel(k,focus){
+    i=(k+tabs.length)%tabs.length;
+    tabs.forEach(function(b,n){b.setAttribute('aria-selected',n===i?'true':'false');b.tabIndex=n===i?0:-1;var p=b.querySelector('.prog');p.classList.remove('run')});
+    var b=tabs[i];if(focus)b.focus();
+    function fill(){qt.textContent='“'+b.dataset.q+'”';qw.textContent=b.dataset.w;qd.textContent=b.dataset.d;qt.classList.remove('fade')}
+    if(reduce||!qt.textContent){fill()}else{qt.classList.add('fade');setTimeout(fill,250)}
+    tick();
+  }
+  function tick(){
+    clearTimeout(t);var p=tabs[i].querySelector('.prog');p.classList.remove('run');void p.offsetWidth;
+    if(paused||hold||reduce)return;p.classList.add('run');t=setTimeout(function(){sel(i+1)},5000);
+  }
+  tabs.forEach(function(b,n){
+    b.addEventListener('click',function(){sel(n)});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();sel(i+1,true)}
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();sel(i-1,true)}
+      if(e.key==='Home'){e.preventDefault();sel(0,true)}
+      if(e.key==='End'){e.preventDefault();sel(tabs.length-1,true)}
+    });
+  });
+  var sec=document.querySelector('.press');
+  sec.addEventListener('mouseenter',function(){hold=true;tick()});
+  sec.addEventListener('mouseleave',function(){hold=false;tick()});
+  sec.addEventListener('focusin',function(){hold=true;tick()});
+  sec.addEventListener('focusout',function(){hold=false;tick()});
+  var pb=document.getElementById('pause');
+  pb.addEventListener('click',function(){paused=!paused;pb.setAttribute('aria-pressed',paused);pb.textContent=paused?'Resume rotation':'Pause rotation';tick()});
+  if(reduce){pb.hidden=true}
+  sel(0);
+})();
+</script>
+</body>
+</html>

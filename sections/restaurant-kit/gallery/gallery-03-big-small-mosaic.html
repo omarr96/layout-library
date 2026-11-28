@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saltbush Café — Photo Mosaic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3efe6;--sec:#fff8e7;--ink:#22301f;--muted:#5d6b58;--sun:#f2c230;--sage:#6f8f72;--line:#eadfc2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;padding-top:48px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.mos{background:var(--sec);padding:80px 24px 88px}
+.wrap{max-width:1200px;margin:0 auto}
+.head{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;margin-bottom:34px}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--sun);font:600 .8rem Figtree,sans-serif;padding:6px 14px;border-radius:999px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ink)}
+h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:.95;letter-spacing:-.03em;margin-top:16px}
+h2 span{background:linear-gradient(transparent 62%,var(--sun) 62%,var(--sun) 92%,transparent 92%)}
+.facts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.facts li{border-top:2px solid var(--ink);padding-top:10px;font-size:.88rem;color:var(--muted)}
+.facts b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;color:var(--ink);line-height:1.1}
+.grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px 170px;gap:12px}
+.big{grid-column:1;grid-row:1/3;position:relative;border-radius:22px;overflow:hidden;margin:0;background:#ddd}
+.big img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .35s ease}
+.big.swap img{opacity:0}
+.big figcaption{position:absolute;left:16px;bottom:16px;right:16px;display:flex;gap:10px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.stamp{background:var(--sec);border-radius:14px;padding:10px 16px;max-width:360px;box-shadow:0 8px 24px rgba(34,48,31,.18)}
+.stamp b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem;display:block;line-height:1.2}
+.stamp small{color:var(--muted);font-size:.85rem}
+.time{background:var(--ink);color:var(--sun);font:700 .8rem Figtree,sans-serif;padding:8px 12px;border-radius:999px;letter-spacing:.04em}
+.sm{position:relative;border:0;padding:0;border-radius:16px;overflow:hidden;cursor:pointer;background:#ddd;font:inherit;color:var(--ink)}
+.sm img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,filter .3s}
+.sm:hover img{transform:scale(1.06)}
+.sm .lab{position:absolute;left:10px;top:10px;background:rgba(255,248,231,.92);font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px}
+.sm[aria-pressed="true"]{box-shadow:0 0 0 4px var(--sun)}
+.sm[aria-pressed="true"] img{filter:saturate(.3) brightness(.85)}
+.sm[aria-pressed="true"]::after{content:"Showing";position:absolute;inset:auto 10px 10px auto;background:var(--sun);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px}
+.r3{grid-row:3}
+.wide{grid-column:1}
+.note{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:.92rem}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--sec);text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px;transition:background .2s,color .2s}
+.btn:hover{background:var(--sun);color:var(--ink)}
+@media (max-width:860px){
+  .head{grid-template-columns:1fr;gap:26px}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:340px 110px 110px}
+  .big{grid-column:1/-1;grid-row:1}
+  .sm,.r3{grid-column:auto;grid-row:auto}
+  .wide{grid-column:span 2;grid-row:auto}
+  .sm .lab{display:none}
+}
+@media (max-width:480px){.mos{padding:60px 16px 68px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:300px 96px 96px 96px;gap:8px}.facts b{font-size:1.35rem}.wide{grid-column:1/-1}.stamp{max-width:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="mos" aria-labelledby="sb-title">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="pill"><i aria-hidden="true"></i>Saltbush Café · All-day brunch</span>
+        <h2 id="sb-title">Come for the <span>light</span>,<br>stay for the second flat white.</h2>
+      </div>
+      <ul class="facts">
+        <li><b>48</b>seats inside, 16 on the street</li>
+        <li><b>7am</b>doors open, every day</li>
+        <li><b>Dogs</b>welcome on the patio</li>
+      </ul>
+    </div>
+
+    <div class="grid">
+      <figure class="big" id="big" aria-live="polite">
+        <img id="bigimg" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=70&auto=format&fit=crop" alt="Bright café interior with white chairs and a long counter">
+        <figcaption><span class="stamp"><b id="bigt">The front room</b><small id="bigd">Corner window seats fill first. Get here before nine.</small></span><span class="time" id="bigtime">8:00 am</span></figcaption>
+      </figure>
+      <button class="sm" aria-pressed="true" data-t="The front room" data-d="Corner window seats fill first. Get here before nine." data-time="8:00 am"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=70&auto=format&fit=crop" alt="Bright café interior with white chairs and a long counter"><span class="lab">Front room</span></button>
+      <button class="sm" aria-pressed="false" data-t="Brunch for the table" data-d="Ricotta hotcakes, smashed eggs and a pot of chai to share." data-time="10:30 am"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=70&auto=format&fit=crop" alt="Table spread with pancakes, eggs and fruit bowls" loading="lazy"><span class="lab">Brunch</span></button>
+      <button class="sm" aria-pressed="false" data-t="The espresso bar" data-d="Single-origin beans roasted twelve streets away, changed every fortnight." data-time="7:15 am"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=70&auto=format&fit=crop" alt="Café counter with an espresso machine and hanging bulbs" loading="lazy"><span class="lab">Coffee bar</span></button>
+      <button class="sm" aria-pressed="false" data-t="Latte art o'clock" data-d="Oat, almond or full cream. Our baristas will draw you a fern if you ask nicely." data-time="9:45 am"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=70&auto=format&fit=crop" alt="Hands holding cups of latte art" loading="lazy"><span class="lab">Flat whites</span></button>
+      <button class="sm r3" aria-pressed="false" data-t="The plant room" data-d="Sunniest corner in the house, and the only spot with power sockets." data-time="1:00 pm"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600&q=70&auto=format&fit=crop" alt="Café table by a large window with plants" loading="lazy"><span class="lab">Plant room</span></button>
+      <button class="sm r3" aria-pressed="false" data-t="Weekend rush" data-d="No bookings Saturday and Sunday; the queue moves faster than it looks." data-time="11:00 am"><img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=70&auto=format&fit=crop" alt="Busy café with guests chatting at tables" loading="lazy"><span class="lab">Weekends</span></button>
+      <button class="sm r3 wide" aria-pressed="false" data-t="Garden bowls" data-d="Roast pumpkin, greens, soft egg and dukkah. Our most-photographed plate." data-time="12:30 pm"><img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?w=900&q=70&auto=format&fit=crop" alt="Overhead view of brunch plates with fruit, granola and toast" loading="lazy"><span class="lab">Lunch bowls</span></button>
+    </div>
+
+    <div class="note">
+      <span>9 Saltbush Row, Harbourside · Kitchen 7am–3pm · Walk-ins only on weekends</span>
+      <a class="btn" href="#">Plan a visit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var sm=[].slice.call(document.querySelectorAll('.sm')),big=document.getElementById('big'),bi=document.getElementById('bigimg');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  sm.forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.getAttribute('aria-pressed')==='true')return;
+      sm.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      var im=b.querySelector('img');
+      function apply(){
+        bi.src=im.src.replace(/w=\d+/,'w=1600');bi.alt=im.alt;
+        document.getElementById('bigt').textContent=b.dataset.t;
+        document.getElementById('bigd').textContent=b.dataset.d;
+        document.getElementById('bigtime').textContent=b.dataset.time;
+        big.classList.remove('swap');
+      }
+      if(reduce){apply();return}
+      big.classList.add('swap');setTimeout(apply,300);
+    });
+  });
+})();
+</script>
+</body>
+</html>

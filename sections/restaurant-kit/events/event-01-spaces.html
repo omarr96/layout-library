@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Linden Room — Private Dining Spaces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#1d2b24;--forest2:#2b3d33;--brass:#b08d57;--brass2:#8f6f3f;--ivory:#f7f3ea;--ink:#1b211e;--muted:#5f675f;--line:#e2dccd}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--ivory);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.sp{max-width:1260px;margin:0 auto;padding:56px 24px 88px}
+.hd{display:grid;grid-template-columns:1fr 1fr;gap:28px 60px;align-items:end;padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.ey{font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--brass2)}
+h2{font:400 clamp(34px,4.6vw,58px)/1.05 Prata,serif;margin:12px 0 0;color:var(--forest)}
+.hd p{margin:0 0 14px;color:var(--muted)}
+.fit{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.fit label{font-weight:700;font-size:14px}
+.fit input{flex:1;min-width:140px;accent-color:var(--forest)}
+.fit output{font:400 22px Prata,serif;color:var(--forest);min-width:92px;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.room{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:opacity .3s,filter .3s,transform .3s,box-shadow .3s}
+.room:hover{transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(29,43,36,.55)}
+.room.no{opacity:.45;filter:grayscale(.8)}
+.room figure{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden}
+.room img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.room:hover img{transform:scale(1.04)}
+.room figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(18,26,22,.85))}
+.room .cap{position:absolute;left:16px;right:16px;bottom:14px;z-index:1;color:#fff}
+.room .cap span{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#e6cfa5}
+.room h3{font:400 26px/1.1 Prata,serif;margin:4px 0 0}
+.flag{position:absolute;top:14px;left:14px;z-index:1;font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;background:var(--ivory);color:var(--forest)}
+.room.ok .flag{background:var(--brass);color:#fff}
+.bd{padding:16px 16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--line);border-radius:4px}
+.stats div{padding:8px 6px;text-align:center;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font:400 20px Prata,serif;color:var(--forest)}
+.stats small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.bd p{margin:0;font-size:14px;color:var(--muted)}
+.bd a{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14px;color:var(--forest);text-decoration:none;padding-top:12px;border-top:1px solid var(--line)}
+.bd a:hover{color:var(--brass2)}
+.bd a svg{transition:transform .2s}
+.bd a:hover svg{transform:translateX(4px)}
+.note{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px;margin-top:28px;font-size:13.5px;color:var(--muted)}
+.note a{color:var(--forest);font-weight:700}
+@media (max-width:1100px){.grid{grid-template-columns:1fr 1fr}.room figure{aspect-ratio:16/11}}
+@media (max-width:760px){.hd{grid-template-columns:1fr}}
+@media (max-width:560px){.sp{padding:40px 16px 64px}.grid{grid-template-columns:1fr}.fit output{text-align:left}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.room:hover,.room:hover img{transform:none}}
+</style>
+</head>
+<body>
+<section class="sp" aria-labelledby="sp-title">
+  <div class="hd">
+    <div><span class="ey">The Linden Room · Private dining</span><h2 id="sp-title">Four rooms,<br>one kitchen.</h2></div>
+    <div>
+      <p>From a candlelit table for ten to the whole house on a Saturday night. Every space gets its own host and a menu written with our head chef.</p>
+      <div class="fit">
+        <label for="gc">Your guests</label>
+        <input id="gc" type="range" min="6" max="140" step="2" value="20" aria-describedby="gc-o">
+        <output id="gc-o" for="gc">20 guests</output>
+      </div>
+    </div>
+  </div>
+  <p id="fitmsg" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+
+  <div class="grid">
+    <article class="room" data-seat="12" data-stand="0">
+      <span class="flag"></span>
+      <figure><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&q=70&auto=format&fit=crop" alt="Small room with a round wooden table and bentwood chairs" loading="lazy"><figcaption class="cap"><span>Lower ground</span><h3>The Snug</h3></figcaption></figure>
+      <div class="bd">
+        <div class="stats"><div><b>12</b><small>Seated</small></div><div><b>—</b><small>Standing</small></div><div><b>$900</b><small>Min. spend</small></div></div>
+        <p>Wood-panelled, one round table, its own sound system. Made for birthdays and board dinners.</p>
+        <a href="#enquire">Enquire about The Snug <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+    <article class="room" data-seat="28" data-stand="40">
+      <span class="flag"></span>
+      <figure><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=800&q=70&auto=format&fit=crop" alt="Bright dining room with white tablecloths and tall windows" loading="lazy"><figcaption class="cap"><span>First floor</span><h3>The Orangery</h3></figcaption></figure>
+      <div class="bd">
+        <div class="stats"><div><b>28</b><small>Seated</small></div><div><b>40</b><small>Standing</small></div><div><b>$2,400</b><small>Min. spend</small></div></div>
+        <p>Full-height windows over the linden trees. Long table or rounds; lovely for lunches and rehearsal dinners.</p>
+        <a href="#enquire">Enquire about The Orangery <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+    <article class="room" data-seat="36" data-stand="60">
+      <span class="flag"></span>
+      <figure><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=70&auto=format&fit=crop" alt="Covered terrace with blue chairs overlooking the water at dusk" loading="lazy"><figcaption class="cap"><span>Roof · May–Oct</span><h3>The Terrace</h3></figcaption></figure>
+      <div class="bd">
+        <div class="stats"><div><b>36</b><small>Seated</small></div><div><b>60</b><small>Standing</small></div><div><b>$3,200</b><small>Min. spend</small></div></div>
+        <p>Retractable awning, heaters and a sunset view. Summer parties, launches and long lazy lunches.</p>
+        <a href="#enquire">Enquire about The Terrace <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+    <article class="room" data-seat="90" data-stand="140">
+      <span class="flag"></span>
+      <figure><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=70&auto=format&fit=crop" alt="Main dining room with dark wood, pendant lights and banquettes" loading="lazy"><figcaption class="cap"><span>Whole house</span><h3>Exclusive Hire</h3></figcaption></figure>
+      <div class="bd">
+        <div class="stats"><div><b>90</b><small>Seated</small></div><div><b>140</b><small>Standing</small></div><div><b>$11k</b><small>Min. spend</small></div></div>
+        <p>Every room, the bar and the kitchen team, just for you. Weddings, galas, company parties.</p>
+        <a href="#enquire">Enquire about exclusive hire <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+  </div>
+
+  <div class="note">
+    <span>Minimum spend covers food and drink only; 12.5% service added. Prices for Friday &amp; Saturday evenings; weekdays from 30% less.</span>
+    <span>Events team: <a href="mailto:hello@example.com">hello@example.com</a> · <a href="tel:01700000000">017 00000000</a></span>
+  </div>
+</section>
+<script>
+(function(){
+  var r=document.getElementById('gc'),o=document.getElementById('gc-o'),msg=document.getElementById('fitmsg'),rooms=[].slice.call(document.querySelectorAll('.room')),t;
+  function upd(){
+    var g=+r.value,fits=[];
+    o.textContent=g+' guests';
+    rooms.forEach(function(rm){
+      var s=+rm.dataset.seat,st=+rm.dataset.stand,fl=rm.querySelector('.flag'),ok=g<=Math.max(s,st);
+      rm.classList.toggle('ok',ok);rm.classList.toggle('no',!ok);
+      fl.textContent=!ok?'Too small':g<=s?'Fits seated':'Standing only';
+      if(ok)fits.push(rm.querySelector('h3').textContent);
+    });
+    clearTimeout(t);t=setTimeout(function(){msg.textContent=fits.length?fits.length+' spaces fit '+g+' guests: '+fits.join(', ')+'.':'No single space fits '+g+' guests.';},400);
+  }
+  r.addEventListener('input',upd);upd();
+})();
+</script>
+</body>
+</html>

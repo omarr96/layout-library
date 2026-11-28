@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azotea 31 — Happy Hour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--dusk:#2b1640;--dusk2:#3d1f57;--coral:#ff6b4a;--gold:#ffcf6e;--sky:#f6e9f0;--muted:#cdb9d6}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:#f3eef1;color:var(--dusk);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hh{max-width:1240px;margin:0 auto;padding:56px 24px 88px}
+.ban{position:relative;display:grid;grid-template-columns:1.25fr .9fr;border-radius:32px;overflow:hidden;background:linear-gradient(135deg,var(--dusk) 0%,var(--dusk2) 45%,#8a2f55 80%,var(--coral) 120%);color:#fff;min-height:420px}
+.ban::before{content:"";position:absolute;left:-120px;bottom:-200px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,207,110,.35),transparent 62%);pointer-events:none}
+.txt{position:relative;padding:44px 48px;display:flex;flex-direction:column;gap:18px}
+.brand{font:700 13px Unbounded,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.brand span{color:var(--muted);font-weight:500}
+h2{font:800 clamp(38px,5.6vw,76px)/.92 Unbounded,sans-serif;margin:0;letter-spacing:-.02em}
+h2 i{font-style:normal;color:var(--coral);-webkit-text-stroke:0}
+.state{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:99px;background:rgba(255,255,255,.12);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.pill i{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.pill.on{background:var(--gold);color:var(--dusk)}
+.pill.on i{background:var(--coral);animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,107,74,.7)}100%{box-shadow:0 0 0 12px rgba(255,107,74,0)}}
+.clock{font:700 clamp(28px,3.4vw,40px)/1 Unbounded,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.clock small{display:block;font:500 12.5px "Plus Jakarta Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;max-width:420px}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--coral));border-radius:99px;transition:width .6s}
+.deals{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:4px 0 0;padding:0}
+.deals li{border:1.5px solid rgba(255,255,255,.28);border-radius:14px;padding:10px 14px;font-size:14px;line-height:1.3}
+.deals b{display:block;font:700 17px Unbounded,sans-serif;color:var(--gold)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:4px}
+.btn{font:700 15px "Plus Jakarta Sans",sans-serif;text-decoration:none;padding:14px 24px;border-radius:99px;background:var(--coral);color:var(--dusk);transition:transform .2s,background .2s}
+.btn:hover{background:#ff8466;transform:translateY(-2px)}
+.lnk{color:#fff;font-weight:600;font-size:14.5px}
+.pic{position:relative;min-height:100%}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.week{position:absolute;right:22px;bottom:22px;left:22%;background:rgba(43,22,64,.86);border-radius:18px;padding:14px 16px;font-size:13px}
+.week h3{margin:0 0 8px;font:700 12px Unbounded,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.week ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.week li{display:flex;justify-content:space-between;gap:10px;color:var(--muted)}
+.week li.today{color:#fff;font-weight:700}
+.week li.today span:first-child::before{content:"● ";color:var(--coral)}
+.fine{margin:16px 4px 0;font-size:13px;color:#6d5a77}
+@media (max-width:920px){.ban{grid-template-columns:1fr}.pic{min-height:320px}.pic img{clip-path:none}.week{left:22px}}
+@media (max-width:560px){.hh{padding:40px 16px 64px}.ban{border-radius:24px}.txt{padding:30px 20px}.btn{width:100%;text-align:center}.pic{min-height:360px}.week{left:14px;right:14px;bottom:14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="hh" aria-labelledby="hh-title">
+  <div class="ban">
+    <div class="txt">
+      <span class="brand">Azotea 31 <span>· Rooftop tapas bar, 31st floor</span></span>
+      <h2 id="hh-title">La hora<br><i>dorada.</i></h2>
+      <div class="state">
+        <span class="pill" id="pill"><i aria-hidden="true"></i><span id="pilltx">Checking…</span></span>
+        <div class="clock" role="timer" aria-live="off"><small id="clabel">Starts in</small><span id="cd">--:--:--</span></div>
+      </div>
+      <div class="bar" aria-hidden="true"><span id="bar"></span></div>
+      <p class="sr" id="srmsg" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+      <ul class="deals">
+        <li><b>2 for 1</b>Sangria &amp; tinto de verano</li>
+        <li><b>$5</b>Any three tapas</li>
+        <li><b>½ price</b>Cava by the glass</li>
+      </ul>
+      <div class="acts"><a class="btn" href="#book">Save a sunset table</a><a class="lnk" href="#menu">See the bar menu</a></div>
+    </div>
+    <div class="pic">
+      <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1100&q=70&auto=format&fit=crop" alt="Three colourful cocktails lined up on a wooden bar">
+      <div class="week"><h3>Golden hours</h3><ul id="week"></ul></div>
+    </div>
+  </div>
+  <p class="fine">Drinks offers are for guests 18+ and while seated. Tapas deal is per person, from the happy-hour list. Lift from the lobby of 31 Calle Mirador.</p>
+</section>
+<script>
+(function(){
+  var N=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  // Monday-first windows in minutes
+  var W=[[1020,1170],[1020,1170],[1020,1170],[1020,1170],[960,1170],[900,1080],[900,1080]];
+  function f(m){var h=Math.floor(m/60),mm=m%60;return (h%12||12)+(mm?':'+String(mm).padStart(2,'0'):'')+(h<12?'am':'pm');}
+  var now=new Date(),di=(now.getDay()+6)%7,ul=document.getElementById('week');
+  W.forEach(function(w,i){var li=document.createElement('li');if(i===di)li.className='today';li.innerHTML='<span>'+N[i]+(i===di?' · today':'')+'</span><span>'+f(w[0])+' – '+f(w[1])+'</span>';ul.appendChild(li);});
+  var pill=document.getElementById('pill'),ptx=document.getElementById('pilltx'),cd=document.getElementById('cd'),cl=document.getElementById('clabel'),bar=document.getElementById('bar'),sr=document.getElementById('srmsg'),last='';
+  function pad(n){return String(n).padStart(2,'0');}
+  function hms(s){return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);}
+  function tick(){
+    var t=new Date(),d=(t.getDay()+6)%7,sec=t.getHours()*3600+t.getMinutes()*60+t.getSeconds(),w=W[d],msg;
+    if(sec>=w[0]*60&&sec<w[1]*60){
+      pill.classList.add('on');ptx.textContent='On now';cl.textContent='Ends in';
+      cd.textContent=hms(w[1]*60-sec);bar.style.width=((sec-w[0]*60)/((w[1]-w[0])*60)*100).toFixed(1)+'%';
+      msg='Happy hour is on now, until '+f(w[1])+'.';
+    }else{
+      pill.classList.remove('on');bar.style.width='0';
+      var k=sec<w[0]*60?0:1,nd=(d+k)%7,start=W[nd][0]*60+k*86400;
+      ptx.textContent=k===0?'Later today':'Tomorrow';
+      cl.textContent='Starts in';cd.textContent=hms(start-sec);
+      msg='Happy hour starts '+(k===0?'today':'tomorrow')+' at '+f(W[nd][0])+'.';
+    }
+    if(msg!==last){sr.textContent=msg;last=msg;}
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

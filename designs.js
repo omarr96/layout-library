@@ -1885,6 +1885,74 @@ window.DESIGNS = {
     },
     {
       "cat": "section-layouts",
+      "slug": "rk-deal-01-package-cards",
+      "title": "Deal 01 · Package cards · Sofra Meyhane",
+      "desc": "Three arch-topped set menus; weekday/weekend price switch.",
+      "tags": [
+        "Restaurant",
+        "Deal"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Deal",
+          "href": "sections/restaurant-kit/deals/deal-01-package-cards.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-deal-02-todays-special",
+      "title": "Deal 02 · Today's special · Saigon Mint Kitchen",
+      "desc": "Today's dish from the clock, day picker and serving-now status.",
+      "tags": [
+        "Restaurant",
+        "Deal"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Deal",
+          "href": "sections/restaurant-kit/deals/deal-02-todays-special.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-deal-03-family-packs",
+      "title": "Deal 03 · Combo / family packs · Crispy Hen Co.",
+      "desc": "People control updates pieces, total, per-person price and savings.",
+      "tags": [
+        "Restaurant",
+        "Deal"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Deal",
+          "href": "sections/restaurant-kit/deals/deal-03-family-packs.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-deal-04-happy-hour",
+      "title": "Deal 04 · Happy-hour banner · Azotea 31",
+      "desc": "Live on-now / starts-in countdown and weekly happy-hour times.",
+      "tags": [
+        "Restaurant",
+        "Deal"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Deal",
+          "href": "sections/restaurant-kit/deals/deal-04-happy-hour.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
       "slug": "rk-story-01-chef-portrait-quote",
       "title": "Story 01 · Chef portrait + quote · Kappo Tsukiyo",
       "desc": "Dark split with a greyscale chef portrait, big quote and a read-more bio.",
@@ -1965,6 +2033,295 @@ window.DESIGNS = {
         {
           "label": "Story",
           "href": "sections/restaurant-kit/story/story-05-kitchen-process.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-gallery-01-masonry-lightbox",
+      "title": "Gallery 01 · Masonry grid · Osteria Fumo",
+      "desc": "Masonry photos with category chips and a full lightbox (keys, swipe).",
+      "tags": [
+        "Restaurant",
+        "Gallery"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/restaurant-kit/gallery/gallery-01-masonry-lightbox.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-gallery-02-slider",
+      "title": "Gallery 02 · Slider · The Velvet Ledger",
+      "desc": "Dark split slider with room names, peeking next slide and thumbnails.",
+      "tags": [
+        "Restaurant",
+        "Gallery"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/restaurant-kit/gallery/gallery-02-slider.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-gallery-03-big-small-mosaic",
+      "title": "Gallery 03 · Big + small mosaic · Saltbush Café",
+      "desc": "Tap a small tile to swap it into the big feature spot.",
+      "tags": [
+        "Restaurant",
+        "Gallery"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/restaurant-kit/gallery/gallery-03-big-small-mosaic.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-gallery-04-social-feed",
+      "title": "Gallery 04 · Instagram feed look · Tacos El Columpio",
+      "desc": "Profile card, story highlights, 3-column grid and post popup with likes.",
+      "tags": [
+        "Restaurant",
+        "Gallery"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Gallery",
+          "href": "sections/restaurant-kit/gallery/gallery-04-social-feed.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-review-01-quote-cards-paprika-lane",
+      "title": "Review 01 · Quote cards · Paprika Lane",
+      "desc": "Masonry review cards with filter chips, read-more and a Google score card.",
+      "tags": [
+        "Restaurant",
+        "Review"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Review",
+          "href": "sections/restaurant-kit/reviews/review-01-quote-cards-paprika-lane.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-review-02-big-quote-marea-alta",
+      "title": "Review 02 · Big single quote · Marea Alta",
+      "desc": "One huge quote beside a terrace photo with highlighted phrases.",
+      "tags": [
+        "Restaurant",
+        "Review"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Review",
+          "href": "sections/restaurant-kit/reviews/review-02-big-quote-marea-alta.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-review-03-slider-dumpling-theory",
+      "title": "Review 03 · Slider · Dumpling Theory",
+      "desc": "Reviews styled as order tickets in a snap slider with autoplay.",
+      "tags": [
+        "Restaurant",
+        "Review"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Review",
+          "href": "sections/restaurant-kit/reviews/review-03-slider-dumpling-theory.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-review-04-rating-summary-nasi-kopi",
+      "title": "Review 04 · Rating summary + quotes · Nasi & Kopi",
+      "desc": "Google rating panel with star bars that filter reviews, sort and owner replies.",
+      "tags": [
+        "Restaurant",
+        "Review"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Review",
+          "href": "sections/restaurant-kit/reviews/review-04-rating-summary-nasi-kopi.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-event-01-spaces",
+      "title": "Event 01 · Spaces as photo cards · The Linden Room",
+      "desc": "Rooms with capacity and minimum spend; guest slider shows which fit.",
+      "tags": [
+        "Restaurant",
+        "Event"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Event",
+          "href": "sections/restaurant-kit/events/event-01-spaces.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-event-02-catering-steps",
+      "title": "Event 02 · Catering steps · Masala Mehfil",
+      "desc": "Four-step catering process with tabs, progress line and photo.",
+      "tags": [
+        "Restaurant",
+        "Event"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Event",
+          "href": "sections/restaurant-kit/events/event-02-catering-steps.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-event-03-enquiry-banner",
+      "title": "Event 03 · Enquiry banner · Kumo Izakaya",
+      "desc": "Dark banner with perks and a short private-dining enquiry form.",
+      "tags": [
+        "Restaurant",
+        "Event"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Event",
+          "href": "sections/restaurant-kit/events/event-03-enquiry-banner.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-award-01-press-logo-strip",
+      "title": "Award 01 · Press logo strip · Atelier Nord",
+      "desc": "Invented mastheads as text logos; each opens its pull quote.",
+      "tags": [
+        "Restaurant",
+        "Award"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Award",
+          "href": "sections/restaurant-kit/awards/award-01-press-logo-strip.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-award-02-press-quote-cards",
+      "title": "Award 02 · Press quote cards · Jade Steamer",
+      "desc": "Torn newsprint clippings with mastheads, stars and filters.",
+      "tags": [
+        "Restaurant",
+        "Award"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Award",
+          "href": "sections/restaurant-kit/awards/award-02-press-quote-cards.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-award-03-award-badges",
+      "title": "Award 03 · Award badges · Pike & Pit Smokehouse",
+      "desc": "Six drawn award seals that flip to show the judges' citation.",
+      "tags": [
+        "Restaurant",
+        "Award"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Award",
+          "href": "sections/restaurant-kit/awards/award-03-award-badges.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-offer-01-discount-banner-pizzeria-volta",
+      "title": "Offer 01 · Discount banner · Pizzeria Volta",
+      "desc": "Loud promo banner with copy-code button and an expiry countdown.",
+      "tags": [
+        "Restaurant",
+        "Offer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Offer",
+          "href": "sections/restaurant-kit/offers/offer-01-discount-banner-pizzeria-volta.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-offer-02-newsletter-hedgerow-kitchen",
+      "title": "Offer 02 · Newsletter sign-up · Hedgerow Kitchen",
+      "desc": "Split card with topic chips, consent and inline success.",
+      "tags": [
+        "Restaurant",
+        "Offer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Offer",
+          "href": "sections/restaurant-kit/offers/offer-02-newsletter-hedgerow-kitchen.html"
+        }
+      ]
+    },
+    {
+      "cat": "section-layouts",
+      "slug": "rk-offer-03-app-strip-bowl-theory",
+      "title": "Offer 03 · App / order online strip · Bowl Theory",
+      "desc": "Phone mock-up, store buttons, text-me-the-link and order online.",
+      "tags": [
+        "Restaurant",
+        "Offer"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Offer",
+          "href": "sections/restaurant-kit/offers/offer-03-app-strip-bowl-theory.html"
         }
       ]
     },

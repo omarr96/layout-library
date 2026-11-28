@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pike &amp; Pit Smokehouse — Award Badges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6e1da;--char:#1c1816;--panel:#262019;--bone:#f1e6d0;--muted:#b3a692;--ember:#d9612a;--brass:#d4a93a;--leaf:#7fa36a;--line:#3a3129}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Work Sans",system-ui,sans-serif;background:var(--bg);color:var(--char);line-height:1.55;overflow-x:hidden;padding-top:48px}
+:focus-visible{outline:3px solid var(--brass);outline-offset:4px}
+.aw{background:var(--char);color:var(--bone);padding:92px 24px 96px;position:relative;overflow:hidden}
+.aw::before{content:"";position:absolute;left:-10%;right:-10%;bottom:-140px;height:280px;background:radial-gradient(ellipse at center,rgba(217,97,42,.28),transparent 65%);pointer-events:none}
+.wrap{max-width:1180px;margin:0 auto;position:relative}
+.top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:56px}
+.eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ember)}
+h2{font-family:"Alfa Slab One",serif;font-weight:400;font-size:clamp(2.3rem,5vw,3.9rem);line-height:1;margin-top:14px;letter-spacing:.005em}
+h2 span{color:var(--brass)}
+.lede{color:var(--muted);margin-top:16px;max-width:46ch}
+.stats{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:4px}
+.stats li{padding:18px 18px 16px;font-size:.85rem;color:var(--muted)}
+.stats li+li{border-left:1px solid var(--line)}
+.stats b{display:block;font-family:"Alfa Slab One",serif;font-weight:400;font-size:2.4rem;line-height:1;color:var(--bone);margin-bottom:6px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
+.filters button{background:none;border:1px solid var(--line);color:var(--bone);font:500 .9rem "Work Sans",sans-serif;padding:8px 16px;border-radius:4px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.filters button:hover{border-color:var(--brass)}
+.filters button[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:var(--char)}
+.grid{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px 22px}
+.b{text-align:center;transition:opacity .3s,transform .3s}
+.b.dim{opacity:.22;transform:scale(.94)}
+.flip{width:100%;aspect-ratio:120/125;background:none;border:0;cursor:pointer;position:relative;perspective:900px;color:var(--bone);display:block;border-radius:50%}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.front svg{width:100%;height:100%;display:block;font-family:"Work Sans",sans-serif;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));transition:transform .4s}
+.flip:hover .front svg{transform:rotate(-6deg) scale(1.04)}
+.back{transform:rotateY(180deg);background:var(--panel);border:1px solid var(--brass);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14%;gap:3px;font-size:.72rem;line-height:1.35;color:var(--bone)}
+.back .yr{font-family:"Alfa Slab One",serif;color:var(--brass);font-size:1rem}
+.back b{font-size:.8rem}
+.back em{color:var(--muted);font-size:.68rem}
+.back .nt{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
+.flip[aria-pressed="true"] .front{transform:rotateY(-180deg)}
+.flip[aria-pressed="true"] .back{transform:rotateY(0)}
+.lab{margin-top:14px;font-size:.82rem;color:var(--muted);line-height:1.35}
+.lab b{display:block;color:var(--bone);font-weight:600;font-size:.92rem}
+.hint{margin-top:30px;font-size:.85rem;color:var(--muted);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hint a{color:var(--char);background:var(--ember);text-decoration:none;font-weight:600;padding:11px 22px;border-radius:4px;transition:background .2s}
+.hint a:hover{background:var(--brass)}
+@media (max-width:1060px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}.grid li{max-width:220px;margin:0 auto;width:100%}.back{font-size:.8rem}}
+@media (max-width:760px){.top{grid-template-columns:1fr;gap:28px}}
+@media (max-width:560px){.aw{padding:64px 16px 72px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 16px}.stats b{font-size:1.8rem}.stats li{padding:14px 12px;font-size:.78rem}.back{font-size:.66rem;padding:12%}.back .nt{-webkit-line-clamp:4}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="aw" aria-labelledby="pp-title">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="ring" d="M60,97 a37,37 0 1,1 0,-74 a37,37 0 1,1 0,74"/></defs></svg>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <p class="eyebrow">Pike &amp; Pit Smokehouse · Low &amp; slow BBQ</p>
+        <h2 id="pp-title">Hardware from <span>the pit</span></h2>
+        <p class="lede">We don't cook for trophies, but we've stopped saying no to them. Tap a badge to read what the judges said.</p>
+      </div>
+      <ul class="stats" aria-label="Award totals">
+        <li><b data-to="11">11</b>awards since 2016</li>
+        <li><b data-to="4">4</b>gold medals</li>
+        <li><b data-to="14">14</b>hours on every brisket</li>
+      </ul>
+    </div>
+    <div class="filters" role="group" aria-label="Highlight awards">
+      <button aria-pressed="true" data-f="all">All six</button>
+      <button aria-pressed="false" data-f="gold">Competition golds</button>
+      <button aria-pressed="false" data-f="list">Best-of lists</button>
+      <button aria-pressed="false" data-f="people">Readers &amp; sourcing</button>
+    </div>
+    <ul class="grid" id="grid">
+      <li class="b" data-cat="gold">
+        <button class="flip" aria-pressed="false" aria-describedby="n0">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="Coastline BBQ Guild badge: Gold Pit 2025"><path d="M38 92 28 120 40 114 46 124 54 96Z M82 92 92 120 80 114 74 124 66 96Z" fill="var(--ember)"/><path d="M112.0,60.0A9.5,9.5 0 0 1 108.9,77.8A9.5,9.5 0 0 1 99.8,93.4A9.5,9.5 0 0 1 86.0,105.0A9.5,9.5 0 0 1 69.0,111.2A9.5,9.5 0 0 1 51.0,111.2A9.5,9.5 0 0 1 34.0,105.0A9.5,9.5 0 0 1 20.2,93.4A9.5,9.5 0 0 1 11.1,77.8A9.5,9.5 0 0 1 8.0,60.0A9.5,9.5 0 0 1 11.1,42.2A9.5,9.5 0 0 1 20.2,26.6A9.5,9.5 0 0 1 34.0,15.0A9.5,9.5 0 0 1 51.0,8.8A9.5,9.5 0 0 1 69.0,8.8A9.5,9.5 0 0 1 86.0,15.0A9.5,9.5 0 0 1 99.8,26.6A9.5,9.5 0 0 1 108.9,42.2A9.5,9.5 0 0 1 112.0,60.0Z" fill="var(--brass)"/><circle cx="60" cy="60" r="43" fill="none" stroke="var(--char)" stroke-width="1.2"/><circle cx="60" cy="60" r="31" fill="var(--char)"/><text font-size="7.2" letter-spacing="2.2" fill="var(--char)" font-weight="600"><textPath href="#ring" startOffset="50%" text-anchor="middle">COASTLINE BBQ GUILD · 2025</textPath></text><text x="60" y="62" text-anchor="middle" font-family="Alfa Slab One" font-size="15" fill="var(--brass)">GOLD</text><text x="60" y="76" text-anchor="middle" font-size="7.5" letter-spacing="3" fill="var(--bone)" font-weight="600">PIT</text><text x="60" y="46" text-anchor="middle" font-size="9" fill="var(--brass)">★</text></svg></span>
+          <span class="face back"><span class="yr">2025</span><b>Gold Pit</b><em>Coastline BBQ Guild</em><span id="n0" class="nt">“Bark like velvet and a smoke ring you could set a watch by.” Awarded for whole-hog and 14-hour brisket.</span></span>
+        </button>
+        <p class="lab"><b>Gold Pit</b>Coastline BBQ Guild · 2025</p>
+      </li>
+      <li class="b" data-cat="gold">
+        <button class="flip" aria-pressed="false" aria-describedby="n1">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="Smoke Signals Awards badge: Brisket of the Year 2024"><circle cx="60" cy="60" r="57" fill="var(--ember)"/><circle cx="60" cy="60" r="51" fill="none" stroke="var(--bone)" stroke-width="1" stroke-dasharray="2 3"/><circle cx="60" cy="60" r="32" fill="var(--bone)"/><text font-size="7.2" letter-spacing="2.2" fill="var(--bone)" font-weight="600"><textPath href="#ring" startOffset="50%" text-anchor="middle">SMOKE SIGNALS AWARDS ★ 2024 ★</textPath></text><text x="60" y="58" text-anchor="middle" font-family="Alfa Slab One" font-size="11" fill="var(--char)">BRISKET</text><text x="60" y="70" text-anchor="middle" font-size="7" font-style="italic" fill="var(--char)">of the year</text></svg></span>
+          <span class="face back"><span class="yr">2024</span><b>Brisket of the Year</b><em>Smoke Signals Awards</em><span id="n1" class="nt">Beat 140 pitmasters in a blind tasting. The judges asked for seconds, which is against the rules.</span></span>
+        </button>
+        <p class="lab"><b>Brisket of the Year</b>Smoke Signals Awards · 2024</p>
+      </li>
+      <li class="b" data-cat="list">
+        <button class="flip" aria-pressed="false" aria-describedby="n2">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="Northside Eats 50 Best badge: No. 7 of 50 Best 2025"><circle cx="60" cy="60" r="58" fill="var(--bone)"/><g fill="var(--leaf)"><ellipse cx="70.4" cy="108.9" rx="7.5" ry="3.2" transform="rotate(16 70.4 108.9)"/><ellipse cx="49.6" cy="108.9" rx="7.5" ry="3.2" transform="rotate(-16 49.6 108.9)"/><ellipse cx="84.2" cy="103.7" rx="7.5" ry="3.2" transform="rotate(-1 84.2 103.7)"/><ellipse cx="35.8" cy="103.7" rx="7.5" ry="3.2" transform="rotate(1 35.8 103.7)"/><ellipse cx="96.0" cy="94.7" rx="7.5" ry="3.2" transform="rotate(-18 96.0 94.7)"/><ellipse cx="24.0" cy="94.7" rx="7.5" ry="3.2" transform="rotate(18 24.0 94.7)"/><ellipse cx="104.6" cy="82.7" rx="7.5" ry="3.2" transform="rotate(-35 104.6 82.7)"/><ellipse cx="15.4" cy="82.7" rx="7.5" ry="3.2" transform="rotate(35 15.4 82.7)"/><ellipse cx="109.2" cy="68.7" rx="7.5" ry="3.2" transform="rotate(-52 109.2 68.7)"/><ellipse cx="10.8" cy="68.7" rx="7.5" ry="3.2" transform="rotate(52 10.8 68.7)"/><ellipse cx="109.6" cy="53.9" rx="7.5" ry="3.2" transform="rotate(-69 109.6 53.9)"/><ellipse cx="10.4" cy="53.9" rx="7.5" ry="3.2" transform="rotate(69 10.4 53.9)"/><ellipse cx="105.7" cy="39.7" rx="7.5" ry="3.2" transform="rotate(-86 105.7 39.7)"/><ellipse cx="14.3" cy="39.7" rx="7.5" ry="3.2" transform="rotate(86 14.3 39.7)"/><ellipse cx="97.7" cy="27.2" rx="7.5" ry="3.2" transform="rotate(-103 97.7 27.2)"/><ellipse cx="22.3" cy="27.2" rx="7.5" ry="3.2" transform="rotate(103 22.3 27.2)"/></g><circle cx="60" cy="60" r="40" fill="none" stroke="var(--char)" stroke-width="1.5"/><text x="60" y="45" text-anchor="middle" font-size="5.6" letter-spacing="1.2" fill="var(--char)" font-weight="600">NORTHSIDE EATS</text><text x="60" y="72" text-anchor="middle" font-family="Alfa Slab One" font-size="26" fill="var(--char)">7</text><text x="60" y="82" text-anchor="middle" font-size="5.4" letter-spacing="1" fill="var(--char)" font-weight="600">50 BEST · 2025</text></svg></span>
+          <span class="face back"><span class="yr">2025</span><b>No. 7 of 50 Best</b><em>Northside Eats 50 Best</em><span id="n2" class="nt">Climbed from No. 23 in a single year. “The pit-smoked chicken alone deserves a place on the list.”</span></span>
+        </button>
+        <p class="lab"><b>No. 7 of 50 Best</b>Northside Eats 50 Best · 2025</p>
+      </li>
+      <li class="b" data-cat="people">
+        <button class="flip" aria-pressed="false" aria-describedby="n3">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="The Hungry Ledger badge: Readers' Choice 2023"><polygon points="60.0,4.0 108.5,32.0 108.5,88.0 60.0,116.0 11.5,88.0 11.5,32.0" fill="var(--char)" stroke="var(--brass)" stroke-width="3"/><polygon points="60,14 100,37 100,83 60,106 20,83 20,37" fill="none" stroke="var(--brass)" stroke-width="1"/><text x="60" y="46" text-anchor="middle" font-size="5.4" letter-spacing="1" fill="var(--brass)" font-weight="600">THE HUNGRY LEDGER</text><text x="60" y="62" text-anchor="middle" font-family="Alfa Slab One" font-size="12" fill="var(--bone)">READERS’</text><text x="60" y="76" text-anchor="middle" font-family="Alfa Slab One" font-size="12" fill="var(--bone)">CHOICE</text><text x="60" y="92" text-anchor="middle" font-size="7" letter-spacing="2" fill="var(--brass)" font-weight="600">2023</text></svg></span>
+          <span class="face back"><span class="yr">2023</span><b>Readers' Choice</b><em>The Hungry Ledger</em><span id="n3" class="nt">Voted by 9,800 readers as the city's favourite casual dinner. Second year in a row.</span></span>
+        </button>
+        <p class="lab"><b>Readers' Choice</b>The Hungry Ledger · 2023</p>
+      </li>
+      <li class="b" data-cat="gold">
+        <button class="flip" aria-pressed="false" aria-describedby="n4">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="Fire &amp; Flour Festival badge: Champion Ribs 2022"><polygon points="60.0,2.0 66.5,10.4 75.0,4.0 79.1,13.8 89.0,9.8 90.4,20.3 101.0,19.0 99.7,29.6 110.2,31.0 106.2,40.9 116.0,45.0 109.6,53.5 118.0,60.0 109.6,66.5 116.0,75.0 106.2,79.1 110.2,89.0 99.7,90.4 101.0,101.0 90.4,99.7 89.0,110.2 79.1,106.2 75.0,116.0 66.5,109.6 60.0,118.0 53.5,109.6 45.0,116.0 40.9,106.2 31.0,110.2 29.6,99.7 19.0,101.0 20.3,90.4 9.8,89.0 13.8,79.1 4.0,75.0 10.4,66.5 2.0,60.0 10.4,53.5 4.0,45.0 13.8,40.9 9.8,31.0 20.3,29.6 19.0,19.0 29.6,20.3 31.0,9.8 40.9,13.8 45.0,4.0 53.5,10.4" fill="var(--brass)"/><circle cx="60" cy="60" r="44" fill="var(--bone)"/><circle cx="60" cy="60" r="40" fill="none" stroke="var(--char)" stroke-width="1"/><text x="60" y="45" text-anchor="middle" font-size="5.2" letter-spacing=".8" fill="var(--char)" font-weight="600">FIRE &amp; FLOUR FEST</text><text x="60" y="64" text-anchor="middle" font-family="Alfa Slab One" font-size="14" fill="var(--ember)">CHAMP</text><text x="60" y="78" text-anchor="middle" font-family="Alfa Slab One" font-size="10" fill="var(--char)">RIBS ’22</text></svg></span>
+          <span class="face back"><span class="yr">2022</span><b>Champion Ribs</b><em>Fire &amp; Flour Festival</em><span id="n4" class="nt">St. Louis-cut pork ribs, cherry wood, a dry rub with eleven things in it. We'll never say which eleven.</span></span>
+        </button>
+        <p class="lab"><b>Champion Ribs</b>Fire &amp; Flour Festival · 2022</p>
+      </li>
+      <li class="b" data-cat="people">
+        <button class="flip" aria-pressed="false" aria-describedby="n5">
+          <span class="face front"><svg viewBox="0 0 120 125" role="img" aria-label="Green Grate certification badge: Responsibly Sourced 2024"><circle cx="60" cy="60" r="56" fill="none" stroke="var(--leaf)" stroke-width="3"/><circle cx="60" cy="60" r="50" fill="none" stroke="var(--leaf)" stroke-width="1" stroke-dasharray="1 2.5"/><text font-size="6.2" letter-spacing="1.4" fill="var(--leaf)" font-weight="600"><textPath href="#ring" startOffset="50%" text-anchor="middle">GREEN GRATE · RESPONSIBLY SOURCED ·</textPath></text><path d="M60 40c12 4 16 14 12 26-10 0-18-6-18-16 0-4 2-8 6-10zM60 80V54" fill="none" stroke="var(--leaf)" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+          <span class="face back"><span class="yr">2024</span><b>Responsibly Sourced</b><em>Green Grate certification</em><span id="n5" class="nt">Every cut traced to three family farms within 90 km. Our oak and cherry wood comes from storm-fallen trees.</span></span>
+        </button>
+        <p class="lab"><b>Responsibly Sourced</b>Green Grate certification · 2024</p>
+      </li>
+    </ul>
+    <div class="hint">
+      <span>Pit fires lit at 4am daily · 7 Tanner's Yard, Riverside · Kitchen Wed–Sun 12–10pm, or until the brisket runs out.</span>
+      <a href="#">Book a pit-side table</a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  [].slice.call(document.querySelectorAll('.flip')).forEach(function(b){
+    b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true')});
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')[].slice.call(document.querySelectorAll('.flip[aria-pressed="true"]')).forEach(function(b){b.setAttribute('aria-pressed','false')});
+  });
+  var items=[].slice.call(document.querySelectorAll('.b'));
+  [].slice.call(document.querySelectorAll('.filters button')).forEach(function(b,k,all){
+    b.addEventListener('click',function(){
+      all.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      items.forEach(function(it){it.classList.toggle('dim',!(b.dataset.f==='all'||it.dataset.cat===b.dataset.f))});
+    });
+  });
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nums=[].slice.call(document.querySelectorAll('[data-to]'));
+  if(reduce||!('IntersectionObserver' in window))return;
+  nums.forEach(function(n){n.textContent='0'});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;io.unobserve(e.target);
+      var el=e.target,to=+el.dataset.to,t0=null;
+      function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1200,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    });
+  },{threshold:.4});
+  nums.forEach(function(n){io.observe(n)});
+})();
+</script>
+</body>
+</html>

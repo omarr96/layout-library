@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paprika Lane — Guest Reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6efe4;--card:#fffaf2;--ink:#2a1f1a;--muted:#6e5d52;--red:#b8321f;--line:#e5d8c5;--sun:#e6a23c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Work Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.rev{max-width:1200px;margin:0 auto;padding:56px 24px 96px}
+.head{display:grid;grid-template-columns:1fr auto;gap:24px 40px;align-items:end;margin-bottom:28px}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1;margin-top:10px}
+h2 i{color:var(--red)}
+.score{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.score b{font-family:"DM Serif Display",serif;font-size:2.4rem;font-weight:400;line-height:1}
+.score small{display:block;color:var(--muted);font-size:.82rem}
+.stars{display:inline-flex;gap:2px;color:var(--sun)}
+.stars svg{width:16px;height:16px;fill:currentColor}
+.stars .off{color:#d9cbb6}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+.chips button{font:inherit;font-size:.9rem;font-weight:500;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chips button:hover{border-color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{columns:3 300px;column-gap:22px}
+.card{break-inside:avoid;margin:0 0 22px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;position:relative;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(42,31,26,.45)}
+.card[hidden]{display:none}
+.card.feature{background:var(--red);color:#fff7ee;border-color:var(--red)}
+.card.feature .stars{color:#ffd27a}.card.feature .meta small,.card.feature .tag{color:#ffd9cc}
+.card.feature .av{background:#fff7ee;color:var(--red)}
+.qm{position:absolute;top:10px;right:20px;font-family:"DM Serif Display",serif;font-size:4.6rem;line-height:1;color:var(--red);opacity:.16}
+.card.feature .qm{color:#fff;opacity:.25}
+.card h3{font-family:"DM Serif Display",serif;font-weight:400;font-size:1.4rem;line-height:1.2;margin:12px 0 8px}
+.card p{font-size:.98rem}
+.clamp p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.clamp.open p{-webkit-line-clamp:unset;display:block}
+.more{margin-top:6px;font:inherit;font-size:.88rem;font-weight:600;color:var(--red);background:none;border:0;padding:2px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.tag{display:inline-block;margin-top:14px;font-size:.8rem;color:var(--muted)}
+.tag::before{content:"Ordered · ";font-weight:600}
+.meta{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px dashed currentColor;border-top-color:rgba(110,93,82,.35)}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.95rem;background:var(--ink);color:var(--bg);flex:none}
+.meta b{display:block;font-weight:600;font-size:.95rem}
+.meta small{color:var(--muted);font-size:.8rem}
+.foot{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;margin-top:14px;padding-top:24px;border-top:1px solid var(--line)}
+.foot p{color:var(--muted);font-size:.92rem}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;padding:13px 22px;border-radius:999px;transition:background .2s}
+.btn:hover{background:var(--red)}
+.empty{color:var(--muted);padding:20px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:720px){.head{grid-template-columns:1fr}.score{justify-self:start}.rev{padding:40px 16px 72px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="rev" aria-labelledby="rev-title">
+  <div class="head">
+    <div>
+      <p class="eyebrow">Paprika Lane · Hungarian bistro</p>
+      <h2 id="rev-title">Kind words from <i>our tables</i></h2>
+    </div>
+    <div class="score">
+      <b>4.8</b>
+      <div><span class="stars" aria-hidden="true" data-stars="5"></span><small>4.8 out of 5 · 612 Google reviews</small></div>
+    </div>
+  </div>
+
+  <div class="chips" role="group" aria-label="Filter reviews by visit">
+    <button type="button" data-f="all" aria-pressed="true">All visits</button>
+    <button type="button" data-f="dinner" aria-pressed="false">Dinner</button>
+    <button type="button" data-f="brunch" aria-pressed="false">Weekend brunch</button>
+    <button type="button" data-f="takeaway" aria-pressed="false">Takeaway</button>
+  </div>
+  <p class="sr" id="live" aria-live="polite"></p>
+
+  <div class="grid" id="grid">
+    <article class="card feature" data-k="dinner">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="5 out of 5 stars" data-stars="5"></span>
+      <h3>The paprikash that ruined all other paprikash</h3>
+      <div class="clamp"><p>We came for a birthday and stayed until they stacked the chairs. The chicken paprikash is silky, smoky and properly peppery, and the nokedli soak up every drop. Our server talked us into the sour cherry soup to start and she was completely right. Already booked the next one.</p></div>
+      <span class="tag">Chicken paprikash, sour cherry soup</span>
+      <div class="meta"><span class="av" aria-hidden="true">RA</span><div><b>Rehana A.</b><small>Dinner for 6 · via Google</small></div></div>
+    </article>
+
+    <article class="card" data-k="brunch">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="5 out of 5 stars" data-stars="5"></span>
+      <h3>Lángos at 11am is a lifestyle</h3>
+      <div class="clamp"><p>Crisp, chewy, garlicky and huge. Get the sour cream and dill version and a pot of their rosehip tea. Kids were happy, we were happy.</p></div>
+      <span class="tag">Lángos, rosehip tea</span>
+      <div class="meta"><span class="av" aria-hidden="true">TM</span><div><b>Tomás M.</b><small>Weekend brunch · via Google</small></div></div>
+    </article>
+
+    <article class="card" data-k="dinner">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="4 out of 5 stars" data-stars="4"></span>
+      <h3>Cosy, loud in the best way</h3>
+      <div class="clamp"><p>Fridays get busy so book ahead. The goulash comes in a little cauldron and could feed two. One star off only because we waited a while for dessert, but the Dobos torte was worth the wait and the staff sent over a glass of Tokaji to apologise. Lovely gesture, lovely room, warm lighting, and the playlist is all old Budapest jazz.</p></div>
+      <span class="tag">Beef goulash, Dobos torte</span>
+      <div class="meta"><span class="av" aria-hidden="true">JL</span><div><b>Jess L.</b><small>Friday dinner · via The Supper Ledger</small></div></div>
+    </article>
+
+    <article class="card" data-k="takeaway">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="5 out of 5 stars" data-stars="5"></span>
+      <h3>Travels well, still hot</h3>
+      <div class="clamp"><p>Ordered stuffed cabbage and chimney cakes for collection. Packed neatly, labelled for allergens, and the chimney cake was still warm when we got home.</p></div>
+      <span class="tag">Töltött káposzta, chimney cake</span>
+      <div class="meta"><span class="av" aria-hidden="true">NK</span><div><b>Nabil K.</b><small>Takeaway · via Google</small></div></div>
+    </article>
+
+    <article class="card" data-k="brunch">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="5 out of 5 stars" data-stars="5"></span>
+      <h3>Felt like grandma's kitchen</h3>
+      <div class="clamp"><p>My grandmother was from Szeged and I teared up at the túrós csusza. Nobody makes it anymore. Thank you for keeping it on the menu, and for letting me take the recipe card home.</p></div>
+      <span class="tag">Túrós csusza</span>
+      <div class="meta"><span class="av" aria-hidden="true">EV</span><div><b>Eszter V.</b><small>Sunday brunch · via Google</small></div></div>
+    </article>
+
+    <article class="card" data-k="dinner">
+      <span class="qm" aria-hidden="true">&ldquo;</span>
+      <span class="stars" role="img" aria-label="5 out of 5 stars" data-stars="5"></span>
+      <h3>Great with dietary needs</h3>
+      <div class="clamp"><p>I'm coeliac and they walked me through the whole menu without fuss. Separate fryer, gluten-free dumplings on request, and a dessert I could actually eat.</p></div>
+      <span class="tag">Lecsó, GF nokedli</span>
+      <div class="meta"><span class="av" aria-hidden="true">SP</span><div><b>Sam P.</b><small>Date night · via Google</small></div></div>
+    </article>
+  </div>
+  <p class="empty" id="empty" hidden>No reviews in this category yet.</p>
+
+  <div class="foot">
+    <p>Reviews shown are from verified guests. 4.8 stars on Google, updated monthly.</p>
+    <a class="btn" href="#" aria-label="Read all 612 reviews on Google (opens in a new tab)" target="_blank" rel="noopener">Read all reviews <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+<script>
+(function(){
+  var star='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>';
+  document.querySelectorAll('[data-stars]').forEach(function(el){
+    var n=+el.getAttribute('data-stars'),h='';
+    for(var i=0;i<5;i++)h+=i<n?star:star.replace('<svg','<svg class="off"');
+    el.innerHTML=h;
+  });
+  document.querySelectorAll('.clamp').forEach(function(c){
+    var p=c.querySelector('p');
+    if(p.scrollHeight-p.clientHeight<4)return;
+    var b=document.createElement('button');
+    b.type='button';b.className='more';b.textContent='Read more';b.setAttribute('aria-expanded','false');
+    b.addEventListener('click',function(){
+      var o=c.classList.toggle('open');
+      b.textContent=o?'Show less':'Read more';b.setAttribute('aria-expanded',String(o));
+    });
+    c.appendChild(b);
+  });
+  var btns=document.querySelectorAll('.chips button'),cards=document.querySelectorAll('.card'),live=document.getElementById('live'),empty=document.getElementById('empty');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f'),n=0;
+      btns.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+      cards.forEach(function(c){var show=f==='all'||c.getAttribute('data-k')===f;c.hidden=!show;if(show)n++;});
+      empty.hidden=n>0;
+      live.textContent='Showing '+n+' review'+(n===1?'':'s');
+    });
+  });
+})();
+</script>
+</body>
+</html>

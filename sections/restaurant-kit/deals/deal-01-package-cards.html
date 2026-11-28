@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sofra Meyhane — Set Menus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0f3d3e;--teal2:#16585a;--saffron:#e0a526;--pomegranate:#a7322c;--cream:#f7f0e3;--ink:#1d2423;--muted:#5d6764;--line:#e4d9c3}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Sora,system-ui,sans-serif;background:#efe9dd;color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px}
+.sm{max-width:1200px;margin:0 auto;padding:56px 24px 88px}
+.head{text-align:center;max-width:640px;margin:0 auto 34px}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--pomegranate);font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.orn::before,.orn::after{content:"";width:46px;height:1px;background:currentColor}
+h2{font:500 clamp(36px,5.4vw,60px)/1.02 "Bodoni Moda",serif;margin:14px 0 12px;color:var(--teal)}
+h2 em{color:var(--pomegranate)}
+.head p{margin:0;color:var(--muted)}
+.seg{display:inline-flex;margin:26px auto 0;padding:5px;border-radius:99px;background:#fff;border:1px solid var(--line)}
+.seg button{font:600 14px Sora,sans-serif;border:0;background:transparent;color:var(--teal);padding:10px 20px;border-radius:99px;cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--teal);color:#fff}
+.seg-note{display:block;margin-top:10px;font-size:13px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;margin-top:30px}
+.pk{position:relative;display:flex;flex-direction:column;background:var(--cream);border-radius:200px 200px 18px 18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 50px -36px rgba(15,61,62,.55);transition:transform .3s}
+.pk:hover{transform:translateY(-4px)}
+.pk figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:200px 200px 0 0}
+.pk img{width:100%;height:100%;object-fit:cover;display:block}
+.pk .bd{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.pk .no{font:italic 500 15px "Bodoni Moda",serif;color:var(--pomegranate)}
+.pk h3{font:700 28px/1.1 "Bodoni Moda",serif;margin:4px 0 6px;color:var(--teal)}
+.pk .tag{margin:0;font-size:14px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:8px;margin:18px 0 4px;padding-top:16px;border-top:1px dashed var(--line)}
+.price b{font:700 44px/1 "Bodoni Moda",serif;color:var(--ink)}
+.price span{font-size:13px;color:var(--muted)}
+.price s{font-size:14px;color:var(--muted)}
+.min{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.pk ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:9px;font-size:14.5px}
+.pk li{display:flex;gap:10px;align-items:flex-start}
+.pk li svg{flex:none;margin-top:3px;color:var(--teal2)}
+.cta{margin-top:auto;display:block;text-align:center;font:600 15px Sora,sans-serif;text-decoration:none;padding:14px 20px;border-radius:99px;border:1.5px solid var(--teal);color:var(--teal);transition:background .2s,color .2s}
+.cta:hover{background:var(--teal);color:#fff}
+.pk.star{background:var(--teal);color:#e8efe9;border-color:var(--teal);transform:translateY(-14px)}
+.pk.star:hover{transform:translateY(-18px)}
+.pk.star h3,.pk.star .price b{color:#fff}
+.pk.star .tag,.pk.star .price span,.pk.star .min,.pk.star .price s{color:#b8cfcb}
+.pk.star .no{color:var(--saffron)}
+.pk.star li svg{color:var(--saffron)}
+.pk.star .price{border-top-color:rgba(255,255,255,.2)}
+.pk.star .cta{background:var(--saffron);border-color:var(--saffron);color:var(--teal)}
+.pk.star .cta:hover{background:#f0b93c}
+.ribbon{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:var(--saffron);color:var(--teal);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:99px;white-space:nowrap;z-index:1}
+.fine{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;margin-top:34px;font-size:13px;color:var(--muted)}
+.fine a{color:var(--teal);font-weight:600}
+.flip{animation:fl .35s ease}
+@keyframes fl{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}.pk.star{transform:none}.pk.star:hover{transform:translateY(-4px)}}
+@media (max-width:640px){.sm{padding:40px 16px 64px}.cards{grid-template-columns:1fr}.pk{border-radius:160px 160px 18px 18px}.pk figure{border-radius:160px 160px 0 0}.seg button{padding:10px 14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.pk:hover,.pk.star:hover{transform:none}}
+</style>
+</head>
+<body>
+<section class="sm" aria-labelledby="sm-title">
+  <div class="head">
+    <span class="orn">Sofra Meyhane · Turkish meze house</span>
+    <h2 id="sm-title">Three ways to<br><em>share the table</em></h2>
+    <p>Our set menus arrive in waves — cold meze, hot plates, the grill, then something sweet with tea. Order for the whole table, minimum two guests.</p>
+    <div class="seg" role="group" aria-label="Pricing">
+      <button type="button" aria-pressed="true" data-mode="wk">Sun–Thu</button>
+      <button type="button" aria-pressed="false" data-mode="we">Fri &amp; Sat</button>
+    </div>
+    <span class="seg-note" id="segnote" aria-live="polite">Weeknight prices shown.</span>
+  </div>
+
+  <div class="cards">
+    <article class="pk" aria-labelledby="p1">
+      <figure><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=900&q=70&auto=format&fit=crop" alt="Spiced köfte on a bed of salad leaves" loading="lazy"></figure>
+      <div class="bd">
+        <span class="no">Menu i.</span>
+        <h3 id="p1">Meze Tasting</h3>
+        <p class="tag">Light, long and made for conversation.</p>
+        <div class="price"><b data-wk="24" data-we="27">$24</b><span>per guest</span></div>
+        <p class="min">2+ guests · around 90 minutes</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Six cold meze with lavaş bread</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Two hot plates: sigara börek, köfte</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Lokum and Turkish tea</li>
+        </ul>
+        <a class="cta" href="#book" aria-describedby="p1">Book this menu</a>
+      </div>
+    </article>
+
+    <article class="pk star" aria-labelledby="p2">
+      <span class="ribbon">Most booked</span>
+      <figure><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=900&q=70&auto=format&fit=crop" alt="Chicken shish skewers over a charcoal grill" loading="lazy"></figure>
+      <div class="bd">
+        <span class="no">Menu ii.</span>
+        <h3 id="p2">The Grill Feast</h3>
+        <p class="tag">Our charcoal ocakbaşı, start to finish.</p>
+        <div class="price"><b data-wk="38" data-we="42">$38</b><span>per guest</span><s data-wk="$46" data-we="$51">$46</s></div>
+        <p class="min">2+ guests · around 2 hours</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Four cold meze &amp; ezme salad</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Mixed grill: adana, shish, lamb chops</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Bulgur pilaf &amp; sumac onions</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Künefe for the table</li>
+        </ul>
+        <a class="cta" href="#book" aria-describedby="p2">Book this menu</a>
+      </div>
+    </article>
+
+    <article class="pk" aria-labelledby="p3">
+      <figure><img src="https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=900&q=70&auto=format&fit=crop" alt="A long table covered in shared plates and glasses" loading="lazy"></figure>
+      <div class="bd">
+        <span class="no">Menu iii.</span>
+        <h3 id="p3">Sultan's Sofra</h3>
+        <p class="tag">The full spread, for birthdays and big nights.</p>
+        <div class="price"><b data-wk="56" data-we="62">$56</b><span>per guest</span></div>
+        <p class="min">6+ guests · book 48 hours ahead</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Everything in the Grill Feast</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Whole slow-roast lamb shoulder</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Welcome glass of rakı or şıra</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Baklava tower &amp; coffee reading</li>
+        </ul>
+        <a class="cta" href="#book" aria-describedby="p3">Enquire for groups</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="fine">
+    <span>Vegetarian version of every menu on request.</span>
+    <span>Tell us about allergies when booking.</span>
+    <span>Questions? <a href="tel:01700000000">017 00000000</a></span>
+  </div>
+</section>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.seg button'),note=document.getElementById('segnote');
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function set(mode){
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mode===mode?'true':'false');});
+    document.querySelectorAll('.price b').forEach(function(el){
+      el.textContent='$'+el.dataset[mode];
+      if(!rm){el.classList.remove('flip');void el.offsetWidth;el.classList.add('flip');}
+    });
+    document.querySelectorAll('.price s').forEach(function(el){el.textContent=el.dataset[mode];});
+    note.textContent=mode==='wk'?'Weeknight prices shown.':'Weekend prices shown (Friday & Saturday).';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.mode);});});
+  var d=new Date().getDay();
+  set(d===5||d===6?'we':'wk');
+})();
+</script>
+</body>
+</html>

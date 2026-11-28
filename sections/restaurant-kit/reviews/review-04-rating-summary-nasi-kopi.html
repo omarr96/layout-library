@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nasi &amp; Kopi — Rating Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f1e3;--panel:#3b2416;--cream:#fbf7ee;--ink:#2b1c12;--muted:#6f5f50;--pandan:#4c8c4a;--sambal:#c8442c;--gold:#f0b43c;--line:#e3d8c2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--pandan);outline-offset:3px}
+.rs{max-width:1200px;margin:0 auto;padding:56px 24px 96px}
+.intro{margin-bottom:34px;max-width:720px}
+.eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pandan)}
+h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;margin-top:8px}
+h2 i{color:var(--sambal)}
+.wrap{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;align-items:start}
+.sum{position:sticky;top:24px;background:var(--panel);color:#f4ead8;border-radius:22px;padding:30px 28px}
+.src{font-size:.82rem;color:#d6c6ad;letter-spacing:.04em}
+.big{display:flex;align-items:flex-end;gap:14px;margin:10px 0 4px}
+.big b{font-family:"Instrument Serif",serif;font-weight:400;font-size:5.4rem;line-height:.85}
+.big span{color:#d6c6ad;font-size:.95rem;padding-bottom:8px}
+.stars{position:relative;display:inline-block;font-size:1.4rem;letter-spacing:3px;line-height:1;color:rgba(255,255,255,.2)}
+.stars::before{content:"\2605\2605\2605\2605\2605";position:absolute;left:0;top:0;width:var(--p);overflow:hidden;color:var(--gold);white-space:nowrap}
+.count{font-size:.88rem;color:#d6c6ad;margin-top:8px}
+.bars{list-style:none;margin:24px 0 22px;display:grid;gap:6px}
+.bar{width:100%;display:grid;grid-template-columns:34px 1fr 46px;align-items:center;gap:10px;font:inherit;font-size:.86rem;color:#f4ead8;background:transparent;border:1px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer;text-align:left;transition:background .2s,border-color .2s}
+.bar:hover{background:rgba(255,255,255,.06)}
+.bar[aria-pressed="true"]{border-color:var(--gold);background:rgba(240,180,60,.12)}
+.track{height:10px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.fill{display:block;height:100%;width:0;border-radius:99px;background:var(--gold);transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.num{text-align:right;color:#d6c6ad;font-variant-numeric:tabular-nums}
+.aspects{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+.aspects div{text-align:center;background:rgba(255,255,255,.06);border-radius:12px;padding:10px 4px}
+.aspects b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:1.7rem;line-height:1}
+.aspects small{font-size:.72rem;color:#d6c6ad;text-transform:uppercase;letter-spacing:.08em}
+.write{display:block;text-align:center;margin-top:20px;background:var(--gold);color:var(--panel);font-weight:600;text-decoration:none;padding:13px 16px;border-radius:999px;transition:filter .2s}
+.write:hover{filter:brightness(1.08)}
+.tools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.status{font-size:.9rem;color:var(--muted)}
+.clear{font:inherit;font-size:.85rem;font-weight:600;color:var(--sambal);background:none;border:0;cursor:pointer;text-decoration:underline;margin-left:8px}
+label.sort{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+select{font:inherit;font-size:.88rem;color:var(--ink);background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.list{list-style:none;display:grid;gap:14px}
+.rv{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.rv-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;font-size:.9rem;flex:none}
+.rv-h b{font-weight:600}
+.rv-h small{display:block;color:var(--muted);font-size:.8rem}
+.rv .stars{font-size:1rem;letter-spacing:2px;color:#e2d6c1;margin-left:auto}
+.rv p{margin-top:12px;font-size:.98rem}
+.dish{display:inline-block;margin-top:12px;font-size:.78rem;font-weight:500;background:#eaf2e5;color:#2f5f2d;padding:4px 10px;border-radius:99px}
+.reply{margin-top:14px;padding:12px 16px;border-left:3px solid var(--pandan);background:#f1ecdf;border-radius:0 10px 10px 0;font-size:.9rem;color:var(--muted)}
+.reply b{color:var(--ink);font-weight:600}
+.empty{padding:28px;text-align:center;color:var(--muted);background:var(--cream);border:1px dashed var(--line);border-radius:18px}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.sum{position:static}}
+@media (max-width:520px){.rs{padding:40px 16px 72px}.rv{padding:18px}.rv .stars{margin-left:52px;width:100%}.sum{padding:24px 20px}}
+@media (prefers-reduced-motion:reduce){.fill,.bar,.write{transition:none}}
+</style>
+</head>
+<body>
+<section class="rs" aria-labelledby="rs-title">
+  <div class="intro">
+    <p class="eyebrow">Nasi &amp; Kopi · Malaysian kopitiam</p>
+    <h2 id="rs-title">What the neighbourhood <i>thinks</i> of our nasi lemak</h2>
+  </div>
+
+  <div class="wrap">
+    <aside class="sum" aria-label="Rating summary">
+      <p class="src">Google rating</p>
+      <div class="big"><b>4.6</b><span>out of 5</span></div>
+      <span class="stars" style="--p:92%" role="img" aria-label="Rated 4.6 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="count">Based on 1,284 reviews on Google</p>
+      <ul class="bars" id="bars" aria-label="Filter reviews by star rating"></ul>
+      <div class="aspects" aria-label="Scores by category">
+        <div><b>4.8</b><small>Food</small></div>
+        <div><b>4.5</b><small>Service</small></div>
+        <div><b>4.4</b><small>Vibe</small></div>
+      </div>
+      <a class="write" href="#" target="_blank" rel="noopener">Leave us a review <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+
+    <div>
+      <div class="tools">
+        <p class="status" id="status" aria-live="polite"></p>
+        <label class="sort">Sort by
+          <select id="sort">
+            <option value="new">Newest</option>
+            <option value="high">Highest rated</option>
+            <option value="low">Lowest rated</option>
+          </select>
+        </label>
+      </div>
+      <ul class="list" id="list"></ul>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var counts={5:962,4:214,3:61,2:22,1:25},total=1284;
+  var colors=['#c8442c','#4c8c4a','#3b2416','#b07a2a','#2f6f8f','#7a4c8c'];
+  var R=[
+    {n:'Aisyah R.',d:3,s:5,t:'The sambal is unreal: sweet, smoky, a slow burn. Nasi lemak ayam goreng with an extra egg and a kopi peng is my perfect Saturday.',dish:'Nasi lemak ayam goreng'},
+    {n:'Ben T.',d:9,s:5,t:'Roti canai is flaky and properly stretched by hand. Curry dip is generous. Prices are fair for the portion size.',dish:'Roti canai'},
+    {n:'Priya S.',d:14,s:4,t:'Loved the laksa, rich and full of prawns. Got busy at lunch so it took 20 minutes, but the staff kept our teh tarik topped up.',dish:'Curry laksa'},
+    {n:'Hafiz M.',d:21,s:5,t:'Tastes like my mak cik\'s kitchen in Penang. The kaya toast with soft-boiled eggs is exactly right, down to the dark soy and pepper.',dish:'Kaya toast set'},
+    {n:'Olivia K.',d:30,s:3,t:'Food was good but the music was a bit loud for a weekday breakfast and our table was wobbly.',dish:'Mee goreng mamak',reply:'Thanks Olivia, we have levelled every table since and we turn the music down before 11am now. Hope to see you again.'},
+    {n:'Rashed C.',d:38,s:5,t:'Vegan nasi lemak with tempeh rendang is the best plant-based dish in the area. Clearly marked allergens too.',dish:'Vegan nasi lemak'},
+    {n:'Chloe W.',d:45,s:2,t:'Delivery arrived cold and the sambal pot had leaked.',dish:'Delivery order',reply:'So sorry, Chloe. We\'ve switched to sealed sambal tubs and refunded your order. Please give us another go.'},
+    {n:'Jun H.',d:57,s:4,t:'Great ais kacang, very photogenic. Seating is tight but turnover is quick.',dish:'Ais kacang'}
+  ];
+  var bars=document.getElementById('bars'),list=document.getElementById('list'),status=document.getElementById('status'),sort=document.getElementById('sort'),filter=0;
+  [5,4,3,2,1].forEach(function(s){
+    var pct=Math.round(counts[s]/total*100),li=document.createElement('li');
+    li.innerHTML='<button type="button" class="bar" aria-pressed="false" data-s="'+s+'" aria-label="Show '+s+'-star reviews ('+pct+'% of ratings)"><span>'+s+' &#9733;</span><span class="track"><span class="fill" data-w="'+pct+'"></span></span><span class="num">'+pct+'%</span></button>';
+    bars.appendChild(li);
+  });
+  var btns=bars.querySelectorAll('.bar');
+  btns.forEach(function(b){b.addEventListener('click',function(){var s=+b.getAttribute('data-s');filter=filter===s?0:s;render();});});
+  sort.addEventListener('change',render);
+  function ago(d){if(d<7)return d+' day'+(d>1?'s':'')+' ago';if(d<30)return Math.round(d/7)+' week'+(d>=14?'s':'')+' ago';var m=Math.round(d/30);return m+' month'+(m>1?'s':'')+' ago';}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(){
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-s')===filter));});
+    var v=sort.value,rows=R.map(function(r,i){r.i=i;return r;}).filter(function(r){return !filter||r.s===filter;});
+    rows.sort(function(a,b){return v==='high'?b.s-a.s||a.d-b.d:v==='low'?a.s-b.s||a.d-b.d:a.d-b.d;});
+    list.innerHTML=rows.length?rows.map(function(r){
+      var ini=r.n.split(' ').map(function(w){return w[0];}).join('').replace('.','');
+      return '<li class="rv"><div class="rv-h"><span class="av" aria-hidden="true" style="background:'+colors[r.i%colors.length]+'">'+esc(ini)+'</span><div><b>'+esc(r.n)+'</b><small>'+ago(r.d)+' · on Google</small></div><span class="stars" style="--p:'+(r.s*20)+'%" role="img" aria-label="'+r.s+' out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div><p>'+esc(r.t)+'</p><span class="dish">'+esc(r.dish)+'</span>'+(r.reply?'<div class="reply"><b>Reply from Nasi &amp; Kopi:</b> '+esc(r.reply)+'</div>':'')+'</li>';
+    }).join(''):'<li class="empty">No '+filter+'-star reviews in this sample. <button type="button" class="clear" data-clear>Show all</button></li>';
+    var c=list.querySelector('[data-clear]');if(c)c.addEventListener('click',function(){filter=0;render();});
+    status.innerHTML=filter?'Showing '+rows.length+' of '+R.length+' recent reviews · '+filter+' stars <button type="button" class="clear" id="clr">Clear filter</button>':'Showing '+R.length+' recent reviews';
+    var clr=document.getElementById('clr');if(clr)clr.addEventListener('click',function(){filter=0;render();btns[0].focus();});
+  }
+  render();
+  function grow(){bars.querySelectorAll('.fill').forEach(function(f){f.style.width=f.getAttribute('data-w')+'%';});}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){grow();io.disconnect();}},{threshold:.3});io.observe(bars);}else grow();
+})();
+</script>
+</body>
+</html>

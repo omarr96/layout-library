@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacos El Columpio — Social Feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbeee4;--sec:#fff;--ink:#1d1a1f;--muted:#6b6470;--pink:#d42a63;--orange:#f08a24;--teal:#0f6e6a;--line:#ece4ea}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Rubik,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden;padding-top:48px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+button{font:inherit;color:inherit}
+.feed{padding:72px 20px 88px;background:radial-gradient(circle at 10% 0,#ffd9c2 0,transparent 40%),radial-gradient(circle at 95% 30%,#ffd0de 0,transparent 35%),var(--bg)}
+.wrap{max-width:940px;margin:0 auto}
+.kicker{text-align:center;font-weight:900;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.02em;line-height:1.05;margin-bottom:8px}
+.kicker em{font-style:normal;color:var(--pink)}
+.sub{text-align:center;color:var(--muted);margin-bottom:36px}
+.card{background:var(--sec);border-radius:24px;box-shadow:0 20px 60px rgba(120,40,70,.12);padding:32px 32px 24px}
+.prof{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.av{width:128px;height:128px;border-radius:50%;padding:4px;background:conic-gradient(var(--orange),var(--pink),#8a3ab9,var(--orange))}
+.av span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--teal);color:#fff;border:4px solid #fff;font-weight:900;font-size:1.6rem;letter-spacing:-.03em;line-height:.9;text-align:center}
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.handle{font-size:1.3rem;font-weight:500}
+.ver{width:18px;height:18px;color:var(--teal)}
+.follow{border:0;cursor:pointer;background:var(--pink);color:#fff;font-weight:700;padding:8px 22px;border-radius:10px;transition:background .2s}
+.follow[aria-pressed="true"]{background:#efe6ec;color:var(--ink)}
+.msg{border:0;background:#efe6ec;padding:8px 16px;border-radius:10px;font-weight:500;text-decoration:none;color:var(--ink)}
+.stats{list-style:none;display:flex;gap:28px;margin:14px 0 10px}
+.stats b{font-weight:700}
+.bio b{display:block}
+.bio{font-size:.95rem}
+.bio a{color:var(--teal);font-weight:500;text-decoration:none}
+.bio a:hover{text-decoration:underline}
+.hl{list-style:none;display:flex;gap:22px;margin:28px 0 8px;overflow-x:auto;padding:4px 2px 6px;scrollbar-width:none}
+.hl button{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.8rem;font-weight:500;width:72px}
+.hl i{width:68px;height:68px;border-radius:50%;border:2px solid var(--line);padding:3px;display:block;transition:border-color .2s}
+.hl img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.hl button[aria-pressed="true"] i{border-color:var(--pink)}
+.tabs{display:flex;justify-content:center;gap:48px;border-top:1px solid var(--line);margin-top:14px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.tabs span{padding:14px 0;border-top:2px solid var(--ink);margin-top:-1px;display:flex;gap:6px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.post{position:relative;aspect-ratio:1;border:0;padding:0;cursor:pointer;background:#eee;overflow:hidden}
+.post[hidden]{display:none}
+.post img{width:100%;height:100%;object-fit:cover;display:block}
+.post .ov{position:absolute;inset:0;background:rgba(29,26,31,.45);color:#fff;display:flex;gap:22px;align-items:center;justify-content:center;font-weight:700;opacity:0;transition:opacity .2s}
+.post .ov span{display:flex;gap:6px;align-items:center}
+.post:hover .ov,.post:focus-visible .ov{opacity:1}
+.post .multi{position:absolute;right:8px;top:8px;color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.more{display:block;margin:22px auto 4px;border:2px solid var(--ink);background:none;padding:10px 24px;border-radius:999px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.more:hover{background:var(--ink);color:#fff}
+.tag{text-align:center;margin-top:16px;color:var(--muted);font-size:.9rem}
+.tag b{color:var(--pink)}
+/* modal */
+.mod{position:fixed;inset:0;z-index:60;background:rgba(20,14,18,.8);display:flex;align-items:center;justify-content:center;padding:24px}
+.mod[hidden]{display:none}
+.box{background:#fff;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);max-width:900px;width:100%;max-height:calc(100vh - 48px)}
+.pic{position:relative;background:#000;min-height:0}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.pop{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px;color:#fff;opacity:0;pointer-events:none}
+.pop.go{animation:pop .8s ease}
+@keyframes pop{15%{opacity:1;transform:scale(1.2)}30%{transform:scale(.95)}70%{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1)}}
+.side{display:flex;flex-direction:column;padding:20px;gap:14px;overflow:auto}
+.who{display:flex;align-items:center;gap:10px;font-weight:700;border-bottom:1px solid var(--line);padding-bottom:14px}
+.who i{width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;font-style:normal;font-size:.7rem;display:grid;place-items:center;font-weight:900}
+.who .x{margin-left:auto;background:none;border:0;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center}
+.who .x:hover{background:#f2ecf0}
+.cap{flex:1;font-size:.95rem}
+.cap b{margin-right:6px}
+.cap .when{display:block;color:var(--muted);font-size:.78rem;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+.acts{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.like{background:none;border:0;cursor:pointer;padding:6px;border-radius:50%;display:grid;place-items:center}
+.like svg{transition:transform .2s}
+.like[aria-pressed="true"]{color:var(--pink)}
+.like[aria-pressed="true"] svg{fill:currentColor;transform:scale(1.1)}
+.likes{font-weight:700;font-size:.92rem}
+@media (max-width:700px){
+  .card{padding:22px 16px 16px;border-radius:18px}
+  .prof{grid-template-columns:auto 1fr;gap:18px}
+  .av{width:84px;height:84px}.av span{font-size:1.05rem;border-width:3px}
+  .stats{gap:16px;font-size:.88rem}
+  .bio{grid-column:1/-1}
+  .tabs{gap:24px}
+  .box{grid-template-columns:1fr;overflow:auto}
+  .pic img{aspect-ratio:4/3}
+}
+@media (max-width:480px){.feed{padding:56px 12px 64px}.hl{gap:12px}.hl button{width:64px}.hl i{width:60px;height:60px}.mod{padding:12px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="feed" aria-labelledby="ec-title">
+  <div class="wrap">
+    <h2 class="kicker" id="ec-title">Fresh off the <em>comal</em></h2>
+    <p class="sub">What's cooking, who's eating, and what Abuela Chela said today. Straight from our feed.</p>
+    <div class="card">
+      <div class="prof">
+        <div class="av" aria-hidden="true"><span>EL<br>COL</span></div>
+        <div>
+          <div class="row">
+            <span class="handle">@tacoselcolumpio</span>
+            <svg class="ver" viewBox="0 0 24 24" fill="currentColor" aria-label="Verified venue" role="img"><path d="M12 2l2.4 2.1 3.2-.3.9 3.1 2.8 1.6-1 3 1 3-2.8 1.6-.9 3.1-3.2-.3L12 22l-2.4-2.1-3.2.3-.9-3.1L2.7 15.5l1-3-1-3 2.8-1.6.9-3.1 3.2.3z"/><path d="M8 12.5l2.6 2.5L16 9.5" stroke="#fff" stroke-width="2" fill="none"/></svg>
+            <button class="follow" id="follow" aria-pressed="false">Follow</button>
+            <a class="msg" href="https://wa.me/0000000000">Message</a>
+          </div>
+          <ul class="stats">
+            <li><b>486</b> posts</li>
+            <li><b id="fol">12.4k</b> followers</li>
+            <li><b>218</b> following</li>
+          </ul>
+          <p class="bio"><b>Tacos El Columpio · Taquería</b>Hand-pressed blue corn, al pastor off the trompo, mezcal on the swing patio. 🌮<br>31 Calle Columpio, Market Quarter · Open daily 12–11pm · <a href="#">Order for pickup</a></p>
+        </div>
+      </div>
+      <ul class="hl" aria-label="Story highlights">
+        <li><button aria-pressed="true" data-f="all"><i><img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=160&h=160&q=70&auto=format&fit=crop" alt=""></i>All</button></li>
+        <li><button aria-pressed="false" data-f="tacos"><i><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=160&h=160&q=70&auto=format&fit=crop" alt=""></i>Tacos</button></li>
+        <li><button aria-pressed="false" data-f="drinks"><i><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=160&h=160&q=70&auto=format&fit=crop" alt=""></i>Aguas</button></li>
+        <li><button aria-pressed="false" data-f="people"><i><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=160&h=160&q=70&auto=format&fit=crop" alt=""></i>Regulars</button></li>
+        <li><button aria-pressed="false" data-f="kitchen"><i><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=160&h=160&q=70&auto=format&fit=crop" alt=""></i>Kitchen</button></li>
+      </ul>
+      <div class="tabs" aria-hidden="true"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Posts</span></div>
+      <div class="grid" id="grid">
+        <button class="post" data-f="tacos" data-l="1204" data-c="48" data-cap="Al pastor season never ends. Pineapple on the trompo, salsa verde on the side, swing seat optional." data-when="2 days ago"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&h=600&q=70&auto=format&fit=crop" alt="Row of tacos topped with salsa and avocado"></button>
+        <button class="post" data-f="tacos" data-l="986" data-c="31" data-m="1" data-cap="Friday spread for table six: carne asada, elote, guac and way too many chips." data-when="4 days ago"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600&h=600&q=70&auto=format&fit=crop" alt="Overhead table spread of shared plates and dips" loading="lazy"></button>
+        <button class="post" data-f="drinks" data-l="742" data-c="22" data-cap="Agua de sandía con chile. Three new aguas frescas this week, all made by Lupe at 10am." data-when="5 days ago"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=600&h=600&q=70&auto=format&fit=crop" alt="Tall glasses of red fruit drinks with lime" loading="lazy"></button>
+        <button class="post" data-f="people" data-l="1530" data-c="64" data-m="1" data-cap="Birthday crew took over the long table. ¡Feliz cumple, Marisol! 🎉" data-when="1 week ago"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&h=600&q=70&auto=format&fit=crop" alt="Group of friends laughing around a busy table" loading="lazy"></button>
+        <button class="post" data-f="kitchen" data-l="611" data-c="17" data-cap="Pollo en mole, low and slow since 6am. Abuela Chela's recipe, no substitutions." data-when="1 week ago"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=600&q=70&auto=format&fit=crop" alt="Pot of saucy stewed chicken with herbs" loading="lazy"></button>
+        <button class="post" data-f="tacos" data-l="893" data-c="29" data-cap="Carne asada plate with papas. Lunch special until 4pm, every weekday." data-when="2 weeks ago"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&h=600&q=70&auto=format&fit=crop" alt="Grilled steak sliced with fries on a white plate" loading="lazy"></button>
+        <button class="post" data-f="people" data-l="1102" data-c="40" data-cap="When the first bite hits. Tag yourself if you've done this face at our counter." data-when="2 weeks ago"><img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=600&h=600&q=70&auto=format&fit=crop" alt="Woman taking a big bite at a busy restaurant table" loading="lazy"></button>
+        <button class="post" data-f="kitchen" data-l="577" data-c="12" data-cap="Pozole rojo is back for the cold months. Radish, oregano, lime, repeat." data-when="3 weeks ago"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&h=600&q=70&auto=format&fit=crop" alt="Bowl of spicy broth with prawns and rice" loading="lazy"></button>
+        <button class="post" data-f="people" data-l="824" data-c="26" data-m="1" data-cap="Sunday afternoons on the swing patio. Walk-ins only, bring your sunglasses." data-when="3 weeks ago"><img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=600&h=600&q=70&auto=format&fit=crop" alt="Busy restaurant with guests and hanging lights" loading="lazy"></button>
+        <button class="post" data-f="tacos" data-l="702" data-c="19" data-extra="1" hidden data-cap="Costillas en salsa de chipotle. Fridays only, until they're gone." data-when="1 month ago"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=600&q=70&auto=format&fit=crop" alt="Glazed ribs on a board with tomato and dips" loading="lazy"></button>
+        <button class="post" data-f="people" data-l="1311" data-c="52" data-extra="1" hidden data-cap="Family-style feast for twelve. Ask about our taco party menu for groups." data-when="1 month ago"><img src="https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=600&h=600&q=70&auto=format&fit=crop" alt="Guests sharing many plates at a long outdoor table" loading="lazy"></button>
+        <button class="post" data-f="kitchen" data-l="498" data-c="9" data-extra="1" hidden data-cap="Ensalada de nopal: grilled cactus, queso fresco and tomato. Yes, it's vegetarian." data-when="1 month ago"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=600&q=70&auto=format&fit=crop" alt="Colourful salad bowl with avocado, tomato and chickpeas" loading="lazy"></button>
+      </div>
+      <button class="more" id="more">Load more posts</button>
+    </div>
+    <p class="tag">Tag <b>#ColumpioCrew</b> and we'll share our favourites every Friday.</p>
+  </div>
+</section>
+
+<div class="mod" id="mod" role="dialog" aria-modal="true" aria-labelledby="mod-who" hidden>
+  <div class="box">
+    <div class="pic"><img id="mimg" src="" alt=""><svg class="pop" id="pop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 4.5 6.8 4.5c2.2 0 3.6 1.2 5.2 3 1.6-1.8 3-3 5.2-3 3.8 0 5.9 4 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg></div>
+    <div class="side">
+      <div class="who"><i aria-hidden="true">EL</i><span id="mod-who">tacoselcolumpio</span><button class="x" id="mx" aria-label="Close post"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <p class="cap"><b>tacoselcolumpio</b><span id="mcap"></span><span class="when" id="mwhen"></span></p>
+      <div class="acts">
+        <button class="like" id="like" aria-pressed="false" aria-label="Like post"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 4.5 6.8 4.5c2.2 0 3.6 1.2 5.2 3 1.6-1.8 3-3 5.2-3 3.8 0 5.9 4 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg></button>
+        <span class="likes" id="mlikes" aria-live="polite"></span>
+      </div>
+      <p style="font-size:.8rem;color:var(--muted)">Double-tap the photo to like.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var posts=[].slice.call(document.querySelectorAll('.post')),liked={},filter='all',expanded=false;
+  var heart='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 4.5 6.8 4.5c2.2 0 3.6 1.2 5.2 3 1.6-1.8 3-3 5.2-3 3.8 0 5.9 4 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
+  var bub='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.9 2 11.6c0 2.5 1.3 4.8 3.4 6.4L4.5 21l4-2c1.1.3 2.3.5 3.5.5 5.5 0 10-3.9 10-8.6S17.5 3 12 3z"/></svg>';
+  var multi='<svg class="multi" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h11a3 3 0 013 3v11h-2V6a1 1 0 00-1-1H7z"/><rect x="3" y="7" width="14" height="14" rx="2"/></svg>';
+  function fmt(n){return n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(n)}
+  function count(p){return +p.dataset.l+(liked[posts.indexOf(p)]?1:0)}
+  function deco(p){
+    var o=p.querySelector('.ov');if(!o){o=document.createElement('span');o.className='ov';o.setAttribute('aria-hidden','true');p.appendChild(o)}
+    o.innerHTML='<span>'+heart+fmt(count(p))+'</span><span>'+bub+p.dataset.c+'</span>';
+    p.setAttribute('aria-label','Open post: '+p.querySelector('img').alt+', '+count(p)+' likes');
+  }
+  posts.forEach(function(p){if(p.dataset.m)p.insertAdjacentHTML('beforeend',multi);deco(p)});
+  var more=document.getElementById('more');
+  function apply(){posts.forEach(function(p){p.hidden=!((filter==='all'||p.dataset.f===filter)&&(expanded||!p.dataset.extra))});more.hidden=expanded}
+  more.addEventListener('click',function(){expanded=true;apply();var f=posts.filter(function(p){return p.dataset.extra&&!p.hidden})[0];if(f)f.focus()});
+  [].slice.call(document.querySelectorAll('.hl button')).forEach(function(b,k,all){
+    b.addEventListener('click',function(){all.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});filter=b.dataset.f;apply()});
+  });
+  var fb=document.getElementById('follow'),fol=document.getElementById('fol');
+  fb.addEventListener('click',function(){var on=fb.getAttribute('aria-pressed')!=='true';fb.setAttribute('aria-pressed',on);fb.textContent=on?'Following':'Follow';fol.textContent=on?'12.5k':'12.4k'});
+  var mod=document.getElementById('mod'),mimg=document.getElementById('mimg'),like=document.getElementById('like'),pop=document.getElementById('pop'),cur=null,opener=null;
+  function paintLike(){var k=posts.indexOf(cur);like.setAttribute('aria-pressed',liked[k]?'true':'false');like.setAttribute('aria-label',liked[k]?'Unlike post':'Like post');document.getElementById('mlikes').textContent=count(cur).toLocaleString()+' likes';deco(cur)}
+  function open(p){cur=p;opener=p;mimg.src=p.querySelector('img').src.replace('w=600&h=600','w=1000&h=1000');mimg.alt=p.querySelector('img').alt;document.getElementById('mcap').textContent=p.dataset.cap;document.getElementById('mwhen').textContent=p.dataset.when;paintLike();mod.hidden=false;document.body.style.overflow='hidden';document.getElementById('mx').focus()}
+  function close(){mod.hidden=true;document.body.style.overflow='';if(opener)opener.focus()}
+  posts.forEach(function(p){p.addEventListener('click',function(){open(p)})});
+  like.addEventListener('click',function(){var k=posts.indexOf(cur);liked[k]=!liked[k];paintLike()});
+  mimg.addEventListener('dblclick',function(){var k=posts.indexOf(cur);liked[k]=true;paintLike();pop.classList.remove('go');void pop.offsetWidth;pop.classList.add('go')});
+  document.getElementById('mx').addEventListener('click',close);
+  mod.addEventListener('click',function(e){if(e.target===mod)close()});
+  document.addEventListener('keydown',function(e){
+    if(mod.hidden)return;
+    if(e.key==='Escape')close();
+    if(e.key==='Tab'){var f=[document.getElementById('mx'),like],k=f.indexOf(document.activeElement);e.preventDefault();f[(k+(e.shiftKey?-1:1)+f.length)%f.length].focus()}
+  });
+})();
+</script>
+</body>
+</html>
