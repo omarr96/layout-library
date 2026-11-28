@@ -1292,7 +1292,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-01-classic-bistro",
       "title": "Header 01 · Classic · Copper Pot Bistro",
-      "desc": "Logo left, links centre, Book a table right; shadow on scroll; dropdown on mobile.",
+      "desc": "Header: logo left, pill links centred, phone and a Book a table button right; sticky with a shadow on scroll; dropdown menu on phones. Learn: the classic restaurant bar, one clear booking action.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1309,7 +1309,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-02-centred-trattoria",
       "title": "Header 02 · Centred logo · Trattoria Nonna Lucia",
-      "desc": "Crest logo between two link groups, double rule, elegant small caps.",
+      "desc": "Header: crest logo centred between two groups of small-caps links, double rule underneath; round burger and reserve icon on phones. Learn: symmetry for an elegant, traditional feel.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1326,7 +1326,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-03-transparent-steakhouse",
       "title": "Header 03 · Transparent → solid · Ember & Oak",
-      "desc": "Clear over the hero photo, turns solid coal with a brass line on scroll; drawer menu.",
+      "desc": "Header: transparent over a full-screen photo, turns solid with a brass line and shrinks after scrolling; side drawer on phones. Learn: let the hero photo breathe, keep the nav readable on scroll.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1343,7 +1343,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-04-pill-seafood",
       "title": "Header 04 · Floating pill · Saltwater Shack",
-      "desc": "Frosted floating pill that hides on scroll down and returns on scroll up.",
+      "desc": "Header: floating frosted pill bar that hides on scroll down and returns on scroll up; call icon and Order button. Learn: a light, modern bar that stays out of the way.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1360,7 +1360,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-05-tworow-indian",
       "title": "Header 05 · Two rows · Masala Lane",
-      "desc": "Top bar with open-now, phone, map and delivery; main bar below stays sticky.",
+      "desc": "Header: top bar with live open/closed, phone, map and delivery partners, then the main nav bar that stays sticky. Learn: put practical info (hours, phone, delivery) above the nav.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1377,7 +1377,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-06-minimal-sushi",
       "title": "Header 06 · Minimal + full-screen menu · Kaze Omakase",
-      "desc": "Logo and a Menu button; full-screen overlay menu with seatings and contact.",
+      "desc": "Header: only a logo and a Menu button; full-screen overlay menu with numbered links, seatings and contact. Learn: minimal chrome for a calm, premium brand.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1394,7 +1394,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-07-bold-burger",
       "title": "Header 07 · Bold · Big Flip Burgers",
-      "desc": "Huge logo, chunky hard-shadow buttons, specials ticker.",
+      "desc": "Header: huge two-line logo, chunky hard-shadow buttons, a looping specials ticker. Learn: loud, playful type for street food and burgers.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1411,7 +1411,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-08-order-book-taqueria",
       "title": "Header 08 · Order + Book · La Calaca Taqueria",
-      "desc": "Order online and Book side by side, each opening a small popover; bottom dock on phones.",
+      "desc": "Header: Order online and Book joined as one split control, each opening a small popover (pickup/delivery choice, mini booking form); docks to the bottom on phones. Learn: two key actions side by side, no page change needed.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1428,7 +1428,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-09-vertical-finedining",
       "title": "Header 09 · Vertical side header · Maison Céleste",
-      "desc": "Fixed editorial sidebar with wordmark, serif nav, hours and Reserve; scroll-spy.",
+      "desc": "Header: fixed vertical sidebar with wordmark, serif nav, award line, hours, address and Reserve; scroll-spy; left drawer on phones. Learn: an editorial, magazine-like layout for fine dining.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1445,7 +1445,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-header-10-bilingual-kacchi",
       "title": "Header 10 · EN / বাংলা + Open now · Puran Dhaka Kacchi Ghar",
-      "desc": "Working language switch and a live Open now badge.",
+      "desc": "Header: EN / বাংলা switch that changes the nav and page language, plus a live Open now badge from the visitor's clock. Learn: bilingual sites for local customers, honest opening status.",
       "tags": [
         "Restaurant",
         "Header"
@@ -1462,7 +1462,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-01-fullbleed-mezze",
       "title": "Hero 01 · Full-bleed food photo · Olive & Ember",
-      "desc": "Edge-to-edge overhead food photo, headline bottom-left, open-now facts.",
+      "desc": "Hero: edge-to-edge overhead food photo with a slow zoom, headline bottom-left, facts and open-now status bottom-right. Learn: let one great food photo sell the place.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1479,7 +1479,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-02-split-vegan",
       "title": "Hero 02 · Split photo + text · Greenhouse Kitchen",
-      "desc": "Text beside an arch-framed photo with a bowl-of-the-week card.",
+      "desc": "Hero: text beside an arch-framed photo with a floating Bowl of the week card and a stamp; photo on top on phones. Learn: balanced split layout with one featured dish.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1496,7 +1496,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-03-video-wok",
       "title": "Hero 03 · Video background · Wok & Flame",
-      "desc": "Full-screen looping flame video with pause button and poster fallback.",
+      "desc": "Hero: full-screen looping cooking video under huge condensed type, with a pause button and poster image fallback. Learn: motion and fire to show energy; always give a pause control.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1513,7 +1513,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-04-bigtype-taqueria",
       "title": "Hero 04 · Big type only · La Lumbre",
-      "desc": "Giant type with a cycling filling word and a specials ticker, no photo.",
+      "desc": "Hero: no photo, giant type where the filling word cycles, plus a specials ticker. Learn: personality through typography alone.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1530,7 +1530,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-05-collage-bakery",
       "title": "Hero 05 · Photo collage · Crumb & Kettle",
-      "desc": "Five-photo collage with a fresh-at-6am badge and today's hours.",
+      "desc": "Hero: five-photo collage with a Fresh at 6 am badge and today's hours. Learn: many small moments (bread, coffee, room) tell a fuller story.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1547,7 +1547,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-06-slider-trattoria",
       "title": "Hero 06 · Slider · Nonna Rosa",
-      "desc": "Four-slide crossfade with progress dots, arrows, keys and pause.",
+      "desc": "Hero: four-slide crossfade slider, each slide its own story, with progress dots, arrows, keys and pause. Learn: several messages in one spot without clutter.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1564,7 +1564,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-07-centred-rawbar",
       "title": "Hero 07 · Centred dish · Tide & Salt",
-      "desc": "One dish on a plain ground with labelled leader lines.",
+      "desc": "Hero: one dish centred on a plain cream ground with labelled leader lines to its parts and the name split around it. Learn: product-style focus on a single plate.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1581,7 +1581,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-08-dark-tasting",
       "title": "Hero 08 · Dark moody · Maison Obscura",
-      "desc": "Near-black and gold fine dining with a candle-like spotlight.",
+      "desc": "Hero: near-black and gold fine dining with a candle-like spotlight following the cursor over a dim dining photo. Learn: mood and restraint for a tasting menu.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1598,7 +1598,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-09-illustrated-brunch",
       "title": "Hero 09 · Illustrated & playful · Sunny Side",
-      "desc": "Drawn brunch scene; poke the egg for brunch facts.",
+      "desc": "Hero: hand-drawn SVG brunch scene with a poke-the-egg easter egg and chunky buttons. Learn: illustration and play for a friendly, casual brand.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1615,7 +1615,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-hero-10-booking-indian",
       "title": "Hero 10 · Booking bar in hero · Lantern House",
-      "desc": "Date, time and guests in the hero; finds the nearest free tables.",
+      "desc": "Hero: photo hero with a booking bar (date, time, guests) that finds the nearest free tables. Learn: start the booking right where people land.",
       "tags": [
         "Restaurant",
         "Hero"
@@ -1632,7 +1632,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-signature-01-big-cards",
       "title": "Signature 01 · Big photo cards · Smokestack & Pine",
-      "desc": "Dark poster grid of big dish cards; brisket card double height; pit status from the clock.",
+      "desc": "Signature dishes: dark poster grid of big photo cards, one double-height, name, price and tags over the photo; description slides in on hover. Learn: let the best dishes be the biggest thing.",
       "tags": [
         "Restaurant",
         "Signature"
@@ -1649,7 +1649,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-signature-02-slider",
       "title": "Signature 02 · Slider · Kohaku Izakaya",
-      "desc": "Split slider of six plates with Japanese names, pairing and price; swipe, keys, auto-play.",
+      "desc": "Signature dishes: split slider of six plates with the native dish name, description, drink pairing, allergy note and price; swipe, keys, autoplay with pause. Learn: one dish at a time, with full detail.",
       "tags": [
         "Restaurant",
         "Signature"
@@ -1666,7 +1666,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-signature-03-alternating",
       "title": "Signature 03 · Alternating rows · Thalassa Taverna",
-      "desc": "Four numbered photo/text rows with Greek names and serves, allergens, price.",
+      "desc": "Signature dishes: four numbered rows alternating photo and text, with native names and a serves / allergens / price line. Learn: a calm reading rhythm for storytelling.",
       "tags": [
         "Restaurant",
         "Signature"
@@ -1683,7 +1683,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-signature-04-hero-plus-small",
       "title": "Signature 04 · Hero dish + small ones · Bếp Mây",
-      "desc": "Big pho card with a handwritten sticker beside four small dishes with heat meters.",
+      "desc": "Signature dishes: one big featured dish card with a handwritten sticker beside four small dish cards with heat meters. Learn: clear hierarchy, one star plus supporting dishes.",
       "tags": [
         "Restaurant",
         "Signature"
@@ -1700,7 +1700,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-signature-05-ingredients-story",
       "title": "Signature 05 · Ingredients & story · Limón Cevichería",
-      "desc": "Ceviche photo with numbered ingredient hotspots, founder story and a 12-minute timeline.",
+      "desc": "Signature dishes: one dish photo with numbered ingredient hotspots, the founder's story and a prep timeline. Learn: explain why a dish is special, ingredient by ingredient.",
       "tags": [
         "Restaurant",
         "Signature"
@@ -1717,7 +1717,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-01-tabs-mezze",
       "title": "Menu 01 · Tabs by category · Cedar & Sumac",
-      "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",
+      "desc": "Menu: tabs by category (with native names) over a two-column grid of dishes. Learn: split a long menu so people find their section fast.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1734,7 +1734,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-02-dotted-bistro",
       "title": "Menu 02 · Dotted line to price · Maison Lulu",
-      "desc": "Two columns, dotted leaders to prices, house classics and a set menu box.",
+      "desc": "Menu: two columns with a dotted line from each dish to its price, house classics starred, a boxed set menu. Learn: price clarity, the dotted leader.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1751,7 +1751,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-03-photo-cards-brunch",
       "title": "Menu 03 · Photo cards · Sunday Yolk",
-      "desc": "Brunch photo cards with price tabs, badges and a save-a-dish heart.",
+      "desc": "Menu: photo cards with a price tab on each photo, Best seller / New badges and a save-a-dish heart. Learn: photos sell casual food; badges guide choice.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1768,7 +1768,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-04-thumbs-ramen",
       "title": "Menu 04 · List with thumbnails · Kumo Ramen Bar",
-      "desc": "Dark list with round thumbnails, allergen chips, spice dots and a photo popup.",
+      "desc": "Menu: dark list with small round dish thumbnails, native names, allergen chips and spice dots; tap a thumbnail for a larger photo. Learn: a scannable list with just enough visual cue.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1785,7 +1785,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-05-printed-trattoria",
       "title": "Menu 05 · Printed-menu look · Trattoria Nonna Pia",
-      "desc": "A paper menu on wood with a double border and a print button.",
+      "desc": "Menu: a one-page paper menu on a wood background with a double border and a Print button. Learn: the printed-menu look builds charm and trust.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1802,7 +1802,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-06-accordion-bangla",
       "title": "Menu 06 · Accordion · Shorshe Ghor",
-      "desc": "Bangladeshi menu in five open/close sections with Bangla names, prices in ৳.",
+      "desc": "Menu: accordion of menu sections with Bangla dish names and ৳ prices, Expand all / Collapse all. Learn: long menus stay short on phones.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1819,7 +1819,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-07-chalkboard-seafood",
       "title": "Menu 07 · Chalkboard · The Salty Gull",
-      "desc": "Framed chalkboard with today's catch, sold-out item and an easy-read switch.",
+      "desc": "Menu: chalkboard in a wooden frame with today's catch, a crossed-out sold-out dish and an easy-read text switch. Learn: daily-changing menus feel fresh; keep readability.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1836,7 +1836,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-08-tasting-finedining",
       "title": "Menu 08 · Tasting menu · Halcyon",
-      "desc": "Eight courses on a gold timeline; tasting/garden and wine-pairing switches.",
+      "desc": "Menu: tasting menu of eight numbered courses on a timeline, tasting/garden switch and wine pairing that updates the price. Learn: present courses as a journey with a clear total.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1853,7 +1853,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-09-filters-thai",
       "title": "Menu 09 · Filters · Baan Phrik",
-      "desc": "Veg, vegan, spicy, gluten-free and nut-free filters with live count; prices in ৳.",
+      "desc": "Menu: filter buttons (vegetarian, vegan, spicy, gluten-free, nut-free) over dish cards, live count and empty state. Learn: help people with diets find what they can eat.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1870,7 +1870,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-menu-10-featured-taqueria",
       "title": "Menu 10 · Featured dish + list · Casa Maíz",
-      "desc": "Dish of the week card next to tacos, small plates and drinks.",
+      "desc": "Menu: a big Dish of the week card next to a list of tacos, small plates and drinks; combo option changes the price. Learn: feature one dish, keep the rest simple.",
       "tags": [
         "Restaurant",
         "Menu"
@@ -1887,7 +1887,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-deal-01-package-cards",
       "title": "Deal 01 · Package cards · Sofra Meyhane",
-      "desc": "Three arch-topped set menus; weekday/weekend price switch.",
+      "desc": "Set menus & deals: three package cards side by side, the middle one highlighted as most booked, weekday/weekend price switch. Learn: compare packages at a glance, steer to the best one.",
       "tags": [
         "Restaurant",
         "Deal"
@@ -1904,7 +1904,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-deal-02-todays-special",
       "title": "Deal 02 · Today's special · Saigon Mint Kitchen",
-      "desc": "Today's dish from the clock, day picker and serving-now status.",
+      "desc": "Set menus & deals: today's special strip chosen by weekday, a day picker and a serving-now / sold-out status. Learn: a reason to come today.",
       "tags": [
         "Restaurant",
         "Deal"
@@ -1921,7 +1921,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-deal-03-family-packs",
       "title": "Deal 03 · Combo / family packs · Crispy Hen Co.",
-      "desc": "People control updates pieces, total, per-person price and savings.",
+      "desc": "Set menus & deals: combo / family pack cards with a people control that updates pieces, total, per-person price and savings. Learn: show the value of ordering for a group.",
       "tags": [
         "Restaurant",
         "Deal"
@@ -1938,7 +1938,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-deal-04-happy-hour",
       "title": "Deal 04 · Happy-hour banner · Azotea 31",
-      "desc": "Live on-now / starts-in countdown and weekly happy-hour times.",
+      "desc": "Set menus & deals: happy-hour banner with a live on-now / starts-in countdown and the weekly happy-hour times. Learn: urgency from real times.",
       "tags": [
         "Restaurant",
         "Deal"
@@ -1955,7 +1955,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-story-01-chef-portrait-quote",
       "title": "Story 01 · Chef portrait + quote · Kappo Tsukiyo",
-      "desc": "Dark split with a greyscale chef portrait, big quote and a read-more bio.",
+      "desc": "Our story: chef portrait with a big quote, stats and a Read his story expander. Learn: a face and a voice make the place personal.",
       "tags": [
         "Restaurant",
         "Story"
@@ -1972,7 +1972,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-story-02-family-timeline",
       "title": "Story 02 · Family timeline · Trattoria Ferrante",
-      "desc": "Four generations from 1952 to 2024 as year tabs with photo panels.",
+      "desc": "Our story: family history timeline of four generations as year tabs with photo panels. Learn: heritage builds trust.",
       "tags": [
         "Restaurant",
         "Story"
@@ -1989,7 +1989,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-story-03-photo-collage",
       "title": "Story 03 · Photo collage + text · Taberna Lumbre",
-      "desc": "Tilted photo-print collage with a desde 2011 stamp and a photo viewer.",
+      "desc": "Our story: tilted photo-print collage with a founding-year stamp beside the story; photos open in a viewer. Learn: casual, warm storytelling.",
       "tags": [
         "Restaurant",
         "Story"
@@ -2006,7 +2006,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-story-04-since-1985",
       "title": "Story 04 · Since 1985 big number · Lou's Lunch Counter",
-      "desc": "Giant photo-filled 1985 with counting stats and a coffee-price card.",
+      "desc": "Our story: a giant photo-filled founding year with counting stats and an old-vs-today price card. Learn: one big number says how long you've been trusted.",
       "tags": [
         "Restaurant",
         "Story"
@@ -2023,7 +2023,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-story-05-kitchen-process",
       "title": "Story 05 · Kitchen process · Fieldstone",
-      "desc": "Source, prep, fire, plate, pass: a snap-scroll strip of kitchen photos.",
+      "desc": "Our story: kitchen process in five steps (source, prep, fire, plate, pass) as a sideways photo strip. Learn: show the work behind the food.",
       "tags": [
         "Restaurant",
         "Story"
@@ -2040,7 +2040,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-gallery-01-masonry-lightbox",
       "title": "Gallery 01 · Masonry grid · Osteria Fumo",
-      "desc": "Masonry photos with category chips and a full lightbox (keys, swipe).",
+      "desc": "Inside the restaurant: masonry photo grid with category filters and a full lightbox (keys, swipe). Learn: let people browse the room, food and terrace.",
       "tags": [
         "Restaurant",
         "Gallery"
@@ -2057,7 +2057,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-gallery-02-slider",
       "title": "Gallery 02 · Slider · The Velvet Ledger",
-      "desc": "Dark split slider with room names, peeking next slide and thumbnails.",
+      "desc": "Inside the restaurant: dark split slider with room names, a peeking next photo and a thumbnail strip. Learn: tour the spaces one by one.",
       "tags": [
         "Restaurant",
         "Gallery"
@@ -2074,7 +2074,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-gallery-03-big-small-mosaic",
       "title": "Gallery 03 · Big + small mosaic · Saltbush Café",
-      "desc": "Tap a small tile to swap it into the big feature spot.",
+      "desc": "Inside the restaurant: big feature photo with small tiles; tap a tile to swap it into the big spot. Learn: one hero image with variety around it.",
       "tags": [
         "Restaurant",
         "Gallery"
@@ -2091,7 +2091,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-gallery-04-social-feed",
       "title": "Gallery 04 · Instagram feed look · Tacos El Columpio",
-      "desc": "Profile card, story highlights, 3-column grid and post popup with likes.",
+      "desc": "Inside the restaurant: Instagram-style profile with story highlights, a 3-column photo grid and a post popup. Learn: social proof and a lively, current feel.",
       "tags": [
         "Restaurant",
         "Gallery"
@@ -2108,7 +2108,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-review-01-quote-cards-paprika-lane",
       "title": "Review 01 · Quote cards · Paprika Lane",
-      "desc": "Masonry review cards with filter chips, read-more and a Google score card.",
+      "desc": "Guest reviews: masonry quote cards with the dish ordered, filter chips, read more and a Google rating card. Learn: real, specific reviews persuade.",
       "tags": [
         "Restaurant",
         "Review"
@@ -2125,7 +2125,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-review-02-big-quote-marea-alta",
       "title": "Review 02 · Big single quote · Marea Alta",
-      "desc": "One huge quote beside a terrace photo with highlighted phrases.",
+      "desc": "Guest reviews: one huge quote beside a photo with highlighted phrases. Learn: a single strong review can carry the section.",
       "tags": [
         "Restaurant",
         "Review"
@@ -2142,7 +2142,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-review-03-slider-dumpling-theory",
       "title": "Review 03 · Slider · Dumpling Theory",
-      "desc": "Reviews styled as order tickets in a snap slider with autoplay.",
+      "desc": "Guest reviews: reviews styled as order tickets in a slider with autoplay and pause. Learn: many voices without a long page.",
       "tags": [
         "Restaurant",
         "Review"
@@ -2159,7 +2159,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-review-04-rating-summary-nasi-kopi",
       "title": "Review 04 · Rating summary + quotes · Nasi & Kopi",
-      "desc": "Google rating panel with star bars that filter reviews, sort and owner replies.",
+      "desc": "Guest reviews: Google rating summary with star bars that filter the reviews, sort, sub-scores and owner replies. Learn: an honest overall score plus the detail behind it.",
       "tags": [
         "Restaurant",
         "Review"
@@ -2176,7 +2176,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-event-01-spaces",
       "title": "Event 01 · Spaces as photo cards · The Linden Room",
-      "desc": "Rooms with capacity and minimum spend; guest slider shows which fit.",
+      "desc": "Private dining & events: rooms as photo cards with seated/standing capacity and minimum spend; a guest slider shows which rooms fit. Learn: help groups pick the right space.",
       "tags": [
         "Restaurant",
         "Event"
@@ -2193,7 +2193,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-event-02-catering-steps",
       "title": "Event 02 · Catering steps · Masala Mehfil",
-      "desc": "Four-step catering process with tabs, progress line and photo.",
+      "desc": "Private dining & events: catering in four clear steps with a progress line and photo. Learn: make a big event feel simple.",
       "tags": [
         "Restaurant",
         "Event"
@@ -2210,7 +2210,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-event-03-enquiry-banner",
       "title": "Event 03 · Enquiry banner · Kumo Izakaya",
-      "desc": "Dark banner with perks and a short private-dining enquiry form.",
+      "desc": "Private dining & events: dark banner with perks and a short enquiry form. Learn: a low-effort first step for event bookings.",
       "tags": [
         "Restaurant",
         "Event"
@@ -2227,7 +2227,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-award-01-press-logo-strip",
       "title": "Award 01 · Press logo strip · Atelier Nord",
-      "desc": "Invented mastheads as text logos; each opens its pull quote.",
+      "desc": "Awards & press: a strip of publication names as text logos, each opening its pull quote. Learn: borrowed credibility at a glance.",
       "tags": [
         "Restaurant",
         "Award"
@@ -2244,7 +2244,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-award-02-press-quote-cards",
       "title": "Award 02 · Press quote cards · Jade Steamer",
-      "desc": "Torn newsprint clippings with mastheads, stars and filters.",
+      "desc": "Awards & press: newspaper-clipping cards with masthead, headline, stars and filters. Learn: press quotes feel real when shown as clippings.",
       "tags": [
         "Restaurant",
         "Award"
@@ -2261,7 +2261,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-award-03-award-badges",
       "title": "Award 03 · Award badges · Pike & Pit Smokehouse",
-      "desc": "Six drawn award seals that flip to show the judges' citation.",
+      "desc": "Awards & press: drawn award seals that flip to show the judges' citation, with counting stats. Learn: badges signal quality fast.",
       "tags": [
         "Restaurant",
         "Award"
@@ -2278,7 +2278,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-offer-01-discount-banner-pizzeria-volta",
       "title": "Offer 01 · Discount banner · Pizzeria Volta",
-      "desc": "Loud promo banner with copy-code button and an expiry countdown.",
+      "desc": "Offer strip: loud discount banner with a copy-code button and an expiry countdown. Learn: one clear deal with a deadline.",
       "tags": [
         "Restaurant",
         "Offer"
@@ -2295,7 +2295,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-offer-02-newsletter-hedgerow-kitchen",
       "title": "Offer 02 · Newsletter sign-up · Hedgerow Kitchen",
-      "desc": "Split card with topic chips, consent and inline success.",
+      "desc": "Offer strip: newsletter sign-up card with topic chips, consent and a sign-up reward. Learn: give a reason to join.",
       "tags": [
         "Restaurant",
         "Offer"
@@ -2312,7 +2312,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-offer-03-app-strip-bowl-theory",
       "title": "Offer 03 · App / order online strip · Bowl Theory",
-      "desc": "Phone mock-up, store buttons, text-me-the-link and order online.",
+      "desc": "Offer strip: app download / order online strip with a phone mock-up, store buttons and text-me-the-link. Learn: move regulars to ordering direct.",
       "tags": [
         "Restaurant",
         "Offer"
@@ -2329,7 +2329,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-01-form-hours-kalamata",
       "title": "Booking 01 · Booking form + hours · Little Kalamata House",
-      "desc": "Form with times from the day's hours, occasion chips and a summary ticket.",
+      "desc": "Book a table: booking form beside the opening hours; times follow that day's hours; summary ticket on success. Learn: booking and hours together avoid wrong requests.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2346,7 +2346,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-02-night-map-hanok-ember",
       "title": "Booking 02 · Map + address + hours · Hanok Ember",
-      "desc": "Night map with metro, car and bus routes, address card and 7-day hours.",
+      "desc": "Find us: drawn map with metro, car and bus routes, address card with copy and directions, and 7-day hours. Learn: make getting there easy.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2363,7 +2363,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-03-slot-picker-casa-tilde",
       "title": "Booking 03 · Reservation picker · Casa Tilde",
-      "desc": "Guests, date, time, details in four steps with live slot availability.",
+      "desc": "Book a table: step-by-step reservation picker (guests, date, time, details) with live slot availability. Learn: show what's free before asking for details.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2380,7 +2380,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-04-one-tap-island-pot",
       "title": "Booking 04 · WhatsApp & call · Island Pot",
-      "desc": "Big tap tiles and a WhatsApp message builder with live chat preview.",
+      "desc": "Contact: big WhatsApp and Call tiles plus a WhatsApp message builder with a live chat preview. Learn: one-tap contact is how most people book locally.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2397,7 +2397,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-05-branches-crust-cinder",
       "title": "Booking 05 · Multiple branches · Crust & Cinder",
-      "desc": "Four branch cards linked to map pins, with open-now and feature filters.",
+      "desc": "Find us: branch cards linked to map pins, each with its own hours and open-now status, plus filters. Learn: help people pick the nearest open branch.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2414,7 +2414,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-booking-06-delivery-zones-golden-fold",
       "title": "Booking 06 · Delivery zones · Golden Fold",
-      "desc": "Area or postcode checker with zone fee, time, minimum and free-delivery bar.",
+      "desc": "Delivery: zone checker by area or postcode with fee, time, minimum order and a free-delivery progress bar. Learn: answer \"do you deliver to me?\" instantly.",
       "tags": [
         "Restaurant",
         "Booking"
@@ -2431,7 +2431,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-01-columns-trattoria",
       "title": "Footer 01 · Columns · Trattoria Nonna Lisa",
-      "desc": "About, hours (today highlighted), contact and links under a tablecloth edge.",
+      "desc": "Footer: columns for about, hours (today highlighted), contact and links. Learn: the classic footer, everything findable.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2448,7 +2448,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-02-big-wordmark-brasa",
       "title": "Footer 02 · Big brand-name · Brasa",
-      "desc": "Giant wordmark across the width with an open-late sticker.",
+      "desc": "Footer: giant brand name across the full width with an open-late sticker. Learn: end on a memorable brand statement.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2465,7 +2465,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-03-map-hours-saffron",
       "title": "Footer 03 · Map + hours · Saffron Lane",
-      "desc": "Drawn map card with route, weekly hours timeline with a live now marker.",
+      "desc": "Footer: drawn map card with a walking route and a weekly hours timeline with a live now marker. Learn: location and hours are what visitors look for last.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2482,7 +2482,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-04-newsletter-leaf-ladle",
       "title": "Footer 04 · Newsletter · Leaf & Ladle",
-      "desc": "Newsletter card as the main block, interest chips, inline checks.",
+      "desc": "Footer: newsletter sign-up as the main block with interest chips. Learn: turn the page end into a sign-up moment.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2499,7 +2499,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-05-photo-strip-kai-sushi",
       "title": "Footer 05 · Photo strip · Kai",
-      "desc": "Instagram-style photo strip with a lightbox above the footer.",
+      "desc": "Footer: Instagram-style photo strip with a lightbox above the footer links. Learn: one last visual nudge before people leave.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2516,7 +2516,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-06-minimal-line-patty-club",
       "title": "Footer 06 · Minimal one-line · Patty Club",
-      "desc": "One line with logo, status, links, phone, social and back-to-top.",
+      "desc": "Footer: one line with logo, status, links, phone, social and back to top. Learn: minimal when the page above says it all.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2533,7 +2533,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-07-dark-book-ember-oak",
       "title": "Footer 07 · Dark + Book a table · Ember & Oak",
-      "desc": "Last-chance booking bar with guests, date and time, then columns.",
+      "desc": "Footer: dark footer with a last Book a table bar (guests, date, time) above the columns. Learn: one final chance to convert.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2550,7 +2550,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-08-delivery-kacchi-ghor",
       "title": "Footer 08 · Delivery badges · Kacchi Ghor",
-      "desc": "Order on Foodpanda, Pathao Food or by phone; EN / বাংলা switch.",
+      "desc": "Footer: delivery buttons (Foodpanda, Pathao Food as plain text) and Call to order, with an EN / বাংলা switch. Learn: show every way to order.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2567,7 +2567,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-09-branches-noodle-lab",
       "title": "Footer 09 · Multiple branches · Noodle Lab",
-      "desc": "Three branch cards with their own hours and open-now filter.",
+      "desc": "Footer: multiple branch cards with their own hours and an open-now filter. Learn: chains need per-branch info.",
       "tags": [
         "Restaurant",
         "Footer"
@@ -2584,7 +2584,7 @@ window.DESIGNS = {
       "cat": "section-layouts",
       "slug": "rk-footer-10-elegant-centred-maison-celeste",
       "title": "Footer 10 · Elegant centred · Maison Céleste",
-      "desc": "Centred monogram, award line and gold-ruled columns; EN / FR switch.",
+      "desc": "Footer: elegant centred footer with monogram, award line and gold-ruled columns, EN / FR switch. Learn: quiet luxury for fine dining.",
       "tags": [
         "Restaurant",
         "Footer"
