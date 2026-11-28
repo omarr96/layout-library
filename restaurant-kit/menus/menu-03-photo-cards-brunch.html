@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunday Yolk — Photo Card Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff8e7;--ink:#23201c;--muted:#5e564c;--yolk:#ffd24d;--tomato:#d93d1f;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:3px;border-radius:8px}
+.menu{max-width:1200px;margin:0 auto;padding:88px 24px}
+.head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:40px}
+.pill{display:inline-block;background:var(--ink);color:var(--yolk);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:99px}
+h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;letter-spacing:-.03em;margin-top:14px}
+h2 span{background:linear-gradient(transparent 62%,var(--yolk) 62%)}
+.head p{color:var(--muted);max-width:340px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:0 1px 0 rgba(35,32,28,.06),0 18px 40px -24px rgba(35,32,28,.35);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 1px 0 rgba(35,32,28,.06),0 26px 50px -24px rgba(35,32,28,.45)}
+.ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:#f1e6cc}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.05)}
+.price{position:absolute;right:14px;bottom:-1px;background:var(--yolk);color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.25rem;padding:8px 14px 6px;border-radius:14px 14px 0 0}
+.badge{position:absolute;left:14px;top:14px;background:var(--tomato);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.fav{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.fav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.fav[aria-pressed="true"]{color:var(--tomato)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.body h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;line-height:1.15}
+.body p{color:var(--muted);font-size:.95rem}
+.diet{margin-top:auto;padding-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.diet span{font-size:.74rem;font-weight:700;background:#fbf1d6;color:#6b4e00;padding:4px 9px;border-radius:8px}
+.diet span.hot{background:#fde3dc;color:#9b2a13}
+.foot{margin-top:34px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:.88rem;color:var(--muted)}
+.saved{font-weight:700;color:var(--ink)}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}.head{grid-template-columns:1fr}.menu{padding:64px 18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="menu" aria-labelledby="menu-title">
+  <div class="head">
+    <div><span class="pill">Served 8 am &ndash; 3 pm daily</span><h2 id="menu-title">Brunch at <span>Sunday Yolk</span></h2></div>
+    <p>Free-range eggs from one farm, bread baked at 5 am, and coffee roasted down the street. Tap the heart to save your picks.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=900&q=70&auto=format&fit=crop" alt="Thick French toast stacked with blueberries and banana" loading="lazy" width="900" height="675"><span class="badge">Best seller</span><button class="fav" type="button" aria-pressed="false" aria-label="Save Brioche French toast"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$14</span></div>
+      <div class="body"><h3>Brioche French toast</h3><p>Custard-soaked brioche, blueberries, caramelised banana and maple butter.</p><div class="diet"><span>Vegetarian</span><span>Contains egg &amp; dairy</span></div></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=900&q=70&auto=format&fit=crop" alt="Fried egg on thick toast with avocado" loading="lazy" width="900" height="675"><button class="fav" type="button" aria-pressed="false" aria-label="Save Sunny toast"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$11</span></div>
+      <div class="body"><h3>Sunny toast</h3><p>Crispy-edged fried egg on seeded sourdough with smashed avocado and chilli salt.</p><div class="diet"><span>Vegetarian</span><span class="hot">Mild heat</span></div></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1513442542250-854d436a73f2?w=900&q=70&auto=format&fit=crop" alt="Poached eggs with avocado, greens and rye bread" loading="lazy" width="900" height="675"><span class="badge">New</span><button class="fav" type="button" aria-pressed="false" aria-label="Save Green poach plate"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$16</span></div>
+      <div class="body"><h3>Green poach plate</h3><p>Two poached eggs, charred greens, avocado, beetroot hummus and dark rye.</p><div class="diet"><span>Vegetarian</span><span>GF bread +$2</span></div></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&q=70&auto=format&fit=crop" alt="Tall stack of pancakes with syrup being poured" loading="lazy" width="900" height="675"><button class="fav" type="button" aria-pressed="false" aria-label="Save Buttermilk stack"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$13</span></div>
+      <div class="body"><h3>Buttermilk stack</h3><p>Five fluffy pancakes, whipped honey butter and warm maple. Add bacon +$4.</p><div class="diet"><span>Vegetarian</span></div></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=70&auto=format&fit=crop" alt="Colourful grain bowl with avocado, chickpeas and tomatoes" loading="lazy" width="900" height="675"><button class="fav" type="button" aria-pressed="false" aria-label="Save Garden grain bowl"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$15</span></div>
+      <div class="body"><h3>Garden grain bowl</h3><p>Herby quinoa, roast sweet potato, chickpeas, avocado and lemon-tahini.</p><div class="diet"><span>Vegan</span><span>Gluten-free</span></div></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=70&auto=format&fit=crop" alt="Small jars of yoghurt topped with fresh strawberries" loading="lazy" width="900" height="675"><button class="fav" type="button" aria-pressed="false" aria-label="Save Strawberry yoghurt pots"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4h2C13.8 6.1 15.2 5 17.2 5c3.4 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg></button><span class="price">$8</span></div>
+      <div class="body"><h3>Strawberry yoghurt pots</h3><p>Thick Greek yoghurt, vanilla, macerated strawberries and almond granola.</p><div class="diet"><span>Vegetarian</span><span>Contains nuts</span><span>Gluten-free</span></div></div>
+    </article>
+  </div>
+
+  <div class="foot">
+    <p class="saved" aria-live="polite" id="saved">No dishes saved yet.</p>
+    <p>Allergen note: we cook with eggs, milk, wheat, nuts and sesame. Oat and almond milk free with coffee.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var favs=[].slice.call(document.querySelectorAll('.fav')),out=document.getElementById('saved');
+  function update(){
+    var names=favs.filter(function(b){return b.getAttribute('aria-pressed')==='true'}).map(function(b){return b.closest('.card').querySelector('h3').textContent});
+    out.textContent=names.length?'Saved ('+names.length+'): '+names.join(', '):'No dishes saved yet.';
+  }
+  favs.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');update();});});
+})();
+</script>
+</body>
+</html>

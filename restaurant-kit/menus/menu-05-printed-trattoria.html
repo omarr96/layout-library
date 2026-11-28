@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trattoria Nonna Pia — Printed Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--table:#3b2f27;--paper:#f6efe0;--ink:#2a2420;--muted:#6b5d50;--wine:#7a1f1f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"EB Garamond",Georgia,serif;background:var(--table);background-image:repeating-linear-gradient(92deg,rgba(255,255,255,.025) 0 2px,transparent 2px 9px),radial-gradient(ellipse at top,#4a3b30,#2c231d);color:var(--ink);line-height:1.45;overflow-x:hidden;min-height:100vh}
+:focus-visible{outline:2px solid #f0c987;outline-offset:3px}
+.wrap{padding:72px 20px 88px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.tools{display:flex;gap:10px}
+.tools button{font:500 .95rem "EB Garamond",serif;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:#f3e7cf;border:1px solid rgba(243,231,207,.5);padding:8px 16px;border-radius:2px;cursor:pointer}
+.tools button:hover{background:rgba(243,231,207,.12)}
+.sheet{width:100%;max-width:760px;background:var(--paper);background-image:radial-gradient(circle at 20% 10%,rgba(255,255,255,.6),transparent 40%),radial-gradient(circle at 90% 90%,rgba(160,120,70,.12),transparent 45%);padding:56px 64px 48px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6),0 2px 0 rgba(0,0,0,.2);position:relative;transform:rotate(-.6deg)}
+.sheet::before{content:"";position:absolute;inset:16px;border:1px solid var(--wine);outline:1px solid var(--wine);outline-offset:-6px;pointer-events:none}
+.top{text-align:center;margin-bottom:26px}
+.top small{font-variant:small-caps;letter-spacing:.24em;color:var(--muted);font-size:1rem}
+h2{font-family:"IM Fell English",serif;font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);color:var(--wine);line-height:1.05;margin:6px 0}
+.top p{font-style:italic;color:var(--muted)}
+.orn{display:block;margin:14px auto 0;color:var(--wine)}
+.course{margin-top:28px;text-align:center}
+.course h3{font-family:"IM Fell English",serif;font-style:italic;font-weight:400;font-size:1.7rem;color:var(--wine);display:flex;align-items:center;gap:14px;justify-content:center}
+.course h3::before,.course h3::after{content:"";height:1px;width:60px;background:currentColor;opacity:.5}
+.course h3 span{font-family:"EB Garamond";font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.d{margin-top:12px}
+.d b{font-weight:500;font-size:1.15rem;letter-spacing:.02em}
+.d b .p{font-weight:400;color:var(--wine);margin-left:8px}
+.d em{display:block;color:var(--muted);font-size:1rem}
+.mk{font-size:.75rem;font-variant:small-caps;letter-spacing:.1em;color:var(--wine)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+.colophon{margin-top:34px;padding-top:16px;border-top:1px dashed rgba(122,31,31,.4);text-align:center;font-size:.92rem;color:var(--muted);font-style:italic}
+.colophon b{font-style:normal;font-weight:500;color:var(--ink)}
+@media (max-width:640px){.sheet{padding:44px 26px 36px;transform:none}.sheet::before{inset:10px}.two{grid-template-columns:1fr}.course h3::before,.course h3::after{width:24px}}
+@media print{
+  @page{margin:12mm}
+  body{background:#fff}
+  .tools{display:none}
+  .wrap{padding:0}
+  .sheet{box-shadow:none;transform:none;max-width:none;background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="tools"><button type="button" id="print">Print this menu</button></div>
+  <section class="sheet" aria-labelledby="menu-title">
+    <div class="top">
+      <small>Cucina di casa &middot; dal 1987</small>
+      <h2 id="menu-title">Trattoria Nonna Pia</h2>
+      <p id="today">Il men&ugrave; di oggi</p>
+      <svg class="orn" width="120" height="14" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h46M74 7h46" stroke="currentColor"/><path d="M60 1c4 4 4 8 0 12-4-4-4-8 0-12zM50 7c3-3 6-3 8 0-2 3-5 3-8 0zM70 7c-3-3-6-3-8 0 2 3 5 3 8 0z" fill="currentColor"/></svg>
+    </div>
+
+    <div class="course"><h3>Antipasti <span>to begin</span></h3>
+      <div class="two">
+        <p class="d"><b>Burrata pugliese<span class="p">16</span></b><em>heirloom tomatoes, basil oil, grilled bread</em><span class="mk">vegetarian</span></p>
+        <p class="d"><b>Vitello tonnato<span class="p">17</span></b><em>cold roast veal, tuna &amp; caper sauce</em><span class="mk">gluten-free</span></p>
+        <p class="d"><b>Carciofi alla romana<span class="p">14</span></b><em>braised artichokes, mint, garlic, lemon</em><span class="mk">vegan &middot; gluten-free</span></p>
+        <p class="d"><b>Arancini di Nonna<span class="p">12</span></b><em>saffron rice, rag&ugrave;, peas, mozzarella</em></p>
+      </div>
+    </div>
+
+    <div class="course"><h3>Primi <span>pasta, made each morning</span></h3>
+      <p class="d"><b>Tagliatelle al rag&ugrave; bolognese<span class="p">24</span></b><em>beef &amp; pork rag&ugrave; cooked six hours, Parmigiano 30 mesi</em></p>
+      <p class="d"><b>Cacio e pepe<span class="p">21</span></b><em>tonnarelli, pecorino romano, toasted black pepper</em><span class="mk">vegetarian</span></p>
+      <p class="d"><b>Ravioli di ricotta e spinaci<span class="p">23</span></b><em>sage brown butter, lemon zest</em><span class="mk">vegetarian</span></p>
+      <p class="d"><b>Linguine alle vongole<span class="p">27</span></b><em>clams, white wine, garlic, chilli, parsley</em></p>
+    </div>
+
+    <div class="course"><h3>Secondi <span>mains</span></h3>
+      <p class="d"><b>Pollo alla cacciatora<span class="p">29</span></b><em>chicken braised with tomato, olives, rosemary &amp; soft polenta</em><span class="mk">gluten-free</span></p>
+      <p class="d"><b>Branzino al forno<span class="p">34</span></b><em>whole roasted sea bass, salsa verde, roast potatoes</em><span class="mk">gluten-free</span></p>
+      <p class="d"><b>Melanzane alla parmigiana<span class="p">25</span></b><em>Nonna Pia&rsquo;s aubergine bake, smoked scamorza</em><span class="mk">vegetarian</span></p>
+    </div>
+
+    <div class="course"><h3>Dolci <span>sweets</span></h3>
+      <div class="two">
+        <p class="d"><b>Tiramis&ugrave;<span class="p">11</span></b><em>savoiardi, espresso, mascarpone</em></p>
+        <p class="d"><b>Panna cotta<span class="p">10</span></b><em>vanilla, Amarena cherries</em><span class="mk">gluten-free</span></p>
+        <p class="d"><b>Cannoli siciliani<span class="p">10</span></b><em>ricotta, pistachio, candied orange</em></p>
+        <p class="d"><b>Affogato<span class="p">8</span></b><em>fior di latte gelato, hot espresso</em><span class="mk">gluten-free</span></p>
+      </div>
+    </div>
+
+    <p class="colophon">Prices in US dollars. Coperto (bread &amp; olive oil) <b>$3</b> per person.<br>Allergen note: our pasta contains egg and wheat; dishes may contain nuts, fish, shellfish or dairy. Please ask before you order.</p>
+  </section>
+</div>
+<script>
+(function(){
+  document.getElementById('print').addEventListener('click',function(){window.print();});
+  try{
+    var d=new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    document.getElementById('today').textContent='Il menù di oggi — '+d;
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

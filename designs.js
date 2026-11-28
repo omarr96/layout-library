@@ -306,6 +306,176 @@ window.DESIGNS = {
     },
     {
       "cat": "restaurant-kit",
+      "slug": "rk-menu-01-tabs-mezze",
+      "title": "Menu 01 · Tabs by category · Cedar & Sumac",
+      "desc": "Category tabs with Arabic names and a two-column grid of mezze dishes.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-01-tabs-mezze.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-02-dotted-bistro",
+      "title": "Menu 02 · Dotted line to price · Maison Lulu",
+      "desc": "Two columns, dotted leaders to prices, house classics and a set menu box.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-02-dotted-bistro.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-03-photo-cards-brunch",
+      "title": "Menu 03 · Photo cards · Sunday Yolk",
+      "desc": "Brunch photo cards with price tabs, badges and a save-a-dish heart.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-03-photo-cards-brunch.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-04-thumbs-ramen",
+      "title": "Menu 04 · List with thumbnails · Kumo Ramen Bar",
+      "desc": "Dark list with round thumbnails, allergen chips, spice dots and a photo popup.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-04-thumbs-ramen.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-05-printed-trattoria",
+      "title": "Menu 05 · Printed-menu look · Trattoria Nonna Pia",
+      "desc": "A paper menu on wood with a double border and a print button.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-05-printed-trattoria.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-06-accordion-bangla",
+      "title": "Menu 06 · Accordion · Shorshe Ghor",
+      "desc": "Bangladeshi menu in five open/close sections with Bangla names, prices in ৳.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-06-accordion-bangla.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-07-chalkboard-seafood",
+      "title": "Menu 07 · Chalkboard · The Salty Gull",
+      "desc": "Framed chalkboard with today's catch, sold-out item and an easy-read switch.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-07-chalkboard-seafood.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-08-tasting-finedining",
+      "title": "Menu 08 · Tasting menu · Halcyon",
+      "desc": "Eight courses on a gold timeline; tasting/garden and wine-pairing switches.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-08-tasting-finedining.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-09-filters-thai",
+      "title": "Menu 09 · Filters · Baan Phrik",
+      "desc": "Veg, vegan, spicy, gluten-free and nut-free filters with live count; prices in ৳.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-09-filters-thai.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
+      "slug": "rk-menu-10-featured-taqueria",
+      "title": "Menu 10 · Featured dish + list · Casa Maíz",
+      "desc": "Dish of the week card next to tacos, small plates and drinks.",
+      "tags": [
+        "Restaurant",
+        "Menu"
+      ],
+      "date": "2026-11-28",
+      "pages": [
+        {
+          "label": "Menu",
+          "href": "restaurant-kit/menus/menu-10-featured-taqueria.html"
+        }
+      ]
+    },
+    {
+      "cat": "restaurant-kit",
       "slug": "rk-footer-01-columns-trattoria",
       "title": "Footer 01 · Columns · Trattoria Nonna Lisa",
       "desc": "About, hours (today highlighted), contact and links under a tablecloth edge.",

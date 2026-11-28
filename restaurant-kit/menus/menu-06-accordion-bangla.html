@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorshe Ghor — Accordion Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6ea;--ink:#1d2a22;--green:#1f4d3a;--mustard:#d9a21b;--muted:#5a6359;--line:#e4dcc6;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Hind Siliguri",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:10px}
+.menu{max-width:860px;margin:0 auto;padding:88px 22px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.bn{font-family:"Tiro Bangla",serif;color:var(--mustard);font-size:1.3rem}
+h2{font-weight:700;font-size:clamp(2rem,5vw,3rem);color:var(--green);line-height:1.1}
+.head p{color:var(--muted);max-width:480px;margin-top:6px}
+.all{font:600 .92rem "Hind Siliguri",sans-serif;background:var(--green);color:#fff;border:0;border-radius:99px;padding:10px 18px;cursor:pointer}
+.all:hover{background:#163a2b}
+.acc{display:flex;flex-direction:column;gap:12px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.sec h3{margin:0}
+.trig{width:100%;display:grid;grid-template-columns:52px 1fr auto 28px;gap:14px;align-items:center;text-align:left;background:none;border:0;font:inherit;color:inherit;padding:16px 18px;cursor:pointer;border-radius:16px}
+.trig:hover{background:#fdf9ef}
+.ico{width:52px;height:52px;border-radius:14px;background:#f6ecd0;display:grid;place-items:center;font-family:"Tiro Bangla",serif;font-size:1.5rem;color:var(--green)}
+.tt b{display:block;font-size:1.2rem;font-weight:700;color:var(--green)}
+.tt span{font-size:.9rem;color:var(--muted)}
+.count{font-size:.8rem;font-weight:600;color:var(--muted);background:#f3efe2;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.chev{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .3s,background .3s}
+.chev svg{width:12px;height:12px}
+.trig[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--mustard);border-color:var(--mustard)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.panel>div{overflow:hidden}
+.sec.open .panel{grid-template-rows:1fr}
+.list{padding:2px 22px 18px 84px}
+.it{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px dashed var(--line)}
+.it h4{font-size:1.05rem;font-weight:600}
+.it h4 .b{font-family:"Tiro Bangla",serif;font-weight:400;color:var(--mustard);margin-left:6px;font-size:.95rem}
+.it p{font-size:.92rem;color:var(--muted)}
+.it .pr{font-weight:700;color:var(--green);white-space:nowrap}
+.dm{display:inline-block;font-size:.7rem;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.dm.v{background:#e3efd9;color:#2e5a1c}.dm.s{background:#fbe0d6;color:#9a2f12}
+.note{margin-top:24px;font-size:.88rem;color:var(--muted);display:flex;gap:10px;align-items:flex-start;background:#f6ecd0;border-radius:12px;padding:14px 16px}
+@media (max-width:600px){.trig{grid-template-columns:44px 1fr 24px;gap:12px;padding:14px}.ico{width:44px;height:44px;font-size:1.25rem}.count{display:none}.list{padding:0 16px 14px}.menu{padding:60px 16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="menu" aria-labelledby="menu-title">
+  <div class="head">
+    <div><span class="bn" lang="bn">শর্ষে ঘর</span><h2 id="menu-title">Shorshe Ghor menu</h2><p>Home-style Bangladeshi cooking with mustard oil, river fish and slow bhuna. Open a section to see the dishes.</p></div>
+    <button class="all" type="button" id="all" aria-expanded="false">Expand all</button>
+  </div>
+
+  <div class="acc">
+    <div class="sec open">
+      <h3><button class="trig" type="button" aria-expanded="true" aria-controls="s1" id="b1"><span class="ico" lang="bn" aria-hidden="true">ভ</span><span class="tt"><b>Bhorta</b><span>Mashed &amp; mustard-oil dressed</span></span><span class="count">4 dishes</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></button></h3>
+      <div class="panel" id="s1" role="region" aria-labelledby="b1"><div><div class="list">
+        <div class="it"><div><h4>Aloo bhorta<span class="b" lang="bn">আলু ভর্তা</span><span class="dm v">VG</span></h4><p>Potato, fried onion, green chilli, raw mustard oil.</p></div><span class="pr">৳120</span></div>
+        <div class="it"><div><h4>Begun pora<span class="b" lang="bn">বেগুন পোড়া</span><span class="dm v">VG</span></h4><p>Fire-roasted aubergine, coriander and shallots.</p></div><span class="pr">৳150</span></div>
+        <div class="it"><div><h4>Shutki bhorta<span class="b" lang="bn">শুঁটকি ভর্তা</span><span class="dm s">Hot</span></h4><p>Dried fish pounded with garlic and dry red chilli.</p></div><span class="pr">৳220</span></div>
+        <div class="it"><div><h4>Bhorta platter for two</h4><p>Six bhortas of the day with plain rice and dal.</p></div><span class="pr">৳650</span></div>
+      </div></div></div>
+    </div>
+
+    <div class="sec">
+      <h3><button class="trig" type="button" aria-expanded="false" aria-controls="s2" id="b2"><span class="ico" lang="bn" aria-hidden="true">ডা</span><span class="tt"><b>Dal &amp; bhaji</b><span>Lentils and seasonal vegetables</span></span><span class="count">3 dishes</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></button></h3>
+      <div class="panel" id="s2" role="region" aria-labelledby="b2"><div><div class="list">
+        <div class="it"><div><h4>Musur dal<span class="b" lang="bn">মসুর ডাল</span><span class="dm v">VG</span></h4><p>Red lentils tempered with panch phoron and garlic.</p></div><span class="pr">৳140</span></div>
+        <div class="it"><div><h4>Lau shaak bhaji<span class="b" lang="bn">লাউ শাক</span><span class="dm v">VG</span></h4><p>Gourd leaves stir-fried with garlic and kalojeera.</p></div><span class="pr">৳160</span></div>
+        <div class="it"><div><h4>Shobji niramish<span class="b" lang="bn">নিরামিষ</span><span class="dm v">V</span></h4><p>Mixed vegetables in ghee with ginger and cumin.</p></div><span class="pr">৳200</span></div>
+      </div></div></div>
+    </div>
+
+    <div class="sec">
+      <h3><button class="trig" type="button" aria-expanded="false" aria-controls="s3" id="b3"><span class="ico" lang="bn" aria-hidden="true">মা</span><span class="tt"><b>Maach</b><span>River &amp; sea fish</span></span><span class="count">4 dishes</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></button></h3>
+      <div class="panel" id="s3" role="region" aria-labelledby="b3"><div><div class="list">
+        <div class="it"><div><h4>Shorshe ilish<span class="b" lang="bn">সর্ষে ইলিশ</span><span class="dm s">Hot</span></h4><p>Hilsa steamed in mustard paste, green chilli and mustard oil. Our namesake.</p></div><span class="pr">৳780</span></div>
+        <div class="it"><div><h4>Rui kalia<span class="b" lang="bn">রুই কালিয়া</span></h4><p>Rohu in a rich onion-ginger gravy with whole spices.</p></div><span class="pr">৳420</span></div>
+        <div class="it"><div><h4>Chingri malai curry<span class="b" lang="bn">চিংড়ি মালাইকারি</span></h4><p>Golda prawns in coconut milk with cardamom.</p></div><span class="pr">৳850</span></div>
+        <div class="it"><div><h4>Koi macher jhol<span class="b" lang="bn">কই মাছের ঝোল</span></h4><p>Climbing perch in a light cumin and tomato broth.</p></div><span class="pr">৳380</span></div>
+      </div></div></div>
+    </div>
+
+    <div class="sec">
+      <h3><button class="trig" type="button" aria-expanded="false" aria-controls="s4" id="b4"><span class="ico" lang="bn" aria-hidden="true">মাং</span><span class="tt"><b>Mangsho</b><span>Slow-cooked meat</span></span><span class="count">3 dishes</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></button></h3>
+      <div class="panel" id="s4" role="region" aria-labelledby="b4"><div><div class="list">
+        <div class="it"><div><h4>Gorur kala bhuna<span class="b" lang="bn">কালা ভুনা</span><span class="dm s">Hot</span></h4><p>Chattogram-style beef, dry-roasted for hours until nearly black.</p></div><span class="pr">৳560</span></div>
+        <div class="it"><div><h4>Deshi murgi jhol<span class="b" lang="bn">দেশি মুরগি</span></h4><p>Free-range chicken curry with potatoes, home-style.</p></div><span class="pr">৳450</span></div>
+        <div class="it"><div><h4>Khashir rezala<span class="b" lang="bn">খাসির রেজালা</span></h4><p>Mutton in a yoghurt and poppy seed gravy. Contains nuts.</p></div><span class="pr">৳620</span></div>
+      </div></div></div>
+    </div>
+
+    <div class="sec">
+      <h3><button class="trig" type="button" aria-expanded="false" aria-controls="s5" id="b5"><span class="ico" lang="bn" aria-hidden="true">মি</span><span class="tt"><b>Mishti</b><span>Sweets &amp; drinks</span></span><span class="count">4 items</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></button></h3>
+      <div class="panel" id="s5" role="region" aria-labelledby="b5"><div><div class="list">
+        <div class="it"><div><h4>Mishti doi<span class="b" lang="bn">মিষ্টি দই</span><span class="dm v">V</span></h4><p>Caramelised sweet yoghurt set in a clay pot.</p></div><span class="pr">৳120</span></div>
+        <div class="it"><div><h4>Patishapta<span class="b" lang="bn">পাটিসাপটা</span><span class="dm v">V</span></h4><p>Rice crêpes rolled with coconut and date jaggery.</p></div><span class="pr">৳150</span></div>
+        <div class="it"><div><h4>Borhani<span class="b" lang="bn">বোরহানি</span><span class="dm v">V</span></h4><p>Spiced yoghurt drink with mint and black salt.</p></div><span class="pr">৳90</span></div>
+        <div class="it"><div><h4>Malai cha<span class="b" lang="bn">মালাই চা</span><span class="dm v">V</span></h4><p>Milk tea topped with a spoon of clotted cream.</p></div><span class="pr">৳60</span></div>
+      </div></div></div>
+    </div>
+  </div>
+
+  <p class="note"><span aria-hidden="true">&#9888;</span><span><b>Allergens:</b> most dishes use mustard (a listed allergen); some contain fish, shellfish, dairy or nuts. <b>V</b> vegetarian &middot; <b>VG</b> vegan &middot; <b>Hot</b> spicy. Prices include VAT; plain rice ৳40.</span></p>
+</section>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('.sec')),all=document.getElementById('all');
+  function set(sec,open){
+    var b=sec.querySelector('.trig'),p=sec.querySelector('.panel');
+    sec.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+    p.inert=!open;
+  }
+  function sync(){
+    var every=secs.every(function(s){return s.classList.contains('open')});
+    all.textContent=every?'Collapse all':'Expand all';all.setAttribute('aria-expanded',every);
+  }
+  secs.forEach(function(s){
+    set(s,s.classList.contains('open'));
+    s.querySelector('.trig').addEventListener('click',function(){set(s,!s.classList.contains('open'));sync();});
+  });
+  all.addEventListener('click',function(){
+    var open=all.getAttribute('aria-expanded')!=='true';
+    secs.forEach(function(s){set(s,open)});sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

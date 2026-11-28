@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kumo Ramen Bar — Thumbnail List Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111214;--panel:#1a1b1f;--ink:#f2ede4;--muted:#a7a196;--red:#e2462f;--line:#2b2c31}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:8px}
+.menu{max-width:1080px;margin:0 auto;padding:96px 24px;display:grid;grid-template-columns:280px 1fr;gap:64px}
+.side{position:sticky;top:40px;align-self:start}
+.jp{font-family:"Shippori Mincho",serif;font-size:4.2rem;line-height:1;color:var(--red);writing-mode:vertical-rl;float:right;margin-left:12px;letter-spacing:.1em}
+.side small{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+h2{font-family:"Shippori Mincho",serif;font-weight:800;font-size:2.6rem;line-height:1.05;margin:10px 0 14px}
+.side p{color:var(--muted);font-size:.95rem}
+.side .tip{margin-top:22px;border-left:2px solid var(--red);padding-left:12px;font-size:.88rem}
+h3.cat{font-family:"Shippori Mincho",serif;font-weight:600;font-size:1.35rem;display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+h3.cat span{font-family:Inter;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cat:not(:first-child){margin-top:44px}
+ul{list-style:none}
+li{display:grid;grid-template-columns:76px 1fr auto;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.thumb{width:76px;height:76px;border-radius:50%;overflow:hidden;border:2px solid var(--line);padding:0;background:var(--panel);cursor:zoom-in;position:relative;transition:border-color .2s,transform .2s}
+.thumb:hover{border-color:var(--red);transform:scale(1.06)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.info h4{font-weight:600;font-size:1.05rem;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.info h4 i{font-style:normal;font-family:"Shippori Mincho",serif;font-weight:600;color:var(--muted);font-size:.88rem}
+.info p{color:var(--muted);font-size:.9rem;margin-top:2px}
+.meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center}
+.chip{font-size:.7rem;font-weight:600;letter-spacing:.06em;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink)}
+.heat{color:var(--red);font-size:.8rem;letter-spacing:1px}
+.heat .off{color:#4a4b50}
+.price{font-family:"Shippori Mincho",serif;font-weight:800;font-size:1.25rem;white-space:nowrap}
+.mini{grid-template-columns:1fr auto}
+.note{margin-top:36px;font-size:.84rem;color:var(--muted);background:var(--panel);border-radius:12px;padding:16px 18px}
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,720px);margin:auto;color:var(--ink)}
+dialog::backdrop{background:rgba(5,5,7,.82)}
+.lb{background:var(--panel);border-radius:18px;overflow:hidden}
+.lb img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.lb div{padding:16px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.lb b{font-family:"Shippori Mincho",serif;font-size:1.3rem}
+.x{background:none;border:1px solid var(--line);color:var(--ink);font:inherit;border-radius:99px;padding:6px 14px;cursor:pointer}
+.x:hover{border-color:var(--red)}
+@media (max-width:860px){.menu{grid-template-columns:1fr;gap:36px;padding:64px 18px}.side{position:static}.jp{font-size:3rem}}
+@media (max-width:460px){li{grid-template-columns:60px 1fr;gap:14px}.thumb{width:60px;height:60px}.price{grid-column:2;font-size:1.1rem}.mini .price{grid-column:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<section class="menu" aria-labelledby="menu-title">
+  <div class="side">
+    <span class="jp" aria-hidden="true">雲麺</span>
+    <small>Menu &middot; Bowl list</small>
+    <h2 id="menu-title">Kumo Ramen Bar</h2>
+    <p>Broths simmered for eighteen hours, noodles cut each morning. Tap a photo to see the bowl.</p>
+    <p class="tip">Kaedama &mdash; an extra serving of noodles &mdash; is $3. Shout it before your broth runs out.</p>
+  </div>
+
+  <div>
+    <h3 class="cat">Ramen <span>Bowls</span></h3>
+    <ul>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Kumo tonkotsu"><img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Kumo tonkotsu <i>豚骨</i></h4><p>Creamy pork-bone broth, chashu belly, ajitama egg, nori, black garlic oil.</p><div class="meta"><span class="chip">Egg</span><span class="chip">Wheat</span><span class="chip">Soy</span></div></div><span class="price">$17</span></li>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Ebi shio ramen"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Ebi shio <i>海老塩</i></h4><p>Clear chicken and prawn-shell broth, sea salt tare, grilled tiger prawns, snow peas.</p><div class="meta"><span class="chip">Shellfish</span><span class="chip">Egg</span><span class="heat" aria-label="Spice level 1 of 3">●<span class="off">●●</span></span></div></div><span class="price">$19</span></li>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Jigoku spicy miso"><img src="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Jigoku spicy miso <i>地獄味噌</i></h4><p>Red miso and chilli broth, spicy minced pork, bok choy, corn, soft egg.</p><div class="meta"><span class="chip">Soy</span><span class="chip">Sesame</span><span class="heat" aria-label="Spice level 3 of 3">●●●</span></div></div><span class="price">$18</span></li>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Tori paitan"><img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Tori paitan <i>鶏白湯</i></h4><p>Rich chicken broth, sous-vide chicken breast, pickled red onion, lime. Ask for the vegan soy-milk version.</p><div class="meta"><span class="chip">Vegan option</span><span class="chip">Soy</span><span class="heat" aria-label="Spice level 1 of 3">●<span class="off">●●</span></span></div></div><span class="price">$16</span></li>
+    </ul>
+
+    <h3 class="cat">Small plates <span>Otsumami</span></h3>
+    <ul>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1602253057119-44d745d9b860?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Karaage"><img src="https://images.unsplash.com/photo-1602253057119-44d745d9b860?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Karaage <i>唐揚げ</i></h4><p>Ginger-soy fried chicken thigh, yuzu kewpie, shichimi.</p><div class="meta"><span class="chip">Wheat</span><span class="chip">Egg</span></div></div><span class="price">$10</span></li>
+      <li><button class="thumb" type="button" data-full="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=1400&q=70&auto=format&fit=crop" aria-label="View photo of Salmon aburi maki"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=200&q=60&auto=format&fit=crop" alt="" width="76" height="76" loading="lazy"></button>
+        <div class="info"><h4>Salmon aburi maki <i>炙り巻</i></h4><p>Eight pieces, torched salmon, avocado, spicy mayo, tobiko.</p><div class="meta"><span class="chip">Fish</span><span class="chip">Egg</span><span class="heat" aria-label="Spice level 1 of 3">●<span class="off">●●</span></span></div></div><span class="price">$13</span></li>
+    </ul>
+
+    <h3 class="cat">Sides &amp; toppings <span>Add to any bowl</span></h3>
+    <ul>
+      <li class="mini"><div class="info"><h4>Edamame, smoked sea salt <i>Vegan</i></h4></div><span class="price">$5</span></li>
+      <li class="mini"><div class="info"><h4>Ajitama soy-marinated egg</h4></div><span class="price">$2.50</span></li>
+      <li class="mini"><div class="info"><h4>Extra chashu, two slices</h4></div><span class="price">$4</span></li>
+      <li class="mini"><div class="info"><h4>Kaedama &mdash; extra noodles</h4></div><span class="price">$3</span></li>
+    </ul>
+
+    <p class="note"><b>Allergens:</b> chips list the main allergens in each dish. All noodles contain wheat; gluten-free rice noodles available on request (+$1). ● = spice level.</p>
+  </div>
+</section>
+
+<dialog id="lb" aria-label="Dish photo">
+  <div class="lb"><img id="lbImg" src="" alt=""><div><b id="lbName"></b><button class="x" type="button" id="lbClose">Close</button></div></div>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('lb'),img=document.getElementById('lbImg'),nm=document.getElementById('lbName'),last=null;
+  document.querySelectorAll('.thumb').forEach(function(b){
+    b.addEventListener('click',function(){
+      last=b;var name=b.parentNode.querySelector('h4').firstChild.textContent.trim();
+      img.src=b.getAttribute('data-full');img.alt='Photo of '+name;nm.textContent=name;
+      if(d.showModal)d.showModal();else d.setAttribute('open','');
+      document.getElementById('lbClose').focus();
+    });
+  });
+  function close(){if(d.close)d.close();else d.removeAttribute('open');}
+  document.getElementById('lbClose').addEventListener('click',close);
+  d.addEventListener('click',function(e){if(e.target===d)close();});
+  d.addEventListener('close',function(){if(last)last.focus();});
+})();
+</script>
+</body>
+</html>

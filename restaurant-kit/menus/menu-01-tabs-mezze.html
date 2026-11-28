@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cedar &amp; Sumac — Tabbed Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4efe4;--ink:#26301f;--olive:#2f3a2a;--sumac:#a23b2a;--muted:#5f6656;--line:#ddd3bf;--card:#fbf8f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Karla,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--sumac);outline-offset:3px;border-radius:6px}
+.menu{max-width:1080px;margin:0 auto;padding:88px 24px 96px}
+.head{text-align:center;margin-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sumac);font-weight:700}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:currentColor}
+h2{font-family:Marcellus,serif;font-weight:400;font-size:clamp(2.1rem,5vw,3.2rem);color:var(--olive);margin:10px 0 8px;line-height:1.1}
+.head p{color:var(--muted);max-width:520px;margin:0 auto}
+.tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:36px}
+.tab{appearance:none;border:0;background:none;font:inherit;font-weight:700;font-size:.95rem;color:var(--muted);padding:14px 18px 16px;cursor:pointer;position:relative;border-radius:8px 8px 0 0}
+.tab::after{content:"";position:absolute;left:18px;right:18px;bottom:-1px;height:3px;border-radius:3px;background:var(--sumac);transform:scaleX(0);transition:transform .25s}
+.tab:hover{color:var(--olive)}
+.tab[aria-selected="true"]{color:var(--olive)}
+.tab[aria-selected="true"]::after{transform:scaleX(1)}
+.tab small{display:block;font-family:Marcellus,serif;font-weight:400;font-size:.8rem;color:var(--sumac);letter-spacing:.04em}
+.panel{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.panel[hidden]{display:none}
+.panel.in{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:4px 16px}
+.dish h3{font-family:Marcellus,serif;font-weight:400;font-size:1.25rem;color:var(--olive)}
+.dish .ar{font-size:.8rem;color:var(--sumac);letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.dish p{grid-column:1/-1;color:var(--muted);font-size:.95rem}
+.price{font-weight:700;font-size:1.1rem;color:var(--olive);align-self:start;white-space:nowrap}
+.tags{grid-column:1/-1;display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.tag{font-size:.7rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--olive);background:#fff}
+.tag.v{border-color:#8aa36b;color:#3f5a26}.tag.n{border-color:#d9a679;color:#7a4a1c}.tag.h{border-color:#e3a397;color:var(--sumac)}
+.foot{margin-top:36px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+.key{display:flex;gap:14px;flex-wrap:wrap}
+.key span{display:inline-flex;gap:6px;align-items:center}
+@media (max-width:720px){.panel{grid-template-columns:1fr}.tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:0 12px}.tab{flex:none;padding:12px 14px 14px}.menu{padding:64px 20px 72px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section class="menu" aria-labelledby="menu-title">
+  <div class="head">
+    <span class="eyebrow">Our menu</span>
+    <h2 id="menu-title">Cedar &amp; Sumac</h2>
+    <p>Lebanese mezze for the middle of the table. Order a few, share them all &mdash; we recommend four plates for two people.</p>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Menu categories">
+    <button class="tab" role="tab" id="t-cold" aria-controls="p-cold" aria-selected="true">Cold mezze<small>Barid</small></button>
+    <button class="tab" role="tab" id="t-hot" aria-controls="p-hot" aria-selected="false" tabindex="-1">Hot mezze<small>Sakhin</small></button>
+    <button class="tab" role="tab" id="t-grill" aria-controls="p-grill" aria-selected="false" tabindex="-1">From the grill<small>Mashawi</small></button>
+    <button class="tab" role="tab" id="t-sweet" aria-controls="p-sweet" aria-selected="false" tabindex="-1">Sweets<small>Helou</small></button>
+    <button class="tab" role="tab" id="t-drink" aria-controls="p-drink" aria-selected="false" tabindex="-1">Drinks<small>Mashroobat</small></button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-cold" aria-labelledby="t-cold" tabindex="0">
+    <article class="dish"><div><span class="ar">Hommos</span><h3>Hummus with brown butter pine nuts</h3></div><span class="price">$9</span><p>Whipped chickpeas, tahini and lemon, finished with sizzling pine nuts and Aleppo pepper.</p><div class="tags"><span class="tag v">V</span><span class="tag n">Nuts</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Moutabal</span><h3>Smoked aubergine moutabal</h3></div><span class="price">$9</span><p>Fire-charred aubergine, garlic yoghurt, pomegranate seeds and mint oil.</p><div class="tags"><span class="tag v">V</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Tabbouleh</span><h3>Parsley tabbouleh</h3></div><span class="price">$10</span><p>Hand-chopped flat parsley, fine bulgur, tomato, spring onion and sumac dressing.</p><div class="tags"><span class="tag v">VG</span></div></article>
+    <article class="dish"><div><span class="ar">Muhammara</span><h3>Muhammara</h3></div><span class="price">$9</span><p>Roasted red pepper and walnut dip with pomegranate molasses and cumin.</p><div class="tags"><span class="tag v">VG</span><span class="tag n">Nuts</span><span class="tag h">Spicy</span></div></article>
+    <article class="dish"><div><span class="ar">Labneh</span><h3>House labneh &amp; za&rsquo;atar</h3></div><span class="price">$8</span><p>Strained yoghurt rolled in za&rsquo;atar, olive oil, cucumber and warm saj bread.</p><div class="tags"><span class="tag v">V</span></div></article>
+    <article class="dish"><div><span class="ar">Fattoush</span><h3>Fattoush salad</h3></div><span class="price">$11</span><p>Crisp radish, little gem, purslane, toasted pita shards and a sharp sumac vinaigrette.</p><div class="tags"><span class="tag v">VG</span></div></article>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-hot" aria-labelledby="t-hot" tabindex="0" hidden>
+    <article class="dish"><div><span class="ar">Falafel</span><h3>Fava &amp; chickpea falafel</h3></div><span class="price">$9</span><p>Five crisp falafel with tahini, pickled turnip and green chilli.</p><div class="tags"><span class="tag v">VG</span><span class="tag h">Spicy</span></div></article>
+    <article class="dish"><div><span class="ar">Batata harra</span><h3>Batata harra</h3></div><span class="price">$8</span><p>Crushed potatoes fried with coriander, garlic and chilli flakes.</p><div class="tags"><span class="tag v">VG</span><span class="tag">GF</span><span class="tag h">Spicy</span></div></article>
+    <article class="dish"><div><span class="ar">Kibbeh</span><h3>Lamb kibbeh</h3></div><span class="price">$12</span><p>Bulgur shells filled with spiced lamb, onion and pine nuts, with cool yoghurt.</p><div class="tags"><span class="tag n">Nuts</span></div></article>
+    <article class="dish"><div><span class="ar">Halloumi</span><h3>Grilled halloumi &amp; honey</h3></div><span class="price">$11</span><p>Seared halloumi, thyme honey, black sesame and grilled lemon.</p><div class="tags"><span class="tag v">V</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Sambousek</span><h3>Cheese sambousek</h3></div><span class="price">$10</span><p>Hand-folded pastries with akkawi cheese, parsley and nigella seeds.</p><div class="tags"><span class="tag v">V</span></div></article>
+    <article class="dish"><div><span class="ar">Jawaneh</span><h3>Garlic &amp; coriander wings</h3></div><span class="price">$12</span><p>Chicken wings tossed in toum, coriander and lemon, with pickles.</p><div class="tags"><span class="tag">GF</span></div></article>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-grill" aria-labelledby="t-grill" tabindex="0" hidden>
+    <article class="dish"><div><span class="ar">Shish taouk</span><h3>Shish taouk</h3></div><span class="price">$19</span><p>Chicken thigh marinated in yoghurt and seven spice, with toum and grilled tomato.</p><div class="tags"><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Kafta</span><h3>Lamb kafta skewers</h3></div><span class="price">$21</span><p>Minced lamb with parsley and onion, charred over oak and served on flatbread.</p><div class="tags"><span class="tag h">Spicy</span></div></article>
+    <article class="dish"><div><span class="ar">Lahm meshwi</span><h3>Beef fillet meshwi</h3></div><span class="price">$28</span><p>Cubes of beef fillet, peppers and onion, with sumac onions and grilled bread.</p><div class="tags"><span class="tag">GF option</span></div></article>
+    <article class="dish"><div><span class="ar">Samke harra</span><h3>Whole sea bream harra</h3></div><span class="price">$29</span><p>Grilled whole bream, spicy tahini, walnuts and coriander. Please allow 25 minutes.</p><div class="tags"><span class="tag n">Nuts</span><span class="tag h">Spicy</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Khodra</span><h3>Grilled vegetable platter</h3></div><span class="price">$17</span><p>Aubergine, courgette, peppers and mushrooms with hummus and chilli oil.</p><div class="tags"><span class="tag v">VG</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Mashawi mix</span><h3>Mixed grill for two</h3></div><span class="price">$52</span><p>Taouk, kafta and beef meshwi with rice, fries, toum and two cold mezze of your choice.</p><div class="tags"><span class="tag">To share</span></div></article>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-sweet" aria-labelledby="t-sweet" tabindex="0" hidden>
+    <article class="dish"><div><span class="ar">Knafeh</span><h3>Knafeh nabulsieh</h3></div><span class="price">$11</span><p>Warm shredded pastry over melting cheese, orange blossom syrup and pistachio.</p><div class="tags"><span class="tag v">V</span><span class="tag n">Nuts</span></div></article>
+    <article class="dish"><div><span class="ar">Mouhalabieh</span><h3>Mouhalabieh</h3></div><span class="price">$8</span><p>Silky milk pudding with rose water, crushed pistachio and dried rose petals.</p><div class="tags"><span class="tag v">V</span><span class="tag n">Nuts</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Baklawa</span><h3>Baklawa selection</h3></div><span class="price">$9</span><p>Six pieces of walnut, cashew and pistachio baklawa with Arabic coffee.</p><div class="tags"><span class="tag v">V</span><span class="tag n">Nuts</span></div></article>
+    <article class="dish"><div><span class="ar">Booza</span><h3>Mastic ice cream</h3></div><span class="price">$7</span><p>Stretchy Levantine ice cream with mastic and sahlab, rolled in pistachio.</p><div class="tags"><span class="tag v">V</span><span class="tag n">Nuts</span><span class="tag">GF</span></div></article>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-drink" aria-labelledby="t-drink" tabindex="0" hidden>
+    <article class="dish"><div><span class="ar">Jallab</span><h3>Jallab</h3></div><span class="price">$6</span><p>Grape molasses, date syrup and rose water over crushed ice with pine nuts and raisins.</p><div class="tags"><span class="tag v">VG</span><span class="tag n">Nuts</span></div></article>
+    <article class="dish"><div><span class="ar">Limonada</span><h3>Mint lemonade</h3></div><span class="price">$5</span><p>Fresh lemon blended with mint and a touch of orange blossom.</p><div class="tags"><span class="tag v">VG</span></div></article>
+    <article class="dish"><div><span class="ar">Ayran</span><h3>Salted yoghurt ayran</h3></div><span class="price">$4</span><p>Chilled, frothy and lightly salted &mdash; the classic partner for the grill.</p><div class="tags"><span class="tag v">V</span><span class="tag">GF</span></div></article>
+    <article class="dish"><div><span class="ar">Ahweh</span><h3>Arabic coffee with cardamom</h3></div><span class="price">$4</span><p>Cardamom-scented coffee brewed in a rakweh, served with a date.</p><div class="tags"><span class="tag v">VG</span><span class="tag">GF</span></div></article>
+  </div>
+
+  <div class="foot">
+    <div class="key" aria-label="Key"><span><b>V</b> vegetarian</span><span><b>VG</b> vegan</span><span><b>GF</b> gluten-free</span><span><b>Nuts</b> contains nuts</span></div>
+    <p>Allergen note: our kitchen uses sesame, nuts, gluten and dairy daily. Ask your server for the full allergen matrix.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t,focus){
+    tabs.forEach(function(x){
+      var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      var p=document.getElementById(x.getAttribute('aria-controls'));
+      p.hidden=!on;if(on){p.classList.remove('in');void p.offsetWidth;p.classList.add('in');}
+    });
+    if(focus)t.focus();
+    t.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];
+      else if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      else if(e.key==='Home')n=tabs[0];else if(e.key==='End')n=tabs[tabs.length-1];
+      if(n){e.preventDefault();select(n,true);}
+    });
+  });
+})();
+</script>
+</body>
+</html>
